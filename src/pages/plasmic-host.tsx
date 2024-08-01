@@ -17,7 +17,6 @@ import { Switch, switchMeta } from "@/fragment/components/switch";
 import { ApiRequest, apiRequestMeta } from "@/fragment/components/api-request";
 import { Slider, sliderMeta } from "@/fragment/components/slider";
 import { Chart, chartMeta } from "@/fragment/components/chart";
-import { Hamdast, hamdastMeta } from "@/hamdast/hamdast";
 
 export default function PlasmicHost() {
   return <PlasmicCanvasHost />;
@@ -26,7 +25,6 @@ export default function PlasmicHost() {
 registerGlobalContext(Fragment, fragmentMeta);
 registerGlobalContext(GrowthBook, growthBookMeta);
 registerGlobalContext(Splunk, splunkMeta);
-registerGlobalContext(Hamdast, hamdastMeta);
 registerComponent(DatePicker, datePickerMeta);
 registerComponent(TimePicker, timePickerMeta);
 registerComponent(Popover, popoverMeta);
