@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 
 type IFileInput = {
   accept?: string;
+  inputId?: string;
   onFileSelect?: (files: FileList | null) => void;
   inputType?: "file" | "image" | "text";
   children: ReactNode;
@@ -13,6 +14,7 @@ export const FileInput = ({
   onFileSelect,
   inputType = "file",
   children,
+  inputId,
 }: IFileInput) => {
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -28,7 +30,7 @@ export const FileInput = ({
         accept={accept}
         onChange={handleFileSelect}
         className="w-0 h-0 p-0"
-        id="upload-file-input"
+        id={inputId || "upload-file"}
       />
       <label htmlFor="upload-file-input">{children}</label>
     </>
@@ -40,8 +42,8 @@ export const fileInputMeta: CodeComponentMeta<IFileInput> = {
   displayName: "Fragment/FileInput",
   importPath: "@/fragment/components/file-input",
   props: {
+    inputId: "string",
     children: "slot",
-    value: "object",
     accept: {
       type: "string",
       defaultValue: "image/png, image/jpg, image/jpeg, image/bmp",
