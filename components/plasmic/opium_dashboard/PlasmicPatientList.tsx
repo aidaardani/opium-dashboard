@@ -815,8 +815,8 @@ function PlasmicPatientList__RenderFunc(props: {
                 insurances={(() => {
                   try {
                     return (
-                      ($state.insurances.tamin.id &&
-                        $state.insurances.tamin.id !== "") ||
+                      ($state.insurances.tamin?.id &&
+                        $state.insurances.tamin?.id !== "") ||
                       $state.insurances.salamat.some(
                         insurance => Object.keys(insurance).length !== 0
                       )

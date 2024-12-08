@@ -1954,6 +1954,33 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicProfileTells.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "Uq71V-zgrZxq",
+          "name": "ActivationOfficeCost",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationOfficeCost.tsx",
+          "importSpec": {
+            "modulePath": "ActivationOfficeCost.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationOfficeCost.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "3ABVwkEsdVNM",
+          "name": "NewPage2",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicNewPage2.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/activation-page.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicNewPage2.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/activation-page"
         }
       ],
       "icons": [
@@ -2339,7 +2366,7 @@
           "id": "FbJKJDT4Zqs9",
           "name": "FileInput",
           "displayName": "FileInput",
-          "componentImportPath": "@/fragment/components/file-input"
+          "componentImportPath": "@/fragment/components/FileInput"
         },
         {
           "id": "Hj9PnfcAA6rQ",

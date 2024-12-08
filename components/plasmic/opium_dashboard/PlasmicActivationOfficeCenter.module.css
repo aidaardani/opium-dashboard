@@ -150,7 +150,7 @@
   font-size: var(--token-6NbVMeD6zQwn);
   min-width: 0;
 }
-.button:global(.__wab_instance) {
+.button__bWfvz:global(.__wab_instance) {
   max-width: 100%;
   width: 100%;
   min-width: 0;
@@ -169,6 +169,29 @@
 }
 .tellsDialog:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
+}
+.centersApi:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.freeBox__zu1G7 {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.svg__iLgSs {
+  object-fit: cover;
+  max-width: 100%;
+  width: 24px;
+  flex-shrink: 0;
+  height: 1em;
 }
 .freeBox__snooH {
   display: flex;
@@ -203,4 +226,43 @@
 }
 .notifyCell:global(.__wab_instance) {
   max-width: 100%;
+}
+.freeBox__v74R {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
+.text___4WYa {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  background: #f3f6f9;
+  min-width: 0;
+  border-radius: var(--token-_c276Gs_1FIE);
+  padding: var(--token-_c276Gs_1FIE) var(--token-Fv8-L_kN-2Ma);
+}
+.button__mfJ7:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.svg__aGkXf {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.svg__lgGaM {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
 }
