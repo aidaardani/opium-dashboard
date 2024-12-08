@@ -32,7 +32,7 @@ export const FileInput = ({
         className="w-0 h-0 p-0"
         id={inputId || "upload-file"}
       />
-      <label htmlFor="upload-file-input">{children}</label>
+      <label htmlFor={inputId || "upload-file"}>{children}</label>
     </>
   );
 };
