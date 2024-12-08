@@ -94,8 +94,8 @@ export type PlasmicActivationOfficeCenter__OverridesType = {
   root?: Flex__<"div">;
   map?: Flex__<typeof Map>;
   addressApi?: Flex__<typeof ApiRequest>;
-  button?: Flex__<typeof Button>;
   tellsDialog?: Flex__<typeof Dialog>;
+  centersApi?: Flex__<typeof ApiRequest>;
   tells?: Flex__<typeof ProfileTells>;
   notifyCell?: Flex__<typeof ProfileNotifyCell>;
 };
@@ -141,6 +141,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
+
+  const $globalActions = useGlobalActions?.();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
@@ -210,6 +212,24 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "centersApi.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "centersApi.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "centersApi.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -351,10 +371,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         </Stack__>
       </ApiRequest>
       <Button
-        data-plasmic-name={"button"}
-        data-plasmic-override={overrides.button}
         children2={"\u0627\u0646\u062c\u0627\u0645 \u0634\u062f"}
-        className={classNames("__wab_instance", sty.button)}
+        className={classNames("__wab_instance", sty.button__bWfvz)}
         onClick={async event => {
           const $steps = {};
 
@@ -395,41 +413,159 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         data-plasmic-name={"tellsDialog"}
         data-plasmic-override={overrides.tellsDialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__snooH)}
+          <ApiRequest
+            data-plasmic-name={"centersApi"}
+            data-plasmic-override={overrides.centersApi}
+            className={classNames("__wab_instance", sty.centersApi)}
+            errorDisplay={null}
+            loadingDisplay={
+              <div className={classNames(projectcss.all, sty.freeBox__zu1G7)}>
+                <Icon34Icon
+                  className={classNames(projectcss.all, sty.svg__iLgSs)}
+                  role={"img"}
+                />
+              </div>
+            }
+            method={"GET"}
+            onError={generateStateOnChangeProp($state, ["centersApi", "error"])}
+            onLoading={generateStateOnChangeProp($state, [
+              "centersApi",
+              "loading"
+            ])}
+            onSuccess={generateStateOnChangeProp($state, [
+              "centersApi",
+              "data"
+            ])}
+            url={"https://api.paziresh24.com/V1/doctor/centers"}
           >
-            <ProfileTells
-              data-plasmic-name={"tells"}
-              data-plasmic-override={overrides.tells}
-              className={classNames("__wab_instance", sty.tells)}
-              newTells={generateStateValueProp($state, ["tells", "newTells"])}
-              oldTells={generateStateValueProp($state, ["tells", "oldTells"])}
-              onNewTellsChange={generateStateOnChangeProp($state, [
-                "tells",
-                "newTells"
-              ])}
-              onOldTellsChange={generateStateOnChangeProp($state, [
-                "tells",
-                "oldTells"
-              ])}
-            />
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__snooH)}
+            >
+              <ProfileTells
+                data-plasmic-name={"tells"}
+                data-plasmic-override={overrides.tells}
+                className={classNames("__wab_instance", sty.tells)}
+                newTells={generateStateValueProp($state, ["tells", "newTells"])}
+                oldTells={generateStateValueProp($state, ["tells", "oldTells"])}
+                onNewTellsChange={generateStateOnChangeProp($state, [
+                  "tells",
+                  "newTells"
+                ])}
+                onOldTellsChange={generateStateOnChangeProp($state, [
+                  "tells",
+                  "oldTells"
+                ])}
+              />
 
-            <ProfileNotifyCell
-              data-plasmic-name={"notifyCell"}
-              data-plasmic-override={overrides.notifyCell}
-              className={classNames("__wab_instance", sty.notifyCell)}
-              notifyCellValue={generateStateValueProp($state, [
-                "notifyCell",
-                "notifyCellValue"
-              ])}
-              onNotifyCellValueChange={generateStateOnChangeProp($state, [
-                "notifyCell",
-                "notifyCellValue"
-              ])}
-            />
-          </Stack__>
+              <ProfileNotifyCell
+                data-plasmic-name={"notifyCell"}
+                data-plasmic-override={overrides.notifyCell}
+                className={classNames("__wab_instance", sty.notifyCell)}
+                notifyCellValue={generateStateValueProp($state, [
+                  "notifyCell",
+                  "notifyCellValue"
+                ])}
+                onNotifyCellValueChange={generateStateOnChangeProp($state, [
+                  "notifyCell",
+                  "notifyCellValue"
+                ])}
+              />
+
+              <div className={classNames(projectcss.all, sty.freeBox__v74R)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___4WYa
+                  )}
+                >
+                  {
+                    "\u0644\u0637\u0641\u0627 \u0628\u0631\u0627\u06cc \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc \u0646\u0648\u0628\u062a \u0647\u0627\u06cc \u0645\u0637\u0628 \u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u0645\u0646\u0634\u06cc \u062e\u0648\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u0646\u0645\u0627\u06cc\u06cc\u062f."
+                  }
+                </div>
+              </div>
+              <Button
+                children2={"\u0630\u062e\u06cc\u0631\u0647"}
+                className={classNames("__wab_instance", sty.button__mfJ7)}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["invokeGlobalAction"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "PUT",
+                            (() => {
+                              try {
+                                return (() => {
+                                  const centerId =
+                                    $state.centersApi.data.data.find(
+                                      item => item.type_id == 1
+                                    ).id;
+                                  return `https://api.paziresh24.com/V1/doctor/centers/${centerId}`;
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            undefined,
+                            (() => {
+                              try {
+                                return (() => {
+                                  const newTell = $state.tells.newTells.map(
+                                    item => item.value
+                                  );
+                                  return {
+                                    address:
+                                      $state.addressApi?.data
+                                        ?.formatted_address,
+                                    lat: $state.map.lat,
+                                    lon: $state.map.lng,
+                                    tells: [
+                                      ...$state.tells.oldTells,
+                                      ...newTell
+                                    ]
+                                  };
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction"] != null &&
+                    typeof $steps["invokeGlobalAction"] === "object" &&
+                    typeof $steps["invokeGlobalAction"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction"] = await $steps[
+                      "invokeGlobalAction"
+                    ];
+                  }
+                }}
+              />
+            </Stack__>
+          </ApiRequest>
         }
         className={classNames("__wab_instance", sty.tellsDialog)}
         noTrigger={true}
@@ -452,15 +588,15 @@ const PlasmicDescendants = {
     "root",
     "map",
     "addressApi",
-    "button",
     "tellsDialog",
+    "centersApi",
     "tells",
     "notifyCell"
   ],
   map: ["map"],
   addressApi: ["addressApi"],
-  button: ["button"],
-  tellsDialog: ["tellsDialog", "tells", "notifyCell"],
+  tellsDialog: ["tellsDialog", "centersApi", "tells", "notifyCell"],
+  centersApi: ["centersApi", "tells", "notifyCell"],
   tells: ["tells"],
   notifyCell: ["notifyCell"]
 } as const;
@@ -471,8 +607,8 @@ type NodeDefaultElementType = {
   root: "div";
   map: typeof Map;
   addressApi: typeof ApiRequest;
-  button: typeof Button;
   tellsDialog: typeof Dialog;
+  centersApi: typeof ApiRequest;
   tells: typeof ProfileTells;
   notifyCell: typeof ProfileNotifyCell;
 };
@@ -539,8 +675,8 @@ export const PlasmicActivationOfficeCenter = Object.assign(
     // Helper components rendering sub-elements
     map: makeNodeComponent("map"),
     addressApi: makeNodeComponent("addressApi"),
-    button: makeNodeComponent("button"),
     tellsDialog: makeNodeComponent("tellsDialog"),
+    centersApi: makeNodeComponent("centersApi"),
     tells: makeNodeComponent("tells"),
     notifyCell: makeNodeComponent("notifyCell"),
 
