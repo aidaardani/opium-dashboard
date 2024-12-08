@@ -199,7 +199,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.apiRequest.data.providers[0].notify_cell;
+              return $state.apiRequest?.data?.providers[0]?.notify_cell;
             } catch (e) {
               if (
                 e instanceof TypeError ||
