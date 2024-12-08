@@ -225,9 +225,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
       Object.assign(
         {
           secureCall: false,
-          cost: "10000 \u062a\u0648\u0645\u0627\u0646",
-          insurance:
-            "\u062a\u0627\u0645\u06cc\u0646 \u0627\u062c\u062a\u0645\u0627\u0639\u06cc"
+          cost: "10000 \u062a\u0648\u0645\u0627\u0646"
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
