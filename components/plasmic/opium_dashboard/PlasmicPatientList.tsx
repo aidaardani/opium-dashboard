@@ -468,7 +468,9 @@ function PlasmicPatientList__RenderFunc(props: {
             $steps["updateLoading2"] = await $steps["updateLoading2"];
           }
 
-          $steps["apiOnlineVisitChannels"] = true
+          $steps["apiOnlineVisitChannels"] = $props.centers.some(
+            center => center.id === "5532"
+          )
             ? (() => {
                 const actionArgs = {
                   args: [
@@ -491,7 +493,9 @@ function PlasmicPatientList__RenderFunc(props: {
             ];
           }
 
-          $steps["updateVisitChannel"] = true
+          $steps["updateVisitChannel"] = $props.centers.some(
+            center => center.id === "5532"
+          )
             ? (() => {
                 const actionArgs = {
                   variable: {
