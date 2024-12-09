@@ -138,6 +138,11 @@
   > img {
   margin-top: var(--token-vMUQwr5Jto1d);
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__qHMpg {
+    background: #ffffff;
+  }
+}
 .text___72Ehn {
   width: 100%;
   height: auto;

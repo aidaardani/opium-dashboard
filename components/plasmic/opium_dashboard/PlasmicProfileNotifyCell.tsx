@@ -227,7 +227,7 @@ function PlasmicProfileNotifyCell__RenderFunc(props: {
                       variablePath: ["notifyCell", "value"]
                     },
                     operation: 0,
-                    value: $state.apiRequest.data.providers[0].notify_cell
+                    value: $state.apiRequest?.data?.providers?.[0]?.notify_cell
                   };
                   return (({ variable, value, startIndex, deleteCount }) => {
                     if (!variable) {
