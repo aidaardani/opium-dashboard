@@ -1970,17 +1970,45 @@
         },
         {
           "id": "3ABVwkEsdVNM",
-          "name": "NewPage2",
+          "name": "ActivationPage",
           "type": "managed",
           "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
-          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicNewPage2.tsx",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationPage.tsx",
           "importSpec": {
             "modulePath": "../src/pages/activation-page.tsx"
           },
-          "cssFilePath": "plasmic/opium_dashboard/PlasmicNewPage2.module.css",
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationPage.module.css",
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/activation-page"
+        },
+        {
+          "id": "YjxK-nPRmG0-",
+          "name": "ActivationCenter",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationCenter.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/activation-page/office/center.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationCenter.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/activation-page/office/center"
+        },
+        {
+          "id": "POnAEYK1Z5mh",
+          "name": "ActivationCost",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationCost.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/activation-page/office/cost.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationCost.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/activation-page/office/cost"
         }
       ],
       "icons": [
@@ -2366,7 +2394,7 @@
           "id": "FbJKJDT4Zqs9",
           "name": "FileInput",
           "displayName": "FileInput",
-          "componentImportPath": "@/fragment/components/FileInput"
+          "componentImportPath": "@/fragment/components/file-input"
         },
         {
           "id": "Hj9PnfcAA6rQ",
