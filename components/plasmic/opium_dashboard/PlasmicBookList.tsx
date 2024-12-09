@@ -280,12 +280,6 @@ function PlasmicBookList__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       },
       {
-        path: "auth",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
-      },
-      {
         path: "variable",
         type: "private",
         variableType: "text",
@@ -352,60 +346,13 @@ function PlasmicBookList__RenderFunc(props: {
             onMount={async () => {
               const $steps = {};
 
-              $steps["auth"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: ["GET", "https://api.paziresh24.com/V1/auth/me"]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["auth"] != null &&
-                typeof $steps["auth"] === "object" &&
-                typeof $steps["auth"].then === "function"
-              ) {
-                $steps["auth"] = await $steps["auth"];
-              }
-
-              $steps["updateAuth"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["auth"]
-                      },
-                      operation: 0,
-                      value: $steps.auth.data
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateAuth"] != null &&
-                typeof $steps["updateAuth"] === "object" &&
-                typeof $steps["updateAuth"].then === "function"
-              ) {
-                $steps["updateAuth"] = await $steps["updateAuth"];
-              }
-
               $steps["growthbook"] = true
                 ? (() => {
                     const actionArgs = {
                       args: [
                         (() => {
                           try {
-                            return { user_id: $state.auth.data.id };
+                            return { user_id: $ctx.query.user_id };
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -430,159 +377,6 @@ function PlasmicBookList__RenderFunc(props: {
                 typeof $steps["growthbook"].then === "function"
               ) {
                 $steps["growthbook"] = await $steps["growthbook"];
-              }
-
-              $steps["apiHoliday"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        undefined,
-                        "https://apigw.paziresh24.com/v1/holidays-next-year"
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["apiHoliday"] != null &&
-                typeof $steps["apiHoliday"] === "object" &&
-                typeof $steps["apiHoliday"].then === "function"
-              ) {
-                $steps["apiHoliday"] = await $steps["apiHoliday"];
-              }
-
-              $steps["updateHoliday"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["holiday"]
-                      },
-                      operation: 0,
-                      value: $steps.apiHoliday.data
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateHoliday"] != null &&
-                typeof $steps["updateHoliday"] === "object" &&
-                typeof $steps["updateHoliday"].then === "function"
-              ) {
-                $steps["updateHoliday"] = await $steps["updateHoliday"];
-              }
-
-              $steps["sendEvent"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return {
-                              group: "load-page",
-                              data: { center_id: $state.centers },
-                              type: "book_list"
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Splunk.sendLog"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["sendEvent"] != null &&
-                typeof $steps["sendEvent"] === "object" &&
-                typeof $steps["sendEvent"].then === "function"
-              ) {
-                $steps["sendEvent"] = await $steps["sendEvent"];
-              }
-
-              $steps["apiGetPaymentSetting"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "GET",
-                        "https://apigw.paziresh24.com/nelson/v1/setting",
-                        (() => {
-                          try {
-                            return { key: "booking:activate_online_payment" };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["apiGetPaymentSetting"] != null &&
-                typeof $steps["apiGetPaymentSetting"] === "object" &&
-                typeof $steps["apiGetPaymentSetting"].then === "function"
-              ) {
-                $steps["apiGetPaymentSetting"] = await $steps[
-                  "apiGetPaymentSetting"
-                ];
-              }
-
-              $steps["updateStatePaymentSetting"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["settingBookingPayment"]
-                      },
-                      operation: 0,
-                      value: $steps.apiGetPaymentSetting.data
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateStatePaymentSetting"] != null &&
-                typeof $steps["updateStatePaymentSetting"] === "object" &&
-                typeof $steps["updateStatePaymentSetting"].then === "function"
-              ) {
-                $steps["updateStatePaymentSetting"] = await $steps[
-                  "updateStatePaymentSetting"
-                ];
               }
             }}
           />
@@ -1187,10 +981,7 @@ function PlasmicBookList__RenderFunc(props: {
               })}
               deps={(() => {
                 try {
-                  return [
-                    $ctx.GrowthBook.attributes?.user_id,
-                    $ctx.GrowthBook?.features?.["show-list-of-centers-patients"]
-                  ];
+                  return [];
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -1204,7 +995,7 @@ function PlasmicBookList__RenderFunc(props: {
               onMount={async () => {
                 const $steps = {};
 
-                $steps["apiCenters"] = true
+                $steps["apiCenters"] = false
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -1255,7 +1046,7 @@ function PlasmicBookList__RenderFunc(props: {
                           (() => {
                             try {
                               return {
-                                user_id: $state?.auth?.data?.id,
+                                user_id: $ctx.query.user_id,
                                 center_types:
                                   $steps.apiAllCenters.data.data?.map(
                                     center => center.type_id
@@ -1298,11 +1089,7 @@ function PlasmicBookList__RenderFunc(props: {
                           variablePath: ["centers"]
                         },
                         operation: 0,
-                        value: $ctx.GrowthBook.features[
-                          "show-list-of-centers-patients"
-                        ]
-                          ? $steps.apiAllCenters.data.data
-                          : $steps.apiCenters.data.data
+                        value: $steps.apiAllCenters.data.data
                       };
                       return (({
                         variable,
@@ -1328,38 +1115,40 @@ function PlasmicBookList__RenderFunc(props: {
                   $steps["updateCenters"] = await $steps["updateCenters"];
                 }
 
-                $steps["apiUserCenterService"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "GET",
-                          "https://apigw.paziresh24.com/v1/user-center-services",
-                          (() => {
-                            try {
-                              return {
-                                user_center_id: $state.centers.find(
-                                  center => center.id === "5532"
-                                ).user_center_id,
-                                server_id: 1
-                              };
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                $steps["apiUserCenterService"] =
+                  $state.drCenters.selectedCenter.length > 0 &&
+                  $state.centers.some(center => center.id === "5532")
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "GET",
+                            "https://apigw.paziresh24.com/v1/user-center-services",
+                            (() => {
+                              try {
+                                return {
+                                  user_center_id: $state.centers.find(
+                                    center => center.id === "5532"
+                                  ).user_center_id,
+                                  server_id: 1
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
                 if (
                   $steps["apiUserCenterService"] != null &&
                   typeof $steps["apiUserCenterService"] === "object" &&
@@ -1370,32 +1159,34 @@ function PlasmicBookList__RenderFunc(props: {
                   ];
                 }
 
-                $steps["updateUserCenterService"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["userCenterService"]
-                        },
-                        operation: 0,
-                        value: $steps.apiUserCenterService.data
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
+                $steps["updateUserCenterService"] =
+                  $state.drCenters.selectedCenter.length > 0 &&
+                  $state.centers.some(center => center.id === "5532")
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["userCenterService"]
+                          },
+                          operation: 0,
+                          value: $steps.apiUserCenterService.data
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
 
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
                 if (
                   $steps["updateUserCenterService"] != null &&
                   typeof $steps["updateUserCenterService"] === "object" &&
@@ -2873,6 +2664,167 @@ function PlasmicBookList__RenderFunc(props: {
             code={
               '\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"\nheight="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->\n\n<!-- Yandex.Metrika counter -->\n<script type="text/javascript" >\n   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n   m[i].l=1*new Date();\n   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})\n   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");\n\n   ym(98277236, "init", {\n        clickmap:true,\n        trackLinks:true,\n        accurateTrackBounce:true,\n        webvisor:true\n   });\n</script>\n<noscript><div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div></noscript>\n<!-- /Yandex.Metrika counter -->'
             }
+          />
+
+          <SideEffect
+            className={classNames("__wab_instance", sty.sideEffect__kteKf)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["apiHoliday"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "GET",
+                        "https://apigw.paziresh24.com/v1/holidays-next-year"
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["apiHoliday"] != null &&
+                typeof $steps["apiHoliday"] === "object" &&
+                typeof $steps["apiHoliday"].then === "function"
+              ) {
+                $steps["apiHoliday"] = await $steps["apiHoliday"];
+              }
+
+              $steps["updateHoliday"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["holiday"]
+                      },
+                      operation: 0,
+                      value: $steps.apiHoliday.data
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateHoliday"] != null &&
+                typeof $steps["updateHoliday"] === "object" &&
+                typeof $steps["updateHoliday"].then === "function"
+              ) {
+                $steps["updateHoliday"] = await $steps["updateHoliday"];
+              }
+
+              $steps["sendEvent"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              group: "load-page",
+                              data: { center_id: $state.centers },
+                              type: "book_list",
+                              user_id: $ctx.query.user_id
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["sendEvent"] != null &&
+                typeof $steps["sendEvent"] === "object" &&
+                typeof $steps["sendEvent"].then === "function"
+              ) {
+                $steps["sendEvent"] = await $steps["sendEvent"];
+              }
+
+              $steps["apiGetPaymentSetting"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        undefined,
+                        "https://apigw.paziresh24.com/nelson/v1/setting",
+                        (() => {
+                          try {
+                            return { key: "booking:activate_online_payment" };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["apiGetPaymentSetting"] != null &&
+                typeof $steps["apiGetPaymentSetting"] === "object" &&
+                typeof $steps["apiGetPaymentSetting"].then === "function"
+              ) {
+                $steps["apiGetPaymentSetting"] = await $steps[
+                  "apiGetPaymentSetting"
+                ];
+              }
+
+              $steps["updateSettingBookingPayment"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["settingBookingPayment"]
+                      },
+                      operation: 0,
+                      value: $steps.apiGetPaymentSetting.data
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateSettingBookingPayment"] != null &&
+                typeof $steps["updateSettingBookingPayment"] === "object" &&
+                typeof $steps["updateSettingBookingPayment"].then === "function"
+              ) {
+                $steps["updateSettingBookingPayment"] = await $steps[
+                  "updateSettingBookingPayment"
+                ];
+              }
+            }}
           />
         </div>
       </div>

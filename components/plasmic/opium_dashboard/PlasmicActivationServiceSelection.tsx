@@ -516,7 +516,7 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
             onClick={async event => {
               const $steps = {};
 
-              $steps["goToPage"] = !!$state.selectedServices[0]
+              $steps["goToPage"] = false
                 ? (() => {
                     const actionArgs = {
                       destination: (() => {
@@ -558,6 +558,35 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
                 typeof $steps["goToPage"].then === "function"
               ) {
                 $steps["goToPage"] = await $steps["goToPage"];
+              }
+
+              $steps["goToActivationCenter"] = true
+                ? (() => {
+                    const actionArgs = {
+                      destination: `/activation-page/office/center`
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToActivationCenter"] != null &&
+                typeof $steps["goToActivationCenter"] === "object" &&
+                typeof $steps["goToActivationCenter"].then === "function"
+              ) {
+                $steps["goToActivationCenter"] = await $steps[
+                  "goToActivationCenter"
+                ];
               }
             }}
           />

@@ -4689,6 +4689,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
               data-plasmic-override={overrides.fragmentFileInput}
               accept={"image/png, image/jpg, image/jpeg, image/bmp"}
               className={classNames("__wab_instance", sty.fragmentFileInput)}
+              inputId={"gallery-input"}
               inputType={"file"}
               onFileSelect={async files => {
                 const $steps = {};

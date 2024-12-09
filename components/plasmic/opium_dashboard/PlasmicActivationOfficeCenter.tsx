@@ -192,7 +192,9 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "tells.newTells",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $ctx }) => [
+          { id: "opi238647", tell: "021" }
+        ]
       },
       {
         path: "notifyCell.notifyCellValue",
@@ -432,10 +434,54 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
               "centersApi",
               "loading"
             ])}
-            onSuccess={generateStateOnChangeProp($state, [
-              "centersApi",
-              "data"
-            ])}
+            onSuccess={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["centersApi", "data"]).apply(
+                null,
+                eventArgs
+              );
+              (async data => {
+                const $steps = {};
+
+                $steps["updateTellsOldTells"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["tells", "oldTells"]
+                        },
+                        operation: 0,
+                        value:
+                          $state.centersApi?.data?.data?.find(
+                            item => item.type_id == 1
+                          )?.tells || []
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateTellsOldTells"] != null &&
+                  typeof $steps["updateTellsOldTells"] === "object" &&
+                  typeof $steps["updateTellsOldTells"].then === "function"
+                ) {
+                  $steps["updateTellsOldTells"] = await $steps[
+                    "updateTellsOldTells"
+                  ];
+                }
+              }).apply(null, eventArgs);
+            }}
             url={"https://api.paziresh24.com/V1/doctor/centers"}
           >
             <Stack__
@@ -521,7 +567,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                               try {
                                 return (() => {
                                   const newTell = $state.tells.newTells.map(
-                                    item => item.value
+                                    item => item.tell
                                   );
                                   return {
                                     address:
@@ -560,6 +606,35 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                   ) {
                     $steps["invokeGlobalAction"] = await $steps[
                       "invokeGlobalAction"
+                    ];
+                  }
+
+                  $steps["goToActivationCost"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          destination: `/activation-page/office/cost`
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToActivationCost"] != null &&
+                    typeof $steps["goToActivationCost"] === "object" &&
+                    typeof $steps["goToActivationCost"].then === "function"
+                  ) {
+                    $steps["goToActivationCost"] = await $steps[
+                      "goToActivationCost"
                     ];
                   }
                 }}

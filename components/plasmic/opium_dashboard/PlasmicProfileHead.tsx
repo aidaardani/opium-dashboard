@@ -286,6 +286,7 @@ function PlasmicProfileHead__RenderFunc(props: {
                     "__wab_instance",
                     sty.fragmentFileInput
                   )}
+                  inputId={"avatar-input"}
                   inputType={"file"}
                   onFileSelect={async files => {
                     const $steps = {};
