@@ -4,23 +4,23 @@ import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
 import GlobalContextsProvider from "../../../../components/plasmic/opium_dashboard/PlasmicGlobalContextsProvider";
 
-import { PlasmicActivationOfficeCost3 } from "../../../../components/plasmic/opium_dashboard/PlasmicActivationOfficeCost3";
+import { PlasmicActivationConsultDuration } from "../../../../components/plasmic/opium_dashboard/PlasmicActivationConsultDuration";
 import { useRouter } from "next/router";
 
-function ActivationOfficeCost3() {
-  // Use PlasmicActivationOfficeCost3 to render this component as it was
+function ActivationConsultDuration() {
+  // Use PlasmicActivationConsultDuration to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
   // can also install whatever React hooks you need here to manage state or
   // fetch data.
   //
-  // Props you can pass into PlasmicActivationOfficeCost3 are:
+  // Props you can pass into PlasmicActivationConsultDuration are:
   // 1. Variants you want to activate,
   // 2. Contents for slots you want to fill,
   // 3. Overrides for any named node in the component to attach behavior and data,
   // 4. Props to set on the root node.
   //
-  // By default, PlasmicActivationOfficeCost3 is wrapped by your project's global
+  // By default, PlasmicActivationConsultDuration is wrapped by your project's global
   // variant context providers. These wrappers may be moved to
   // Next.js Custom App component
   // (https://nextjs.org/docs/advanced-features/custom-app).
@@ -31,10 +31,10 @@ function ActivationOfficeCost3() {
         params={useRouter()?.query}
         query={useRouter()?.query}
       >
-        <PlasmicActivationOfficeCost3 />
+        <PlasmicActivationConsultDuration />
       </PageParamsProvider__>
     </GlobalContextsProvider>
   );
 }
 
-export default ActivationOfficeCost3;
+export default ActivationConsultDuration;

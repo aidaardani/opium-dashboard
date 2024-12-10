@@ -5124,6 +5124,18 @@ function PlasmicProfileExperties__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "isLoadingDelete",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "isLoadingSave",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -6066,8 +6078,57 @@ function PlasmicProfileExperties__RenderFunc(props: {
                     "\u0630\u062e\u06cc\u0631\u0647 \u06a9\u0631\u062f\u0646 \u062a\u063a\u06cc\u06cc\u0631\u0627\u062a"
                   }
                   className={classNames("__wab_instance", sty.button__wTEc8)}
+                  loading={(() => {
+                    try {
+                      return $state.isLoadingSave;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()}
                   onClick={async event => {
                     const $steps = {};
+
+                    $steps["updateIsLoadingSave"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["isLoadingSave"]
+                            },
+                            operation: 0,
+                            value: true
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateIsLoadingSave"] != null &&
+                      typeof $steps["updateIsLoadingSave"] === "object" &&
+                      typeof $steps["updateIsLoadingSave"].then === "function"
+                    ) {
+                      $steps["updateIsLoadingSave"] = await $steps[
+                        "updateIsLoadingSave"
+                      ];
+                    }
 
                     $steps["runCode"] = true
                       ? (() => {
@@ -6132,6 +6193,42 @@ function PlasmicProfileExperties__RenderFunc(props: {
                       typeof $steps["runCode"].then === "function"
                     ) {
                       $steps["runCode"] = await $steps["runCode"];
+                    }
+
+                    $steps["updateIsLoadingSave2"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["isLoadingSave"]
+                            },
+                            operation: 0,
+                            value: false
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateIsLoadingSave2"] != null &&
+                      typeof $steps["updateIsLoadingSave2"] === "object" &&
+                      typeof $steps["updateIsLoadingSave2"].then === "function"
+                    ) {
+                      $steps["updateIsLoadingSave2"] = await $steps[
+                        "updateIsLoadingSave2"
+                      ];
                     }
                   }}
                 />
@@ -6219,8 +6316,57 @@ function PlasmicProfileExperties__RenderFunc(props: {
               }
               className={classNames("__wab_instance", sty.button__tt0Tp)}
               color={"red"}
+              loading={(() => {
+                try {
+                  return $state.isLoadingDelete;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()}
               onClick={async event => {
                 const $steps = {};
+
+                $steps["updateIsLoadingDelete"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["isLoadingDelete"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateIsLoadingDelete"] != null &&
+                  typeof $steps["updateIsLoadingDelete"] === "object" &&
+                  typeof $steps["updateIsLoadingDelete"].then === "function"
+                ) {
+                  $steps["updateIsLoadingDelete"] = await $steps[
+                    "updateIsLoadingDelete"
+                  ];
+                }
 
                 $steps["deleteExpertisApi"] = true
                   ? (() => {
@@ -6291,52 +6437,15 @@ function PlasmicProfileExperties__RenderFunc(props: {
                   ];
                 }
 
-                $steps["invokeGlobalAction2"] =
-                  $steps.deleteExpertisApi.status == 200
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            undefined,
-                            (() => {
-                              try {
-                                return $steps.deleteExpertisApi.data.message;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Fragment.showToast"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                if (
-                  $steps["invokeGlobalAction2"] != null &&
-                  typeof $steps["invokeGlobalAction2"] === "object" &&
-                  typeof $steps["invokeGlobalAction2"].then === "function"
-                ) {
-                  $steps["invokeGlobalAction2"] = await $steps[
-                    "invokeGlobalAction2"
-                  ];
-                }
-
-                $steps["updateIsLoading"] = true
+                $steps["updateIsLoadingDelete2"] = true
                   ? (() => {
                       const actionArgs = {
                         variable: {
                           objRoot: $state,
-                          variablePath: ["isLoading"]
+                          variablePath: ["isLoadingDelete"]
                         },
                         operation: 0,
-                        value: true
+                        value: false
                       };
                       return (({
                         variable,
@@ -6355,46 +6464,94 @@ function PlasmicProfileExperties__RenderFunc(props: {
                     })()
                   : undefined;
                 if (
-                  $steps["updateIsLoading"] != null &&
-                  typeof $steps["updateIsLoading"] === "object" &&
-                  typeof $steps["updateIsLoading"].then === "function"
+                  $steps["updateIsLoadingDelete2"] != null &&
+                  typeof $steps["updateIsLoadingDelete2"] === "object" &&
+                  typeof $steps["updateIsLoadingDelete2"].then === "function"
                 ) {
-                  $steps["updateIsLoading"] = await $steps["updateIsLoading"];
+                  $steps["updateIsLoadingDelete2"] = await $steps[
+                    "updateIsLoadingDelete2"
+                  ];
                 }
 
-                $steps["updateIsLoading2"] =
-                  $steps.deleteExpertisApi.status == 200
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["isLoading"]
-                          },
-                          operation: 0,
-                          value: false
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
+                $steps["toast"] = !!$steps.deleteExpertisApi.data.message
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return $steps.deleteExpertisApi.status == 200
+                                ? "success"
+                                : "error";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          (() => {
+                            try {
+                              return $steps.deleteExpertisApi.data.message;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
                 if (
-                  $steps["updateIsLoading2"] != null &&
-                  typeof $steps["updateIsLoading2"] === "object" &&
-                  typeof $steps["updateIsLoading2"].then === "function"
+                  $steps["toast"] != null &&
+                  typeof $steps["toast"] === "object" &&
+                  typeof $steps["toast"].then === "function"
                 ) {
-                  $steps["updateIsLoading2"] = await $steps["updateIsLoading2"];
+                  $steps["toast"] = await $steps["toast"];
+                }
+
+                $steps["updateDialogOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["dialog", "open"]
+                        },
+                        operation: 4
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateDialogOpen"] != null &&
+                  typeof $steps["updateDialogOpen"] === "object" &&
+                  typeof $steps["updateDialogOpen"].then === "function"
+                ) {
+                  $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
                 }
               }}
             />

@@ -1998,17 +1998,140 @@
         },
         {
           "id": "POnAEYK1Z5mh",
-          "name": "ActivationCost",
+          "name": "ActivationOfficeCost3",
           "type": "managed",
           "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
-          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationCost.tsx",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationOfficeCost3.tsx",
           "importSpec": {
             "modulePath": "../src/pages/activation-page/office/cost.tsx"
           },
-          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationCost.module.css",
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationOfficeCost3.module.css",
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/activation-page/office/cost"
+        },
+        {
+          "id": "fyugTOlCpyEf",
+          "name": "ActivationOfficeDuration",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationOfficeDuration.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/activation-page/office/duration.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationOfficeDuration.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/activation-page/office/duration"
+        },
+        {
+          "id": "2twljBA-hP0x",
+          "name": "ActivationRules",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationRules.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/activation-page/consult/rules.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationRules.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/activation-page/consult/rules"
+        },
+        {
+          "id": "foxYnsy9VjeT",
+          "name": "ActivationConsultRules",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationConsultRules.tsx",
+          "importSpec": {
+            "modulePath": "ActivationConsultRules.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationConsultRules.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "JP1u0ieQ7B3M",
+          "name": "ActivationMessengers",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationMessengers.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/activation-page/consult/messengers.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationMessengers.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/activation-page/consult/messengers"
+        },
+        {
+          "id": "PibRCPxm0C4b",
+          "name": "ActivationConsultDuration",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationConsultDuration.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/activation-page/consult/duration-2.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationConsultDuration.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/activation-page/consult/duration-2"
+        },
+        {
+          "id": "tH96z8RSiEan",
+          "name": "Payment",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicPayment.tsx",
+          "importSpec": {
+            "modulePath": "Payment.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicPayment.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "mPvOWIDs-DaE",
+          "name": "ActivationFinish",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationFinish.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/activation-page/finish.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationFinish.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/activation-page/finish"
+        },
+        {
+          "id": "3W2JvuCUpZaO",
+          "name": "ActivationConsultCost",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationConsultCost.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/activation-page/consult/cost.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationConsultCost.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/activation-page/consult/cost"
+        },
+        {
+          "id": "nfu3aryCX9a4",
+          "name": "ActivationConsultCost2",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationConsultCost2.tsx",
+          "importSpec": {
+            "modulePath": "ActivationConsultCost2.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationConsultCost2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -2241,6 +2364,11 @@
           "id": "owLJpLIDixzU",
           "name": "Icon39Icon",
           "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon39.tsx"
+        },
+        {
+          "id": "iY3SyaL2upTw",
+          "name": "Icon40Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon40.tsx"
         }
       ],
       "images": [
@@ -2288,6 +2416,11 @@
           "id": "BKPi8rJVQd-I",
           "name": "image 3",
           "filePath": "../public/plasmic/opium_dashboard/images/image3.svg"
+        },
+        {
+          "id": "zE-XMlpjtHXC",
+          "name": "image 4",
+          "filePath": "../public/plasmic/opium_dashboard/images/image4.png"
         }
       ],
       "indirect": false,

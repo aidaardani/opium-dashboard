@@ -404,7 +404,7 @@
   max-width: 100%;
   object-fit: cover;
 }
-.button:global(.__wab_instance) {
+.button__z1X7S:global(.__wab_instance) {
   max-width: 100%;
   width: 100%;
   min-width: 0;
@@ -416,6 +416,23 @@
   height: 1em;
 }
 .svg__sEc6J {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.button__mrLyj:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.svg___4ShP {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.svg__himFk {
   position: relative;
   object-fit: cover;
   width: auto;

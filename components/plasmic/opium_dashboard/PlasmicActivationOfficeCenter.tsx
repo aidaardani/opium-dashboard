@@ -86,9 +86,13 @@ type VariantPropType = keyof PlasmicActivationOfficeCenter__VariantsArgs;
 export const PlasmicActivationOfficeCenter__VariantProps =
   new Array<VariantPropType>();
 
-export type PlasmicActivationOfficeCenter__ArgsType = {};
+export type PlasmicActivationOfficeCenter__ArgsType = {
+  hasOnline?: boolean;
+};
 type ArgPropType = keyof PlasmicActivationOfficeCenter__ArgsType;
-export const PlasmicActivationOfficeCenter__ArgProps = new Array<ArgPropType>();
+export const PlasmicActivationOfficeCenter__ArgProps = new Array<ArgPropType>(
+  "hasOnline"
+);
 
 export type PlasmicActivationOfficeCenter__OverridesType = {
   root?: Flex__<"div">;
@@ -101,6 +105,7 @@ export type PlasmicActivationOfficeCenter__OverridesType = {
 };
 
 export interface DefaultActivationOfficeCenterProps {
+  hasOnline?: boolean;
   className?: string;
 }
 
@@ -124,7 +129,9 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
+        {
+          hasOnline: false
+        },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -232,6 +239,12 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "isLoadingSave",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -535,8 +548,57 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
               <Button
                 children2={"\u0630\u062e\u06cc\u0631\u0647"}
                 className={classNames("__wab_instance", sty.button__mfJ7)}
+                loading={(() => {
+                  try {
+                    return $state.isLoadingSave;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
                 onClick={async event => {
                   const $steps = {};
+
+                  $steps["updateIsLoadingSave"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["isLoadingSave"]
+                          },
+                          operation: 0,
+                          value: true
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateIsLoadingSave"] != null &&
+                    typeof $steps["updateIsLoadingSave"] === "object" &&
+                    typeof $steps["updateIsLoadingSave"].then === "function"
+                  ) {
+                    $steps["updateIsLoadingSave"] = await $steps[
+                      "updateIsLoadingSave"
+                    ];
+                  }
 
                   $steps["invokeGlobalAction"] = true
                     ? (() => {
@@ -609,10 +671,125 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                     ];
                   }
 
-                  $steps["goToActivationCost"] = true
+                  $steps["updateIsLoadingSave2"] = true
                     ? (() => {
                         const actionArgs = {
-                          destination: `/activation-page/office/cost`
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["isLoadingSave"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateIsLoadingSave2"] != null &&
+                    typeof $steps["updateIsLoadingSave2"] === "object" &&
+                    typeof $steps["updateIsLoadingSave2"].then === "function"
+                  ) {
+                    $steps["updateIsLoadingSave2"] = await $steps[
+                      "updateIsLoadingSave2"
+                    ];
+                  }
+
+                  $steps["invokeGlobalAction2"] = $steps.invokeGlobalAction.data
+                    .message
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return $steps.invokeGlobalAction.status == 200
+                                  ? "success"
+                                  : "error";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            (() => {
+                              try {
+                                return $steps.invokeGlobalAction.data.message;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            undefined,
+                            (() => {
+                              try {
+                                return undefined;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction2"] != null &&
+                    typeof $steps["invokeGlobalAction2"] === "object" &&
+                    typeof $steps["invokeGlobalAction2"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction2"] = await $steps[
+                      "invokeGlobalAction2"
+                    ];
+                  }
+
+                  $steps["goToPage"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          destination: (() => {
+                            try {
+                              return `/activation-page/office/cost?${
+                                $props.hasOnline ? "onlineVisit=true" : ""
+                              }`;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
                         };
                         return (({ destination }) => {
                           if (
@@ -629,13 +806,11 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["goToActivationCost"] != null &&
-                    typeof $steps["goToActivationCost"] === "object" &&
-                    typeof $steps["goToActivationCost"].then === "function"
+                    $steps["goToPage"] != null &&
+                    typeof $steps["goToPage"] === "object" &&
+                    typeof $steps["goToPage"].then === "function"
                   ) {
-                    $steps["goToActivationCost"] = await $steps[
-                      "goToActivationCost"
-                    ];
+                    $steps["goToPage"] = await $steps["goToPage"];
                   }
                 }}
               />

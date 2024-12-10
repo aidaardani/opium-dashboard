@@ -277,6 +277,32 @@
   color: #91a5b6;
   flex-shrink: 0;
 }
+.freeBox__iKyGh {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0px;
+}
+.text__cLqYs {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.svg__rynyh {
+  object-fit: cover;
+  max-width: 100%;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
 .text__irtxf {
   position: relative;
   width: 100%;

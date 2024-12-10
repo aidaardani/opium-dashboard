@@ -80,6 +80,7 @@ import sty from "./PlasmicProfileAddress.module.css"; // plasmic-import: x5b7hK4
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
 import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: BN2FHeznHhq_/icon
 import Icon2Icon from "./icons/PlasmicIcon__Icon2"; // plasmic-import: q8mRvXMvOrv9/icon
+import Icon40Icon from "./icons/PlasmicIcon__Icon40"; // plasmic-import: iY3SyaL2upTw/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 import Icon4Icon from "./icons/PlasmicIcon__Icon4"; // plasmic-import: z62U0rB8gsLE/icon
@@ -4240,6 +4241,18 @@ function PlasmicProfileAddress__RenderFunc(props: {
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $ctx }) => []
+      },
+      {
+        path: "isLoadingSave",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "uploadedFile",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -4694,6 +4707,42 @@ function PlasmicProfileAddress__RenderFunc(props: {
               onFileSelect={async files => {
                 const $steps = {};
 
+                $steps["updateUploadedFile"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["uploadedFile"]
+                        },
+                        operation: 0,
+                        value: files
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateUploadedFile"] != null &&
+                  typeof $steps["updateUploadedFile"] === "object" &&
+                  typeof $steps["updateUploadedFile"].then === "function"
+                ) {
+                  $steps["updateUploadedFile"] = await $steps[
+                    "updateUploadedFile"
+                  ];
+                }
+
                 $steps["uploadImage"] = true
                   ? (() => {
                       const actionArgs = {
@@ -4799,6 +4848,41 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   ];
                 }
 
+                $steps["updateUploadedFile2"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["uploadedFile"]
+                        },
+                        operation: 1
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, undefined);
+                        return undefined;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateUploadedFile2"] != null &&
+                  typeof $steps["updateUploadedFile2"] === "object" &&
+                  typeof $steps["updateUploadedFile2"].then === "function"
+                ) {
+                  $steps["updateUploadedFile2"] = await $steps[
+                    "updateUploadedFile2"
+                  ];
+                }
+
                 $steps["runCode"] =
                   $steps.uploadImage.status == 200
                     ? (() => {
@@ -4826,11 +4910,69 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox___0EeuL)}
               >
-                <Icon2Icon
-                  className={classNames(projectcss.all, sty.svg__mDSc2)}
-                  role={"img"}
-                />
-
+                {(() => {
+                  try {
+                    return !$state.uploadedFile?.[0];
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <Icon2Icon
+                    className={classNames(projectcss.all, sty.svg__mDSc2)}
+                    role={"img"}
+                  />
+                ) : null}
+                {(() => {
+                  try {
+                    return !!$state.uploadedFile?.[0];
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__iKyGh)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__cLqYs
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return $state.uploadedFile?.[0]?.name;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                    <Icon40Icon
+                      className={classNames(projectcss.all, sty.svg__rynyh)}
+                      role={"img"}
+                    />
+                  </div>
+                ) : null}
                 <div
                   className={classNames(
                     projectcss.all,
@@ -4987,8 +5129,52 @@ function PlasmicProfileAddress__RenderFunc(props: {
               </div>
             }
             className={classNames("__wab_instance", sty.button___9E4Bm)}
+            loading={(() => {
+              try {
+                return $state.isLoadingSave;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
+              }
+            })()}
             onClick={async event => {
               const $steps = {};
+
+              $steps["updateIsLoadingSave"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["isLoadingSave"]
+                      },
+                      operation: 0,
+                      value: true
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateIsLoadingSave"] != null &&
+                typeof $steps["updateIsLoadingSave"] === "object" &&
+                typeof $steps["updateIsLoadingSave"].then === "function"
+              ) {
+                $steps["updateIsLoadingSave"] = await $steps[
+                  "updateIsLoadingSave"
+                ];
+              }
 
               $steps["saveChangesApi"] = true
                 ? (() => {
@@ -5055,6 +5241,37 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 typeof $steps["saveChangesApi"].then === "function"
               ) {
                 $steps["saveChangesApi"] = await $steps["saveChangesApi"];
+              }
+
+              $steps["updateIsLoadingSave2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["isLoadingSave"]
+                      },
+                      operation: 0,
+                      value: false
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateIsLoadingSave2"] != null &&
+                typeof $steps["updateIsLoadingSave2"] === "object" &&
+                typeof $steps["updateIsLoadingSave2"].then === "function"
+              ) {
+                $steps["updateIsLoadingSave2"] = await $steps[
+                  "updateIsLoadingSave2"
+                ];
               }
 
               $steps["successToast"] =

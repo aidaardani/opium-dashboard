@@ -205,6 +205,12 @@ function PlasmicProfilePassword__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         onMutate: generateOnMutateForSpec("value", AntdPassword_Helpers)
+      },
+      {
+        path: "isLoading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -451,8 +457,50 @@ function PlasmicProfilePassword__RenderFunc(props: {
               </div>
             }
             className={classNames("__wab_instance", sty.button)}
+            loading={(() => {
+              try {
+                return $state.isLoading;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
+              }
+            })()}
             onClick={async event => {
               const $steps = {};
+
+              $steps["updateIsLoading"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["isLoading"]
+                      },
+                      operation: 0,
+                      value: true
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateIsLoading"] != null &&
+                typeof $steps["updateIsLoading"] === "object" &&
+                typeof $steps["updateIsLoading"].then === "function"
+              ) {
+                $steps["updateIsLoading"] = await $steps["updateIsLoading"];
+              }
 
               $steps["invokeGlobalAction"] = !$state.authApi.data.data
                 .is_static_password_enabled
@@ -524,6 +572,85 @@ function PlasmicProfilePassword__RenderFunc(props: {
               ) {
                 $steps["invokeGlobalAction2"] = await $steps[
                   "invokeGlobalAction2"
+                ];
+              }
+
+              $steps["updateIsLoading2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["isLoading"]
+                      },
+                      operation: 0,
+                      value: false
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateIsLoading2"] != null &&
+                typeof $steps["updateIsLoading2"] === "object" &&
+                typeof $steps["updateIsLoading2"].then === "function"
+              ) {
+                $steps["updateIsLoading2"] = await $steps["updateIsLoading2"];
+              }
+
+              $steps["invokeGlobalAction3"] = !!$steps.invokeGlobalAction.data
+                .message
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return $steps.invokeGlobalAction.data.message
+                              ? "success"
+                              : "error";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        (() => {
+                          try {
+                            return $steps.invokeGlobalAction.data.message;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction3"] != null &&
+                typeof $steps["invokeGlobalAction3"] === "object" &&
+                typeof $steps["invokeGlobalAction3"].then === "function"
+              ) {
+                $steps["invokeGlobalAction3"] = await $steps[
+                  "invokeGlobalAction3"
                 ];
               }
             }}

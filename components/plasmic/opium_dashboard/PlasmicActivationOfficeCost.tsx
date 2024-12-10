@@ -85,9 +85,13 @@ type VariantPropType = keyof PlasmicActivationOfficeCost__VariantsArgs;
 export const PlasmicActivationOfficeCost__VariantProps =
   new Array<VariantPropType>();
 
-export type PlasmicActivationOfficeCost__ArgsType = {};
+export type PlasmicActivationOfficeCost__ArgsType = {
+  hasOnlineVisit?: boolean;
+};
 type ArgPropType = keyof PlasmicActivationOfficeCost__ArgsType;
-export const PlasmicActivationOfficeCost__ArgProps = new Array<ArgPropType>();
+export const PlasmicActivationOfficeCost__ArgProps = new Array<ArgPropType>(
+  "hasOnlineVisit"
+);
 
 export type PlasmicActivationOfficeCost__OverridesType = {
   root?: Flex__<"div">;
@@ -98,6 +102,7 @@ export type PlasmicActivationOfficeCost__OverridesType = {
 };
 
 export interface DefaultActivationOfficeCostProps {
+  hasOnlineVisit?: boolean;
   className?: string;
 }
 
@@ -121,7 +126,9 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
+        {
+          hasOnlineVisit: false
+        },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -212,6 +219,18 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "isCancelLoading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "isLoadingSave",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -462,10 +481,54 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
             }
             className={classNames("__wab_instance", sty.button__arJqy)}
             color={"softSand"}
+            loading={(() => {
+              try {
+                return $state.isCancelLoading;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
+              }
+            })()}
             onClick={async event => {
               const $steps = {};
 
-              $steps["invokeGlobalAction"] = true
+              $steps["updateIsCancelLoading"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["isCancelLoading"]
+                      },
+                      operation: 0,
+                      value: true
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateIsCancelLoading"] != null &&
+                typeof $steps["updateIsCancelLoading"] === "object" &&
+                typeof $steps["updateIsCancelLoading"].then === "function"
+              ) {
+                $steps["updateIsCancelLoading"] = await $steps[
+                  "updateIsCancelLoading"
+                ];
+              }
+
+              $steps["cancelApi"] = true
                 ? (() => {
                     const actionArgs = {
                       args: [
@@ -498,13 +561,131 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
+                $steps["cancelApi"] != null &&
+                typeof $steps["cancelApi"] === "object" &&
+                typeof $steps["cancelApi"].then === "function"
               ) {
-                $steps["invokeGlobalAction"] = await $steps[
-                  "invokeGlobalAction"
+                $steps["cancelApi"] = await $steps["cancelApi"];
+              }
+
+              $steps["updateIsCancelLoading2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["isCancelLoading"]
+                      },
+                      operation: 0,
+                      value: false
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateIsCancelLoading2"] != null &&
+                typeof $steps["updateIsCancelLoading2"] === "object" &&
+                typeof $steps["updateIsCancelLoading2"].then === "function"
+              ) {
+                $steps["updateIsCancelLoading2"] = await $steps[
+                  "updateIsCancelLoading2"
                 ];
+              }
+
+              $steps["toast"] = !!$steps.cancelApi.data.message
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return $steps.cancelApi.status == 200
+                              ? "success"
+                              : "error";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        (() => {
+                          try {
+                            return $steps.cancelApi.data.message || "";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["toast"] != null &&
+                typeof $steps["toast"] === "object" &&
+                typeof $steps["toast"].then === "function"
+              ) {
+                $steps["toast"] = await $steps["toast"];
+              }
+
+              $steps["goToPage"] =
+                $steps.cancelApi.status == 200
+                  ? (() => {
+                      const actionArgs = {
+                        destination: (() => {
+                          try {
+                            return `/activation-page/office/duration?${
+                              $props.hasOnlineVisit ? "onlineVisit=true" : ""
+                            }`;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+              if (
+                $steps["goToPage"] != null &&
+                typeof $steps["goToPage"] === "object" &&
+                typeof $steps["goToPage"].then === "function"
+              ) {
+                $steps["goToPage"] = await $steps["goToPage"];
               }
             }}
           />
@@ -578,7 +759,43 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
               onClick={async event => {
                 const $steps = {};
 
-                $steps["invokeGlobalAction"] = true
+                $steps["updateIsLoadingSave"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["isLoadingSave"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateIsLoadingSave"] != null &&
+                  typeof $steps["updateIsLoadingSave"] === "object" &&
+                  typeof $steps["updateIsLoadingSave"].then === "function"
+                ) {
+                  $steps["updateIsLoadingSave"] = await $steps[
+                    "updateIsLoadingSave"
+                  ];
+                }
+
+                $steps["costApi"] = true
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -621,6 +838,91 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                     })()
                   : undefined;
                 if (
+                  $steps["costApi"] != null &&
+                  typeof $steps["costApi"] === "object" &&
+                  typeof $steps["costApi"].then === "function"
+                ) {
+                  $steps["costApi"] = await $steps["costApi"];
+                }
+
+                $steps["updateIsLoadingSave2"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["isLoadingSave"]
+                        },
+                        operation: 0,
+                        value: false
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateIsLoadingSave2"] != null &&
+                  typeof $steps["updateIsLoadingSave2"] === "object" &&
+                  typeof $steps["updateIsLoadingSave2"].then === "function"
+                ) {
+                  $steps["updateIsLoadingSave2"] = await $steps[
+                    "updateIsLoadingSave2"
+                  ];
+                }
+
+                $steps["invokeGlobalAction"] = !!$steps.costApi.data.message
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return $steps.costApi.status == 200
+                                ? "success"
+                                : "error";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          (() => {
+                            try {
+                              return $steps.costApi.data.message;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          undefined,
+                          989999
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
                   $steps["invokeGlobalAction"] != null &&
                   typeof $steps["invokeGlobalAction"] === "object" &&
                   typeof $steps["invokeGlobalAction"].then === "function"
@@ -628,6 +930,48 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                   $steps["invokeGlobalAction"] = await $steps[
                     "invokeGlobalAction"
                   ];
+                }
+
+                $steps["goToPage"] =
+                  $steps.costApi.status == 200
+                    ? (() => {
+                        const actionArgs = {
+                          destination: (() => {
+                            try {
+                              return `/activation-page/office/duration?${
+                                $props.hasOnlineVisit ? "onlineVisit=true" : ""
+                              }`;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "";
+                              }
+                              throw e;
+                            }
+                          })()
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                if (
+                  $steps["goToPage"] != null &&
+                  typeof $steps["goToPage"] === "object" &&
+                  typeof $steps["goToPage"].then === "function"
+                ) {
+                  $steps["goToPage"] = await $steps["goToPage"];
                 }
               }}
               outline={true}

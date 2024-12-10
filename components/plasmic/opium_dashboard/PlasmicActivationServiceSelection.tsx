@@ -516,16 +516,22 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
             onClick={async event => {
               const $steps = {};
 
-              $steps["goToPage"] = false
+              $steps["goToPage"] = true
                 ? (() => {
                     const actionArgs = {
                       destination: (() => {
                         try {
                           return (() => {
-                            const service = $state.selectedServices[0];
-                            return service === "office"
-                              ? `/office/center`
-                              : "/consult/rules";
+                            const service =
+                              $state.selectedServices.includes("office") ||
+                              $state.selectedServices.length == 0;
+                            const hasOnline =
+                              $state.selectedServices.includes("consult");
+                            return service
+                              ? `/activation-page/office/center?${
+                                  hasOnline ? "onlineVisit=true" : ""
+                                }`
+                              : "/activation-page/consult/rules";
                           })();
                         } catch (e) {
                           if (
@@ -558,35 +564,6 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
                 typeof $steps["goToPage"].then === "function"
               ) {
                 $steps["goToPage"] = await $steps["goToPage"];
-              }
-
-              $steps["goToActivationCenter"] = true
-                ? (() => {
-                    const actionArgs = {
-                      destination: `/activation-page/office/center`
-                    };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["goToActivationCenter"] != null &&
-                typeof $steps["goToActivationCenter"] === "object" &&
-                typeof $steps["goToActivationCenter"].then === "function"
-              ) {
-                $steps["goToActivationCenter"] = await $steps[
-                  "goToActivationCenter"
-                ];
               }
             }}
           />

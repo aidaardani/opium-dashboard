@@ -375,6 +375,12 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "isLoadingSave",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -831,8 +837,57 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 "\u0630\u062e\u06cc\u0631\u0647 \u062a\u063a\u06cc\u06cc\u0631\u0627\u062a"
               }
               className={classNames("__wab_instance", sty.button)}
+              loading={(() => {
+                try {
+                  return $state.isLoadingSave;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()}
               onClick={async event => {
                 const $steps = {};
+
+                $steps["updateIsLoadingSave"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["isLoadingSave"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateIsLoadingSave"] != null &&
+                  typeof $steps["updateIsLoadingSave"] === "object" &&
+                  typeof $steps["updateIsLoadingSave"].then === "function"
+                ) {
+                  $steps["updateIsLoadingSave"] = await $steps[
+                    "updateIsLoadingSave"
+                  ];
+                }
 
                 $steps["invokeGlobalAction"] = true
                   ? (() => {
@@ -940,6 +995,92 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 ) {
                   $steps["invokeGlobalAction2"] = await $steps[
                     "invokeGlobalAction2"
+                  ];
+                }
+
+                $steps["updateIsLoadingSave2"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["isLoadingSave"]
+                        },
+                        operation: 0,
+                        value: false
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateIsLoadingSave2"] != null &&
+                  typeof $steps["updateIsLoadingSave2"] === "object" &&
+                  typeof $steps["updateIsLoadingSave2"].then === "function"
+                ) {
+                  $steps["updateIsLoadingSave2"] = await $steps[
+                    "updateIsLoadingSave2"
+                  ];
+                }
+
+                $steps["invokeGlobalAction3"] = !!$steps.invokeGlobalAction.data
+                  .message
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return $steps.invokeGlobalAction.status == 200
+                                ? "success"
+                                : "error";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          (() => {
+                            try {
+                              return $steps.invokeGlobalAction.data.message;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction3"] != null &&
+                  typeof $steps["invokeGlobalAction3"] === "object" &&
+                  typeof $steps["invokeGlobalAction3"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction3"] = await $steps[
+                    "invokeGlobalAction3"
                   ];
                 }
               }}

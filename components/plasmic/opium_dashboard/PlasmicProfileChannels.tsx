@@ -89,11 +89,13 @@ export const PlasmicProfileChannels__VariantProps =
   new Array<VariantPropType>();
 
 export type PlasmicProfileChannels__ArgsType = {
-  secureCallGuid?: any;
+  customOnSubmit?: (channels: any) => void;
+  isLoadingSubmit?: boolean;
 };
 type ArgPropType = keyof PlasmicProfileChannels__ArgsType;
 export const PlasmicProfileChannels__ArgProps = new Array<ArgPropType>(
-  "secureCallGuid"
+  "customOnSubmit",
+  "isLoadingSubmit"
 );
 
 export type PlasmicProfileChannels__OverridesType = {
@@ -103,11 +105,11 @@ export type PlasmicProfileChannels__OverridesType = {
   eitaa?: Flex__<typeof ProfileChannelsItem>;
   whatsapp?: Flex__<typeof ProfileChannelsItem>;
   _switch?: Flex__<typeof Switch>;
-  button?: Flex__<typeof Button>;
 };
 
 export interface DefaultProfileChannelsProps {
-  secureCallGuid?: any;
+  customOnSubmit?: (channels: any) => void;
+  isLoadingSubmit?: boolean;
   className?: string;
 }
 
@@ -131,7 +133,9 @@ function PlasmicProfileChannels__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
+        {
+          isLoadingSubmit: false
+        },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -266,6 +270,25 @@ function PlasmicProfileChannels__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "secureCall",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => [
+          "\u062f\u0631 \u067e\u0646\u0644 \u067e\u0632\u0634\u06a9\u060c \u062f\u0631 \u0645\u0642\u0627\u0628\u0644 \u0627\u0633\u0645 \u0647\u0631 \u0628\u06cc\u0645\u0627\u0631\u060c \u062f\u06a9\u0645\u0647 \u062a\u0645\u0627\u0633 \u0648\u062c\u0648\u062f \u062f\u0627\u0631\u062f.",
+          "\u067e\u0632\u0634\u06a9 \u0642\u0627\u062f\u0631 \u0627\u0633\u062a \u062f\u0631 \u0647\u0631 \u0632\u0645\u0627\u0646 \u0628\u0627 \u0628\u06cc\u0645\u0627\u0631 \u062a\u0645\u0627\u0633 \u0628\u0631\u0642\u0631\u0627\u0631 \u06a9\u0646\u062f.",
+          "\u0628\u06cc\u0645\u0627\u0631 \u062f\u0631 \u0642\u0628\u0636 \u0646\u0648\u0628\u062a \u0648 \u062f\u0631 \u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u0645\u0646\u060c \u062f\u06a9\u0645\u0647 \u0628\u0631\u0642\u0631\u0627\u0631\u06cc \u062a\u0645\u0627\u0633 \u0631\u0627 \u062f\u0627\u0631\u062f.",
+          "\u0628\u06cc\u0645\u0627\u0631 \u062a\u0646\u0647\u0627 \u062f\u0631 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u067e\u0632\u0634\u06a9\u060c \u0642\u0627\u062f\u0631 \u0628\u0647 \u062a\u0645\u0627\u0633 \u0628\u0627 \u067e\u0632\u0634\u06a9 \u0627\u0633\u062a.",
+          "\u0628\u06cc\u0645\u0627\u0631 \u0627\u0632 \u0632\u0645\u0627\u0646 \u0646\u0648\u0628\u062a \u062a\u0627 \u06f3 \u0631\u0648\u0632 \u0628\u0639\u062f \u0627\u0632 \u0632\u0645\u0627\u0646 \u0646\u0648\u0628\u062a\u060c \u062f\u06a9\u0645\u0647 \u062a\u0645\u0627\u0633 \u0631\u0627 \u062f\u0631 \u0627\u062e\u062a\u06cc\u0627\u0631 \u062f\u0627\u0631\u062f.",
+          "\u062a\u0645\u0627\u0633 \u0627\u0645\u0646 \u0647\u0645\u0631\u0627\u0647 \u0628\u0627 \u067e\u06cc\u0627\u0645\u200c\u0631\u0633\u0627\u0646 \u0627\u0633\u062a \u0648 \u062f\u0631 \u0635\u0648\u0631\u062a \u0646\u06cc\u0627\u0632\u060c \u0634\u0645\u0627 \u0648 \u06cc\u0627 \u0628\u06cc\u0645\u0627\u0631 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u0627\u0632 \u0647\u0631 \u06cc\u06a9 \u0627\u0632 \u062f\u0648 \u0633\u0631\u0648\u06cc\u0633 \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u06a9\u0646\u06cc\u062f."
+        ]
+      },
+      {
+        path: "isLoadingSave",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -312,7 +335,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
             {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
               (() => {
                 try {
-                  return $props.secureCallGuid;
+                  return $state.secureCall;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -455,7 +478,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
               data-plasmic-override={overrides.eitaa}
               channelName={"\u0627\u06cc\u062a\u0627"}
               className={classNames("__wab_instance", sty.eitaa)}
-              guidUrl={"https://opium-dashboard.paziresh24.com/help-eitaa/"}
+              guidUrl={"/help-eitaa/"}
               numberValue2={generateStateValueProp($state, [
                 "eitaa",
                 "numberValue2"
@@ -604,75 +627,313 @@ function PlasmicProfileChannels__RenderFunc(props: {
               />
             </Stack__>
           </div>
-          <Button
-            data-plasmic-name={"button"}
-            data-plasmic-override={overrides.button}
-            children2={
-              "\u062b\u0628\u062a \u062a\u063a\u06cc\u06cc\u0631\u0627\u062a"
-            }
-            className={classNames("__wab_instance", sty.button)}
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["invokeGlobalAction"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "PATCH",
-                        "https://api.paziresh24.com/V1/doctor/visit-channels",
-                        undefined,
-                        (() => {
-                          try {
-                            return (() => {
-                              const eitaaNumber = $state.eitaa.numberValue2;
-                              const whatsappNumber =
-                                $state.whatsapp.numberValue2;
-                              const eitaUsername = $state.eitaa.usernameValue;
-                              const result = [];
-                              const addEntry = (type, channel) => {
-                                if (channel) {
-                                  result.push({
-                                    type,
-                                    channel
-                                  });
-                                }
-                              };
-                              addEntry("eitaa_number", eitaaNumber);
-                              addEntry("eitaa", eitaUsername);
-                              addEntry("whatsapp", whatsappNumber);
-                              if ($state._switch.checked) {
-                                addEntry("secure_call", "02125015000");
-                              }
-                              return { online_channels: result };
-                            })();
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
+          {(() => {
+            try {
+              return !$props.customOnSubmit;
+            } catch (e) {
               if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
               ) {
-                $steps["invokeGlobalAction"] = await $steps[
-                  "invokeGlobalAction"
-                ];
+                return true;
               }
-            }}
-          />
+              throw e;
+            }
+          })() ? (
+            <Button
+              children2={
+                "\u062b\u0628\u062a \u062a\u063a\u06cc\u06cc\u0631\u0627\u062a"
+              }
+              className={classNames("__wab_instance", sty.button__z1X7S)}
+              loading={(() => {
+                try {
+                  return $state.isLoadingSave || $props.isLoadingSubmit;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateIsLoadingSave"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["isLoadingSave"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateIsLoadingSave"] != null &&
+                  typeof $steps["updateIsLoadingSave"] === "object" &&
+                  typeof $steps["updateIsLoadingSave"].then === "function"
+                ) {
+                  $steps["updateIsLoadingSave"] = await $steps[
+                    "updateIsLoadingSave"
+                  ];
+                }
+
+                $steps["invokeGlobalAction"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "PATCH",
+                          "https://api.paziresh24.com/V1/doctor/visit-channels",
+                          undefined,
+                          (() => {
+                            try {
+                              return (() => {
+                                const eitaaNumber = $state.eitaa.numberValue2;
+                                const whatsappNumber =
+                                  $state.whatsapp.numberValue2;
+                                const eitaUsername = $state.eitaa.usernameValue;
+                                const result = [];
+                                const addEntry = (type, channel) => {
+                                  if (channel) {
+                                    result.push({
+                                      type,
+                                      channel
+                                    });
+                                  }
+                                };
+                                addEntry("eitaa_number", eitaaNumber);
+                                addEntry("eitaa", eitaUsername);
+                                addEntry("whatsapp", whatsappNumber);
+                                if ($state._switch.checked) {
+                                  addEntry("secure_call", "02125015000");
+                                }
+                                return { online_channels: result };
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] = await $steps[
+                    "invokeGlobalAction"
+                  ];
+                }
+
+                $steps["updateIsLoadingSave2"] =
+                  $steps.invokeGlobalAction.status == 200
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["isLoadingSave"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                if (
+                  $steps["updateIsLoadingSave2"] != null &&
+                  typeof $steps["updateIsLoadingSave2"] === "object" &&
+                  typeof $steps["updateIsLoadingSave2"].then === "function"
+                ) {
+                  $steps["updateIsLoadingSave2"] = await $steps[
+                    "updateIsLoadingSave2"
+                  ];
+                }
+
+                $steps["toast"] = !!$steps.invokeGlobalAction.data.message
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return $steps.invokeGlobalAction.status == 200
+                                ? "success"
+                                : "error";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          (() => {
+                            try {
+                              return $steps.invokeGlobalAction.data.message;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["toast"] != null &&
+                  typeof $steps["toast"] === "object" &&
+                  typeof $steps["toast"].then === "function"
+                ) {
+                  $steps["toast"] = await $steps["toast"];
+                }
+              }}
+            />
+          ) : null}
+          {(() => {
+            try {
+              return !!$props.customOnSubmit;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })() ? (
+            <Button
+              children2={
+                "\u062b\u0628\u062a \u062a\u063a\u06cc\u06cc\u0631\u0627\u062a"
+              }
+              className={classNames("__wab_instance", sty.button__mrLyj)}
+              loading={(() => {
+                try {
+                  return $state.isLoadingSave;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["runCustomOnSubmit"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        eventRef: $props["customOnSubmit"],
+                        args: [
+                          (() => {
+                            try {
+                              return (() => {
+                                const eitaaNumber = $state.eitaa.numberValue2;
+                                const whatsappNumber =
+                                  $state.whatsapp.numberValue2;
+                                const eitaUsername = $state.eitaa.usernameValue;
+                                const result = [];
+                                const addEntry = (type, channel) => {
+                                  if (channel) {
+                                    result.push({
+                                      type,
+                                      channel
+                                    });
+                                  }
+                                };
+                                addEntry("eitaa_number", eitaaNumber);
+                                addEntry("eitaa", eitaUsername);
+                                addEntry("whatsapp", whatsappNumber);
+                                if ($state._switch.checked) {
+                                  addEntry("secure_call", "02125015000");
+                                }
+                                return result;
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return (({ eventRef, args }) => {
+                        return eventRef?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCustomOnSubmit"] != null &&
+                  typeof $steps["runCustomOnSubmit"] === "object" &&
+                  typeof $steps["runCustomOnSubmit"].then === "function"
+                ) {
+                  $steps["runCustomOnSubmit"] = await $steps[
+                    "runCustomOnSubmit"
+                  ];
+                }
+              }}
+            />
+          ) : null}
         </Stack__>
       </ApiRequest>
     </Stack__>
@@ -680,21 +941,12 @@ function PlasmicProfileChannels__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: [
-    "root",
-    "dialog",
-    "apiRequest",
-    "eitaa",
-    "whatsapp",
-    "_switch",
-    "button"
-  ],
+  root: ["root", "dialog", "apiRequest", "eitaa", "whatsapp", "_switch"],
   dialog: ["dialog"],
-  apiRequest: ["apiRequest", "eitaa", "whatsapp", "_switch", "button"],
+  apiRequest: ["apiRequest", "eitaa", "whatsapp", "_switch"],
   eitaa: ["eitaa"],
   whatsapp: ["whatsapp"],
-  _switch: ["_switch"],
-  button: ["button"]
+  _switch: ["_switch"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -706,7 +958,6 @@ type NodeDefaultElementType = {
   eitaa: typeof ProfileChannelsItem;
   whatsapp: typeof ProfileChannelsItem;
   _switch: typeof Switch;
-  button: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -774,7 +1025,6 @@ export const PlasmicProfileChannels = Object.assign(
     eitaa: makeNodeComponent("eitaa"),
     whatsapp: makeNodeComponent("whatsapp"),
     _switch: makeNodeComponent("_switch"),
-    button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicProfileChannels
     internalVariantProps: PlasmicProfileChannels__VariantProps,
