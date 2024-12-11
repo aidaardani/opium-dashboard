@@ -278,6 +278,53 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
                   customOnSubmit={async channels => {
                     const $steps = {};
 
+                    $steps["goToCost"] = !$state.centersApi.data.data.some(
+                      item => item.id == "5532"
+                    )
+                      ? (() => {
+                          const actionArgs = {
+                            destination: (() => {
+                              try {
+                                return (() => {
+                                  const queryParam =
+                                    globalThis.encodeURIComponent(
+                                      JSON.stringify(channels)
+                                    );
+                                  return `/activation-page/consult/cost?channels=${queryParam}`;
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToCost"] != null &&
+                      typeof $steps["goToCost"] === "object" &&
+                      typeof $steps["goToCost"].then === "function"
+                    ) {
+                      $steps["goToCost"] = await $steps["goToCost"];
+                    }
+
                     $steps["updateIsLoading"] = true
                       ? (() => {
                           const actionArgs = {
@@ -493,53 +540,6 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
                       typeof $steps["toast"].then === "function"
                     ) {
                       $steps["toast"] = await $steps["toast"];
-                    }
-
-                    $steps["goToCost"] = !$state.centersApi.data.data.some(
-                      item => item.id == "5532"
-                    )
-                      ? (() => {
-                          const actionArgs = {
-                            destination: (() => {
-                              try {
-                                return (() => {
-                                  const queryParam =
-                                    globalThis.encodeURIComponent(
-                                      JSON.stringify(channels)
-                                    );
-                                  return `/activation-page/consult/cost?channels=${queryParam}`;
-                                })();
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          };
-                          return (({ destination }) => {
-                            if (
-                              typeof destination === "string" &&
-                              destination.startsWith("#")
-                            ) {
-                              document
-                                .getElementById(destination.substr(1))
-                                .scrollIntoView({ behavior: "smooth" });
-                            } else {
-                              __nextRouter?.push(destination);
-                            }
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["goToCost"] != null &&
-                      typeof $steps["goToCost"] === "object" &&
-                      typeof $steps["goToCost"].then === "function"
-                    ) {
-                      $steps["goToCost"] = await $steps["goToCost"];
                     }
 
                     $steps["goTo"] =
