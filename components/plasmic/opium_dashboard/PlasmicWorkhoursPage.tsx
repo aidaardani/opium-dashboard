@@ -503,49 +503,66 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
               </div>
             ) : null}
             <div className={classNames(projectcss.all, sty.freeBox__lw8Cb)}>
-              <HoursDaysOfWeek
-                data-plasmic-name={"hoursDaysOfWeek"}
-                data-plasmic-override={overrides.hoursDaysOfWeek}
-                centerId={(() => {
-                  try {
-                    return $state.centers.find(
-                      center =>
-                        center.user_center_id ===
-                        $state.drCenters.selectedCenter
-                    ).id;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
+              {(() => {
+                try {
+                  return $state.centers.some(
+                    center =>
+                      center.user_center_id === $state.drCenters.selectedCenter
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
                   }
-                })()}
-                className={classNames("__wab_instance", sty.hoursDaysOfWeek)}
-                duration={generateStateValueProp($state, [
-                  "hoursDaysOfWeek",
-                  "duration"
-                ])}
-                onDurationChange={generateStateOnChangeProp($state, [
-                  "hoursDaysOfWeek",
-                  "duration"
-                ])}
-                userCenterId={(() => {
-                  try {
-                    return $state.selectedCenter;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+                  throw e;
+                }
+              })() ? (
+                <HoursDaysOfWeek
+                  data-plasmic-name={"hoursDaysOfWeek"}
+                  data-plasmic-override={overrides.hoursDaysOfWeek}
+                  centerId={(() => {
+                    try {
+                      return $state.centers.find(
+                        center =>
+                          center.user_center_id ===
+                          $state.drCenters.selectedCenter
+                      ).id;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })()}
-              />
+                  })()}
+                  className={classNames("__wab_instance", sty.hoursDaysOfWeek)}
+                  duration={generateStateValueProp($state, [
+                    "hoursDaysOfWeek",
+                    "duration"
+                  ])}
+                  onDurationChange={generateStateOnChangeProp($state, [
+                    "hoursDaysOfWeek",
+                    "duration"
+                  ])}
+                  userCenterId={(() => {
+                    try {
+                      return $state.selectedCenter;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                />
+              ) : null}
             </div>
           </Stack__>
           <SideEffect

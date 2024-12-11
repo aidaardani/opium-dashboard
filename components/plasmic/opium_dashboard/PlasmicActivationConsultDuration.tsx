@@ -61,6 +61,8 @@ import {
 
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import HoursDaysOfWeek from "../../HoursDaysOfWeek"; // plasmic-import: lSLy8Nehd6MM/component
+import Duration from "../../Duration"; // plasmic-import: hYLHU_pJKp9-/component
+import Workhours from "../../Workhours"; // plasmic-import: AuSNwEdbo4sV/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -92,6 +94,8 @@ export type PlasmicActivationConsultDuration__OverridesType = {
   svg?: Flex__<"svg">;
   hoursDaysOfWeek?: Flex__<typeof HoursDaysOfWeek>;
   activeDuration?: Flex__<typeof HoursDaysOfWeek>;
+  duration?: Flex__<typeof Duration>;
+  workhours?: Flex__<typeof Workhours>;
 };
 
 export interface DefaultActivationConsultDurationProps {}
@@ -179,6 +183,61 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "duration.newduration",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "days",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => [
+          { id: 6, name: "\u0634\u0646\u0628\u0647", nameEn: "Saturday" },
+          {
+            id: 7,
+            name: "\u06cc\u06a9\u0634\u0646\u0628\u0647",
+            nameEn: "Sunday"
+          },
+          {
+            id: 1,
+            name: "\u062f\u0648\u0634\u0646\u0628\u0647",
+            nameEn: "Monday"
+          },
+          {
+            id: 2,
+            name: "\u0633\u0647\u200c\u0634\u0646\u0628\u0647",
+            nameEn: "Tuesday"
+          },
+          {
+            id: 3,
+            name: "\u0686\u0647\u0627\u0631\u0634\u0646\u0628\u0647",
+            nameEn: "Wednesday"
+          },
+          {
+            id: 4,
+            name: "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647",
+            nameEn: "Thursday"
+          },
+          { id: 5, name: "\u062c\u0645\u0639\u0647", nameEn: "Friday" }
+        ]
+      },
+      {
+        path: "workhours[].checkboxIsChecked",
+        type: "private",
+        variableType: "boolean"
+      },
+      {
+        path: "workhours[].listOfWorkhoureCopy",
+        type: "private",
+        variableType: "array"
+      },
+      {
+        path: "workhours[].warning",
+        type: "private",
+        variableType: "boolean"
       }
     ],
     [$props, $ctx, $refs]
@@ -639,6 +698,152 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                       })()}
                     />
                   ) : null}
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__ewBdp)}
+                  >
+                    <Duration
+                      data-plasmic-name={"duration"}
+                      data-plasmic-override={overrides.duration}
+                      className={classNames("__wab_instance", sty.duration)}
+                      newduration={generateStateValueProp($state, [
+                        "duration",
+                        "newduration"
+                      ])}
+                      onNewdurationChange2={generateStateOnChangeProp($state, [
+                        "duration",
+                        "newduration"
+                      ])}
+                    />
+
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__kUw4D)}
+                    >
+                      {(_par =>
+                        !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                        (() => {
+                          try {
+                            return $state.days;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()
+                      ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                        const currentItem = __plasmic_item_0;
+                        const currentIndex = __plasmic_idx_0;
+                        return (() => {
+                          const child$Props = {
+                            checkboxIsChecked: generateStateValueProp($state, [
+                              "workhours",
+                              __plasmic_idx_0,
+                              "checkboxIsChecked"
+                            ]),
+                            className: classNames(
+                              "__wab_instance",
+                              sty.workhours
+                            ),
+                            dayOfWeek: (() => {
+                              try {
+                                return currentItem.id;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            duration: (() => {
+                              try {
+                                return undefined;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            key: currentIndex,
+                            listOfWorkhoureCopy: generateStateValueProp(
+                              $state,
+                              [
+                                "workhours",
+                                __plasmic_idx_0,
+                                "listOfWorkhoureCopy"
+                              ]
+                            ),
+                            onCheckboxIsCheckedChange:
+                              generateStateOnChangeProp($state, [
+                                "workhours",
+                                __plasmic_idx_0,
+                                "checkboxIsChecked"
+                              ]),
+                            onListOfWorkhoureCopyChange:
+                              generateStateOnChangeProp($state, [
+                                "workhours",
+                                __plasmic_idx_0,
+                                "listOfWorkhoureCopy"
+                              ]),
+                            onWarningChange: generateStateOnChangeProp($state, [
+                              "workhours",
+                              __plasmic_idx_0,
+                              "warning"
+                            ])
+                          };
+
+                          initializePlasmicStates(
+                            $state,
+                            [
+                              {
+                                name: "workhours[].checkboxIsChecked",
+                                initFunc: ({ $props, $state, $queries }) =>
+                                  (() => {
+                                    try {
+                                      return $state.workhoursApi.data.data.workhours?.some?.(
+                                        item => item.day === currentItem.id
+                                      );
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return false;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                              },
+                              {
+                                name: "workhours[].listOfWorkhoureCopy",
+                                initFunc: ({ $props, $state, $queries }) => [
+                                  { from: "17:00", to: "21:00" }
+                                ]
+                              }
+                            ],
+                            [__plasmic_idx_0]
+                          );
+                          return (
+                            <Workhours
+                              data-plasmic-name={"workhours"}
+                              data-plasmic-override={overrides.workhours}
+                              {...child$Props}
+                            />
+                          );
+                        })();
+                      })}
+                    </div>
+                  </div>
                 </Stack__>
               </ApiRequest>
             </Stack__>
@@ -657,14 +862,25 @@ const PlasmicDescendants = {
     "centersApi",
     "svg",
     "hoursDaysOfWeek",
-    "activeDuration"
+    "activeDuration",
+    "duration",
+    "workhours"
   ],
   header: ["header", "text"],
   text: ["text"],
-  centersApi: ["centersApi", "svg", "hoursDaysOfWeek", "activeDuration"],
+  centersApi: [
+    "centersApi",
+    "svg",
+    "hoursDaysOfWeek",
+    "activeDuration",
+    "duration",
+    "workhours"
+  ],
   svg: ["svg"],
   hoursDaysOfWeek: ["hoursDaysOfWeek"],
-  activeDuration: ["activeDuration"]
+  activeDuration: ["activeDuration"],
+  duration: ["duration"],
+  workhours: ["workhours"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -677,6 +893,8 @@ type NodeDefaultElementType = {
   svg: "svg";
   hoursDaysOfWeek: typeof HoursDaysOfWeek;
   activeDuration: typeof HoursDaysOfWeek;
+  duration: typeof Duration;
+  workhours: typeof Workhours;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -746,6 +964,8 @@ export const PlasmicActivationConsultDuration = Object.assign(
     svg: makeNodeComponent("svg"),
     hoursDaysOfWeek: makeNodeComponent("hoursDaysOfWeek"),
     activeDuration: makeNodeComponent("activeDuration"),
+    duration: makeNodeComponent("duration"),
+    workhours: makeNodeComponent("workhours"),
 
     // Metadata about props expected for PlasmicActivationConsultDuration
     internalVariantProps: PlasmicActivationConsultDuration__VariantProps,
