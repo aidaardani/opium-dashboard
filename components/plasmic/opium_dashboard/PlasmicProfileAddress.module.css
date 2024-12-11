@@ -321,6 +321,32 @@
   font-size: var(--token-6NbVMeD6zQwn);
   min-width: 0;
 }
+.freeBox__kLsnt {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
+.svg__p7Qc {
+  object-fit: cover;
+  max-width: 100%;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.text___7FhyW {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-u3OudfMChOo3);
+}
 .freeBox__qaWiL {
   display: flex;
   flex-direction: column;

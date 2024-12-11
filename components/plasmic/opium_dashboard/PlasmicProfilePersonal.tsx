@@ -1119,6 +1119,27 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                     "invokeGlobalAction3"
                   ];
                 }
+
+                $steps["runActionOnProfile"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        tplRef: "profile",
+                        action: "refresh"
+                      };
+                      return (({ tplRef, action, args }) => {
+                        return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runActionOnProfile"] != null &&
+                  typeof $steps["runActionOnProfile"] === "object" &&
+                  typeof $steps["runActionOnProfile"].then === "function"
+                ) {
+                  $steps["runActionOnProfile"] = await $steps[
+                    "runActionOnProfile"
+                  ];
+                }
               }}
             />
           </Stack__>

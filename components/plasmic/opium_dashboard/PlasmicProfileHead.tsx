@@ -148,12 +148,6 @@ function PlasmicProfileHead__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => []
       },
       {
-        path: "imgPreview",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
-      {
         path: "profile.data",
         type: "private",
         variableType: "object",
@@ -176,6 +170,12 @@ function PlasmicProfileHead__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "profile"
+      },
+      {
+        path: "uploadFiles",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -300,6 +300,42 @@ function PlasmicProfileHead__RenderFunc(props: {
                   onFileSelect={async files => {
                     const $steps = {};
 
+                    $steps["updateUploadFiles2"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["uploadFiles"]
+                            },
+                            operation: 0,
+                            value: files
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateUploadFiles2"] != null &&
+                      typeof $steps["updateUploadFiles2"] === "object" &&
+                      typeof $steps["updateUploadFiles2"].then === "function"
+                    ) {
+                      $steps["updateUploadFiles2"] = await $steps[
+                        "updateUploadFiles2"
+                      ];
+                    }
+
                     $steps["uploadImage"] = true
                       ? (() => {
                           const actionArgs = {
@@ -375,7 +411,43 @@ function PlasmicProfileHead__RenderFunc(props: {
                       $steps["uploadImage"] = await $steps["uploadImage"];
                     }
 
-                    $steps["invokeGlobalAction"] =
+                    $steps["updateUploadFiles"] =
+                      $steps.uploadImage.status == 200
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["uploadFiles"]
+                              },
+                              operation: 1
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, undefined);
+                              return undefined;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["updateUploadFiles"] != null &&
+                      typeof $steps["updateUploadFiles"] === "object" &&
+                      typeof $steps["updateUploadFiles"].then === "function"
+                    ) {
+                      $steps["updateUploadFiles"] = await $steps[
+                        "updateUploadFiles"
+                      ];
+                    }
+
+                    $steps["toast"] =
                       $steps.uploadImage.status == 200
                         ? (() => {
                             const actionArgs = {
@@ -404,44 +476,77 @@ function PlasmicProfileHead__RenderFunc(props: {
                           })()
                         : undefined;
                     if (
-                      $steps["invokeGlobalAction"] != null &&
-                      typeof $steps["invokeGlobalAction"] === "object" &&
-                      typeof $steps["invokeGlobalAction"].then === "function"
+                      $steps["toast"] != null &&
+                      typeof $steps["toast"] === "object" &&
+                      typeof $steps["toast"].then === "function"
                     ) {
-                      $steps["invokeGlobalAction"] = await $steps[
-                        "invokeGlobalAction"
-                      ];
+                      $steps["toast"] = await $steps["toast"];
                     }
 
-                    $steps["runCode"] =
+                    $steps["runActionOnProfile"] =
                       $steps.uploadImage.status == 200
                         ? (() => {
                             const actionArgs = {
-                              customFunction: async () => {
-                                return globalThis.location.reload();
-                              }
+                              tplRef: "profile",
+                              action: "refresh"
                             };
-                            return (({ customFunction }) => {
-                              return customFunction();
+                            return (({ tplRef, action, args }) => {
+                              return $refs?.[tplRef]?.[action]?.(
+                                ...(args ?? [])
+                              );
                             })?.apply(null, [actionArgs]);
                           })()
                         : undefined;
                     if (
-                      $steps["runCode"] != null &&
-                      typeof $steps["runCode"] === "object" &&
-                      typeof $steps["runCode"].then === "function"
+                      $steps["runActionOnProfile"] != null &&
+                      typeof $steps["runActionOnProfile"] === "object" &&
+                      typeof $steps["runActionOnProfile"].then === "function"
                     ) {
-                      $steps["runCode"] = await $steps["runCode"];
+                      $steps["runActionOnProfile"] = await $steps[
+                        "runActionOnProfile"
+                      ];
                     }
                   }}
                 >
                   <div
                     className={classNames(projectcss.all, sty.freeBox___6GKuj)}
                   >
-                    <Icon26Icon
-                      className={classNames(projectcss.all, sty.svg__r5O0X)}
-                      role={"img"}
-                    />
+                    {(() => {
+                      try {
+                        return !$state.uploadFiles?.[0];
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
+                      <Icon26Icon
+                        className={classNames(projectcss.all, sty.svg__r5O0X)}
+                        role={"img"}
+                      />
+                    ) : null}
+                    {(() => {
+                      try {
+                        return !!$state.uploadFiles?.[0];
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
+                      <Icon34Icon
+                        className={classNames(projectcss.all, sty.svg___5B3Gh)}
+                        role={"img"}
+                      />
+                    ) : null}
                   </div>
                 </FileInput>
               </div>

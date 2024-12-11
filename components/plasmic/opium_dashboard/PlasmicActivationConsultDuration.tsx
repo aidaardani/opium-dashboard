@@ -238,6 +238,12 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
         path: "workhours[].warning",
         type: "private",
         variableType: "boolean"
+      },
+      {
+        path: "newWorkHours",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => []
       }
     ],
     [$props, $ctx, $refs]
@@ -738,6 +744,19 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                         const currentIndex = __plasmic_idx_0;
                         return (() => {
                           const child$Props = {
+                            centerId: (() => {
+                              try {
+                                return undefined;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
                             checkboxIsChecked: generateStateValueProp($state, [
                               "workhours",
                               __plasmic_idx_0,
@@ -762,7 +781,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                             })(),
                             duration: (() => {
                               try {
-                                return undefined;
+                                return $state.duration.newduration;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -773,6 +792,47 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                 throw e;
                               }
                             })(),
+                            endedSelectedDay: async id => {
+                              const $steps = {};
+
+                              $steps["runCode"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      customFunction: async () => {
+                                        return (() => {
+                                          const x = JSON.stringify(
+                                            $state.workhours[currentIndex]
+                                              .listOfWorkhoureCopy
+                                          );
+                                          return id.forEach(day => {
+                                            $state.workhours[
+                                              $state.days.findIndex(
+                                                item => item.id == day
+                                              )
+                                            ].listOfWorkhoureCopy =
+                                              JSON.parse(x);
+                                            $state.workhours[
+                                              $state.days.findIndex(
+                                                item => item.id == day
+                                              )
+                                            ].checkboxIsChecked = true;
+                                          });
+                                        })();
+                                      }
+                                    };
+                                    return (({ customFunction }) => {
+                                      return customFunction();
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["runCode"] != null &&
+                                typeof $steps["runCode"] === "object" &&
+                                typeof $steps["runCode"].then === "function"
+                              ) {
+                                $steps["runCode"] = await $steps["runCode"];
+                              }
+                            },
                             key: currentIndex,
                             listOfWorkhoureCopy: generateStateValueProp(
                               $state,
@@ -809,8 +869,8 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                 initFunc: ({ $props, $state, $queries }) =>
                                   (() => {
                                     try {
-                                      return $state.workhoursApi.data.data.workhours?.some?.(
-                                        item => item.day === currentItem.id
+                                      return $state.newWorkHours.some(
+                                        item => item.day == currentItem.id
                                       );
                                     } catch (e) {
                                       if (
@@ -826,9 +886,38 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               },
                               {
                                 name: "workhours[].listOfWorkhoureCopy",
-                                initFunc: ({ $props, $state, $queries }) => [
-                                  { from: "17:00", to: "21:00" }
-                                ]
+                                initFunc: ({ $props, $state, $queries }) =>
+                                  (() => {
+                                    try {
+                                      return $state.newWorkHours.some(
+                                        item => item.day === currentItem.id
+                                      )
+                                        ? $state.newWorkHours
+                                            .filter(
+                                              item =>
+                                                item.day === currentItem.id
+                                            )
+                                            .map(item => ({
+                                              from: item.from,
+                                              to: item.to
+                                            }))
+                                        : [
+                                            {
+                                              from: "18:00",
+                                              to: "21:00"
+                                            }
+                                          ];
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return [{ from: "17:00", to: "21:00" }];
+                                      }
+                                      throw e;
+                                    }
+                                  })()
                               }
                             ],
                             [__plasmic_idx_0]

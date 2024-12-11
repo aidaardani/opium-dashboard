@@ -6580,6 +6580,28 @@ function PlasmicProfileExperties__RenderFunc(props: {
                 ) {
                   $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
                 }
+
+                $steps["runActionOnSpetialitiesApi"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        tplRef: "spetialitiesApi",
+                        action: "refresh"
+                      };
+                      return (({ tplRef, action, args }) => {
+                        return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runActionOnSpetialitiesApi"] != null &&
+                  typeof $steps["runActionOnSpetialitiesApi"] === "object" &&
+                  typeof $steps["runActionOnSpetialitiesApi"].then ===
+                    "function"
+                ) {
+                  $steps["runActionOnSpetialitiesApi"] = await $steps[
+                    "runActionOnSpetialitiesApi"
+                  ];
+                }
               }}
             />
 
