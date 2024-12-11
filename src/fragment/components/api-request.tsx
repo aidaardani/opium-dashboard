@@ -6,6 +6,7 @@ import {
   forwardRef,
   ReactNode,
   useEffect,
+  useId,
   useImperativeHandle,
   useMemo,
   useState,
@@ -46,6 +47,7 @@ export const ApiRequest = forwardRef((props: ApiRequestType, ref) => {
     onSuccess,
   } = props;
   const fragmentConfig = useSelector("Fragment");
+  const id = useId();
   const [isLoading, setIsLoading] = useState(false);
   const fetchProps = useMemo(
     () => ({
@@ -58,9 +60,9 @@ export const ApiRequest = forwardRef((props: ApiRequestType, ref) => {
         ...fragmentConfig?.previewApiConfig,
         ...config,
       },
-      time: Date.now(),
+      id: id,
     }),
-    [method, url, params, body, config, fragmentConfig]
+    [method, url, params, body, config, fragmentConfig, id]
   );
   const { error, mutate } = useSWR(
     JSON.stringify(fetchProps),
