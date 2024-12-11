@@ -160,19 +160,25 @@ function PlasmicPayment__RenderFunc(props: {
         path: "apiRequestForGetDetailsPayment.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequestForGetDetailsPayment"
       },
       {
         path: "apiRequestForGetDetailsPayment.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequestForGetDetailsPayment"
       },
       {
         path: "apiRequestForGetDetailsPayment.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequestForGetDetailsPayment"
       },
       {
         path: "more",
@@ -195,37 +201,49 @@ function PlasmicPayment__RenderFunc(props: {
         path: "apiRequest.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest"
       },
       {
         path: "apiRequest.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest"
       },
       {
         path: "apiRequest.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest"
       },
       {
         path: "apiRequestforGetUserPrefrence.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequestforGetUserPrefrence"
       },
       {
         path: "apiRequestforGetUserPrefrence.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequestforGetUserPrefrence"
       },
       {
         path: "apiRequestforGetUserPrefrence.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequestforGetUserPrefrence"
       }
     ],
     [$props, $ctx, $refs]
@@ -749,6 +767,9 @@ function PlasmicPayment__RenderFunc(props: {
                       "apiRequest",
                       "data"
                     ])}
+                    ref={ref => {
+                      $refs["apiRequest"] = ref;
+                    }}
                     url={
                       "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/kind-of-auto-payment"
                     }
@@ -798,6 +819,9 @@ function PlasmicPayment__RenderFunc(props: {
                       "apiRequestforGetUserPrefrence",
                       "data"
                     ])}
+                    ref={ref => {
+                      $refs["apiRequestforGetUserPrefrence"] = ref;
+                    }}
                     url={
                       "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/active-payment-preference"
                     }
@@ -949,6 +973,9 @@ function PlasmicPayment__RenderFunc(props: {
           "apiRequestForGetDetailsPayment",
           "data"
         ])}
+        ref={ref => {
+          $refs["apiRequestForGetDetailsPayment"] = ref;
+        }}
         url={"https://apigw.paziresh24.com/v1/details-payment"}
       />
     </div>

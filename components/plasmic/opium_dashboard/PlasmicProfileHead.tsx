@@ -157,19 +157,25 @@ function PlasmicProfileHead__RenderFunc(props: {
         path: "profile.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "profile"
       },
       {
         path: "profile.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "profile"
       },
       {
         path: "profile.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "profile"
       }
     ],
     [$props, $ctx, $refs]
@@ -225,6 +231,9 @@ function PlasmicProfileHead__RenderFunc(props: {
         onError={generateStateOnChangeProp($state, ["profile", "error"])}
         onLoading={generateStateOnChangeProp($state, ["profile", "loading"])}
         onSuccess={generateStateOnChangeProp($state, ["profile", "data"])}
+        ref={ref => {
+          $refs["profile"] = ref;
+        }}
         url={"https://api.paziresh24.com/V1/doctor/profile"}
       >
         <Stack__

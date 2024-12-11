@@ -169,19 +169,25 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "addressApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "addressApi"
       },
       {
         path: "addressApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "addressApi"
       },
       {
         path: "addressApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "addressApi"
       },
       {
         path: "tellsDialog.open",
@@ -226,19 +232,25 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "centersApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "centersApi"
       },
       {
         path: "centersApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "centersApi"
       },
       {
         path: "centersApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "centersApi"
       },
       {
         path: "isLoadingSave",
@@ -336,6 +348,9 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         onError={generateStateOnChangeProp($state, ["addressApi", "error"])}
         onLoading={generateStateOnChangeProp($state, ["addressApi", "loading"])}
         onSuccess={generateStateOnChangeProp($state, ["addressApi", "data"])}
+        ref={ref => {
+          $refs["addressApi"] = ref;
+        }}
         url={(() => {
           try {
             return `https://api.paziresh24.com/V1/geocoding/reverse?lat=${$state.map.lat}&long=${$state.map.lng}`;
@@ -494,6 +509,9 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                   ];
                 }
               }).apply(null, eventArgs);
+            }}
+            ref={ref => {
+              $refs["centersApi"] = ref;
             }}
             url={"https://api.paziresh24.com/V1/doctor/centers"}
           >

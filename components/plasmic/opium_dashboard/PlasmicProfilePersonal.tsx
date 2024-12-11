@@ -283,55 +283,73 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "auth.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "auth"
       },
       {
         path: "auth.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "auth"
       },
       {
         path: "auth.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "auth"
       },
       {
         path: "profile.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "profile"
       },
       {
         path: "profile.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "profile"
       },
       {
         path: "profile.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "profile"
       },
       {
         path: "notifyCellApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "notifyCellApi"
       },
       {
         path: "notifyCellApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "notifyCellApi"
       },
       {
         path: "notifyCellApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "notifyCellApi"
       },
       {
         path: "notifyCell.value",
@@ -356,19 +374,25 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "providerApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "providerApi"
       },
       {
         path: "providerApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "providerApi"
       },
       {
         path: "providerApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "providerApi"
       },
       {
         path: "biography",
@@ -426,6 +450,9 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         onError={generateStateOnChangeProp($state, ["auth", "error"])}
         onLoading={generateStateOnChangeProp($state, ["auth", "loading"])}
         onSuccess={generateStateOnChangeProp($state, ["auth", "data"])}
+        ref={ref => {
+          $refs["auth"] = ref;
+        }}
         url={"https://api.paziresh24.com/V1/auth/me"}
       >
         <ApiRequest
@@ -479,6 +506,9 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 $steps["updateBiography"] = await $steps["updateBiography"];
               }
             }).apply(null, eventArgs);
+          }}
+          ref={ref => {
+            $refs["profile"] = ref;
           }}
           url={"https://api.paziresh24.com/V1/doctor/profile"}
         >
@@ -655,6 +685,9 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 "providerApi",
                 "data"
               ])}
+              ref={ref => {
+                $refs["providerApi"] = ref;
+              }}
               url={(() => {
                 try {
                   return `https://apigw.paziresh24.com/v1/providers?user_id=${$state.auth.data.data.id}`;
@@ -708,6 +741,9 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   "notifyCellApi",
                   "data"
                 ])}
+                ref={ref => {
+                  $refs["notifyCellApi"] = ref;
+                }}
                 url={(() => {
                   try {
                     return (() => {

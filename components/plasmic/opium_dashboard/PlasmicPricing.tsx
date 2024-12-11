@@ -223,37 +223,49 @@ function PlasmicPricing__RenderFunc(props: {
         path: "getNelsonFeatures.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "getNelsonFeatures"
       },
       {
         path: "getNelsonFeatures.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "getNelsonFeatures"
       },
       {
         path: "getNelsonFeatures.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "getNelsonFeatures"
       },
       {
         path: "apiRequestForNotificationSetting.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequestForNotificationSetting"
       },
       {
         path: "apiRequestForNotificationSetting.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequestForNotificationSetting"
       },
       {
         path: "apiRequestForNotificationSetting.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequestForNotificationSetting"
       },
       {
         path: "feedbacks.activePanelId",
@@ -276,37 +288,49 @@ function PlasmicPricing__RenderFunc(props: {
         path: "customerfeatures.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "customerfeatures"
       },
       {
         path: "customerfeatures.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "customerfeatures"
       },
       {
         path: "customerfeatures.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "customerfeatures"
       },
       {
         path: "auth.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "auth"
       },
       {
         path: "auth.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "auth"
       },
       {
         path: "auth.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "auth"
       }
     ],
     [$props, $ctx, $refs]
@@ -388,6 +412,9 @@ function PlasmicPricing__RenderFunc(props: {
               "getNelsonFeatures",
               "data"
             ])}
+            ref={ref => {
+              $refs["getNelsonFeatures"] = ref;
+            }}
             url={
               "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/nelsonfeatures"
             }
@@ -2904,6 +2931,9 @@ function PlasmicPricing__RenderFunc(props: {
                 "apiRequestForNotificationSetting",
                 "data"
               ])}
+              ref={ref => {
+                $refs["apiRequestForNotificationSetting"] = ref;
+              }}
               url={"https://apigw.paziresh24.com/v1/martin/events"}
             />
           </ApiRequest>
@@ -2946,6 +2976,9 @@ function PlasmicPricing__RenderFunc(props: {
               "customerfeatures",
               "data"
             ])}
+            ref={ref => {
+              $refs["customerfeatures"] = ref;
+            }}
             url={
               "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-customer-nelson-features"
             }
@@ -2985,6 +3018,9 @@ function PlasmicPricing__RenderFunc(props: {
             onError={generateStateOnChangeProp($state, ["auth", "error"])}
             onLoading={generateStateOnChangeProp($state, ["auth", "loading"])}
             onSuccess={generateStateOnChangeProp($state, ["auth", "data"])}
+            ref={ref => {
+              $refs["auth"] = ref;
+            }}
             url={"https://apigw.paziresh24.com/v1/auth/me"}
           />
 

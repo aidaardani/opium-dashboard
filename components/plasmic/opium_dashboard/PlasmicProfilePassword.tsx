@@ -184,19 +184,25 @@ function PlasmicProfilePassword__RenderFunc(props: {
         path: "authApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "authApi"
       },
       {
         path: "authApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "authApi"
       },
       {
         path: "authApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "authApi"
       },
       {
         path: "oldPassword.value",
@@ -258,6 +264,9 @@ function PlasmicProfilePassword__RenderFunc(props: {
         onError={generateStateOnChangeProp($state, ["authApi", "error"])}
         onLoading={generateStateOnChangeProp($state, ["authApi", "loading"])}
         onSuccess={generateStateOnChangeProp($state, ["authApi", "data"])}
+        ref={ref => {
+          $refs["authApi"] = ref;
+        }}
         url={"https://api.paziresh24.com/V1/auth/me"}
       >
         <Stack__
