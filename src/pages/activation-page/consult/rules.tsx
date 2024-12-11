@@ -4,23 +4,23 @@ import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
 import GlobalContextsProvider from "../../../../components/plasmic/opium_dashboard/PlasmicGlobalContextsProvider";
 
-import { PlasmicActivationRules } from "../../../../components/plasmic/opium_dashboard/PlasmicActivationRules";
+import { PlasmicActivationConsultRules2 } from "../../../../components/plasmic/opium_dashboard/PlasmicActivationConsultRules2";
 import { useRouter } from "next/router";
 
-function ActivationRules() {
-  // Use PlasmicActivationRules to render this component as it was
+function ActivationConsultRules2() {
+  // Use PlasmicActivationConsultRules2 to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
   // can also install whatever React hooks you need here to manage state or
   // fetch data.
   //
-  // Props you can pass into PlasmicActivationRules are:
+  // Props you can pass into PlasmicActivationConsultRules2 are:
   // 1. Variants you want to activate,
   // 2. Contents for slots you want to fill,
   // 3. Overrides for any named node in the component to attach behavior and data,
   // 4. Props to set on the root node.
   //
-  // By default, PlasmicActivationRules is wrapped by your project's global
+  // By default, PlasmicActivationConsultRules2 is wrapped by your project's global
   // variant context providers. These wrappers may be moved to
   // Next.js Custom App component
   // (https://nextjs.org/docs/advanced-features/custom-app).
@@ -31,10 +31,10 @@ function ActivationRules() {
         params={useRouter()?.query}
         query={useRouter()?.query}
       >
-        <PlasmicActivationRules />
+        <PlasmicActivationConsultRules2 />
       </PageParamsProvider__>
     </GlobalContextsProvider>
   );
 }
 
-export default ActivationRules;
+export default ActivationConsultRules2;

@@ -1983,20 +1983,6 @@
           "path": "/activation-page"
         },
         {
-          "id": "YjxK-nPRmG0-",
-          "name": "ActivationCenter",
-          "type": "managed",
-          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
-          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationCenter.tsx",
-          "importSpec": {
-            "modulePath": "../src/pages/activation-page/office/center.tsx"
-          },
-          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationCenter.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/activation-page/office/center"
-        },
-        {
           "id": "POnAEYK1Z5mh",
           "name": "ActivationOfficeCost3",
           "type": "managed",
@@ -2025,20 +2011,6 @@
           "path": "/activation-page/office/duration"
         },
         {
-          "id": "2twljBA-hP0x",
-          "name": "ActivationRules",
-          "type": "managed",
-          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
-          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationRules.tsx",
-          "importSpec": {
-            "modulePath": "../src/pages/activation-page/consult/rules.tsx"
-          },
-          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationRules.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/activation-page/consult/rules"
-        },
-        {
           "id": "foxYnsy9VjeT",
           "name": "ActivationConsultRules",
           "type": "managed",
@@ -2050,20 +2022,6 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationConsultRules.module.css",
           "scheme": "blackbox",
           "componentType": "component"
-        },
-        {
-          "id": "JP1u0ieQ7B3M",
-          "name": "ActivationMessengers",
-          "type": "managed",
-          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
-          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationMessengers.tsx",
-          "importSpec": {
-            "modulePath": "../src/pages/activation-page/consult/messengers.tsx"
-          },
-          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationMessengers.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/activation-page/consult/messengers"
         },
         {
           "id": "PibRCPxm0C4b",
@@ -2132,6 +2090,48 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationConsultCost2.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "YjxK-nPRmG0-",
+          "name": "ActivationOfficeCenter2",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationOfficeCenter2.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/activation-page/office/center.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationOfficeCenter2.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/activation-page/office/center"
+        },
+        {
+          "id": "2twljBA-hP0x",
+          "name": "ActivationConsultRules2",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationConsultRules2.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/activation-page/consult/rules.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationConsultRules2.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/activation-page/consult/rules"
+        },
+        {
+          "id": "JP1u0ieQ7B3M",
+          "name": "ActivationConsultMessengers",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationConsultMessengers.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/activation-page/consult/messengers.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationConsultMessengers.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/activation-page/consult/messengers"
         }
       ],
       "icons": [

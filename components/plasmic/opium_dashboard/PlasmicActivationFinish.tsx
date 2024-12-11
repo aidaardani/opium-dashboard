@@ -219,7 +219,11 @@ function PlasmicActivationFinish__RenderFunc(props: {
                 }}
               />
 
-              <div className={classNames(projectcss.all, sty.freeBox__aR1V)}>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__aR1V)}
+              >
                 <div
                   className={classNames(
                     projectcss.all,
@@ -227,11 +231,101 @@ function PlasmicActivationFinish__RenderFunc(props: {
                     sty.text___7WLUo
                   )}
                 >
-                  {
-                    "\u0633\u0631\u0648\u06cc\u0633 \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0641\u0639\u0627\u0644 \u0634\u062f."
-                  }
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $ctx.query.office == "true"
+                          ? "مطب شما با موفقیت فعال شد."
+                          : "ویزیت آنلاین شما با موفقیت فعال شد.";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0641\u0639\u0627\u0644 \u0634\u062f.";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
                 </div>
-              </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__gzuuy
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $ctx.query.office == "true"
+                          ? "اطلاعات شما ثبت شد و مطب شما تا ساعاتی دیگر فعال می‌شود. بیماران می‌توانند مستقیماً از طریق پروفایل شما نوبت رزرو کنند."
+                          : "اطلاعات شما ثبت شد و ویزیت آنلاین شما تا ساعاتی دیگر فعال می‌شود. بیماران می‌توانند مستقیماً از طریق پروفایل شما ویزیت آنلاین رزرو کنند.";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0634\u0645\u0627 \u062b\u0628\u062a \u0634\u062f \u0648 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0634\u0645\u0627 \u062a\u0627 \u0633\u0627\u0639\u0627\u062a\u06cc \u062f\u06cc\u06af\u0631 \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u0646\u062f \u0645\u0633\u062a\u0642\u06cc\u0645\u0627\u064b \u0627\u0632 \u0637\u0631\u06cc\u0642 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u06a9\u0646\u0646\u062f.";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+                {(() => {
+                  try {
+                    return $ctx.query.office != "true";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__oxcvC
+                    )}
+                  >
+                    {
+                      " \u0628\u0647 \u062f\u0644\u06cc\u0644 \u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0638\u0631\u0641\u06cc\u062a \u0641\u0639\u0644\u06cc\u060c \u0646\u0645\u0627\u06cc\u0647 \u0634\u0645\u0627 \u062f\u0631 \u0627\u0628\u062a\u062f\u0627 \u062f\u0631 \u0644\u06cc\u0633\u062a \u067e\u0632\u0634\u06a9\u0627\u0646 \u0645\u0648\u062c\u0648\u062f \u0628\u0631\u0627\u06cc \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u062f\u0631 \u0631\u062a\u0628\u0647 \u067e\u0627\u06cc\u06cc\u0646\u200c\u062a\u0631\u06cc \u0642\u0631\u0627\u0631 \u0645\u06cc\u200c\u06af\u06cc\u0631\u062f."
+                    }
+                  </div>
+                ) : null}
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__kxy3R
+                  )}
+                >
+                  <div
+                    className={projectcss.__wab_expr_html_text}
+                    dangerouslySetInnerHTML={{
+                      __html: (() => {
+                        try {
+                          return `<p>برای هر گونه سوال یا توضیح بیشتر، لطفا با ما <a style="color: blue" href="https://newsupport.paziresh24.com/new-ticket/?department=4&amp;product=9">ارتباط</a> بگیرید. تیم ما اینجاست تا از شما در هر مرحله حمایت کند.</p>`;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return " \u0628\u0647 \u062f\u0644\u06cc\u0644 \u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0638\u0631\u0641\u06cc\u062a \u0641\u0639\u0644\u06cc\u060c \u0646\u0645\u0627\u06cc\u0647 \u0634\u0645\u0627 \u062f\u0631 \u0627\u0628\u062a\u062f\u0627 \u062f\u0631 \u0644\u06cc\u0633\u062a \u067e\u0632\u0634\u06a9\u0627\u0646 \u0645\u0648\u062c\u0648\u062f \u0628\u0631\u0627\u06cc \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u062f\u0631 \u0631\u062a\u0628\u0647 \u067e\u0627\u06cc\u06cc\u0646\u200c\u062a\u0631\u06cc \u0642\u0631\u0627\u0631 \u0645\u06cc\u200c\u06af\u06cc\u0631\u062f.";
+                          }
+                          throw e;
+                        }
+                      })()
+                    }}
+                  />
+                </div>
+              </Stack__>
               <Button
                 data-plasmic-name={"button"}
                 data-plasmic-override={overrides.button}
@@ -239,6 +333,34 @@ function PlasmicActivationFinish__RenderFunc(props: {
                   "\u0634\u0631\u0648\u0639 \u0646\u0648\u0628\u062a \u062f\u0647\u06cc"
                 }
                 className={classNames("__wab_instance", sty.button)}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["goTo"] = true
+                    ? (() => {
+                        const actionArgs = { destination: "/" };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goTo"] != null &&
+                    typeof $steps["goTo"] === "object" &&
+                    typeof $steps["goTo"].then === "function"
+                  ) {
+                    $steps["goTo"] = await $steps["goTo"];
+                  }
+                }}
               />
             </div>
           </div>

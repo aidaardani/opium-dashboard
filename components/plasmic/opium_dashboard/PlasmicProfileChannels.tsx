@@ -862,7 +862,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
               className={classNames("__wab_instance", sty.button__mrLyj)}
               loading={(() => {
                 try {
-                  return $state.isLoadingSave;
+                  return $state.isLoadingSave || $props.isLoadingSubmit;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||

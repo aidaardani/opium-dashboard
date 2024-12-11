@@ -4,23 +4,23 @@ import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
 import GlobalContextsProvider from "../../../../components/plasmic/opium_dashboard/PlasmicGlobalContextsProvider";
 
-import { PlasmicActivationCenter } from "../../../../components/plasmic/opium_dashboard/PlasmicActivationCenter";
+import { PlasmicActivationOfficeCenter2 } from "../../../../components/plasmic/opium_dashboard/PlasmicActivationOfficeCenter2";
 import { useRouter } from "next/router";
 
-function ActivationCenter() {
-  // Use PlasmicActivationCenter to render this component as it was
+function ActivationOfficeCenter2() {
+  // Use PlasmicActivationOfficeCenter2 to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
   // can also install whatever React hooks you need here to manage state or
   // fetch data.
   //
-  // Props you can pass into PlasmicActivationCenter are:
+  // Props you can pass into PlasmicActivationOfficeCenter2 are:
   // 1. Variants you want to activate,
   // 2. Contents for slots you want to fill,
   // 3. Overrides for any named node in the component to attach behavior and data,
   // 4. Props to set on the root node.
   //
-  // By default, PlasmicActivationCenter is wrapped by your project's global
+  // By default, PlasmicActivationOfficeCenter2 is wrapped by your project's global
   // variant context providers. These wrappers may be moved to
   // Next.js Custom App component
   // (https://nextjs.org/docs/advanced-features/custom-app).
@@ -31,10 +31,10 @@ function ActivationCenter() {
         params={useRouter()?.query}
         query={useRouter()?.query}
       >
-        <PlasmicActivationCenter />
+        <PlasmicActivationOfficeCenter2 />
       </PageParamsProvider__>
     </GlobalContextsProvider>
   );
 }
 
-export default ActivationCenter;
+export default ActivationOfficeCenter2;

@@ -404,7 +404,7 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
                         try {
                           return $ctx.query.onlineVisit == "true"
                             ? "/activation-page/consult/rules"
-                            : null;
+                            : "/activation-page/finish?office=true";
                         } catch (e) {
                           if (
                             e instanceof TypeError ||

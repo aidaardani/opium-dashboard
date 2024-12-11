@@ -91,6 +91,7 @@ export type PlasmicActivationConsultDuration__OverridesType = {
   centersApi?: Flex__<typeof ApiRequest>;
   workHoursApi?: Flex__<typeof ApiRequest>;
   hoursDaysOfWeek?: Flex__<typeof HoursDaysOfWeek>;
+  activeDuration?: Flex__<typeof HoursDaysOfWeek>;
 };
 
 export interface DefaultActivationConsultDurationProps {}
@@ -132,6 +133,8 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
+
+  const $globalActions = useGlobalActions?.();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
@@ -176,6 +179,18 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "activeDuration.duration",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "isLoadingSave",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -334,50 +349,352 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                     hasGap={true}
                     className={classNames(projectcss.all, sty.freeBox___869Rv)}
                   >
-                    <HoursDaysOfWeek
-                      data-plasmic-name={"hoursDaysOfWeek"}
-                      data-plasmic-override={overrides.hoursDaysOfWeek}
-                      centerId={(() => {
-                        try {
-                          return "5532";
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
+                    {(() => {
+                      try {
+                        return $state.centersApi.data.data.some(
+                          item => item.id == 5532
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
                         }
-                      })()}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.hoursDaysOfWeek
-                      )}
-                      duration={generateStateValueProp($state, [
-                        "hoursDaysOfWeek",
-                        "duration"
-                      ])}
-                      onDurationChange={generateStateOnChangeProp($state, [
-                        "hoursDaysOfWeek",
-                        "duration"
-                      ])}
-                      userCenterId={(() => {
-                        try {
-                          return $state.centersApi.data.data.find(
-                            item => item.id == 5532
-                          ).user_center_id;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
+                        throw e;
+                      }
+                    })() ? (
+                      <HoursDaysOfWeek
+                        data-plasmic-name={"hoursDaysOfWeek"}
+                        data-plasmic-override={overrides.hoursDaysOfWeek}
+                        centerId={(() => {
+                          try {
+                            return "5532";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
                           }
-                          throw e;
+                        })()}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.hoursDaysOfWeek
+                        )}
+                        duration={generateStateValueProp($state, [
+                          "hoursDaysOfWeek",
+                          "duration"
+                        ])}
+                        forwardPage={"/activation-page/finish"}
+                        onDurationChange={generateStateOnChangeProp($state, [
+                          "hoursDaysOfWeek",
+                          "duration"
+                        ])}
+                        userCenterId={(() => {
+                          try {
+                            return $state.centersApi.data.data.find(
+                              item => item.id == 5532
+                            ).user_center_id;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}
+                      />
+                    ) : null}
+                    {(() => {
+                      try {
+                        return !$state.centersApi.data.data.some(
+                          item => item.id == 5532
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
                         }
-                      })()}
-                    />
+                        throw e;
+                      }
+                    })() ? (
+                      <HoursDaysOfWeek
+                        data-plasmic-name={"activeDuration"}
+                        data-plasmic-override={overrides.activeDuration}
+                        centerId={(() => {
+                          try {
+                            return "5532";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.activeDuration
+                        )}
+                        customOnSubmit={async workhours => {
+                          const $steps = {};
+
+                          $steps["runCode"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  customFunction: async () => {
+                                    return (() => {
+                                      const channels = JSON.parse(
+                                        globalThis.decodeURIComponent(
+                                          $ctx.query.channels
+                                        )
+                                      );
+                                      const cost = JSON.parse(
+                                        globalThis.decodeURIComponent(
+                                          $ctx.query.cost
+                                        )
+                                      );
+                                      return console.log({
+                                        workHours: workhours.workhours,
+                                        service_length: 3,
+                                        online_channels: channels,
+                                        price: cost
+                                      });
+                                    })();
+                                  }
+                                };
+                                return (({ customFunction }) => {
+                                  return customFunction();
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["runCode"] != null &&
+                            typeof $steps["runCode"] === "object" &&
+                            typeof $steps["runCode"].then === "function"
+                          ) {
+                            $steps["runCode"] = await $steps["runCode"];
+                          }
+
+                          $steps["updateIsLoadingSave"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["isLoadingSave"]
+                                  },
+                                  operation: 0,
+                                  value: true
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateIsLoadingSave"] != null &&
+                            typeof $steps["updateIsLoadingSave"] === "object" &&
+                            typeof $steps["updateIsLoadingSave"].then ===
+                              "function"
+                          ) {
+                            $steps["updateIsLoadingSave"] = await $steps[
+                              "updateIsLoadingSave"
+                            ];
+                          }
+
+                          $steps["activeConsultMutation"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    "POST",
+                                    "https://api.paziresh24.com/V1/doctor/consult",
+                                    undefined,
+                                    (() => {
+                                      try {
+                                        return (() => {
+                                          const channels = JSON.parse(
+                                            globalThis.decodeURIComponent(
+                                              $ctx.query.channels
+                                            )
+                                          );
+                                          const cost = JSON.parse(
+                                            globalThis.decodeURIComponent(
+                                              $ctx.query.cost
+                                            )
+                                          )({
+                                            workHours: workhours.workhours,
+                                            service_length: 3,
+                                            online_channels: channels,
+                                            price: cost
+                                          });
+                                          return cost;
+                                        })();
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Fragment.apiRequest"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["activeConsultMutation"] != null &&
+                            typeof $steps["activeConsultMutation"] ===
+                              "object" &&
+                            typeof $steps["activeConsultMutation"].then ===
+                              "function"
+                          ) {
+                            $steps["activeConsultMutation"] = await $steps[
+                              "activeConsultMutation"
+                            ];
+                          }
+
+                          $steps["updateIsLoadingSave2"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["isLoadingSave"]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateIsLoadingSave2"] != null &&
+                            typeof $steps["updateIsLoadingSave2"] ===
+                              "object" &&
+                            typeof $steps["updateIsLoadingSave2"].then ===
+                              "function"
+                          ) {
+                            $steps["updateIsLoadingSave2"] = await $steps[
+                              "updateIsLoadingSave2"
+                            ];
+                          }
+
+                          $steps["toast"] = !!$steps.activeConsultMutation.data
+                            .message
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    (() => {
+                                      try {
+                                        return $steps.activeConsultMutation
+                                          .status == 200
+                                          ? "success"
+                                          : "error";
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })(),
+                                    (() => {
+                                      try {
+                                        return $steps.activeConsultMutation.data
+                                          .message;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Fragment.showToast"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["toast"] != null &&
+                            typeof $steps["toast"] === "object" &&
+                            typeof $steps["toast"].then === "function"
+                          ) {
+                            $steps["toast"] = await $steps["toast"];
+                          }
+                        }}
+                        duration={generateStateValueProp($state, [
+                          "activeDuration",
+                          "duration"
+                        ])}
+                        forwardPage={"/activation-page/finish"}
+                        onDurationChange={generateStateOnChangeProp($state, [
+                          "activeDuration",
+                          "duration"
+                        ])}
+                        userCenterId={(() => {
+                          try {
+                            return $state.centersApi.data.data.find(
+                              item => item.id == 5532
+                            ).user_center_id;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}
+                      />
+                    ) : null}
                   </Stack__>
                 </ApiRequest>
               </ApiRequest>
@@ -396,13 +713,20 @@ const PlasmicDescendants = {
     "text",
     "centersApi",
     "workHoursApi",
-    "hoursDaysOfWeek"
+    "hoursDaysOfWeek",
+    "activeDuration"
   ],
   header: ["header", "text"],
   text: ["text"],
-  centersApi: ["centersApi", "workHoursApi", "hoursDaysOfWeek"],
-  workHoursApi: ["workHoursApi", "hoursDaysOfWeek"],
-  hoursDaysOfWeek: ["hoursDaysOfWeek"]
+  centersApi: [
+    "centersApi",
+    "workHoursApi",
+    "hoursDaysOfWeek",
+    "activeDuration"
+  ],
+  workHoursApi: ["workHoursApi", "hoursDaysOfWeek", "activeDuration"],
+  hoursDaysOfWeek: ["hoursDaysOfWeek"],
+  activeDuration: ["activeDuration"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -414,6 +738,7 @@ type NodeDefaultElementType = {
   centersApi: typeof ApiRequest;
   workHoursApi: typeof ApiRequest;
   hoursDaysOfWeek: typeof HoursDaysOfWeek;
+  activeDuration: typeof HoursDaysOfWeek;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -482,6 +807,7 @@ export const PlasmicActivationConsultDuration = Object.assign(
     centersApi: makeNodeComponent("centersApi"),
     workHoursApi: makeNodeComponent("workHoursApi"),
     hoursDaysOfWeek: makeNodeComponent("hoursDaysOfWeek"),
+    activeDuration: makeNodeComponent("activeDuration"),
 
     // Metadata about props expected for PlasmicActivationConsultDuration
     internalVariantProps: PlasmicActivationConsultDuration__VariantProps,

@@ -537,12 +537,16 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                         undefined,
                         (() => {
                           try {
-                            return {
-                              active: 0,
-                              center_id: $state.centersApi?.data?.data?.find(
-                                item => item.type_id == 1
-                              ).id
-                            };
+                            return (() => {
+                              const centerId =
+                                $state.centersApi?.data?.data?.find(
+                                  item => item.type_id == 1
+                                ).id;
+                              return {
+                                active: 0,
+                                center_id: centerId
+                              };
+                            })();
                           } catch (e) {
                             if (
                               e instanceof TypeError ||

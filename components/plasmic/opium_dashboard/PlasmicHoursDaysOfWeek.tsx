@@ -90,6 +90,7 @@ export type PlasmicHoursDaysOfWeek__ArgsType = {
   userCenterId?: string;
   customOnSubmit?: (workhours: any) => void;
   forwardPage?: string;
+  isLoadingSave?: boolean;
 };
 type ArgPropType = keyof PlasmicHoursDaysOfWeek__ArgsType;
 export const PlasmicHoursDaysOfWeek__ArgProps = new Array<ArgPropType>(
@@ -98,7 +99,8 @@ export const PlasmicHoursDaysOfWeek__ArgProps = new Array<ArgPropType>(
   "centerId",
   "userCenterId",
   "customOnSubmit",
-  "forwardPage"
+  "forwardPage",
+  "isLoadingSave"
 );
 
 export type PlasmicHoursDaysOfWeek__OverridesType = {
@@ -116,6 +118,7 @@ export interface DefaultHoursDaysOfWeekProps {
   userCenterId?: string;
   customOnSubmit?: (workhours: any) => void;
   forwardPage?: string;
+  isLoadingSave?: boolean;
   className?: string;
 }
 
@@ -139,7 +142,9 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
+        {
+          isLoadingSave: false
+        },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -966,6 +971,19 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                 "\u0630\u062e\u06cc\u0631\u0647 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc"
               }
               className={classNames("__wab_instance", sty.button__sTmVh)}
+              loading={(() => {
+                try {
+                  return $props.isLoadingSave;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()}
               onClick={async event => {
                 const $steps = {};
 
