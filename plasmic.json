@@ -2132,6 +2132,19 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/activation-page/consult/messengers"
+        },
+        {
+          "id": "muQ-J6YOdy4q",
+          "name": "DurationSelection",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicDurationSelection.tsx",
+          "importSpec": {
+            "modulePath": "DurationSelection.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicDurationSelection.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

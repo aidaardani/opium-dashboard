@@ -140,19 +140,25 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
         path: "centersApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "centersApi"
       },
       {
         path: "centersApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "centersApi"
       },
       {
         path: "centersApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "centersApi"
       },
       {
         path: "isLoading",
@@ -269,6 +275,9 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
                   "centersApi",
                   "data"
                 ])}
+                ref={ref => {
+                  $refs["centersApi"] = ref;
+                }}
                 url={"https://api.paziresh24.com/V1/doctor/centers"}
               >
                 <ProfileChannels

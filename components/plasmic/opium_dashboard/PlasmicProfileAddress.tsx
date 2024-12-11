@@ -4105,19 +4105,25 @@ function PlasmicProfileAddress__RenderFunc(props: {
         path: "centersApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "centersApi"
       },
       {
         path: "centersApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "centersApi"
       },
       {
         path: "centersApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "centersApi"
       },
       {
         path: "address.value",
@@ -4156,19 +4162,25 @@ function PlasmicProfileAddress__RenderFunc(props: {
         path: "galleryApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "galleryApi"
       },
       {
         path: "galleryApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "galleryApi"
       },
       {
         path: "galleryApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "galleryApi"
       },
       {
         path: "selectdImage",
@@ -4348,6 +4360,9 @@ function PlasmicProfileAddress__RenderFunc(props: {
               ];
             }
           }).apply(null, eventArgs);
+        }}
+        ref={ref => {
+          $refs["centersApi"] = ref;
         }}
         url={"https://api.paziresh24.com/V1/doctor/centers"}
       >
@@ -4545,6 +4560,9 @@ function PlasmicProfileAddress__RenderFunc(props: {
               "galleryApi",
               "data"
             ])}
+            ref={ref => {
+              $refs["galleryApi"] = ref;
+            }}
             url={(() => {
               try {
                 return (() => {
@@ -4883,25 +4901,25 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   ];
                 }
 
-                $steps["runCode"] =
-                  $steps.uploadImage.status == 200
-                    ? (() => {
-                        const actionArgs = {
-                          customFunction: async () => {
-                            return globalThis.location.reload();
-                          }
-                        };
-                        return (({ customFunction }) => {
-                          return customFunction();
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
+                $steps["runActionOnGalleryApi"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        tplRef: "galleryApi",
+                        action: "refresh"
+                      };
+                      return (({ tplRef, action, args }) => {
+                        return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
                 if (
-                  $steps["runCode"] != null &&
-                  typeof $steps["runCode"] === "object" &&
-                  typeof $steps["runCode"].then === "function"
+                  $steps["runActionOnGalleryApi"] != null &&
+                  typeof $steps["runActionOnGalleryApi"] === "object" &&
+                  typeof $steps["runActionOnGalleryApi"].then === "function"
                 ) {
-                  $steps["runCode"] = await $steps["runCode"];
+                  $steps["runActionOnGalleryApi"] = await $steps[
+                    "runActionOnGalleryApi"
+                  ];
                 }
               }}
             >
@@ -5655,6 +5673,27 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 ) {
                   $steps["updateImageDialogOpen"] = await $steps[
                     "updateImageDialogOpen"
+                  ];
+                }
+
+                $steps["runActionOnGalleryApi"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        tplRef: "galleryApi",
+                        action: "refresh"
+                      };
+                      return (({ tplRef, action, args }) => {
+                        return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runActionOnGalleryApi"] != null &&
+                  typeof $steps["runActionOnGalleryApi"] === "object" &&
+                  typeof $steps["runActionOnGalleryApi"].then === "function"
+                ) {
+                  $steps["runActionOnGalleryApi"] = await $steps[
+                    "runActionOnGalleryApi"
                   ];
                 }
               }}

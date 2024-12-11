@@ -173,19 +173,25 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
         path: "profileApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "profileApi"
       },
       {
         path: "profileApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "profileApi"
       },
       {
         path: "profileApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "profileApi"
       }
     ],
     [$props, $ctx, $refs]
@@ -233,6 +239,9 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
         onError={generateStateOnChangeProp($state, ["profileApi", "error"])}
         onLoading={generateStateOnChangeProp($state, ["profileApi", "loading"])}
         onSuccess={generateStateOnChangeProp($state, ["profileApi", "data"])}
+        ref={ref => {
+          $refs["profileApi"] = ref;
+        }}
         url={"https://api.paziresh24.com/V1/doctor/profile"}
       >
         <div className={classNames(projectcss.all, sty.freeBox__llAJ)}>

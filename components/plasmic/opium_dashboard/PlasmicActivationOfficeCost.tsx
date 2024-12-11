@@ -206,19 +206,25 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "centersApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "centersApi"
       },
       {
         path: "centersApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "centersApi"
       },
       {
         path: "centersApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "centersApi"
       },
       {
         path: "isCancelLoading",
@@ -423,6 +429,9 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         onError={generateStateOnChangeProp($state, ["centersApi", "error"])}
         onLoading={generateStateOnChangeProp($state, ["centersApi", "loading"])}
         onSuccess={generateStateOnChangeProp($state, ["centersApi", "data"])}
+        ref={ref => {
+          $refs["centersApi"] = ref;
+        }}
         url={"https://api.paziresh24.com/V1/doctor/centers"}
       >
         <Stack__

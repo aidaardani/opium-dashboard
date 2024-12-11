@@ -146,19 +146,25 @@ function PlasmicReceipt__RenderFunc(props: {
         path: "apiRequest.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest"
       },
       {
         path: "apiRequest.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest"
       },
       {
         path: "apiRequest.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest"
       },
       {
         path: "numberInput.value",
@@ -467,6 +473,9 @@ function PlasmicReceipt__RenderFunc(props: {
         onError={generateStateOnChangeProp($state, ["apiRequest", "error"])}
         onLoading={generateStateOnChangeProp($state, ["apiRequest", "loading"])}
         onSuccess={generateStateOnChangeProp($state, ["apiRequest", "data"])}
+        ref={ref => {
+          $refs["apiRequest"] = ref;
+        }}
         url={"https://apigw.paziresh24.com/v1/n8n-nelson/webhook/martin/cost"}
       />
     </div>

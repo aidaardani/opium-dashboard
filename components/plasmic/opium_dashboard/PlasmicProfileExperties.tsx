@@ -5063,19 +5063,25 @@ function PlasmicProfileExperties__RenderFunc(props: {
         path: "spetialitiesApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "spetialitiesApi"
       },
       {
         path: "spetialitiesApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "spetialitiesApi"
       },
       {
         path: "spetialitiesApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "spetialitiesApi"
       },
       {
         path: "changedExperies",
@@ -5087,37 +5093,49 @@ function PlasmicProfileExperties__RenderFunc(props: {
         path: "authApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "authApi"
       },
       {
         path: "authApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "authApi"
       },
       {
         path: "authApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "authApi"
       },
       {
         path: "providerApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "providerApi"
       },
       {
         path: "providerApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "providerApi"
       },
       {
         path: "providerApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "providerApi"
       },
       {
         path: "isLoading",
@@ -5183,6 +5201,9 @@ function PlasmicProfileExperties__RenderFunc(props: {
         onError={generateStateOnChangeProp($state, ["authApi", "error"])}
         onLoading={generateStateOnChangeProp($state, ["authApi", "loading"])}
         onSuccess={generateStateOnChangeProp($state, ["authApi", "data"])}
+        ref={ref => {
+          $refs["authApi"] = ref;
+        }}
         url={"https://api.paziresh24.com/V1/auth/me"}
       >
         <ApiRequest
@@ -5203,6 +5224,9 @@ function PlasmicProfileExperties__RenderFunc(props: {
             "loading"
           ])}
           onSuccess={generateStateOnChangeProp($state, ["providerApi", "data"])}
+          ref={ref => {
+            $refs["providerApi"] = ref;
+          }}
           url={(() => {
             try {
               return `https://apigw.paziresh24.com/v1/providers?user_id=${$state.authApi.data.data.id}`;
@@ -5253,6 +5277,9 @@ function PlasmicProfileExperties__RenderFunc(props: {
               "spetialitiesApi",
               "data"
             ])}
+            ref={ref => {
+              $refs["spetialitiesApi"] = ref;
+            }}
             url={(() => {
               try {
                 return (() => {

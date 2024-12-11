@@ -59,7 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import { Popover } from "@/fragment/components/popover"; // plasmic-import: umJXC-fyxDQn/codeComponent
 import Card from "../../Card"; // plasmic-import: QMzVdopOLfBM/component
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
@@ -97,18 +97,20 @@ export const PlasmicDuration__VariantProps = new Array<VariantPropType>(
 export type PlasmicDuration__ArgsType = {
   centerId?: string;
   newduration?: string;
-  onNewdurationChange?: (val: string) => void;
+  onNewdurationChange2?: (val: string) => void;
+  oldDuration?: number;
 };
 type ArgPropType = keyof PlasmicDuration__ArgsType;
 export const PlasmicDuration__ArgProps = new Array<ArgPropType>(
   "centerId",
   "newduration",
-  "onNewdurationChange"
+  "onNewdurationChange2",
+  "oldDuration"
 );
 
 export type PlasmicDuration__OverridesType = {
   root?: Flex__<"div">;
-  sideEffect?: Flex__<typeof SideEffect>;
+  sampleDurationApi?: Flex__<typeof ApiRequest>;
   fragmentPopover?: Flex__<typeof Popover>;
   card?: Flex__<typeof Card>;
   dialog?: Flex__<typeof Dialog>;
@@ -119,7 +121,8 @@ export type PlasmicDuration__OverridesType = {
 export interface DefaultDurationProps {
   centerId?: string;
   newduration?: string;
-  onNewdurationChange?: (val: string) => void;
+  onNewdurationChange2?: (val: string) => void;
+  oldDuration?: number;
   check?: SingleBooleanChoiceArg<"check">;
   className?: string;
 }
@@ -204,7 +207,7 @@ function PlasmicDuration__RenderFunc(props: {
         variableType: "text",
 
         valueProp: "newduration",
-        onChangeProp: "onNewdurationChange"
+        onChangeProp: "onNewdurationChange2"
       },
       {
         path: "check",
@@ -219,6 +222,30 @@ function PlasmicDuration__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => false,
 
         refName: "fragmentPopover"
+      },
+      {
+        path: "sampleDurationApi.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "sampleDurationApi"
+      },
+      {
+        path: "sampleDurationApi.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "sampleDurationApi"
+      },
+      {
+        path: "sampleDurationApi.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "sampleDurationApi"
       }
     ],
     [$props, $ctx, $refs]
@@ -253,287 +280,222 @@ function PlasmicDuration__RenderFunc(props: {
         sty.root
       )}
     >
-      <SideEffect
-        data-plasmic-name={"sideEffect"}
-        data-plasmic-override={overrides.sideEffect}
-        className={classNames("__wab_instance", sty.sideEffect, {
-          [sty.sideEffectcheck]: hasVariant($state, "check", "check")
-        })}
-        deps={(() => {
-          try {
-            return [$props.centerId];
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-        onMount={async () => {
-          const $steps = {};
-
-          $steps["apiWorkhours"] = true
-            ? (() => {
-                const actionArgs = {
-                  args: [
-                    "GET",
-                    "https://api.paziresh24.com/V1/doctor/center/workhours",
-                    (() => {
-                      try {
-                        return {
-                          center_id: $props.centerId
-                        };
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()
-                  ]
-                };
-                return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                  ...actionArgs.args
-                ]);
-              })()
-            : undefined;
-          if (
-            $steps["apiWorkhours"] != null &&
-            typeof $steps["apiWorkhours"] === "object" &&
-            typeof $steps["apiWorkhours"].then === "function"
-          ) {
-            $steps["apiWorkhours"] = await $steps["apiWorkhours"];
-          }
-
-          $steps["updateDuration"] = true
-            ? (() => {
-                const actionArgs = {
-                  variable: {
-                    objRoot: $state,
-                    variablePath: ["duration"]
-                  },
-                  operation: 0,
-                  value: $steps.apiWorkhours.data
-                };
-                return (({ variable, value, startIndex, deleteCount }) => {
-                  if (!variable) {
-                    return;
-                  }
-                  const { objRoot, variablePath } = variable;
-
-                  $stateSet(objRoot, variablePath, value);
-                  return value;
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
-          if (
-            $steps["updateDuration"] != null &&
-            typeof $steps["updateDuration"] === "object" &&
-            typeof $steps["updateDuration"].then === "function"
-          ) {
-            $steps["updateDuration"] = await $steps["updateDuration"];
-          }
-
-          $steps["sampleDuration"] = true
-            ? (() => {
-                const actionArgs = {
-                  args: [
-                    "GET",
-                    "https://apigw.paziresh24.com/v1/sample-duration"
-                  ]
-                };
-                return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                  ...actionArgs.args
-                ]);
-              })()
-            : undefined;
-          if (
-            $steps["sampleDuration"] != null &&
-            typeof $steps["sampleDuration"] === "object" &&
-            typeof $steps["sampleDuration"].then === "function"
-          ) {
-            $steps["sampleDuration"] = await $steps["sampleDuration"];
-          }
-
-          $steps["updateSampleDuration"] = true
-            ? (() => {
-                const actionArgs = {
-                  variable: {
-                    objRoot: $state,
-                    variablePath: ["sampleDuration"]
-                  },
-                  operation: 0,
-                  value: $steps.sampleDuration.data
-                };
-                return (({ variable, value, startIndex, deleteCount }) => {
-                  if (!variable) {
-                    return;
-                  }
-                  const { objRoot, variablePath } = variable;
-
-                  $stateSet(objRoot, variablePath, value);
-                  return value;
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
-          if (
-            $steps["updateSampleDuration"] != null &&
-            typeof $steps["updateSampleDuration"] === "object" &&
-            typeof $steps["updateSampleDuration"].then === "function"
-          ) {
-            $steps["updateSampleDuration"] = await $steps[
-              "updateSampleDuration"
-            ];
-          }
+      <ApiRequest
+        data-plasmic-name={"sampleDurationApi"}
+        data-plasmic-override={overrides.sampleDurationApi}
+        className={classNames("__wab_instance", sty.sampleDurationApi)}
+        errorDisplay={null}
+        loadingDisplay={null}
+        method={"GET"}
+        onError={generateStateOnChangeProp($state, [
+          "sampleDurationApi",
+          "error"
+        ])}
+        onLoading={generateStateOnChangeProp($state, [
+          "sampleDurationApi",
+          "loading"
+        ])}
+        onSuccess={generateStateOnChangeProp($state, [
+          "sampleDurationApi",
+          "data"
+        ])}
+        ref={ref => {
+          $refs["sampleDurationApi"] = ref;
         }}
-      />
-
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox___4Yxhp)}
+        url={"https://apigw.paziresh24.com/v1/sample-duration"}
       >
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__bE5G
-          )}
-        >
-          {
-            "\u0645\u062f\u062a \u0632\u0645\u0627\u0646\u200c \u0627\u06cc\u062f\u0647\u200c\u0622\u0644 \u0634\u0645\u0627 \u0628\u0631\u0627\u06cc \u0627\u0631\u0627\u0626\u0647 \u06cc\u06a9 \u0648\u06cc\u0632\u06cc\u062a \u062c\u0627\u0645\u0639 \u0648 \u067e\u06cc\u0648\u0633\u062a\u0647 \u0628\u0647 \u06cc\u06a9 \u0628\u06cc\u0645\u0627\u0631 \u0686\u0642\u062f\u0631 \u0627\u0633\u062a\u061f"
-          }
-        </div>
-        <Popover
-          data-plasmic-name={"fragmentPopover"}
-          data-plasmic-override={overrides.fragmentPopover}
-          className={classNames("__wab_instance", sty.fragmentPopover)}
-          content={
-            <Card
-              data-plasmic-name={"card"}
-              data-plasmic-override={overrides.card}
-              className={classNames("__wab_instance", sty.card)}
-              title={"\u062a\u0648\u062c\u0647!"}
-            >
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__ofLcQ
-                )}
-              >
-                <React.Fragment>
-                  <React.Fragment>
-                    {
-                      "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0645\u06cc\u200c\u0628\u0627\u06cc\u0633\u062a \u062f\u0631"
-                    }
-                  </React.Fragment>
-                  <span
-                    className={"plasmic_default__all plasmic_default__span"}
-                    style={{ color: "var(--token-kpM4b4mG4f2d)" }}
-                  >
-                    {
-                      " \u0632\u0645\u0627\u0646 \u0645\u0642\u0631\u0631 \u0646\u0648\u0628\u062a"
-                    }
-                  </span>
-                  <React.Fragment>
-                    {
-                      "\u060c \u062f\u0631 \u0645\u062f\u062a \u0632\u0645\u0627\u0646 \u0627\u0639\u0644\u0627\u0645\u06cc \u0634\u0645\u0627 \u0628\u0647 \u0635\u0648\u0631\u062a "
-                    }
-                  </React.Fragment>
-                  <span
-                    className={"plasmic_default__all plasmic_default__span"}
-                    style={{ color: "var(--token-kpM4b4mG4f2d)" }}
-                  >
-                    {
-                      "\u062c\u0627\u0645\u0639 \u0648 \u067e\u06cc\u0648\u0633\u062a\u0647"
-                    }
-                  </span>
-                  <React.Fragment>
-                    {
-                      " \u0627\u0646\u062c\u0627\u0645 \u0634\u0648\u062f. \u062a\u0648\u062c\u0647 \u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u06cc\u062f \u06a9\u0647 \u0628\u0647 \u0645\u062f\u062a "
-                    }
-                  </React.Fragment>
-                  <span
-                    className={"plasmic_default__all plasmic_default__span"}
-                    style={{ color: "var(--token-kpM4b4mG4f2d)" }}
-                  >
-                    {"\u06f3 \u0631\u0648\u0632"}
-                  </span>
-                  <React.Fragment>
-                    {
-                      "\u060c \u067e\u0633 \u0627\u0632 \u0648\u06cc\u0632\u06cc\u062a \u0628\u06cc\u0645\u0627\u0631 \u0628\u0631\u0627\u06cc \u067e\u0627\u0633\u062e\u06af\u0648\u06cc\u06cc \u0628\u0647 \u0633\u0648\u0627\u0644\u0627\u062a \u0627\u062d\u062a\u0645\u0627\u0644\u06cc \u0628\u06cc\u0645\u0627\u0631 \u062f\u0631 \u062f\u0633\u062a\u0631\u0633 \u0628\u0627\u0634\u06cc\u062f."
-                    }
-                  </React.Fragment>
-                </React.Fragment>
-              </div>
-            </Card>
-          }
-          onOpenChange={generateStateOnChangeProp($state, [
-            "fragmentPopover",
-            "open"
-          ])}
-          open={generateStateValueProp($state, ["fragmentPopover", "open"])}
-          ref={ref => {
-            $refs["fragmentPopover"] = ref;
-          }}
-          trigger={
-            (() => {
-              try {
-                return $props.centerId == 5532;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return false;
-                }
-                throw e;
-              }
-            })() ? (
-              <Icon15Icon
-                className={classNames(projectcss.all, sty.svg___1TN60)}
-                role={"img"}
-              />
-            ) : null
-          }
-        />
-      </Stack__>
-      <div className={classNames(projectcss.all, sty.freeBox__mljoZ)}>
         <Stack__
           as={"div"}
           hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox___6E1Ri)}
+          className={classNames(projectcss.all, sty.freeBox___6SjG1)}
         >
-          <div
-            className={classNames(projectcss.all, sty.freeBox__uH8A)}
-            onClick={async event => {
-              const $steps = {};
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox___4Yxhp)}
+          >
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__bE5G
+              )}
+            >
+              {
+                "\u0645\u062f\u062a \u0632\u0645\u0627\u0646\u200c \u0627\u06cc\u062f\u0647\u200c\u0622\u0644 \u0634\u0645\u0627 \u0628\u0631\u0627\u06cc \u0627\u0631\u0627\u0626\u0647 \u06cc\u06a9 \u0648\u06cc\u0632\u06cc\u062a \u062c\u0627\u0645\u0639 \u0648 \u067e\u06cc\u0648\u0633\u062a\u0647 \u0628\u0647 \u06cc\u06a9 \u0628\u06cc\u0645\u0627\u0631 \u0686\u0642\u062f\u0631 \u0627\u0633\u062a\u061f"
+              }
+            </div>
+            <Popover
+              data-plasmic-name={"fragmentPopover"}
+              data-plasmic-override={overrides.fragmentPopover}
+              className={classNames("__wab_instance", sty.fragmentPopover)}
+              content={
+                <Card
+                  data-plasmic-name={"card"}
+                  data-plasmic-override={overrides.card}
+                  className={classNames("__wab_instance", sty.card)}
+                  title={"\u062a\u0648\u062c\u0647!"}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__ofLcQ
+                    )}
+                  >
+                    <React.Fragment>
+                      <React.Fragment>
+                        {
+                          "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0645\u06cc\u200c\u0628\u0627\u06cc\u0633\u062a \u062f\u0631"
+                        }
+                      </React.Fragment>
+                      <span
+                        className={"plasmic_default__all plasmic_default__span"}
+                        style={{ color: "var(--token-kpM4b4mG4f2d)" }}
+                      >
+                        {
+                          " \u0632\u0645\u0627\u0646 \u0645\u0642\u0631\u0631 \u0646\u0648\u0628\u062a"
+                        }
+                      </span>
+                      <React.Fragment>
+                        {
+                          "\u060c \u062f\u0631 \u0645\u062f\u062a \u0632\u0645\u0627\u0646 \u0627\u0639\u0644\u0627\u0645\u06cc \u0634\u0645\u0627 \u0628\u0647 \u0635\u0648\u0631\u062a "
+                        }
+                      </React.Fragment>
+                      <span
+                        className={"plasmic_default__all plasmic_default__span"}
+                        style={{ color: "var(--token-kpM4b4mG4f2d)" }}
+                      >
+                        {
+                          "\u062c\u0627\u0645\u0639 \u0648 \u067e\u06cc\u0648\u0633\u062a\u0647"
+                        }
+                      </span>
+                      <React.Fragment>
+                        {
+                          " \u0627\u0646\u062c\u0627\u0645 \u0634\u0648\u062f. \u062a\u0648\u062c\u0647 \u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u06cc\u062f \u06a9\u0647 \u0628\u0647 \u0645\u062f\u062a "
+                        }
+                      </React.Fragment>
+                      <span
+                        className={"plasmic_default__all plasmic_default__span"}
+                        style={{ color: "var(--token-kpM4b4mG4f2d)" }}
+                      >
+                        {"\u06f3 \u0631\u0648\u0632"}
+                      </span>
+                      <React.Fragment>
+                        {
+                          "\u060c \u067e\u0633 \u0627\u0632 \u0648\u06cc\u0632\u06cc\u062a \u0628\u06cc\u0645\u0627\u0631 \u0628\u0631\u0627\u06cc \u067e\u0627\u0633\u062e\u06af\u0648\u06cc\u06cc \u0628\u0647 \u0633\u0648\u0627\u0644\u0627\u062a \u0627\u062d\u062a\u0645\u0627\u0644\u06cc \u0628\u06cc\u0645\u0627\u0631 \u062f\u0631 \u062f\u0633\u062a\u0631\u0633 \u0628\u0627\u0634\u06cc\u062f."
+                        }
+                      </React.Fragment>
+                    </React.Fragment>
+                  </div>
+                </Card>
+              }
+              onOpenChange={generateStateOnChangeProp($state, [
+                "fragmentPopover",
+                "open"
+              ])}
+              open={generateStateValueProp($state, ["fragmentPopover", "open"])}
+              ref={ref => {
+                $refs["fragmentPopover"] = ref;
+              }}
+              trigger={
+                (() => {
+                  try {
+                    return $props.centerId == 5532;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return false;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <Icon15Icon
+                    className={classNames(projectcss.all, sty.svg___1TN60)}
+                    role={"img"}
+                  />
+                ) : null
+              }
+            />
+          </Stack__>
+          <div className={classNames(projectcss.all, sty.freeBox__mljoZ)}>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox___6E1Ri)}
+            >
+              <div
+                className={classNames(projectcss.all, sty.freeBox__uH8A)}
+                onClick={async event => {
+                  const $steps = {};
 
-              $steps["sendEvent"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
+                  $steps["sendEvent"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  group: "workhour",
+                                  data: {
+                                    center_id: $props.centerId,
+                                    user_center_id:
+                                      $state.duration.data.workhours[0]
+                                        .user_center_id,
+                                    Service:
+                                      $state.duration.data.workhours[0].service
+                                  },
+                                  type: "click-plus-button-duration"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
+                  ) {
+                    $steps["sendEvent"] = await $steps["sendEvent"];
+                  }
+                }}
+              >
+                <Dialog
+                  data-plasmic-name={"dialog"}
+                  data-plasmic-override={overrides.dialog}
+                  body={
+                    <Stack__
+                      as={"div"}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.freeBox__vXIx)}
+                    >
+                      <TimePicker
+                        data-plasmic-name={"fragmentTimePicker"}
+                        data-plasmic-override={overrides.fragmentTimePicker}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.fragmentTimePicker
+                        )}
+                        minuteExclude={(() => {
                           try {
-                            return {
-                              group: "workhour",
-                              data: {
-                                center_id: $props.centerId,
-                                user_center_id:
-                                  $state.duration.data.workhours[0]
-                                    .user_center_id,
-                                Service:
-                                  $state.duration.data.workhours[0].service
-                              },
-                              type: "click-plus-button-duration"
-                            };
+                            return [...Array(61).keys()].filter(
+                              num => num % 5 !== 0 || num === 0
+                            );
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -543,131 +505,418 @@ function PlasmicDuration__RenderFunc(props: {
                             }
                             throw e;
                           }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Splunk.sendLog"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["sendEvent"] != null &&
-                typeof $steps["sendEvent"] === "object" &&
-                typeof $steps["sendEvent"].then === "function"
-              ) {
-                $steps["sendEvent"] = await $steps["sendEvent"];
-              }
-            }}
-          >
-            <Dialog
-              data-plasmic-name={"dialog"}
-              data-plasmic-override={overrides.dialog}
-              body={
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__vXIx)}
-                >
-                  <TimePicker
-                    data-plasmic-name={"fragmentTimePicker"}
-                    data-plasmic-override={overrides.fragmentTimePicker}
-                    className={classNames(
-                      "__wab_instance",
-                      sty.fragmentTimePicker
-                    )}
-                    minuteExclude={(() => {
-                      try {
-                        return [...Array(61).keys()].filter(
-                          num => num % 5 !== 0 || num === 0
-                        );
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()}
-                    notShowExclude={true}
-                    onChange={async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "fragmentTimePicker",
-                        "value"
-                      ]).apply(null, eventArgs);
-                      (async time => {
-                        const $steps = {};
+                        })()}
+                        notShowExclude={true}
+                        onChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "fragmentTimePicker",
+                            "value"
+                          ]).apply(null, eventArgs);
+                          (async time => {
+                            const $steps = {};
 
-                        $steps["sendEvent"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  (() => {
-                                    try {
-                                      return {
-                                        group: "workhour",
-                                        data: {
-                                          center_id: $props.centerId,
-                                          user_center_id:
-                                            $state.duration.data.workhours[0]
-                                              .user_center_id,
-                                          Service:
-                                            $state.duration.data.workhours[0]
-                                              .service
-                                        },
-                                        type: "change-timepicker-for-new-duration"
-                                      };
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
+                            $steps["sendEvent"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      (() => {
+                                        try {
+                                          return {
+                                            group: "workhour",
+                                            data: {
+                                              center_id: $props.centerId,
+                                              user_center_id:
+                                                $state.duration.data
+                                                  .workhours[0].user_center_id,
+                                              Service:
+                                                $state.duration.data
+                                                  .workhours[0].service
+                                            },
+                                            type: "change-timepicker-for-new-duration"
+                                          };
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Splunk.sendLog"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["sendEvent"] != null &&
+                              typeof $steps["sendEvent"] === "object" &&
+                              typeof $steps["sendEvent"].then === "function"
+                            ) {
+                              $steps["sendEvent"] = await $steps["sendEvent"];
+                            }
+                          }).apply(null, eventArgs);
+                        }}
+                        value={generateStateValueProp($state, [
+                          "fragmentTimePicker",
+                          "value"
+                        ])}
+                      />
+
+                      <Button
+                        data-plasmic-name={"button"}
+                        data-plasmic-override={overrides.button}
+                        children2={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text___7V3Od
+                            )}
+                          >
+                            {"\u062b\u0628\u062a"}
+                          </div>
+                        }
+                        className={classNames("__wab_instance", sty.button)}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["updateNewduration"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["newduration"]
+                                  },
+                                  operation: 0,
+                                  value: `${
+                                    parseInt(
+                                      $state.fragmentTimePicker.value.split(
+                                        ":"
+                                      )[0]
+                                    ) *
+                                      60 +
+                                    parseInt(
+                                      $state.fragmentTimePicker.value.split(
+                                        ":"
+                                      )[1]
+                                    )
+                                  }`
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateNewduration"] != null &&
+                            typeof $steps["updateNewduration"] === "object" &&
+                            typeof $steps["updateNewduration"].then ===
+                              "function"
+                          ) {
+                            $steps["updateNewduration"] = await $steps[
+                              "updateNewduration"
+                            ];
+                          }
+
+                          $steps["updateDialogOpen"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["dialog", "open"]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateDialogOpen"] != null &&
+                            typeof $steps["updateDialogOpen"] === "object" &&
+                            typeof $steps["updateDialogOpen"].then ===
+                              "function"
+                          ) {
+                            $steps["updateDialogOpen"] = await $steps[
+                              "updateDialogOpen"
+                            ];
+                          }
+
+                          $steps["updateDurationDataDuration"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: [
+                                      "duration",
+                                      "data",
+                                      "duration"
+                                    ]
+                                  },
+                                  operation: 0,
+                                  value: `${
+                                    parseInt(
+                                      $state.fragmentTimePicker.value.split(
+                                        ":"
+                                      )[0]
+                                    ) *
+                                      60 +
+                                    parseInt(
+                                      $state.fragmentTimePicker.value.split(
+                                        ":"
+                                      )[1]
+                                    )
+                                  }`
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateDurationDataDuration"] != null &&
+                            typeof $steps["updateDurationDataDuration"] ===
+                              "object" &&
+                            typeof $steps["updateDurationDataDuration"].then ===
+                              "function"
+                          ) {
+                            $steps["updateDurationDataDuration"] = await $steps[
+                              "updateDurationDataDuration"
+                            ];
+                          }
+
+                          $steps["sendEvent"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    (() => {
+                                      try {
+                                        return {
+                                          group: "workhour",
+                                          data: {
+                                            center_id: $props.centerId,
+                                            user_center_id:
+                                              $state.duration.data.workhours[0]
+                                                .user_center_id,
+                                            Service:
+                                              $state.duration.data.workhours[0]
+                                                .service,
+                                            duration:
+                                              $state.fragmentTimePicker.value
+                                          },
+                                          type: "click-submit-button-new-duration"
+                                        };
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
                                       }
-                                      throw e;
-                                    }
-                                  })()
-                                ]
-                              };
-                              return $globalActions["Splunk.sendLog"]?.apply(
-                                null,
-                                [...actionArgs.args]
-                              );
-                            })()
-                          : undefined;
-                        if (
-                          $steps["sendEvent"] != null &&
-                          typeof $steps["sendEvent"] === "object" &&
-                          typeof $steps["sendEvent"].then === "function"
-                        ) {
-                          $steps["sendEvent"] = await $steps["sendEvent"];
-                        }
-                      }).apply(null, eventArgs);
-                    }}
-                    value={generateStateValueProp($state, [
-                      "fragmentTimePicker",
-                      "value"
-                    ])}
-                  />
+                                    })()
+                                  ]
+                                };
+                                return $globalActions["Splunk.sendLog"]?.apply(
+                                  null,
+                                  [...actionArgs.args]
+                                );
+                              })()
+                            : undefined;
+                          if (
+                            $steps["sendEvent"] != null &&
+                            typeof $steps["sendEvent"] === "object" &&
+                            typeof $steps["sendEvent"].then === "function"
+                          ) {
+                            $steps["sendEvent"] = await $steps["sendEvent"];
+                          }
+                        }}
+                      />
+                    </Stack__>
+                  }
+                  className={classNames("__wab_instance", sty.dialog)}
+                  onOpenChange={generateStateOnChangeProp($state, [
+                    "dialog",
+                    "open"
+                  ])}
+                  open={generateStateValueProp($state, ["dialog", "open"])}
+                  title={
+                    "\u0632\u0645\u0627\u0646 \u062f\u0644\u062e\u0648\u0627\u0647"
+                  }
+                  trigger={
+                    <Icon2Icon
+                      className={classNames(projectcss.all, sty.svg__l9OeP)}
+                      role={"img"}
+                    />
+                  }
+                />
+              </div>
+              {(() => {
+                try {
+                  return (
+                    !$state.sampleDurationApi.data["sample-duration"].includes(
+                      $state.newduration
+                    ) && +$state.newduration > 30
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__waRdG)}
+                  onClick={async event => {
+                    const $steps = {};
 
-                  <Button
-                    data-plasmic-name={"button"}
-                    data-plasmic-override={overrides.button}
-                    children2={
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text___7V3Od
-                        )}
-                      >
-                        {"\u062b\u0628\u062a"}
-                      </div>
+                    $steps["sendEvent"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    group: "workhour",
+                                    data: {
+                                      center_id: $props.centerId,
+                                      user_center_id:
+                                        $state.duration.data.workhours[0]
+                                          .user_center_id,
+                                      Service:
+                                        $state.duration.data.workhours[0]
+                                          .service,
+                                      duration: $state.duration.data.duration
+                                    },
+                                    type: "click-button-duration"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendEvent"] != null &&
+                      typeof $steps["sendEvent"] === "object" &&
+                      typeof $steps["sendEvent"].then === "function"
+                    ) {
+                      $steps["sendEvent"] = await $steps["sendEvent"];
                     }
-                    className={classNames("__wab_instance", sty.button)}
+                  }}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__mwWqf
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return `${
+                            $state.newduration || $props.oldDuration
+                          } دقیقه`;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
+                  <CheckSvgIcon
+                    className={classNames(projectcss.all, sty.svg__xGfkX)}
+                    role={"img"}
+                  />
+                </div>
+              ) : null}
+              {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                (() => {
+                  try {
+                    return $state.sampleDurationApi.data["sample-duration"]
+                      .split(",")
+                      .map(item => ({ name: item }));
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()
+              ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                const currentItem = __plasmic_item_0;
+                const currentIndex = __plasmic_idx_0;
+                return (
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__itxxt)}
+                    dir={"rtl"}
+                    key={currentIndex}
                     onClick={async event => {
                       const $steps = {};
 
@@ -679,15 +928,7 @@ function PlasmicDuration__RenderFunc(props: {
                                 variablePath: ["newduration"]
                               },
                               operation: 0,
-                              value: `${
-                                parseInt(
-                                  $state.fragmentTimePicker.value.split(":")[0]
-                                ) *
-                                  60 +
-                                parseInt(
-                                  $state.fragmentTimePicker.value.split(":")[1]
-                                )
-                              }`
+                              value: currentItem.name
                             };
                             return (({
                               variable,
@@ -715,88 +956,6 @@ function PlasmicDuration__RenderFunc(props: {
                         ];
                       }
 
-                      $steps["updateDialogOpen"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["dialog", "open"]
-                              },
-                              operation: 0,
-                              value: false
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateDialogOpen"] != null &&
-                        typeof $steps["updateDialogOpen"] === "object" &&
-                        typeof $steps["updateDialogOpen"].then === "function"
-                      ) {
-                        $steps["updateDialogOpen"] = await $steps[
-                          "updateDialogOpen"
-                        ];
-                      }
-
-                      $steps["updateDurationDataDuration"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["duration", "data", "duration"]
-                              },
-                              operation: 0,
-                              value: `${
-                                parseInt(
-                                  $state.fragmentTimePicker.value.split(":")[0]
-                                ) *
-                                  60 +
-                                parseInt(
-                                  $state.fragmentTimePicker.value.split(":")[1]
-                                )
-                              }`
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateDurationDataDuration"] != null &&
-                        typeof $steps["updateDurationDataDuration"] ===
-                          "object" &&
-                        typeof $steps["updateDurationDataDuration"].then ===
-                          "function"
-                      ) {
-                        $steps["updateDurationDataDuration"] = await $steps[
-                          "updateDurationDataDuration"
-                        ];
-                      }
-
                       $steps["sendEvent"] = true
                         ? (() => {
                             const actionArgs = {
@@ -813,10 +972,9 @@ function PlasmicDuration__RenderFunc(props: {
                                         Service:
                                           $state.duration.data.workhours[0]
                                             .service,
-                                        duration:
-                                          $state.fragmentTimePicker.value
+                                        duration: currentItem.name
                                       },
-                                      type: "click-submit-button-new-duration"
+                                      type: "click-button-duration"
                                     };
                                   } catch (e) {
                                     if (
@@ -845,380 +1003,117 @@ function PlasmicDuration__RenderFunc(props: {
                         $steps["sendEvent"] = await $steps["sendEvent"];
                       }
                     }}
-                  />
-                </Stack__>
-              }
-              className={classNames("__wab_instance", sty.dialog)}
-              onOpenChange={generateStateOnChangeProp($state, [
-                "dialog",
-                "open"
-              ])}
-              open={generateStateValueProp($state, ["dialog", "open"])}
-              title={
-                "\u0632\u0645\u0627\u0646 \u062f\u0644\u062e\u0648\u0627\u0647"
-              }
-              trigger={
-                <Icon2Icon
-                  className={classNames(projectcss.all, sty.svg__l9OeP)}
-                  role={"img"}
-                />
-              }
-            />
-          </div>
-          {(() => {
-            try {
-              return (
-                !$state.sampleDuration["sample-duration"].includes(
-                  $state.newduration
-                ) ||
-                !$state.sampleDuration["sample-duration"].includes(
-                  $state.duration.data.duration
-                )
-              );
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return false;
-              }
-              throw e;
-            }
-          })() ? (
-            <div
-              className={classNames(projectcss.all, sty.freeBox__waRdG)}
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["sendEvent"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          (() => {
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__pcO2
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return `${parseInt(currentItem.name).toLocaleString(
+                              "fa"
+                            )} دقیقه`;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "5 \u062f\u0642\u06cc\u0642\u0647";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                    {(
+                      hasVariant($state, "check", "check")
+                        ? (() => {
                             try {
-                              return {
-                                group: "workhour",
-                                data: {
-                                  center_id: $props.centerId,
-                                  user_center_id:
-                                    $state.duration.data.workhours[0]
-                                      .user_center_id,
-                                  Service:
-                                    $state.duration.data.workhours[0].service,
-                                  duration: $state.duration.data.duration
-                                },
-                                type: "click-button-duration"
-                              };
+                              return $state.check === true;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
                                 e?.plasmicType === "PlasmicUndefinedDataError"
                               ) {
-                                return undefined;
+                                return false;
                               }
                               throw e;
                             }
                           })()
-                        ]
-                      };
-                      return $globalActions["Splunk.sendLog"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["sendEvent"] != null &&
-                  typeof $steps["sendEvent"] === "object" &&
-                  typeof $steps["sendEvent"].then === "function"
-                ) {
-                  $steps["sendEvent"] = await $steps["sendEvent"];
-                }
-              }}
-            >
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__mwWqf
-                )}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return `${
-                        $state.newduration || $state.duration.data.duration
-                      } دقیقه`;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "";
-                      }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
-              </div>
-              <CheckSvgIcon
-                className={classNames(projectcss.all, sty.svg__xGfkX)}
-                role={"img"}
-              />
-            </div>
-          ) : null}
-          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-            (() => {
-              try {
-                return $state.sampleDuration["sample-duration"]
-                  .split(",")
-                  .map(item => ({ name: item }));
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return [];
-                }
-                throw e;
-              }
-            })()
-          ).map((__plasmic_item_0, __plasmic_idx_0) => {
-            const currentItem = __plasmic_item_0;
-            const currentIndex = __plasmic_idx_0;
-            return (
-              <div
-                className={classNames(projectcss.all, sty.freeBox__itxxt)}
-                dir={"rtl"}
-                key={currentIndex}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["updateNewduration"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["newduration"]
-                          },
-                          operation: 0,
-                          value: currentItem.name
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateNewduration"] != null &&
-                    typeof $steps["updateNewduration"] === "object" &&
-                    typeof $steps["updateNewduration"].then === "function"
-                  ) {
-                    $steps["updateNewduration"] = await $steps[
-                      "updateNewduration"
-                    ];
-                  }
-
-                  $steps["updateDuration"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["duration", "data", "duration"]
-                          },
-                          operation: 0,
-                          value: currentItem.name
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateDuration"] != null &&
-                    typeof $steps["updateDuration"] === "object" &&
-                    typeof $steps["updateDuration"].then === "function"
-                  ) {
-                    $steps["updateDuration"] = await $steps["updateDuration"];
-                  }
-
-                  $steps["sendEvent"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            (() => {
-                              try {
-                                return {
-                                  group: "workhour",
-                                  data: {
-                                    center_id: $props.centerId,
-                                    user_center_id:
-                                      $state.duration.data.workhours[0]
-                                        .user_center_id,
-                                    Service:
-                                      $state.duration.data.workhours[0].service,
-                                    duration: currentItem.name
-                                  },
-                                  type: "click-button-duration"
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
+                        : (() => {
+                            try {
+                              return currentItem.name === $state.newduration;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return false;
                               }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Splunk.sendLog"]?.apply(null, [
-                          ...actionArgs.args
-                        ]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["sendEvent"] != null &&
-                    typeof $steps["sendEvent"] === "object" &&
-                    typeof $steps["sendEvent"].then === "function"
-                  ) {
-                    $steps["sendEvent"] = await $steps["sendEvent"];
-                  }
-                }}
-              >
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__pcO2
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return `${parseInt(currentItem.name).toLocaleString(
-                          "fa"
-                        )} دقیقه`;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "5 \u062f\u0642\u06cc\u0642\u0647";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-                {(
-                  hasVariant($state, "check", "check")
-                    ? (() => {
-                        try {
-                          return $state.check === true;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return false;
-                          }
-                          throw e;
-                        }
-                      })()
-                    : (() => {
-                        try {
-                          return (
-                            currentItem.name ===
-                            $state.duration.data.duration.toString()
-                          );
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return false;
-                          }
-                          throw e;
-                        }
-                      })()
-                ) ? (
-                  <CheckSvgIcon
-                    className={classNames(projectcss.all, sty.svg__cBvHc, {
-                      [sty.svgcheck__cBvHcRijdN]: hasVariant(
-                        $state,
-                        "check",
-                        "check"
-                      )
-                    })}
-                    onClick={async event => {
-                      const $steps = {};
-
-                      $steps["updateDuration"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["duration"]
-                              },
-                              operation: 0
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
+                              throw e;
+                            }
                           })()
-                        : undefined;
-                      if (
-                        $steps["updateDuration"] != null &&
-                        typeof $steps["updateDuration"] === "object" &&
-                        typeof $steps["updateDuration"].then === "function"
-                      ) {
-                        $steps["updateDuration"] = await $steps[
-                          "updateDuration"
-                        ];
-                      }
-                    }}
-                    role={"img"}
-                  />
-                ) : null}
-              </div>
-            );
-          })}
+                    ) ? (
+                      <CheckSvgIcon
+                        className={classNames(projectcss.all, sty.svg__cBvHc, {
+                          [sty.svgcheck__cBvHcRijdN]: hasVariant(
+                            $state,
+                            "check",
+                            "check"
+                          )
+                        })}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["updateDuration"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["duration"]
+                                  },
+                                  operation: 0
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateDuration"] != null &&
+                            typeof $steps["updateDuration"] === "object" &&
+                            typeof $steps["updateDuration"].then === "function"
+                          ) {
+                            $steps["updateDuration"] = await $steps[
+                              "updateDuration"
+                            ];
+                          }
+                        }}
+                        role={"img"}
+                      />
+                    ) : null}
+                  </div>
+                );
+              })}
+            </Stack__>
+          </div>
         </Stack__>
-      </div>
+      </ApiRequest>
     </Stack__>
   ) as React.ReactElement | null;
 }
@@ -1226,14 +1121,21 @@ function PlasmicDuration__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "sideEffect",
+    "sampleDurationApi",
     "fragmentPopover",
     "card",
     "dialog",
     "fragmentTimePicker",
     "button"
   ],
-  sideEffect: ["sideEffect"],
+  sampleDurationApi: [
+    "sampleDurationApi",
+    "fragmentPopover",
+    "card",
+    "dialog",
+    "fragmentTimePicker",
+    "button"
+  ],
   fragmentPopover: ["fragmentPopover", "card"],
   card: ["card"],
   dialog: ["dialog", "fragmentTimePicker", "button"],
@@ -1245,7 +1147,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  sideEffect: typeof SideEffect;
+  sampleDurationApi: typeof ApiRequest;
   fragmentPopover: typeof Popover;
   card: typeof Card;
   dialog: typeof Dialog;
@@ -1313,7 +1215,7 @@ export const PlasmicDuration = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    sideEffect: makeNodeComponent("sideEffect"),
+    sampleDurationApi: makeNodeComponent("sampleDurationApi"),
     fragmentPopover: makeNodeComponent("fragmentPopover"),
     card: makeNodeComponent("card"),
     dialog: makeNodeComponent("dialog"),
