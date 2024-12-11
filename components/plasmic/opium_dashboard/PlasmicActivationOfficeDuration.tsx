@@ -88,7 +88,7 @@ export type PlasmicActivationOfficeDuration__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<"div">;
   centersApi?: Flex__<typeof ApiRequest>;
-  workHoursApi?: Flex__<typeof ApiRequest>;
+  svg?: Flex__<"svg">;
   hoursDaysOfWeek?: Flex__<typeof HoursDaysOfWeek>;
 };
 
@@ -154,24 +154,6 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
       },
       {
         path: "centersApi.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "workHoursApi.data",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "workHoursApi.error",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "workHoursApi.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -259,7 +241,9 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
                     className={classNames(projectcss.all, sty.freeBox__rxNv)}
                   >
                     <Icon34Icon
-                      className={classNames(projectcss.all, sty.svg__cAt6P)}
+                      data-plasmic-name={"svg"}
+                      data-plasmic-override={overrides.svg}
+                      className={classNames(projectcss.all, sty.svg)}
                       role={"img"}
                     />
                   </div>
@@ -279,164 +263,116 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
                 ])}
                 url={"https://api.paziresh24.com/V1/doctor/centers"}
               >
-                <ApiRequest
-                  data-plasmic-name={"workHoursApi"}
-                  data-plasmic-override={overrides.workHoursApi}
-                  className={classNames("__wab_instance", sty.workHoursApi)}
-                  errorDisplay={null}
-                  loadingDisplay={
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__wfheU)}
-                    >
-                      <Icon34Icon
-                        className={classNames(projectcss.all, sty.svg__jmABn)}
-                        role={"img"}
-                      />
-                    </div>
-                  }
-                  method={"GET"}
-                  onError={generateStateOnChangeProp($state, [
-                    "workHoursApi",
-                    "error"
-                  ])}
-                  onLoading={generateStateOnChangeProp($state, [
-                    "workHoursApi",
-                    "loading"
-                  ])}
-                  onSuccess={generateStateOnChangeProp($state, [
-                    "workHoursApi",
-                    "data"
-                  ])}
-                  url={(() => {
-                    try {
-                      return (() => {
-                        const centerId = $state.centersApi.data.data.find(
-                          item => item.type_id == 1
-                        ).id;
-                        return `https://api.paziresh24.com/V1/doctor/center/workhours?center_id=${5532}`;
-                      })();
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
-                    }
-                  })()}
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox___7OQm)}
                 >
                   <Stack__
                     as={"div"}
                     hasGap={true}
-                    className={classNames(projectcss.all, sty.freeBox___7OQm)}
+                    className={classNames(projectcss.all, sty.freeBox__uscdy)}
                   >
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.freeBox__uscdy)}
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__hq7Kh
+                      )}
                     >
                       <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__hq7Kh
-                        )}
-                      >
-                        <div
-                          className={projectcss.__wab_expr_html_text}
-                          dangerouslySetInnerHTML={{
-                            __html: (() => {
-                              try {
-                                return `پزشکان <b>متخصص طب هوا و فضا و زیر سطحی</b> بطور معمول هر ویزیتشان حدود 10 دقیقه طول می کشد.`;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return " \u0628\u0637\u0648\u0631 \u0645\u0639\u0645\u0648\u0644 \u0647\u0631 \u0648\u06cc\u0632\u06cc\u062a\u0634\u0627\u0646 \u062d\u062f\u0648\u062f 10 \u062f\u0642\u06cc\u0642\u0647 \u0637\u0648\u0644 \u0645\u06cc \u06a9\u0634\u062f.";
-                                }
-                                throw e;
+                        className={projectcss.__wab_expr_html_text}
+                        dangerouslySetInnerHTML={{
+                          __html: (() => {
+                            try {
+                              return `پزشکان <b>متخصص طب هوا و فضا و زیر سطحی</b> بطور معمول هر ویزیتشان حدود 10 دقیقه طول می کشد.`;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return " \u0628\u0637\u0648\u0631 \u0645\u0639\u0645\u0648\u0644 \u0647\u0631 \u0648\u06cc\u0632\u06cc\u062a\u0634\u0627\u0646 \u062d\u062f\u0648\u062f 10 \u062f\u0642\u06cc\u0642\u0647 \u0637\u0648\u0644 \u0645\u06cc \u06a9\u0634\u062f.";
                               }
-                            })()
-                          }}
-                        />
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text___8ScPp
-                        )}
-                      >
-                        {
-                          "\u0627\u06af\u0631 \u062f\u0631 \u0645\u0637\u0628 \u067e\u0631\u0648\u0633\u06cc\u062c\u0631 \u0647\u0627\u06cc \u062f\u0631\u0645\u0627\u0646\u06cc \u0627\u0646\u062c\u0627\u0645 \u0645\u06cc \u062f\u0647\u06cc\u062f \u0627\u06cc\u0646 \u0632\u0645\u0627\u0646 \u0631\u0627 \u0637\u0648\u0644\u0627\u0646\u06cc \u062a\u0631 \u06a9\u0646\u06cc\u062f."
-                        }
-                      </div>
-                    </Stack__>
-                    <HoursDaysOfWeek
-                      data-plasmic-name={"hoursDaysOfWeek"}
-                      data-plasmic-override={overrides.hoursDaysOfWeek}
-                      centerId={(() => {
-                        try {
-                          return $state.centersApi.data.data.find(
-                            item => item.type_id == 1
-                          ).id;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
+                              throw e;
+                            }
+                          })()
+                        }}
+                      />
+                    </div>
+                    <div
                       className={classNames(
-                        "__wab_instance",
-                        sty.hoursDaysOfWeek
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text___8ScPp
                       )}
-                      duration={generateStateValueProp($state, [
-                        "hoursDaysOfWeek",
-                        "duration"
-                      ])}
-                      forwardPage={(() => {
-                        try {
-                          return $ctx.query.onlineVisit == "true"
-                            ? "/activation-page/consult/rules"
-                            : "/activation-page/finish?office=true";
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                      onDurationChange={generateStateOnChangeProp($state, [
-                        "hoursDaysOfWeek",
-                        "duration"
-                      ])}
-                      userCenterId={(() => {
-                        try {
-                          return $state.centersApi.data.data.find(
-                            item => item.type_id == 1
-                          ).user_center_id;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                    />
+                    >
+                      {
+                        "\u0627\u06af\u0631 \u062f\u0631 \u0645\u0637\u0628 \u067e\u0631\u0648\u0633\u06cc\u062c\u0631 \u0647\u0627\u06cc \u062f\u0631\u0645\u0627\u0646\u06cc \u0627\u0646\u062c\u0627\u0645 \u0645\u06cc \u062f\u0647\u06cc\u062f \u0627\u06cc\u0646 \u0632\u0645\u0627\u0646 \u0631\u0627 \u0637\u0648\u0644\u0627\u0646\u06cc \u062a\u0631 \u06a9\u0646\u06cc\u062f."
+                      }
+                    </div>
                   </Stack__>
-                </ApiRequest>
+                  <HoursDaysOfWeek
+                    data-plasmic-name={"hoursDaysOfWeek"}
+                    data-plasmic-override={overrides.hoursDaysOfWeek}
+                    centerId={(() => {
+                      try {
+                        return $state.centersApi.data.data.find(
+                          item => item.type_id == 1
+                        ).id;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    className={classNames(
+                      "__wab_instance",
+                      sty.hoursDaysOfWeek
+                    )}
+                    duration={generateStateValueProp($state, [
+                      "hoursDaysOfWeek",
+                      "duration"
+                    ])}
+                    forwardPage={(() => {
+                      try {
+                        return $ctx.query.onlineVisit == "true"
+                          ? "/activation-page/consult/rules"
+                          : "/activation-page/finish?office=true";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    onDurationChange={generateStateOnChangeProp($state, [
+                      "hoursDaysOfWeek",
+                      "duration"
+                    ])}
+                    userCenterId={(() => {
+                      try {
+                        return $state.centersApi.data.data.find(
+                          item => item.type_id == 1
+                        ).user_center_id;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                  />
+                </Stack__>
               </ApiRequest>
             </Stack__>
           </div>
@@ -447,10 +383,10 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "centersApi", "workHoursApi", "hoursDaysOfWeek"],
+  root: ["root", "header", "centersApi", "svg", "hoursDaysOfWeek"],
   header: ["header"],
-  centersApi: ["centersApi", "workHoursApi", "hoursDaysOfWeek"],
-  workHoursApi: ["workHoursApi", "hoursDaysOfWeek"],
+  centersApi: ["centersApi", "svg", "hoursDaysOfWeek"],
+  svg: ["svg"],
   hoursDaysOfWeek: ["hoursDaysOfWeek"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -460,7 +396,7 @@ type NodeDefaultElementType = {
   root: "div";
   header: "div";
   centersApi: typeof ApiRequest;
-  workHoursApi: typeof ApiRequest;
+  svg: "svg";
   hoursDaysOfWeek: typeof HoursDaysOfWeek;
 };
 
@@ -527,7 +463,7 @@ export const PlasmicActivationOfficeDuration = Object.assign(
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
     centersApi: makeNodeComponent("centersApi"),
-    workHoursApi: makeNodeComponent("workHoursApi"),
+    svg: makeNodeComponent("svg"),
     hoursDaysOfWeek: makeNodeComponent("hoursDaysOfWeek"),
 
     // Metadata about props expected for PlasmicActivationOfficeDuration

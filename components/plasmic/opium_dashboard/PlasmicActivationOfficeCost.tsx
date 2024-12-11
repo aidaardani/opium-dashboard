@@ -528,7 +528,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 ];
               }
 
-              $steps["cancelApi"] = true
+              $steps["cancelApi"] = !!$state.centersApi.data.data
                 ? (() => {
                     const actionArgs = {
                       args: [
