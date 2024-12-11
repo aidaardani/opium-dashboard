@@ -7,6 +7,7 @@ import {
   GlobalContextMeta,
 } from "@plasmicapp/host";
 import axios from "axios";
+import { SWRConfig } from "swr";
 
 type FragmentProps = React.PropsWithChildren<{
   previewApiConfig: Record<string, any>;
@@ -93,7 +94,15 @@ export const Fragment = ({
         }}
         hidden
       >
-        {children}
+        <SWRConfig
+          value={{
+            errorRetryCount: 0,
+            revalidateOnFocus: false,
+            keepPreviousData: false,
+          }}
+        >
+          {children}
+        </SWRConfig>
         <Toaster />
       </DataProvider>
     </GlobalActionsProvider>

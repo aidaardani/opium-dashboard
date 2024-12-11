@@ -1,7 +1,15 @@
+/* eslint-disable react/display-name */
 "use client";
 
 import { CodeComponentMeta, useSelector } from "@plasmicapp/host";
-import { ReactNode, useEffect, useState } from "react";
+import {
+  forwardRef,
+  ReactNode,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from "react";
 import axios from "axios";
 import useSWR from "swr";
 
@@ -21,7 +29,7 @@ type ApiRequestType = {
   onSuccess?: (data: any) => void;
 };
 
-export const ApiRequest = (props: ApiRequestType) => {
+export const ApiRequest = forwardRef((props: ApiRequestType, ref) => {
   const {
     method = "GET",
     params,
@@ -39,18 +47,22 @@ export const ApiRequest = (props: ApiRequestType) => {
   } = props;
   const fragmentConfig = useSelector("Fragment");
   const [isLoading, setIsLoading] = useState(false);
-  const fetchProps = {
-    method,
-    url,
-    params,
-    body,
-    config: {
-      ...fragmentConfig?.apiConfig,
-      ...fragmentConfig?.previewApiConfig,
-      ...config,
-    },
-  };
-  const { error } = useSWR(
+  const fetchProps = useMemo(
+    () => ({
+      method,
+      url,
+      params,
+      body,
+      config: {
+        ...fragmentConfig?.apiConfig,
+        ...fragmentConfig?.previewApiConfig,
+        ...config,
+      },
+      time: Date.now(),
+    }),
+    [method, url, params, body, config, fragmentConfig]
+  );
+  const { error, mutate } = useSWR(
     JSON.stringify(fetchProps),
     () => reuqestFn(fetchProps),
     {
@@ -70,6 +82,18 @@ export const ApiRequest = (props: ApiRequestType) => {
       revalidateOnFocus: false,
       keepPreviousData: false,
     }
+  );
+
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        refresh: () => {
+          mutate();
+        },
+      };
+    },
+    []
   );
 
   const reuqestFn = async ({ method, url, params, body, config }: any) => {
@@ -99,7 +123,7 @@ export const ApiRequest = (props: ApiRequestType) => {
     return errorDisplay;
   }
   return children;
-};
+});
 
 export const apiRequestMeta: CodeComponentMeta<ApiRequestType> = {
   name: "ApiRequest",
@@ -119,6 +143,7 @@ export const apiRequestMeta: CodeComponentMeta<ApiRequestType> = {
       defaultValueHint: "/api/v1/users",
       required: true,
     },
+
     params: {
       displayName: "Query Params",
       type: "object",
@@ -195,6 +220,12 @@ export const apiRequestMeta: CodeComponentMeta<ApiRequestType> = {
           type: "boolean",
         },
       ],
+    },
+  },
+  refActions: {
+    refresh: {
+      argTypes: [],
+      displayName: "Refresh Data",
     },
   },
   classNameProp: "className",
