@@ -359,7 +359,7 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
                           const queryParams = globalThis.encodeURIComponent(
                             JSON.stringify(cost)
                           );
-                          return `/activation-page/consult/duration?price=${queryParams}&channels=${$props.channels}`;
+                          return `/activation-page/consult/duration-2?price=${queryParams}&channels=${$props.channels}`;
                         })();
                       } catch (e) {
                         if (
