@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import ActivationProcess from "../../ActivationProcess"; // plasmic-import: 1sYr9T24RxmQ/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import ProfileChannels from "../../ProfileChannels"; // plasmic-import: o4nq-6V2-plH/component
 
@@ -87,6 +88,7 @@ export const PlasmicActivationConsultMessengers__ArgProps =
 export type PlasmicActivationConsultMessengers__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<"div">;
+  activationProcess?: Flex__<typeof ActivationProcess>;
   centersApi?: Flex__<typeof ApiRequest>;
   svg?: Flex__<"svg">;
   profileChannels?: Flex__<typeof ProfileChannels>;
@@ -234,6 +236,15 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
             </div>
           </div>
           <div className={classNames(projectcss.all, sty.freeBox__z3ESo)}>
+            <div className={classNames(projectcss.all, sty.freeBox__lAaO1)}>
+              <ActivationProcess
+                data-plasmic-name={"activationProcess"}
+                data-plasmic-override={overrides.activationProcess}
+                className={classNames("__wab_instance", sty.activationProcess)}
+                isConsult={true}
+                step={3}
+              />
+            </div>
             <div className={classNames(projectcss.all, sty.freeBox__kobar)}>
               <ApiRequest
                 data-plasmic-name={"centersApi"}
@@ -605,8 +616,16 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "centersApi", "svg", "profileChannels"],
+  root: [
+    "root",
+    "header",
+    "activationProcess",
+    "centersApi",
+    "svg",
+    "profileChannels"
+  ],
   header: ["header"],
+  activationProcess: ["activationProcess"],
   centersApi: ["centersApi", "svg", "profileChannels"],
   svg: ["svg"],
   profileChannels: ["profileChannels"]
@@ -617,6 +636,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   header: "div";
+  activationProcess: typeof ActivationProcess;
   centersApi: typeof ApiRequest;
   svg: "svg";
   profileChannels: typeof ProfileChannels;
@@ -687,6 +707,7 @@ export const PlasmicActivationConsultMessengers = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
+    activationProcess: makeNodeComponent("activationProcess"),
     centersApi: makeNodeComponent("centersApi"),
     svg: makeNodeComponent("svg"),
     profileChannels: makeNodeComponent("profileChannels"),

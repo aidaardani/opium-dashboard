@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import ActivationProcess from "../../ActivationProcess"; // plasmic-import: 1sYr9T24RxmQ/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
@@ -189,6 +190,51 @@ function PlasmicActivationFinish__RenderFunc(props: {
             </div>
           </div>
           <div className={classNames(projectcss.all, sty.freeBox__sdfL)}>
+            <div className={classNames(projectcss.all, sty.freeBox__jk893)}>
+              {(() => {
+                try {
+                  return $ctx.query.office != "true";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <ActivationProcess
+                  className={classNames(
+                    "__wab_instance",
+                    sty.activationProcess__nu8JB
+                  )}
+                  isConsult={true}
+                  step={7}
+                />
+              ) : null}
+              {(() => {
+                try {
+                  return $ctx.query.office == "true";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <ActivationProcess
+                  className={classNames(
+                    "__wab_instance",
+                    sty.activationProcess__dt38D
+                  )}
+                  step={6}
+                />
+              ) : null}
+            </div>
             <div className={classNames(projectcss.all, sty.freeBox__oUqeq)}>
               <SideEffect
                 data-plasmic-name={"sideEffect"}

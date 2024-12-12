@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import ActivationProcess from "../../ActivationProcess"; // plasmic-import: 1sYr9T24RxmQ/component
 import ActivationOfficeCost from "../../ActivationOfficeCost"; // plasmic-import: Uq71V-zgrZxq/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -84,6 +85,7 @@ export type PlasmicActivationOfficeCost3__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<"div">;
   text?: Flex__<"div">;
+  activationProcess?: Flex__<typeof ActivationProcess>;
   activationOfficeCost?: Flex__<typeof ActivationOfficeCost>;
 };
 
@@ -187,6 +189,14 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
             </div>
           </div>
           <div className={classNames(projectcss.all, sty.freeBox__wLaJb)}>
+            <div className={classNames(projectcss.all, sty.freeBox__btaRg)}>
+              <ActivationProcess
+                data-plasmic-name={"activationProcess"}
+                data-plasmic-override={overrides.activationProcess}
+                className={classNames("__wab_instance", sty.activationProcess)}
+                step={3}
+              />
+            </div>
             <div className={classNames(projectcss.all, sty.freeBox___2TZEj)}>
               <ActivationOfficeCost
                 data-plasmic-name={"activationOfficeCost"}
@@ -218,9 +228,10 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "text", "activationOfficeCost"],
+  root: ["root", "header", "text", "activationProcess", "activationOfficeCost"],
   header: ["header", "text"],
   text: ["text"],
+  activationProcess: ["activationProcess"],
   activationOfficeCost: ["activationOfficeCost"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -230,6 +241,7 @@ type NodeDefaultElementType = {
   root: "div";
   header: "div";
   text: "div";
+  activationProcess: typeof ActivationProcess;
   activationOfficeCost: typeof ActivationOfficeCost;
 };
 
@@ -295,6 +307,7 @@ export const PlasmicActivationOfficeCost3 = Object.assign(
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
     text: makeNodeComponent("text"),
+    activationProcess: makeNodeComponent("activationProcess"),
     activationOfficeCost: makeNodeComponent("activationOfficeCost"),
 
     // Metadata about props expected for PlasmicActivationOfficeCost3

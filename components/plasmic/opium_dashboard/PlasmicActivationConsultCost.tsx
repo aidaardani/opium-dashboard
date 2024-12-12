@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import ActivationProcess from "../../ActivationProcess"; // plasmic-import: 1sYr9T24RxmQ/component
 import ActivationConsultCost2 from "../../ActivationConsultCost2"; // plasmic-import: nfu3aryCX9a4/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -84,6 +85,7 @@ export type PlasmicActivationConsultCost__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<"div">;
   text?: Flex__<"div">;
+  activationProcess?: Flex__<typeof ActivationProcess>;
   activationConsultCost2?: Flex__<typeof ActivationConsultCost2>;
 };
 
@@ -189,6 +191,15 @@ function PlasmicActivationConsultCost__RenderFunc(props: {
             </div>
           </div>
           <div className={classNames(projectcss.all, sty.freeBox__vOfvK)}>
+            <div className={classNames(projectcss.all, sty.freeBox__sgtiQ)}>
+              <ActivationProcess
+                data-plasmic-name={"activationProcess"}
+                data-plasmic-override={overrides.activationProcess}
+                className={classNames("__wab_instance", sty.activationProcess)}
+                isConsult={true}
+                step={4}
+              />
+            </div>
             <div className={classNames(projectcss.all, sty.freeBox__hYLfr)}>
               <ActivationConsultCost2
                 data-plasmic-name={"activationConsultCost2"}
@@ -220,9 +231,16 @@ function PlasmicActivationConsultCost__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "text", "activationConsultCost2"],
+  root: [
+    "root",
+    "header",
+    "text",
+    "activationProcess",
+    "activationConsultCost2"
+  ],
   header: ["header", "text"],
   text: ["text"],
+  activationProcess: ["activationProcess"],
   activationConsultCost2: ["activationConsultCost2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -232,6 +250,7 @@ type NodeDefaultElementType = {
   root: "div";
   header: "div";
   text: "div";
+  activationProcess: typeof ActivationProcess;
   activationConsultCost2: typeof ActivationConsultCost2;
 };
 
@@ -297,6 +316,7 @@ export const PlasmicActivationConsultCost = Object.assign(
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
     text: makeNodeComponent("text"),
+    activationProcess: makeNodeComponent("activationProcess"),
     activationConsultCost2: makeNodeComponent("activationConsultCost2"),
 
     // Metadata about props expected for PlasmicActivationConsultCost

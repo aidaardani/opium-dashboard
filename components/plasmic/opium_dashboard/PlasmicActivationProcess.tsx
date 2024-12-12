@@ -76,9 +76,15 @@ type VariantPropType = keyof PlasmicActivationProcess__VariantsArgs;
 export const PlasmicActivationProcess__VariantProps =
   new Array<VariantPropType>();
 
-export type PlasmicActivationProcess__ArgsType = {};
+export type PlasmicActivationProcess__ArgsType = {
+  step?: number;
+  isConsult?: boolean;
+};
 type ArgPropType = keyof PlasmicActivationProcess__ArgsType;
-export const PlasmicActivationProcess__ArgProps = new Array<ArgPropType>();
+export const PlasmicActivationProcess__ArgProps = new Array<ArgPropType>(
+  "step",
+  "isConsult"
+);
 
 export type PlasmicActivationProcess__OverridesType = {
   root?: Flex__<"div">;
@@ -87,6 +93,8 @@ export type PlasmicActivationProcess__OverridesType = {
 };
 
 export interface DefaultActivationProcessProps {
+  step?: number;
+  isConsult?: boolean;
   className?: string;
 }
 
@@ -110,7 +118,9 @@ function PlasmicActivationProcess__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
+        {
+          isConsult: false
+        },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -135,12 +145,7 @@ function PlasmicActivationProcess__RenderFunc(props: {
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $ctx }) => [
-          {
-            title:
-              "\u0627\u0646\u062a\u062e\u0627\u0628 \u0633\u0631\u0648\u06cc\u0633",
-            subTitle: "",
-            step: 1
-          },
+          { title: "\u0634\u0631\u0648\u0639", subTitle: "", step: 1 },
           {
             title:
               "\u0622\u062f\u0631\u0633 \u0648 \u0634\u0645\u0627\u0631\u0647 \u062a\u0644\u0641\u0646",
@@ -161,6 +166,41 @@ function PlasmicActivationProcess__RenderFunc(props: {
             step: 4
           },
           { title: "\u067e\u0627\u06cc\u0627\u0646", subTitle: "", step: 5 }
+        ]
+      },
+      {
+        path: "consultSteps",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => [
+          { title: "\u0634\u0631\u0648\u0639", subTitle: "", step: 1 },
+          {
+            title: "\u0642\u0648\u0627\u0646\u06cc\u0646",
+            subTitle:
+              "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646",
+            step: 2
+          },
+          {
+            title:
+              "\u0631\u0627\u0647 \u0627\u0631\u062a\u0628\u0627\u0637\u06cc",
+            subTitle:
+              "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646",
+            step: 3
+          },
+          {
+            title:
+              "\u0647\u0632\u06cc\u0646\u0647 \u0648\u06cc\u0632\u06cc\u062a",
+            subTitle:
+              "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646",
+            step: 4
+          },
+          {
+            title: "\u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc",
+            subTitle:
+              "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646",
+            step: 5
+          },
+          { title: "\u067e\u0627\u06cc\u0627\u0646", subTitle: "", step: 6 }
         ]
       }
     ],
@@ -202,7 +242,9 @@ function PlasmicActivationProcess__RenderFunc(props: {
         {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
           (() => {
             try {
-              return $state.officeSteps;
+              return $props.isConsult
+                ? $state.consultSteps
+                : $state.officeSteps;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -224,16 +266,68 @@ function PlasmicActivationProcess__RenderFunc(props: {
                 "__wab_instance",
                 sty.activationProcessItem
               )}
-              key={currentIndex}
-              noBar={(() => {
+              isCompleted={(() => {
                 try {
-                  return currentIndex == $state.officeSteps.length - 1;
+                  return currentItem.step < $props.step;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
                     e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
                     return [];
+                  }
+                  throw e;
+                }
+              })()}
+              isCurrent={(() => {
+                try {
+                  return currentItem.step == $props.step;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()}
+              key={currentIndex}
+              noBar={(() => {
+                try {
+                  return currentIndex == 0;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()}
+              subTitle={(() => {
+                try {
+                  return currentItem.subTitle;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              title={(() => {
+                try {
+                  return currentItem.title;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
                   }
                   throw e;
                 }

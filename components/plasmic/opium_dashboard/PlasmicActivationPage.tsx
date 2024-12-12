@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import ActivationProcess from "../../ActivationProcess"; // plasmic-import: 1sYr9T24RxmQ/component
 import ActivationServiceSelection from "../../ActivationServiceSelection"; // plasmic-import: ozcO84WaZS1-/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -83,6 +84,7 @@ export type PlasmicActivationPage__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<"div">;
   text?: Flex__<"div">;
+  activationProcess?: Flex__<typeof ActivationProcess>;
   activationServiceSelection?: Flex__<typeof ActivationServiceSelection>;
 };
 
@@ -184,6 +186,14 @@ function PlasmicActivationPage__RenderFunc(props: {
             </div>
           </div>
           <div className={classNames(projectcss.all, sty.freeBox__vzmO)}>
+            <div className={classNames(projectcss.all, sty.freeBox__izoMx)}>
+              <ActivationProcess
+                data-plasmic-name={"activationProcess"}
+                data-plasmic-override={overrides.activationProcess}
+                className={classNames("__wab_instance", sty.activationProcess)}
+                step={1}
+              />
+            </div>
             <div className={classNames(projectcss.all, sty.freeBox__eEWnP)}>
               <ActivationServiceSelection
                 data-plasmic-name={"activationServiceSelection"}
@@ -202,9 +212,16 @@ function PlasmicActivationPage__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "text", "activationServiceSelection"],
+  root: [
+    "root",
+    "header",
+    "text",
+    "activationProcess",
+    "activationServiceSelection"
+  ],
   header: ["header", "text"],
   text: ["text"],
+  activationProcess: ["activationProcess"],
   activationServiceSelection: ["activationServiceSelection"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -214,6 +231,7 @@ type NodeDefaultElementType = {
   root: "div";
   header: "div";
   text: "div";
+  activationProcess: typeof ActivationProcess;
   activationServiceSelection: typeof ActivationServiceSelection;
 };
 
@@ -279,6 +297,7 @@ export const PlasmicActivationPage = Object.assign(
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
     text: makeNodeComponent("text"),
+    activationProcess: makeNodeComponent("activationProcess"),
     activationServiceSelection: makeNodeComponent("activationServiceSelection"),
 
     // Metadata about props expected for PlasmicActivationPage

@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import ActivationProcess from "../../ActivationProcess"; // plasmic-import: 1sYr9T24RxmQ/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import HoursDaysOfWeek from "../../HoursDaysOfWeek"; // plasmic-import: lSLy8Nehd6MM/component
 
@@ -87,6 +88,7 @@ export const PlasmicActivationOfficeDuration__ArgProps =
 export type PlasmicActivationOfficeDuration__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<"div">;
+  activationProcess?: Flex__<typeof ActivationProcess>;
   centersApi?: Flex__<typeof ApiRequest>;
   svg?: Flex__<"svg">;
   hoursDaysOfWeek?: Flex__<typeof HoursDaysOfWeek>;
@@ -232,6 +234,14 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
             </div>
           </div>
           <div className={classNames(projectcss.all, sty.freeBox__rtyql)}>
+            <div className={classNames(projectcss.all, sty.freeBox__yZm6V)}>
+              <ActivationProcess
+                data-plasmic-name={"activationProcess"}
+                data-plasmic-override={overrides.activationProcess}
+                className={classNames("__wab_instance", sty.activationProcess)}
+                step={4}
+              />
+            </div>
             <Stack__
               as={"div"}
               hasGap={true}
@@ -392,8 +402,16 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "centersApi", "svg", "hoursDaysOfWeek"],
+  root: [
+    "root",
+    "header",
+    "activationProcess",
+    "centersApi",
+    "svg",
+    "hoursDaysOfWeek"
+  ],
   header: ["header"],
+  activationProcess: ["activationProcess"],
   centersApi: ["centersApi", "svg", "hoursDaysOfWeek"],
   svg: ["svg"],
   hoursDaysOfWeek: ["hoursDaysOfWeek"]
@@ -404,6 +422,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   header: "div";
+  activationProcess: typeof ActivationProcess;
   centersApi: typeof ApiRequest;
   svg: "svg";
   hoursDaysOfWeek: typeof HoursDaysOfWeek;
@@ -471,6 +490,7 @@ export const PlasmicActivationOfficeDuration = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
+    activationProcess: makeNodeComponent("activationProcess"),
     centersApi: makeNodeComponent("centersApi"),
     svg: makeNodeComponent("svg"),
     hoursDaysOfWeek: makeNodeComponent("hoursDaysOfWeek"),

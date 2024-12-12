@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import ActivationProcess from "../../ActivationProcess"; // plasmic-import: 1sYr9T24RxmQ/component
 import ActivationOfficeCenter from "../../ActivationOfficeCenter"; // plasmic-import: eC1lHj9ndIjA/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -85,6 +86,7 @@ export type PlasmicActivationOfficeCenter2__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<"div">;
   text?: Flex__<"div">;
+  activationProcess?: Flex__<typeof ActivationProcess>;
   activationOfficeCenter?: Flex__<typeof ActivationOfficeCenter>;
 };
 
@@ -188,6 +190,14 @@ function PlasmicActivationOfficeCenter2__RenderFunc(props: {
             </div>
           </div>
           <div className={classNames(projectcss.all, sty.freeBox__tixpS)}>
+            <div className={classNames(projectcss.all, sty.freeBox__yfeCi)}>
+              <ActivationProcess
+                data-plasmic-name={"activationProcess"}
+                data-plasmic-override={overrides.activationProcess}
+                className={classNames("__wab_instance", sty.activationProcess)}
+                step={2}
+              />
+            </div>
             <div className={classNames(projectcss.all, sty.freeBox__gPJle)}>
               <ActivationOfficeCenter
                 data-plasmic-name={"activationOfficeCenter"}
@@ -219,9 +229,16 @@ function PlasmicActivationOfficeCenter2__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "text", "activationOfficeCenter"],
+  root: [
+    "root",
+    "header",
+    "text",
+    "activationProcess",
+    "activationOfficeCenter"
+  ],
   header: ["header", "text"],
   text: ["text"],
+  activationProcess: ["activationProcess"],
   activationOfficeCenter: ["activationOfficeCenter"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -231,6 +248,7 @@ type NodeDefaultElementType = {
   root: "div";
   header: "div";
   text: "div";
+  activationProcess: typeof ActivationProcess;
   activationOfficeCenter: typeof ActivationOfficeCenter;
 };
 
@@ -296,6 +314,7 @@ export const PlasmicActivationOfficeCenter2 = Object.assign(
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
     text: makeNodeComponent("text"),
+    activationProcess: makeNodeComponent("activationProcess"),
     activationOfficeCenter: makeNodeComponent("activationOfficeCenter"),
 
     // Metadata about props expected for PlasmicActivationOfficeCenter2

@@ -85,15 +85,23 @@ type VariantPropType = keyof PlasmicActivationProcessItem__VariantsArgs;
 export const PlasmicActivationProcessItem__VariantProps =
   new Array<VariantPropType>("isCompleted", "isCurrent", "noBar");
 
-export type PlasmicActivationProcessItem__ArgsType = {};
+export type PlasmicActivationProcessItem__ArgsType = {
+  title?: string;
+  subTitle?: string;
+};
 type ArgPropType = keyof PlasmicActivationProcessItem__ArgsType;
-export const PlasmicActivationProcessItem__ArgProps = new Array<ArgPropType>();
+export const PlasmicActivationProcessItem__ArgProps = new Array<ArgPropType>(
+  "title",
+  "subTitle"
+);
 
 export type PlasmicActivationProcessItem__OverridesType = {
   root?: Flex__<"div">;
 };
 
 export interface DefaultActivationProcessItemProps {
+  title?: string;
+  subTitle?: string;
   isCompleted?: SingleBooleanChoiceArg<"isCompleted">;
   isCurrent?: SingleBooleanChoiceArg<"isCurrent">;
   noBar?: SingleBooleanChoiceArg<"noBar">;
@@ -196,106 +204,182 @@ function PlasmicActivationProcessItem__RenderFunc(props: {
         }
       )}
     >
-      <div
-        className={classNames(projectcss.all, sty.freeBox__dxG9B, {
-          [sty.freeBoxisCurrent__dxG9Bnv8Ye]: hasVariant(
-            $state,
-            "isCurrent",
-            "isCurrent"
-          ),
-          [sty.freeBoxnoBar__dxG9BaWmeZ]: hasVariant($state, "noBar", "noBar")
-        })}
-      >
-        <div
-          className={classNames(projectcss.all, sty.freeBox___3W48A, {
-            [sty.freeBoxisCompleted___3W48AtStC]: hasVariant(
-              $state,
-              "isCompleted",
-              "isCompleted"
-            ),
-            [sty.freeBoxisCurrent___3W48Anv8Ye]: hasVariant(
+      <div className={classNames(projectcss.all, sty.freeBox__gZcmw)}>
+        <div className={classNames(projectcss.all, sty.freeBox__jzBi5)}>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__uQdQp
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.title;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__jpEeO
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.subTitle;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+        </div>
+        <Stack__
+          as={"div"}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.freeBox__i1Uj, {
+            [sty.freeBoxisCurrent__i1UjNv8Ye]: hasVariant(
               $state,
               "isCurrent",
               "isCurrent"
-            ),
-            [sty.freeBoxnoBar___3W48AaWmeZ]: hasVariant(
-              $state,
-              "noBar",
-              "noBar"
             )
           })}
         >
-          {(hasVariant($state, "isCompleted", "isCompleted") ? true : false) ? (
-            <Icon41Icon
-              className={classNames(projectcss.all, sty.svg__ksZez, {
-                [sty.svgisCompleted__ksZeZtStC]: hasVariant(
-                  $state,
-                  "isCompleted",
-                  "isCompleted"
-                )
-              })}
-              role={"img"}
-            />
-          ) : null}
-          {(hasVariant($state, "isCurrent", "isCurrent") ? true : false) ? (
-            <Icon42Icon
-              className={classNames(projectcss.all, sty.svg__zE9FO, {
-                [sty.svgisCurrent__zE9FOnv8Ye]: hasVariant(
+          <div
+            className={classNames(projectcss.all, sty.freeBox___3W48A, {
+              [sty.freeBoxisCompleted___3W48AtStC]: hasVariant(
+                $state,
+                "isCompleted",
+                "isCompleted"
+              ),
+              [sty.freeBoxisCurrent___3W48Anv8Ye]: hasVariant(
+                $state,
+                "isCurrent",
+                "isCurrent"
+              ),
+              [sty.freeBoxnoBar___3W48AaWmeZ]: hasVariant(
+                $state,
+                "noBar",
+                "noBar"
+              )
+            })}
+          >
+            {(
+              hasVariant($state, "isCompleted", "isCompleted") ? true : false
+            ) ? (
+              <Icon41Icon
+                className={classNames(projectcss.all, sty.svg__ksZez, {
+                  [sty.svgisCompleted__ksZeZtStC]: hasVariant(
+                    $state,
+                    "isCompleted",
+                    "isCompleted"
+                  )
+                })}
+                role={"img"}
+              />
+            ) : null}
+            {(hasVariant($state, "isCurrent", "isCurrent") ? true : false) ? (
+              <Icon42Icon
+                className={classNames(projectcss.all, sty.svg__zE9FO, {
+                  [sty.svgisCurrent__zE9FOnv8Ye]: hasVariant(
+                    $state,
+                    "isCurrent",
+                    "isCurrent"
+                  )
+                })}
+                role={"img"}
+              />
+            ) : null}
+            <div
+              className={classNames(projectcss.all, sty.freeBox__qkl7X, {
+                [sty.freeBoxisCurrent__qkl7Xnv8Ye]: hasVariant(
                   $state,
                   "isCurrent",
                   "isCurrent"
                 )
               })}
-              role={"img"}
+            />
+
+            <div
+              className={classNames(projectcss.all, sty.freeBox__gy5Pr, {
+                [sty.freeBoxisCurrent__gy5Prnv8Ye]: hasVariant(
+                  $state,
+                  "isCurrent",
+                  "isCurrent"
+                )
+              })}
+            />
+          </div>
+          {(
+            hasVariant($state, "noBar", "noBar")
+              ? (() => {
+                  try {
+                    return !$state.noBar;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })()
+              : (() => {
+                  try {
+                    return !$props.isFirstChild;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })()
+          ) ? (
+            <div
+              className={classNames(projectcss.all, sty.freeBox__bPTmF, {
+                [sty.freeBoxisCompleted__bPTmFtStC]: hasVariant(
+                  $state,
+                  "isCompleted",
+                  "isCompleted"
+                ),
+                [sty.freeBoxisCurrent__bPTmFnv8Ye]: hasVariant(
+                  $state,
+                  "isCurrent",
+                  "isCurrent"
+                ),
+                [sty.freeBoxnoBar__bPTmFaWmeZ]: hasVariant(
+                  $state,
+                  "noBar",
+                  "noBar"
+                )
+              })}
             />
           ) : null}
-        </div>
+        </Stack__>
       </div>
-      {(
-        hasVariant($state, "noBar", "noBar")
-          ? (() => {
-              try {
-                return !$state.noBar;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
-                }
-                throw e;
-              }
-            })()
-          : (() => {
-              try {
-                return !$props.isFirstChild;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
-                }
-                throw e;
-              }
-            })()
-      ) ? (
-        <div
-          className={classNames(projectcss.all, sty.freeBox__bPTmF, {
-            [sty.freeBoxisCompleted__bPTmFtStC]: hasVariant(
-              $state,
-              "isCompleted",
-              "isCompleted"
-            ),
-            [sty.freeBoxisCurrent__bPTmFnv8Ye]: hasVariant(
-              $state,
-              "isCurrent",
-              "isCurrent"
-            ),
-            [sty.freeBoxnoBar__bPTmFaWmeZ]: hasVariant($state, "noBar", "noBar")
-          })}
-        />
-      ) : null}
     </Stack__>
   ) as React.ReactElement | null;
 }

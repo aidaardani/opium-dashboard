@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import ActivationProcess from "../../ActivationProcess"; // plasmic-import: 1sYr9T24RxmQ/component
 import ActivationConsultRules from "../../ActivationConsultRules"; // plasmic-import: foxYnsy9VjeT/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -85,6 +86,7 @@ export type PlasmicActivationConsultRules2__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<"div">;
   text?: Flex__<"div">;
+  activationProcess?: Flex__<typeof ActivationProcess>;
   activationConsultRules?: Flex__<typeof ActivationConsultRules>;
 };
 
@@ -188,6 +190,15 @@ function PlasmicActivationConsultRules2__RenderFunc(props: {
             </div>
           </div>
           <div className={classNames(projectcss.all, sty.freeBox__w21Hi)}>
+            <div className={classNames(projectcss.all, sty.freeBox___7CAoh)}>
+              <ActivationProcess
+                data-plasmic-name={"activationProcess"}
+                data-plasmic-override={overrides.activationProcess}
+                className={classNames("__wab_instance", sty.activationProcess)}
+                isConsult={true}
+                step={2}
+              />
+            </div>
             <div className={classNames(projectcss.all, sty.freeBox__kvTl1)}>
               <ActivationConsultRules
                 data-plasmic-name={"activationConsultRules"}
@@ -206,9 +217,16 @@ function PlasmicActivationConsultRules2__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "text", "activationConsultRules"],
+  root: [
+    "root",
+    "header",
+    "text",
+    "activationProcess",
+    "activationConsultRules"
+  ],
   header: ["header", "text"],
   text: ["text"],
+  activationProcess: ["activationProcess"],
   activationConsultRules: ["activationConsultRules"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -218,6 +236,7 @@ type NodeDefaultElementType = {
   root: "div";
   header: "div";
   text: "div";
+  activationProcess: typeof ActivationProcess;
   activationConsultRules: typeof ActivationConsultRules;
 };
 
@@ -283,6 +302,7 @@ export const PlasmicActivationConsultRules2 = Object.assign(
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
     text: makeNodeComponent("text"),
+    activationProcess: makeNodeComponent("activationProcess"),
     activationConsultRules: makeNodeComponent("activationConsultRules"),
 
     // Metadata about props expected for PlasmicActivationConsultRules2
