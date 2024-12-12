@@ -2145,6 +2145,32 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicDurationSelection.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "1sYr9T24RxmQ",
+          "name": "ActivationProcess",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationProcess.tsx",
+          "importSpec": {
+            "modulePath": "ActivationProcess.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationProcess.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "O1QdkPvlHFD3",
+          "name": "ActivationProcessItem",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationProcessItem.tsx",
+          "importSpec": {
+            "modulePath": "ActivationProcessItem.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationProcessItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -2382,6 +2408,16 @@
           "id": "iY3SyaL2upTw",
           "name": "Icon40Icon",
           "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon40.tsx"
+        },
+        {
+          "id": "V3NmvV_UMEOs",
+          "name": "Icon41Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon41.tsx"
+        },
+        {
+          "id": "NbdQ650WQKOY",
+          "name": "Icon42Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon42.tsx"
         }
       ],
       "images": [
