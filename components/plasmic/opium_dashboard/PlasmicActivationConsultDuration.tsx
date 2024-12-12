@@ -520,7 +520,9 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                 })(),
                                 duration: (() => {
                                   try {
-                                    return $state.duration.newduration;
+                                    return !!$state.duration.newduration
+                                      ? $state.duration.newduration
+                                      : 30;
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
