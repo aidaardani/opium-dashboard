@@ -459,7 +459,9 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                   })(),
                   duration: (() => {
                     try {
-                      return !!$state.workhoursApi.data.data.duration
+                      return !!$state.durationOfWorkhour.newduration
+                        ? $state.durationOfWorkhour.newduration
+                        : !!$state.workhoursApi.data.data.duration
                         ? $state.workhoursApi.data.data.duration
                         : 30;
                     } catch (e) {
