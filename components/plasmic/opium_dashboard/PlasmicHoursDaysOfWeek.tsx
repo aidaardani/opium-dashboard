@@ -411,7 +411,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     throw e;
                   }
                 })()}
-                onNewdurationChange2={generateStateOnChangeProp($state, [
+                onNewdurationChange={generateStateOnChangeProp($state, [
                   "durationOfWorkhour",
                   "newduration"
                 ])}

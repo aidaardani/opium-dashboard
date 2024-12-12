@@ -6198,11 +6198,15 @@ function PlasmicProfileExperties__RenderFunc(props: {
                                       "All items posted successfully:",
                                       responses
                                     );
+                                    if (responses?.length > 0) {
+                                      return true;
+                                    }
                                   } catch (error) {
                                     console.error(
                                       "Error posting items:",
                                       error
                                     );
+                                    return false;
                                   }
                                 }
                                 return postItems();
@@ -6255,6 +6259,58 @@ function PlasmicProfileExperties__RenderFunc(props: {
                     ) {
                       $steps["updateIsLoadingSave2"] = await $steps[
                         "updateIsLoadingSave2"
+                      ];
+                    }
+
+                    $steps["invokeGlobalAction"] = (() => {
+                      return $steps.runCode === true;
+                    })()
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              undefined,
+                              "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u067e\u0631\u062f\u0627\u0632\u0634 \u0634\u062f"
+                            ]
+                          };
+                          return $globalActions["Fragment.showToast"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["invokeGlobalAction"] != null &&
+                      typeof $steps["invokeGlobalAction"] === "object" &&
+                      typeof $steps["invokeGlobalAction"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction"] = await $steps[
+                        "invokeGlobalAction"
+                      ];
+                    }
+
+                    $steps["invokeGlobalAction2"] = (() => {
+                      return $steps.runCode === false;
+                    })()
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "error",
+                              "\u062e\u0637\u0627\u06cc\u06cc \u0631\u062e \u062f\u0627\u062f"
+                            ]
+                          };
+                          return $globalActions["Fragment.showToast"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["invokeGlobalAction2"] != null &&
+                      typeof $steps["invokeGlobalAction2"] === "object" &&
+                      typeof $steps["invokeGlobalAction2"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction2"] = await $steps[
+                        "invokeGlobalAction2"
                       ];
                     }
                   }}

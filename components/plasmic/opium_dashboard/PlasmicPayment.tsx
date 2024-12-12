@@ -59,10 +59,11 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
-import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
-import Checkbox from "../../Checkbox"; // plasmic-import: IDR0sAqN5tth/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
+import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
+import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
+import { AntdRadioGroup } from "@plasmicpkgs/antd5/skinny/registerRadio";
+import { AntdRadio } from "@plasmicpkgs/antd5/skinny/registerRadio";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -71,6 +72,7 @@ import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicPayment.module.css"; // plasmic-import: tH96z8RSiEan/css
 
+import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: BN2FHeznHhq_/icon
 import ChevronDownSvgIcon from "./icons/PlasmicIcon__ChevronDownSvg"; // plasmic-import: vyArbbpHyA3h/icon
 import ChevronUpSvgIcon from "./icons/PlasmicIcon__ChevronUpSvg"; // plasmic-import: fNYF7afgfzXN/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
@@ -94,19 +96,18 @@ export const PlasmicPayment__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicPayment__OverridesType = {
   root?: Flex__<"div">;
+  getDetailsPayment?: Flex__<typeof ApiRequest>;
   now?: Flex__<"div">;
   all2?: Flex__<"div">;
   all?: Flex__<"div">;
   paid?: Flex__<"div">;
   paid2?: Flex__<"div">;
-  setting?: Flex__<typeof Button>;
-  requestToPay?: Flex__<typeof Button>;
   dialog?: Flex__<typeof Dialog>;
-  ask?: Flex__<"div">;
-  checkbox?: Flex__<typeof Checkbox>;
+  setting?: Flex__<typeof Button>;
   apiRequest?: Flex__<typeof ApiRequest>;
-  apiRequestforGetUserPrefrence?: Flex__<typeof ApiRequest>;
-  apiRequestForGetDetailsPayment?: Flex__<typeof ApiRequest>;
+  getUserPrefrence?: Flex__<typeof ApiRequest>;
+  radioGroup?: Flex__<typeof AntdRadioGroup>;
+  requestToPay?: Flex__<typeof Button>;
 };
 
 export interface DefaultPaymentProps {
@@ -157,28 +158,28 @@ function PlasmicPayment__RenderFunc(props: {
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "apiRequestForGetDetailsPayment.data",
+        path: "getDetailsPayment.data",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
-        refName: "apiRequestForGetDetailsPayment"
+        refName: "getDetailsPayment"
       },
       {
-        path: "apiRequestForGetDetailsPayment.error",
+        path: "getDetailsPayment.error",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
-        refName: "apiRequestForGetDetailsPayment"
+        refName: "getDetailsPayment"
       },
       {
-        path: "apiRequestForGetDetailsPayment.loading",
+        path: "getDetailsPayment.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
-        refName: "apiRequestForGetDetailsPayment"
+        refName: "getDetailsPayment"
       },
       {
         path: "more",
@@ -191,11 +192,6 @@ function PlasmicPayment__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
-      },
-      {
-        path: "checkbox[].isChecked",
-        type: "private",
-        variableType: "boolean"
       },
       {
         path: "apiRequest.data",
@@ -222,28 +218,53 @@ function PlasmicPayment__RenderFunc(props: {
         refName: "apiRequest"
       },
       {
-        path: "apiRequestforGetUserPrefrence.data",
+        path: "getUserPrefrence.data",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
-        refName: "apiRequestforGetUserPrefrence"
+        refName: "getUserPrefrence"
       },
       {
-        path: "apiRequestforGetUserPrefrence.error",
+        path: "getUserPrefrence.error",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
-        refName: "apiRequestforGetUserPrefrence"
+        refName: "getUserPrefrence"
       },
       {
-        path: "apiRequestforGetUserPrefrence.loading",
+        path: "getUserPrefrence.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
-        refName: "apiRequestforGetUserPrefrence"
+        refName: "getUserPrefrence"
+      },
+      {
+        path: "loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "radioGroup.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $state.getUserPrefrence.data.list[0].PaymentPreference;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -272,271 +293,79 @@ function PlasmicPayment__RenderFunc(props: {
         sty.root
       )}
     >
-      <div className={classNames(projectcss.all, sty.freeBox__b4Jda)}>
-        <div className={classNames(projectcss.all, sty.freeBox___62Ig)}>
+      <ApiRequest
+        data-plasmic-name={"getDetailsPayment"}
+        data-plasmic-override={overrides.getDetailsPayment}
+        className={classNames("__wab_instance", sty.getDetailsPayment)}
+        errorDisplay={
           <div
             className={classNames(
               projectcss.all,
               projectcss.__wab_text,
-              sty.text___2NtI5
+              sty.text__l2O1V
             )}
           >
-            {"\u0645\u0648\u062c\u0648\u062f\u06cc"}
+            {"Error fetching data"}
           </div>
-          <div
-            data-plasmic-name={"now"}
-            data-plasmic-override={overrides.now}
-            className={classNames(projectcss.all, sty.now)}
-          >
+        }
+        loadingDisplay={
+          <div className={classNames(projectcss.all, sty.freeBox__yFayR)}>
+            <Icon10Icon
+              className={classNames(projectcss.all, sty.svg__s0SvA)}
+              role={"img"}
+            />
+          </div>
+        }
+        method={"GET"}
+        onError={generateStateOnChangeProp($state, [
+          "getDetailsPayment",
+          "error"
+        ])}
+        onLoading={generateStateOnChangeProp($state, [
+          "getDetailsPayment",
+          "loading"
+        ])}
+        onSuccess={generateStateOnChangeProp($state, [
+          "getDetailsPayment",
+          "data"
+        ])}
+        ref={ref => {
+          $refs["getDetailsPayment"] = ref;
+        }}
+        url={"https://apigw.paziresh24.com/v1/details-payment"}
+      >
+        <div className={classNames(projectcss.all, sty.freeBox__b4Jda)}>
+          <div className={classNames(projectcss.all, sty.freeBox___62Ig)}>
             <div
               className={classNames(
                 projectcss.all,
                 projectcss.__wab_text,
-                sty.text___4LxA9
+                sty.text___2NtI5
               )}
             >
-              <React.Fragment>
-                {(() => {
-                  try {
-                    return (() => {
-                      const unpaidAmount =
-                        $state.apiRequestForGetDetailsPayment.data.find(
+              {"\u0645\u0648\u062c\u0648\u062f\u06cc"}
+            </div>
+            <div
+              data-plasmic-name={"now"}
+              data-plasmic-override={overrides.now}
+              className={classNames(projectcss.all, sty.now)}
+            >
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___4LxA9
+                )}
+              >
+                <React.Fragment>
+                  {(() => {
+                    try {
+                      return (() => {
+                        const unpaidAmount = $state.getDetailsPayment.data.find(
                           obj => obj.user_center_id === $props.selectedCenter
                         )?.["Unpaid Amount"];
-                      if (!unpaidAmount) return "";
-                      const dividedAmount = unpaidAmount / 10;
-                      const separatedAmount = dividedAmount
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                      return `${separatedAmount} تومان`;
-                    })();
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "";
-                    }
-                    throw e;
-                  }
-                })()}
-              </React.Fragment>
-            </div>
-            {(() => {
-              try {
-                return $state.more === false;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return false;
-                }
-                throw e;
-              }
-            })() ? (
-              <ChevronDownSvgIcon
-                className={classNames(projectcss.all, sty.svg___4QpBx)}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["updateMore"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["more"]
-                          },
-                          operation: 0,
-                          value: ($state.more = !$state.more)
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateMore"] != null &&
-                    typeof $steps["updateMore"] === "object" &&
-                    typeof $steps["updateMore"].then === "function"
-                  ) {
-                    $steps["updateMore"] = await $steps["updateMore"];
-                  }
-                }}
-                role={"img"}
-              />
-            ) : null}
-            {(() => {
-              try {
-                return $state.more === true;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return false;
-                }
-                throw e;
-              }
-            })() ? (
-              <ChevronUpSvgIcon
-                className={classNames(projectcss.all, sty.svg__jKySg)}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["updateMore"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["more"]
-                          },
-                          operation: 0,
-                          value: ($state.more = !$state.more)
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateMore"] != null &&
-                    typeof $steps["updateMore"] === "object" &&
-                    typeof $steps["updateMore"].then === "function"
-                  ) {
-                    $steps["updateMore"] = await $steps["updateMore"];
-                  }
-                }}
-                role={"img"}
-              />
-            ) : null}
-          </div>
-        </div>
-        {(() => {
-          try {
-            return $state.more === true;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return false;
-            }
-            throw e;
-          }
-        })() ? (
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__rdnfG)}
-          >
-            <div
-              data-plasmic-name={"all2"}
-              data-plasmic-override={overrides.all2}
-              className={classNames(projectcss.all, sty.all2)}
-            >
-              <div
-                data-plasmic-name={"all"}
-                data-plasmic-override={overrides.all}
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.all
-                )}
-              >
-                {"\u06a9\u0644 \u062f\u0631\u0622\u0645\u062f"}
-              </div>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__jhsXx
-                )}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return (() => {
-                        const CumulativeRevenue =
-                          $state.apiRequestForGetDetailsPayment.data.find(
-                            obj => obj.user_center_id === $props.selectedCenter
-                          )?.["Cumulative Revenue"];
-                        if (!CumulativeRevenue) return "";
-                        const dividedAmount = (CumulativeRevenue / 10)
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                        return `${dividedAmount} تومان`;
-                      })();
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "";
-                      }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
-              </div>
-            </div>
-            <div
-              data-plasmic-name={"paid"}
-              data-plasmic-override={overrides.paid}
-              className={classNames(projectcss.all, sty.paid)}
-            >
-              <div
-                data-plasmic-name={"paid2"}
-                data-plasmic-override={overrides.paid2}
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.paid2
-                )}
-              >
-                {
-                  "\u062f\u0631\u0622\u0645\u062f \u062a\u0633\u0648\u06cc\u0647 \u0634\u062f\u0647"
-                }
-              </div>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__sr1Cx
-                )}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return (() => {
-                        const PaidAmount =
-                          $state.apiRequestForGetDetailsPayment.data.find(
-                            obj => obj.user_center_id === $props.selectedCenter
-                          )?.["Paid Amount"];
-                        if (!PaidAmount) return "";
-                        const dividedAmount = PaidAmount / 10;
+                        if (!unpaidAmount) return "";
+                        const dividedAmount = unpaidAmount / 10;
                         const separatedAmount = dividedAmount
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -554,430 +383,648 @@ function PlasmicPayment__RenderFunc(props: {
                   })()}
                 </React.Fragment>
               </div>
+              {(() => {
+                try {
+                  return $state.more === false;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <ChevronDownSvgIcon
+                  className={classNames(projectcss.all, sty.svg___4QpBx)}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateMore"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["more"]
+                            },
+                            operation: 0,
+                            value: ($state.more = !$state.more)
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateMore"] != null &&
+                      typeof $steps["updateMore"] === "object" &&
+                      typeof $steps["updateMore"].then === "function"
+                    ) {
+                      $steps["updateMore"] = await $steps["updateMore"];
+                    }
+                  }}
+                  role={"img"}
+                />
+              ) : null}
+              {(() => {
+                try {
+                  return $state.more === true;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <ChevronUpSvgIcon
+                  className={classNames(projectcss.all, sty.svg__jKySg)}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateMore"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["more"]
+                            },
+                            operation: 0,
+                            value: ($state.more = !$state.more)
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateMore"] != null &&
+                      typeof $steps["updateMore"] === "object" &&
+                      typeof $steps["updateMore"].then === "function"
+                    ) {
+                      $steps["updateMore"] = await $steps["updateMore"];
+                    }
+                  }}
+                  role={"img"}
+                />
+              ) : null}
             </div>
-          </Stack__>
-        ) : null}
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__feQhK)}
-        >
-          <Button
-            data-plasmic-name={"setting"}
-            data-plasmic-override={overrides.setting}
-            children2={
-              <Icon9Icon
-                className={classNames(projectcss.all, sty.svg__cb3E3)}
-                role={"img"}
-              />
-            }
-            className={classNames("__wab_instance", sty.setting)}
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["updateDialogOpen"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["dialog", "open"]
-                      },
-                      operation: 0,
-                      value: true
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
+          </div>
+          {(() => {
+            try {
+              return $state.more === true;
+            } catch (e) {
               if (
-                $steps["updateDialogOpen"] != null &&
-                typeof $steps["updateDialogOpen"] === "object" &&
-                typeof $steps["updateDialogOpen"].then === "function"
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
               ) {
-                $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
+                return false;
               }
-            }}
-          />
-
-          <Button
-            data-plasmic-name={"requestToPay"}
-            data-plasmic-override={overrides.requestToPay}
-            children2={
-              "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062a\u0633\u0648\u06cc\u0647 \u062d\u0633\u0627\u0628"
+              throw e;
             }
-            className={classNames("__wab_instance", sty.requestToPay)}
-          />
-
-          <Dialog
-            data-plasmic-name={"dialog"}
-            data-plasmic-override={overrides.dialog}
-            body={
-              <React.Fragment>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__xqJiq)}
+          })() ? (
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__rdnfG)}
+            >
+              <div
+                data-plasmic-name={"all2"}
+                data-plasmic-override={overrides.all2}
+                className={classNames(projectcss.all, sty.all2)}
+              >
+                <div
+                  data-plasmic-name={"all"}
+                  data-plasmic-override={overrides.all}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.all
+                  )}
                 >
-                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                    (() => {
+                  {"\u06a9\u0644 \u062f\u0631\u0622\u0645\u062f"}
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__jhsXx
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
                       try {
-                        return $state.apiRequest.data;
+                        return (() => {
+                          const CumulativeRevenue =
+                            $state.getDetailsPayment.data.find(
+                              obj =>
+                                obj.user_center_id === $props.selectedCenter
+                            )?.["Cumulative Revenue"];
+                          if (!CumulativeRevenue) return "";
+                          const dividedAmount = (CumulativeRevenue / 10)
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                          return `${dividedAmount} تومان`;
+                        })();
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
                           e?.plasmicType === "PlasmicUndefinedDataError"
                         ) {
-                          return [];
+                          return "";
                         }
                         throw e;
                       }
-                    })()
-                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                    const currentItem = __plasmic_item_0;
-                    const currentIndex = __plasmic_idx_0;
-                    return (
-                      <div
-                        data-plasmic-name={"ask"}
-                        data-plasmic-override={overrides.ask}
-                        className={classNames(projectcss.all, sty.ask)}
-                        key={currentIndex}
-                      >
-                        {(() => {
-                          const child$Props = {
-                            className: classNames(
-                              "__wab_instance",
-                              sty.checkbox
-                            ),
-                            isChecked:
-                              generateStateValueProp($state, [
-                                "checkbox",
-                                __plasmic_idx_0,
-                                "isChecked"
-                              ]) ?? false,
-                            onChange: (...eventArgs) => {
-                              generateStateOnChangeProp($state, [
-                                "checkbox",
-                                __plasmic_idx_0,
-                                "isChecked"
-                              ])(eventArgs[0]);
-                            }
-                          };
-
-                          initializePlasmicStates(
-                            $state,
-                            [
-                              {
-                                name: "checkbox[].isChecked",
-                                initFunc: ({ $props, $state, $queries }) =>
-                                  (() => {
-                                    try {
-                                      return $state.apiRequestforGetUserPrefrence.data.list.some(
-                                        item =>
-                                          item.PaymentPreference ==
-                                          currentItem.Kind
-                                      );
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return [];
-                                      }
-                                      throw e;
-                                    }
-                                  })()
-                              }
-                            ],
-                            [__plasmic_idx_0]
-                          );
-                          return (
-                            <Checkbox
-                              data-plasmic-name={"checkbox"}
-                              data-plasmic-override={overrides.checkbox}
-                              {...child$Props}
-                            >
-                              <React.Fragment>
-                                {(() => {
-                                  try {
-                                    return currentItem.Kind === "Daily"
-                                      ? "تسویه حساب خودکار روزانه"
-                                      : "ثبت درخواست تسویه حساب";
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return "\u062b\u0628\u062a \u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062a\u0633\u0648\u06cc\u0647 \u062d\u0633\u0627\u0628";
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                              </React.Fragment>
-                            </Checkbox>
-                          );
-                        })()}
-                      </div>
-                    );
-                  })}
-                  <ApiRequest
-                    data-plasmic-name={"apiRequest"}
-                    data-plasmic-override={overrides.apiRequest}
-                    className={classNames("__wab_instance", sty.apiRequest)}
-                    errorDisplay={
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__z9AHh
-                        )}
-                      >
-                        {"Error fetching data"}
-                      </div>
-                    }
-                    loadingDisplay={
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__zwNCr
-                        )}
-                      >
-                        {"Loading..."}
-                      </div>
-                    }
-                    method={"GET"}
-                    onError={generateStateOnChangeProp($state, [
-                      "apiRequest",
-                      "error"
-                    ])}
-                    onLoading={generateStateOnChangeProp($state, [
-                      "apiRequest",
-                      "loading"
-                    ])}
-                    onSuccess={generateStateOnChangeProp($state, [
-                      "apiRequest",
-                      "data"
-                    ])}
-                    ref={ref => {
-                      $refs["apiRequest"] = ref;
-                    }}
-                    url={
-                      "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/kind-of-auto-payment"
-                    }
-                  />
-
-                  <ApiRequest
-                    data-plasmic-name={"apiRequestforGetUserPrefrence"}
-                    data-plasmic-override={
-                      overrides.apiRequestforGetUserPrefrence
-                    }
-                    className={classNames(
-                      "__wab_instance",
-                      sty.apiRequestforGetUserPrefrence
-                    )}
-                    errorDisplay={
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__bD5Q
-                        )}
-                      >
-                        {"Error fetching data"}
-                      </div>
-                    }
-                    loadingDisplay={
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__j6UpV
-                        )}
-                      >
-                        {"Loading..."}
-                      </div>
-                    }
-                    method={"GET"}
-                    onError={generateStateOnChangeProp($state, [
-                      "apiRequestforGetUserPrefrence",
-                      "error"
-                    ])}
-                    onLoading={generateStateOnChangeProp($state, [
-                      "apiRequestforGetUserPrefrence",
-                      "loading"
-                    ])}
-                    onSuccess={generateStateOnChangeProp($state, [
-                      "apiRequestforGetUserPrefrence",
-                      "data"
-                    ])}
-                    ref={ref => {
-                      $refs["apiRequestforGetUserPrefrence"] = ref;
-                    }}
-                    url={
-                      "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/active-payment-preference"
-                    }
-                  />
-                </Stack__>
-                <div className={classNames(projectcss.all, sty.freeBox__x4IL)}>
+                    })()}
+                  </React.Fragment>
+                </div>
+              </div>
+              <div
+                data-plasmic-name={"paid"}
+                data-plasmic-override={overrides.paid}
+                className={classNames(projectcss.all, sty.paid)}
+              >
+                <div
+                  data-plasmic-name={"paid2"}
+                  data-plasmic-override={overrides.paid2}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.paid2
+                  )}
+                >
+                  {
+                    "\u062f\u0631\u0622\u0645\u062f \u062a\u0633\u0648\u06cc\u0647 \u0634\u062f\u0647"
+                  }
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__sr1Cx
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return (() => {
+                          const PaidAmount = $state.getDetailsPayment.data.find(
+                            obj => obj.user_center_id === $props.selectedCenter
+                          )?.["Paid Amount"];
+                          if (!PaidAmount) return "";
+                          const dividedAmount = PaidAmount / 10;
+                          const separatedAmount = dividedAmount
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                          return `${separatedAmount} تومان`;
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+              </div>
+            </Stack__>
+          ) : null}
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__feQhK)}
+          >
+            <Dialog
+              data-plasmic-name={"dialog"}
+              data-plasmic-override={overrides.dialog}
+              body={
+                <React.Fragment>
                   <Stack__
                     as={"div"}
                     hasGap={true}
-                    className={classNames(projectcss.all, sty.freeBox__lTutQ)}
+                    className={classNames(projectcss.all, sty.freeBox__xqJiq)}
                   >
-                    <Button
-                      children2={"\u062a\u0627\u06cc\u06cc\u062f"}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.button__z8Edl
-                      )}
-                      onClick={async event => {
-                        const $steps = {};
-
-                        $steps["invokeGlobalAction"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  "POST",
-                                  "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/active-auto-payment",
-                                  undefined,
-                                  undefined
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.apiRequest"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["invokeGlobalAction"] != null &&
-                          typeof $steps["invokeGlobalAction"] === "object" &&
-                          typeof $steps["invokeGlobalAction"].then ===
-                            "function"
-                        ) {
-                          $steps["invokeGlobalAction"] = await $steps[
-                            "invokeGlobalAction"
-                          ];
-                        }
+                    <ApiRequest
+                      data-plasmic-name={"apiRequest"}
+                      data-plasmic-override={overrides.apiRequest}
+                      className={classNames("__wab_instance", sty.apiRequest)}
+                      errorDisplay={
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__z9AHh
+                          )}
+                        >
+                          {"Error fetching data"}
+                        </div>
+                      }
+                      loadingDisplay={
+                        <Icon10Icon
+                          className={classNames(projectcss.all, sty.svg__mAnbx)}
+                          role={"img"}
+                        />
+                      }
+                      method={"GET"}
+                      onError={generateStateOnChangeProp($state, [
+                        "apiRequest",
+                        "error"
+                      ])}
+                      onLoading={generateStateOnChangeProp($state, [
+                        "apiRequest",
+                        "loading"
+                      ])}
+                      onSuccess={generateStateOnChangeProp($state, [
+                        "apiRequest",
+                        "data"
+                      ])}
+                      ref={ref => {
+                        $refs["apiRequest"] = ref;
                       }}
-                    />
-
-                    <Button
-                      children2={"\u0627\u0646\u0635\u0631\u0627\u0641"}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.button__aDszq
-                      )}
-                      color={"red"}
-                      onClick={async event => {
-                        const $steps = {};
-
-                        $steps["updateDialogOpen"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["dialog", "open"]
-                                },
-                                operation: 0,
-                                value: false
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateDialogOpen"] != null &&
-                          typeof $steps["updateDialogOpen"] === "object" &&
-                          typeof $steps["updateDialogOpen"].then === "function"
-                        ) {
-                          $steps["updateDialogOpen"] = await $steps[
-                            "updateDialogOpen"
-                          ];
+                      url={
+                        "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/kind-of-auto-payment"
+                      }
+                    >
+                      <ApiRequest
+                        data-plasmic-name={"getUserPrefrence"}
+                        data-plasmic-override={overrides.getUserPrefrence}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.getUserPrefrence
+                        )}
+                        errorDisplay={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__bD5Q
+                            )}
+                          >
+                            {"Error fetching data"}
+                          </div>
                         }
-                      }}
-                    />
+                        loadingDisplay={
+                          <Icon10Icon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__vgQl
+                            )}
+                            role={"img"}
+                          />
+                        }
+                        method={"GET"}
+                        onError={generateStateOnChangeProp($state, [
+                          "getUserPrefrence",
+                          "error"
+                        ])}
+                        onLoading={generateStateOnChangeProp($state, [
+                          "getUserPrefrence",
+                          "loading"
+                        ])}
+                        onSuccess={generateStateOnChangeProp($state, [
+                          "getUserPrefrence",
+                          "data"
+                        ])}
+                        ref={ref => {
+                          $refs["getUserPrefrence"] = ref;
+                        }}
+                        url={
+                          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/active-payment-preference"
+                        }
+                      >
+                        <AntdRadioGroup
+                          data-plasmic-name={"radioGroup"}
+                          data-plasmic-override={overrides.radioGroup}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.radioGroup
+                          )}
+                          defaultValue={(() => {
+                            try {
+                              return $state.getUserPrefrence.data.list[0]
+                                .PaymentPreference;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                          onChange={generateStateOnChangeProp($state, [
+                            "radioGroup",
+                            "value"
+                          ])}
+                          optionType={"default"}
+                          options={(() => {
+                            try {
+                              return $state.apiRequest.data?.map(item => ({
+                                label: item.Title,
+                                value: item.Kind
+                              }));
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return [];
+                              }
+                              throw e;
+                            }
+                          })()}
+                          useChildren={false}
+                          value={generateStateValueProp($state, [
+                            "radioGroup",
+                            "value"
+                          ])}
+                        >
+                          <AntdRadio
+                            className={classNames(
+                              "__wab_instance",
+                              sty.radio__ozLxM
+                            )}
+                            value={"op1"}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__cRiBv
+                              )}
+                            >
+                              {"Option 1"}
+                            </div>
+                          </AntdRadio>
+                          <AntdRadio
+                            className={classNames(
+                              "__wab_instance",
+                              sty.radio___06Hnq
+                            )}
+                            value={"op2"}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text___1OLe
+                              )}
+                            >
+                              {"Option 2"}
+                            </div>
+                          </AntdRadio>
+                        </AntdRadioGroup>
+                      </ApiRequest>
+                    </ApiRequest>
                   </Stack__>
-                </div>
-              </React.Fragment>
-            }
-            className={classNames("__wab_instance", sty.dialog)}
-            onOpenChange={generateStateOnChangeProp($state, ["dialog", "open"])}
-            open={generateStateValueProp($state, ["dialog", "open"])}
-            title={
-              "\u0627\u0646\u062a\u062e\u0627\u0628 \u0646\u0648\u0639 \u062a\u0633\u0648\u06cc\u0647 \u062d\u0633\u0627\u0628"
-            }
-            trigger={null}
-          />
-        </Stack__>
-      </div>
-      <ApiRequest
-        data-plasmic-name={"apiRequestForGetDetailsPayment"}
-        data-plasmic-override={overrides.apiRequestForGetDetailsPayment}
-        className={classNames(
-          "__wab_instance",
-          sty.apiRequestForGetDetailsPayment
-        )}
-        errorDisplay={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__l2O1V
-            )}
-          >
-            {"Error fetching data"}
-          </div>
-        }
-        loadingDisplay={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__s40NR
-            )}
-          >
-            {"Loading..."}
-          </div>
-        }
-        method={"GET"}
-        onError={generateStateOnChangeProp($state, [
-          "apiRequestForGetDetailsPayment",
-          "error"
-        ])}
-        onLoading={generateStateOnChangeProp($state, [
-          "apiRequestForGetDetailsPayment",
-          "loading"
-        ])}
-        onSuccess={generateStateOnChangeProp($state, [
-          "apiRequestForGetDetailsPayment",
-          "data"
-        ])}
-        ref={ref => {
-          $refs["apiRequestForGetDetailsPayment"] = ref;
-        }}
-        url={"https://apigw.paziresh24.com/v1/details-payment"}
-      />
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__x4IL)}
+                  >
+                    <Stack__
+                      as={"div"}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.freeBox__lTutQ)}
+                    >
+                      <Button
+                        children2={"\u062a\u0627\u06cc\u06cc\u062f"}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.button__z8Edl
+                        )}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["loading"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["loading"]
+                                  },
+                                  operation: 0,
+                                  value: true
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["loading"] != null &&
+                            typeof $steps["loading"] === "object" &&
+                            typeof $steps["loading"].then === "function"
+                          ) {
+                            $steps["loading"] = await $steps["loading"];
+                          }
+
+                          $steps["setKindOfPayment"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    "POST",
+                                    "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/active-auto-payment",
+                                    undefined,
+                                    (() => {
+                                      try {
+                                        return {
+                                          kind: $state.radioGroup.value
+                                        };
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Fragment.apiRequest"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["setKindOfPayment"] != null &&
+                            typeof $steps["setKindOfPayment"] === "object" &&
+                            typeof $steps["setKindOfPayment"].then ===
+                              "function"
+                          ) {
+                            $steps["setKindOfPayment"] = await $steps[
+                              "setKindOfPayment"
+                            ];
+                          }
+
+                          $steps["stopLoading"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["loading"]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["stopLoading"] != null &&
+                            typeof $steps["stopLoading"] === "object" &&
+                            typeof $steps["stopLoading"].then === "function"
+                          ) {
+                            $steps["stopLoading"] = await $steps["stopLoading"];
+                          }
+                        }}
+                      />
+
+                      <Button
+                        children2={"\u0627\u0646\u0635\u0631\u0627\u0641"}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.button__aDszq
+                        )}
+                        color={"red"}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["updateDialogOpen"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["dialog", "open"]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateDialogOpen"] != null &&
+                            typeof $steps["updateDialogOpen"] === "object" &&
+                            typeof $steps["updateDialogOpen"].then ===
+                              "function"
+                          ) {
+                            $steps["updateDialogOpen"] = await $steps[
+                              "updateDialogOpen"
+                            ];
+                          }
+                        }}
+                      />
+                    </Stack__>
+                  </div>
+                </React.Fragment>
+              }
+              className={classNames("__wab_instance", sty.dialog)}
+              onOpenChange={generateStateOnChangeProp($state, [
+                "dialog",
+                "open"
+              ])}
+              open={generateStateValueProp($state, ["dialog", "open"])}
+              title={
+                "\u0627\u0646\u062a\u062e\u0627\u0628 \u0646\u0648\u0639 \u062a\u0633\u0648\u06cc\u0647 \u062d\u0633\u0627\u0628"
+              }
+              trigger={
+                <Button
+                  data-plasmic-name={"setting"}
+                  data-plasmic-override={overrides.setting}
+                  children2={
+                    <Icon9Icon
+                      className={classNames(projectcss.all, sty.svg__cb3E3)}
+                      role={"img"}
+                    />
+                  }
+                  className={classNames("__wab_instance", sty.setting)}
+                  onClick={async event => {
+                    const $steps = {};
+                  }}
+                />
+              }
+            />
+
+            <Button
+              data-plasmic-name={"requestToPay"}
+              data-plasmic-override={overrides.requestToPay}
+              children2={
+                "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062a\u0633\u0648\u06cc\u0647 \u062d\u0633\u0627\u0628"
+              }
+              className={classNames("__wab_instance", sty.requestToPay)}
+            />
+          </Stack__>
+        </div>
+      </ApiRequest>
     </div>
   ) as React.ReactElement | null;
 }
@@ -985,58 +1032,62 @@ function PlasmicPayment__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "getDetailsPayment",
     "now",
     "all2",
     "all",
     "paid",
     "paid2",
-    "setting",
-    "requestToPay",
     "dialog",
-    "ask",
-    "checkbox",
+    "setting",
     "apiRequest",
-    "apiRequestforGetUserPrefrence",
-    "apiRequestForGetDetailsPayment"
+    "getUserPrefrence",
+    "radioGroup",
+    "requestToPay"
+  ],
+  getDetailsPayment: [
+    "getDetailsPayment",
+    "now",
+    "all2",
+    "all",
+    "paid",
+    "paid2",
+    "dialog",
+    "setting",
+    "apiRequest",
+    "getUserPrefrence",
+    "radioGroup",
+    "requestToPay"
   ],
   now: ["now"],
   all2: ["all2", "all"],
   all: ["all"],
   paid: ["paid", "paid2"],
   paid2: ["paid2"],
+  dialog: ["dialog", "setting", "apiRequest", "getUserPrefrence", "radioGroup"],
   setting: ["setting"],
-  requestToPay: ["requestToPay"],
-  dialog: [
-    "dialog",
-    "ask",
-    "checkbox",
-    "apiRequest",
-    "apiRequestforGetUserPrefrence"
-  ],
-  ask: ["ask", "checkbox"],
-  checkbox: ["checkbox"],
-  apiRequest: ["apiRequest"],
-  apiRequestforGetUserPrefrence: ["apiRequestforGetUserPrefrence"],
-  apiRequestForGetDetailsPayment: ["apiRequestForGetDetailsPayment"]
+  apiRequest: ["apiRequest", "getUserPrefrence", "radioGroup"],
+  getUserPrefrence: ["getUserPrefrence", "radioGroup"],
+  radioGroup: ["radioGroup"],
+  requestToPay: ["requestToPay"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  getDetailsPayment: typeof ApiRequest;
   now: "div";
   all2: "div";
   all: "div";
   paid: "div";
   paid2: "div";
-  setting: typeof Button;
-  requestToPay: typeof Button;
   dialog: typeof Dialog;
-  ask: "div";
-  checkbox: typeof Checkbox;
+  setting: typeof Button;
   apiRequest: typeof ApiRequest;
-  apiRequestforGetUserPrefrence: typeof ApiRequest;
-  apiRequestForGetDetailsPayment: typeof ApiRequest;
+  getUserPrefrence: typeof ApiRequest;
+  radioGroup: typeof AntdRadioGroup;
+  requestToPay: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1099,23 +1150,18 @@ export const PlasmicPayment = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    getDetailsPayment: makeNodeComponent("getDetailsPayment"),
     now: makeNodeComponent("now"),
     all2: makeNodeComponent("all2"),
     all: makeNodeComponent("all"),
     paid: makeNodeComponent("paid"),
     paid2: makeNodeComponent("paid2"),
-    setting: makeNodeComponent("setting"),
-    requestToPay: makeNodeComponent("requestToPay"),
     dialog: makeNodeComponent("dialog"),
-    ask: makeNodeComponent("ask"),
-    checkbox: makeNodeComponent("checkbox"),
+    setting: makeNodeComponent("setting"),
     apiRequest: makeNodeComponent("apiRequest"),
-    apiRequestforGetUserPrefrence: makeNodeComponent(
-      "apiRequestforGetUserPrefrence"
-    ),
-    apiRequestForGetDetailsPayment: makeNodeComponent(
-      "apiRequestForGetDetailsPayment"
-    ),
+    getUserPrefrence: makeNodeComponent("getUserPrefrence"),
+    radioGroup: makeNodeComponent("radioGroup"),
+    requestToPay: makeNodeComponent("requestToPay"),
 
     // Metadata about props expected for PlasmicPayment
     internalVariantProps: PlasmicPayment__VariantProps,

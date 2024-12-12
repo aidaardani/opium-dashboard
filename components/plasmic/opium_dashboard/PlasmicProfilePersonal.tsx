@@ -947,7 +947,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                           (() => {
                             try {
                               return {
-                                biography: "",
+                                biography: $state.biography,
                                 employee_id: $state.medicalCode.value,
                                 notify_cell: $state.notifyCell.value
                               };

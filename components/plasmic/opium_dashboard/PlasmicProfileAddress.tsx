@@ -5269,8 +5269,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                                 item => item.tell
                               );
                               return {
-                                address: $state.address.value,
-                                city: $state.citySelect.value,
+                                address: "$state.address.value",
+                                city: "$state.citySelect.value",
                                 lat: $state.map.lat,
                                 lon: $state.map.lng,
                                 province: $state.provinceSelect.value,

@@ -97,14 +97,14 @@ export const PlasmicDuration__VariantProps = new Array<VariantPropType>(
 export type PlasmicDuration__ArgsType = {
   centerId?: string;
   newduration?: string;
-  onNewdurationChange2?: (val: string) => void;
+  onNewdurationChange?: (val: string) => void;
   oldDuration?: number;
 };
 type ArgPropType = keyof PlasmicDuration__ArgsType;
 export const PlasmicDuration__ArgProps = new Array<ArgPropType>(
   "centerId",
   "newduration",
-  "onNewdurationChange2",
+  "onNewdurationChange",
   "oldDuration"
 );
 
@@ -121,7 +121,7 @@ export type PlasmicDuration__OverridesType = {
 export interface DefaultDurationProps {
   centerId?: string;
   newduration?: string;
-  onNewdurationChange2?: (val: string) => void;
+  onNewdurationChange?: (val: string) => void;
   oldDuration?: number;
   check?: SingleBooleanChoiceArg<"check">;
   className?: string;
@@ -207,7 +207,7 @@ function PlasmicDuration__RenderFunc(props: {
         variableType: "text",
 
         valueProp: "newduration",
-        onChangeProp: "onNewdurationChange2"
+        onChangeProp: "onNewdurationChange"
       },
       {
         path: "check",

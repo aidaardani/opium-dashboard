@@ -185,7 +185,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
         path: "duration.newduration",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $ctx }) => "30"
       },
       {
         path: "days",
@@ -446,26 +446,37 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                         throw e;
                       }
                     })() ? (
-                      <div
+                      <Stack__
+                        as={"div"}
+                        hasGap={true}
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__ewBdp
                         )}
                       >
-                        <Duration
-                          data-plasmic-name={"duration"}
-                          data-plasmic-override={overrides.duration}
-                          className={classNames("__wab_instance", sty.duration)}
-                          newduration={generateStateValueProp($state, [
-                            "duration",
-                            "newduration"
-                          ])}
-                          onNewdurationChange2={generateStateOnChangeProp(
-                            $state,
-                            ["duration", "newduration"]
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__y6Zdh
                           )}
-                        />
-
+                        >
+                          <Duration
+                            data-plasmic-name={"duration"}
+                            data-plasmic-override={overrides.duration}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.duration
+                            )}
+                            newduration={generateStateValueProp($state, [
+                              "duration",
+                              "newduration"
+                            ])}
+                            onNewdurationChange={generateStateOnChangeProp(
+                              $state,
+                              ["duration", "newduration"]
+                            )}
+                          />
+                        </div>
                         <div
                           className={classNames(
                             projectcss.all,
@@ -956,7 +967,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                             }
                           }}
                         />
-                      </div>
+                      </Stack__>
                     ) : null}
                   </Stack__>
                 ) : null}
