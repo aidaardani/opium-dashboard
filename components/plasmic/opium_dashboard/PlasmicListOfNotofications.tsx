@@ -70,6 +70,7 @@ import { AntdAccordionItem } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import Receipt from "../../Receipt"; // plasmic-import: xGsQPPSWr2u9/component
 import Userworkflow from "../../Userworkflow"; // plasmic-import: xcx15_gUi62a/component
 import MetrikaYandex from "../../MetrikaYandex"; // plasmic-import: bwh2kDzd78mD/component
+import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 
 import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
 
@@ -132,6 +133,8 @@ export type PlasmicListOfNotofications__OverridesType = {
   اطلاعرسانیهایموجود?: Flex__<"div">;
   userworkflow?: Flex__<typeof Userworkflow>;
   metrikaYandex?: Flex__<typeof MetrikaYandex>;
+  runCodeGtmMetrica?: Flex__<typeof SideEffect>;
+  gtm?: Flex__<typeof Embed>;
 };
 
 export interface DefaultListOfNotoficationsProps {}
@@ -3093,6 +3096,109 @@ function PlasmicListOfNotofications__RenderFunc(props: {
             data-plasmic-override={overrides.metrikaYandex}
             className={classNames("__wab_instance", sty.metrikaYandex)}
           />
+
+          <SideEffect
+            data-plasmic-name={"runCodeGtmMetrica"}
+            data-plasmic-override={overrides.runCodeGtmMetrica}
+            className={classNames("__wab_instance", sty.runCodeGtmMetrica)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          function loadGTM() {
+                            var gtmScript = document.createElement("script");
+                            gtmScript.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P5RPLDP');`;
+                            document.head.appendChild(gtmScript);
+                            var gtmNoScript =
+                              document.createElement("noscript");
+                            gtmNoScript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
+                            document.body.insertBefore(
+                              gtmNoScript,
+                              document.body.firstChild
+                            );
+                          }
+                          return loadGTM();
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["loadMetrica"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          function loadMetrika() {
+                            var metrikaScript =
+                              document.createElement("script");
+                            metrikaScript.innerHTML = `(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(98277236, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+    });`;
+                            document.head.appendChild(metrikaScript);
+                            var metrikaNoScript =
+                              document.createElement("noscript");
+                            metrikaNoScript.innerHTML = `<div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div>`;
+                            document.body.insertBefore(
+                              metrikaNoScript,
+                              document.body.firstChild
+                            );
+                          }
+                          return loadMetrika();
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["loadMetrica"] != null &&
+                typeof $steps["loadMetrica"] === "object" &&
+                typeof $steps["loadMetrica"].then === "function"
+              ) {
+                $steps["loadMetrica"] = await $steps["loadMetrica"];
+              }
+            }}
+          />
+
+          <Embed
+            data-plasmic-name={"gtm"}
+            data-plasmic-override={overrides.gtm}
+            className={classNames("__wab_instance", sty.gtm)}
+            code={
+              '\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"\nheight="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->\n\n<!-- Yandex.Metrika counter -->\n<script type="text/javascript" >\n   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n   m[i].l=1*new Date();\n   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})\n   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");\n\n   ym(98277236, "init", {\n        clickmap:true,\n        trackLinks:true,\n        accurateTrackBounce:true,\n        webvisor:true\n   });\n</script>\n<noscript><div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div></noscript>\n<!-- /Yandex.Metrika counter -->'
+            }
+          />
         </div>
       </div>
     </React.Fragment>
@@ -3133,7 +3239,9 @@ const PlasmicDescendants = {
     "listofnotifications",
     "\u0627\u0637\u0644\u0627\u0639\u0631\u0633\u0627\u0646\u06cc\u0647\u0627\u06cc\u0645\u0648\u062c\u0648\u062f",
     "userworkflow",
-    "metrikaYandex"
+    "metrikaYandex",
+    "runCodeGtmMetrica",
+    "gtm"
   ],
   sideEffect: ["sideEffect"],
   subject: ["subject"],
@@ -3258,7 +3366,9 @@ const PlasmicDescendants = {
     "\u0627\u0637\u0644\u0627\u0639\u0631\u0633\u0627\u0646\u06cc\u0647\u0627\u06cc\u0645\u0648\u062c\u0648\u062f"
   ],
   userworkflow: ["userworkflow"],
-  metrikaYandex: ["metrikaYandex"]
+  metrikaYandex: ["metrikaYandex"],
+  runCodeGtmMetrica: ["runCodeGtmMetrica"],
+  gtm: ["gtm"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -3297,6 +3407,8 @@ type NodeDefaultElementType = {
   اطلاعرسانیهایموجود: "div";
   userworkflow: typeof Userworkflow;
   metrikaYandex: typeof MetrikaYandex;
+  runCodeGtmMetrica: typeof SideEffect;
+  gtm: typeof Embed;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -3393,6 +3505,8 @@ export const PlasmicListOfNotofications = Object.assign(
     ),
     userworkflow: makeNodeComponent("userworkflow"),
     metrikaYandex: makeNodeComponent("metrikaYandex"),
+    runCodeGtmMetrica: makeNodeComponent("runCodeGtmMetrica"),
+    gtm: makeNodeComponent("gtm"),
 
     // Metadata about props expected for PlasmicListOfNotofications
     internalVariantProps: PlasmicListOfNotofications__VariantProps,

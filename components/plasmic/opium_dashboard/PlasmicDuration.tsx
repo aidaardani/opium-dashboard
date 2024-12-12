@@ -1046,7 +1046,7 @@ function PlasmicDuration__RenderFunc(props: {
                           })()
                         : (() => {
                             try {
-                              return currentItem.name === $state.newduration;
+                              return currentItem.name == $state.newduration;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
