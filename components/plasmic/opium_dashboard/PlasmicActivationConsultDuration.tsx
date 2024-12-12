@@ -63,6 +63,7 @@ import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-impor
 import HoursDaysOfWeek from "../../HoursDaysOfWeek"; // plasmic-import: lSLy8Nehd6MM/component
 import Duration from "../../Duration"; // plasmic-import: hYLHU_pJKp9-/component
 import Workhours from "../../Workhours"; // plasmic-import: AuSNwEdbo4sV/component
+import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -72,6 +73,8 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJ
 import sty from "./PlasmicActivationConsultDuration.module.css"; // plasmic-import: PibRCPxm0C4b/css
 
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
+import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
+import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 
 createPlasmicElementProxy;
 
@@ -93,9 +96,9 @@ export type PlasmicActivationConsultDuration__OverridesType = {
   centersApi?: Flex__<typeof ApiRequest>;
   svg?: Flex__<"svg">;
   hoursDaysOfWeek?: Flex__<typeof HoursDaysOfWeek>;
-  activeDuration?: Flex__<typeof HoursDaysOfWeek>;
   duration?: Flex__<typeof Duration>;
   workhours?: Flex__<typeof Workhours>;
+  button?: Flex__<typeof Button>;
 };
 
 export interface DefaultActivationConsultDurationProps {}
@@ -171,12 +174,6 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "centersApi"
-      },
-      {
-        path: "activeDuration.duration",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       },
       {
         path: "isLoadingSave",
@@ -363,7 +360,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                   {(() => {
                     try {
                       return $state.centersApi.data.data.some(
-                        item => item.id == 5532
+                        item => item.id == "5532"
                       );
                     } catch (e) {
                       if (
@@ -424,7 +421,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                   {(() => {
                     try {
                       return !$state.centersApi.data.data.some(
-                        item => item.id == 5532
+                        item => item.id == "5532"
                       );
                     } catch (e) {
                       if (
@@ -436,299 +433,240 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                       throw e;
                     }
                   })() ? (
-                    <HoursDaysOfWeek
-                      data-plasmic-name={"activeDuration"}
-                      data-plasmic-override={overrides.activeDuration}
-                      centerId={(() => {
-                        try {
-                          return "5532";
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.activeDuration
-                      )}
-                      customOnSubmit={async workhours => {
-                        const $steps = {};
-
-                        $steps["runCode"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                customFunction: async () => {
-                                  return (() => {
-                                    const channels = JSON.parse(
-                                      globalThis.decodeURIComponent(
-                                        $ctx.query.channels
-                                      )
-                                    );
-                                    const cost = JSON.parse(
-                                      globalThis.decodeURIComponent(
-                                        $ctx.query.cost
-                                      )
-                                    );
-                                    return console.log({
-                                      workHours: workhours.workhours,
-                                      service_length: 3,
-                                      online_channels: channels,
-                                      price: cost
-                                    });
-                                  })();
-                                }
-                              };
-                              return (({ customFunction }) => {
-                                return customFunction();
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["runCode"] != null &&
-                          typeof $steps["runCode"] === "object" &&
-                          typeof $steps["runCode"].then === "function"
-                        ) {
-                          $steps["runCode"] = await $steps["runCode"];
-                        }
-
-                        $steps["updateIsLoadingSave"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["isLoadingSave"]
-                                },
-                                operation: 0,
-                                value: true
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateIsLoadingSave"] != null &&
-                          typeof $steps["updateIsLoadingSave"] === "object" &&
-                          typeof $steps["updateIsLoadingSave"].then ===
-                            "function"
-                        ) {
-                          $steps["updateIsLoadingSave"] = await $steps[
-                            "updateIsLoadingSave"
-                          ];
-                        }
-
-                        $steps["activeConsultMutation"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  "POST",
-                                  "https://api.paziresh24.com/V1/doctor/consult",
-                                  undefined,
-                                  (() => {
-                                    try {
-                                      return (() => {
-                                        const channels = JSON.parse(
-                                          globalThis.decodeURIComponent(
-                                            $ctx.query.channels
-                                          )
-                                        );
-                                        const cost = JSON.parse(
-                                          globalThis.decodeURIComponent(
-                                            $ctx.query.cost
-                                          )
-                                        )({
-                                          workHours: workhours.workhours,
-                                          service_length: 3,
-                                          online_channels: channels,
-                                          price: cost
-                                        });
-                                        return cost;
-                                      })();
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.apiRequest"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["activeConsultMutation"] != null &&
-                          typeof $steps["activeConsultMutation"] === "object" &&
-                          typeof $steps["activeConsultMutation"].then ===
-                            "function"
-                        ) {
-                          $steps["activeConsultMutation"] = await $steps[
-                            "activeConsultMutation"
-                          ];
-                        }
-
-                        $steps["updateIsLoadingSave2"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["isLoadingSave"]
-                                },
-                                operation: 0,
-                                value: false
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateIsLoadingSave2"] != null &&
-                          typeof $steps["updateIsLoadingSave2"] === "object" &&
-                          typeof $steps["updateIsLoadingSave2"].then ===
-                            "function"
-                        ) {
-                          $steps["updateIsLoadingSave2"] = await $steps[
-                            "updateIsLoadingSave2"
-                          ];
-                        }
-
-                        $steps["toast"] = !!$steps.activeConsultMutation.data
-                          .message
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  (() => {
-                                    try {
-                                      return $steps.activeConsultMutation
-                                        .status == 200
-                                        ? "success"
-                                        : "error";
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })(),
-                                  (() => {
-                                    try {
-                                      return $steps.activeConsultMutation.data
-                                        .message;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.showToast"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["toast"] != null &&
-                          typeof $steps["toast"] === "object" &&
-                          typeof $steps["toast"].then === "function"
-                        ) {
-                          $steps["toast"] = await $steps["toast"];
-                        }
-                      }}
-                      duration={generateStateValueProp($state, [
-                        "activeDuration",
-                        "duration"
-                      ])}
-                      forwardPage={"/activation-page/finish"}
-                      onDurationChange={generateStateOnChangeProp($state, [
-                        "activeDuration",
-                        "duration"
-                      ])}
-                      userCenterId={(() => {
-                        try {
-                          return $state.centersApi.data.data.find(
-                            item => item.id == 5532
-                          ).user_center_id;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                    />
-                  ) : null}
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__ewBdp)}
-                  >
-                    <Duration
-                      data-plasmic-name={"duration"}
-                      data-plasmic-override={overrides.duration}
-                      className={classNames("__wab_instance", sty.duration)}
-                      newduration={generateStateValueProp($state, [
-                        "duration",
-                        "newduration"
-                      ])}
-                      onNewdurationChange2={generateStateOnChangeProp($state, [
-                        "duration",
-                        "newduration"
-                      ])}
-                    />
-
                     <div
-                      className={classNames(projectcss.all, sty.freeBox__kUw4D)}
+                      className={classNames(projectcss.all, sty.freeBox__ewBdp)}
                     >
-                      {(_par =>
-                        !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                        (() => {
+                      <Duration
+                        data-plasmic-name={"duration"}
+                        data-plasmic-override={overrides.duration}
+                        className={classNames("__wab_instance", sty.duration)}
+                        newduration={generateStateValueProp($state, [
+                          "duration",
+                          "newduration"
+                        ])}
+                        onNewdurationChange2={generateStateOnChangeProp(
+                          $state,
+                          ["duration", "newduration"]
+                        )}
+                      />
+
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__kUw4D
+                        )}
+                      >
+                        {(_par =>
+                          !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                          (() => {
+                            try {
+                              return $state.days;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return [];
+                              }
+                              throw e;
+                            }
+                          })()
+                        ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                          const currentItem = __plasmic_item_0;
+                          const currentIndex = __plasmic_idx_0;
+                          return (() => {
+                            const child$Props = {
+                              checkboxIsChecked: generateStateValueProp(
+                                $state,
+                                [
+                                  "workhours",
+                                  __plasmic_idx_0,
+                                  "checkboxIsChecked"
+                                ]
+                              ),
+                              className: classNames(
+                                "__wab_instance",
+                                sty.workhours
+                              ),
+                              dayOfWeek: (() => {
+                                try {
+                                  return currentItem.id;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })(),
+                              duration: (() => {
+                                try {
+                                  return $state.duration.newduration;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })(),
+                              endedSelectedDay: async id => {
+                                const $steps = {};
+
+                                $steps["runCode"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        customFunction: async () => {
+                                          return (() => {
+                                            const x = JSON.stringify(
+                                              $state.workhours[currentIndex]
+                                                .listOfWorkhoureCopy
+                                            );
+                                            return id.forEach(day => {
+                                              $state.workhours[
+                                                $state.days.findIndex(
+                                                  item => item.id == day
+                                                )
+                                              ].listOfWorkhoureCopy =
+                                                JSON.parse(x);
+                                              $state.workhours[
+                                                $state.days.findIndex(
+                                                  item => item.id == day
+                                                )
+                                              ].checkboxIsChecked = true;
+                                            });
+                                          })();
+                                        }
+                                      };
+                                      return (({ customFunction }) => {
+                                        return customFunction();
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["runCode"] != null &&
+                                  typeof $steps["runCode"] === "object" &&
+                                  typeof $steps["runCode"].then === "function"
+                                ) {
+                                  $steps["runCode"] = await $steps["runCode"];
+                                }
+                              },
+                              key: currentIndex,
+                              listOfWorkhoureCopy: generateStateValueProp(
+                                $state,
+                                [
+                                  "workhours",
+                                  __plasmic_idx_0,
+                                  "listOfWorkhoureCopy"
+                                ]
+                              ),
+                              onCheckboxIsCheckedChange:
+                                generateStateOnChangeProp($state, [
+                                  "workhours",
+                                  __plasmic_idx_0,
+                                  "checkboxIsChecked"
+                                ]),
+                              onListOfWorkhoureCopyChange:
+                                generateStateOnChangeProp($state, [
+                                  "workhours",
+                                  __plasmic_idx_0,
+                                  "listOfWorkhoureCopy"
+                                ]),
+                              onWarningChange: generateStateOnChangeProp(
+                                $state,
+                                ["workhours", __plasmic_idx_0, "warning"]
+                              )
+                            };
+
+                            initializePlasmicStates(
+                              $state,
+                              [
+                                {
+                                  name: "workhours[].checkboxIsChecked",
+                                  initFunc: ({ $props, $state, $queries }) =>
+                                    (() => {
+                                      try {
+                                        return $state.newWorkHours.some(
+                                          item => item.day == currentItem.id
+                                        );
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return false;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                },
+                                {
+                                  name: "workhours[].listOfWorkhoureCopy",
+                                  initFunc: ({ $props, $state, $queries }) =>
+                                    (() => {
+                                      try {
+                                        return $state.newWorkHours.some(
+                                          item => item.day === currentItem.id
+                                        )
+                                          ? $state.newWorkHours
+                                              .filter(
+                                                item =>
+                                                  item.day === currentItem.id
+                                              )
+                                              .map(item => ({
+                                                from: item.from,
+                                                to: item.to
+                                              }))
+                                          : [
+                                              {
+                                                from: "18:00",
+                                                to: "21:00"
+                                              }
+                                            ];
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return [
+                                            { from: "17:00", to: "21:00" }
+                                          ];
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                }
+                              ],
+                              [__plasmic_idx_0]
+                            );
+                            return (
+                              <Workhours
+                                data-plasmic-name={"workhours"}
+                                data-plasmic-override={overrides.workhours}
+                                {...child$Props}
+                              />
+                            );
+                          })();
+                        })}
+                      </div>
+                      <Button
+                        data-plasmic-name={"button"}
+                        data-plasmic-override={overrides.button}
+                        children2={
+                          "\u0630\u062e\u06cc\u0631\u0647 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc"
+                        }
+                        className={classNames("__wab_instance", sty.button)}
+                        loading={(() => {
                           try {
-                            return $state.days;
+                            return $state.isLoadingSave;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -738,201 +676,292 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                             }
                             throw e;
                           }
-                        })()
-                      ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                        const currentItem = __plasmic_item_0;
-                        const currentIndex = __plasmic_idx_0;
-                        return (() => {
-                          const child$Props = {
-                            centerId: (() => {
-                              try {
-                                return undefined;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })(),
-                            checkboxIsChecked: generateStateValueProp($state, [
-                              "workhours",
-                              __plasmic_idx_0,
-                              "checkboxIsChecked"
-                            ]),
-                            className: classNames(
-                              "__wab_instance",
-                              sty.workhours
-                            ),
-                            dayOfWeek: (() => {
-                              try {
-                                return currentItem.id;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })(),
-                            duration: (() => {
-                              try {
-                                return $state.duration.newduration;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })(),
-                            endedSelectedDay: async id => {
-                              const $steps = {};
+                        })()}
+                        onClick={async event => {
+                          const $steps = {};
 
-                              $steps["runCode"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      customFunction: async () => {
-                                        return (() => {
-                                          const x = JSON.stringify(
-                                            $state.workhours[currentIndex]
-                                              .listOfWorkhoureCopy
-                                          );
-                                          return id.forEach(day => {
-                                            $state.workhours[
-                                              $state.days.findIndex(
-                                                item => item.id == day
-                                              )
-                                            ].listOfWorkhoureCopy =
-                                              JSON.parse(x);
-                                            $state.workhours[
-                                              $state.days.findIndex(
-                                                item => item.id == day
-                                              )
-                                            ].checkboxIsChecked = true;
-                                          });
-                                        })();
-                                      }
-                                    };
-                                    return (({ customFunction }) => {
-                                      return customFunction();
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["runCode"] != null &&
-                                typeof $steps["runCode"] === "object" &&
-                                typeof $steps["runCode"].then === "function"
-                              ) {
-                                $steps["runCode"] = await $steps["runCode"];
-                              }
-                            },
-                            key: currentIndex,
-                            listOfWorkhoureCopy: generateStateValueProp(
-                              $state,
-                              [
-                                "workhours",
-                                __plasmic_idx_0,
-                                "listOfWorkhoureCopy"
-                              ]
-                            ),
-                            onCheckboxIsCheckedChange:
-                              generateStateOnChangeProp($state, [
-                                "workhours",
-                                __plasmic_idx_0,
-                                "checkboxIsChecked"
-                              ]),
-                            onListOfWorkhoureCopyChange:
-                              generateStateOnChangeProp($state, [
-                                "workhours",
-                                __plasmic_idx_0,
-                                "listOfWorkhoureCopy"
-                              ]),
-                            onWarningChange: generateStateOnChangeProp($state, [
-                              "workhours",
-                              __plasmic_idx_0,
-                              "warning"
-                            ])
-                          };
-
-                          initializePlasmicStates(
-                            $state,
-                            [
-                              {
-                                name: "workhours[].checkboxIsChecked",
-                                initFunc: ({ $props, $state, $queries }) =>
-                                  (() => {
-                                    try {
-                                      return $state.newWorkHours.some(
-                                        item => item.day == currentItem.id
+                          $steps["runCode"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  customFunction: async () => {
+                                    return (() => {
+                                      const channels = JSON.parse(
+                                        globalThis.decodeURIComponent(
+                                          $ctx.query.channels
+                                        )
                                       );
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return false;
-                                      }
-                                      throw e;
-                                    }
-                                  })()
-                              },
-                              {
-                                name: "workhours[].listOfWorkhoureCopy",
-                                initFunc: ({ $props, $state, $queries }) =>
-                                  (() => {
-                                    try {
-                                      return $state.newWorkHours.some(
-                                        item => item.day === currentItem.id
-                                      )
-                                        ? $state.newWorkHours
-                                            .filter(
-                                              item =>
-                                                item.day === currentItem.id
+                                      const cost = JSON.parse(
+                                        globalThis.decodeURIComponent(
+                                          $ctx.query.cost
+                                        )
+                                      );
+                                      return console.log({
+                                        workHours: $state.workhours
+                                          .map((day, index) =>
+                                            day.checkboxIsChecked === true
+                                              ? day.listOfWorkhoureCopy.map(
+                                                  workhour => {
+                                                    return {
+                                                      day: $state.days[index]
+                                                        .id,
+                                                      from: workhour.from,
+                                                      to: workhour.to
+                                                    };
+                                                  }
+                                                )
+                                              : false
+                                          )
+                                          .flat()
+                                          .filter(item => item != false),
+                                        service_length: 3,
+                                        online_channels: channels,
+                                        price: cost
+                                      });
+                                    })();
+                                  }
+                                };
+                                return (({ customFunction }) => {
+                                  return customFunction();
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["runCode"] != null &&
+                            typeof $steps["runCode"] === "object" &&
+                            typeof $steps["runCode"].then === "function"
+                          ) {
+                            $steps["runCode"] = await $steps["runCode"];
+                          }
+
+                          $steps["overlapToast"] = $state.workhours.some(
+                            wh => wh.checkboxIsChecked && wh.warning
+                          )
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    "error",
+                                    "\u0633\u0627\u0639\u0627\u062a \u0628\u0627 \u06cc\u06a9\u062f\u06cc\u06af\u0631 \u0647\u0645\u200c\u067e\u0648\u0634\u0627\u0646\u06cc \u062f\u0627\u0631\u0646\u062f."
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Fragment.showToast"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["overlapToast"] != null &&
+                            typeof $steps["overlapToast"] === "object" &&
+                            typeof $steps["overlapToast"].then === "function"
+                          ) {
+                            $steps["overlapToast"] = await $steps[
+                              "overlapToast"
+                            ];
+                          }
+
+                          $steps["updateIsLoadingSave"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["isLoadingSave"]
+                                  },
+                                  operation: 0,
+                                  value: true
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateIsLoadingSave"] != null &&
+                            typeof $steps["updateIsLoadingSave"] === "object" &&
+                            typeof $steps["updateIsLoadingSave"].then ===
+                              "function"
+                          ) {
+                            $steps["updateIsLoadingSave"] = await $steps[
+                              "updateIsLoadingSave"
+                            ];
+                          }
+
+                          $steps["activeConsultMutation"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    "POST",
+                                    "https://api.paziresh24.com/V1/doctor/consult",
+                                    undefined,
+                                    (() => {
+                                      try {
+                                        return (() => {
+                                          const channels = JSON.parse(
+                                            globalThis.decodeURIComponent(
+                                              $ctx.query.channels
                                             )
-                                            .map(item => ({
-                                              from: item.from,
-                                              to: item.to
-                                            }))
-                                        : [
-                                            {
-                                              from: "18:00",
-                                              to: "21:00"
-                                            }
-                                          ];
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return [{ from: "17:00", to: "21:00" }];
+                                          );
+                                          const cost = JSON.parse(
+                                            globalThis.decodeURIComponent(
+                                              $ctx.query.cost
+                                            )
+                                          );
+                                          return {
+                                            service_length: 3,
+                                            online_channels: channels,
+                                            price: cost,
+                                            workHours: $state.workhours
+                                              .map((day, index) =>
+                                                day.checkboxIsChecked === true
+                                                  ? day.listOfWorkhoureCopy.map(
+                                                      workhour => {
+                                                        return {
+                                                          day: $state.days[
+                                                            index
+                                                          ].id,
+                                                          from: workhour.from,
+                                                          to: workhour.to
+                                                        };
+                                                      }
+                                                    )
+                                                  : false
+                                              )
+                                              .flat()
+                                              .filter(item => item != false)
+                                          };
+                                        })();
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
                                       }
-                                      throw e;
-                                    }
-                                  })()
-                              }
-                            ],
-                            [__plasmic_idx_0]
-                          );
-                          return (
-                            <Workhours
-                              data-plasmic-name={"workhours"}
-                              data-plasmic-override={overrides.workhours}
-                              {...child$Props}
-                            />
-                          );
-                        })();
-                      })}
+                                    })()
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Fragment.apiRequest"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["activeConsultMutation"] != null &&
+                            typeof $steps["activeConsultMutation"] ===
+                              "object" &&
+                            typeof $steps["activeConsultMutation"].then ===
+                              "function"
+                          ) {
+                            $steps["activeConsultMutation"] = await $steps[
+                              "activeConsultMutation"
+                            ];
+                          }
+
+                          $steps["updateIsLoadingSave2"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["isLoadingSave"]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateIsLoadingSave2"] != null &&
+                            typeof $steps["updateIsLoadingSave2"] ===
+                              "object" &&
+                            typeof $steps["updateIsLoadingSave2"].then ===
+                              "function"
+                          ) {
+                            $steps["updateIsLoadingSave2"] = await $steps[
+                              "updateIsLoadingSave2"
+                            ];
+                          }
+
+                          $steps["toast"] = !!$steps.activeConsultMutation.data
+                            .message
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    (() => {
+                                      try {
+                                        return $steps.activeConsultMutation
+                                          .status
+                                          ? "success"
+                                          : "error";
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })(),
+                                    (() => {
+                                      try {
+                                        return $steps.activeConsultMutation.data
+                                          .message;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Fragment.showToast"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["toast"] != null &&
+                            typeof $steps["toast"] === "object" &&
+                            typeof $steps["toast"].then === "function"
+                          ) {
+                            $steps["toast"] = await $steps["toast"];
+                          }
+                        }}
+                      />
                     </div>
-                  </div>
+                  ) : null}
                 </Stack__>
               </ApiRequest>
             </Stack__>
@@ -951,9 +980,9 @@ const PlasmicDescendants = {
     "centersApi",
     "svg",
     "hoursDaysOfWeek",
-    "activeDuration",
     "duration",
-    "workhours"
+    "workhours",
+    "button"
   ],
   header: ["header", "text"],
   text: ["text"],
@@ -961,15 +990,15 @@ const PlasmicDescendants = {
     "centersApi",
     "svg",
     "hoursDaysOfWeek",
-    "activeDuration",
     "duration",
-    "workhours"
+    "workhours",
+    "button"
   ],
   svg: ["svg"],
   hoursDaysOfWeek: ["hoursDaysOfWeek"],
-  activeDuration: ["activeDuration"],
   duration: ["duration"],
-  workhours: ["workhours"]
+  workhours: ["workhours"],
+  button: ["button"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -981,9 +1010,9 @@ type NodeDefaultElementType = {
   centersApi: typeof ApiRequest;
   svg: "svg";
   hoursDaysOfWeek: typeof HoursDaysOfWeek;
-  activeDuration: typeof HoursDaysOfWeek;
   duration: typeof Duration;
   workhours: typeof Workhours;
+  button: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1052,9 +1081,9 @@ export const PlasmicActivationConsultDuration = Object.assign(
     centersApi: makeNodeComponent("centersApi"),
     svg: makeNodeComponent("svg"),
     hoursDaysOfWeek: makeNodeComponent("hoursDaysOfWeek"),
-    activeDuration: makeNodeComponent("activeDuration"),
     duration: makeNodeComponent("duration"),
     workhours: makeNodeComponent("workhours"),
+    button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicActivationConsultDuration
     internalVariantProps: PlasmicActivationConsultDuration__VariantProps,

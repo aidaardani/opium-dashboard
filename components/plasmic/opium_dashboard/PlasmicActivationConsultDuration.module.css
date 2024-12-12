@@ -149,10 +149,8 @@
 .hoursDaysOfWeek:global(.__wab_instance) {
   max-width: 100%;
 }
-.activeDuration:global(.__wab_instance) {
-  max-width: 100%;
-}
 .freeBox__ewBdp {
+  display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
@@ -161,7 +159,6 @@
   justify-content: flex-start;
   align-items: center;
   min-width: 0;
-  display: none;
   padding: 0px;
 }
 .duration:global(.__wab_instance) {
@@ -181,4 +178,21 @@
 }
 .workhours:global(.__wab_instance) {
   max-width: 100%;
+}
+.button:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.svg__jsuR {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.svg__v1UOr {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
 }
