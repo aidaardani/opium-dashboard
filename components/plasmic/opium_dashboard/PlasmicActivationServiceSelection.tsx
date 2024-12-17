@@ -236,9 +236,36 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
           </div>
         }
         method={"GET"}
-        onError={generateStateOnChangeProp($state, ["profileApi", "error"])}
-        onLoading={generateStateOnChangeProp($state, ["profileApi", "loading"])}
-        onSuccess={generateStateOnChangeProp($state, ["profileApi", "data"])}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["profileApi", "error"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["profileApi", "loading"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["profileApi", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         ref={ref => {
           $refs["profileApi"] = ref;
         }}

@@ -4217,8 +4217,26 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
           height={"300px"}
           lat={generateStateValueProp($state, ["map", "lat"])}
           lng={generateStateValueProp($state, ["map", "lng"])}
-          onChangeLat={generateStateOnChangeProp($state, ["map", "lat"])}
-          onChangeLng={generateStateOnChangeProp($state, ["map", "lng"])}
+          onChangeLat={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["map", "lat"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          }}
+          onChangeLng={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["map", "lng"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          }}
           width={"100%"}
           zoom={20}
         />
@@ -4267,9 +4285,36 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
           </Stack__>
         }
         method={"GET"}
-        onError={generateStateOnChangeProp($state, ["addressApi", "error"])}
-        onLoading={generateStateOnChangeProp($state, ["addressApi", "loading"])}
-        onSuccess={generateStateOnChangeProp($state, ["addressApi", "data"])}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["addressApi", "error"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["addressApi", "loading"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["addressApi", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         ref={ref => {
           $refs["addressApi"] = ref;
         }}
@@ -4379,16 +4424,36 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
               </div>
             }
             method={"GET"}
-            onError={generateStateOnChangeProp($state, ["centersApi", "error"])}
-            onLoading={generateStateOnChangeProp($state, [
-              "centersApi",
-              "loading"
-            ])}
+            onError={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["centersApi", "error"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
+            onLoading={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "centersApi",
+                "loading"
+              ]).apply(null, eventArgs);
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
             onSuccess={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["centersApi", "data"]).apply(
                 null,
                 eventArgs
               );
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+
               (async data => {
                 const $steps = {};
 
@@ -4448,14 +4513,26 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.tells)}
                 newTells={generateStateValueProp($state, ["tells", "newTells"])}
                 oldTells={generateStateValueProp($state, ["tells", "oldTells"])}
-                onNewTellsChange={generateStateOnChangeProp($state, [
-                  "tells",
-                  "newTells"
-                ])}
-                onOldTellsChange={generateStateOnChangeProp($state, [
-                  "tells",
-                  "oldTells"
-                ])}
+                onNewTellsChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "tells",
+                    "newTells"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
+                onOldTellsChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "tells",
+                    "oldTells"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
               />
 
               <ProfileNotifyCell
@@ -4466,10 +4543,16 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                   "notifyCell",
                   "notifyCellValue"
                 ])}
-                onNotifyCellValueChange={generateStateOnChangeProp($state, [
-                  "notifyCell",
-                  "notifyCellValue"
-                ])}
+                onNotifyCellValueChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "notifyCell",
+                    "notifyCellValue"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
               />
 
               <div className={classNames(projectcss.all, sty.freeBox__v74R)}>
@@ -4802,10 +4885,16 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         }
         className={classNames("__wab_instance", sty.tellsDialog)}
         noTrigger={true}
-        onOpenChange={generateStateOnChangeProp($state, [
-          "tellsDialog",
-          "open"
-        ])}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["tellsDialog", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         open={generateStateValueProp($state, ["tellsDialog", "open"])}
         title={
           "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u062a\u0645\u0627\u0633 \u0645\u0637\u0628"
@@ -4848,14 +4937,26 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
               data-plasmic-name={"selectProvince"}
               data-plasmic-override={overrides.selectProvince}
               name={"province"}
-              onChange={generateStateOnChangeProp($state, [
-                "selectProvince",
-                "value"
-              ])}
-              onOpenChange={generateStateOnChangeProp($state, [
-                "selectProvince",
-                "open"
-              ])}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "selectProvince",
+                  "value"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
+              onOpenChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "selectProvince",
+                  "open"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
               open={generateStateValueProp($state, ["selectProvince", "open"])}
               options={(() => {
                 try {
@@ -4887,14 +4988,26 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
             <Select
               data-plasmic-name={"selectCity"}
               data-plasmic-override={overrides.selectCity}
-              onChange={generateStateOnChangeProp($state, [
-                "selectCity",
-                "value"
-              ])}
-              onOpenChange={generateStateOnChangeProp($state, [
-                "selectCity",
-                "open"
-              ])}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "selectCity",
+                  "value"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
+              onOpenChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["selectCity", "open"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
               open={generateStateValueProp($state, ["selectCity", "open"])}
               options={(() => {
                 try {
@@ -4968,7 +5081,16 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         }
         className={classNames("__wab_instance", sty.cityDialog)}
         noTrigger={true}
-        onOpenChange={generateStateOnChangeProp($state, ["cityDialog", "open"])}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["cityDialog", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         open={generateStateValueProp($state, ["cityDialog", "open"])}
         title={
           "\u0627\u0646\u062a\u062e\u0627\u0628 \u0634\u0647\u0631 \u0648 \u0627\u0633\u062a\u0627\u0646"

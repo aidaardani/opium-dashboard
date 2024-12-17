@@ -240,10 +240,16 @@ function PlasmicDaysOfWeek__RenderFunc(props: {
         isChecked={
           generateStateValueProp($state, ["selectAll", "isChecked"]) ?? false
         }
-        onChange={(...eventArgs) => {
-          generateStateOnChangeProp($state, ["selectAll", "isChecked"])(
-            eventArgs[0]
-          );
+        onChange={async (...eventArgs: any) => {
+          ((...eventArgs) => {
+            generateStateOnChangeProp($state, ["selectAll", "isChecked"])(
+              eventArgs[0]
+            );
+          }).apply(null, eventArgs);
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
         }}
       >
         {"\u0627\u0646\u062a\u062e\u0627\u0628 \u0647\u0645\u0647 "}
@@ -288,12 +294,18 @@ function PlasmicDaysOfWeek__RenderFunc(props: {
               }
             })(),
             key: currentIndex,
-            onChange: (...eventArgs) => {
-              generateStateOnChangeProp($state, [
-                "daysofweek",
-                __plasmic_idx_0,
-                "isChecked"
-              ])(eventArgs[0]);
+            onChange: async (...eventArgs: any) => {
+              ((...eventArgs) => {
+                generateStateOnChangeProp($state, [
+                  "daysofweek",
+                  __plasmic_idx_0,
+                  "isChecked"
+                ])(eventArgs[0]);
+              }).apply(null, eventArgs);
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
             }
           };
 

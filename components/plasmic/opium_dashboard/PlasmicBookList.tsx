@@ -729,6 +729,11 @@ function PlasmicBookList__RenderFunc(props: {
                             "fragmentDatePicker",
                             "values"
                           ]).apply(null, eventArgs);
+
+                          if (eventArgs.length > 1 && eventArgs[1]) {
+                            return;
+                          }
+
                           (async date => {
                             const $steps = {};
 
@@ -783,10 +788,16 @@ function PlasmicBookList__RenderFunc(props: {
                     </div>
                   }
                   className={classNames("__wab_instance", sty.calendar)}
-                  onOpenChange={generateStateOnChangeProp($state, [
-                    "calendar",
-                    "open"
-                  ])}
+                  onOpenChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "calendar",
+                      "open"
+                    ]).apply(null, eventArgs);
+
+                    if (eventArgs.length > 1 && eventArgs[1]) {
+                      return;
+                    }
+                  }}
                   open={generateStateValueProp($state, ["calendar", "open"])}
                   title={
                     <div
@@ -927,6 +938,11 @@ function PlasmicBookList__RenderFunc(props: {
                       "drCenters",
                       "selectedCenter"
                     ]).apply(null, eventArgs);
+
+                    if (eventArgs.length > 1 && eventArgs[1]) {
+                      return;
+                    }
+
                     (async val => {
                       const $steps = {};
 
@@ -1417,10 +1433,16 @@ function PlasmicBookList__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.dialog, {
                   [sty.dialogactive]: hasVariant($state, "active", "active")
                 })}
-                onOpenChange={generateStateOnChangeProp($state, [
-                  "dialog",
-                  "open"
-                ])}
+                onOpenChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+                    null,
+                    eventArgs
+                  );
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
                 open={generateStateValueProp($state, ["dialog", "open"])}
                 title={null}
                 trigger={
@@ -2093,10 +2115,16 @@ function PlasmicBookList__RenderFunc(props: {
                     sty.determiningTheSituationDialog
                   )}
                   noTrigger={true}
-                  onOpenChange={generateStateOnChangeProp($state, [
-                    "determiningTheSituationDialog",
-                    "open"
-                  ])}
+                  onOpenChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "determiningTheSituationDialog",
+                      "open"
+                    ]).apply(null, eventArgs);
+
+                    if (eventArgs.length > 1 && eventArgs[1]) {
+                      return;
+                    }
+                  }}
                   open={generateStateValueProp($state, [
                     "determiningTheSituationDialog",
                     "open"

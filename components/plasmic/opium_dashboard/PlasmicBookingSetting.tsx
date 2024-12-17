@@ -777,6 +777,11 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     "from",
                                     "value"
                                   ]).apply(null, eventArgs);
+
+                                  if (eventArgs.length > 1 && eventArgs[1]) {
+                                    return;
+                                  }
+
                                   (async value => {
                                     const $steps = {};
 
@@ -947,6 +952,11 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     "to",
                                     "value"
                                   ]).apply(null, eventArgs);
+
+                                  if (eventArgs.length > 1 && eventArgs[1]) {
+                                    return;
+                                  }
+
                                   (async value => {
                                     const $steps = {};
 
@@ -1355,12 +1365,18 @@ function PlasmicBookingSetting__RenderFunc(props: {
                       </AntdAccordionItem>
                     </React.Fragment>
                   ),
-                  onChange: generateStateOnChangePropForCodeComponents(
-                    $state,
-                    "activePanelId",
-                    ["accordion", "activePanelId"],
-                    AntdAccordion_Helpers
-                  )
+                  onChange: async (...eventArgs: any) => {
+                    generateStateOnChangePropForCodeComponents(
+                      $state,
+                      "activePanelId",
+                      ["accordion", "activePanelId"],
+                      AntdAccordion_Helpers
+                    ).apply(null, eventArgs);
+
+                    if (eventArgs.length > 1 && eventArgs[1]) {
+                      return;
+                    }
+                  }
                 };
                 initializeCodeComponentStates(
                   $state,
@@ -1572,6 +1588,11 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     "refundrange",
                                     "value"
                                   ]).apply(null, eventArgs);
+
+                                  if (eventArgs.length > 1 && eventArgs[1]) {
+                                    return;
+                                  }
+
                                   (async value => {
                                     const $steps = {};
 
@@ -1946,12 +1967,18 @@ function PlasmicBookingSetting__RenderFunc(props: {
                         </AntdAccordionItem>
                       </React.Fragment>
                     ),
-                    onChange: generateStateOnChangePropForCodeComponents(
-                      $state,
-                      "activePanelId",
-                      ["accordionCancellationPolicy", "activePanelId"],
-                      AntdAccordion_Helpers
-                    )
+                    onChange: async (...eventArgs: any) => {
+                      generateStateOnChangePropForCodeComponents(
+                        $state,
+                        "activePanelId",
+                        ["accordionCancellationPolicy", "activePanelId"],
+                        AntdAccordion_Helpers
+                      ).apply(null, eventArgs);
+
+                      if (eventArgs.length > 1 && eventArgs[1]) {
+                        return;
+                      }
+                    }
                   };
                   initializeCodeComponentStates(
                     $state,

@@ -967,10 +967,16 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                           })}
                         </div>
                       }
-                      onOpenChange={generateStateOnChangeProp($state, [
-                        "fragmentPopoverSendEvents",
-                        "open"
-                      ])}
+                      onOpenChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "fragmentPopoverSendEvents",
+                          "open"
+                        ]).apply(null, eventArgs);
+
+                        if (eventArgs.length > 1 && eventArgs[1]) {
+                          return;
+                        }
+                      }}
                       open={generateStateValueProp($state, [
                         "fragmentPopoverSendEvents",
                         "open"
@@ -1311,10 +1317,16 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                           })}
                         </div>
                       }
-                      onOpenChange={generateStateOnChangeProp($state, [
-                        "fragmentPopoverSendWhom",
-                        "open"
-                      ])}
+                      onOpenChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "fragmentPopoverSendWhom",
+                          "open"
+                        ]).apply(null, eventArgs);
+
+                        if (eventArgs.length > 1 && eventArgs[1]) {
+                          return;
+                        }
+                      }}
                       open={generateStateValueProp($state, [
                         "fragmentPopoverSendWhom",
                         "open"
@@ -1916,10 +1928,16 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                           </Stack__>
                         </Stack__>
                       }
-                      onOpenChange={generateStateOnChangeProp($state, [
-                        "fragmentPopoverSendWhat",
-                        "open"
-                      ])}
+                      onOpenChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "fragmentPopoverSendWhat",
+                          "open"
+                        ]).apply(null, eventArgs);
+
+                        if (eventArgs.length > 1 && eventArgs[1]) {
+                          return;
+                        }
+                      }}
                       open={generateStateValueProp($state, [
                         "fragmentPopoverSendWhat",
                         "open"
@@ -2048,10 +2066,16 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                         "__wab_instance",
                         sty.multilineTextInput
                       )}
-                      onValueChange={generateStateOnChangeProp($state, [
-                        "multilineTextInput",
-                        "value"
-                      ])}
+                      onValueChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "multilineTextInput",
+                          "value"
+                        ]).apply(null, eventArgs);
+
+                        if (eventArgs.length > 1 && eventArgs[1]) {
+                          return;
+                        }
+                      }}
                       value={generateStateValueProp($state, [
                         "multilineTextInput",
                         "value"
@@ -2393,12 +2417,18 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                               </AntdAccordionItem>
                             </React.Fragment>
                           ),
-                          onChange: generateStateOnChangePropForCodeComponents(
-                            $state,
-                            "activePanelId",
-                            ["accordion", "activePanelId"],
-                            AntdAccordion_Helpers
-                          )
+                          onChange: async (...eventArgs: any) => {
+                            generateStateOnChangePropForCodeComponents(
+                              $state,
+                              "activePanelId",
+                              ["accordion", "activePanelId"],
+                              AntdAccordion_Helpers
+                            ).apply(null, eventArgs);
+
+                            if (eventArgs.length > 1 && eventArgs[1]) {
+                              return;
+                            }
+                          }
                         };
                         initializeCodeComponentStates(
                           $state,
@@ -2799,10 +2829,16 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                         "__wab_instance",
                         sty.receiptDialog
                       )}
-                      onOpenChange={generateStateOnChangeProp($state, [
-                        "receiptDialog",
-                        "open"
-                      ])}
+                      onOpenChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "receiptDialog",
+                          "open"
+                        ]).apply(null, eventArgs);
+
+                        if (eventArgs.length > 1 && eventArgs[1]) {
+                          return;
+                        }
+                      }}
                       open={generateStateValueProp($state, [
                         "receiptDialog",
                         "open"
@@ -2829,6 +2865,11 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                   "dialogaddnewworkflow",
                   "open"
                 ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+
                 (async val => {
                   const $steps = {};
 

@@ -470,10 +470,16 @@ function PlasmicUncertainBookStatusListPage__RenderFunc(props: {
                             "__wab_instance",
                             sty.uncertainBookStatusList
                           )}
-                          onSureVisitedChange={generateStateOnChangeProp(
-                            $state,
-                            ["uncertainBookStatusList", "sureVisited"]
-                          )}
+                          onSureVisitedChange={async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "uncertainBookStatusList",
+                              "sureVisited"
+                            ]).apply(null, eventArgs);
+
+                            if (eventArgs.length > 1 && eventArgs[1]) {
+                              return;
+                            }
+                          }}
                           sureVisited={generateStateValueProp($state, [
                             "uncertainBookStatusList",
                             "sureVisited"
@@ -483,10 +489,16 @@ function PlasmicUncertainBookStatusListPage__RenderFunc(props: {
                     </React.Fragment>
                   }
                   className={classNames("__wab_instance", sty.dialog)}
-                  onOpenChange={generateStateOnChangeProp($state, [
-                    "dialog",
-                    "open"
-                  ])}
+                  onOpenChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+                      null,
+                      eventArgs
+                    );
+
+                    if (eventArgs.length > 1 && eventArgs[1]) {
+                      return;
+                    }
+                  }}
                   open={generateStateValueProp($state, ["dialog", "open"])}
                   title={
                     "\u062a\u0639\u06cc\u06cc\u0646 \u0648\u0636\u0639\u06cc\u062a \u0646\u0648\u0628\u062a\u200c\u0647\u0627"

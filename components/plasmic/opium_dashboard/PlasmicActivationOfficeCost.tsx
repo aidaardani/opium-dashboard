@@ -304,8 +304,26 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
       <Select
         data-plasmic-name={"select"}
         data-plasmic-override={overrides.select}
-        onChange={generateStateOnChangeProp($state, ["select", "value"])}
-        onOpenChange={generateStateOnChangeProp($state, ["select", "open"])}
+        onChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["select", "value"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["select", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         open={generateStateValueProp($state, ["select", "open"])}
         options={(() => {
           try {
@@ -344,7 +362,16 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           data-plasmic-name={"input"}
           data-plasmic-override={overrides.input}
           className={classNames("__wab_instance", sty.input)}
-          onChange={generateStateOnChangeProp($state, ["input", "value"])}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["input", "value"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          }}
           placeholder={
             "\u0642\u06cc\u0645\u062a \u062f\u0644\u062e\u0648\u0627\u0647 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"
           }
@@ -426,9 +453,36 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           </div>
         }
         method={"GET"}
-        onError={generateStateOnChangeProp($state, ["centersApi", "error"])}
-        onLoading={generateStateOnChangeProp($state, ["centersApi", "loading"])}
-        onSuccess={generateStateOnChangeProp($state, ["centersApi", "data"])}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["centersApi", "error"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["centersApi", "loading"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["centersApi", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         ref={ref => {
           $refs["centersApi"] = ref;
         }}
@@ -993,7 +1047,16 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         }
         className={classNames("__wab_instance", sty.dialog)}
         noTrigger={true}
-        onOpenChange={generateStateOnChangeProp($state, ["dialog", "open"])}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         open={generateStateValueProp($state, ["dialog", "open"])}
         title={""}
         trigger={null}

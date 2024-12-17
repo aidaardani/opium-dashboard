@@ -260,14 +260,26 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
             disabled={
               hasVariant($state, "isDisable", "isDisable") ? true : undefined
             }
-            onChange={generateStateOnChangeProp($state, [
-              "selectDegree",
-              "value"
-            ])}
-            onOpenChange={generateStateOnChangeProp($state, [
-              "selectDegree",
-              "open"
-            ])}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "selectDegree",
+                "value"
+              ]).apply(null, eventArgs);
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
+            onOpenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["selectDegree", "open"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
             open={generateStateValueProp($state, ["selectDegree", "open"])}
             options={(() => {
               try {
@@ -302,14 +314,26 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
             disabled={
               hasVariant($state, "isDisable", "isDisable") ? true : undefined
             }
-            onChange={generateStateOnChangeProp($state, [
-              "selectExpertise",
-              "value"
-            ])}
-            onOpenChange={generateStateOnChangeProp($state, [
-              "selectExpertise",
-              "open"
-            ])}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "selectExpertise",
+                "value"
+              ]).apply(null, eventArgs);
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
+            onOpenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "selectExpertise",
+                "open"
+              ]).apply(null, eventArgs);
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
             open={generateStateValueProp($state, ["selectExpertise", "open"])}
             options={(() => {
               try {
@@ -358,7 +382,16 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
             disabled={
               hasVariant($state, "isDisable", "isDisable") ? true : undefined
             }
-            onChange={generateStateOnChangeProp($state, ["input", "value"])}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["input", "value"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
             placeholder={
               "\u0639\u0646\u0648\u0627\u0646 \u062a\u062e\u0635\u0635"
             }

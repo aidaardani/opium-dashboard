@@ -224,7 +224,16 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
           data-plasmic-override={overrides.input}
           className={classNames("__wab_instance", sty.input)}
           disabled={true}
-          onChange={generateStateOnChangeProp($state, ["input", "value"])}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["input", "value"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          }}
           placeholder={
             "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644"
           }
@@ -303,6 +312,11 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                   "newPhoneNumber",
                   "value"
                 ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+
                 (async value => {
                   const $steps = {};
 
@@ -394,6 +408,11 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                       "otpCode",
                       "value"
                     ]).apply(null, eventArgs);
+
+                    if (eventArgs.length > 1 && eventArgs[1]) {
+                      return;
+                    }
+
                     (async value => {
                       const $steps = {};
 
@@ -735,7 +754,16 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
         }
         className={classNames("__wab_instance", sty.dialog)}
         noTrigger={true}
-        onOpenChange={generateStateOnChangeProp($state, ["dialog", "open"])}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         open={generateStateValueProp($state, ["dialog", "open"])}
         title={
           "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644"

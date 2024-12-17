@@ -293,8 +293,16 @@ function PlasmicNWorkhourOfADay__RenderFunc(props: {
             data-plasmic-name={"to"}
             data-plasmic-override={overrides.to}
             className={classNames("__wab_instance", sty.to)}
-            onChange={(...eventArgs) => {
-              generateStateOnChangeProp($state, ["to", "value"])(eventArgs[0]);
+            onChange={async (...eventArgs: any) => {
+              ((...eventArgs) => {
+                generateStateOnChangeProp($state, ["to", "value"])(
+                  eventArgs[0]
+                );
+              }).apply(null, eventArgs);
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
             }}
             options={(() => {
               try {
@@ -380,6 +388,11 @@ function PlasmicNWorkhourOfADay__RenderFunc(props: {
                   eventArgs[0]
                 );
               }).apply(null, eventArgs);
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+
               (async value => {
                 const $steps = {};
               }).apply(null, eventArgs);

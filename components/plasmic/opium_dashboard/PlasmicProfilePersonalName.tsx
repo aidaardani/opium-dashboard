@@ -201,7 +201,16 @@ function PlasmicProfilePersonalName__RenderFunc(props: {
         className={classNames("__wab_instance", sty.firstName)}
         disabled={false}
         name={"name"}
-        onChange={generateStateOnChangeProp($state, ["firstName", "value"])}
+        onChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["firstName", "value"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         placeholder={"\u0646\u0627\u0645"}
         type={"text"}
         value={generateStateValueProp($state, ["firstName", "value"])}
@@ -213,7 +222,16 @@ function PlasmicProfilePersonalName__RenderFunc(props: {
         className={classNames("__wab_instance", sty.lastName)}
         disabled={false}
         name={"lastname"}
-        onChange={generateStateOnChangeProp($state, ["lastName", "value"])}
+        onChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["lastName", "value"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         placeholder={
           "\u0646\u0627\u0645 \u062e\u0627\u0646\u0648\u0627\u062f\u06af\u06cc"
         }

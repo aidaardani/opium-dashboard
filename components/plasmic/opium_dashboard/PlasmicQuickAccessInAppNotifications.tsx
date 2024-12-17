@@ -534,10 +534,16 @@ function PlasmicQuickAccessInAppNotifications__RenderFunc(props: {
                 })}
               </div>
             }
-            onOpenChange={generateStateOnChangeProp($state, [
-              "popover",
-              "open"
-            ])}
+            onOpenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["popover", "open"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
             open={generateStateValueProp($state, ["popover", "open"])}
             ref={ref => {
               $refs["popover"] = ref;

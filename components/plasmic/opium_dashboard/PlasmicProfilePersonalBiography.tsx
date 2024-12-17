@@ -190,12 +190,18 @@ function PlasmicProfilePersonalBiography__RenderFunc(props: {
       {(() => {
         const child$Props = {
           containerClassName: classNames("__wab_instance", sty.richTextEditor),
-          onChange: generateStateOnChangePropForCodeComponents(
-            $state,
-            "value",
-            ["richTextEditor", "value"],
-            Quill_Helpers
-          ),
+          onChange: async (...eventArgs: any) => {
+            generateStateOnChangePropForCodeComponents(
+              $state,
+              "value",
+              ["richTextEditor", "value"],
+              Quill_Helpers
+            ).apply(null, eventArgs);
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          },
           preserveWhitespace: true,
           readOnly: false,
           toolbar: {

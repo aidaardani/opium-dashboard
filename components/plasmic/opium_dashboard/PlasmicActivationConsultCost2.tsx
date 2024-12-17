@@ -249,7 +249,16 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
         data-plasmic-name={"input"}
         data-plasmic-override={overrides.input}
         className={classNames("__wab_instance", sty.input)}
-        onChange={generateStateOnChangeProp($state, ["input", "value"])}
+        onChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["input", "value"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         placeholder={
           "\u0645\u0628\u0644\u063a \u0647\u0631 \u0648\u06cc\u0632\u06cc\u062a (\u062a\u0648\u0645\u0627\u0646)"
         }

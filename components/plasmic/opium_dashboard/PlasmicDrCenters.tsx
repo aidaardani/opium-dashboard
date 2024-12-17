@@ -345,10 +345,16 @@ function PlasmicDrCenters__RenderFunc(props: {
                 data-plasmic-name={"textInput"}
                 data-plasmic-override={overrides.textInput}
                 className={classNames("__wab_instance", sty.textInput)}
-                onChange={(...eventArgs) => {
-                  generateStateOnChangeProp($state, ["textInput", "value"])(
-                    (e => e.target?.value).apply(null, eventArgs)
-                  );
+                onChange={async (...eventArgs: any) => {
+                  ((...eventArgs) => {
+                    generateStateOnChangeProp($state, ["textInput", "value"])(
+                      (e => e.target?.value).apply(null, eventArgs)
+                    );
+                  }).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
                 }}
                 placeholder={"\u062c\u0633\u062a\u062c\u0648 ..."}
                 value={
@@ -863,10 +869,16 @@ function PlasmicDrCenters__RenderFunc(props: {
             ) : null}
           </Stack__>
         }
-        onOpenChange={generateStateOnChangeProp($state, [
-          "fragmentPopover",
-          "open"
-        ])}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["fragmentPopover", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         open={generateStateValueProp($state, ["fragmentPopover", "open"])}
         ref={ref => {
           $refs["fragmentPopover"] = ref;

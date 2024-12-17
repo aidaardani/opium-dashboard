@@ -211,10 +211,16 @@ function PlasmicTest2__RenderFunc(props: {
               data-plasmic-name={"textInput"}
               data-plasmic-override={overrides.textInput}
               className={classNames("__wab_instance", sty.textInput)}
-              onChange={(...eventArgs) => {
-                generateStateOnChangeProp($state, ["textInput", "value"])(
-                  (e => e.target?.value).apply(null, eventArgs)
-                );
+              onChange={async (...eventArgs: any) => {
+                ((...eventArgs) => {
+                  generateStateOnChangeProp($state, ["textInput", "value"])(
+                    (e => e.target?.value).apply(null, eventArgs)
+                  );
+                }).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
               }}
               placeholder={
                 "\u06f0\u06f9\u06f1\u06f9\u06f8\u06f0\u06f9\u06f8\u06f2\u06f7\u06f1"
@@ -238,10 +244,16 @@ function PlasmicTest2__RenderFunc(props: {
               data-plasmic-override={overrides.multilineTextInput}
               autoSize={true}
               className={classNames("__wab_instance", sty.multilineTextInput)}
-              onValueChange={generateStateOnChangeProp($state, [
-                "multilineTextInput",
-                "value"
-              ])}
+              onValueChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "multilineTextInput",
+                  "value"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
               value={generateStateValueProp($state, [
                 "multilineTextInput",
                 "value"
@@ -301,7 +313,16 @@ function PlasmicTest2__RenderFunc(props: {
           </div>
         }
         className={classNames("__wab_instance", sty.dialog)}
-        onOpenChange={generateStateOnChangeProp($state, ["dialog", "open"])}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         open={generateStateValueProp($state, ["dialog", "open"])}
       />
     </div>

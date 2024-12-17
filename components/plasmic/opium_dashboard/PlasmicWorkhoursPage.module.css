@@ -1,4 +1,4 @@
-.bookList {
+.workhoursPage {
   display: grid;
   flex-direction: column;
   position: relative;
@@ -19,11 +19,11 @@
     )
     minmax(0, var(--plsmc-wide-chunk)) 1fr var(--plsmc-viewport-gap);
 }
-.bookList > * {
+.workhoursPage > * {
   grid-column: 4;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .bookList > * {
+  .workhoursPage > * {
     grid-column: 4;
   }
 }
@@ -56,10 +56,23 @@
   > img {
   margin-top: var(--token-fhaz6q6bl-fW);
 }
-.sideEffect___6NILs:global(.__wab_instance) {
+.apIworkhours:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
+}
+.text__vTc3O {
   position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.text__dggG {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
 }
 .freeBox___9HgIy {
   display: flex;
@@ -93,7 +106,7 @@
   > img {
   margin-left: var(--token-vMUQwr5Jto1d);
 }
-.text {
+.text___2TFhG {
   position: relative;
   width: 100%;
   height: auto;
@@ -128,7 +141,7 @@
   padding: 8px;
   border: 1px solid var(--token-Y3HOiwZmAcAF);
 }
-.sideEffect__jgXZ:global(.__wab_instance) {
+.sideEffect:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
 }
@@ -159,4 +172,22 @@
 .gtm:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
+}
+.apiSpeciality:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.text__rVRoE {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.text__hlG9O {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
 }

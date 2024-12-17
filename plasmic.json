@@ -41,8 +41,7 @@
           "componentImportPath": "@plasmicpkgs/plasmic-embed-css"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "caTPwKxj5ZrD9LQ7DMdK4Z",
@@ -100,8 +99,7 @@
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "oBJtsp5RgVpcN6KCrDTuQT",
@@ -332,8 +330,7 @@
           "componentImportPath": "@plasmicpkgs/radix-ui"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "k6BnBuAUepzRX8Qs2WvkKs",
@@ -348,8 +345,7 @@
       "globalContextsFilePath": "",
       "splitsProviderFilePath": "",
       "codeComponents": [],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "vqeFwpZFQ6buChy6T9PGwQ",
@@ -375,8 +371,7 @@
           }
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "ohDidvG9XsCeFumugENU3J",
@@ -776,8 +771,7 @@
           "componentImportPath": "@plasmicpkgs/antd5/skinny/registerBreadcrumb"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "a3pmZtcpA5asHkNtN3SGoF",
@@ -792,8 +786,7 @@
       "globalContextsFilePath": "",
       "splitsProviderFilePath": "",
       "codeComponents": [],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "YUiM7yqBWAqsh8KSnrdj7",
@@ -821,8 +814,7 @@
           "componentImportPath": "@plasmicpkgs/plasmic-query"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "h9Dbk9ygddw7UVEq1NNhKi",
@@ -2171,6 +2163,59 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationProcessItem.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "3vzzNL1l6OvK",
+          "name": "PaymentV2",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicPaymentV2.tsx",
+          "importSpec": {
+            "modulePath": "PaymentV2.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicPaymentV2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "5BrObah-tuXJ",
+          "name": "Payment2",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicPayment2.tsx",
+          "importSpec": {
+            "modulePath": "Payment2.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicPayment2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "rj0ezTTEGvtD",
+          "name": "RadioButtonNelson",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicRadioButtonNelson.tsx",
+          "importSpec": {
+            "modulePath": "RadioButtonNelson.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicRadioButtonNelson.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "jr26i6We0jwY",
+          "name": "Payment3",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicPayment3.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/payment.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicPayment3.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/payment"
         }
       ],
       "icons": [

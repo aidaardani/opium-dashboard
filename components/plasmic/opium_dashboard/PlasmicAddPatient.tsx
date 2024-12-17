@@ -435,10 +435,16 @@ function PlasmicAddPatient__RenderFunc(props: {
         data-plasmic-override={overrides.nationalCode}
         className={classNames("__wab_instance", sty.nationalCode)}
         color={undefined}
-        onChange={(...eventArgs) => {
-          generateStateOnChangeProp($state, ["nationalCode", "value"])(
-            (e => e.target?.value).apply(null, eventArgs)
-          );
+        onChange={async (...eventArgs: any) => {
+          ((...eventArgs) => {
+            generateStateOnChangeProp($state, ["nationalCode", "value"])(
+              (e => e.target?.value).apply(null, eventArgs)
+            );
+          }).apply(null, eventArgs);
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
         }}
         placeholder={``}
         value={generateStateValueProp($state, ["nationalCode", "value"]) ?? ""}
@@ -1060,6 +1066,11 @@ function PlasmicAddPatient__RenderFunc(props: {
                           "value"
                         ])((e => e.target?.value).apply(null, eventArgs));
                       }).apply(null, eventArgs);
+
+                      if (eventArgs.length > 1 && eventArgs[1]) {
+                        return;
+                      }
+
                       (async event => {
                         const $steps = {};
                       }).apply(null, eventArgs);
@@ -1103,6 +1114,11 @@ function PlasmicAddPatient__RenderFunc(props: {
                           "value"
                         ])((e => e.target?.value).apply(null, eventArgs));
                       }).apply(null, eventArgs);
+
+                      if (eventArgs.length > 1 && eventArgs[1]) {
+                        return;
+                      }
+
                       (async event => {
                         const $steps = {};
                       }).apply(null, eventArgs);
@@ -1840,6 +1856,14 @@ function PlasmicAddPatient__RenderFunc(props: {
                                         "datePicker",
                                         "values"
                                       ]).apply(null, eventArgs);
+
+                                      if (
+                                        eventArgs.length > 1 &&
+                                        eventArgs[1]
+                                      ) {
+                                        return;
+                                      }
+
                                       (async date => {
                                         const $steps = {};
 
@@ -1910,10 +1934,16 @@ function PlasmicAddPatient__RenderFunc(props: {
                                 "__wab_instance",
                                 sty.تقویم
                               )}
-                              onOpenChange={generateStateOnChangeProp($state, [
-                                "تقویم",
-                                "open"
-                              ])}
+                              onOpenChange={async (...eventArgs: any) => {
+                                generateStateOnChangeProp($state, [
+                                  "تقویم",
+                                  "open"
+                                ]).apply(null, eventArgs);
+
+                                if (eventArgs.length > 1 && eventArgs[1]) {
+                                  return;
+                                }
+                              }}
                               open={generateStateValueProp($state, [
                                 "تقویم",
                                 "open"
@@ -3112,13 +3142,24 @@ function PlasmicAddPatient__RenderFunc(props: {
                                                       "__wab_instance",
                                                       sty.fromTimePicker
                                                     )}
-                                                    onChange={generateStateOnChangeProp(
-                                                      $state,
-                                                      [
-                                                        "fromTimePicker",
-                                                        "value"
-                                                      ]
-                                                    )}
+                                                    onChange={async (
+                                                      ...eventArgs: any
+                                                    ) => {
+                                                      generateStateOnChangeProp(
+                                                        $state,
+                                                        [
+                                                          "fromTimePicker",
+                                                          "value"
+                                                        ]
+                                                      ).apply(null, eventArgs);
+
+                                                      if (
+                                                        eventArgs.length > 1 &&
+                                                        eventArgs[1]
+                                                      ) {
+                                                        return;
+                                                      }
+                                                    }}
                                                     value={generateStateValueProp(
                                                       $state,
                                                       [
@@ -3166,10 +3207,24 @@ function PlasmicAddPatient__RenderFunc(props: {
                                                       "__wab_instance",
                                                       sty.toTimePicker
                                                     )}
-                                                    onChange={generateStateOnChangeProp(
-                                                      $state,
-                                                      ["toTimePicker", "value"]
-                                                    )}
+                                                    onChange={async (
+                                                      ...eventArgs: any
+                                                    ) => {
+                                                      generateStateOnChangeProp(
+                                                        $state,
+                                                        [
+                                                          "toTimePicker",
+                                                          "value"
+                                                        ]
+                                                      ).apply(null, eventArgs);
+
+                                                      if (
+                                                        eventArgs.length > 1 &&
+                                                        eventArgs[1]
+                                                      ) {
+                                                        return;
+                                                      }
+                                                    }}
                                                     value={generateStateValueProp(
                                                       $state,
                                                       ["toTimePicker", "value"]
@@ -3970,10 +4025,21 @@ function PlasmicAddPatient__RenderFunc(props: {
                                               "__wab_instance",
                                               sty.dialogNewTimePicker
                                             )}
-                                            onOpenChange={generateStateOnChangeProp(
-                                              $state,
-                                              ["dialogNewTimePicker", "open"]
-                                            )}
+                                            onOpenChange={async (
+                                              ...eventArgs: any
+                                            ) => {
+                                              generateStateOnChangeProp(
+                                                $state,
+                                                ["dialogNewTimePicker", "open"]
+                                              ).apply(null, eventArgs);
+
+                                              if (
+                                                eventArgs.length > 1 &&
+                                                eventArgs[1]
+                                              ) {
+                                                return;
+                                              }
+                                            }}
                                             open={generateStateValueProp(
                                               $state,
                                               ["dialogNewTimePicker", "open"]
@@ -4018,10 +4084,16 @@ function PlasmicAddPatient__RenderFunc(props: {
                           sty.preferBooktime
                         )}
                         noTrigger={true}
-                        onOpenChange={generateStateOnChangeProp($state, [
-                          "preferBooktime",
-                          "open"
-                        ])}
+                        onOpenChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "preferBooktime",
+                            "open"
+                          ]).apply(null, eventArgs);
+
+                          if (eventArgs.length > 1 && eventArgs[1]) {
+                            return;
+                          }
+                        }}
                         open={generateStateValueProp($state, [
                           "preferBooktime",
                           "open"
@@ -4061,6 +4133,11 @@ function PlasmicAddPatient__RenderFunc(props: {
               null,
               eventArgs
             );
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+
             (async val => {
               const $steps = {};
             }).apply(null, eventArgs);
@@ -4135,10 +4212,16 @@ function PlasmicAddPatient__RenderFunc(props: {
               data-plasmic-name={"fragmentTimePicker"}
               data-plasmic-override={overrides.fragmentTimePicker}
               className={classNames("__wab_instance", sty.fragmentTimePicker)}
-              onChange={generateStateOnChangeProp($state, [
-                "fragmentTimePicker",
-                "value"
-              ])}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "fragmentTimePicker",
+                  "value"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
               value={generateStateValueProp($state, [
                 "fragmentTimePicker",
                 "value"

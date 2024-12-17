@@ -1172,10 +1172,16 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                   </Stack__>
                 }
                 className={classNames("__wab_instance", sty.dialogdeletebook)}
-                onOpenChange={generateStateOnChangeProp($state, [
-                  "dialogdeletebook",
-                  "open"
-                ])}
+                onOpenChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "dialogdeletebook",
+                    "open"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
                 open={generateStateValueProp($state, [
                   "dialogdeletebook",
                   "open"
@@ -1209,6 +1215,11 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
               null,
               eventArgs
             );
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+
             (async val => {
               const $steps = {};
 
@@ -1530,11 +1541,17 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                 data-plasmic-name={"descriptionInput"}
                 data-plasmic-override={overrides.descriptionInput}
                 className={classNames("__wab_instance", sty.descriptionInput)}
-                onChange={(...eventArgs) => {
-                  generateStateOnChangeProp($state, [
-                    "descriptionInput",
-                    "value"
-                  ])((e => e.target?.value).apply(null, eventArgs));
+                onChange={async (...eventArgs: any) => {
+                  ((...eventArgs) => {
+                    generateStateOnChangeProp($state, [
+                      "descriptionInput",
+                      "value"
+                    ])((e => e.target?.value).apply(null, eventArgs));
+                  }).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
                 }}
                 placeholder={
                   "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u062e\u0648\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
@@ -1748,7 +1765,16 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
               throw e;
             }
           })()}
-          onOpenChange={generateStateOnChangeProp($state, ["dialog2", "open"])}
+          onOpenChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["dialog2", "open"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          }}
           open={generateStateValueProp($state, ["dialog2", "open"])}
           title={
             "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u062f\u0631\u0645\u0627\u0646"

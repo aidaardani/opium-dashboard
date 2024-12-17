@@ -305,6 +305,11 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                     "isChecked"
                   ])(eventArgs[0]);
                 }).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+
                 (async isChecked => {
                   const $steps = {};
 
@@ -653,7 +658,16 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
         }
         className={classNames("__wab_instance", sty.dialog)}
         noTrigger={true}
-        onOpenChange={generateStateOnChangeProp($state, ["dialog", "open"])}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         open={generateStateValueProp($state, ["dialog", "open"])}
         title={
           "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646"

@@ -911,7 +911,16 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
           </Stack__>
         }
         className={classNames("__wab_instance", sty.dialog)}
-        onOpenChange={generateStateOnChangeProp($state, ["dialog", "open"])}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         open={generateStateValueProp($state, ["dialog", "open"])}
         title={null}
         trigger={null}

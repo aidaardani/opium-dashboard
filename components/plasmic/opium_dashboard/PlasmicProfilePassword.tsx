@@ -261,9 +261,36 @@ function PlasmicProfilePassword__RenderFunc(props: {
           </div>
         }
         method={"GET"}
-        onError={generateStateOnChangeProp($state, ["authApi", "error"])}
-        onLoading={generateStateOnChangeProp($state, ["authApi", "loading"])}
-        onSuccess={generateStateOnChangeProp($state, ["authApi", "data"])}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["authApi", "error"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["authApi", "loading"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["authApi", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         ref={ref => {
           $refs["authApi"] = ref;
         }}
@@ -284,10 +311,16 @@ function PlasmicProfilePassword__RenderFunc(props: {
               data-plasmic-override={overrides._switch}
               checked={generateStateValueProp($state, ["_switch", "checked"])}
               className={classNames("__wab_instance", sty._switch)}
-              onCheckedChange={generateStateOnChangeProp($state, [
-                "_switch",
-                "checked"
-              ])}
+              onCheckedChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["_switch", "checked"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
             />
 
             <div
@@ -333,12 +366,18 @@ function PlasmicProfilePassword__RenderFunc(props: {
               {(() => {
                 const child$Props = {
                   className: classNames("__wab_instance", sty.oldPassword),
-                  onChange: generateStateOnChangePropForCodeComponents(
-                    $state,
-                    "value",
-                    ["oldPassword", "value"],
-                    AntdPassword_Helpers
-                  ),
+                  onChange: async (...eventArgs: any) => {
+                    generateStateOnChangePropForCodeComponents(
+                      $state,
+                      "value",
+                      ["oldPassword", "value"],
+                      AntdPassword_Helpers
+                    ).apply(null, eventArgs);
+
+                    if (eventArgs.length > 1 && eventArgs[1]) {
+                      return;
+                    }
+                  },
                   placeholder:
                     "\u0631\u0645\u0632 \u0639\u0628\u0648\u0631 \u0642\u0628\u0644\u06cc",
                   value: generateStateValueProp($state, [
@@ -377,12 +416,18 @@ function PlasmicProfilePassword__RenderFunc(props: {
             {(() => {
               const child$Props = {
                 className: classNames("__wab_instance", sty.passwordInput),
-                onChange: generateStateOnChangePropForCodeComponents(
-                  $state,
-                  "value",
-                  ["passwordInput", "value"],
-                  AntdPassword_Helpers
-                ),
+                onChange: async (...eventArgs: any) => {
+                  generateStateOnChangePropForCodeComponents(
+                    $state,
+                    "value",
+                    ["passwordInput", "value"],
+                    AntdPassword_Helpers
+                  ).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                },
                 placeholder:
                   "\u0631\u0645\u0632 \u0639\u0628\u0648\u0631 \u062c\u062f\u06cc\u062f",
                 value: generateStateValueProp($state, [
@@ -414,12 +459,18 @@ function PlasmicProfilePassword__RenderFunc(props: {
             {(() => {
               const child$Props = {
                 className: classNames("__wab_instance", sty.repeatPassword),
-                onChange: generateStateOnChangePropForCodeComponents(
-                  $state,
-                  "value",
-                  ["repeatPassword", "value"],
-                  AntdPassword_Helpers
-                ),
+                onChange: async (...eventArgs: any) => {
+                  generateStateOnChangePropForCodeComponents(
+                    $state,
+                    "value",
+                    ["repeatPassword", "value"],
+                    AntdPassword_Helpers
+                  ).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                },
                 placeholder:
                   "\u062a\u06a9\u0631\u0627\u0631 \u0631\u0645\u0632 \u0639\u0628\u0648\u0631 \u062c\u062f\u06cc\u062f",
                 value: generateStateValueProp($state, [

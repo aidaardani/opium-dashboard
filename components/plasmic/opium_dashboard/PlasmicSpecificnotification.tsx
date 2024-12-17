@@ -901,10 +901,16 @@ function PlasmicSpecificnotification__RenderFunc(props: {
               </Stack__>
             </Stack__>
           }
-          onOpenChange={generateStateOnChangeProp($state, [
-            "fragmentPopoverEditNotification2",
-            "open"
-          ])}
+          onOpenChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "fragmentPopoverEditNotification2",
+              "open"
+            ]).apply(null, eventArgs);
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          }}
           open={generateStateValueProp($state, [
             "fragmentPopoverEditNotification2",
             "open"
@@ -1035,10 +1041,16 @@ function PlasmicSpecificnotification__RenderFunc(props: {
           data-plasmic-name={"multilineTextInput"}
           data-plasmic-override={overrides.multilineTextInput}
           className={classNames("__wab_instance", sty.multilineTextInput)}
-          onValueChange={generateStateOnChangeProp($state, [
-            "multilineTextInput",
-            "value"
-          ])}
+          onValueChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, [
+              "multilineTextInput",
+              "value"
+            ]).apply(null, eventArgs);
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          }}
           value={generateStateValueProp($state, [
             "multilineTextInput",
             "value"
@@ -1415,12 +1427,18 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                   </AntdAccordionItem>
                 </React.Fragment>
               ),
-              onChange: generateStateOnChangePropForCodeComponents(
-                $state,
-                "activePanelId",
-                ["accordion2", "activePanelId"],
-                AntdAccordion_Helpers
-              )
+              onChange: async (...eventArgs: any) => {
+                generateStateOnChangePropForCodeComponents(
+                  $state,
+                  "activePanelId",
+                  ["accordion2", "activePanelId"],
+                  AntdAccordion_Helpers
+                ).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }
             };
             initializeCodeComponentStates(
               $state,

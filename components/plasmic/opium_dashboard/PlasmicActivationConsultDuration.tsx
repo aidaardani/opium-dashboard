@@ -346,18 +346,36 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                   </div>
                 }
                 method={"GET"}
-                onError={generateStateOnChangeProp($state, [
-                  "centersApi",
-                  "error"
-                ])}
-                onLoading={generateStateOnChangeProp($state, [
-                  "centersApi",
-                  "loading"
-                ])}
-                onSuccess={generateStateOnChangeProp($state, [
-                  "centersApi",
-                  "data"
-                ])}
+                onError={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "centersApi",
+                    "error"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
+                onLoading={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "centersApi",
+                    "loading"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
+                onSuccess={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "centersApi",
+                    "data"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
                 ref={ref => {
                   $refs["centersApi"] = ref;
                 }}
@@ -421,10 +439,16 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                           "duration"
                         ])}
                         forwardPage={"/activation-page/finish"}
-                        onDurationChange={generateStateOnChangeProp($state, [
-                          "hoursDaysOfWeek",
-                          "duration"
-                        ])}
+                        onDurationChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "hoursDaysOfWeek",
+                            "duration"
+                          ]).apply(null, eventArgs);
+
+                          if (eventArgs.length > 1 && eventArgs[1]) {
+                            return;
+                          }
+                        }}
                         userCenterId={(() => {
                           try {
                             return $state.centersApi.data.data.find(
@@ -482,10 +506,16 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               "duration",
                               "newduration"
                             ])}
-                            onNewdurationChange={generateStateOnChangeProp(
-                              $state,
-                              ["duration", "newduration"]
-                            )}
+                            onNewdurationChange={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "duration",
+                                "newduration"
+                              ]).apply(null, eventArgs);
+
+                              if (eventArgs.length > 1 && eventArgs[1]) {
+                                return;
+                              }
+                            }}
                           />
                         </div>
                         <div
@@ -606,22 +636,43 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                     "listOfWorkhoureCopy"
                                   ]
                                 ),
-                                onCheckboxIsCheckedChange:
+                                onCheckboxIsCheckedChange: async (
+                                  ...eventArgs: any
+                                ) => {
                                   generateStateOnChangeProp($state, [
                                     "workhours",
                                     __plasmic_idx_0,
                                     "checkboxIsChecked"
-                                  ]),
-                                onListOfWorkhoureCopyChange:
+                                  ]).apply(null, eventArgs);
+
+                                  if (eventArgs.length > 1 && eventArgs[1]) {
+                                    return;
+                                  }
+                                },
+                                onListOfWorkhoureCopyChange: async (
+                                  ...eventArgs: any
+                                ) => {
                                   generateStateOnChangeProp($state, [
                                     "workhours",
                                     __plasmic_idx_0,
                                     "listOfWorkhoureCopy"
-                                  ]),
-                                onWarningChange: generateStateOnChangeProp(
-                                  $state,
-                                  ["workhours", __plasmic_idx_0, "warning"]
-                                )
+                                  ]).apply(null, eventArgs);
+
+                                  if (eventArgs.length > 1 && eventArgs[1]) {
+                                    return;
+                                  }
+                                },
+                                onWarningChange: async (...eventArgs: any) => {
+                                  generateStateOnChangeProp($state, [
+                                    "workhours",
+                                    __plasmic_idx_0,
+                                    "warning"
+                                  ]).apply(null, eventArgs);
+
+                                  if (eventArgs.length > 1 && eventArgs[1]) {
+                                    return;
+                                  }
+                                }
                               };
 
                               initializePlasmicStates(

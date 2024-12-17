@@ -5198,9 +5198,36 @@ function PlasmicProfileExperties__RenderFunc(props: {
           </div>
         }
         method={"GET"}
-        onError={generateStateOnChangeProp($state, ["authApi", "error"])}
-        onLoading={generateStateOnChangeProp($state, ["authApi", "loading"])}
-        onSuccess={generateStateOnChangeProp($state, ["authApi", "data"])}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["authApi", "error"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["authApi", "loading"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["authApi", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         ref={ref => {
           $refs["authApi"] = ref;
         }}
@@ -5218,12 +5245,36 @@ function PlasmicProfileExperties__RenderFunc(props: {
             />
           }
           method={"GET"}
-          onError={generateStateOnChangeProp($state, ["providerApi", "error"])}
-          onLoading={generateStateOnChangeProp($state, [
-            "providerApi",
-            "loading"
-          ])}
-          onSuccess={generateStateOnChangeProp($state, ["providerApi", "data"])}
+          onError={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["providerApi", "error"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          }}
+          onLoading={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["providerApi", "loading"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          }}
+          onSuccess={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["providerApi", "data"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          }}
           ref={ref => {
             $refs["providerApi"] = ref;
           }}
@@ -5265,18 +5316,36 @@ function PlasmicProfileExperties__RenderFunc(props: {
               </div>
             }
             method={"GET"}
-            onError={generateStateOnChangeProp($state, [
-              "spetialitiesApi",
-              "error"
-            ])}
-            onLoading={generateStateOnChangeProp($state, [
-              "spetialitiesApi",
-              "loading"
-            ])}
-            onSuccess={generateStateOnChangeProp($state, [
-              "spetialitiesApi",
-              "data"
-            ])}
+            onError={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "spetialitiesApi",
+                "error"
+              ]).apply(null, eventArgs);
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
+            onLoading={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "spetialitiesApi",
+                "loading"
+              ]).apply(null, eventArgs);
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
+            onSuccess={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "spetialitiesApi",
+                "data"
+              ]).apply(null, eventArgs);
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
             ref={ref => {
               $refs["spetialitiesApi"] = ref;
             }}
@@ -5388,6 +5457,11 @@ function PlasmicProfileExperties__RenderFunc(props: {
                         __plasmic_idx_0,
                         "degreeValue"
                       ]).apply(null, eventArgs);
+
+                      if (eventArgs.length > 1 && eventArgs[1]) {
+                        return;
+                      }
+
                       (async val => {
                         const $steps = {};
 
@@ -5538,6 +5612,11 @@ function PlasmicProfileExperties__RenderFunc(props: {
                         __plasmic_idx_0,
                         "expertiseTitle"
                       ]).apply(null, eventArgs);
+
+                      if (eventArgs.length > 1 && eventArgs[1]) {
+                        return;
+                      }
+
                       (async val => {
                         const $steps = {};
 
@@ -5615,6 +5694,11 @@ function PlasmicProfileExperties__RenderFunc(props: {
                         __plasmic_idx_0,
                         "expertiseValue"
                       ]).apply(null, eventArgs);
+
+                      if (eventArgs.length > 1 && eventArgs[1]) {
+                        return;
+                      }
+
                       (async val => {
                         const $steps = {};
 
@@ -5829,6 +5913,11 @@ function PlasmicProfileExperties__RenderFunc(props: {
                           __plasmic_idx_0,
                           "degreeValue"
                         ]).apply(null, eventArgs);
+
+                        if (eventArgs.length > 1 && eventArgs[1]) {
+                          return;
+                        }
+
                         (async val => {
                           const $steps = {};
 
@@ -5928,6 +6017,11 @@ function PlasmicProfileExperties__RenderFunc(props: {
                           __plasmic_idx_0,
                           "expertiseTitle"
                         ]).apply(null, eventArgs);
+
+                        if (eventArgs.length > 1 && eventArgs[1]) {
+                          return;
+                        }
+
                         (async val => {
                           const $steps = {};
 
@@ -5986,6 +6080,11 @@ function PlasmicProfileExperties__RenderFunc(props: {
                           __plasmic_idx_0,
                           "expertiseValue"
                         ]).apply(null, eventArgs);
+
+                        if (eventArgs.length > 1 && eventArgs[1]) {
+                          return;
+                        }
+
                         (async val => {
                           const $steps = {};
 
@@ -6755,6 +6854,11 @@ function PlasmicProfileExperties__RenderFunc(props: {
             null,
             eventArgs
           );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+
           (async val => {
             const $steps = {};
 

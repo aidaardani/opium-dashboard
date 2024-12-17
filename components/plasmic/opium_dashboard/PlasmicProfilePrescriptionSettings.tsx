@@ -242,9 +242,36 @@ function PlasmicProfilePrescriptionSettings__RenderFunc(props: {
           </div>
         }
         method={"GET"}
-        onError={generateStateOnChangeProp($state, ["apiRequest", "error"])}
-        onLoading={generateStateOnChangeProp($state, ["apiRequest", "loading"])}
-        onSuccess={generateStateOnChangeProp($state, ["apiRequest", "data"])}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         ref={ref => {
           $refs["apiRequest"] = ref;
         }}
@@ -273,6 +300,11 @@ function PlasmicProfilePrescriptionSettings__RenderFunc(props: {
                   "smsActivation",
                   "checked"
                 ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+
                 (async checked => {
                   const $steps = {};
 
@@ -429,10 +461,16 @@ function PlasmicProfilePrescriptionSettings__RenderFunc(props: {
                 "checked"
               ])}
               className={classNames("__wab_instance", sty.information)}
-              onCheckedChange={generateStateOnChangeProp($state, [
-                "information",
-                "checked"
-              ])}
+              onCheckedChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "information",
+                  "checked"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
             />
 
             <div

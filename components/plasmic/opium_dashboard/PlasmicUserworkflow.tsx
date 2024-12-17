@@ -532,10 +532,16 @@ function PlasmicUserworkflow__RenderFunc(props: {
               />
             }
             className={classNames("__wab_instance", sty.dialogeditnotification)}
-            onOpenChange={generateStateOnChangeProp($state, [
-              "dialogeditnotification",
-              "open"
-            ])}
+            onOpenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "dialogeditnotification",
+                "open"
+              ]).apply(null, eventArgs);
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
             open={generateStateValueProp($state, [
               "dialogeditnotification",
               "open"
@@ -816,10 +822,16 @@ function PlasmicUserworkflow__RenderFunc(props: {
               </div>
             }
             className={classNames("__wab_instance", sty.dialogDeleteBook)}
-            onOpenChange={generateStateOnChangeProp($state, [
-              "dialogDeleteBook",
-              "open"
-            ])}
+            onOpenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "dialogDeleteBook",
+                "open"
+              ]).apply(null, eventArgs);
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
             open={generateStateValueProp($state, ["dialogDeleteBook", "open"])}
             title={
               "\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc"

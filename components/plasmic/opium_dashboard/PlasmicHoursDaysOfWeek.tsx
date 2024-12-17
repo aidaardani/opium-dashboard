@@ -334,12 +334,36 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
           </div>
         }
         method={"GET"}
-        onError={generateStateOnChangeProp($state, ["workhoursApi", "error"])}
-        onLoading={generateStateOnChangeProp($state, [
-          "workhoursApi",
-          "loading"
-        ])}
-        onSuccess={generateStateOnChangeProp($state, ["workhoursApi", "data"])}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["workhoursApi", "error"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["workhoursApi", "loading"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["workhoursApi", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         params={(() => {
           try {
             return { center_id: $props.centerId };
@@ -411,10 +435,16 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     throw e;
                   }
                 })()}
-                onNewdurationChange={generateStateOnChangeProp($state, [
-                  "durationOfWorkhour",
-                  "newduration"
-                ])}
+                onNewdurationChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "durationOfWorkhour",
+                    "newduration"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
               />
             </div>
           ) : null}
@@ -520,20 +550,39 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     __plasmic_idx_0,
                     "listOfWorkhoureCopy"
                   ]),
-                  onCheckboxIsCheckedChange: generateStateOnChangeProp($state, [
-                    "workhours",
-                    __plasmic_idx_0,
-                    "checkboxIsChecked"
-                  ]),
-                  onListOfWorkhoureCopyChange: generateStateOnChangeProp(
-                    $state,
-                    ["workhours", __plasmic_idx_0, "listOfWorkhoureCopy"]
-                  ),
-                  onWarningChange: generateStateOnChangeProp($state, [
-                    "workhours",
-                    __plasmic_idx_0,
-                    "warning"
-                  ])
+                  onCheckboxIsCheckedChange: async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "workhours",
+                      __plasmic_idx_0,
+                      "checkboxIsChecked"
+                    ]).apply(null, eventArgs);
+
+                    if (eventArgs.length > 1 && eventArgs[1]) {
+                      return;
+                    }
+                  },
+                  onListOfWorkhoureCopyChange: async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "workhours",
+                      __plasmic_idx_0,
+                      "listOfWorkhoureCopy"
+                    ]).apply(null, eventArgs);
+
+                    if (eventArgs.length > 1 && eventArgs[1]) {
+                      return;
+                    }
+                  },
+                  onWarningChange: async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "workhours",
+                      __plasmic_idx_0,
+                      "warning"
+                    ]).apply(null, eventArgs);
+
+                    if (eventArgs.length > 1 && eventArgs[1]) {
+                      return;
+                    }
+                  }
                 };
 
                 initializePlasmicStates(

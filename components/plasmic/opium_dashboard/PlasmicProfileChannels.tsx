@@ -395,7 +395,16 @@ function PlasmicProfileChannels__RenderFunc(props: {
         }
         className={classNames("__wab_instance", sty.dialog)}
         noTrigger={true}
-        onOpenChange={generateStateOnChangeProp($state, ["dialog", "open"])}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         open={generateStateValueProp($state, ["dialog", "open"])}
         title={"\u062a\u0645\u0627\u0633 \u0627\u0645\u0646"}
         trigger={null}
@@ -425,9 +434,36 @@ function PlasmicProfileChannels__RenderFunc(props: {
           </div>
         }
         method={"GET"}
-        onError={generateStateOnChangeProp($state, ["apiRequest", "error"])}
-        onLoading={generateStateOnChangeProp($state, ["apiRequest", "loading"])}
-        onSuccess={generateStateOnChangeProp($state, ["apiRequest", "data"])}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         ref={ref => {
           $refs["apiRequest"] = ref;
         }}
@@ -492,14 +528,26 @@ function PlasmicProfileChannels__RenderFunc(props: {
                 "eitaa",
                 "numberValue2"
               ])}
-              onNumberValueChange2={generateStateOnChangeProp($state, [
-                "eitaa",
-                "numberValue2"
-              ])}
-              onUsernameValueChange={generateStateOnChangeProp($state, [
-                "eitaa",
-                "usernameValue"
-              ])}
+              onNumberValueChange2={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "eitaa",
+                  "numberValue2"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
+              onUsernameValueChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "eitaa",
+                  "usernameValue"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
               type={"eitaa"}
               usernameValue={generateStateValueProp($state, [
                 "eitaa",
@@ -534,14 +582,26 @@ function PlasmicProfileChannels__RenderFunc(props: {
                 "whatsapp",
                 "numberValue2"
               ])}
-              onNumberValueChange2={generateStateOnChangeProp($state, [
-                "whatsapp",
-                "numberValue2"
-              ])}
-              onUsernameValueChange={generateStateOnChangeProp($state, [
-                "whatsapp",
-                "usernameValue"
-              ])}
+              onNumberValueChange2={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "whatsapp",
+                  "numberValue2"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
+              onUsernameValueChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "whatsapp",
+                  "usernameValue"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
               type={"whatsapp"}
               usernameValue={generateStateValueProp($state, [
                 "whatsapp",
@@ -629,10 +689,16 @@ function PlasmicProfileChannels__RenderFunc(props: {
                 data-plasmic-override={overrides._switch}
                 checked={generateStateValueProp($state, ["_switch", "checked"])}
                 className={classNames("__wab_instance", sty._switch)}
-                onCheckedChange={generateStateOnChangeProp($state, [
-                  "_switch",
-                  "checked"
-                ])}
+                onCheckedChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "_switch",
+                    "checked"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
               />
             </Stack__>
           </div>

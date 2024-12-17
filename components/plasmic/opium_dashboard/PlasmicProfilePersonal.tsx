@@ -447,9 +447,36 @@ function PlasmicProfilePersonal__RenderFunc(props: {
           />
         }
         method={"GET"}
-        onError={generateStateOnChangeProp($state, ["auth", "error"])}
-        onLoading={generateStateOnChangeProp($state, ["auth", "loading"])}
-        onSuccess={generateStateOnChangeProp($state, ["auth", "data"])}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["auth", "error"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["auth", "loading"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["auth", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         ref={ref => {
           $refs["auth"] = ref;
         }}
@@ -467,13 +494,36 @@ function PlasmicProfilePersonal__RenderFunc(props: {
             />
           }
           method={"GET"}
-          onError={generateStateOnChangeProp($state, ["profile", "error"])}
-          onLoading={generateStateOnChangeProp($state, ["profile", "loading"])}
+          onError={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["profile", "error"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          }}
+          onLoading={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["profile", "loading"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          }}
           onSuccess={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["profile", "data"]).apply(
               null,
               eventArgs
             );
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+
             (async data => {
               const $steps = {};
 
@@ -542,14 +592,26 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   "profilePersonalName",
                   "lastNameValue"
                 ])}
-                onFirstNameValueChange={generateStateOnChangeProp($state, [
-                  "profilePersonalName",
-                  "firstNameValue"
-                ])}
-                onLastNameValueChange={generateStateOnChangeProp($state, [
-                  "profilePersonalName",
-                  "lastNameValue"
-                ])}
+                onFirstNameValueChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "profilePersonalName",
+                    "firstNameValue"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
+                onLastNameValueChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "profilePersonalName",
+                    "lastNameValue"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
               />
             ) : null}
             {(
@@ -578,10 +640,16 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   )
                 })}
                 name={"nationalCode"}
-                onChange={generateStateOnChangeProp($state, [
-                  "nationalCode",
-                  "value"
-                ])}
+                onChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "nationalCode",
+                    "value"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
                 placeholder={"\u06a9\u062f \u0645\u0644\u06cc"}
                 type={"text"}
                 value={generateStateValueProp($state, [
@@ -611,10 +679,16 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   )
                 })}
                 name={"nationalCode"}
-                onChange={generateStateOnChangeProp($state, [
-                  "medicalCode",
-                  "value"
-                ])}
+                onChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "medicalCode",
+                    "value"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
                 placeholder={
                   "\u0634\u0645\u0627\u0631\u0647 \u0646\u0638\u0627\u0645 \u067e\u0632\u0634\u06a9\u06cc"
                 }
@@ -673,18 +747,36 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 </div>
               }
               method={"GET"}
-              onError={generateStateOnChangeProp($state, [
-                "providerApi",
-                "error"
-              ])}
-              onLoading={generateStateOnChangeProp($state, [
-                "providerApi",
-                "loading"
-              ])}
-              onSuccess={generateStateOnChangeProp($state, [
-                "providerApi",
-                "data"
-              ])}
+              onError={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "providerApi",
+                  "error"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
+              onLoading={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "providerApi",
+                  "loading"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
+              onSuccess={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "providerApi",
+                  "data"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
               ref={ref => {
                 $refs["providerApi"] = ref;
               }}
@@ -729,18 +821,36 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   </div>
                 }
                 method={"GET"}
-                onError={generateStateOnChangeProp($state, [
-                  "notifyCellApi",
-                  "error"
-                ])}
-                onLoading={generateStateOnChangeProp($state, [
-                  "notifyCellApi",
-                  "loading"
-                ])}
-                onSuccess={generateStateOnChangeProp($state, [
-                  "notifyCellApi",
-                  "data"
-                ])}
+                onError={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "notifyCellApi",
+                    "error"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
+                onLoading={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "notifyCellApi",
+                    "loading"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
+                onSuccess={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "notifyCellApi",
+                    "data"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
                 ref={ref => {
                   $refs["notifyCellApi"] = ref;
                 }}
@@ -767,10 +877,16 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   data-plasmic-name={"notifyCell"}
                   data-plasmic-override={overrides.notifyCell}
                   className={classNames("__wab_instance", sty.notifyCell)}
-                  onChange={generateStateOnChangeProp($state, [
-                    "notifyCell",
-                    "value"
-                  ])}
+                  onChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "notifyCell",
+                      "value"
+                    ]).apply(null, eventArgs);
+
+                    if (eventArgs.length > 1 && eventArgs[1]) {
+                      return;
+                    }
+                  }}
                   placeholder={
                     "\u0634\u0645\u0627\u0631\u0647 \u0645\u0646\u0634\u06cc"
                   }

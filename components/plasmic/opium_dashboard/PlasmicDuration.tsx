@@ -287,18 +287,36 @@ function PlasmicDuration__RenderFunc(props: {
         errorDisplay={null}
         loadingDisplay={null}
         method={"GET"}
-        onError={generateStateOnChangeProp($state, [
-          "sampleDurationApi",
-          "error"
-        ])}
-        onLoading={generateStateOnChangeProp($state, [
-          "sampleDurationApi",
-          "loading"
-        ])}
-        onSuccess={generateStateOnChangeProp($state, [
-          "sampleDurationApi",
-          "data"
-        ])}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "sampleDurationApi",
+            "error"
+          ]).apply(null, eventArgs);
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "sampleDurationApi",
+            "loading"
+          ]).apply(null, eventArgs);
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "sampleDurationApi",
+            "data"
+          ]).apply(null, eventArgs);
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         ref={ref => {
           $refs["sampleDurationApi"] = ref;
         }}
@@ -390,10 +408,16 @@ function PlasmicDuration__RenderFunc(props: {
                   </div>
                 </Card>
               }
-              onOpenChange={generateStateOnChangeProp($state, [
-                "fragmentPopover",
-                "open"
-              ])}
+              onOpenChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "fragmentPopover",
+                  "open"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
               open={generateStateValueProp($state, ["fragmentPopover", "open"])}
               ref={ref => {
                 $refs["fragmentPopover"] = ref;
@@ -512,6 +536,11 @@ function PlasmicDuration__RenderFunc(props: {
                             "fragmentTimePicker",
                             "value"
                           ]).apply(null, eventArgs);
+
+                          if (eventArgs.length > 1 && eventArgs[1]) {
+                            return;
+                          }
+
                           (async time => {
                             const $steps = {};
 
@@ -777,10 +806,16 @@ function PlasmicDuration__RenderFunc(props: {
                     </Stack__>
                   }
                   className={classNames("__wab_instance", sty.dialog)}
-                  onOpenChange={generateStateOnChangeProp($state, [
-                    "dialog",
-                    "open"
-                  ])}
+                  onOpenChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+                      null,
+                      eventArgs
+                    );
+
+                    if (eventArgs.length > 1 && eventArgs[1]) {
+                      return;
+                    }
+                  }}
                   open={generateStateValueProp($state, ["dialog", "open"])}
                   title={
                     "\u0632\u0645\u0627\u0646 \u062f\u0644\u062e\u0648\u0627\u0647"

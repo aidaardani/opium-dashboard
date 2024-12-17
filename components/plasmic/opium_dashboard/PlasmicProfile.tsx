@@ -450,12 +450,18 @@ function PlasmicProfile__RenderFunc(props: {
               />
             </React.Fragment>
           ),
-          onChange: generateStateOnChangePropForCodeComponents(
-            $state,
-            "activePanelId",
-            ["accordion", "activePanelId"],
-            AntdAccordion_Helpers
-          )
+          onChange: async (...eventArgs: any) => {
+            generateStateOnChangePropForCodeComponents(
+              $state,
+              "activePanelId",
+              ["accordion", "activePanelId"],
+              AntdAccordion_Helpers
+            ).apply(null, eventArgs);
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          }
         };
         initializeCodeComponentStates(
           $state,

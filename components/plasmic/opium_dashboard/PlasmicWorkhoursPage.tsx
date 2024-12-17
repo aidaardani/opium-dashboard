@@ -59,8 +59,9 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import DrCenters from "../../DrCenters"; // plasmic-import: IkLsGKQP_uPj/component
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import AvailabilitySuggestionsSpecialities from "../../AvailabilitySuggestionsSpecialities"; // plasmic-import: bBN7I3yc6plC/component
 import HoursDaysOfWeek from "../../HoursDaysOfWeek"; // plasmic-import: lSLy8Nehd6MM/component
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
@@ -84,15 +85,17 @@ type ArgPropType = keyof PlasmicWorkhoursPage__ArgsType;
 export const PlasmicWorkhoursPage__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicWorkhoursPage__OverridesType = {
-  bookList?: Flex__<"div">;
-  text?: Flex__<"div">;
+  workhoursPage?: Flex__<"div">;
+  apIworkhours?: Flex__<typeof ApiRequest>;
   drCenters?: Flex__<typeof DrCenters>;
+  sideEffect?: Flex__<typeof SideEffect>;
   availabilitySuggestionsSpecialities?: Flex__<
     typeof AvailabilitySuggestionsSpecialities
   >;
   hoursDaysOfWeek?: Flex__<typeof HoursDaysOfWeek>;
   runCodeGtmMetrica?: Flex__<typeof SideEffect>;
   gtm?: Flex__<typeof Embed>;
+  apiSpeciality?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultWorkhoursPageProps {}
@@ -168,6 +171,54 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "apIworkhours.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apIworkhours"
+      },
+      {
+        path: "apIworkhours.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apIworkhours"
+      },
+      {
+        path: "apIworkhours.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apIworkhours"
+      },
+      {
+        path: "apiSpeciality.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiSpeciality"
+      },
+      {
+        path: "apiSpeciality.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiSpeciality"
+      },
+      {
+        path: "apiSpeciality.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiSpeciality"
       }
     ],
     [$props, $ctx, $refs]
@@ -204,8 +255,8 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
 
       <div className={projectcss.plasmic_page_wrapper}>
         <div
-          data-plasmic-name={"bookList"}
-          data-plasmic-override={overrides.bookList}
+          data-plasmic-name={"workhoursPage"}
+          data-plasmic-override={overrides.workhoursPage}
           data-plasmic-root={true}
           data-plasmic-for-node={forNode}
           className={classNames(
@@ -216,7 +267,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
             projectcss.plasmic_tokens,
             plasmic_fragment_design_system_css.plasmic_tokens,
             plasmic_antd_5_hostless_css.plasmic_tokens,
-            sty.bookList
+            sty.workhoursPage
           )}
           dir={"rtl"}
         >
@@ -225,123 +276,67 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox__d4Ycy)}
           >
-            <SideEffect
-              className={classNames("__wab_instance", sty.sideEffect___6NILs)}
-              onMount={async () => {
-                const $steps = {};
+            <ApiRequest
+              data-plasmic-name={"apIworkhours"}
+              data-plasmic-override={overrides.apIworkhours}
+              className={classNames("__wab_instance", sty.apIworkhours)}
+              errorDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__dggG
+                  )}
+                >
+                  {"Error fetching data"}
+                </div>
+              }
+              loadingDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__vTc3O
+                  )}
+                >
+                  {"Loading..."}
+                </div>
+              }
+              method={"GET"}
+              onError={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apIworkhours",
+                  "error"
+                ]).apply(null, eventArgs);
 
-                $steps["apiCenters"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "GET",
-                          "https://api.paziresh24.com/V1/doctor/centers"
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
-                if (
-                  $steps["apiCenters"] != null &&
-                  typeof $steps["apiCenters"] === "object" &&
-                  typeof $steps["apiCenters"].then === "function"
-                ) {
-                  $steps["apiCenters"] = await $steps["apiCenters"];
-                }
-
-                $steps["updateCenters"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["centers"]
-                        },
-                        operation: 0,
-                        value: $steps.apiCenters.data.data
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateCenters"] != null &&
-                  typeof $steps["updateCenters"] === "object" &&
-                  typeof $steps["updateCenters"].then === "function"
-                ) {
-                  $steps["updateCenters"] = await $steps["updateCenters"];
-                }
-
-                $steps["apiSpeciality"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "GET",
-                          "https://apigw.paziresh24.com/v1/availability-suggestions-specialities"
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
-                if (
-                  $steps["apiSpeciality"] != null &&
-                  typeof $steps["apiSpeciality"] === "object" &&
-                  typeof $steps["apiSpeciality"].then === "function"
-                ) {
-                  $steps["apiSpeciality"] = await $steps["apiSpeciality"];
-                }
-
-                $steps["updateSpeciality"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["speciality"]
-                        },
-                        operation: 0,
-                        value: $steps.apiSpeciality.data
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateSpeciality"] != null &&
-                  typeof $steps["updateSpeciality"] === "object" &&
-                  typeof $steps["updateSpeciality"].then === "function"
-                ) {
-                  $steps["updateSpeciality"] = await $steps["updateSpeciality"];
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
                 }
               }}
+              onLoading={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apIworkhours",
+                  "loading"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
+              onSuccess={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apIworkhours",
+                  "data"
+                ]).apply(null, eventArgs);
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
+              ref={ref => {
+                $refs["apIworkhours"] = ref;
+              }}
+              url={"https://api.paziresh24.com/V1/doctor/centers"}
             />
 
             <Stack__
@@ -350,12 +345,10 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
               className={classNames(projectcss.all, sty.freeBox___9HgIy)}
             >
               <div
-                data-plasmic-name={"text"}
-                data-plasmic-override={overrides.text}
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text
+                  sty.text___2TFhG
                 )}
               >
                 {"\u0633\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u06cc"}
@@ -365,9 +358,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                 data-plasmic-override={overrides.drCenters}
                 centers={(() => {
                   try {
-                    return $state.centers.filter(
-                      center => center.is_active_booking
-                    );
+                    return $state.apIworkhours.data.data;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -385,6 +376,11 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                     "drCenters",
                     "selectedCenter"
                   ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+
                   (async val => {
                     const $steps = {};
 
@@ -429,7 +425,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
             </Stack__>
             {(() => {
               try {
-                return $state.speciality["speciality-id"] === "206";
+                return $state.apiSpeciality.data["speciality-id"] === "206";
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -442,11 +438,13 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
             })() ? (
               <div className={classNames(projectcss.all, sty.freeBox__bic)}>
                 <SideEffect
-                  className={classNames("__wab_instance", sty.sideEffect__jgXZ)}
+                  data-plasmic-name={"sideEffect"}
+                  data-plasmic-override={overrides.sideEffect}
+                  className={classNames("__wab_instance", sty.sideEffect)}
                   onMount={async () => {
                     const $steps = {};
 
-                    $steps["invokeGlobalAction"] = true
+                    $steps["sendLog"] = true
                       ? (() => {
                           const actionArgs = {
                             args: [
@@ -455,9 +453,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                                   return {
                                     group:
                                       "availability-suggestions-specialities",
-                                    data: {
-                                      center_data: $state.centers
-                                    },
+                                    data: { center_data: $state.centers },
                                     type: "workhour-page"
                                   };
                                 } catch (e) {
@@ -479,13 +475,11 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["invokeGlobalAction"] != null &&
-                      typeof $steps["invokeGlobalAction"] === "object" &&
-                      typeof $steps["invokeGlobalAction"].then === "function"
+                      $steps["sendLog"] != null &&
+                      typeof $steps["sendLog"] === "object" &&
+                      typeof $steps["sendLog"].then === "function"
                     ) {
-                      $steps["invokeGlobalAction"] = await $steps[
-                        "invokeGlobalAction"
-                      ];
+                      $steps["sendLog"] = await $steps["sendLog"];
                     }
                   }}
                 />
@@ -505,7 +499,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
             <div className={classNames(projectcss.all, sty.freeBox__lw8Cb)}>
               {(() => {
                 try {
-                  return $state.centers.some(
+                  return $state.apIworkhours.data.data.some(
                     center =>
                       center.user_center_id === $state.drCenters.selectedCenter
                   );
@@ -514,7 +508,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                     e instanceof TypeError ||
                     e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    return true;
+                    return false;
                   }
                   throw e;
                 }
@@ -524,7 +518,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                   data-plasmic-override={overrides.hoursDaysOfWeek}
                   centerId={(() => {
                     try {
-                      return $state.centers.find(
+                      return $state.apIworkhours.data.data.find(
                         center =>
                           center.user_center_id ===
                           $state.drCenters.selectedCenter
@@ -544,10 +538,16 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                     "hoursDaysOfWeek",
                     "duration"
                   ])}
-                  onDurationChange={generateStateOnChangeProp($state, [
-                    "hoursDaysOfWeek",
-                    "duration"
-                  ])}
+                  onDurationChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "hoursDaysOfWeek",
+                      "duration"
+                    ]).apply(null, eventArgs);
+
+                    if (eventArgs.length > 1 && eventArgs[1]) {
+                      return;
+                    }
+                  }}
                   userCenterId={(() => {
                     try {
                       return $state.selectedCenter;
@@ -667,6 +667,71 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
               '\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"\nheight="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->\n\n<!-- Yandex.Metrika counter -->\n<script type="text/javascript" >\n   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n   m[i].l=1*new Date();\n   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})\n   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");\n\n   ym(98277236, "init", {\n        clickmap:true,\n        trackLinks:true,\n        accurateTrackBounce:true,\n        webvisor:true\n   });\n</script>\n<noscript><div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div></noscript>\n<!-- /Yandex.Metrika counter -->'
             }
           />
+
+          <ApiRequest
+            data-plasmic-name={"apiSpeciality"}
+            data-plasmic-override={overrides.apiSpeciality}
+            className={classNames("__wab_instance", sty.apiSpeciality)}
+            errorDisplay={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__hlG9O
+                )}
+              >
+                {"Error fetching data"}
+              </div>
+            }
+            loadingDisplay={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__rVRoE
+                )}
+              >
+                {"Loading..."}
+              </div>
+            }
+            method={"GET"}
+            onError={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "apiSpeciality",
+                "error"
+              ]).apply(null, eventArgs);
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
+            onLoading={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "apiSpeciality",
+                "loading"
+              ]).apply(null, eventArgs);
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
+            onSuccess={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "apiSpeciality",
+                "data"
+              ]).apply(null, eventArgs);
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
+            ref={ref => {
+              $refs["apiSpeciality"] = ref;
+            }}
+            url={
+              "https://apigw.paziresh24.com/v1/availability-suggestions-specialities"
+            }
+          />
         </div>
       </div>
     </React.Fragment>
@@ -674,33 +739,39 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  bookList: [
-    "bookList",
-    "text",
+  workhoursPage: [
+    "workhoursPage",
+    "apIworkhours",
     "drCenters",
+    "sideEffect",
     "availabilitySuggestionsSpecialities",
     "hoursDaysOfWeek",
     "runCodeGtmMetrica",
-    "gtm"
+    "gtm",
+    "apiSpeciality"
   ],
-  text: ["text"],
+  apIworkhours: ["apIworkhours"],
   drCenters: ["drCenters"],
+  sideEffect: ["sideEffect"],
   availabilitySuggestionsSpecialities: ["availabilitySuggestionsSpecialities"],
   hoursDaysOfWeek: ["hoursDaysOfWeek"],
   runCodeGtmMetrica: ["runCodeGtmMetrica"],
-  gtm: ["gtm"]
+  gtm: ["gtm"],
+  apiSpeciality: ["apiSpeciality"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
-  bookList: "div";
-  text: "div";
+  workhoursPage: "div";
+  apIworkhours: typeof ApiRequest;
   drCenters: typeof DrCenters;
+  sideEffect: typeof SideEffect;
   availabilitySuggestionsSpecialities: typeof AvailabilitySuggestionsSpecialities;
   hoursDaysOfWeek: typeof HoursDaysOfWeek;
   runCodeGtmMetrica: typeof SideEffect;
   gtm: typeof Embed;
+  apiSpeciality: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -750,7 +821,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       forNode: nodeName
     });
   };
-  if (nodeName === "bookList") {
+  if (nodeName === "workhoursPage") {
     func.displayName = "PlasmicWorkhoursPage";
   } else {
     func.displayName = `PlasmicWorkhoursPage.${nodeName}`;
@@ -760,17 +831,19 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
 
 export const PlasmicWorkhoursPage = Object.assign(
   // Top-level PlasmicWorkhoursPage renders the root element
-  makeNodeComponent("bookList"),
+  makeNodeComponent("workhoursPage"),
   {
     // Helper components rendering sub-elements
-    text: makeNodeComponent("text"),
+    apIworkhours: makeNodeComponent("apIworkhours"),
     drCenters: makeNodeComponent("drCenters"),
+    sideEffect: makeNodeComponent("sideEffect"),
     availabilitySuggestionsSpecialities: makeNodeComponent(
       "availabilitySuggestionsSpecialities"
     ),
     hoursDaysOfWeek: makeNodeComponent("hoursDaysOfWeek"),
     runCodeGtmMetrica: makeNodeComponent("runCodeGtmMetrica"),
     gtm: makeNodeComponent("gtm"),
+    apiSpeciality: makeNodeComponent("apiSpeciality"),
 
     // Metadata about props expected for PlasmicWorkhoursPage
     internalVariantProps: PlasmicWorkhoursPage__VariantProps,

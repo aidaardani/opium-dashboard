@@ -274,18 +274,36 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
                   </div>
                 }
                 method={"GET"}
-                onError={generateStateOnChangeProp($state, [
-                  "centersApi",
-                  "error"
-                ])}
-                onLoading={generateStateOnChangeProp($state, [
-                  "centersApi",
-                  "loading"
-                ])}
-                onSuccess={generateStateOnChangeProp($state, [
-                  "centersApi",
-                  "data"
-                ])}
+                onError={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "centersApi",
+                    "error"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
+                onLoading={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "centersApi",
+                    "loading"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
+                onSuccess={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "centersApi",
+                    "data"
+                  ]).apply(null, eventArgs);
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+                }}
                 ref={ref => {
                   $refs["centersApi"] = ref;
                 }}

@@ -410,10 +410,16 @@ function PlasmicReceipt__RenderFunc(props: {
             data-plasmic-name={"numberInput"}
             data-plasmic-override={overrides.numberInput}
             className={classNames("__wab_instance", sty.numberInput)}
-            onChange={generateStateOnChangeProp($state, [
-              "numberInput",
-              "value"
-            ])}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["numberInput", "value"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (eventArgs.length > 1 && eventArgs[1]) {
+                return;
+              }
+            }}
             placeholder={
               "\u0645\u0628\u0644\u063a \u062f\u0644\u062e\u0648\u0627\u0647"
             }
@@ -470,9 +476,36 @@ function PlasmicReceipt__RenderFunc(props: {
           </div>
         }
         method={"GET"}
-        onError={generateStateOnChangeProp($state, ["apiRequest", "error"])}
-        onLoading={generateStateOnChangeProp($state, ["apiRequest", "loading"])}
-        onSuccess={generateStateOnChangeProp($state, ["apiRequest", "data"])}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         ref={ref => {
           $refs["apiRequest"] = ref;
         }}

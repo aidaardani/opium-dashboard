@@ -306,10 +306,16 @@ function PlasmicWorkhours__RenderFunc(props: {
           isChecked={
             generateStateValueProp($state, ["checkbox", "isChecked"]) ?? false
           }
-          onChange={(...eventArgs) => {
-            generateStateOnChangeProp($state, ["checkbox", "isChecked"])(
-              eventArgs[0]
-            );
+          onChange={async (...eventArgs: any) => {
+            ((...eventArgs) => {
+              generateStateOnChangeProp($state, ["checkbox", "isChecked"])(
+                eventArgs[0]
+              );
+            }).apply(null, eventArgs);
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
           }}
         >
           <React.Fragment>
@@ -376,6 +382,11 @@ function PlasmicWorkhours__RenderFunc(props: {
                         __plasmic_idx_0,
                         "value"
                       ]).apply(null, eventArgs);
+
+                      if (eventArgs.length > 1 && eventArgs[1]) {
+                        return;
+                      }
+
                       (async value => {
                         const $steps = {};
 
@@ -466,11 +477,17 @@ function PlasmicWorkhours__RenderFunc(props: {
                         }
                       }).apply(null, eventArgs);
                     },
-                    onOpenChange: generateStateOnChangeProp($state, [
-                      "to",
-                      __plasmic_idx_0,
-                      "open"
-                    ]),
+                    onOpenChange: async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "to",
+                        __plasmic_idx_0,
+                        "open"
+                      ]).apply(null, eventArgs);
+
+                      if (eventArgs.length > 1 && eventArgs[1]) {
+                        return;
+                      }
+                    },
                     open: generateStateValueProp($state, [
                       "to",
                       __plasmic_idx_0,
@@ -590,6 +607,11 @@ function PlasmicWorkhours__RenderFunc(props: {
                         __plasmic_idx_0,
                         "value"
                       ]).apply(null, eventArgs);
+
+                      if (eventArgs.length > 1 && eventArgs[1]) {
+                        return;
+                      }
+
                       (async value => {
                         const $steps = {};
 
@@ -732,11 +754,17 @@ function PlasmicWorkhours__RenderFunc(props: {
                         }
                       }).apply(null, eventArgs);
                     },
-                    onOpenChange: generateStateOnChangeProp($state, [
-                      "from",
-                      __plasmic_idx_0,
-                      "open"
-                    ]),
+                    onOpenChange: async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "from",
+                        __plasmic_idx_0,
+                        "open"
+                      ]).apply(null, eventArgs);
+
+                      if (eventArgs.length > 1 && eventArgs[1]) {
+                        return;
+                      }
+                    },
                     open: generateStateValueProp($state, [
                       "from",
                       __plasmic_idx_0,
@@ -1098,11 +1126,17 @@ function PlasmicWorkhours__RenderFunc(props: {
                         </div>
                       </div>
                     ),
-                    onOpenChange: generateStateOnChangeProp($state, [
-                      "popoverConflictHour2",
-                      __plasmic_idx_0,
-                      "open"
-                    ]),
+                    onOpenChange: async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "popoverConflictHour2",
+                        __plasmic_idx_0,
+                        "open"
+                      ]).apply(null, eventArgs);
+
+                      if (eventArgs.length > 1 && eventArgs[1]) {
+                        return;
+                      }
+                    },
                     open: generateStateValueProp($state, [
                       "popoverConflictHour2",
                       __plasmic_idx_0,
@@ -1359,11 +1393,17 @@ function PlasmicWorkhours__RenderFunc(props: {
                         />
                       </div>
                     ),
-                    onOpenChange: generateStateOnChangeProp($state, [
-                      "fragmentPopover",
-                      __plasmic_idx_0,
-                      "open"
-                    ]),
+                    onOpenChange: async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "fragmentPopover",
+                        __plasmic_idx_0,
+                        "open"
+                      ]).apply(null, eventArgs);
+
+                      if (eventArgs.length > 1 && eventArgs[1]) {
+                        return;
+                      }
+                    },
                     open: generateStateValueProp($state, [
                       "fragmentPopover",
                       __plasmic_idx_0,

@@ -296,7 +296,16 @@ function PlasmicProfileChannelsItem__RenderFunc(props: {
           data-plasmic-name={"number"}
           data-plasmic-override={overrides.number}
           className={classNames("__wab_instance", sty.number)}
-          onChange={generateStateOnChangeProp($state, ["number", "value"])}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["number", "value"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          }}
           placeholder={
             "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644"
           }
@@ -320,10 +329,16 @@ function PlasmicProfileChannelsItem__RenderFunc(props: {
               data-plasmic-name={"username"}
               data-plasmic-override={overrides.username}
               className={classNames("__wab_instance", sty.username)}
-              onChange={generateStateOnChangeProp($state, [
-                "username",
-                "value"
-              ])}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["username", "value"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
               placeholder={(() => {
                 try {
                   return `نام کاربری ${$props.channelName}`;

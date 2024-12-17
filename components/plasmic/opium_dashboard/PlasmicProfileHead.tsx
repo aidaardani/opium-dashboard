@@ -228,9 +228,36 @@ function PlasmicProfileHead__RenderFunc(props: {
           </div>
         }
         method={"GET"}
-        onError={generateStateOnChangeProp($state, ["profile", "error"])}
-        onLoading={generateStateOnChangeProp($state, ["profile", "loading"])}
-        onSuccess={generateStateOnChangeProp($state, ["profile", "data"])}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["profile", "error"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["profile", "loading"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["profile", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         ref={ref => {
           $refs["profile"] = ref;
         }}
@@ -279,6 +306,11 @@ function PlasmicProfileHead__RenderFunc(props: {
                     null,
                     eventArgs
                   );
+
+                  if (eventArgs.length > 1 && eventArgs[1]) {
+                    return;
+                  }
+
                   (async files => {
                     const $steps = {};
                   }).apply(null, eventArgs);

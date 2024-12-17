@@ -215,13 +215,36 @@ function PlasmicProfileNotifyCell__RenderFunc(props: {
           />
         }
         method={"GET"}
-        onError={generateStateOnChangeProp($state, ["apiRequest", "error"])}
-        onLoading={generateStateOnChangeProp($state, ["apiRequest", "loading"])}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         onSuccess={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
             null,
             eventArgs
           );
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+
           (async data => {
             const $steps = {};
 
@@ -267,7 +290,16 @@ function PlasmicProfileNotifyCell__RenderFunc(props: {
           data-plasmic-override={overrides.notifyCell}
           className={classNames("__wab_instance", sty.notifyCell)}
           name={"nationalCode"}
-          onChange={generateStateOnChangeProp($state, ["notifyCell", "value"])}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["notifyCell", "value"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (eventArgs.length > 1 && eventArgs[1]) {
+              return;
+            }
+          }}
           placeholder={
             "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u0645\u0646\u0634\u06cc"
           }

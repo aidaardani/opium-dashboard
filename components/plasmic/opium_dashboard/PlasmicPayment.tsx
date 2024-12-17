@@ -65,6 +65,8 @@ import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import { AntdRadioGroup } from "@plasmicpkgs/antd5/skinny/registerRadio";
 import { AntdRadio } from "@plasmicpkgs/antd5/skinny/registerRadio";
 
+import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -88,10 +90,12 @@ export const PlasmicPayment__VariantProps = new Array<VariantPropType>();
 
 export type PlasmicPayment__ArgsType = {
   selectedCenter?: string;
+  center?: any;
 };
 type ArgPropType = keyof PlasmicPayment__ArgsType;
 export const PlasmicPayment__ArgProps = new Array<ArgPropType>(
-  "selectedCenter"
+  "selectedCenter",
+  "center"
 );
 
 export type PlasmicPayment__OverridesType = {
@@ -112,6 +116,7 @@ export type PlasmicPayment__OverridesType = {
 
 export interface DefaultPaymentProps {
   selectedCenter?: string;
+  center?: any;
   className?: string;
 }
 
@@ -254,7 +259,9 @@ function PlasmicPayment__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.getUserPrefrence.data.list[0].PaymentPreference;
+              return $state.getUserPrefrence.data.list.find(
+                list => list.user_center_id == $props.selectedCenter
+              ).PaymentPreference;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -274,6 +281,10 @@ function PlasmicPayment__RenderFunc(props: {
     $ctx,
     $queries: {},
     $refs
+  });
+
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantsfobTirRaixGf()
   });
 
   return (
@@ -317,18 +328,36 @@ function PlasmicPayment__RenderFunc(props: {
           </div>
         }
         method={"GET"}
-        onError={generateStateOnChangeProp($state, [
-          "getDetailsPayment",
-          "error"
-        ])}
-        onLoading={generateStateOnChangeProp($state, [
-          "getDetailsPayment",
-          "loading"
-        ])}
-        onSuccess={generateStateOnChangeProp($state, [
-          "getDetailsPayment",
-          "data"
-        ])}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "getDetailsPayment",
+            "error"
+          ]).apply(null, eventArgs);
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "getDetailsPayment",
+            "loading"
+          ]).apply(null, eventArgs);
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "getDetailsPayment",
+            "data"
+          ]).apply(null, eventArgs);
+
+          if (eventArgs.length > 1 && eventArgs[1]) {
+            return;
+          }
+        }}
         ref={ref => {
           $refs["getDetailsPayment"] = ref;
         }}
@@ -349,6 +378,43 @@ function PlasmicPayment__RenderFunc(props: {
               data-plasmic-name={"now"}
               data-plasmic-override={overrides.now}
               className={classNames(projectcss.all, sty.now)}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateMore"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["more"]
+                        },
+                        operation: 0,
+                        value: ($state.more = !$state.more)
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateMore"] != null &&
+                  typeof $steps["updateMore"] === "object" &&
+                  typeof $steps["updateMore"].then === "function"
+                ) {
+                  $steps["updateMore"] = await $steps["updateMore"];
+                }
+              }}
             >
               <div
                 className={classNames(
@@ -364,7 +430,8 @@ function PlasmicPayment__RenderFunc(props: {
                         const unpaidAmount = $state.getDetailsPayment.data.find(
                           obj => obj.user_center_id === $props.selectedCenter
                         )?.["Unpaid Amount"];
-                        if (!unpaidAmount) return "";
+                        if (!unpaidAmount)
+                          return "تمام درآمد شما تسویه شده است";
                         const dividedAmount = unpaidAmount / 10;
                         const separatedAmount = dividedAmount
                           .toString()
@@ -655,18 +722,36 @@ function PlasmicPayment__RenderFunc(props: {
                         />
                       }
                       method={"GET"}
-                      onError={generateStateOnChangeProp($state, [
-                        "apiRequest",
-                        "error"
-                      ])}
-                      onLoading={generateStateOnChangeProp($state, [
-                        "apiRequest",
-                        "loading"
-                      ])}
-                      onSuccess={generateStateOnChangeProp($state, [
-                        "apiRequest",
-                        "data"
-                      ])}
+                      onError={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "apiRequest",
+                          "error"
+                        ]).apply(null, eventArgs);
+
+                        if (eventArgs.length > 1 && eventArgs[1]) {
+                          return;
+                        }
+                      }}
+                      onLoading={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "apiRequest",
+                          "loading"
+                        ]).apply(null, eventArgs);
+
+                        if (eventArgs.length > 1 && eventArgs[1]) {
+                          return;
+                        }
+                      }}
+                      onSuccess={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "apiRequest",
+                          "data"
+                        ]).apply(null, eventArgs);
+
+                        if (eventArgs.length > 1 && eventArgs[1]) {
+                          return;
+                        }
+                      }}
                       ref={ref => {
                         $refs["apiRequest"] = ref;
                       }}
@@ -702,18 +787,36 @@ function PlasmicPayment__RenderFunc(props: {
                           />
                         }
                         method={"GET"}
-                        onError={generateStateOnChangeProp($state, [
-                          "getUserPrefrence",
-                          "error"
-                        ])}
-                        onLoading={generateStateOnChangeProp($state, [
-                          "getUserPrefrence",
-                          "loading"
-                        ])}
-                        onSuccess={generateStateOnChangeProp($state, [
-                          "getUserPrefrence",
-                          "data"
-                        ])}
+                        onError={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "getUserPrefrence",
+                            "error"
+                          ]).apply(null, eventArgs);
+
+                          if (eventArgs.length > 1 && eventArgs[1]) {
+                            return;
+                          }
+                        }}
+                        onLoading={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "getUserPrefrence",
+                            "loading"
+                          ]).apply(null, eventArgs);
+
+                          if (eventArgs.length > 1 && eventArgs[1]) {
+                            return;
+                          }
+                        }}
+                        onSuccess={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "getUserPrefrence",
+                            "data"
+                          ]).apply(null, eventArgs);
+
+                          if (eventArgs.length > 1 && eventArgs[1]) {
+                            return;
+                          }
+                        }}
                         ref={ref => {
                           $refs["getUserPrefrence"] = ref;
                         }}
@@ -730,8 +833,10 @@ function PlasmicPayment__RenderFunc(props: {
                           )}
                           defaultValue={(() => {
                             try {
-                              return $state.getUserPrefrence.data.list[0]
-                                .PaymentPreference;
+                              return $state.getUserPrefrence.data.list.find(
+                                list =>
+                                  list.user_center_id == $props.selectedCenter
+                              ).PaymentPreference;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -742,10 +847,16 @@ function PlasmicPayment__RenderFunc(props: {
                               throw e;
                             }
                           })()}
-                          onChange={generateStateOnChangeProp($state, [
-                            "radioGroup",
-                            "value"
-                          ])}
+                          onChange={async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "radioGroup",
+                              "value"
+                            ]).apply(null, eventArgs);
+
+                            if (eventArgs.length > 1 && eventArgs[1]) {
+                              return;
+                            }
+                          }}
                           optionType={"default"}
                           options={(() => {
                             try {
@@ -785,6 +896,19 @@ function PlasmicPayment__RenderFunc(props: {
                             >
                               {"Option 1"}
                             </div>
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__dzYTy
+                              )}
+                            />
+
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__oWpF2
+                              )}
+                            />
                           </AntdRadio>
                           <AntdRadio
                             className={classNames(
@@ -821,6 +945,19 @@ function PlasmicPayment__RenderFunc(props: {
                           "__wab_instance",
                           sty.button__z8Edl
                         )}
+                        loading={(() => {
+                          try {
+                            return $state.loading;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()}
                         onClick={async event => {
                           const $steps = {};
 
@@ -868,7 +1005,13 @@ function PlasmicPayment__RenderFunc(props: {
                                     (() => {
                                       try {
                                         return {
-                                          kind: $state.radioGroup.value
+                                          kind: $state.radioGroup.value,
+                                          selectedCenter: $props.selectedCenter,
+                                          centerId: $props.center.find(
+                                            center =>
+                                              center.user_center_id ===
+                                              $props.selectedCenter
+                                          ).id
                                         };
                                       } catch (e) {
                                         if (
@@ -932,6 +1075,67 @@ function PlasmicPayment__RenderFunc(props: {
                           ) {
                             $steps["stopLoading"] = await $steps["stopLoading"];
                           }
+
+                          $steps["updateDialogOpen"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["dialog", "open"]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateDialogOpen"] != null &&
+                            typeof $steps["updateDialogOpen"] === "object" &&
+                            typeof $steps["updateDialogOpen"].then ===
+                              "function"
+                          ) {
+                            $steps["updateDialogOpen"] = await $steps[
+                              "updateDialogOpen"
+                            ];
+                          }
+
+                          $steps["invokeGlobalAction"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    undefined,
+                                    "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u0645\u0648\u0631\u062f\u0646\u0638\u0631 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0639\u0645\u0627\u0644 \u0634\u062f."
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Fragment.showToast"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["invokeGlobalAction"] != null &&
+                            typeof $steps["invokeGlobalAction"] === "object" &&
+                            typeof $steps["invokeGlobalAction"].then ===
+                              "function"
+                          ) {
+                            $steps["invokeGlobalAction"] = await $steps[
+                              "invokeGlobalAction"
+                            ];
+                          }
                         }}
                       />
 
@@ -988,13 +1192,31 @@ function PlasmicPayment__RenderFunc(props: {
                 </React.Fragment>
               }
               className={classNames("__wab_instance", sty.dialog)}
-              onOpenChange={generateStateOnChangeProp($state, [
-                "dialog",
-                "open"
-              ])}
+              onOpenChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (eventArgs.length > 1 && eventArgs[1]) {
+                  return;
+                }
+              }}
               open={generateStateValueProp($state, ["dialog", "open"])}
               title={
-                "\u0627\u0646\u062a\u062e\u0627\u0628 \u0646\u0648\u0639 \u062a\u0633\u0648\u06cc\u0647 \u062d\u0633\u0627\u0628"
+                <div className={classNames(projectcss.all, sty.freeBox__gJBuC)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__t7P05
+                    )}
+                  >
+                    {
+                      "\u0627\u0646\u062a\u062e\u0627\u0628 \u0646\u0648\u0639 \u062a\u0633\u0648\u06cc\u0647 \u062d\u0633\u0627\u0628"
+                    }
+                  </div>
+                </div>
               }
               trigger={
                 <Button
@@ -1021,6 +1243,145 @@ function PlasmicPayment__RenderFunc(props: {
                 "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062a\u0633\u0648\u06cc\u0647 \u062d\u0633\u0627\u0628"
               }
               className={classNames("__wab_instance", sty.requestToPay)}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateLoading"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["loading"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateLoading"] != null &&
+                  typeof $steps["updateLoading"] === "object" &&
+                  typeof $steps["updateLoading"].then === "function"
+                ) {
+                  $steps["updateLoading"] = await $steps["updateLoading"];
+                }
+
+                $steps["settlementRequest"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "POST",
+                          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/settlementRequest",
+                          undefined,
+                          (() => {
+                            try {
+                              return {
+                                selectedCenter: $props.selectedCenter,
+                                centerId: $props.center.find(
+                                  center =>
+                                    center.user_center_id ===
+                                    $props.selectedCenter
+                                ).id
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["settlementRequest"] != null &&
+                  typeof $steps["settlementRequest"] === "object" &&
+                  typeof $steps["settlementRequest"].then === "function"
+                ) {
+                  $steps["settlementRequest"] = await $steps[
+                    "settlementRequest"
+                  ];
+                }
+
+                $steps["updateLoadingFinish"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["loading"]
+                        },
+                        operation: 0,
+                        value: false
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateLoadingFinish"] != null &&
+                  typeof $steps["updateLoadingFinish"] === "object" &&
+                  typeof $steps["updateLoadingFinish"].then === "function"
+                ) {
+                  $steps["updateLoadingFinish"] = await $steps[
+                    "updateLoadingFinish"
+                  ];
+                }
+
+                $steps["toast"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          undefined,
+                          "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u0634\u0645\u0627 \u062b\u0628\u062a \u0634\u062f \u0648 \u062f\u0631\u0627\u0645\u062f \u0634\u0645\u0627 \u062a\u0627 \u0633\u0627\u0639\u0627\u062a\u06cc \u062f\u06cc\u06af\u0631 \u0628\u0647 \u062d\u0633\u0627\u0628 \u0634\u0645\u0627 \u0648\u0627\u0631\u06cc\u0632 \u062e\u0648\u0627\u0647\u062f \u0634\u062f. "
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["toast"] != null &&
+                  typeof $steps["toast"] === "object" &&
+                  typeof $steps["toast"].then === "function"
+                ) {
+                  $steps["toast"] = await $steps["toast"];
+                }
+              }}
             />
           </Stack__>
         </div>
