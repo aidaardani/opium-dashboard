@@ -2694,7 +2694,7 @@ function PlasmicPricing__RenderFunc(props: {
                                   style={{ fontWeight: 700 }}
                                 >
                                   {
-                                    "\u06cc\u0627\u062f\u0627\u0648\u0631\u06cc \u0646\u0648\u0628\u062a \u0628\u06cc\u0645\u0627\u0631 (\u0628\u0647 \u0632\u0648\u062f\u06cc): "
+                                    "\u06cc\u0627\u062f\u0627\u0648\u0631\u06cc \u0646\u0648\u0628\u062a \u0628\u06cc\u0645\u0627\u0631 : "
                                   }
                                 </span>
                                 <React.Fragment>{"\n"}</React.Fragment>
