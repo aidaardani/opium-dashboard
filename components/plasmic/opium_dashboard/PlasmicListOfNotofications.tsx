@@ -2237,7 +2237,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                     )}
                                   >
                                     {
-                                      "\u0645\u0634\u0627\u0647\u062f\u0647 \u0647\u0632\u06cc\u0646\u0647 \u0648 \u0646\u0645\u0648\u0646\u0647 \u0645\u062a\u0646 \u067e\u06cc\u0627\u0645\u06a9\u06cc \u06a9\u0647 \u0627\u0631\u0633\u0627\u0644 \u0645\u06cc \u0634\u0648\u062f."
+                                      "\u0645\u0634\u0627\u0647\u062f\u0647 \u0647\u0632\u06cc\u0646\u0647 \u0648 \u0646\u0645\u0648\u0646\u0647 \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc\u200c"
                                     }
                                   </div>
                                 }
@@ -2797,6 +2797,77 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                             await $steps[
                               "updateNotificationSettingForThisUser"
                             ];
+                        }
+
+                        $steps["sendLog"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  (() => {
+                                    try {
+                                      return {
+                                        group: "notificationspanel",
+                                        data: {
+                                          receivers:
+                                            $state.notoficationsRecivers.find(
+                                              event =>
+                                                event.Title ===
+                                                $state.selectedrecieverinnewworkflow
+                                            ).name,
+                                          events:
+                                            $state.notificationsevents.find(
+                                              event =>
+                                                event.Title ===
+                                                $state.selectedeventinworkflow
+                                            ).name,
+                                          channels: "sms",
+                                          user_id: $ctx.query.user_id,
+                                          content:
+                                            $state.multilineTextInput.value,
+                                          objectofcontent: JSON.stringify(
+                                            [
+                                              $state.selecteddrnameinnewworkflowscontent
+                                                ? "drname"
+                                                : "",
+                                              $state.selecteddrpatientinnewworkflowscontent
+                                                ? "patientname"
+                                                : "",
+                                              $state.selectedrefidinnewworkflowscontent
+                                                ? "refid"
+                                                : "",
+                                              $state.selectedbooktimeinnewworkflowscontent
+                                                ? "booktime"
+                                                : ""
+                                            ].filter(Boolean)
+                                          )
+                                        },
+                                        type: "add-specific-notification"
+                                      };
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions["Splunk.sendLog"]?.apply(
+                                null,
+                                [...actionArgs.args]
+                              );
+                            })()
+                          : undefined;
+                        if (
+                          $steps["sendLog"] != null &&
+                          typeof $steps["sendLog"] === "object" &&
+                          typeof $steps["sendLog"].then === "function"
+                        ) {
+                          $steps["sendLog"] = await $steps["sendLog"];
                         }
                       }}
                     />

@@ -559,7 +559,17 @@ function PlasmicUserworkflow__RenderFunc(props: {
               "open"
             ])}
             title={
-              "\u0627\u0638\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc"
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__s5J6H
+                )}
+              >
+                {
+                  "\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc"
+                }
+              </div>
             }
             trigger={
               <Button
@@ -604,6 +614,48 @@ function PlasmicUserworkflow__RenderFunc(props: {
                     role={"img"}
                   />
                 }
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["sendLog"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  group: "notificationspanel",
+                                  data: {
+                                    user_id: $ctx.query.user_id,
+                                    item: $props.currentItem
+                                  },
+                                  type: "edit-specific-notification"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendLog"] != null &&
+                    typeof $steps["sendLog"] === "object" &&
+                    typeof $steps["sendLog"].then === "function"
+                  ) {
+                    $steps["sendLog"] = await $steps["sendLog"];
+                  }
+                }}
                 outline={true}
                 startIcon={
                   <ChevronRightIcon
@@ -739,6 +791,47 @@ function PlasmicUserworkflow__RenderFunc(props: {
                           ];
                         }
 
+                        $steps["sendLog"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  (() => {
+                                    try {
+                                      return {
+                                        group: "notificationspanel",
+                                        data: {
+                                          user_id: $ctx.query.user_id,
+                                          item: $props.currentItem
+                                        },
+                                        type: "delete-specific-notification"
+                                      };
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions["Splunk.sendLog"]?.apply(
+                                null,
+                                [...actionArgs.args]
+                              );
+                            })()
+                          : undefined;
+                        if (
+                          $steps["sendLog"] != null &&
+                          typeof $steps["sendLog"] === "object" &&
+                          typeof $steps["sendLog"].then === "function"
+                        ) {
+                          $steps["sendLog"] = await $steps["sendLog"];
+                        }
+
                         $steps["showToast"] = true
                           ? (() => {
                               const actionArgs = {
@@ -847,6 +940,49 @@ function PlasmicUserworkflow__RenderFunc(props: {
               ) {
                 return;
               }
+
+              (async val => {
+                const $steps = {};
+
+                $steps["sendLog"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                group: "notificationspanel",
+                                data: {
+                                  user_id: $ctx.query.user_id,
+                                  item: $props.currentItem
+                                },
+                                type: "click-delete-specific-notification"
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["sendLog"] != null &&
+                  typeof $steps["sendLog"] === "object" &&
+                  typeof $steps["sendLog"].then === "function"
+                ) {
+                  $steps["sendLog"] = await $steps["sendLog"];
+                }
+              }).apply(null, eventArgs);
             }}
             open={generateStateValueProp($state, ["dialogDeleteBook", "open"])}
             title={

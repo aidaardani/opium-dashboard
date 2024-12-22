@@ -1178,7 +1178,7 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                         )}
                       >
                         {
-                          "\u0646\u0645\u0648\u0646\u0647 \u067e\u06cc\u0627\u0645\u06a9"
+                          "\u0645\u0634\u0627\u0647\u062f\u0647 \u0647\u0632\u06cc\u0646\u0647 \u0648 \u0646\u0645\u0648\u0646\u0647 \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc\u200c"
                         }
                       </div>
                     }
@@ -1521,7 +1521,7 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                                   $state.changetorefid ? "refid" : "",
                                   $state.changetobooktime ? "booktime" : ""
                                 ].filter(Boolean)
-                              : $props.objectofcontent // در صورتی که هیچ شرطی برقرار نبود
+                              : $props.objectofcontent
                           )
                         };
                       } catch (e) {
@@ -1569,6 +1569,64 @@ function PlasmicSpecificnotification__RenderFunc(props: {
             typeof $steps["showToast"].then === "function"
           ) {
             $steps["showToast"] = await $steps["showToast"];
+          }
+
+          $steps["sendEvent"] = true
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    (() => {
+                      try {
+                        return {
+                          group: "notificationspanel",
+                          data: {
+                            user_id: $ctx.query.user_id,
+                            receivers: $props.receivers,
+                            events: $props.events,
+                            user_id: $props.userId,
+                            channels: "sms",
+                            content: $state.multilineTextInput.value,
+                            objectofcontent: JSON.stringify(
+                              $state.changetobooktime ||
+                                $state.changetorefid ||
+                                $state.changetopatientname ||
+                                $state.changetodrname
+                                ? [
+                                    $state.changetodrname ? "drname" : "",
+                                    $state.changetopatientname
+                                      ? "patientname"
+                                      : "",
+                                    $state.changetorefid ? "refid" : "",
+                                    $state.changetobooktime ? "booktime" : ""
+                                  ].filter(Boolean)
+                                : $props.objectofcontent
+                            )
+                          },
+                          type: "submit-edit-specific-notification"
+                        };
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  ]
+                };
+                return $globalActions["Splunk.sendLog"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["sendEvent"] != null &&
+            typeof $steps["sendEvent"] === "object" &&
+            typeof $steps["sendEvent"].then === "function"
+          ) {
+            $steps["sendEvent"] = await $steps["sendEvent"];
           }
 
           $steps["finishLoading"] =
