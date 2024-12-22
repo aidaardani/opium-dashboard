@@ -452,30 +452,18 @@ function PlasmicProfilePersonal__RenderFunc(props: {
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onLoading={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["auth", "loading"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onSuccess={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["auth", "data"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         ref={ref => {
           $refs["auth"] = ref;
@@ -499,30 +487,18 @@ function PlasmicProfilePersonal__RenderFunc(props: {
               null,
               eventArgs
             );
-
-            if (eventArgs.length > 1 && eventArgs[1]) {
-              return;
-            }
           }}
           onLoading={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["profile", "loading"]).apply(
               null,
               eventArgs
             );
-
-            if (eventArgs.length > 1 && eventArgs[1]) {
-              return;
-            }
           }}
           onSuccess={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["profile", "data"]).apply(
               null,
               eventArgs
             );
-
-            if (eventArgs.length > 1 && eventArgs[1]) {
-              return;
-            }
 
             (async data => {
               const $steps = {};
@@ -598,7 +574,11 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                     "firstNameValue"
                   ]).apply(null, eventArgs);
 
-                  if (eventArgs.length > 1 && eventArgs[1]) {
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
                     return;
                   }
                 }}
@@ -608,7 +588,11 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                     "lastNameValue"
                   ]).apply(null, eventArgs);
 
-                  if (eventArgs.length > 1 && eventArgs[1]) {
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
                     return;
                   }
                 }}
@@ -645,10 +629,6 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                     "nationalCode",
                     "value"
                   ]).apply(null, eventArgs);
-
-                  if (eventArgs.length > 1 && eventArgs[1]) {
-                    return;
-                  }
                 }}
                 placeholder={"\u06a9\u062f \u0645\u0644\u06cc"}
                 type={"text"}
@@ -684,10 +664,6 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                     "medicalCode",
                     "value"
                   ]).apply(null, eventArgs);
-
-                  if (eventArgs.length > 1 && eventArgs[1]) {
-                    return;
-                  }
                 }}
                 placeholder={
                   "\u0634\u0645\u0627\u0631\u0647 \u0646\u0638\u0627\u0645 \u067e\u0632\u0634\u06a9\u06cc"
@@ -752,30 +728,18 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   "providerApi",
                   "error"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               onLoading={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "providerApi",
                   "loading"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               onSuccess={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "providerApi",
                   "data"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               ref={ref => {
                 $refs["providerApi"] = ref;
@@ -826,30 +790,18 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                     "notifyCellApi",
                     "error"
                   ]).apply(null, eventArgs);
-
-                  if (eventArgs.length > 1 && eventArgs[1]) {
-                    return;
-                  }
                 }}
                 onLoading={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
                     "notifyCellApi",
                     "loading"
                   ]).apply(null, eventArgs);
-
-                  if (eventArgs.length > 1 && eventArgs[1]) {
-                    return;
-                  }
                 }}
                 onSuccess={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
                     "notifyCellApi",
                     "data"
                   ]).apply(null, eventArgs);
-
-                  if (eventArgs.length > 1 && eventArgs[1]) {
-                    return;
-                  }
                 }}
                 ref={ref => {
                   $refs["notifyCellApi"] = ref;
@@ -882,10 +834,6 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                       "notifyCell",
                       "value"
                     ]).apply(null, eventArgs);
-
-                    if (eventArgs.length > 1 && eventArgs[1]) {
-                      return;
-                    }
                   }}
                   placeholder={
                     "\u0634\u0645\u0627\u0631\u0647 \u0645\u0646\u0634\u06cc"

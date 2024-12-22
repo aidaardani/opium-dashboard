@@ -247,30 +247,18 @@ function PlasmicProfilePrescriptionSettings__RenderFunc(props: {
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onLoading={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onSuccess={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         ref={ref => {
           $refs["apiRequest"] = ref;
@@ -300,10 +288,6 @@ function PlasmicProfilePrescriptionSettings__RenderFunc(props: {
                   "smsActivation",
                   "checked"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
 
                 (async checked => {
                   const $steps = {};
@@ -466,10 +450,6 @@ function PlasmicProfilePrescriptionSettings__RenderFunc(props: {
                   "information",
                   "checked"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
             />
 

@@ -75,6 +75,7 @@ import sty from "./PlasmicUserworkflow.module.css"; // plasmic-import: xcx15_gUi
 import Icon16Icon from "./icons/PlasmicIcon__Icon16"; // plasmic-import: 8j1U_g9afFrU/icon
 import Icon18Icon from "./icons/PlasmicIcon__Icon18"; // plasmic-import: IETA_lWaQX-x/icon
 import Icon19Icon from "./icons/PlasmicIcon__Icon19"; // plasmic-import: BizSW9L3o2cq/icon
+import Icon44Icon from "./icons/PlasmicIcon__Icon44"; // plasmic-import: 4HiCQNa4cxeX/icon
 import Icon17Icon from "./icons/PlasmicIcon__Icon17"; // plasmic-import: 0ELPoF5hq6sg/icon
 import Icon26Icon from "./icons/PlasmicIcon__Icon26"; // plasmic-import: frSwMvWOgAN1/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
@@ -302,6 +303,24 @@ function PlasmicUserworkflow__RenderFunc(props: {
                 role={"img"}
               />
             ) : null}
+            {(() => {
+              try {
+                return $props.currentItem.events === "remind-book";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })() ? (
+              <Icon44Icon
+                className={classNames(projectcss.all, sty.svg__rwbFk)}
+                role={"img"}
+              />
+            ) : null}
             <div
               className={classNames(
                 projectcss.all,
@@ -312,15 +331,7 @@ function PlasmicUserworkflow__RenderFunc(props: {
               <React.Fragment>
                 {(() => {
                   try {
-                    return (() => {
-                      let message =
-                        $props.currentItem.events === "delete-book"
-                          ? "لغو نوبت"
-                          : $props.currentItem.events === "submit-book"
-                          ? "ثبت نوبت"
-                          : "";
-                      return message;
-                    })();
+                    return $props.currentItem.Title;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -356,10 +367,7 @@ function PlasmicUserworkflow__RenderFunc(props: {
               <React.Fragment>
                 {(() => {
                   try {
-                    return $props.notificationSettingForThisUser.list[0]
-                      .channels === "sms"
-                      ? "پیامک"
-                      : "";
+                    return $props.currentItem.channels === "sms" ? "پیامک" : "";
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -538,7 +546,11 @@ function PlasmicUserworkflow__RenderFunc(props: {
                 "open"
               ]).apply(null, eventArgs);
 
-              if (eventArgs.length > 1 && eventArgs[1]) {
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
                 return;
               }
             }}
@@ -828,7 +840,11 @@ function PlasmicUserworkflow__RenderFunc(props: {
                 "open"
               ]).apply(null, eventArgs);
 
-              if (eventArgs.length > 1 && eventArgs[1]) {
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
                 return;
               }
             }}

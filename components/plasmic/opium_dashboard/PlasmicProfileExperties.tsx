@@ -5203,30 +5203,18 @@ function PlasmicProfileExperties__RenderFunc(props: {
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onLoading={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["authApi", "loading"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onSuccess={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["authApi", "data"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         ref={ref => {
           $refs["authApi"] = ref;
@@ -5250,30 +5238,18 @@ function PlasmicProfileExperties__RenderFunc(props: {
               null,
               eventArgs
             );
-
-            if (eventArgs.length > 1 && eventArgs[1]) {
-              return;
-            }
           }}
           onLoading={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["providerApi", "loading"]).apply(
               null,
               eventArgs
             );
-
-            if (eventArgs.length > 1 && eventArgs[1]) {
-              return;
-            }
           }}
           onSuccess={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["providerApi", "data"]).apply(
               null,
               eventArgs
             );
-
-            if (eventArgs.length > 1 && eventArgs[1]) {
-              return;
-            }
           }}
           ref={ref => {
             $refs["providerApi"] = ref;
@@ -5321,30 +5297,18 @@ function PlasmicProfileExperties__RenderFunc(props: {
                 "spetialitiesApi",
                 "error"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onLoading={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "spetialitiesApi",
                 "loading"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onSuccess={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "spetialitiesApi",
                 "data"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             ref={ref => {
               $refs["spetialitiesApi"] = ref;
@@ -5458,7 +5422,11 @@ function PlasmicProfileExperties__RenderFunc(props: {
                         "degreeValue"
                       ]).apply(null, eventArgs);
 
-                      if (eventArgs.length > 1 && eventArgs[1]) {
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
                         return;
                       }
 
@@ -5613,7 +5581,11 @@ function PlasmicProfileExperties__RenderFunc(props: {
                         "expertiseTitle"
                       ]).apply(null, eventArgs);
 
-                      if (eventArgs.length > 1 && eventArgs[1]) {
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
                         return;
                       }
 
@@ -5695,7 +5667,11 @@ function PlasmicProfileExperties__RenderFunc(props: {
                         "expertiseValue"
                       ]).apply(null, eventArgs);
 
-                      if (eventArgs.length > 1 && eventArgs[1]) {
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
                         return;
                       }
 
@@ -5914,7 +5890,11 @@ function PlasmicProfileExperties__RenderFunc(props: {
                           "degreeValue"
                         ]).apply(null, eventArgs);
 
-                        if (eventArgs.length > 1 && eventArgs[1]) {
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
                           return;
                         }
 
@@ -6018,7 +5998,11 @@ function PlasmicProfileExperties__RenderFunc(props: {
                           "expertiseTitle"
                         ]).apply(null, eventArgs);
 
-                        if (eventArgs.length > 1 && eventArgs[1]) {
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
                           return;
                         }
 
@@ -6081,7 +6065,11 @@ function PlasmicProfileExperties__RenderFunc(props: {
                           "expertiseValue"
                         ]).apply(null, eventArgs);
 
-                        if (eventArgs.length > 1 && eventArgs[1]) {
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
                           return;
                         }
 
@@ -6855,7 +6843,11 @@ function PlasmicProfileExperties__RenderFunc(props: {
             eventArgs
           );
 
-          if (eventArgs.length > 1 && eventArgs[1]) {
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
             return;
           }
 

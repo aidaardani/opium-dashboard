@@ -288,7 +288,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         <React.Fragment>
           {(() => {
             try {
-              return `همکاران شما بصورت میانگین مبلغ ${(50000).toLocaleString()} تومان را در نظر گرفته اند.`;
+              return `همکاران شما بصورت میانگین مبلغ ${(100000).toLocaleString()} تومان را در نظر گرفته اند.`;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -310,9 +310,49 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
             eventArgs
           );
 
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
+          (async value => {
+            const $steps = {};
+
+            $steps["sendEvent"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            event_group: "activation-page",
+                            data: {
+                              map: $state.map,
+                              apiadress: $state.addressApi.data,
+                              notifycell: $state.notifyCell.notifyCellValue
+                            },
+                            event_type: "click-change-price-office-button-step3"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Splunk.sendLog"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["sendEvent"] != null &&
+              typeof $steps["sendEvent"] === "object" &&
+              typeof $steps["sendEvent"].then === "function"
+            ) {
+              $steps["sendEvent"] = await $steps["sendEvent"];
+            }
+          }).apply(null, eventArgs);
         }}
         onOpenChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["select", "open"]).apply(
@@ -320,9 +360,50 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
             eventArgs
           );
 
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
+          (async open => {
+            const $steps = {};
+
+            $steps["sendEvent"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            event_group: "activation-page",
+                            data: {
+                              map: $state.map,
+                              apiadress: $state.addressApi.data,
+                              notifycell: $state.notifyCell.notifyCellValue
+                            },
+                            event_type:
+                              "click-open-change-price-office-button-step3"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Splunk.sendLog"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["sendEvent"] != null &&
+              typeof $steps["sendEvent"] === "object" &&
+              typeof $steps["sendEvent"].then === "function"
+            ) {
+              $steps["sendEvent"] = await $steps["sendEvent"];
+            }
+          }).apply(null, eventArgs);
         }}
         open={generateStateValueProp($state, ["select", "open"])}
         options={(() => {
@@ -367,10 +448,6 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
               null,
               eventArgs
             );
-
-            if (eventArgs.length > 1 && eventArgs[1]) {
-              return;
-            }
           }}
           placeholder={
             "\u0642\u06cc\u0645\u062a \u062f\u0644\u062e\u0648\u0627\u0647 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"
@@ -458,30 +535,18 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onLoading={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["centersApi", "loading"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onSuccess={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["centersApi", "data"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         ref={ref => {
           $refs["centersApi"] = ref;
@@ -526,6 +591,46 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 typeof $steps["updateDialogOpen"].then === "function"
               ) {
                 $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
+              }
+
+              $steps["sendEvent"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "activation-page",
+                              data: {
+                                map: $state.map,
+                                apiadress: $state.addressApi.data,
+                                notifycell: $state.notifyCell.notifyCellValue
+                              },
+                              event_type: "click-next-button-office-step3"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["sendEvent"] != null &&
+                typeof $steps["sendEvent"] === "object" &&
+                typeof $steps["sendEvent"].then === "function"
+              ) {
+                $steps["sendEvent"] = await $steps["sendEvent"];
               }
             }}
           />
@@ -713,6 +818,46 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["toast"] = await $steps["toast"];
               }
 
+              $steps["sendEvent"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "activation-page",
+                              data: {
+                                map: $state.map,
+                                apiadress: $state.addressApi.data,
+                                notifycell: $state.notifyCell.notifyCellValue
+                              },
+                              event_type: "click-cancel-button-office-step3"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["sendEvent"] != null &&
+                typeof $steps["sendEvent"] === "object" &&
+                typeof $steps["sendEvent"].then === "function"
+              ) {
+                $steps["sendEvent"] = await $steps["sendEvent"];
+              }
+
               $steps["goToPage"] =
                 $steps.cancelApi.status == 200
                   ? (() => {
@@ -820,6 +965,15 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 </div>
               );
             })}
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__qlSyo
+              )}
+            >
+              {"Enter some text"}
+            </div>
             <Button
               children2={"\u0630\u062e\u06cc\u0631\u0647"}
               className={classNames("__wab_instance", sty.button__tEg4Q)}
@@ -948,7 +1102,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                   ];
                 }
 
-                $steps["invokeGlobalAction"] = !!$steps.costApi.data.message
+                $steps["showToast"] = !!$steps.costApi.data.message
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -990,13 +1144,51 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                     })()
                   : undefined;
                 if (
-                  $steps["invokeGlobalAction"] != null &&
-                  typeof $steps["invokeGlobalAction"] === "object" &&
-                  typeof $steps["invokeGlobalAction"].then === "function"
+                  $steps["showToast"] != null &&
+                  typeof $steps["showToast"] === "object" &&
+                  typeof $steps["showToast"].then === "function"
                 ) {
-                  $steps["invokeGlobalAction"] = await $steps[
-                    "invokeGlobalAction"
-                  ];
+                  $steps["showToast"] = await $steps["showToast"];
+                }
+
+                $steps["sendLog"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                event_group: "activation-page",
+                                data: {
+                                  centers: $state.centersApi.data.data,
+                                  select: $state.select
+                                },
+                                event_type:
+                                  "click-save-button-payment-office-step4"
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["sendLog"] != null &&
+                  typeof $steps["sendLog"] === "object" &&
+                  typeof $steps["sendLog"].then === "function"
+                ) {
+                  $steps["sendLog"] = await $steps["sendLog"];
                 }
 
                 $steps["goToPage"] =
@@ -1053,7 +1245,11 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
             eventArgs
           );
 
-          if (eventArgs.length > 1 && eventArgs[1]) {
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
             return;
           }
         }}

@@ -405,30 +405,18 @@ function PlasmicPricing__RenderFunc(props: {
                 "getNelsonFeatures",
                 "error"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onLoading={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "getNelsonFeatures",
                 "loading"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onSuccess={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "getNelsonFeatures",
                 "data"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             ref={ref => {
               $refs["getNelsonFeatures"] = ref;
@@ -519,7 +507,11 @@ function PlasmicPricing__RenderFunc(props: {
                           ])(eventArgs[0]);
                         }).apply(null, eventArgs);
 
-                        if (eventArgs.length > 1 && eventArgs[1]) {
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
                           return;
                         }
                       }}
@@ -617,7 +609,11 @@ function PlasmicPricing__RenderFunc(props: {
                                     ])(eventArgs[0]);
                                   }).apply(null, eventArgs);
 
-                                  if (eventArgs.length > 1 && eventArgs[1]) {
+                                  if (
+                                    eventArgs.length > 1 &&
+                                    eventArgs[1] &&
+                                    eventArgs[1]._plasmic_state_init_
+                                  ) {
                                     return;
                                   }
 
@@ -1807,10 +1803,6 @@ function PlasmicPricing__RenderFunc(props: {
                           ["accordion", "activePanelId"],
                           AntdAccordion_Helpers
                         ).apply(null, eventArgs);
-
-                        if (eventArgs.length > 1 && eventArgs[1]) {
-                          return;
-                        }
                       }
                     };
                     initializeCodeComponentStates(
@@ -2178,10 +2170,6 @@ function PlasmicPricing__RenderFunc(props: {
                           ["accordion2", "activePanelId"],
                           AntdAccordion_Helpers
                         ).apply(null, eventArgs);
-
-                        if (eventArgs.length > 1 && eventArgs[1]) {
-                          return;
-                        }
                       }
                     };
                     initializeCodeComponentStates(
@@ -2299,10 +2287,6 @@ function PlasmicPricing__RenderFunc(props: {
                           ["feedbacks", "activePanelId"],
                           AntdAccordion_Helpers
                         ).apply(null, eventArgs);
-
-                        if (eventArgs.length > 1 && eventArgs[1]) {
-                          return;
-                        }
                       }
                     };
                     initializeCodeComponentStates(
@@ -2376,10 +2360,6 @@ function PlasmicPricing__RenderFunc(props: {
                           ["accordion3", "activePanelId"],
                           AntdAccordion_Helpers
                         ).apply(null, eventArgs);
-
-                        if (eventArgs.length > 1 && eventArgs[1]) {
-                          return;
-                        }
                       }
                     };
                     initializeCodeComponentStates(
@@ -2918,10 +2898,6 @@ function PlasmicPricing__RenderFunc(props: {
                           ["accordion4", "activePanelId"],
                           AntdAccordion_Helpers
                         ).apply(null, eventArgs);
-
-                        if (eventArgs.length > 1 && eventArgs[1]) {
-                          return;
-                        }
                       }
                     };
                     initializeCodeComponentStates(
@@ -2983,30 +2959,18 @@ function PlasmicPricing__RenderFunc(props: {
                   "apiRequestForNotificationSetting",
                   "error"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               onLoading={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "apiRequestForNotificationSetting",
                   "loading"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               onSuccess={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "apiRequestForNotificationSetting",
                   "data"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               ref={ref => {
                 $refs["apiRequestForNotificationSetting"] = ref;
@@ -3046,30 +3010,18 @@ function PlasmicPricing__RenderFunc(props: {
                 "customerfeatures",
                 "error"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onLoading={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "customerfeatures",
                 "loading"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onSuccess={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "customerfeatures",
                 "data"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             ref={ref => {
               $refs["customerfeatures"] = ref;
@@ -3115,30 +3067,18 @@ function PlasmicPricing__RenderFunc(props: {
                 null,
                 eventArgs
               );
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onLoading={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["auth", "loading"]).apply(
                 null,
                 eventArgs
               );
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onSuccess={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["auth", "data"]).apply(
                 null,
                 eventArgs
               );
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             ref={ref => {
               $refs["auth"] = ref;

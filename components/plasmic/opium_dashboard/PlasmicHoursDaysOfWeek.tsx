@@ -339,30 +339,18 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onLoading={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["workhoursApi", "loading"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onSuccess={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["workhoursApi", "data"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         params={(() => {
           try {
@@ -441,7 +429,11 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     "newduration"
                   ]).apply(null, eventArgs);
 
-                  if (eventArgs.length > 1 && eventArgs[1]) {
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
                     return;
                   }
                 }}
@@ -557,7 +549,11 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                       "checkboxIsChecked"
                     ]).apply(null, eventArgs);
 
-                    if (eventArgs.length > 1 && eventArgs[1]) {
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
                       return;
                     }
                   },
@@ -568,7 +564,11 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                       "listOfWorkhoureCopy"
                     ]).apply(null, eventArgs);
 
-                    if (eventArgs.length > 1 && eventArgs[1]) {
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
                       return;
                     }
                   },
@@ -579,7 +579,11 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                       "warning"
                     ]).apply(null, eventArgs);
 
-                    if (eventArgs.length > 1 && eventArgs[1]) {
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
                       return;
                     }
                   }
@@ -951,6 +955,47 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     typeof $steps["redirect"].then === "function"
                   ) {
                     $steps["redirect"] = await $steps["redirect"];
+                  }
+
+                  $steps["sendEvent"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  event_group: "activation-page",
+                                  data: {
+                                    usercenterid: $props.userCenterId,
+                                    centerid: $props.centerId,
+                                    workhours: $state.workhoursApi.data.data
+                                  },
+                                  event_type:
+                                    "click-save-button-workhoure-step5"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
+                  ) {
+                    $steps["sendEvent"] = await $steps["sendEvent"];
                   }
                 }}
               />

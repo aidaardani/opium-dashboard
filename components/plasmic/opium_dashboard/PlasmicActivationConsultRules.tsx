@@ -134,6 +134,8 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const $globalActions = useGlobalActions?.();
+
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -306,7 +308,11 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                   ])(eventArgs[0]);
                 }).apply(null, eventArgs);
 
-                if (eventArgs.length > 1 && eventArgs[1]) {
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
                   return;
                 }
 
@@ -459,6 +465,45 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
             onClick={async event => {
               const $steps = {};
 
+              $steps["sendEvent"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "activation-page",
+                              data: {
+                                userid: $ctx.query.user_id,
+                                pagepath: $ctx.pagePath
+                              },
+                              event_type: "click-accept-rules-button-consult"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["sendEvent"] != null &&
+                typeof $steps["sendEvent"] === "object" &&
+                typeof $steps["sendEvent"].then === "function"
+              ) {
+                $steps["sendEvent"] = await $steps["sendEvent"];
+              }
+
               $steps["goToActivationMessengers"] = true
                 ? (() => {
                     const actionArgs = {
@@ -534,6 +579,45 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
               ) {
                 $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
               }
+
+              $steps["sendEvent"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "activation-page",
+                              data: {
+                                userid: $ctx.query.user_id,
+                                pagepath: $ctx.pagePath
+                              },
+                              event_type: "click-reject-rules-button-consult"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["sendEvent"] != null &&
+                typeof $steps["sendEvent"] === "object" &&
+                typeof $steps["sendEvent"].then === "function"
+              ) {
+                $steps["sendEvent"] = await $steps["sendEvent"];
+              }
             }}
             outline={true}
           />
@@ -607,6 +691,46 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                       "updateDialogOpen"
                     ];
                   }
+
+                  $steps["sendEvent"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  event_group: "activation-page",
+                                  data: {
+                                    userid: $ctx.query.user_id,
+                                    pagepath: $ctx.pagePath
+                                  },
+                                  event_type:
+                                    "click-read-again-rules-button-consult"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
+                  ) {
+                    $steps["sendEvent"] = await $steps["sendEvent"];
+                  }
                 }}
               />
 
@@ -619,12 +743,54 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                       sty.text__zCl0
                     )}
                   >
-                    {"\u062a\u0627\u06cc\u06cc\u062f"}
+                    {
+                      "\u0641\u0639\u0627\u0644 \u0646\u0645\u06cc\u200c\u06a9\u0646\u0645"
+                    }
                   </div>
                 }
                 className={classNames("__wab_instance", sty.button__yktSq)}
                 onClick={async event => {
                   const $steps = {};
+
+                  $steps["sendEvent"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  event_group: "activation-page",
+                                  data: {
+                                    userid: $ctx.query.user_id,
+                                    pagepath: $ctx.pagePath
+                                  },
+                                  event_type:
+                                    "click-dont-active-rules-button-consult"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
+                  ) {
+                    $steps["sendEvent"] = await $steps["sendEvent"];
+                  }
 
                   $steps["goTo"] = true
                     ? (() => {
@@ -664,7 +830,11 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
             eventArgs
           );
 
-          if (eventArgs.length > 1 && eventArgs[1]) {
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
             return;
           }
         }}

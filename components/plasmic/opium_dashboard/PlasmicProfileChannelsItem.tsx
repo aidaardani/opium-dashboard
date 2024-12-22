@@ -301,10 +301,6 @@ function PlasmicProfileChannelsItem__RenderFunc(props: {
               null,
               eventArgs
             );
-
-            if (eventArgs.length > 1 && eventArgs[1]) {
-              return;
-            }
           }}
           placeholder={
             "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644"
@@ -334,10 +330,6 @@ function PlasmicProfileChannelsItem__RenderFunc(props: {
                   null,
                   eventArgs
                 );
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               placeholder={(() => {
                 try {

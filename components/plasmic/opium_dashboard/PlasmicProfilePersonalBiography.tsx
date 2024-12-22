@@ -197,10 +197,6 @@ function PlasmicProfilePersonalBiography__RenderFunc(props: {
               ["richTextEditor", "value"],
               Quill_Helpers
             ).apply(null, eventArgs);
-
-            if (eventArgs.length > 1 && eventArgs[1]) {
-              return;
-            }
           },
           preserveWhitespace: true,
           readOnly: false,

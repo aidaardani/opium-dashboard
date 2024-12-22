@@ -292,30 +292,18 @@ function PlasmicDuration__RenderFunc(props: {
             "sampleDurationApi",
             "error"
           ]).apply(null, eventArgs);
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onLoading={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "sampleDurationApi",
             "loading"
           ]).apply(null, eventArgs);
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onSuccess={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "sampleDurationApi",
             "data"
           ]).apply(null, eventArgs);
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         ref={ref => {
           $refs["sampleDurationApi"] = ref;
@@ -413,10 +401,6 @@ function PlasmicDuration__RenderFunc(props: {
                   "fragmentPopover",
                   "open"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               open={generateStateValueProp($state, ["fragmentPopover", "open"])}
               ref={ref => {
@@ -536,10 +520,6 @@ function PlasmicDuration__RenderFunc(props: {
                             "fragmentTimePicker",
                             "value"
                           ]).apply(null, eventArgs);
-
-                          if (eventArgs.length > 1 && eventArgs[1]) {
-                            return;
-                          }
 
                           (async time => {
                             const $steps = {};
@@ -812,7 +792,11 @@ function PlasmicDuration__RenderFunc(props: {
                       eventArgs
                     );
 
-                    if (eventArgs.length > 1 && eventArgs[1]) {
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
                       return;
                     }
                   }}

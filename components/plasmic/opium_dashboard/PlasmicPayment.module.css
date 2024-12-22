@@ -238,10 +238,13 @@
 }
 .dialog:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
+  width: auto;
+  height: auto;
 }
 .setting:global(.__wab_instance) {
   max-width: 100%;
   width: auto;
+  height: auto;
 }
 .svg__onZl1 {
   position: relative;
@@ -249,7 +252,7 @@
   width: auto;
   height: 1em;
 }
-.svg__cb3E3 {
+.svg__jew3R {
   object-fit: cover;
   max-width: 100%;
   width: 24px;
@@ -271,7 +274,9 @@
   justify-content: flex-start;
   align-items: flex-start;
   min-width: 0;
+  border-radius: 8px;
   padding: 8px;
+  border: 1px solid var(--token-Y3HOiwZmAcAF);
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__gJBuC {

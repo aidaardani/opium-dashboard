@@ -351,30 +351,18 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                     "centersApi",
                     "error"
                   ]).apply(null, eventArgs);
-
-                  if (eventArgs.length > 1 && eventArgs[1]) {
-                    return;
-                  }
                 }}
                 onLoading={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
                     "centersApi",
                     "loading"
                   ]).apply(null, eventArgs);
-
-                  if (eventArgs.length > 1 && eventArgs[1]) {
-                    return;
-                  }
                 }}
                 onSuccess={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
                     "centersApi",
                     "data"
                   ]).apply(null, eventArgs);
-
-                  if (eventArgs.length > 1 && eventArgs[1]) {
-                    return;
-                  }
                 }}
                 ref={ref => {
                   $refs["centersApi"] = ref;
@@ -445,7 +433,11 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                             "duration"
                           ]).apply(null, eventArgs);
 
-                          if (eventArgs.length > 1 && eventArgs[1]) {
+                          if (
+                            eventArgs.length > 1 &&
+                            eventArgs[1] &&
+                            eventArgs[1]._plasmic_state_init_
+                          ) {
                             return;
                           }
                         }}
@@ -512,7 +504,11 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                 "newduration"
                               ]).apply(null, eventArgs);
 
-                              if (eventArgs.length > 1 && eventArgs[1]) {
+                              if (
+                                eventArgs.length > 1 &&
+                                eventArgs[1] &&
+                                eventArgs[1]._plasmic_state_init_
+                              ) {
                                 return;
                               }
                             }}
@@ -645,7 +641,11 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                     "checkboxIsChecked"
                                   ]).apply(null, eventArgs);
 
-                                  if (eventArgs.length > 1 && eventArgs[1]) {
+                                  if (
+                                    eventArgs.length > 1 &&
+                                    eventArgs[1] &&
+                                    eventArgs[1]._plasmic_state_init_
+                                  ) {
                                     return;
                                   }
                                 },
@@ -658,7 +658,11 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                     "listOfWorkhoureCopy"
                                   ]).apply(null, eventArgs);
 
-                                  if (eventArgs.length > 1 && eventArgs[1]) {
+                                  if (
+                                    eventArgs.length > 1 &&
+                                    eventArgs[1] &&
+                                    eventArgs[1]._plasmic_state_init_
+                                  ) {
                                     return;
                                   }
                                 },
@@ -669,7 +673,11 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                     "warning"
                                   ]).apply(null, eventArgs);
 
-                                  if (eventArgs.length > 1 && eventArgs[1]) {
+                                  if (
+                                    eventArgs.length > 1 &&
+                                    eventArgs[1] &&
+                                    eventArgs[1]._plasmic_state_init_
+                                  ) {
                                     return;
                                   }
                                 }
@@ -996,6 +1004,49 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               typeof $steps["toast"].then === "function"
                             ) {
                               $steps["toast"] = await $steps["toast"];
+                            }
+
+                            $steps["sendLog"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      (() => {
+                                        try {
+                                          return {
+                                            event_group: "activation-page",
+                                            data: {
+                                              centers:
+                                                $state.centersApi.data.data,
+                                              userid: $ctx.query.user_id,
+                                              pagepath: $ctx.pagePath
+                                            },
+                                            event_type:
+                                              "click-save-button-consult-workhoure"
+                                          };
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Splunk.sendLog"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["sendLog"] != null &&
+                              typeof $steps["sendLog"] === "object" &&
+                              typeof $steps["sendLog"].then === "function"
+                            ) {
+                              $steps["sendLog"] = await $steps["sendLog"];
                             }
 
                             $steps["redirect"] =

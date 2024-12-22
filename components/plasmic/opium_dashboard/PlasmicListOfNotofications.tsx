@@ -217,7 +217,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
         path: "selectedrecieverinnewworkflow",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "doctor"
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          "\u0628\u06cc\u0645\u0627\u0631"
       },
       {
         path: "fragmentPopoverSendWhat.open",
@@ -335,24 +336,27 @@ function PlasmicListOfNotofications__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.selectedeventinworkflow === "submit-book" &&
-                $state.selectedrecieverinnewworkflow === "doctor"
+              return $state.selectedeventinworkflow === "ثبت نوبت" &&
+                $state.selectedrecieverinnewworkflow === "پزشک"
                 ? "یک نوبت جدید ثبت شد"
-                : $state.selectedeventinworkflow === "submit-book" &&
-                  $state.selectedrecieverinnewworkflow === "assistant"
+                : $state.selectedeventinworkflow === "ثبت نوبت" &&
+                  $state.selectedrecieverinnewworkflow === "منشی"
                 ? "یک نوبت جدید ثبت شد"
-                : $state.selectedeventinworkflow === "submit-book" &&
-                  $state.selectedrecieverinnewworkflow === "patient"
+                : $state.selectedeventinworkflow === "ثبت نوبت" &&
+                  $state.selectedrecieverinnewworkflow === "بیمار"
                 ? "نوبت شما با موفقیت ثبت شد"
-                : $state.selectedeventinworkflow === "delete-book" &&
-                  $state.selectedrecieverinnewworkflow === "doctor"
+                : $state.selectedeventinworkflow === "لغو نوبت" &&
+                  $state.selectedrecieverinnewworkflow === "پزشک"
                 ? "یک نوبت لغو شد"
-                : $state.selectedeventinworkflow === "delete-book" &&
-                  $state.selectedrecieverinnewworkflow === "assistant"
+                : $state.selectedeventinworkflow === "لغو نوبت" &&
+                  $state.selectedrecieverinnewworkflow === "منشی"
                 ? "یک نوبت لغو شد"
-                : $state.selectedeventinworkflow === "delete-book" &&
-                  $state.selectedrecieverinnewworkflow === "patient"
+                : $state.selectedeventinworkflow === "لغو نوبت" &&
+                  $state.selectedrecieverinnewworkflow === "بیمار"
                 ? "نوبت شما لغو شد"
+                : $state.selectedeventinworkflow === "یادآور نوبت" &&
+                  $state.selectedrecieverinnewworkflow === "بیمار"
+                ? "یادآوری نوبت"
                 : "";
             } catch (e) {
               if (
@@ -377,7 +381,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
         path: "selectedeventinworkflow",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "submit-book"
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          "\u062b\u0628\u062a \u0646\u0648\u0628\u062a"
       },
       {
         path: "receiptDialog.open",
@@ -451,7 +456,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
             onMount={async () => {
               const $steps = {};
 
-              $steps["apiAuth"] = true
+              $steps["apiAuth"] = false
                 ? (() => {
                     const actionArgs = {
                       args: ["GET", "https://api.paziresh24.com/V1/auth/me"]
@@ -469,7 +474,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                 $steps["apiAuth"] = await $steps["apiAuth"];
               }
 
-              $steps["updateUserDetails"] = true
+              $steps["updateUserDetails"] = false
                 ? (() => {
                     const actionArgs = {
                       variable: {
@@ -503,7 +508,22 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "GET",
-                        "https://apigw.paziresh24.com/v1/get-notification-setting"
+                        "https://apigw.paziresh24.com/v1/get-notification-setting",
+                        (() => {
+                          try {
+                            return {
+                              user_id: $ctx.query.user_id
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
                       ]
                     };
                     return $globalActions["Fragment.apiRequest"]?.apply(null, [
@@ -768,7 +788,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                             (() => {
                               try {
                                 return $state.notificationsevents.map(
-                                  item => item.name
+                                  item => item.Title
                                 );
                               } catch (e) {
                                 if (
@@ -918,11 +938,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                     <React.Fragment>
                                       {(() => {
                                         try {
-                                          return currentItem === "submit-book"
-                                            ? "ثبت نوبت"
-                                            : currentItem === "delete-book"
-                                            ? "لغو نوبت"
-                                            : currentItem;
+                                          return currentItem;
                                         } catch (e) {
                                           if (
                                             e instanceof TypeError ||
@@ -972,10 +988,6 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                           "fragmentPopoverSendEvents",
                           "open"
                         ]).apply(null, eventArgs);
-
-                        if (eventArgs.length > 1 && eventArgs[1]) {
-                          return;
-                        }
                       }}
                       open={generateStateValueProp($state, [
                         "fragmentPopoverSendEvents",
@@ -1007,13 +1019,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                               <React.Fragment>
                                 {(() => {
                                   try {
-                                    return $state.selectedeventinworkflow ===
-                                      "submit-book"
-                                      ? "ثبت نوبت"
-                                      : $state.selectedeventinworkflow ===
-                                        "delete-book"
-                                      ? "لغو نوبت"
-                                      : "به...";
+                                    return $state.selectedeventinworkflow;
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -1113,9 +1119,18 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                             !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                             (() => {
                               try {
-                                return $state.notoficationsRecivers.map(
-                                  item => item.name
-                                );
+                                return $state.selectedeventinworkflow ===
+                                  "یادآور نوبت"
+                                  ? $state.notoficationsRecivers
+                                      .filter(
+                                        item =>
+                                          item.Title !== "پزشک" &&
+                                          item.Title !== "منشی"
+                                      )
+                                      .map(item => item.Title)
+                                  : $state.notoficationsRecivers.map(
+                                      item => item.Title
+                                    );
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1268,11 +1283,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                     <React.Fragment>
                                       {(() => {
                                         try {
-                                          return currentItem === "doctor"
-                                            ? "پزشک"
-                                            : currentItem === "assistant"
-                                            ? "منشی"
-                                            : "بیمار";
+                                          return currentItem;
                                         } catch (e) {
                                           if (
                                             e instanceof TypeError ||
@@ -1322,10 +1333,6 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                           "fragmentPopoverSendWhom",
                           "open"
                         ]).apply(null, eventArgs);
-
-                        if (eventArgs.length > 1 && eventArgs[1]) {
-                          return;
-                        }
                       }}
                       open={generateStateValueProp($state, [
                         "fragmentPopoverSendWhom",
@@ -1357,16 +1364,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                               <React.Fragment>
                                 {(() => {
                                   try {
-                                    return $state.selectedrecieverinnewworkflow ===
-                                      "doctor"
-                                      ? "پزشک"
-                                      : $state.selectedrecieverinnewworkflow ===
-                                        "assistant"
-                                      ? "منشی"
-                                      : $state.selectedrecieverinnewworkflow ===
-                                        "patient"
+                                    return $state.selectedeventinworkflow ===
+                                      "یادآور نوبت"
                                       ? "بیمار"
-                                      : "به...";
+                                      : $state.selectedrecieverinnewworkflow;
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -1933,10 +1934,6 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                           "fragmentPopoverSendWhat",
                           "open"
                         ]).apply(null, eventArgs);
-
-                        if (eventArgs.length > 1 && eventArgs[1]) {
-                          return;
-                        }
                       }}
                       open={generateStateValueProp($state, [
                         "fragmentPopoverSendWhat",
@@ -2072,7 +2069,11 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                           "value"
                         ]).apply(null, eventArgs);
 
-                        if (eventArgs.length > 1 && eventArgs[1]) {
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
                           return;
                         }
                       }}
@@ -2236,7 +2237,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                     )}
                                   >
                                     {
-                                      "\u0646\u0645\u0648\u0646\u0647 \u0645\u062a\u0646 \u067e\u06cc\u0627\u0645\u06a9\u06cc \u06a9\u0647 \u0627\u0631\u0633\u0627\u0644 \u0645\u06cc \u0634\u0648\u062f."
+                                      "\u0645\u0634\u0627\u0647\u062f\u0647 \u0647\u0632\u06cc\u0646\u0647 \u0648 \u0646\u0645\u0648\u0646\u0647 \u0645\u062a\u0646 \u067e\u06cc\u0627\u0645\u06a9\u06cc \u06a9\u0647 \u0627\u0631\u0633\u0627\u0644 \u0645\u06cc \u0634\u0648\u062f."
                                     }
                                   </div>
                                 }
@@ -2286,7 +2287,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                                   .replace(/<\/p>/g, "") +
                                                 "\n" +
                                                 ($state.selecteddrnameinnewworkflowscontent
-                                                  ? ` ${$state.userDetail.data.name} ${$state.userDetail.data.family}`
+                                                  ? " نام پزشک : نرگس رضایی"
                                                   : "") +
                                                 "\n" +
                                                 ($state.selecteddrpatientinnewworkflowscontent
@@ -2353,10 +2354,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                               $state.selectedrefidinnewworkflowscontent ||
                                               $state.selectedbooktimeinnewworkflowscontent
                                                 ? (
-                                                    ($state.selecteddrnameinnewworkflowscontent &&
-                                                    $state.userDetail &&
-                                                    $state.userDetail.data
-                                                      ? `نام پزشک: ${$state.userDetail.data.name} ${$state.userDetail.data.family}\n`
+                                                    ($state.selecteddrnameinnewworkflowscontent
+                                                      ? "نام پزشک: نرگس رضایی\n"
                                                       : "") +
                                                     ($state.selecteddrpatientinnewworkflowscontent
                                                       ? "نام بیمار: آیدا اردانی\n"
@@ -2424,10 +2423,6 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                               ["accordion", "activePanelId"],
                               AntdAccordion_Helpers
                             ).apply(null, eventArgs);
-
-                            if (eventArgs.length > 1 && eventArgs[1]) {
-                              return;
-                            }
                           }
                         };
                         initializeCodeComponentStates(
@@ -2523,9 +2518,18 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                     try {
                                       return {
                                         receivers:
-                                          $state.selectedrecieverinnewworkflow,
-                                        events: $state.selectedeventinworkflow,
+                                          $state.notoficationsRecivers.find(
+                                            event =>
+                                              event.Title ===
+                                              $state.selectedrecieverinnewworkflow
+                                          ).name,
+                                        events: $state.notificationsevents.find(
+                                          event =>
+                                            event.Title ===
+                                            $state.selectedeventinworkflow
+                                        ).name,
                                         channels: "sms",
+                                        user_id: $ctx.query.user_id,
                                         content:
                                           $state.multilineTextInput.value,
                                         objectofcontent: JSON.stringify(
@@ -2711,31 +2715,26 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                             await $steps["updateDialogaddnewworkflowOpen"];
                         }
 
-                        $steps["invokeGlobalAction"] = true
-                          ? (() => {
-                              const actionArgs = { args: [undefined, ``] };
-                              return $globalActions[
-                                "Fragment.apiRequest"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["invokeGlobalAction"] != null &&
-                          typeof $steps["invokeGlobalAction"] === "object" &&
-                          typeof $steps["invokeGlobalAction"].then ===
-                            "function"
-                        ) {
-                          $steps["invokeGlobalAction"] = await $steps[
-                            "invokeGlobalAction"
-                          ];
-                        }
-
                         $steps["apiGetNoticationSettingForThisUser"] = true
                           ? (() => {
                               const actionArgs = {
                                 args: [
                                   undefined,
-                                  "https://apigw.paziresh24.com/v1/get-notification-setting"
+                                  "https://apigw.paziresh24.com/v1/get-notification-setting",
+                                  (() => {
+                                    try {
+                                      return { user_id: $ctx.query.user_id };
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
                                 ]
                               };
                               return $globalActions[
@@ -2835,7 +2834,11 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                           "open"
                         ]).apply(null, eventArgs);
 
-                        if (eventArgs.length > 1 && eventArgs[1]) {
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
                           return;
                         }
                       }}
@@ -2866,7 +2869,11 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                   "open"
                 ]).apply(null, eventArgs);
 
-                if (eventArgs.length > 1 && eventArgs[1]) {
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
                   return;
                 }
 
@@ -2953,7 +2960,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
           </div>
           {(() => {
             try {
-              return $state.notificationSettingForThisUser.list.length > 0;
+              return $state.notificationSettingForThisUser[0].list.length > 0;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -3014,7 +3021,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                     e instanceof TypeError ||
                     e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    return true;
+                    return false;
                   }
                   throw e;
                 }
@@ -3022,7 +3029,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                 ? (_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                     (() => {
                       try {
-                        return $state.notificationSettingForThisUser.list;
+                        return $state.notificationSettingForThisUser[0].list;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -3047,7 +3054,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                         currentItem={currentItem}
                         key={currentIndex}
                         notificationSettingForThisUser={
-                          $state.notificationSettingForThisUser
+                          $state.notificationSettingForThisUser[0].list[0]
                         }
                         refresh={async () => {
                           const $steps = {};

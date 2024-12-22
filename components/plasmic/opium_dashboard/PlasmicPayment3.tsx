@@ -59,9 +59,10 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import DrCenters from "../../DrCenters"; // plasmic-import: IkLsGKQP_uPj/component
 import Payment from "../../Payment"; // plasmic-import: tH96z8RSiEan/component
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -94,7 +95,7 @@ export const PlasmicPayment3__ArgProps = new Array<ArgPropType>();
 export type PlasmicPayment3__OverridesType = {
   payment?: Flex__<"div">;
   center?: Flex__<"div">;
-  text?: Flex__<"div">;
+  apiRequest?: Flex__<typeof ApiRequest>;
   drCenters?: Flex__<typeof DrCenters>;
   runCodeGtmMetrica?: Flex__<typeof SideEffect>;
   gtm?: Flex__<typeof Embed>;
@@ -139,8 +140,6 @@ function PlasmicPayment3__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
-
-  const $globalActions = useGlobalActions?.();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
@@ -227,6 +226,30 @@ function PlasmicPayment3__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "apiRequest.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest"
+      },
+      {
+        path: "apiRequest.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest"
+      },
+      {
+        path: "apiRequest.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest"
       }
     ],
     [$props, $ctx, $refs]
@@ -271,73 +294,69 @@ function PlasmicPayment3__RenderFunc(props: {
           )}
           dir={"rtl"}
         >
-          <SideEffect
-            className={classNames("__wab_instance", sty.sideEffect___25DQu)}
-            deps={(() => {
-              try {
-                return [$ctx.GrowthBook.isReady];
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })()}
-            onMount={async () => {
-              const $steps = {};
-
-              $steps["growthbook"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return { user_id: $ctx.query.user_id };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["GrowthBook.setAttributes"]?.apply(
-                      null,
-                      [...actionArgs.args]
-                    );
-                  })()
-                : undefined;
-              if (
-                $steps["growthbook"] != null &&
-                typeof $steps["growthbook"] === "object" &&
-                typeof $steps["growthbook"].then === "function"
-              ) {
-                $steps["growthbook"] = await $steps["growthbook"];
-              }
-            }}
-          />
-
           <div
             data-plasmic-name={"center"}
             data-plasmic-override={overrides.center}
             className={classNames(projectcss.all, sty.center)}
           >
-            <div className={classNames(projectcss.all, sty.freeBox__z0Xf)}>
-              <div className={classNames(projectcss.all, sty.freeBox__hx7Sl)}>
+            <ApiRequest
+              data-plasmic-name={"apiRequest"}
+              data-plasmic-override={overrides.apiRequest}
+              className={classNames("__wab_instance", sty.apiRequest)}
+              errorDisplay={
                 <div
-                  data-plasmic-name={"text"}
-                  data-plasmic-override={overrides.text}
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text
+                    sty.text__gQGr
+                  )}
+                >
+                  {"Error fetching data"}
+                </div>
+              }
+              loadingDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__ujeVp
+                  )}
+                >
+                  {"Loading..."}
+                </div>
+              }
+              method={"GET"}
+              onError={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apiRequest",
+                  "error"
+                ]).apply(null, eventArgs);
+              }}
+              onLoading={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apiRequest",
+                  "loading"
+                ]).apply(null, eventArgs);
+              }}
+              onSuccess={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+                  null,
+                  eventArgs
+                );
+              }}
+              ref={ref => {
+                $refs["apiRequest"] = ref;
+              }}
+              url={"https://api.paziresh24.com/V1/doctor/centers"}
+            />
+
+            <div className={classNames(projectcss.all, sty.freeBox__z0Xf)}>
+              <div className={classNames(projectcss.all, sty.freeBox__hx7Sl)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__jpos7
                   )}
                 >
                   <React.Fragment>
@@ -349,255 +368,12 @@ function PlasmicPayment3__RenderFunc(props: {
                     </span>
                   </React.Fragment>
                 </div>
-                <SideEffect
-                  className={classNames(
-                    "__wab_instance",
-                    sty.sideEffect__rMwTz,
-                    {
-                      [sty.sideEffectactive__rMwTznhUq]: hasVariant(
-                        $state,
-                        "active",
-                        "active"
-                      )
-                    }
-                  )}
-                  deps={(() => {
-                    try {
-                      return [];
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
-                    }
-                  })()}
-                  onMount={async () => {
-                    const $steps = {};
-
-                    $steps["apiAllCenters"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              "GET",
-                              "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/allcenters"
-                            ]
-                          };
-                          return $globalActions["Fragment.apiRequest"]?.apply(
-                            null,
-                            [...actionArgs.args]
-                          );
-                        })()
-                      : undefined;
-                    if (
-                      $steps["apiAllCenters"] != null &&
-                      typeof $steps["apiAllCenters"] === "object" &&
-                      typeof $steps["apiAllCenters"].then === "function"
-                    ) {
-                      $steps["apiAllCenters"] = await $steps["apiAllCenters"];
-                    }
-
-                    $steps["setAttributes"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              (() => {
-                                try {
-                                  return {
-                                    user_id: $ctx.query.user_id,
-                                    center_types:
-                                      $steps.apiAllCenters.data.data?.map(
-                                        center => center.type_id
-                                      ),
-                                    center_ids:
-                                      $steps.apiAllCenters.data.data?.map(
-                                        center => center.id
-                                      )
-                                  };
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
-                          };
-                          return $globalActions[
-                            "GrowthBook.setAttributes"
-                          ]?.apply(null, [...actionArgs.args]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["setAttributes"] != null &&
-                      typeof $steps["setAttributes"] === "object" &&
-                      typeof $steps["setAttributes"].then === "function"
-                    ) {
-                      $steps["setAttributes"] = await $steps["setAttributes"];
-                    }
-
-                    $steps["updateCenters"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["centers"]
-                            },
-                            operation: 0,
-                            value: $steps.apiAllCenters.data.data
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateCenters"] != null &&
-                      typeof $steps["updateCenters"] === "object" &&
-                      typeof $steps["updateCenters"].then === "function"
-                    ) {
-                      $steps["updateCenters"] = await $steps["updateCenters"];
-                    }
-
-                    $steps["apiUserCenterService"] = false
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              "GET",
-                              "https://apigw.paziresh24.com/v1/user-center-services",
-                              (() => {
-                                try {
-                                  return {
-                                    user_center_id: $state.centers.find(
-                                      center => center.id === "5532"
-                                    ).user_center_id,
-                                    server_id: 1
-                                  };
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Fragment.apiRequest"]?.apply(
-                            null,
-                            [...actionArgs.args]
-                          );
-                        })()
-                      : undefined;
-                    if (
-                      $steps["apiUserCenterService"] != null &&
-                      typeof $steps["apiUserCenterService"] === "object" &&
-                      typeof $steps["apiUserCenterService"].then === "function"
-                    ) {
-                      $steps["apiUserCenterService"] = await $steps[
-                        "apiUserCenterService"
-                      ];
-                    }
-
-                    $steps["updateUserCenterService"] = false
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["userCenterService"]
-                            },
-                            operation: 0,
-                            value: $steps.apiUserCenterService.data
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateUserCenterService"] != null &&
-                      typeof $steps["updateUserCenterService"] === "object" &&
-                      typeof $steps["updateUserCenterService"].then ===
-                        "function"
-                    ) {
-                      $steps["updateUserCenterService"] = await $steps[
-                        "updateUserCenterService"
-                      ];
-                    }
-
-                    $steps["updateActive"] = false
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["active"]
-                            },
-                            operation: 0,
-                            value: true
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateActive"] != null &&
-                      typeof $steps["updateActive"] === "object" &&
-                      typeof $steps["updateActive"].then === "function"
-                    ) {
-                      $steps["updateActive"] = await $steps["updateActive"];
-                    }
-                  }}
-                />
-
                 <DrCenters
                   data-plasmic-name={"drCenters"}
                   data-plasmic-override={overrides.drCenters}
                   centers={(() => {
                     try {
-                      return $state.centers;
+                      return $state.apiRequest.data.data;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -628,7 +404,11 @@ function PlasmicPayment3__RenderFunc(props: {
                       "selectedCenter"
                     ]).apply(null, eventArgs);
 
-                    if (eventArgs.length > 1 && eventArgs[1]) {
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
                       return;
                     }
 
@@ -678,7 +458,7 @@ function PlasmicPayment3__RenderFunc(props: {
               <Payment
                 center={(() => {
                   try {
-                    return $state.centers;
+                    return $state.apiRequest.data.data;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -693,13 +473,26 @@ function PlasmicPayment3__RenderFunc(props: {
                 selectedCenter={(() => {
                   try {
                     return (
-                      $state.centers.find(
+                      $state.apiRequest.data.data.find(
                         center => center.user_center_id == $state.selectedCenter
-                      )?.id ??
+                      )?.user_center_id ??
                       $state.centers.find(
                         item => item.is_active_booking === true
                       ).user_center_id
                     );
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                userId={(() => {
+                  try {
+                    return { user_id: $ctx.query.user_id };
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -825,13 +618,13 @@ const PlasmicDescendants = {
   payment: [
     "payment",
     "center",
-    "text",
+    "apiRequest",
     "drCenters",
     "runCodeGtmMetrica",
     "gtm"
   ],
-  center: ["center", "text", "drCenters"],
-  text: ["text"],
+  center: ["center", "apiRequest", "drCenters"],
+  apiRequest: ["apiRequest"],
   drCenters: ["drCenters"],
   runCodeGtmMetrica: ["runCodeGtmMetrica"],
   gtm: ["gtm"]
@@ -842,7 +635,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   payment: "div";
   center: "div";
-  text: "div";
+  apiRequest: typeof ApiRequest;
   drCenters: typeof DrCenters;
   runCodeGtmMetrica: typeof SideEffect;
   gtm: typeof Embed;
@@ -909,7 +702,7 @@ export const PlasmicPayment3 = Object.assign(
   {
     // Helper components rendering sub-elements
     center: makeNodeComponent("center"),
-    text: makeNodeComponent("text"),
+    apiRequest: makeNodeComponent("apiRequest"),
     drCenters: makeNodeComponent("drCenters"),
     runCodeGtmMetrica: makeNodeComponent("runCodeGtmMetrica"),
     gtm: makeNodeComponent("gtm"),

@@ -539,10 +539,6 @@ function PlasmicQuickAccessInAppNotifications__RenderFunc(props: {
                 null,
                 eventArgs
               );
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             open={generateStateValueProp($state, ["popover", "open"])}
             ref={ref => {

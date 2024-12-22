@@ -4222,20 +4222,12 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
               null,
               eventArgs
             );
-
-            if (eventArgs.length > 1 && eventArgs[1]) {
-              return;
-            }
           }}
           onChangeLng={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["map", "lng"]).apply(
               null,
               eventArgs
             );
-
-            if (eventArgs.length > 1 && eventArgs[1]) {
-              return;
-            }
           }}
           width={"100%"}
           zoom={20}
@@ -4290,30 +4282,18 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onLoading={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["addressApi", "loading"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onSuccess={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["addressApi", "data"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         ref={ref => {
           $refs["addressApi"] = ref;
@@ -4336,6 +4316,49 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
           as={"div"}
           hasGap={true}
           className={classNames(projectcss.all, sty.freeBox__itFNx)}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["sendLog"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            event_group: "activation-page",
+                            data: {
+                              map: $state.map,
+                              apiadress: $state.addressApi.data,
+                              notifycell: $state.notifyCell.notifyCellValue
+                            },
+                            event_type: "click-edit-adress-input"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Splunk.sendLog"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["sendLog"] != null &&
+              typeof $steps["sendLog"] === "object" &&
+              typeof $steps["sendLog"].then === "function"
+            ) {
+              $steps["sendLog"] = await $steps["sendLog"];
+            }
+          }}
         >
           <Icon26Icon
             className={classNames(projectcss.all, sty.svg__xlRns)}
@@ -4403,6 +4426,48 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
               "updateTellsDialogOpen"
             ];
           }
+
+          $steps["sendEvent"] = true
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    (() => {
+                      try {
+                        return {
+                          event_group: "activation-page",
+                          data: {
+                            map: $state.map,
+                            apiadress: $state.addressApi.data,
+                            notifycell: $state.notifyCell.notifyCellValue,
+                            pagepath: $ctx.pagePath,
+                            userid: $ctx.query.user_id
+                          },
+                          event_type: "click-next-button-office-step2"
+                        };
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  ]
+                };
+                return $globalActions["Splunk.sendLog"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["sendEvent"] != null &&
+            typeof $steps["sendEvent"] === "object" &&
+            typeof $steps["sendEvent"].then === "function"
+          ) {
+            $steps["sendEvent"] = await $steps["sendEvent"];
+          }
         }}
       />
 
@@ -4429,30 +4494,18 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                 null,
                 eventArgs
               );
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onLoading={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "centersApi",
                 "loading"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onSuccess={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["centersApi", "data"]).apply(
                 null,
                 eventArgs
               );
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
 
               (async data => {
                 const $steps = {};
@@ -4519,7 +4572,11 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                     "newTells"
                   ]).apply(null, eventArgs);
 
-                  if (eventArgs.length > 1 && eventArgs[1]) {
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
                     return;
                   }
                 }}
@@ -4529,7 +4586,11 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                     "oldTells"
                   ]).apply(null, eventArgs);
 
-                  if (eventArgs.length > 1 && eventArgs[1]) {
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
                     return;
                   }
                 }}
@@ -4549,7 +4610,11 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                     "notifyCellValue"
                   ]).apply(null, eventArgs);
 
-                  if (eventArgs.length > 1 && eventArgs[1]) {
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
                     return;
                   }
                 }}
@@ -4837,6 +4902,51 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                     ];
                   }
 
+                  $steps["sendEvent"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  event_group: "activation-page",
+                                  data: {
+                                    map: $state.map,
+                                    apiadress: $state.addressApi.data,
+                                    notifycell:
+                                      $state.notifyCell.notifyCellValue,
+                                    center: $state.centersApi.data.data,
+                                    pagepath: $ctx.pagePath,
+                                    userid: $ctx.query.user_id
+                                  },
+                                  event_type:
+                                    "click-next-button-office-step2-office-tell"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
+                  ) {
+                    $steps["sendEvent"] = await $steps["sendEvent"];
+                  }
+
                   $steps["goToPage"] =
                     $steps.centerMutation.status == 200
                       ? (() => {
@@ -4891,7 +5001,11 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
             eventArgs
           );
 
-          if (eventArgs.length > 1 && eventArgs[1]) {
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
             return;
           }
         }}
@@ -4942,20 +5056,12 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                   "selectProvince",
                   "value"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               onOpenChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "selectProvince",
                   "open"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               open={generateStateValueProp($state, ["selectProvince", "open"])}
               options={(() => {
@@ -4993,20 +5099,12 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                   "selectCity",
                   "value"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               onOpenChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, ["selectCity", "open"]).apply(
                   null,
                   eventArgs
                 );
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               open={generateStateValueProp($state, ["selectCity", "open"])}
               options={(() => {
@@ -5087,7 +5185,11 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
             eventArgs
           );
 
-          if (eventArgs.length > 1 && eventArgs[1]) {
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
             return;
           }
         }}

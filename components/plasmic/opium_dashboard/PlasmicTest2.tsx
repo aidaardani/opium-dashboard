@@ -218,7 +218,11 @@ function PlasmicTest2__RenderFunc(props: {
                   );
                 }).apply(null, eventArgs);
 
-                if (eventArgs.length > 1 && eventArgs[1]) {
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
                   return;
                 }
               }}
@@ -250,7 +254,11 @@ function PlasmicTest2__RenderFunc(props: {
                   "value"
                 ]).apply(null, eventArgs);
 
-                if (eventArgs.length > 1 && eventArgs[1]) {
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
                   return;
                 }
               }}
@@ -319,7 +327,11 @@ function PlasmicTest2__RenderFunc(props: {
             eventArgs
           );
 
-          if (eventArgs.length > 1 && eventArgs[1]) {
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
             return;
           }
         }}

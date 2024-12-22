@@ -442,7 +442,11 @@ function PlasmicAddPatient__RenderFunc(props: {
             );
           }).apply(null, eventArgs);
 
-          if (eventArgs.length > 1 && eventArgs[1]) {
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
             return;
           }
         }}
@@ -1067,7 +1071,11 @@ function PlasmicAddPatient__RenderFunc(props: {
                         ])((e => e.target?.value).apply(null, eventArgs));
                       }).apply(null, eventArgs);
 
-                      if (eventArgs.length > 1 && eventArgs[1]) {
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
                         return;
                       }
 
@@ -1115,7 +1123,11 @@ function PlasmicAddPatient__RenderFunc(props: {
                         ])((e => e.target?.value).apply(null, eventArgs));
                       }).apply(null, eventArgs);
 
-                      if (eventArgs.length > 1 && eventArgs[1]) {
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
                         return;
                       }
 
@@ -1857,13 +1869,6 @@ function PlasmicAddPatient__RenderFunc(props: {
                                         "values"
                                       ]).apply(null, eventArgs);
 
-                                      if (
-                                        eventArgs.length > 1 &&
-                                        eventArgs[1]
-                                      ) {
-                                        return;
-                                      }
-
                                       (async date => {
                                         const $steps = {};
 
@@ -1940,7 +1945,11 @@ function PlasmicAddPatient__RenderFunc(props: {
                                   "open"
                                 ]).apply(null, eventArgs);
 
-                                if (eventArgs.length > 1 && eventArgs[1]) {
+                                if (
+                                  eventArgs.length > 1 &&
+                                  eventArgs[1] &&
+                                  eventArgs[1]._plasmic_state_init_
+                                ) {
                                   return;
                                 }
                               }}
@@ -3152,13 +3161,6 @@ function PlasmicAddPatient__RenderFunc(props: {
                                                           "value"
                                                         ]
                                                       ).apply(null, eventArgs);
-
-                                                      if (
-                                                        eventArgs.length > 1 &&
-                                                        eventArgs[1]
-                                                      ) {
-                                                        return;
-                                                      }
                                                     }}
                                                     value={generateStateValueProp(
                                                       $state,
@@ -3217,13 +3219,6 @@ function PlasmicAddPatient__RenderFunc(props: {
                                                           "value"
                                                         ]
                                                       ).apply(null, eventArgs);
-
-                                                      if (
-                                                        eventArgs.length > 1 &&
-                                                        eventArgs[1]
-                                                      ) {
-                                                        return;
-                                                      }
                                                     }}
                                                     value={generateStateValueProp(
                                                       $state,
@@ -4035,7 +4030,9 @@ function PlasmicAddPatient__RenderFunc(props: {
 
                                               if (
                                                 eventArgs.length > 1 &&
+                                                eventArgs[1] &&
                                                 eventArgs[1]
+                                                  ._plasmic_state_init_
                                               ) {
                                                 return;
                                               }
@@ -4090,7 +4087,11 @@ function PlasmicAddPatient__RenderFunc(props: {
                             "open"
                           ]).apply(null, eventArgs);
 
-                          if (eventArgs.length > 1 && eventArgs[1]) {
+                          if (
+                            eventArgs.length > 1 &&
+                            eventArgs[1] &&
+                            eventArgs[1]._plasmic_state_init_
+                          ) {
                             return;
                           }
                         }}
@@ -4134,7 +4135,11 @@ function PlasmicAddPatient__RenderFunc(props: {
               eventArgs
             );
 
-            if (eventArgs.length > 1 && eventArgs[1]) {
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
               return;
             }
 
@@ -4217,10 +4222,6 @@ function PlasmicAddPatient__RenderFunc(props: {
                   "fragmentTimePicker",
                   "value"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               value={generateStateValueProp($state, [
                 "fragmentTimePicker",

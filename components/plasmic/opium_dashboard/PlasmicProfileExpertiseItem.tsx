@@ -265,20 +265,12 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
                 "selectDegree",
                 "value"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onOpenChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["selectDegree", "open"]).apply(
                 null,
                 eventArgs
               );
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             open={generateStateValueProp($state, ["selectDegree", "open"])}
             options={(() => {
@@ -319,20 +311,12 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
                 "selectExpertise",
                 "value"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onOpenChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "selectExpertise",
                 "open"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             open={generateStateValueProp($state, ["selectExpertise", "open"])}
             options={(() => {
@@ -387,10 +371,6 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
                 null,
                 eventArgs
               );
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             placeholder={
               "\u0639\u0646\u0648\u0627\u0646 \u062a\u062e\u0635\u0635"

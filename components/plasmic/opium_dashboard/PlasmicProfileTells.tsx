@@ -244,10 +244,6 @@ function PlasmicProfileTells__RenderFunc(props: {
                     "value"
                   ]).apply(null, eventArgs);
 
-                  if (eventArgs.length > 1 && eventArgs[1]) {
-                    return;
-                  }
-
                   (async value => {
                     const $steps = {};
 
@@ -381,10 +377,6 @@ function PlasmicProfileTells__RenderFunc(props: {
                       __plasmic_idx_0,
                       "value"
                     ]).apply(null, eventArgs);
-
-                    if (eventArgs.length > 1 && eventArgs[1]) {
-                      return;
-                    }
 
                     (async value => {
                       const $steps = {};

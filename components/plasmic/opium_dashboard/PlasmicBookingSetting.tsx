@@ -778,10 +778,6 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     "value"
                                   ]).apply(null, eventArgs);
 
-                                  if (eventArgs.length > 1 && eventArgs[1]) {
-                                    return;
-                                  }
-
                                   (async value => {
                                     const $steps = {};
 
@@ -952,10 +948,6 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     "to",
                                     "value"
                                   ]).apply(null, eventArgs);
-
-                                  if (eventArgs.length > 1 && eventArgs[1]) {
-                                    return;
-                                  }
 
                                   (async value => {
                                     const $steps = {};
@@ -1372,10 +1364,6 @@ function PlasmicBookingSetting__RenderFunc(props: {
                       ["accordion", "activePanelId"],
                       AntdAccordion_Helpers
                     ).apply(null, eventArgs);
-
-                    if (eventArgs.length > 1 && eventArgs[1]) {
-                      return;
-                    }
                   }
                 };
                 initializeCodeComponentStates(
@@ -1588,10 +1576,6 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     "refundrange",
                                     "value"
                                   ]).apply(null, eventArgs);
-
-                                  if (eventArgs.length > 1 && eventArgs[1]) {
-                                    return;
-                                  }
 
                                   (async value => {
                                     const $steps = {};
@@ -1974,10 +1958,6 @@ function PlasmicBookingSetting__RenderFunc(props: {
                         ["accordionCancellationPolicy", "activePanelId"],
                         AntdAccordion_Helpers
                       ).apply(null, eventArgs);
-
-                      if (eventArgs.length > 1 && eventArgs[1]) {
-                        return;
-                      }
                     }
                   };
                   initializeCodeComponentStates(

@@ -517,112 +517,97 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox__qGiq5)}
               >
-                {(() => {
-                  try {
-                    return !$props.receivers;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return false;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"drname2"}
-                    data-plasmic-override={overrides.drname2}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.drname2)}
-                    onClick={async event => {
-                      const $steps = {};
+                <Stack__
+                  as={"div"}
+                  data-plasmic-name={"drname2"}
+                  data-plasmic-override={overrides.drname2}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.drname2)}
+                  onClick={async event => {
+                    const $steps = {};
 
-                      $steps["updateChangetodrname"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["changetodrname"]
-                              },
-                              operation: 0,
-                              value: (() => {
-                                return ($state.changetodrname =
-                                  !$state.changetodrname);
-                              })()
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateChangetodrname"] != null &&
-                        typeof $steps["updateChangetodrname"] === "object" &&
-                        typeof $steps["updateChangetodrname"].then ===
-                          "function"
-                      ) {
-                        $steps["updateChangetodrname"] = await $steps[
-                          "updateChangetodrname"
-                        ];
-                      }
-                    }}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__kvvtF
-                      )}
-                    >
-                      <React.Fragment>
-                        {(() => {
-                          try {
-                            return "نام پزشک";
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return "";
+                    $steps["updateChangetodrname"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["changetodrname"]
+                            },
+                            operation: 0,
+                            value: (() => {
+                              return ($state.changetodrname =
+                                !$state.changetodrname);
+                            })()
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
                             }
-                            throw e;
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateChangetodrname"] != null &&
+                      typeof $steps["updateChangetodrname"] === "object" &&
+                      typeof $steps["updateChangetodrname"].then === "function"
+                    ) {
+                      $steps["updateChangetodrname"] = await $steps[
+                        "updateChangetodrname"
+                      ];
+                    }
+                  }}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__kvvtF
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return "نام پزشک";
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "";
                           }
-                        })()}
-                      </React.Fragment>
-                    </div>
-                    {(() => {
-                      try {
-                        return $state.changetodrname;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return false;
+                          throw e;
                         }
-                        throw e;
+                      })()}
+                    </React.Fragment>
+                  </div>
+                  {(() => {
+                    try {
+                      return $state.changetodrname;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return false;
                       }
-                    })() ? (
-                      <CheckSvgIcon
-                        className={classNames(projectcss.all, sty.svg__hCoKf)}
-                        role={"img"}
-                      />
-                    ) : null}
-                  </Stack__>
-                ) : null}
+                      throw e;
+                    }
+                  })() ? (
+                    <CheckSvgIcon
+                      className={classNames(projectcss.all, sty.svg__hCoKf)}
+                      role={"img"}
+                    />
+                  ) : null}
+                </Stack__>
                 <Stack__
                   as={"div"}
                   data-plasmic-name={"patientname2"}
@@ -906,10 +891,6 @@ function PlasmicSpecificnotification__RenderFunc(props: {
               "fragmentPopoverEditNotification2",
               "open"
             ]).apply(null, eventArgs);
-
-            if (eventArgs.length > 1 && eventArgs[1]) {
-              return;
-            }
           }}
           open={generateStateValueProp($state, [
             "fragmentPopoverEditNotification2",
@@ -1047,7 +1028,11 @@ function PlasmicSpecificnotification__RenderFunc(props: {
               "value"
             ]).apply(null, eventArgs);
 
-            if (eventArgs.length > 1 && eventArgs[1]) {
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
               return;
             }
           }}
@@ -1434,10 +1419,6 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                   ["accordion2", "activePanelId"],
                   AntdAccordion_Helpers
                 ).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }
             };
             initializeCodeComponentStates(
@@ -1524,6 +1505,7 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                         return {
                           receivers: $props.receivers,
                           events: $props.events,
+                          user_id: $props.userId,
                           channels: "sms",
                           content: $state.multilineTextInput.value,
                           objectofcontent: JSON.stringify(

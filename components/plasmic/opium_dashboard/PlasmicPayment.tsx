@@ -91,11 +91,13 @@ export const PlasmicPayment__VariantProps = new Array<VariantPropType>();
 export type PlasmicPayment__ArgsType = {
   selectedCenter?: string;
   center?: any;
+  userId?: string;
 };
 type ArgPropType = keyof PlasmicPayment__ArgsType;
 export const PlasmicPayment__ArgProps = new Array<ArgPropType>(
   "selectedCenter",
-  "center"
+  "center",
+  "userId"
 );
 
 export type PlasmicPayment__OverridesType = {
@@ -117,6 +119,7 @@ export type PlasmicPayment__OverridesType = {
 export interface DefaultPaymentProps {
   selectedCenter?: string;
   center?: any;
+  userId?: string;
   className?: string;
 }
 
@@ -333,30 +336,18 @@ function PlasmicPayment__RenderFunc(props: {
             "getDetailsPayment",
             "error"
           ]).apply(null, eventArgs);
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onLoading={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "getDetailsPayment",
             "loading"
           ]).apply(null, eventArgs);
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onSuccess={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "getDetailsPayment",
             "data"
           ]).apply(null, eventArgs);
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         ref={ref => {
           $refs["getDetailsPayment"] = ref;
@@ -727,30 +718,18 @@ function PlasmicPayment__RenderFunc(props: {
                           "apiRequest",
                           "error"
                         ]).apply(null, eventArgs);
-
-                        if (eventArgs.length > 1 && eventArgs[1]) {
-                          return;
-                        }
                       }}
                       onLoading={async (...eventArgs: any) => {
                         generateStateOnChangeProp($state, [
                           "apiRequest",
                           "loading"
                         ]).apply(null, eventArgs);
-
-                        if (eventArgs.length > 1 && eventArgs[1]) {
-                          return;
-                        }
                       }}
                       onSuccess={async (...eventArgs: any) => {
                         generateStateOnChangeProp($state, [
                           "apiRequest",
                           "data"
                         ]).apply(null, eventArgs);
-
-                        if (eventArgs.length > 1 && eventArgs[1]) {
-                          return;
-                        }
                       }}
                       ref={ref => {
                         $refs["apiRequest"] = ref;
@@ -792,31 +771,32 @@ function PlasmicPayment__RenderFunc(props: {
                             "getUserPrefrence",
                             "error"
                           ]).apply(null, eventArgs);
-
-                          if (eventArgs.length > 1 && eventArgs[1]) {
-                            return;
-                          }
                         }}
                         onLoading={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
                             "getUserPrefrence",
                             "loading"
                           ]).apply(null, eventArgs);
-
-                          if (eventArgs.length > 1 && eventArgs[1]) {
-                            return;
-                          }
                         }}
                         onSuccess={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
                             "getUserPrefrence",
                             "data"
                           ]).apply(null, eventArgs);
-
-                          if (eventArgs.length > 1 && eventArgs[1]) {
-                            return;
-                          }
                         }}
+                        params={(() => {
+                          try {
+                            return { user_id: $props.userId };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}
                         ref={ref => {
                           $refs["getUserPrefrence"] = ref;
                         }}
@@ -852,10 +832,6 @@ function PlasmicPayment__RenderFunc(props: {
                               "radioGroup",
                               "value"
                             ]).apply(null, eventArgs);
-
-                            if (eventArgs.length > 1 && eventArgs[1]) {
-                              return;
-                            }
                           }}
                           optionType={"default"}
                           options={(() => {
@@ -1198,7 +1174,11 @@ function PlasmicPayment__RenderFunc(props: {
                   eventArgs
                 );
 
-                if (eventArgs.length > 1 && eventArgs[1]) {
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
                   return;
                 }
               }}
@@ -1224,7 +1204,7 @@ function PlasmicPayment__RenderFunc(props: {
                   data-plasmic-override={overrides.setting}
                   children2={
                     <Icon9Icon
-                      className={classNames(projectcss.all, sty.svg__cb3E3)}
+                      className={classNames(projectcss.all, sty.svg__jew3R)}
                       role={"img"}
                     />
                   }

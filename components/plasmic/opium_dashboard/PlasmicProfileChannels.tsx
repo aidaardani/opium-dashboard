@@ -401,7 +401,11 @@ function PlasmicProfileChannels__RenderFunc(props: {
             eventArgs
           );
 
-          if (eventArgs.length > 1 && eventArgs[1]) {
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
             return;
           }
         }}
@@ -439,30 +443,18 @@ function PlasmicProfileChannels__RenderFunc(props: {
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onLoading={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onSuccess={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         ref={ref => {
           $refs["apiRequest"] = ref;
@@ -534,7 +526,11 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   "numberValue2"
                 ]).apply(null, eventArgs);
 
-                if (eventArgs.length > 1 && eventArgs[1]) {
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
                   return;
                 }
               }}
@@ -544,7 +540,11 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   "usernameValue"
                 ]).apply(null, eventArgs);
 
-                if (eventArgs.length > 1 && eventArgs[1]) {
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
                   return;
                 }
               }}
@@ -588,7 +588,11 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   "numberValue2"
                 ]).apply(null, eventArgs);
 
-                if (eventArgs.length > 1 && eventArgs[1]) {
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
                   return;
                 }
               }}
@@ -598,7 +602,11 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   "usernameValue"
                 ]).apply(null, eventArgs);
 
-                if (eventArgs.length > 1 && eventArgs[1]) {
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
                   return;
                 }
               }}
@@ -695,9 +703,49 @@ function PlasmicProfileChannels__RenderFunc(props: {
                     "checked"
                   ]).apply(null, eventArgs);
 
-                  if (eventArgs.length > 1 && eventArgs[1]) {
-                    return;
-                  }
+                  (async checked => {
+                    const $steps = {};
+
+                    $steps["sendEvent"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    event_group: "activation-page",
+                                    data: {
+                                      userid: $ctx.query.user_id,
+                                      pagepath: $ctx.pagePath
+                                    },
+                                    event_type: "click-active-safecall-button"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendEvent"] != null &&
+                      typeof $steps["sendEvent"] === "object" &&
+                      typeof $steps["sendEvent"].then === "function"
+                    ) {
+                      $steps["sendEvent"] = await $steps["sendEvent"];
+                    }
+                  }).apply(null, eventArgs);
                 }}
               />
             </Stack__>
@@ -866,6 +914,46 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   $steps["updateIsLoadingSave2"] = await $steps[
                     "updateIsLoadingSave2"
                   ];
+                }
+
+                $steps["sendEvent"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                event_group: "activation-page",
+                                data: {
+                                  userid: $ctx.query.user_id,
+                                  pagepath: $ctx.pagePath
+                                },
+                                event_type:
+                                  "click-save-consult-messenger-button"
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["sendEvent"] != null &&
+                  typeof $steps["sendEvent"] === "object" &&
+                  typeof $steps["sendEvent"].then === "function"
+                ) {
+                  $steps["sendEvent"] = await $steps["sendEvent"];
                 }
 
                 $steps["toast"] = !!$steps.invokeGlobalAction.data.message

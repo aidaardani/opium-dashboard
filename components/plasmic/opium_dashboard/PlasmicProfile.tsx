@@ -457,10 +457,6 @@ function PlasmicProfile__RenderFunc(props: {
               ["accordion", "activePanelId"],
               AntdAccordion_Helpers
             ).apply(null, eventArgs);
-
-            if (eventArgs.length > 1 && eventArgs[1]) {
-              return;
-            }
           }
         };
         initializeCodeComponentStates(

@@ -4322,30 +4322,18 @@ function PlasmicProfileAddress__RenderFunc(props: {
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onLoading={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["centersApi", "loading"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onSuccess={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["centersApi", "data"]).apply(
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
 
           (async data => {
             const $steps = {};
@@ -4407,20 +4395,12 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   "provinceSelect",
                   "value"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               onOpenChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "provinceSelect",
                   "open"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               open={generateStateValueProp($state, ["provinceSelect", "open"])}
               options={(() => {
@@ -4458,20 +4438,12 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   "citySelect",
                   "value"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               onOpenChange={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, ["citySelect", "open"]).apply(
                   null,
                   eventArgs
                 );
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               open={generateStateValueProp($state, ["citySelect", "open"])}
               options={(() => {
@@ -4550,10 +4522,6 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   null,
                   eventArgs
                 );
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               placeholder={"\u0622\u062f\u0631\u0633 \u0645\u0637\u0628"}
               type={"text"}
@@ -4578,7 +4546,11 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 "newTells"
               ]).apply(null, eventArgs);
 
-              if (eventArgs.length > 1 && eventArgs[1]) {
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
                 return;
               }
             }}
@@ -4588,7 +4560,11 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 "oldTells"
               ]).apply(null, eventArgs);
 
-              if (eventArgs.length > 1 && eventArgs[1]) {
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
                 return;
               }
             }}
@@ -4604,10 +4580,6 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 null,
                 eventArgs
               );
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             placeholder={"\u062e\u062f\u0645\u0627\u062a \u0645\u0637\u0628"}
             type={"text"}
@@ -4633,30 +4605,18 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 null,
                 eventArgs
               );
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onLoading={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "galleryApi",
                 "loading"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onSuccess={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["galleryApi", "data"]).apply(
                 null,
                 eventArgs
               );
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             ref={ref => {
               $refs["galleryApi"] = ref;
@@ -5177,7 +5137,11 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   );
                 }).apply(null, eventArgs);
 
-                if (eventArgs.length > 1 && eventArgs[1]) {
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
                   return;
                 }
               }}
@@ -5202,7 +5166,11 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   );
                 }).apply(null, eventArgs);
 
-                if (eventArgs.length > 1 && eventArgs[1]) {
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
                   return;
                 }
               }}
@@ -5227,7 +5195,11 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   );
                 }).apply(null, eventArgs);
 
-                if (eventArgs.length > 1 && eventArgs[1]) {
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
                   return;
                 }
               }}
@@ -5252,7 +5224,11 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   );
                 }).apply(null, eventArgs);
 
-                if (eventArgs.length > 1 && eventArgs[1]) {
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
                   return;
                 }
               }}
@@ -5289,20 +5265,12 @@ function PlasmicProfileAddress__RenderFunc(props: {
                       null,
                       eventArgs
                     );
-
-                    if (eventArgs.length > 1 && eventArgs[1]) {
-                      return;
-                    }
                   }}
                   onChangeLng={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, ["map", "lng"]).apply(
                       null,
                       eventArgs
                     );
-
-                    if (eventArgs.length > 1 && eventArgs[1]) {
-                      return;
-                    }
                   }}
                   width={"100%"}
                   zoom={20}
@@ -5693,7 +5661,11 @@ function PlasmicProfileAddress__RenderFunc(props: {
             eventArgs
           );
 
-          if (eventArgs.length > 1 && eventArgs[1]) {
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
             return;
           }
         }}
@@ -5948,7 +5920,11 @@ function PlasmicProfileAddress__RenderFunc(props: {
             "open"
           ]).apply(null, eventArgs);
 
-          if (eventArgs.length > 1 && eventArgs[1]) {
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
             return;
           }
         }}

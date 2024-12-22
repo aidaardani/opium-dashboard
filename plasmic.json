@@ -345,7 +345,8 @@
       "globalContextsFilePath": "",
       "splitsProviderFilePath": "",
       "codeComponents": [],
-      "customFunctions": []
+      "customFunctions": [],
+      "jsBundleThemes": []
     },
     {
       "projectId": "vqeFwpZFQ6buChy6T9PGwQ",
@@ -786,7 +787,8 @@
       "globalContextsFilePath": "",
       "splitsProviderFilePath": "",
       "codeComponents": [],
-      "customFunctions": []
+      "customFunctions": [],
+      "jsBundleThemes": []
     },
     {
       "projectId": "YUiM7yqBWAqsh8KSnrdj7",
@@ -2216,6 +2218,19 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/payment"
+        },
+        {
+          "id": "vlrWM3QMUTqs",
+          "name": "SelectionItem",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicSelectionItem.tsx",
+          "importSpec": {
+            "modulePath": "SelectionItem.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicSelectionItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -2463,6 +2478,16 @@
           "id": "NbdQ650WQKOY",
           "name": "Icon42Icon",
           "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon42.tsx"
+        },
+        {
+          "id": "ceZqJYMee3Ix",
+          "name": "Icon43Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon43.tsx"
+        },
+        {
+          "id": "4HiCQNa4cxeX",
+          "name": "Icon44Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon44.tsx"
         }
       ],
       "images": [

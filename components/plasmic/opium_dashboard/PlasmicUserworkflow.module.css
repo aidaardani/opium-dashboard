@@ -168,6 +168,14 @@
   height: 22px;
   flex-shrink: 0;
 }
+.svg__rwbFk {
+  object-fit: cover;
+  max-width: 100%;
+  width: 24px;
+  height: 24px;
+  color: #fae214;
+  flex-shrink: 0;
+}
 .text__xkpUn {
   position: relative;
   width: 100%;

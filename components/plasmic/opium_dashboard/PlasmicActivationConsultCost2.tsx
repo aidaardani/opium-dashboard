@@ -254,10 +254,6 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
             null,
             eventArgs
           );
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         placeholder={
           "\u0645\u0628\u0644\u063a \u0647\u0631 \u0648\u06cc\u0632\u06cc\u062a (\u062a\u0648\u0645\u0627\u0646)"
@@ -353,6 +349,46 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
               typeof $steps["invokeGlobalAction"].then === "function"
             ) {
               $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
+            }
+
+            $steps["sendEvent"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            event_group: "activation-page",
+                            data: {
+                              userid: $ctx.query.user_id,
+                              input: $state.input.value,
+                              pagepath: $ctx.pagePath
+                            },
+                            event_type: "click-save-button-consult-price"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Splunk.sendLog"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["sendEvent"] != null &&
+              typeof $steps["sendEvent"] === "object" &&
+              typeof $steps["sendEvent"].then === "function"
+            ) {
+              $steps["sendEvent"] = await $steps["sendEvent"];
             }
 
             $steps["goToPage"] = (() => {

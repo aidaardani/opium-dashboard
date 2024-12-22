@@ -730,10 +730,6 @@ function PlasmicBookList__RenderFunc(props: {
                             "values"
                           ]).apply(null, eventArgs);
 
-                          if (eventArgs.length > 1 && eventArgs[1]) {
-                            return;
-                          }
-
                           (async date => {
                             const $steps = {};
 
@@ -794,7 +790,11 @@ function PlasmicBookList__RenderFunc(props: {
                       "open"
                     ]).apply(null, eventArgs);
 
-                    if (eventArgs.length > 1 && eventArgs[1]) {
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
                       return;
                     }
                   }}
@@ -939,7 +939,11 @@ function PlasmicBookList__RenderFunc(props: {
                       "selectedCenter"
                     ]).apply(null, eventArgs);
 
-                    if (eventArgs.length > 1 && eventArgs[1]) {
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
                       return;
                     }
 
@@ -1439,7 +1443,11 @@ function PlasmicBookList__RenderFunc(props: {
                     eventArgs
                   );
 
-                  if (eventArgs.length > 1 && eventArgs[1]) {
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
                     return;
                   }
                 }}
@@ -2121,7 +2129,11 @@ function PlasmicBookList__RenderFunc(props: {
                       "open"
                     ]).apply(null, eventArgs);
 
-                    if (eventArgs.length > 1 && eventArgs[1]) {
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
                       return;
                     }
                   }}

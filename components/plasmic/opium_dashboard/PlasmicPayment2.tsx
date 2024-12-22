@@ -271,30 +271,18 @@ function PlasmicPayment2__RenderFunc(props: {
             "getDetailsPayment",
             "error"
           ]).apply(null, eventArgs);
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onLoading={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "getDetailsPayment",
             "loading"
           ]).apply(null, eventArgs);
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         onSuccess={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
             "getDetailsPayment",
             "data"
           ]).apply(null, eventArgs);
-
-          if (eventArgs.length > 1 && eventArgs[1]) {
-            return;
-          }
         }}
         ref={ref => {
           $refs["getDetailsPayment"] = ref;
@@ -870,30 +858,18 @@ function PlasmicPayment2__RenderFunc(props: {
                     "getUserPrefrence",
                     "error"
                   ]).apply(null, eventArgs);
-
-                  if (eventArgs.length > 1 && eventArgs[1]) {
-                    return;
-                  }
                 }}
                 onLoading={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
                     "getUserPrefrence",
                     "loading"
                   ]).apply(null, eventArgs);
-
-                  if (eventArgs.length > 1 && eventArgs[1]) {
-                    return;
-                  }
                 }}
                 onSuccess={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
                     "getUserPrefrence",
                     "data"
                   ]).apply(null, eventArgs);
-
-                  if (eventArgs.length > 1 && eventArgs[1]) {
-                    return;
-                  }
                 }}
                 ref={ref => {
                   $refs["getUserPrefrence"] = ref;

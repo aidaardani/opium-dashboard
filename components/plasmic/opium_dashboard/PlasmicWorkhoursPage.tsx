@@ -308,30 +308,18 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                   "apIworkhours",
                   "error"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               onLoading={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "apIworkhours",
                   "loading"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               onSuccess={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
                   "apIworkhours",
                   "data"
                 ]).apply(null, eventArgs);
-
-                if (eventArgs.length > 1 && eventArgs[1]) {
-                  return;
-                }
               }}
               ref={ref => {
                 $refs["apIworkhours"] = ref;
@@ -377,7 +365,11 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                     "selectedCenter"
                   ]).apply(null, eventArgs);
 
-                  if (eventArgs.length > 1 && eventArgs[1]) {
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
                     return;
                   }
 
@@ -544,7 +536,11 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                       "duration"
                     ]).apply(null, eventArgs);
 
-                    if (eventArgs.length > 1 && eventArgs[1]) {
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
                       return;
                     }
                   }}
@@ -700,30 +696,18 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                 "apiSpeciality",
                 "error"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onLoading={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "apiSpeciality",
                 "loading"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             onSuccess={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, [
                 "apiSpeciality",
                 "data"
               ]).apply(null, eventArgs);
-
-              if (eventArgs.length > 1 && eventArgs[1]) {
-                return;
-              }
             }}
             ref={ref => {
               $refs["apiSpeciality"] = ref;
