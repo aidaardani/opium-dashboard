@@ -1216,76 +1216,7 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                           <React.Fragment>
                             {(() => {
                               try {
-                                return (() => {
-                                  const finalText =
-                                    $state.multilineTextInput.value
-                                      .replace(/<p>/g, "")
-                                      .replace(/<\/p>/g, "") +
-                                    "\n" +
-                                    ($state.changetodrname ||
-                                    $state.changetopatientname ||
-                                    $state.changetorefid ||
-                                    $state.changetobooktime
-                                      ? (
-                                          ($state.changetodrname &&
-                                          $state.userDetail &&
-                                          $state.userDetail.data
-                                            ? `نام پزشک: ${$state.userDetail.data.name} ${$state.userDetail.data.family}\n`
-                                            : "") +
-                                          ($state.changetopatientname
-                                            ? "نام بیمار: آیدا اردانی\n"
-                                            : "") +
-                                          ($state.changetorefid
-                                            ? "کدپیگیری : ۱۲۳۴۵۶\n"
-                                            : "") +
-                                          ($state.changetobooktime
-                                            ? "زمان نوبت: ۱۴۰۳/۰۷/۱۰-۱۳:۳۰\n"
-                                            : "")
-                                        ).trim()
-                                      : (() => {
-                                          const content =
-                                            $props.objectofcontent;
-                                          let result = "";
-                                          content.forEach(item => {
-                                            switch (item) {
-                                              case "drname":
-                                                if (
-                                                  $state.userDetail &&
-                                                  $state.userDetail.data
-                                                ) {
-                                                  result += `نام پزشک: ${$state.userDetail.data.name} ${$state.userDetail.data.family}\n`;
-                                                }
-                                                break;
-                                              case "patientname":
-                                                result +=
-                                                  "نام بیمار: آیدا اردانی\n";
-                                                break;
-                                              case "refid":
-                                                result += "کدپیگیری : ۱۲۳۴۵۶\n";
-                                                break;
-                                              case "booktime":
-                                                result +=
-                                                  "زمان نوبت: ۱۴۰۳/۰۷/۱۰-۱۳:۳۰\n";
-                                                break;
-                                            }
-                                          });
-                                          return result.trim();
-                                        })());
-                                  const charCount = finalText.length;
-                                  let finalPrice = 0;
-                                  if (charCount < 70) {
-                                    finalPrice = 7500;
-                                  } else if (
-                                    charCount >= 70 &&
-                                    charCount < 140
-                                  ) {
-                                    finalPrice = 7500 * 2;
-                                  } else {
-                                    finalPrice =
-                                      7500 * Math.ceil(charCount / 70);
-                                  }
-                                  return finalPrice / 10 + " تومان";
-                                })();
+                                return "750 تومان";
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||

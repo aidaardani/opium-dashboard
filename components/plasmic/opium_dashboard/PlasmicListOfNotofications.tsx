@@ -2233,44 +2233,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                       <React.Fragment>
                                         {(() => {
                                           try {
-                                            return (() => {
-                                              const finalText =
-                                                $state.multilineTextInput.value
-                                                  .replace(/<p>/g, "")
-                                                  .replace(/<\/p>/g, "") +
-                                                "\n" +
-                                                ($state.selecteddrnameinnewworkflowscontent
-                                                  ? " نام پزشک : نرگس رضایی"
-                                                  : "") +
-                                                "\n" +
-                                                ($state.selecteddrpatientinnewworkflowscontent
-                                                  ? "نام بیمار: آیدا اردانی"
-                                                  : "") +
-                                                "\n" +
-                                                ($state.selectedrefidinnewworkflowscontent
-                                                  ? "کدپیگیری : ۱۲۳۴۵۶"
-                                                  : "") +
-                                                "\n" +
-                                                ($state.selectedbooktimeinnewworkflowscontent
-                                                  ? "زمان نوبت:‌۱۴۰۳/۰۷/‍۱۰-‍۱۳:۳۰"
-                                                  : "");
-                                              const charCount =
-                                                finalText.length;
-                                              let finalPrice = 0;
-                                              if (charCount < 70) {
-                                                finalPrice = 7500;
-                                              } else if (
-                                                charCount >= 70 &&
-                                                charCount < 140
-                                              ) {
-                                                finalPrice = 7500 * 2;
-                                              } else {
-                                                finalPrice =
-                                                  7500 *
-                                                  Math.ceil(charCount / 70);
-                                              }
-                                              return finalPrice / 10 + " تومان";
-                                            })();
+                                            return "750 تومان";
                                           } catch (e) {
                                             if (
                                               e instanceof TypeError ||
