@@ -232,7 +232,7 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
         <React.Fragment>
           {(() => {
             try {
-              return `همکاران شما بصورت میانگین مبلغ ${(200000).toLocaleString()} تومان را در نظر گرفته اند.`;
+              return `همکاران شما بصورت میانگین مبلغ ${(150000).toLocaleString()} تومان را در نظر گرفته اند.`;
             } catch (e) {
               if (
                 e instanceof TypeError ||
