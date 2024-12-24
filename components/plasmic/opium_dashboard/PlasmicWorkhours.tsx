@@ -492,35 +492,33 @@ function PlasmicWorkhours__RenderFunc(props: {
                     options: (() => {
                       try {
                         return (() => {
-                          return (() => {
-                            const duration = $props.duration;
-                            const options = [];
-                            let [initialHour, initialMinute] = currentItem.from
-                              .split(":")
-                              .map(Number);
-                            while (true) {
-                              initialHour += Math.floor(
-                                (initialMinute + duration) / 60
-                              );
-                              initialMinute = (initialMinute + duration) % 60;
-                              if (initialHour >= 24) {
-                                break;
-                              }
-                              const formattedHour =
-                                initialHour < 10
-                                  ? `0${initialHour}`
-                                  : `${initialHour}`;
-                              const formattedMinute =
-                                initialMinute < 10
-                                  ? `0${initialMinute}`
-                                  : `${initialMinute}`;
-                              options.push({
-                                label: `${formattedHour}:${formattedMinute}`,
-                                value: `${formattedHour}:${formattedMinute}`
-                              });
+                          const duration = $props.duration;
+                          const options = [];
+                          let [initialHour, initialMinute] = currentItem.from
+                            .split(":")
+                            .map(Number);
+                          while (true) {
+                            initialHour += Math.floor(
+                              (initialMinute + duration) / 60
+                            );
+                            initialMinute = (initialMinute + duration) % 60;
+                            if (initialHour >= 24) {
+                              break;
                             }
-                            return options;
-                          })();
+                            const formattedHour =
+                              initialHour < 10
+                                ? `0${initialHour}`
+                                : `${initialHour}`;
+                            const formattedMinute =
+                              initialMinute < 10
+                                ? `0${initialMinute}`
+                                : `${initialMinute}`;
+                            options.push({
+                              label: `${formattedHour}:${formattedMinute}`,
+                              value: `${formattedHour}:${formattedMinute}`
+                            });
+                          }
+                          return options;
                         })();
                       } catch (e) {
                         if (
@@ -633,39 +631,37 @@ function PlasmicWorkhours__RenderFunc(props: {
                           ? (() => {
                               const actionArgs = {
                                 customFunction: async () => {
-                                  return (() => {
-                                    return ($state.listOfWorkhoureCopy[
-                                      currentIndex
-                                    ].to = (() => {
-                                      const duration = $props.duration;
-                                      const options = [];
-                                      let [initialHour, initialMinute] =
-                                        currentItem.from.split(":").map(Number);
-                                      while (true) {
-                                        initialHour += Math.floor(
-                                          (initialMinute + duration) / 60
-                                        );
-                                        initialMinute =
-                                          (initialMinute + duration) % 60;
-                                        if (initialHour >= 24) {
-                                          break;
-                                        }
-                                        const formattedHour =
-                                          initialHour < 10
-                                            ? `0${initialHour}`
-                                            : `${initialHour}`;
-                                        const formattedMinute =
-                                          initialMinute < 10
-                                            ? `0${initialMinute}`
-                                            : `${initialMinute}`;
-                                        options.push({
-                                          label: `${formattedHour}:${formattedMinute}`,
-                                          value: `${formattedHour}:${formattedMinute}`
-                                        });
+                                  return ($state.listOfWorkhoureCopy[
+                                    currentIndex
+                                  ].to = (() => {
+                                    const duration = $props.duration;
+                                    const options = [];
+                                    let [initialHour, initialMinute] =
+                                      currentItem.from.split(":").map(Number);
+                                    while (true) {
+                                      initialHour += Math.floor(
+                                        (initialMinute + duration) / 60
+                                      );
+                                      initialMinute =
+                                        (initialMinute + duration) % 60;
+                                      if (initialHour >= 24) {
+                                        break;
                                       }
-                                      return options;
-                                    })()[0].value);
-                                  })();
+                                      const formattedHour =
+                                        initialHour < 10
+                                          ? `0${initialHour}`
+                                          : `${initialHour}`;
+                                      const formattedMinute =
+                                        initialMinute < 10
+                                          ? `0${initialMinute}`
+                                          : `${initialMinute}`;
+                                      options.push({
+                                        label: `${formattedHour}:${formattedMinute}`,
+                                        value: `${formattedHour}:${formattedMinute}`
+                                      });
+                                    }
+                                    return options;
+                                  })()[0].value);
                                 }
                               };
                               return (({ customFunction }) => {
@@ -761,28 +757,26 @@ function PlasmicWorkhours__RenderFunc(props: {
                     options: (() => {
                       try {
                         return (() => {
-                          return (() => {
-                            const duration = 5;
-                            const x = $props.duration;
-                            const maxMinutes = 1440 - x;
-                            const options = [];
-                            for (let i = 0; i * duration < maxMinutes; i++) {
-                              const totalMinutes = i * duration;
-                              const hour = Math.floor(totalMinutes / 60);
-                              const minute = totalMinutes % 60;
-                              const formattedHour = hour
-                                .toString()
-                                .padStart(2, "0");
-                              const formattedMinute = minute
-                                .toString()
-                                .padStart(2, "0");
-                              options.push({
-                                label: `${formattedHour}:${formattedMinute}`,
-                                value: `${formattedHour}:${formattedMinute}`
-                              });
-                            }
-                            return options;
-                          })();
+                          const duration = 5;
+                          const x = $props.duration;
+                          const maxMinutes = 1440 - x;
+                          const options = [];
+                          for (let i = 0; i * duration < maxMinutes; i++) {
+                            const totalMinutes = i * duration;
+                            const hour = Math.floor(totalMinutes / 60);
+                            const minute = totalMinutes % 60;
+                            const formattedHour = hour
+                              .toString()
+                              .padStart(2, "0");
+                            const formattedMinute = minute
+                              .toString()
+                              .padStart(2, "0");
+                            options.push({
+                              label: `${formattedHour}:${formattedMinute}`,
+                              value: `${formattedHour}:${formattedMinute}`
+                            });
+                          }
+                          return options;
                         })();
                       } catch (e) {
                         if (
