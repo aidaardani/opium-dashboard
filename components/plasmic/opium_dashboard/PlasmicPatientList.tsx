@@ -330,12 +330,10 @@ function PlasmicPatientList__RenderFunc(props: {
                           return {
                             centers:
                               $props.selectedCenter == "all"
-                                ? $props.centers
-                                    .filter(center => center.is_active_booking)
-                                    .map(center => ({
-                                      id: center.id,
-                                      user_center_id: center.user_center_id
-                                    }))
+                                ? $props.centers.map(center => ({
+                                    id: center.id,
+                                    user_center_id: center.user_center_id
+                                  }))
                                 : [
                                     {
                                       id: $props.selectedCenter,

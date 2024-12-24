@@ -64,6 +64,7 @@ import QuickAccessInAppNotifications from "../../QuickAccessInAppNotifications";
 import QuickAccessWallet from "../../QuickAccessWallet"; // plasmic-import: GvtgrqQf9C66/component
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import { DatePicker } from "@/fragment/components/date-picker"; // plasmic-import: b38lDo6Nm8Rh/codeComponent
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import DrCenters from "../../DrCenters"; // plasmic-import: IkLsGKQP_uPj/component
 import PatientList from "../../PatientList"; // plasmic-import: uw2UKvNlq2Yr/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
@@ -115,16 +116,20 @@ export type PlasmicBookList__OverridesType = {
   تقویمماهانه?: Flex__<"div">;
   fragmentDatePicker?: Flex__<typeof DatePicker>;
   center?: Flex__<"div">;
+  apiAllCenters?: Flex__<typeof ApiRequest>;
   drCenters?: Flex__<typeof DrCenters>;
   patientList?: Flex__<typeof PatientList>;
   addPatient?: Flex__<"div">;
   dialog?: Flex__<typeof Dialog>;
   onOffButton?: Flex__<"div">;
+  apiUserCenterService?: Flex__<typeof ApiRequest>;
   activeDeactiveOnlineVisit?: Flex__<"div">;
   determiningTheSituationDialog?: Flex__<typeof Dialog>;
   cancelbook?: Flex__<typeof Button>;
   runCodeGtmMetrica?: Flex__<typeof SideEffect>;
   gtm?: Flex__<typeof Embed>;
+  apiPayment?: Flex__<typeof ApiRequest>;
+  apiHoliday?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultBookListProps {}
@@ -284,6 +289,102 @@ function PlasmicBookList__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "apiAllCenters.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiAllCenters"
+      },
+      {
+        path: "apiAllCenters.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiAllCenters"
+      },
+      {
+        path: "apiAllCenters.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiAllCenters"
+      },
+      {
+        path: "apiUserCenterService.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiUserCenterService"
+      },
+      {
+        path: "apiUserCenterService.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiUserCenterService"
+      },
+      {
+        path: "apiUserCenterService.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiUserCenterService"
+      },
+      {
+        path: "apiHoliday.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiHoliday"
+      },
+      {
+        path: "apiHoliday.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiHoliday"
+      },
+      {
+        path: "apiHoliday.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiHoliday"
+      },
+      {
+        path: "apiPayment.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiPayment"
+      },
+      {
+        path: "apiPayment.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiPayment"
+      },
+      {
+        path: "apiPayment.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiPayment"
       }
     ],
     [$props, $ctx, $refs]
@@ -707,7 +808,9 @@ function PlasmicBookList__RenderFunc(props: {
                         )}
                         holidays={(() => {
                           try {
-                            return $state.holiday.map(item => item.date);
+                            return $state.apiHoliday.data.map(
+                              item => item.date
+                            );
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -880,6 +983,59 @@ function PlasmicBookList__RenderFunc(props: {
             className={classNames(projectcss.all, sty.center)}
           >
             <div className={classNames(projectcss.all, sty.freeBox__k3O51)}>
+              <ApiRequest
+                data-plasmic-name={"apiAllCenters"}
+                data-plasmic-override={overrides.apiAllCenters}
+                className={classNames("__wab_instance", sty.apiAllCenters)}
+                errorDisplay={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__bhz5E
+                    )}
+                  >
+                    {"Error fetching data"}
+                  </div>
+                }
+                loadingDisplay={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__nOEh
+                    )}
+                  >
+                    {"Loading..."}
+                  </div>
+                }
+                method={"GET"}
+                onError={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiAllCenters",
+                    "error"
+                  ]).apply(null, eventArgs);
+                }}
+                onLoading={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiAllCenters",
+                    "loading"
+                  ]).apply(null, eventArgs);
+                }}
+                onSuccess={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiAllCenters",
+                    "data"
+                  ]).apply(null, eventArgs);
+                }}
+                ref={ref => {
+                  $refs["apiAllCenters"] = ref;
+                }}
+                url={
+                  "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/allcenters"
+                }
+              />
+
               <div className={classNames(projectcss.all, sty.freeBox___24C1Y)}>
                 <div
                   className={classNames(
@@ -904,7 +1060,7 @@ function PlasmicBookList__RenderFunc(props: {
                   data-plasmic-override={overrides.drCenters}
                   centers={(() => {
                     try {
-                      return $state.centers;
+                      return $state.apiAllCenters.data.data;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -918,11 +1074,7 @@ function PlasmicBookList__RenderFunc(props: {
                   className={classNames("__wab_instance", sty.drCenters)}
                   hasAllOption={(() => {
                     try {
-                      return (
-                        $state.centers?.filter(
-                          center => center.is_active_booking
-                        )?.length > 1
-                      );
+                      return $state.apiAllCenters.data.data?.length > 1;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -991,153 +1143,130 @@ function PlasmicBookList__RenderFunc(props: {
                 />
               </div>
             </div>
-            <SideEffect
-              className={classNames("__wab_instance", sty.sideEffect__usExo, {
-                [sty.sideEffectactive__usExOw7TP]: hasVariant(
-                  $state,
-                  "active",
-                  "active"
-                )
-              })}
-              deps={(() => {
-                try {
-                  return [];
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
+            {false ? (
+              <SideEffect
+                className={classNames("__wab_instance", sty.sideEffect__usExo, {
+                  [sty.sideEffectactive__usExOw7TP]: hasVariant(
+                    $state,
+                    "active",
+                    "active"
+                  )
+                })}
+                deps={(() => {
+                  try {
+                    return [];
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
                   }
-                  throw e;
-                }
-              })()}
-              onMount={async () => {
-                const $steps = {};
+                })()}
+                onMount={async () => {
+                  const $steps = {};
 
-                $steps["apiCenters"] = false
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "GET",
-                          "https://api.paziresh24.com/V1/doctor/centers"
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
-                if (
-                  $steps["apiCenters"] != null &&
-                  typeof $steps["apiCenters"] === "object" &&
-                  typeof $steps["apiCenters"].then === "function"
-                ) {
-                  $steps["apiCenters"] = await $steps["apiCenters"];
-                }
+                  $steps["apiAllCenters"] = false
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "GET",
+                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/allcenters"
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["apiAllCenters"] != null &&
+                    typeof $steps["apiAllCenters"] === "object" &&
+                    typeof $steps["apiAllCenters"].then === "function"
+                  ) {
+                    $steps["apiAllCenters"] = await $steps["apiAllCenters"];
+                  }
 
-                $steps["apiAllCenters"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "GET",
-                          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/allcenters"
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
-                if (
-                  $steps["apiAllCenters"] != null &&
-                  typeof $steps["apiAllCenters"] === "object" &&
-                  typeof $steps["apiAllCenters"].then === "function"
-                ) {
-                  $steps["apiAllCenters"] = await $steps["apiAllCenters"];
-                }
-
-                $steps["setAttributes"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          (() => {
-                            try {
-                              return {
-                                user_id: $ctx.query.user_id,
-                                center_types:
-                                  $steps.apiAllCenters.data.data?.map(
-                                    center => center.type_id
-                                  ),
-                                center_ids: $steps.apiAllCenters.data.data?.map(
-                                  center => center.id
-                                )
-                              };
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                  $steps["setAttributes"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  user_id: $ctx.query.user_id,
+                                  center_types:
+                                    $steps.apiAllCenters.data.data?.map(
+                                      center => center.type_id
+                                    ),
+                                  center_ids:
+                                    $steps.apiAllCenters.data.data?.map(
+                                      center => center.id
+                                    )
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions["GrowthBook.setAttributes"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
-                if (
-                  $steps["setAttributes"] != null &&
-                  typeof $steps["setAttributes"] === "object" &&
-                  typeof $steps["setAttributes"].then === "function"
-                ) {
-                  $steps["setAttributes"] = await $steps["setAttributes"];
-                }
+                            })()
+                          ]
+                        };
+                        return $globalActions[
+                          "GrowthBook.setAttributes"
+                        ]?.apply(null, [...actionArgs.args]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["setAttributes"] != null &&
+                    typeof $steps["setAttributes"] === "object" &&
+                    typeof $steps["setAttributes"].then === "function"
+                  ) {
+                    $steps["setAttributes"] = await $steps["setAttributes"];
+                  }
 
-                $steps["updateCenters"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["centers"]
-                        },
-                        operation: 0,
-                        value: $steps.apiAllCenters.data.data
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
+                  $steps["updateCenters"] = false
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["centers"]
+                          },
+                          operation: 0,
+                          value: $state.apiAllCenters.data.data
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
 
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateCenters"] != null &&
-                  typeof $steps["updateCenters"] === "object" &&
-                  typeof $steps["updateCenters"].then === "function"
-                ) {
-                  $steps["updateCenters"] = await $steps["updateCenters"];
-                }
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateCenters"] != null &&
+                    typeof $steps["updateCenters"] === "object" &&
+                    typeof $steps["updateCenters"].then === "function"
+                  ) {
+                    $steps["updateCenters"] = await $steps["updateCenters"];
+                  }
 
-                $steps["apiUserCenterService"] =
-                  $state.drCenters.selectedCenter.length > 0 &&
-                  $state.centers.some(center => center.id === "5532")
+                  $steps["apiUserCenterService"] = false
                     ? (() => {
                         const actionArgs = {
                           args: [
@@ -1146,9 +1275,10 @@ function PlasmicBookList__RenderFunc(props: {
                             (() => {
                               try {
                                 return {
-                                  user_center_id: $state.centers.find(
-                                    center => center.id === "5532"
-                                  ).user_center_id,
+                                  user_center_id:
+                                    $state.apiAllCenters.data.data.find(
+                                      center => center.id === "5532"
+                                    ).user_center_id,
                                   server_id: 1
                                 };
                               } catch (e) {
@@ -1169,19 +1299,17 @@ function PlasmicBookList__RenderFunc(props: {
                         );
                       })()
                     : undefined;
-                if (
-                  $steps["apiUserCenterService"] != null &&
-                  typeof $steps["apiUserCenterService"] === "object" &&
-                  typeof $steps["apiUserCenterService"].then === "function"
-                ) {
-                  $steps["apiUserCenterService"] = await $steps[
-                    "apiUserCenterService"
-                  ];
-                }
+                  if (
+                    $steps["apiUserCenterService"] != null &&
+                    typeof $steps["apiUserCenterService"] === "object" &&
+                    typeof $steps["apiUserCenterService"].then === "function"
+                  ) {
+                    $steps["apiUserCenterService"] = await $steps[
+                      "apiUserCenterService"
+                    ];
+                  }
 
-                $steps["updateUserCenterService"] =
-                  $state.drCenters.selectedCenter.length > 0 &&
-                  $state.centers.some(center => center.id === "5532")
+                  $steps["updateUserCenterService"] = false
                     ? (() => {
                         const actionArgs = {
                           variable: {
@@ -1207,18 +1335,17 @@ function PlasmicBookList__RenderFunc(props: {
                         })?.apply(null, [actionArgs]);
                       })()
                     : undefined;
-                if (
-                  $steps["updateUserCenterService"] != null &&
-                  typeof $steps["updateUserCenterService"] === "object" &&
-                  typeof $steps["updateUserCenterService"].then === "function"
-                ) {
-                  $steps["updateUserCenterService"] = await $steps[
-                    "updateUserCenterService"
-                  ];
-                }
+                  if (
+                    $steps["updateUserCenterService"] != null &&
+                    typeof $steps["updateUserCenterService"] === "object" &&
+                    typeof $steps["updateUserCenterService"].then === "function"
+                  ) {
+                    $steps["updateUserCenterService"] = await $steps[
+                      "updateUserCenterService"
+                    ];
+                  }
 
-                $steps["updateActive"] =
-                  $state.userCenterService.data[0].can_booking === 1
+                  $steps["updateActive"] = false
                     ? (() => {
                         const actionArgs = {
                           variable: {
@@ -1244,22 +1371,22 @@ function PlasmicBookList__RenderFunc(props: {
                         })?.apply(null, [actionArgs]);
                       })()
                     : undefined;
-                if (
-                  $steps["updateActive"] != null &&
-                  typeof $steps["updateActive"] === "object" &&
-                  typeof $steps["updateActive"].then === "function"
-                ) {
-                  $steps["updateActive"] = await $steps["updateActive"];
-                }
-              }}
-            />
-
+                  if (
+                    $steps["updateActive"] != null &&
+                    typeof $steps["updateActive"] === "object" &&
+                    typeof $steps["updateActive"].then === "function"
+                  ) {
+                    $steps["updateActive"] = await $steps["updateActive"];
+                  }
+                }}
+              />
+            ) : null}
             <PatientList
               data-plasmic-name={"patientList"}
               data-plasmic-override={overrides.patientList}
               centers={(() => {
                 try {
-                  return $state.centers;
+                  return $state.apiAllCenters.data.data;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -1297,7 +1424,7 @@ function PlasmicBookList__RenderFunc(props: {
               selectedCenter={(() => {
                 try {
                   return (
-                    $state.centers.find(
+                    $state.apiAllCenters.data.data.find(
                       center => center.user_center_id == $state.selectedCenter
                     )?.id ?? "all"
                   );
@@ -1331,7 +1458,9 @@ function PlasmicBookList__RenderFunc(props: {
               ? true
               : (() => {
                   try {
-                    return $state.centers.some(center => center.id !== "5532");
+                    return $state.apiAllCenters.data.data.some(
+                      center => center.id !== "5532"
+                    );
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -1398,7 +1527,7 @@ function PlasmicBookList__RenderFunc(props: {
                       centerId={(() => {
                         try {
                           return (
-                            $state.centers.find(
+                            $state.apiAllCenters.data.data.find(
                               center =>
                                 center.user_center_id == $state.selectedCenter
                             )?.id ?? "all"
@@ -1457,7 +1586,7 @@ function PlasmicBookList__RenderFunc(props: {
                   (() => {
                     try {
                       return (
-                        $state.centers.find(
+                        $state.apiAllCenters.data.data.find(
                           item => item.user_center_id == $state.selectedCenter
                         ).type_id == 1
                       );
@@ -1505,7 +1634,7 @@ function PlasmicBookList__RenderFunc(props: {
                       onClick={async event => {
                         const $steps = {};
 
-                        $steps["invokeGlobalAction"] = true
+                        $steps["sendEvent"] = true
                           ? (() => {
                               const actionArgs = {
                                 args: [
@@ -1514,11 +1643,12 @@ function PlasmicBookList__RenderFunc(props: {
                                       return {
                                         group: "add-book",
                                         data: {
-                                          center_id: $state.centers
-                                            .filter(
-                                              center => center.id !== "5532"
-                                            )
-                                            .map(center => center.id)
+                                          center_id:
+                                            $state.apiAllCenters.data.data
+                                              .filter(
+                                                center => center.id !== "5532"
+                                              )
+                                              .map(center => center.id)
                                         },
                                         type: "click-add-book-button"
                                       };
@@ -1542,14 +1672,11 @@ function PlasmicBookList__RenderFunc(props: {
                             })()
                           : undefined;
                         if (
-                          $steps["invokeGlobalAction"] != null &&
-                          typeof $steps["invokeGlobalAction"] === "object" &&
-                          typeof $steps["invokeGlobalAction"].then ===
-                            "function"
+                          $steps["sendEvent"] != null &&
+                          typeof $steps["sendEvent"] === "object" &&
+                          typeof $steps["sendEvent"].then === "function"
                         ) {
-                          $steps["invokeGlobalAction"] = await $steps[
-                            "invokeGlobalAction"
-                          ];
+                          $steps["sendEvent"] = await $steps["sendEvent"];
                         }
                       }}
                       showStartIcon={undefined}
@@ -1566,933 +1693,89 @@ function PlasmicBookList__RenderFunc(props: {
               />
             </div>
           ) : null}
-          <div
-            data-plasmic-name={"onOffButton"}
-            data-plasmic-override={overrides.onOffButton}
-            className={classNames(projectcss.all, sty.onOffButton)}
-          >
-            {(() => {
-              try {
-                return (
-                  $state.centers.find(
-                    center => center.user_center_id === $state.selectedCenter
-                  ).id === "5532"
-                );
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return false;
-                }
-                throw e;
+          {(() => {
+            try {
+              return (
+                $state.apiAllCenters.data.data.find(
+                  center => center.user_center_id === $state.selectedCenter
+                ).id === "5532" && $state.drCenters.selectedCenter.length > 0
+              );
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
               }
-            })() ? (
-              <div
-                data-plasmic-name={"activeDeactiveOnlineVisit"}
-                data-plasmic-override={overrides.activeDeactiveOnlineVisit}
+              throw e;
+            }
+          })() ? (
+            <div
+              data-plasmic-name={"onOffButton"}
+              data-plasmic-override={overrides.onOffButton}
+              className={classNames(projectcss.all, sty.onOffButton)}
+            >
+              <ApiRequest
+                data-plasmic-name={"apiUserCenterService"}
+                data-plasmic-override={overrides.apiUserCenterService}
                 className={classNames(
-                  projectcss.all,
-                  sty.activeDeactiveOnlineVisit,
-                  {
-                    [sty.activeDeactiveOnlineVisitactive]: hasVariant(
-                      $state,
-                      "active",
-                      "active"
-                    )
-                  }
+                  "__wab_instance",
+                  sty.apiUserCenterService
                 )}
-                onClick={async event => {
-                  const $steps = {};
+                errorDisplay={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__qWoOv
+                    )}
+                  >
+                    {"Error fetching data"}
+                  </div>
+                }
+                loadingDisplay={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__tZsTq
+                    )}
+                  >
+                    {"Loading..."}
+                  </div>
+                }
+                method={"GET"}
+                onError={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiUserCenterService",
+                    "error"
+                  ]).apply(null, eventArgs);
                 }}
-              >
-                <Dialog
-                  data-plasmic-name={"determiningTheSituationDialog"}
-                  data-plasmic-override={
-                    overrides.determiningTheSituationDialog
-                  }
-                  body={
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.freeBox__gGaQu)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__sVh9P
-                        )}
-                      >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return $state.countOfBook.count_id === 1
-                                ? `«${$state.countOfBook.count_id}» نوبت ویزیت آنلاین برای شما ثبت شده است که مربوط به ساعات آینده می‌باشد و هنوز ویزیت نشده‌است`
-                                : `«${$state.countOfBook.count_id}» نوبت ویزیت آنلاین برای شما ثبت شده است که مربوط به ساعات آینده می‌باشد و هنوز ویزیت نشده اند.`;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__pkn3O
-                        )}
-                      >
-                        <React.Fragment>
-                          <span
-                            className={
-                              "plasmic_default__all plasmic_default__span"
-                            }
-                            style={{ fontWeight: 700 }}
-                          >
-                            {
-                              "\u0627\u06cc\u0627 \u0645\u0627\u06cc\u0644 \u0628\u0647 \u0644\u063a\u0648 \u0627\u06cc\u0646 \u0646\u0648\u0628\u062a\u200c\u0647\u0627 \u0647\u0633\u062a\u06cc\u062f\u061f"
-                            }
-                          </span>
-                        </React.Fragment>
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__pado2
-                        )}
-                      >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return $state.countOfBook.count_id === 1
-                                ? "در صورت لغو نوبت برای بیمار پیامک ارسال خواهد شد."
-                                : "در صورت لغو نوبت برای بیماران پیامک ارسال خواهد شد.";
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "\u062f\u0631\ufee7\ufec8\ufeae \u062f\u0627\ufeb7\ufe98\ufeea \ufe91\ufe8e\ufeb7\ufbff\ufeaa \ufb90\ufeea \ufb58\ufeb2 \u0627\u0632 \u0644\u063a\u0648 \u0646\u0648\u0628\u062a \ufe91\ufeae\u0627\u06cc \ufe91\ufbff\ufee4\ufe8e\u0631\u0627\u0646 \ufb58\ufbff\ufe8e\ufee3\ufb8f \u0627\u0631\ufeb3\ufe8e\u0644 \ufee3\ufbfd \ufeb7\ufeee\u062f.";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
-                      </div>
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__vRjaR
-                        )}
-                      >
-                        <Button
-                          data-plasmic-name={"cancelbook"}
-                          data-plasmic-override={overrides.cancelbook}
-                          children2={
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__yyMh5
-                              )}
-                            >
-                              {"\u0644\u063a\u0648 \u0646\u0648\u0628\u062a"}
-                            </div>
-                          }
-                          className={classNames(
-                            "__wab_instance",
-                            sty.cancelbook
-                          )}
-                          color={"red"}
-                          loading={(() => {
-                            try {
-                              return $state.loading;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return [];
-                              }
-                              throw e;
-                            }
-                          })()}
-                          onClick={async event => {
-                            const $steps = {};
+                onLoading={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiUserCenterService",
+                    "loading"
+                  ]).apply(null, eventArgs);
+                }}
+                onSuccess={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiUserCenterService",
+                    "data"
+                  ]).apply(null, eventArgs);
 
-                            $steps["updateLoading"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    variable: {
-                                      objRoot: $state,
-                                      variablePath: ["loading"]
-                                    },
-                                    operation: 0,
-                                    value: true
-                                  };
-                                  return (({
-                                    variable,
-                                    value,
-                                    startIndex,
-                                    deleteCount
-                                  }) => {
-                                    if (!variable) {
-                                      return;
-                                    }
-                                    const { objRoot, variablePath } = variable;
-
-                                    $stateSet(objRoot, variablePath, value);
-                                    return value;
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["updateLoading"] != null &&
-                              typeof $steps["updateLoading"] === "object" &&
-                              typeof $steps["updateLoading"].then === "function"
-                            ) {
-                              $steps["updateLoading"] = await $steps[
-                                "updateLoading"
-                              ];
-                            }
-
-                            $steps["apiDeleteBooks"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      "PATCH",
-                                      "https://apigw.paziresh24.com/v1/delete-book-after-deactive-online-visit",
-                                      undefined,
-                                      (() => {
-                                        try {
-                                          return {
-                                            can_booking:
-                                              $state.userCenterService.data[0].can_booking.toString(),
-                                            user_center_id: $state.centers.find(
-                                              center => center.id === "5532"
-                                            ).user_center_id
-                                          };
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return undefined;
-                                          }
-                                          throw e;
-                                        }
-                                      })()
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "Fragment.apiRequest"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["apiDeleteBooks"] != null &&
-                              typeof $steps["apiDeleteBooks"] === "object" &&
-                              typeof $steps["apiDeleteBooks"].then ===
-                                "function"
-                            ) {
-                              $steps["apiDeleteBooks"] = await $steps[
-                                "apiDeleteBooks"
-                              ];
-                            }
-
-                            $steps["updateDialog2Open"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    variable: {
-                                      objRoot: $state,
-                                      variablePath: [
-                                        "determiningTheSituationDialog",
-                                        "open"
-                                      ]
-                                    },
-                                    operation: 0,
-                                    value: false
-                                  };
-                                  return (({
-                                    variable,
-                                    value,
-                                    startIndex,
-                                    deleteCount
-                                  }) => {
-                                    if (!variable) {
-                                      return;
-                                    }
-                                    const { objRoot, variablePath } = variable;
-
-                                    $stateSet(objRoot, variablePath, value);
-                                    return value;
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["updateDialog2Open"] != null &&
-                              typeof $steps["updateDialog2Open"] === "object" &&
-                              typeof $steps["updateDialog2Open"].then ===
-                                "function"
-                            ) {
-                              $steps["updateDialog2Open"] = await $steps[
-                                "updateDialog2Open"
-                              ];
-                            }
-
-                            $steps["toast"] =
-                              $steps.apiDeleteBooks.data !== undefined
-                                ? (() => {
-                                    const actionArgs = {
-                                      args: [
-                                        undefined,
-                                        "\u0646\u0648\u0628\u062a\u200c\u0647\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0644\u063a\u0648 \u0634\u062f\u0646\u062f."
-                                      ]
-                                    };
-                                    return $globalActions[
-                                      "Fragment.showToast"
-                                    ]?.apply(null, [...actionArgs.args]);
-                                  })()
-                                : undefined;
-                            if (
-                              $steps["toast"] != null &&
-                              typeof $steps["toast"] === "object" &&
-                              typeof $steps["toast"].then === "function"
-                            ) {
-                              $steps["toast"] = await $steps["toast"];
-                            }
-
-                            $steps["eventCancelBook"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      (() => {
-                                        try {
-                                          return {
-                                            group: "on/off-onlinevisit",
-                                            data: {
-                                              userCenterService:
-                                                $state.userCenterService
-                                                  .data[0],
-                                              status: $state.active,
-                                              bookcount: $state.countOfBook
-                                            },
-                                            type: "click-cancel-book-button"
-                                          };
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return undefined;
-                                          }
-                                          throw e;
-                                        }
-                                      })()
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "Splunk.sendLog"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["eventCancelBook"] != null &&
-                              typeof $steps["eventCancelBook"] === "object" &&
-                              typeof $steps["eventCancelBook"].then ===
-                                "function"
-                            ) {
-                              $steps["eventCancelBook"] = await $steps[
-                                "eventCancelBook"
-                              ];
-                            }
-
-                            $steps["updateLoadingOnoff"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    variable: {
-                                      objRoot: $state,
-                                      variablePath: ["loadingOnoff"]
-                                    },
-                                    operation: 0,
-                                    value: false
-                                  };
-                                  return (({
-                                    variable,
-                                    value,
-                                    startIndex,
-                                    deleteCount
-                                  }) => {
-                                    if (!variable) {
-                                      return;
-                                    }
-                                    const { objRoot, variablePath } = variable;
-
-                                    $stateSet(objRoot, variablePath, value);
-                                    return value;
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["updateLoadingOnoff"] != null &&
-                              typeof $steps["updateLoadingOnoff"] ===
-                                "object" &&
-                              typeof $steps["updateLoadingOnoff"].then ===
-                                "function"
-                            ) {
-                              $steps["updateLoadingOnoff"] = await $steps[
-                                "updateLoadingOnoff"
-                              ];
-                            }
-                          }}
-                          outline={true}
-                        />
-
-                        <Button
-                          children2={
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return $state.countOfBook.count_id > 1
-                                    ? "نوبت‌ها را ویزیت خواهم کرد"
-                                    : "نوبت را ویزیت خواهم کرد";
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "\u0646\u0648\u0628\u062a\u200c \u0631\u0627 \u0648\u06cc\u0632\u06cc\u062a \u062e\u0648\u0627\u0647\u0645 \u06a9\u0631\u062f.";
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          }
-                          className={classNames(
-                            "__wab_instance",
-                            sty.button__ckE3U
-                          )}
-                          color={"softSand"}
-                          onClick={async event => {
-                            const $steps = {};
-
-                            $steps["updateDeactiveDialogOpen"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    variable: {
-                                      objRoot: $state,
-                                      variablePath: [
-                                        "determiningTheSituationDialog",
-                                        "open"
-                                      ]
-                                    },
-                                    operation: 0,
-                                    value: false
-                                  };
-                                  return (({
-                                    variable,
-                                    value,
-                                    startIndex,
-                                    deleteCount
-                                  }) => {
-                                    if (!variable) {
-                                      return;
-                                    }
-                                    const { objRoot, variablePath } = variable;
-
-                                    $stateSet(objRoot, variablePath, value);
-                                    return value;
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["updateDeactiveDialogOpen"] != null &&
-                              typeof $steps["updateDeactiveDialogOpen"] ===
-                                "object" &&
-                              typeof $steps["updateDeactiveDialogOpen"].then ===
-                                "function"
-                            ) {
-                              $steps["updateDeactiveDialogOpen"] = await $steps[
-                                "updateDeactiveDialogOpen"
-                              ];
-                            }
-
-                            $steps["eventReturnBack"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      (() => {
-                                        try {
-                                          return {
-                                            group: "on/off-onlinevisit",
-                                            data: {
-                                              userCenterService:
-                                                $state.userCenterService
-                                                  .data[0],
-                                              status: $state.active,
-                                              bookcount: $state.countOfBook
-                                            },
-                                            type: "click-return-visit-book-button"
-                                          };
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return undefined;
-                                          }
-                                          throw e;
-                                        }
-                                      })()
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "Splunk.sendLog"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["eventReturnBack"] != null &&
-                              typeof $steps["eventReturnBack"] === "object" &&
-                              typeof $steps["eventReturnBack"].then ===
-                                "function"
-                            ) {
-                              $steps["eventReturnBack"] = await $steps[
-                                "eventReturnBack"
-                              ];
-                            }
-
-                            $steps["updateLoadingOnoff"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    variable: {
-                                      objRoot: $state,
-                                      variablePath: ["loadingOnoff"]
-                                    },
-                                    operation: 0,
-                                    value: false
-                                  };
-                                  return (({
-                                    variable,
-                                    value,
-                                    startIndex,
-                                    deleteCount
-                                  }) => {
-                                    if (!variable) {
-                                      return;
-                                    }
-                                    const { objRoot, variablePath } = variable;
-
-                                    $stateSet(objRoot, variablePath, value);
-                                    return value;
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["updateLoadingOnoff"] != null &&
-                              typeof $steps["updateLoadingOnoff"] ===
-                                "object" &&
-                              typeof $steps["updateLoadingOnoff"].then ===
-                                "function"
-                            ) {
-                              $steps["updateLoadingOnoff"] = await $steps[
-                                "updateLoadingOnoff"
-                              ];
-                            }
-                          }}
-                        />
-                      </Stack__>
-                    </Stack__>
-                  }
-                  className={classNames(
-                    "__wab_instance",
-                    sty.determiningTheSituationDialog
-                  )}
-                  noTrigger={true}
-                  onOpenChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "determiningTheSituationDialog",
-                      "open"
-                    ]).apply(null, eventArgs);
-
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
-                    }
-                  }}
-                  open={generateStateValueProp($state, [
-                    "determiningTheSituationDialog",
-                    "open"
-                  ])}
-                  title={
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox___1Kmg)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__mTkQu
-                        )}
-                      >
-                        <React.Fragment>
-                          <span
-                            className={
-                              "plasmic_default__all plasmic_default__span"
-                            }
-                            style={{ color: "var(--token-lw4xv_KKpd4e)" }}
-                          >
-                            {
-                              "\u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0634\u0645\u0627 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644 \u0634\u062f."
-                            }
-                          </span>
-                        </React.Fragment>
-                      </div>
-                    </div>
-                  }
-                  trigger={null}
-                />
-
-                <Button
-                  children2={
-                    <Icon13Icon
-                      className={classNames(projectcss.all, sty.svg__xUjSv)}
-                      role={"img"}
-                    />
-                  }
-                  className={classNames("__wab_instance", sty.button___8I0Vg, {
-                    [sty.buttonactive___8I0Vgw7TP]: hasVariant(
-                      $state,
-                      "active",
-                      "active"
-                    )
-                  })}
-                  color={
-                    hasVariant($state, "active", "active")
-                      ? "softGreen"
-                      : "softSand"
-                  }
-                  loading={(() => {
-                    try {
-                      return $state.loadingonoff;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return [];
-                      }
-                      throw e;
-                    }
-                  })()}
-                  onClick={async event => {
+                  (async data => {
                     const $steps = {};
 
-                    $steps["updateLoadingonOff"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["loadingonoff"]
-                            },
-                            operation: 0,
-                            value: true
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateLoadingonOff"] != null &&
-                      typeof $steps["updateLoadingonOff"] === "object" &&
-                      typeof $steps["updateLoadingonOff"].then === "function"
-                    ) {
-                      $steps["updateLoadingonOff"] = await $steps[
-                        "updateLoadingonOff"
-                      ];
-                    }
-
-                    $steps["apiCountOfBook"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              undefined,
-                              "https://apigw.paziresh24.com/v1/Onlinevisit-doctor-appointments-after-deactivation-time",
-                              (() => {
-                                try {
-                                  return {
-                                    user_center_id: $state.centers.find(
-                                      center => center.id === "5532"
-                                    ).user_center_id
-                                  };
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Fragment.apiRequest"]?.apply(
-                            null,
-                            [...actionArgs.args]
-                          );
-                        })()
-                      : undefined;
-                    if (
-                      $steps["apiCountOfBook"] != null &&
-                      typeof $steps["apiCountOfBook"] === "object" &&
-                      typeof $steps["apiCountOfBook"].then === "function"
-                    ) {
-                      $steps["apiCountOfBook"] = await $steps["apiCountOfBook"];
-                    }
-
-                    $steps["count"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["countOfBook"]
-                            },
-                            operation: 0,
-                            value: $steps.apiCountOfBook.data
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["count"] != null &&
-                      typeof $steps["count"] === "object" &&
-                      typeof $steps["count"].then === "function"
-                    ) {
-                      $steps["count"] = await $steps["count"];
-                    }
-
-                    $steps["updateDeterminingTheSituationDialogOpen"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: [
-                                "determiningTheSituationDialog",
-                                "open"
-                              ]
-                            },
-                            operation: 0,
-                            value:
-                              $state.countOfBook.count_id > 0 &&
-                              $state.countOfBook.count_id !== "" &&
-                              $state.countOfBook.count_id !== undefined &&
-                              $state.userCenterService.data[0].can_booking === 1
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateDeterminingTheSituationDialogOpen"] !=
-                        null &&
-                      typeof $steps[
-                        "updateDeterminingTheSituationDialogOpen"
-                      ] === "object" &&
-                      typeof $steps["updateDeterminingTheSituationDialogOpen"]
-                        .then === "function"
-                    ) {
-                      $steps["updateDeterminingTheSituationDialogOpen"] =
-                        await $steps["updateDeterminingTheSituationDialogOpen"];
-                    }
-
-                    $steps["apiActveDeactiveVisitOnline"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              "PATCH",
-                              "https://apigw.paziresh24.com/v1/canbookingon&off",
-                              undefined,
-                              (() => {
-                                try {
-                                  return {
-                                    can_booking:
-                                      $state.userCenterService.data[0].can_booking.toString(),
-                                    user_center_id: $state.centers.find(
-                                      center => center.id === "5532"
-                                    ).user_center_id
-                                  };
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Fragment.apiRequest"]?.apply(
-                            null,
-                            [...actionArgs.args]
-                          );
-                        })()
-                      : undefined;
-                    if (
-                      $steps["apiActveDeactiveVisitOnline"] != null &&
-                      typeof $steps["apiActveDeactiveVisitOnline"] ===
-                        "object" &&
-                      typeof $steps["apiActveDeactiveVisitOnline"].then ===
-                        "function"
-                    ) {
-                      $steps["apiActveDeactiveVisitOnline"] = await $steps[
-                        "apiActveDeactiveVisitOnline"
-                      ];
-                    }
-
-                    $steps["updateUserCenterService"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["userCenterService"]
-                            },
-                            operation: 0,
-                            value: $steps.apiActveDeactiveVisitOnline.data
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateUserCenterService"] != null &&
-                      typeof $steps["updateUserCenterService"] === "object" &&
-                      typeof $steps["updateUserCenterService"].then ===
-                        "function"
-                    ) {
-                      $steps["updateUserCenterService"] = await $steps[
-                        "updateUserCenterService"
-                      ];
-                    }
-
-                    $steps["updateActive"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["active"]
-                            },
-                            operation: 0,
-                            value:
-                              $state.userCenterService.data[0].can_booking === 1
-                                ? true
-                                : false
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateActive"] != null &&
-                      typeof $steps["updateActive"] === "object" &&
-                      typeof $steps["updateActive"].then === "function"
-                    ) {
-                      $steps["updateActive"] = await $steps["updateActive"];
-                    }
-
-                    $steps["loadingFinish"] =
-                      !$state.determiningTheSituationDialog.open ||
-                      $steps.updateActive > 0
+                    $steps["updateActive"] =
+                      $state.apiUserCenterService.data.data[0].can_booking === 1
                         ? (() => {
                             const actionArgs = {
                               variable: {
                                 objRoot: $state,
-                                variablePath: ["loadingonoff"]
+                                variablePath: ["active"]
                               },
                               operation: 0,
-                              value: false
+                              value: true
                             };
                             return (({
                               variable,
@@ -2511,98 +1794,1108 @@ function PlasmicBookList__RenderFunc(props: {
                           })()
                         : undefined;
                     if (
-                      $steps["loadingFinish"] != null &&
-                      typeof $steps["loadingFinish"] === "object" &&
-                      typeof $steps["loadingFinish"].then === "function"
+                      $steps["updateActive"] != null &&
+                      typeof $steps["updateActive"] === "object" &&
+                      typeof $steps["updateActive"].then === "function"
                     ) {
-                      $steps["loadingFinish"] = await $steps["loadingFinish"];
+                      $steps["updateActive"] = await $steps["updateActive"];
                     }
-
-                    $steps["showToast"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              undefined,
-                              (() => {
+                  }).apply(null, eventArgs);
+                }}
+                params={(() => {
+                  try {
+                    return {
+                      user_center_id: $state.apiAllCenters.data.data.find(
+                        center => center.id === "5532"
+                      ).user_center_id,
+                      server_id: 1
+                    };
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                ref={ref => {
+                  $refs["apiUserCenterService"] = ref;
+                }}
+                url={"https://apigw.paziresh24.com/v1/user-center-services"}
+              >
+                {(() => {
+                  try {
+                    return (
+                      $state.apiAllCenters.data.data.find(
+                        center =>
+                          center.user_center_id === $state.selectedCenter
+                      ).id === "5532"
+                    );
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return false;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <div
+                    data-plasmic-name={"activeDeactiveOnlineVisit"}
+                    data-plasmic-override={overrides.activeDeactiveOnlineVisit}
+                    className={classNames(
+                      projectcss.all,
+                      sty.activeDeactiveOnlineVisit,
+                      {
+                        [sty.activeDeactiveOnlineVisitactive]: hasVariant(
+                          $state,
+                          "active",
+                          "active"
+                        )
+                      }
+                    )}
+                    onClick={async event => {
+                      const $steps = {};
+                    }}
+                  >
+                    <Dialog
+                      data-plasmic-name={"determiningTheSituationDialog"}
+                      data-plasmic-override={
+                        overrides.determiningTheSituationDialog
+                      }
+                      body={
+                        <Stack__
+                          as={"div"}
+                          hasGap={true}
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__gGaQu
+                          )}
+                        >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__sVh9P
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
                                 try {
-                                  return $state.userCenterService.data[0]
+                                  return $state.countOfBook.count_id === 1
+                                    ? `«${$state.countOfBook.count_id}» نوبت ویزیت آنلاین برای شما ثبت شده است که مربوط به ساعات آینده می‌باشد و هنوز ویزیت نشده‌است`
+                                    : `«${$state.countOfBook.count_id}» نوبت ویزیت آنلاین برای شما ثبت شده است که مربوط به ساعات آینده می‌باشد و هنوز ویزیت نشده اند.`;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__pkn3O
+                            )}
+                          >
+                            <React.Fragment>
+                              <span
+                                className={
+                                  "plasmic_default__all plasmic_default__span"
+                                }
+                                style={{ fontWeight: 700 }}
+                              >
+                                {
+                                  "\u0627\u06cc\u0627 \u0645\u0627\u06cc\u0644 \u0628\u0647 \u0644\u063a\u0648 \u0627\u06cc\u0646 \u0646\u0648\u0628\u062a\u200c\u0647\u0627 \u0647\u0633\u062a\u06cc\u062f\u061f"
+                                }
+                              </span>
+                            </React.Fragment>
+                          </div>
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__pado2
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return $state.countOfBook.count_id === 1
+                                    ? "در صورت لغو نوبت برای بیمار پیامک ارسال خواهد شد."
+                                    : "در صورت لغو نوبت برای بیماران پیامک ارسال خواهد شد.";
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "\u062f\u0631\ufee7\ufec8\ufeae \u062f\u0627\ufeb7\ufe98\ufeea \ufe91\ufe8e\ufeb7\ufbff\ufeaa \ufb90\ufeea \ufb58\ufeb2 \u0627\u0632 \u0644\u063a\u0648 \u0646\u0648\u0628\u062a \ufe91\ufeae\u0627\u06cc \ufe91\ufbff\ufee4\ufe8e\u0631\u0627\u0646 \ufb58\ufbff\ufe8e\ufee3\ufb8f \u0627\u0631\ufeb3\ufe8e\u0644 \ufee3\ufbfd \ufeb7\ufeee\u062f.";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                          <Stack__
+                            as={"div"}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__vRjaR
+                            )}
+                          >
+                            <Button
+                              data-plasmic-name={"cancelbook"}
+                              data-plasmic-override={overrides.cancelbook}
+                              children2={
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__yyMh5
+                                  )}
+                                >
+                                  {
+                                    "\u0644\u063a\u0648 \u0646\u0648\u0628\u062a"
+                                  }
+                                </div>
+                              }
+                              className={classNames(
+                                "__wab_instance",
+                                sty.cancelbook
+                              )}
+                              color={"red"}
+                              loading={(() => {
+                                try {
+                                  return $state.loading;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return [];
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                              onClick={async event => {
+                                const $steps = {};
+
+                                $steps["updateLoading"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["loading"]
+                                        },
+                                        operation: 0,
+                                        value: true
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateLoading"] != null &&
+                                  typeof $steps["updateLoading"] === "object" &&
+                                  typeof $steps["updateLoading"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateLoading"] = await $steps[
+                                    "updateLoading"
+                                  ];
+                                }
+
+                                $steps["apiDeleteBooks"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        args: [
+                                          "PATCH",
+                                          "https://apigw.paziresh24.com/v1/delete-book-after-deactive-online-visit",
+                                          undefined,
+                                          (() => {
+                                            try {
+                                              return {
+                                                can_booking:
+                                                  $state.userCenterService.data[0].can_booking.toString(),
+                                                user_center_id:
+                                                  $state.centers.find(
+                                                    center =>
+                                                      center.id === "5532"
+                                                  ).user_center_id
+                                              };
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return undefined;
+                                              }
+                                              throw e;
+                                            }
+                                          })()
+                                        ]
+                                      };
+                                      return $globalActions[
+                                        "Fragment.apiRequest"
+                                      ]?.apply(null, [...actionArgs.args]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["apiDeleteBooks"] != null &&
+                                  typeof $steps["apiDeleteBooks"] ===
+                                    "object" &&
+                                  typeof $steps["apiDeleteBooks"].then ===
+                                    "function"
+                                ) {
+                                  $steps["apiDeleteBooks"] = await $steps[
+                                    "apiDeleteBooks"
+                                  ];
+                                }
+
+                                $steps["updateDialog2Open"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: [
+                                            "determiningTheSituationDialog",
+                                            "open"
+                                          ]
+                                        },
+                                        operation: 0,
+                                        value: false
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateDialog2Open"] != null &&
+                                  typeof $steps["updateDialog2Open"] ===
+                                    "object" &&
+                                  typeof $steps["updateDialog2Open"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateDialog2Open"] = await $steps[
+                                    "updateDialog2Open"
+                                  ];
+                                }
+
+                                $steps["toast"] =
+                                  $steps.apiDeleteBooks.data !== undefined
+                                    ? (() => {
+                                        const actionArgs = {
+                                          args: [
+                                            undefined,
+                                            "\u0646\u0648\u0628\u062a\u200c\u0647\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0644\u063a\u0648 \u0634\u062f\u0646\u062f."
+                                          ]
+                                        };
+                                        return $globalActions[
+                                          "Fragment.showToast"
+                                        ]?.apply(null, [...actionArgs.args]);
+                                      })()
+                                    : undefined;
+                                if (
+                                  $steps["toast"] != null &&
+                                  typeof $steps["toast"] === "object" &&
+                                  typeof $steps["toast"].then === "function"
+                                ) {
+                                  $steps["toast"] = await $steps["toast"];
+                                }
+
+                                $steps["eventCancelBook"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        args: [
+                                          (() => {
+                                            try {
+                                              return {
+                                                group: "on/off-onlinevisit",
+                                                data: {
+                                                  userCenterService:
+                                                    $state.userCenterService
+                                                      .data[0],
+                                                  status: $state.active,
+                                                  bookcount: $state.countOfBook
+                                                },
+                                                type: "click-cancel-book-button"
+                                              };
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return undefined;
+                                              }
+                                              throw e;
+                                            }
+                                          })()
+                                        ]
+                                      };
+                                      return $globalActions[
+                                        "Splunk.sendLog"
+                                      ]?.apply(null, [...actionArgs.args]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["eventCancelBook"] != null &&
+                                  typeof $steps["eventCancelBook"] ===
+                                    "object" &&
+                                  typeof $steps["eventCancelBook"].then ===
+                                    "function"
+                                ) {
+                                  $steps["eventCancelBook"] = await $steps[
+                                    "eventCancelBook"
+                                  ];
+                                }
+
+                                $steps["updateLoadingOnoff"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["loadingOnoff"]
+                                        },
+                                        operation: 0,
+                                        value: false
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateLoadingOnoff"] != null &&
+                                  typeof $steps["updateLoadingOnoff"] ===
+                                    "object" &&
+                                  typeof $steps["updateLoadingOnoff"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateLoadingOnoff"] = await $steps[
+                                    "updateLoadingOnoff"
+                                  ];
+                                }
+                              }}
+                              outline={true}
+                            />
+
+                            <Button
+                              children2={
+                                <React.Fragment>
+                                  {(() => {
+                                    try {
+                                      return $state.countOfBook.count_id > 1
+                                        ? "نوبت‌ها را ویزیت خواهم کرد"
+                                        : "نوبت را ویزیت خواهم کرد";
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return "\u0646\u0648\u0628\u062a\u200c \u0631\u0627 \u0648\u06cc\u0632\u06cc\u062a \u062e\u0648\u0627\u0647\u0645 \u06a9\u0631\u062f.";
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                </React.Fragment>
+                              }
+                              className={classNames(
+                                "__wab_instance",
+                                sty.button__ckE3U
+                              )}
+                              color={"softSand"}
+                              onClick={async event => {
+                                const $steps = {};
+
+                                $steps["updateDeactiveDialogOpen"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: [
+                                            "determiningTheSituationDialog",
+                                            "open"
+                                          ]
+                                        },
+                                        operation: 0,
+                                        value: false
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateDeactiveDialogOpen"] != null &&
+                                  typeof $steps["updateDeactiveDialogOpen"] ===
+                                    "object" &&
+                                  typeof $steps["updateDeactiveDialogOpen"]
+                                    .then === "function"
+                                ) {
+                                  $steps["updateDeactiveDialogOpen"] =
+                                    await $steps["updateDeactiveDialogOpen"];
+                                }
+
+                                $steps["eventReturnBack"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        args: [
+                                          (() => {
+                                            try {
+                                              return {
+                                                group: "on/off-onlinevisit",
+                                                data: {
+                                                  userCenterService:
+                                                    $state.userCenterService
+                                                      .data[0],
+                                                  status: $state.active,
+                                                  bookcount: $state.countOfBook
+                                                },
+                                                type: "click-return-visit-book-button"
+                                              };
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return undefined;
+                                              }
+                                              throw e;
+                                            }
+                                          })()
+                                        ]
+                                      };
+                                      return $globalActions[
+                                        "Splunk.sendLog"
+                                      ]?.apply(null, [...actionArgs.args]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["eventReturnBack"] != null &&
+                                  typeof $steps["eventReturnBack"] ===
+                                    "object" &&
+                                  typeof $steps["eventReturnBack"].then ===
+                                    "function"
+                                ) {
+                                  $steps["eventReturnBack"] = await $steps[
+                                    "eventReturnBack"
+                                  ];
+                                }
+
+                                $steps["updateLoadingOnoff"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["loadingOnoff"]
+                                        },
+                                        operation: 0,
+                                        value: false
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateLoadingOnoff"] != null &&
+                                  typeof $steps["updateLoadingOnoff"] ===
+                                    "object" &&
+                                  typeof $steps["updateLoadingOnoff"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateLoadingOnoff"] = await $steps[
+                                    "updateLoadingOnoff"
+                                  ];
+                                }
+                              }}
+                            />
+                          </Stack__>
+                        </Stack__>
+                      }
+                      className={classNames(
+                        "__wab_instance",
+                        sty.determiningTheSituationDialog
+                      )}
+                      noTrigger={true}
+                      onOpenChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "determiningTheSituationDialog",
+                          "open"
+                        ]).apply(null, eventArgs);
+
+                        if (
+                          eventArgs.length > 1 &&
+                          eventArgs[1] &&
+                          eventArgs[1]._plasmic_state_init_
+                        ) {
+                          return;
+                        }
+                      }}
+                      open={generateStateValueProp($state, [
+                        "determiningTheSituationDialog",
+                        "open"
+                      ])}
+                      title={
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox___1Kmg
+                          )}
+                        >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__mTkQu
+                            )}
+                          >
+                            <React.Fragment>
+                              <span
+                                className={
+                                  "plasmic_default__all plasmic_default__span"
+                                }
+                                style={{ color: "var(--token-lw4xv_KKpd4e)" }}
+                              >
+                                {
+                                  "\u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0634\u0645\u0627 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644 \u0634\u062f."
+                                }
+                              </span>
+                            </React.Fragment>
+                          </div>
+                        </div>
+                      }
+                      trigger={null}
+                    />
+
+                    <Button
+                      children2={
+                        <Icon13Icon
+                          className={classNames(projectcss.all, sty.svg__xUjSv)}
+                          role={"img"}
+                        />
+                      }
+                      className={classNames(
+                        "__wab_instance",
+                        sty.button___8I0Vg,
+                        {
+                          [sty.buttonactive___8I0Vgw7TP]: hasVariant(
+                            $state,
+                            "active",
+                            "active"
+                          )
+                        }
+                      )}
+                      color={
+                        hasVariant($state, "active", "active")
+                          ? "softGreen"
+                          : "softSand"
+                      }
+                      loading={(() => {
+                        try {
+                          return $state.loadingonoff;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()}
+                      onClick={async event => {
+                        const $steps = {};
+
+                        $steps["updateLoadingonOff"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["loadingonoff"]
+                                },
+                                operation: 0,
+                                value: true
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateLoadingonOff"] != null &&
+                          typeof $steps["updateLoadingonOff"] === "object" &&
+                          typeof $steps["updateLoadingonOff"].then ===
+                            "function"
+                        ) {
+                          $steps["updateLoadingonOff"] = await $steps[
+                            "updateLoadingonOff"
+                          ];
+                        }
+
+                        $steps["apiCountOfBook"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  undefined,
+                                  "https://apigw.paziresh24.com/v1/Onlinevisit-doctor-appointments-after-deactivation-time",
+                                  (() => {
+                                    try {
+                                      return {
+                                        user_center_id:
+                                          $state.apiAllCenters.data.data.find(
+                                            center => center.id === "5532"
+                                          ).user_center_id
+                                      };
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions[
+                                "Fragment.apiRequest"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["apiCountOfBook"] != null &&
+                          typeof $steps["apiCountOfBook"] === "object" &&
+                          typeof $steps["apiCountOfBook"].then === "function"
+                        ) {
+                          $steps["apiCountOfBook"] = await $steps[
+                            "apiCountOfBook"
+                          ];
+                        }
+
+                        $steps["count"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["countOfBook"]
+                                },
+                                operation: 0,
+                                value: $steps.apiCountOfBook.data
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["count"] != null &&
+                          typeof $steps["count"] === "object" &&
+                          typeof $steps["count"].then === "function"
+                        ) {
+                          $steps["count"] = await $steps["count"];
+                        }
+
+                        $steps["updateDeterminingTheSituationDialogOpen"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: [
+                                    "determiningTheSituationDialog",
+                                    "open"
+                                  ]
+                                },
+                                operation: 0,
+                                value:
+                                  $state.countOfBook.count_id > 0 &&
+                                  $state.countOfBook.count_id !== "" &&
+                                  $state.countOfBook.count_id !== undefined &&
+                                  $state.userCenterService.data[0]
                                     .can_booking === 1
-                                    ? "نوبت دهی ویزیت آنلاین در ساعت کاری تعریف شده فعال شد."
-                                    : "ویزیت آنلاین شما غیرفعال شد. در زمانی که قادر به پاسخگویی به بیماران در راس زمان نوبت‌ بیمار هستید وضعیت ویزیت آنلاین خود را فعال کنید.";
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
                                 }
-                              })(),
-                              undefined,
-                              5000
-                            ]
-                          };
-                          return $globalActions["Fragment.showToast"]?.apply(
-                            null,
-                            [...actionArgs.args]
-                          );
-                        })()
-                      : undefined;
-                    if (
-                      $steps["showToast"] != null &&
-                      typeof $steps["showToast"] === "object" &&
-                      typeof $steps["showToast"].then === "function"
-                    ) {
-                      $steps["showToast"] = await $steps["showToast"];
-                    }
+                                const { objRoot, variablePath } = variable;
 
-                    $steps["eventOnOff"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              (() => {
-                                try {
-                                  return {
-                                    group: "on/off-onlinevisit",
-                                    data: {
-                                      userCenterService:
-                                        $state.userCenterService.data[0],
-                                      status: $state.active
-                                    },
-                                    type: "click-icon-button"
-                                  };
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateDeterminingTheSituationDialogOpen"] !=
+                            null &&
+                          typeof $steps[
+                            "updateDeterminingTheSituationDialogOpen"
+                          ] === "object" &&
+                          typeof $steps[
+                            "updateDeterminingTheSituationDialogOpen"
+                          ].then === "function"
+                        ) {
+                          $steps["updateDeterminingTheSituationDialogOpen"] =
+                            await $steps[
+                              "updateDeterminingTheSituationDialogOpen"
+                            ];
+                        }
+
+                        $steps["apiActiveDeactiveVisitOnline"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  "PATCH",
+                                  "https://apigw.paziresh24.com/v1/canbookingon&off",
+                                  undefined,
+                                  (() => {
+                                    try {
+                                      return {
+                                        can_booking:
+                                          $state.apiUserCenterService.data.data[0].can_booking.toString(),
+                                        user_center_id:
+                                          $state.apiAllCenters.data.data.find(
+                                            center => center.id === "5532"
+                                          ).user_center_id
+                                      };
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions[
+                                "Fragment.apiRequest"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["apiActiveDeactiveVisitOnline"] != null &&
+                          typeof $steps["apiActiveDeactiveVisitOnline"] ===
+                            "object" &&
+                          typeof $steps["apiActiveDeactiveVisitOnline"].then ===
+                            "function"
+                        ) {
+                          $steps["apiActiveDeactiveVisitOnline"] = await $steps[
+                            "apiActiveDeactiveVisitOnline"
+                          ];
+                        }
+
+                        $steps["updateUserCenterService"] = false
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["userCenterService"]
+                                },
+                                operation: 0,
+                                value: $steps.apiActiveDeactiveVisitOnline.data
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
                                 }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateUserCenterService"] != null &&
+                          typeof $steps["updateUserCenterService"] ===
+                            "object" &&
+                          typeof $steps["updateUserCenterService"].then ===
+                            "function"
+                        ) {
+                          $steps["updateUserCenterService"] = await $steps[
+                            "updateUserCenterService"
+                          ];
+                        }
+
+                        $steps["updateActive"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["active"]
+                                },
+                                operation: 0,
+                                value:
+                                  !!$steps.apiActiveDeactiveVisitOnline.data
+                                    ?.data?.[0]?.can_booking
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateActive"] != null &&
+                          typeof $steps["updateActive"] === "object" &&
+                          typeof $steps["updateActive"].then === "function"
+                        ) {
+                          $steps["updateActive"] = await $steps["updateActive"];
+                        }
+
+                        $steps["loadingFinish"] =
+                          !$state.determiningTheSituationDialog.open ||
+                          $steps.updateActive > 0
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["loadingonoff"]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
                               })()
-                            ]
-                          };
-                          return $globalActions["Splunk.sendLog"]?.apply(null, [
-                            ...actionArgs.args
-                          ]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["eventOnOff"] != null &&
-                      typeof $steps["eventOnOff"] === "object" &&
-                      typeof $steps["eventOnOff"].then === "function"
-                    ) {
-                      $steps["eventOnOff"] = await $steps["eventOnOff"];
-                    }
-                  }}
-                />
-              </div>
-            ) : null}
-          </div>
+                            : undefined;
+                        if (
+                          $steps["loadingFinish"] != null &&
+                          typeof $steps["loadingFinish"] === "object" &&
+                          typeof $steps["loadingFinish"].then === "function"
+                        ) {
+                          $steps["loadingFinish"] = await $steps[
+                            "loadingFinish"
+                          ];
+                        }
+
+                        $steps["showToast"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  undefined,
+                                  (() => {
+                                    try {
+                                      return $state.apiUserCenterService.data
+                                        .data[0].can_booking === 1
+                                        ? "نوبت دهی ویزیت آنلاین در ساعت کاری تعریف شده فعال شد."
+                                        : "ویزیت آنلاین شما غیرفعال شد. در زمانی که قادر به پاسخگویی به بیماران در راس زمان نوبت‌ بیمار هستید وضعیت ویزیت آنلاین خود را فعال کنید.";
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })(),
+                                  undefined,
+                                  5000
+                                ]
+                              };
+                              return $globalActions[
+                                "Fragment.showToast"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["showToast"] != null &&
+                          typeof $steps["showToast"] === "object" &&
+                          typeof $steps["showToast"].then === "function"
+                        ) {
+                          $steps["showToast"] = await $steps["showToast"];
+                        }
+
+                        $steps["eventOnOff"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  (() => {
+                                    try {
+                                      return {
+                                        group: "on/off-onlinevisit",
+                                        data: {
+                                          userCenterService:
+                                            $state.apiUserCenterService.data
+                                              .data[0],
+                                          status: $state.active
+                                        },
+                                        type: "click-icon-button"
+                                      };
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions["Splunk.sendLog"]?.apply(
+                                null,
+                                [...actionArgs.args]
+                              );
+                            })()
+                          : undefined;
+                        if (
+                          $steps["eventOnOff"] != null &&
+                          typeof $steps["eventOnOff"] === "object" &&
+                          typeof $steps["eventOnOff"].then === "function"
+                        ) {
+                          $steps["eventOnOff"] = await $steps["eventOnOff"];
+                        }
+                      }}
+                    />
+                  </div>
+                ) : null}
+              </ApiRequest>
+            </div>
+          ) : null}
           <SideEffect
             data-plasmic-name={"runCodeGtmMetrica"}
             data-plasmic-override={overrides.runCodeGtmMetrica}
@@ -2706,165 +2999,298 @@ function PlasmicBookList__RenderFunc(props: {
             }
           />
 
-          <SideEffect
-            className={classNames("__wab_instance", sty.sideEffect__kteKf)}
-            onMount={async () => {
-              const $steps = {};
+          {false ? (
+            <SideEffect
+              className={classNames("__wab_instance", sty.sideEffect__kteKf)}
+              onMount={async () => {
+                const $steps = {};
 
-              $steps["apiHoliday"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "GET",
-                        "https://apigw.paziresh24.com/v1/holidays-next-year"
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["apiHoliday"] != null &&
-                typeof $steps["apiHoliday"] === "object" &&
-                typeof $steps["apiHoliday"].then === "function"
-              ) {
-                $steps["apiHoliday"] = await $steps["apiHoliday"];
-              }
+                $steps["apiHoliday"] = false
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "GET",
+                          "https://apigw.paziresh24.com/v1/holidays-next-year"
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["apiHoliday"] != null &&
+                  typeof $steps["apiHoliday"] === "object" &&
+                  typeof $steps["apiHoliday"].then === "function"
+                ) {
+                  $steps["apiHoliday"] = await $steps["apiHoliday"];
+                }
 
-              $steps["updateHoliday"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["holiday"]
-                      },
-                      operation: 0,
-                      value: $steps.apiHoliday.data
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
+                $steps["updateHoliday"] = false
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["holiday"]
+                        },
+                        operation: 0,
+                        value: $steps.apiHoliday.data
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
 
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateHoliday"] != null &&
-                typeof $steps["updateHoliday"] === "object" &&
-                typeof $steps["updateHoliday"].then === "function"
-              ) {
-                $steps["updateHoliday"] = await $steps["updateHoliday"];
-              }
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateHoliday"] != null &&
+                  typeof $steps["updateHoliday"] === "object" &&
+                  typeof $steps["updateHoliday"].then === "function"
+                ) {
+                  $steps["updateHoliday"] = await $steps["updateHoliday"];
+                }
 
-              $steps["sendEvent"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return {
-                              group: "load-page",
-                              data: { center_id: $state.centers },
-                              type: "book_list",
-                              user_id: $ctx.query.user_id
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
+                $steps["sendEvent"] = false
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                group: "load-page",
+                                data: { center_id: $state.centers },
+                                type: "book_list",
+                                user_id: $ctx.query.user_id
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
                             }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Splunk.sendLog"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["sendEvent"] != null &&
-                typeof $steps["sendEvent"] === "object" &&
-                typeof $steps["sendEvent"].then === "function"
-              ) {
-                $steps["sendEvent"] = await $steps["sendEvent"];
-              }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["sendEvent"] != null &&
+                  typeof $steps["sendEvent"] === "object" &&
+                  typeof $steps["sendEvent"].then === "function"
+                ) {
+                  $steps["sendEvent"] = await $steps["sendEvent"];
+                }
 
-              $steps["apiGetPaymentSetting"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        undefined,
-                        "https://apigw.paziresh24.com/nelson/v1/setting",
-                        (() => {
-                          try {
-                            return { key: "booking:activate_online_payment" };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
+                $steps["apiGetPaymentSetting"] = false
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          undefined,
+                          "https://apigw.paziresh24.com/nelson/v1/setting",
+                          (() => {
+                            try {
+                              return { key: "booking:activate_online_payment" };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
                             }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["apiGetPaymentSetting"] != null &&
-                typeof $steps["apiGetPaymentSetting"] === "object" &&
-                typeof $steps["apiGetPaymentSetting"].then === "function"
-              ) {
-                $steps["apiGetPaymentSetting"] = await $steps[
-                  "apiGetPaymentSetting"
-                ];
-              }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["apiGetPaymentSetting"] != null &&
+                  typeof $steps["apiGetPaymentSetting"] === "object" &&
+                  typeof $steps["apiGetPaymentSetting"].then === "function"
+                ) {
+                  $steps["apiGetPaymentSetting"] = await $steps[
+                    "apiGetPaymentSetting"
+                  ];
+                }
 
-              $steps["updateSettingBookingPayment"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["settingBookingPayment"]
-                      },
-                      operation: 0,
-                      value: $steps.apiGetPaymentSetting.data
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
+                $steps["updateSettingBookingPayment"] = false
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["settingBookingPayment"]
+                        },
+                        operation: 0,
+                        value: $steps.apiGetPaymentSetting.data
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
 
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateSettingBookingPayment"] != null &&
-                typeof $steps["updateSettingBookingPayment"] === "object" &&
-                typeof $steps["updateSettingBookingPayment"].then === "function"
-              ) {
-                $steps["updateSettingBookingPayment"] = await $steps[
-                  "updateSettingBookingPayment"
-                ];
-              }
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateSettingBookingPayment"] != null &&
+                  typeof $steps["updateSettingBookingPayment"] === "object" &&
+                  typeof $steps["updateSettingBookingPayment"].then ===
+                    "function"
+                ) {
+                  $steps["updateSettingBookingPayment"] = await $steps[
+                    "updateSettingBookingPayment"
+                  ];
+                }
+              }}
+            />
+          ) : null}
+          <ApiRequest
+            data-plasmic-name={"apiPayment"}
+            data-plasmic-override={overrides.apiPayment}
+            className={classNames("__wab_instance", sty.apiPayment)}
+            errorDisplay={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__qIw2W
+                )}
+              >
+                {"Error fetching data"}
+              </div>
+            }
+            loadingDisplay={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__lKem9
+                )}
+              >
+                {"Loading..."}
+              </div>
+            }
+            method={"GET"}
+            onError={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["apiPayment", "error"]).apply(
+                null,
+                eventArgs
+              );
             }}
+            onLoading={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "apiPayment",
+                "loading"
+              ]).apply(null, eventArgs);
+            }}
+            onSuccess={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["apiPayment", "data"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            params={(() => {
+              try {
+                return { key: "booking:activate_online_payment" };
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            ref={ref => {
+              $refs["apiPayment"] = ref;
+            }}
+            url={"https://apigw.paziresh24.com/nelson/v1/setting"}
+          />
+
+          <ApiRequest
+            data-plasmic-name={"apiHoliday"}
+            data-plasmic-override={overrides.apiHoliday}
+            className={classNames("__wab_instance", sty.apiHoliday)}
+            errorDisplay={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__aZqu6
+                )}
+              >
+                {"Error fetching data"}
+              </div>
+            }
+            loadingDisplay={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__soZ
+                )}
+              >
+                {"Loading..."}
+              </div>
+            }
+            method={"GET"}
+            onError={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["apiHoliday", "error"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            onLoading={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "apiHoliday",
+                "loading"
+              ]).apply(null, eventArgs);
+            }}
+            onSuccess={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["apiHoliday", "data"]).apply(
+                null,
+                eventArgs
+              );
+
+              (async data => {
+                const $steps = {};
+              }).apply(null, eventArgs);
+            }}
+            ref={ref => {
+              $refs["apiHoliday"] = ref;
+            }}
+            url={"https://apigw.paziresh24.com/v1/holidays-next-year"}
           />
         </div>
       </div>
@@ -2884,16 +3310,20 @@ const PlasmicDescendants = {
     "\u062a\u0642\u0648\u06cc\u0645\u0645\u0627\u0647\u0627\u0646\u0647",
     "fragmentDatePicker",
     "center",
+    "apiAllCenters",
     "drCenters",
     "patientList",
     "addPatient",
     "dialog",
     "onOffButton",
+    "apiUserCenterService",
     "activeDeactiveOnlineVisit",
     "determiningTheSituationDialog",
     "cancelbook",
     "runCodeGtmMetrica",
-    "gtm"
+    "gtm",
+    "apiPayment",
+    "apiHoliday"
   ],
   quickAccess: [
     "quickAccess",
@@ -2924,13 +3354,21 @@ const PlasmicDescendants = {
     "\u062a\u0642\u0648\u06cc\u0645\u0645\u0627\u0647\u0627\u0646\u0647"
   ],
   fragmentDatePicker: ["fragmentDatePicker"],
-  center: ["center", "drCenters", "patientList"],
+  center: ["center", "apiAllCenters", "drCenters", "patientList"],
+  apiAllCenters: ["apiAllCenters"],
   drCenters: ["drCenters"],
   patientList: ["patientList"],
   addPatient: ["addPatient", "dialog"],
   dialog: ["dialog"],
   onOffButton: [
     "onOffButton",
+    "apiUserCenterService",
+    "activeDeactiveOnlineVisit",
+    "determiningTheSituationDialog",
+    "cancelbook"
+  ],
+  apiUserCenterService: [
+    "apiUserCenterService",
     "activeDeactiveOnlineVisit",
     "determiningTheSituationDialog",
     "cancelbook"
@@ -2946,7 +3384,9 @@ const PlasmicDescendants = {
   ],
   cancelbook: ["cancelbook"],
   runCodeGtmMetrica: ["runCodeGtmMetrica"],
-  gtm: ["gtm"]
+  gtm: ["gtm"],
+  apiPayment: ["apiPayment"],
+  apiHoliday: ["apiHoliday"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -2962,16 +3402,20 @@ type NodeDefaultElementType = {
   تقویمماهانه: "div";
   fragmentDatePicker: typeof DatePicker;
   center: "div";
+  apiAllCenters: typeof ApiRequest;
   drCenters: typeof DrCenters;
   patientList: typeof PatientList;
   addPatient: "div";
   dialog: typeof Dialog;
   onOffButton: "div";
+  apiUserCenterService: typeof ApiRequest;
   activeDeactiveOnlineVisit: "div";
   determiningTheSituationDialog: typeof Dialog;
   cancelbook: typeof Button;
   runCodeGtmMetrica: typeof SideEffect;
   gtm: typeof Embed;
+  apiPayment: typeof ApiRequest;
+  apiHoliday: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -3047,11 +3491,13 @@ export const PlasmicBookList = Object.assign(
     ),
     fragmentDatePicker: makeNodeComponent("fragmentDatePicker"),
     center: makeNodeComponent("center"),
+    apiAllCenters: makeNodeComponent("apiAllCenters"),
     drCenters: makeNodeComponent("drCenters"),
     patientList: makeNodeComponent("patientList"),
     addPatient: makeNodeComponent("addPatient"),
     dialog: makeNodeComponent("dialog"),
     onOffButton: makeNodeComponent("onOffButton"),
+    apiUserCenterService: makeNodeComponent("apiUserCenterService"),
     activeDeactiveOnlineVisit: makeNodeComponent("activeDeactiveOnlineVisit"),
     determiningTheSituationDialog: makeNodeComponent(
       "determiningTheSituationDialog"
@@ -3059,6 +3505,8 @@ export const PlasmicBookList = Object.assign(
     cancelbook: makeNodeComponent("cancelbook"),
     runCodeGtmMetrica: makeNodeComponent("runCodeGtmMetrica"),
     gtm: makeNodeComponent("gtm"),
+    apiPayment: makeNodeComponent("apiPayment"),
+    apiHoliday: makeNodeComponent("apiHoliday"),
 
     // Metadata about props expected for PlasmicBookList
     internalVariantProps: PlasmicBookList__VariantProps,

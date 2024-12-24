@@ -374,7 +374,7 @@ function PlasmicDrCenters__RenderFunc(props: {
                   e instanceof TypeError ||
                   e?.plasmicType === "PlasmicUndefinedDataError"
                 ) {
-                  return true;
+                  return false;
                 }
                 throw e;
               }
@@ -382,11 +382,9 @@ function PlasmicDrCenters__RenderFunc(props: {
               ? (_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                   (() => {
                     try {
-                      return $props.centers
-                        .filter(center => center.is_active_booking)
-                        ?.filter(item =>
-                          item.name?.includes($state.textInput.value ?? "")
-                        );
+                      return $props.centers.filter(item =>
+                        item.name?.includes($state.textInput.value ?? "")
+                      );
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -574,10 +572,7 @@ function PlasmicDrCenters__RenderFunc(props: {
               try {
                 return (
                   !$props.centers.some(
-                    center =>
-                      center.type_id === 3 &&
-                      center.id === "5532" &&
-                      center.is_active_booking === true
+                    center => center.type_id === 3 && center.id === "5532"
                   ) && $props.centers.some(center => center.type_id === 1)
                 );
               } catch (e) {

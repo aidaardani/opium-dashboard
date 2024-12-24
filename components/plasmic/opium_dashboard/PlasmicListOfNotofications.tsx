@@ -456,53 +456,6 @@ function PlasmicListOfNotofications__RenderFunc(props: {
             onMount={async () => {
               const $steps = {};
 
-              $steps["apiAuth"] = false
-                ? (() => {
-                    const actionArgs = {
-                      args: ["GET", "https://api.paziresh24.com/V1/auth/me"]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["apiAuth"] != null &&
-                typeof $steps["apiAuth"] === "object" &&
-                typeof $steps["apiAuth"].then === "function"
-              ) {
-                $steps["apiAuth"] = await $steps["apiAuth"];
-              }
-
-              $steps["updateUserDetails"] = false
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["userDetail"]
-                      },
-                      operation: 0,
-                      value: $steps.apiAuth.data
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateUserDetails"] != null &&
-                typeof $steps["updateUserDetails"] === "object" &&
-                typeof $steps["updateUserDetails"].then === "function"
-              ) {
-                $steps["updateUserDetails"] = await $steps["updateUserDetails"];
-              }
-
               $steps["apiGetNoticationSettingForThisUser"] = true
                 ? (() => {
                     const actionArgs = {
