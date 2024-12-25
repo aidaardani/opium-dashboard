@@ -275,7 +275,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         )}
       >
         {
-          "\u062f\u0631\u06cc\u0627\u0641\u062a \u0628\u06cc\u0639\u0627\u0646\u0647 \u0628\u0647 \u0647\u0646\u06af\u0627\u0645 \u062b\u0628\u062a \u0646\u0648\u0628\u062a \u0627\u06cc\u0646\u062a\u0631\u0646\u062a\u06cc \u0628\u0627\u0639\u062b \u0645\u06cc \u0634\u0648\u062f \u06a9\u0633\u0627\u0646\u06cc \u06a9\u0647 \u0646\u0648\u0628\u062a \u06af\u0631\u0641\u062a\u0647 \u0627\u0646\u062f\u060c \u0645\u0642\u06cc\u062f \u0628\u0647 \u062d\u0636\u0648\u0631 \u062d\u062a\u0645\u06cc \u0648 \u0628\u0647 \u0645\u0648\u0642\u0639 \u062f\u0631 \u0645\u0637\u0628 \u0634\u0648\u0646\u062f."
+          "\u067e\u0631\u062f\u0627\u062e\u062a \u0628\u06cc\u0639\u0627\u0646\u0647 \u062f\u0631 \u0632\u0645\u0627\u0646 \u062b\u0628\u062a \u0646\u0648\u0628\u062a \u0627\u06cc\u0646\u062a\u0631\u0646\u062a\u06cc\u060c \u0628\u0647 \u062d\u0641\u0638 \u062a\u0639\u0647\u062f \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0628\u0631\u0627\u06cc \u062d\u0636\u0648\u0631 \u0628\u0647 \u0645\u0648\u0642\u0639 \u062f\u0631 \u0645\u0637\u0628 \u06a9\u0645\u06a9 \u0645\u06cc\u200c\u06a9\u0646\u062f."
         }
       </div>
       <div
@@ -288,7 +288,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         <React.Fragment>
           {(() => {
             try {
-              return `همکاران شما بصورت میانگین مبلغ ${(50000).toLocaleString()} تومان را در نظر گرفته اند.`;
+              return `میانگین مبلغ بیعانه تعیین‌شده توسط همکاران شما،${(50000).toLocaleString()} تومان است.`;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -420,7 +420,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           }
         })()}
         placeholder={
-          "\u0642\u06cc\u0645\u062a \u0628\u06cc\u0639\u0627\u0646\u0647"
+          "\u0645\u0628\u0644\u063a \u0628\u06cc\u0639\u0627\u0646\u0647"
         }
         triggerClassName={classNames("__wab_instance", sty.select)}
         value={generateStateValueProp($state, ["select", "value"])}
@@ -503,7 +503,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         )}
       >
         {
-          "\u062c\u0647\u062a \u062f\u0631\u06cc\u0627\u0641\u062a \u0645\u0628\u0627\u0644\u063a \u067e\u0631\u062f\u0627\u062e\u062a\u06cc \u0628\u06cc\u0639\u0627\u0646\u0647 \u0628\u06cc\u0645\u0627\u0631\u0627\u0646\u060c \u0644\u0637\u0641\u0627 \u067e\u0633 \u0627\u0632 \u062a\u06a9\u0645\u06cc\u0644 \u062b\u0628\u062a \u0646\u0627\u0645\u060c \u062f\u0631 \u0642\u0633\u0645\u062a \u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u067e\u0631\u062f\u0627\u062e\u062a\u060c \u0634\u0645\u0627\u0631\u0647 \u06a9\u0627\u0631\u062a \u062e\u0648\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u0646\u0645\u0627\u06cc\u06cc\u062f."
+          "\u0628\u0631\u0627\u06cc \u062f\u0631\u06cc\u0627\u0641\u062a \u0645\u0628\u0644\u063a \u0628\u06cc\u0639\u0627\u0646\u0647 \u067e\u0631\u062f\u0627\u062e\u062a\u06cc \u0628\u06cc\u0645\u0627\u0631\u0627\u0646\u060c \u0644\u0637\u0641\u0627\u064b \u067e\u0633 \u0627\u0632 \u062a\u06a9\u0645\u06cc\u0644 \u062b\u0628\u062a\u200c\u0646\u0627\u0645\u060c \u0634\u0645\u0627\u0631\u0647 \u06a9\u0627\u0631\u062a \u062e\u0648\u062f \u0631\u0627 \u062f\u0631 \u0628\u062e\u0634 \u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u067e\u0631\u062f\u0627\u062e\u062a \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
         }
       </div>
       <ApiRequest
@@ -559,7 +559,9 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           className={classNames(projectcss.all, sty.freeBox__k3Zgm)}
         >
           <Button
-            children2={"\u0627\u062f\u0627\u0645\u0647"}
+            children2={
+              "\u062a\u0627\u06cc\u06cc\u062f \u0648 \u0627\u062f\u0627\u0645\u0647"
+            }
             className={classNames("__wab_instance", sty.button___8QKz8)}
             onClick={async event => {
               const $steps = {};
@@ -644,7 +646,9 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                   sty.text__sdtio
                 )}
               >
-                {"\u0627\u0646\u0635\u0631\u0627\u0641"}
+                {
+                  "\u0635\u0631\u0641\u200c\u0646\u0638\u0631 \u0627\u0632 \u0628\u06cc\u0639\u0627\u0646\u0647"
+                }
               </div>
             }
             className={classNames("__wab_instance", sty.button__arJqy)}

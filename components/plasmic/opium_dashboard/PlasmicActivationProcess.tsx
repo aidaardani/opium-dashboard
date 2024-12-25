@@ -238,6 +238,7 @@ function PlasmicActivationProcess__RenderFunc(props: {
         data-plasmic-override={overrides.freeBox}
         hasGap={true}
         className={classNames(projectcss.all, sty.freeBox)}
+        dir={"rtl"}
       >
         {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
           (() => {
