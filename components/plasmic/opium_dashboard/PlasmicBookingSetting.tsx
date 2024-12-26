@@ -611,9 +611,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                           }
                           style={{ fontWeight: 700 }}
                         >
-                          {
-                            "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0645\u0637\u0628"
-                          }
+                          {"\u062a\u0646\u0638\u06cc\u0645\u0627\u062a"}
                         </span>
                       </React.Fragment>
                     </h4>

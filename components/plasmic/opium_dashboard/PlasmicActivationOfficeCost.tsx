@@ -608,7 +608,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                 apiadress: $state.addressApi.data,
                                 notifycell: $state.notifyCell.notifyCellValue
                               },
-                              event_type: "click-next-button-office-step3"
+                              event_type:
+                                "click-next-button-office-step3-set-payment"
                             };
                           } catch (e) {
                             if (
@@ -835,7 +836,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                 apiadress: $state.addressApi.data,
                                 notifycell: $state.notifyCell.notifyCellValue
                               },
-                              event_type: "click-cancel-button-office-step3"
+                              event_type:
+                                "click-cancel-button-office-step3-set-payment"
                             };
                           } catch (e) {
                             if (
