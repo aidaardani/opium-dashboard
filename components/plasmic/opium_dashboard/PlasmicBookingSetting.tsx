@@ -426,7 +426,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                         (() => {
                           try {
                             return {
-                              key: "booking:delay_to_delete_book_refund"
+                              key: "booking:delay_to_delete_book_refund",
+                              user_id: $ctx.query.user_id
                             };
                           } catch (e) {
                             if (
@@ -494,7 +495,10 @@ function PlasmicBookingSetting__RenderFunc(props: {
                         "https://apigw.paziresh24.com/nelson/v1/setting",
                         (() => {
                           try {
-                            return { key: "booking:activate_online_payment" };
+                            return {
+                              key: "booking:activate_online_payment",
+                              user_id: $ctx.query.user_id
+                            };
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -2021,7 +2025,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                 data: {
                                   settingdetails: $state.settingBookingDateRange
                                 },
-                                type: "click-accordion-rang-booking"
+                                type: "click-accordion-payment-setting"
                               };
                             } catch (e) {
                               if (
