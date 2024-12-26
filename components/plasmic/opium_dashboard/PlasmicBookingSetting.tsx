@@ -342,7 +342,10 @@ function PlasmicBookingSetting__RenderFunc(props: {
                         "https://apigw.paziresh24.com/nelson/v1/setting",
                         (() => {
                           try {
-                            return { key: "booking:booking_date_range" };
+                            return {
+                              key: "booking:booking_date_range",
+                              user_id: $ctx.query.user_id
+                            };
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
