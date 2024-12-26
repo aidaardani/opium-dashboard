@@ -121,7 +121,7 @@
     flex-direction: row;
     padding-bottom: var(--token-vMUQwr5Jto1d);
     padding-top: 0px;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     padding-right: 3px;
   }
@@ -140,6 +140,7 @@
     width: 100%;
     margin-bottom: 0px;
     min-width: 0;
+    display: none;
   }
 }
 .drCenters:global(.__wab_instance) {
@@ -153,9 +154,8 @@
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .drCenters:global(.__wab_instance) {
-    width: 100%;
+    width: auto;
     align-self: flex-end;
-    min-width: 0;
     margin: 10px 10px 0px;
   }
 }

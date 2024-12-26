@@ -2222,7 +2222,7 @@
           },
           "cssFilePath": "plasmic/opium_dashboard/PlasmicPayment3.module.css",
           "scheme": "blackbox",
-          "componentType": "page",
+          "componentType": "component",
           "path": "/payment"
         },
         {

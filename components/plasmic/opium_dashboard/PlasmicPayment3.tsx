@@ -88,9 +88,11 @@ export const PlasmicPayment3__VariantProps = new Array<VariantPropType>(
   "active"
 );
 
-export type PlasmicPayment3__ArgsType = {};
+export type PlasmicPayment3__ArgsType = {
+  userId?: string;
+};
 type ArgPropType = keyof PlasmicPayment3__ArgsType;
-export const PlasmicPayment3__ArgProps = new Array<ArgPropType>();
+export const PlasmicPayment3__ArgProps = new Array<ArgPropType>("userId");
 
 export type PlasmicPayment3__OverridesType = {
   payment?: Flex__<"div">;
@@ -101,7 +103,11 @@ export type PlasmicPayment3__OverridesType = {
   gtm?: Flex__<typeof Embed>;
 };
 
-export interface DefaultPayment3Props {}
+export interface DefaultPayment3Props {
+  userId?: string;
+  active?: SingleBooleanChoiceArg<"active">;
+  className?: string;
+}
 
 const $$ = {};
 
@@ -266,301 +272,287 @@ function PlasmicPayment3__RenderFunc(props: {
   });
 
   return (
-    <React.Fragment>
-      <Head></Head>
-
-      <style>{`
-        body {
-          margin: 0;
-        }
-      `}</style>
-
-      <div className={projectcss.plasmic_page_wrapper}>
-        <div
-          data-plasmic-name={"payment"}
-          data-plasmic-override={overrides.payment}
-          data-plasmic-root={true}
-          data-plasmic-for-node={forNode}
-          className={classNames(
-            projectcss.all,
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
-            projectcss.plasmic_tokens,
-            plasmic_fragment_design_system_css.plasmic_tokens,
-            plasmic_antd_5_hostless_css.plasmic_tokens,
-            sty.payment,
-            { [sty.paymentactive]: hasVariant($state, "active", "active") }
-          )}
-          dir={"rtl"}
-        >
-          <div
-            data-plasmic-name={"center"}
-            data-plasmic-override={overrides.center}
-            className={classNames(projectcss.all, sty.center)}
-          >
-            <ApiRequest
-              data-plasmic-name={"apiRequest"}
-              data-plasmic-override={overrides.apiRequest}
-              className={classNames("__wab_instance", sty.apiRequest)}
-              errorDisplay={
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__gQGr
-                  )}
-                >
-                  {"Error fetching data"}
-                </div>
-              }
-              loadingDisplay={
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__ujeVp
-                  )}
-                >
-                  {"Loading..."}
-                </div>
-              }
-              method={"GET"}
-              onError={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "apiRequest",
-                  "error"
-                ]).apply(null, eventArgs);
-              }}
-              onLoading={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "apiRequest",
-                  "loading"
-                ]).apply(null, eventArgs);
-              }}
-              onSuccess={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
-                  null,
-                  eventArgs
-                );
-              }}
-              ref={ref => {
-                $refs["apiRequest"] = ref;
-              }}
-              url={"https://api.paziresh24.com/V1/doctor/centers"}
-            />
-
-            <div className={classNames(projectcss.all, sty.freeBox__z0Xf)}>
-              <div className={classNames(projectcss.all, sty.freeBox__hx7Sl)}>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__jpos7
-                  )}
-                >
-                  <React.Fragment>
-                    <span
-                      className={"plasmic_default__all plasmic_default__span"}
-                      style={{ fontWeight: 700 }}
-                    >
-                      {"\u0645\u0627\u0644\u06cc"}
-                    </span>
-                  </React.Fragment>
-                </div>
-                <DrCenters
-                  data-plasmic-name={"drCenters"}
-                  data-plasmic-override={overrides.drCenters}
-                  centers={(() => {
-                    try {
-                      return $state.apiRequest.data.data;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
-                    }
-                  })()}
-                  className={classNames("__wab_instance", sty.drCenters)}
-                  hasAllOption={(() => {
-                    try {
-                      return false;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return false;
-                      }
-                      throw e;
-                    }
-                  })()}
-                  onSelectedCenterChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "drCenters",
-                      "selectedCenter"
-                    ]).apply(null, eventArgs);
-
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
-                    }
-
-                    (async val => {
-                      const $steps = {};
-
-                      $steps["updateSelectedCenter"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["selectedCenter"]
-                              },
-                              operation: 0,
-                              value: $state.drCenters.selectedCenter
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateSelectedCenter"] != null &&
-                        typeof $steps["updateSelectedCenter"] === "object" &&
-                        typeof $steps["updateSelectedCenter"].then ===
-                          "function"
-                      ) {
-                        $steps["updateSelectedCenter"] = await $steps[
-                          "updateSelectedCenter"
-                        ];
-                      }
-                    }).apply(null, eventArgs);
-                  }}
-                />
-              </div>
-              <Payment
-                center={(() => {
-                  try {
-                    return $state.apiRequest.data.data;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                className={classNames("__wab_instance", sty.payment__r7Sm3)}
-                selectedCenter={(() => {
-                  try {
-                    return (
-                      $state.apiRequest.data.data.find(
-                        center => center.user_center_id == $state.selectedCenter
-                      )?.user_center_id ??
-                      $state.centers.find(
-                        item => item.is_active_booking === true
-                      ).user_center_id
-                    );
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                userId={(() => {
-                  try {
-                    return { user_id: $ctx.query.user_id };
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-              />
+    <div
+      data-plasmic-name={"payment"}
+      data-plasmic-override={overrides.payment}
+      data-plasmic-root={true}
+      data-plasmic-for-node={forNode}
+      className={classNames(
+        projectcss.all,
+        projectcss.root_reset,
+        projectcss.plasmic_default_styles,
+        projectcss.plasmic_mixins,
+        projectcss.plasmic_tokens,
+        plasmic_fragment_design_system_css.plasmic_tokens,
+        plasmic_antd_5_hostless_css.plasmic_tokens,
+        sty.payment,
+        { [sty.paymentactive]: hasVariant($state, "active", "active") }
+      )}
+      dir={"rtl"}
+    >
+      <div
+        data-plasmic-name={"center"}
+        data-plasmic-override={overrides.center}
+        className={classNames(projectcss.all, sty.center)}
+      >
+        <ApiRequest
+          data-plasmic-name={"apiRequest"}
+          data-plasmic-override={overrides.apiRequest}
+          className={classNames("__wab_instance", sty.apiRequest)}
+          errorDisplay={
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__gQGr
+              )}
+            >
+              {"Error fetching data"}
             </div>
-          </div>
-          <SideEffect
-            data-plasmic-name={"runCodeGtmMetrica"}
-            data-plasmic-override={overrides.runCodeGtmMetrica}
-            className={classNames("__wab_instance", sty.runCodeGtmMetrica)}
-            onMount={async () => {
-              const $steps = {};
+          }
+          loadingDisplay={
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__ujeVp
+              )}
+            >
+              {"Loading..."}
+            </div>
+          }
+          method={"GET"}
+          onError={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["apiRequest", "error"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onLoading={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["apiRequest", "loading"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onSuccess={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          ref={ref => {
+            $refs["apiRequest"] = ref;
+          }}
+          url={"https://api.paziresh24.com/V1/doctor/centers"}
+        />
 
-              $steps["runCode"] = true
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return (() => {
-                          function loadGTM() {
-                            var gtmScript = document.createElement("script");
-                            gtmScript.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        <div className={classNames(projectcss.all, sty.freeBox__z0Xf)}>
+          <div className={classNames(projectcss.all, sty.freeBox__hx7Sl)}>
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__jpos7
+              )}
+            >
+              <React.Fragment>
+                <span
+                  className={"plasmic_default__all plasmic_default__span"}
+                  style={{ fontWeight: 700 }}
+                >
+                  {"\u0645\u0627\u0644\u06cc"}
+                </span>
+              </React.Fragment>
+            </div>
+            <DrCenters
+              data-plasmic-name={"drCenters"}
+              data-plasmic-override={overrides.drCenters}
+              centers={(() => {
+                try {
+                  return $state.apiRequest.data.data;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              className={classNames("__wab_instance", sty.drCenters)}
+              hasAllOption={(() => {
+                try {
+                  return false;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })()}
+              onSelectedCenterChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "drCenters",
+                  "selectedCenter"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+
+                (async val => {
+                  const $steps = {};
+
+                  $steps["updateSelectedCenter"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["selectedCenter"]
+                          },
+                          operation: 0,
+                          value: $state.drCenters.selectedCenter
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateSelectedCenter"] != null &&
+                    typeof $steps["updateSelectedCenter"] === "object" &&
+                    typeof $steps["updateSelectedCenter"].then === "function"
+                  ) {
+                    $steps["updateSelectedCenter"] = await $steps[
+                      "updateSelectedCenter"
+                    ];
+                  }
+                }).apply(null, eventArgs);
+              }}
+            />
+          </div>
+          <Payment
+            center={(() => {
+              try {
+                return $state.apiRequest.data.data;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            className={classNames("__wab_instance", sty.payment__r7Sm3)}
+            selectedCenter={(() => {
+              try {
+                return (
+                  $state.apiRequest.data.data.find(
+                    center => center.user_center_id == $state.selectedCenter
+                  )?.user_center_id ??
+                  $state.centers.find(item => item.is_active_booking === true)
+                    .user_center_id
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            userId={(() => {
+              try {
+                return $props.userId;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          />
+        </div>
+      </div>
+      <SideEffect
+        data-plasmic-name={"runCodeGtmMetrica"}
+        data-plasmic-override={overrides.runCodeGtmMetrica}
+        className={classNames("__wab_instance", sty.runCodeGtmMetrica)}
+        onMount={async () => {
+          const $steps = {};
+
+          $steps["runCode"] = true
+            ? (() => {
+                const actionArgs = {
+                  customFunction: async () => {
+                    return (() => {
+                      function loadGTM() {
+                        var gtmScript = document.createElement("script");
+                        gtmScript.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-P5RPLDP');`;
-                            document.head.appendChild(gtmScript);
-                            var gtmNoScript =
-                              document.createElement("noscript");
-                            gtmNoScript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"
+                        document.head.appendChild(gtmScript);
+                        var gtmNoScript = document.createElement("noscript");
+                        gtmNoScript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"
     height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
-                            document.body.insertBefore(
-                              gtmNoScript,
-                              document.body.firstChild
-                            );
-                          }
-                          return loadGTM();
-                        })();
+                        document.body.insertBefore(
+                          gtmNoScript,
+                          document.body.firstChild
+                        );
                       }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runCode"] != null &&
-                typeof $steps["runCode"] === "object" &&
-                typeof $steps["runCode"].then === "function"
-              ) {
-                $steps["runCode"] = await $steps["runCode"];
-              }
+                      return loadGTM();
+                    })();
+                  }
+                };
+                return (({ customFunction }) => {
+                  return customFunction();
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["runCode"] != null &&
+            typeof $steps["runCode"] === "object" &&
+            typeof $steps["runCode"].then === "function"
+          ) {
+            $steps["runCode"] = await $steps["runCode"];
+          }
 
-              $steps["loadMetrica"] = true
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return (() => {
-                          function loadMetrika() {
-                            var metrikaScript =
-                              document.createElement("script");
-                            metrikaScript.innerHTML = `(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          $steps["loadMetrica"] = true
+            ? (() => {
+                const actionArgs = {
+                  customFunction: async () => {
+                    return (() => {
+                      function loadMetrika() {
+                        var metrikaScript = document.createElement("script");
+                        metrikaScript.innerHTML = `(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
     m[i].l=1*new Date();
     for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
     k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
@@ -572,45 +564,43 @@ function PlasmicPayment3__RenderFunc(props: {
         accurateTrackBounce:true,
         webvisor:true
     });`;
-                            document.head.appendChild(metrikaScript);
-                            var metrikaNoScript =
-                              document.createElement("noscript");
-                            metrikaNoScript.innerHTML = `<div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div>`;
-                            document.body.insertBefore(
-                              metrikaNoScript,
-                              document.body.firstChild
-                            );
-                          }
-                          return loadMetrika();
-                        })();
+                        document.head.appendChild(metrikaScript);
+                        var metrikaNoScript =
+                          document.createElement("noscript");
+                        metrikaNoScript.innerHTML = `<div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div>`;
+                        document.body.insertBefore(
+                          metrikaNoScript,
+                          document.body.firstChild
+                        );
                       }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["loadMetrica"] != null &&
-                typeof $steps["loadMetrica"] === "object" &&
-                typeof $steps["loadMetrica"].then === "function"
-              ) {
-                $steps["loadMetrica"] = await $steps["loadMetrica"];
-              }
-            }}
-          />
+                      return loadMetrika();
+                    })();
+                  }
+                };
+                return (({ customFunction }) => {
+                  return customFunction();
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["loadMetrica"] != null &&
+            typeof $steps["loadMetrica"] === "object" &&
+            typeof $steps["loadMetrica"].then === "function"
+          ) {
+            $steps["loadMetrica"] = await $steps["loadMetrica"];
+          }
+        }}
+      />
 
-          <Embed
-            data-plasmic-name={"gtm"}
-            data-plasmic-override={overrides.gtm}
-            className={classNames("__wab_instance", sty.gtm)}
-            code={
-              '\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"\nheight="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->\n\n<!-- Yandex.Metrika counter -->\n<script type="text/javascript" >\n   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n   m[i].l=1*new Date();\n   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})\n   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");\n\n   ym(98277236, "init", {\n        clickmap:true,\n        trackLinks:true,\n        accurateTrackBounce:true,\n        webvisor:true\n   });\n</script>\n<noscript><div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div></noscript>\n<!-- /Yandex.Metrika counter -->'
-            }
-          />
-        </div>
-      </div>
-    </React.Fragment>
+      <Embed
+        data-plasmic-name={"gtm"}
+        data-plasmic-override={overrides.gtm}
+        className={classNames("__wab_instance", sty.gtm)}
+        code={
+          '\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"\nheight="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->\n\n<!-- Yandex.Metrika counter -->\n<script type="text/javascript" >\n   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n   m[i].l=1*new Date();\n   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})\n   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");\n\n   ym(98277236, "init", {\n        clickmap:true,\n        trackLinks:true,\n        accurateTrackBounce:true,\n        webvisor:true\n   });\n</script>\n<noscript><div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div></noscript>\n<!-- /Yandex.Metrika counter -->'
+        }
+      />
+    </div>
   ) as React.ReactElement | null;
 }
 
@@ -709,15 +699,7 @@ export const PlasmicPayment3 = Object.assign(
 
     // Metadata about props expected for PlasmicPayment3
     internalVariantProps: PlasmicPayment3__VariantProps,
-    internalArgProps: PlasmicPayment3__ArgProps,
-
-    // Page metadata
-    pageMetadata: {
-      title: "",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    internalArgProps: PlasmicPayment3__ArgProps
   }
 );
 

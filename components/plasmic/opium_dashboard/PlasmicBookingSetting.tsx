@@ -65,6 +65,7 @@ import { accordionHelpers as AntdAccordion_Helpers } from "@plasmicpkgs/antd5/sk
 import { AntdAccordionItem } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
+import Payment3 from "../../../src/pages/payment"; // plasmic-import: jr26i6We0jwY/component
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 
 import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
@@ -101,6 +102,9 @@ export type PlasmicBookingSetting__OverridesType = {
   cancellationPolicy?: Flex__<"div">;
   accordionCancellationPolicy?: Flex__<typeof AntdAccordion>;
   refundrange?: Flex__<typeof Input>;
+  paymentSetting?: Flex__<"div">;
+  accordion2?: Flex__<typeof AntdAccordion>;
+  payment3?: Flex__<typeof Payment3>;
   runCodeGtmMetrica?: Flex__<typeof SideEffect>;
   gtm?: Flex__<typeof Embed>;
 };
@@ -284,6 +288,17 @@ function PlasmicBookingSetting__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "accordion2.activePanelId",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        onMutate: generateOnMutateForSpec(
+          "activePanelId",
+          AntdAccordion_Helpers
+        )
       }
     ],
     [$props, $ctx, $refs]
@@ -1987,6 +2002,179 @@ function PlasmicBookingSetting__RenderFunc(props: {
                 })()}
               </div>
             ) : null}
+            <div
+              data-plasmic-name={"paymentSetting"}
+              data-plasmic-override={overrides.paymentSetting}
+              className={classNames(projectcss.all, sty.paymentSetting)}
+              dir={"rtl"}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["sendEvent"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                group: "settings",
+                                data: {
+                                  settingdetails: $state.settingBookingDateRange
+                                },
+                                type: "click-accordion-rang-booking"
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["sendEvent"] != null &&
+                  typeof $steps["sendEvent"] === "object" &&
+                  typeof $steps["sendEvent"].then === "function"
+                ) {
+                  $steps["sendEvent"] = await $steps["sendEvent"];
+                }
+              }}
+            >
+              {(() => {
+                const child$Props = {
+                  activeKey: generateStateValueProp($state, [
+                    "accordion2",
+                    "activePanelId"
+                  ]),
+                  bordered: true,
+                  className: classNames("__wab_instance", sty.accordion2),
+                  items: (
+                    <React.Fragment>
+                      <AntdAccordionItem
+                        className={classNames(
+                          "__wab_instance",
+                          sty.accordionItem___5EhKh
+                        )}
+                        id={1}
+                        label2={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__oyvci
+                            )}
+                          >
+                            {
+                              "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u062a\u0633\u0648\u06cc\u0647 \u062d\u0633\u0627\u0628"
+                            }
+                          </div>
+                        }
+                        showArrow={true}
+                      >
+                        <Stack__
+                          as={"div"}
+                          hasGap={true}
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__tdVUz
+                          )}
+                        >
+                          <Payment3
+                            data-plasmic-name={"payment3"}
+                            data-plasmic-override={overrides.payment3}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.payment3
+                            )}
+                            userId={(() => {
+                              try {
+                                return { user_id: $ctx.query.user_id };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
+                          />
+                        </Stack__>
+                      </AntdAccordionItem>
+                      <AntdAccordionItem
+                        className={classNames(
+                          "__wab_instance",
+                          sty.accordionItem__nC8Bb
+                        )}
+                        id={2}
+                        label2={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__zBD
+                            )}
+                          >
+                            {
+                              "\u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a \u0622\u06cc\u0646\u062f\u0647"
+                            }
+                          </div>
+                        }
+                        showArrow={true}
+                      >
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text___4Uke4
+                          )}
+                        >
+                          {"Second Children"}
+                        </div>
+                      </AntdAccordionItem>
+                    </React.Fragment>
+                  ),
+                  onChange: async (...eventArgs: any) => {
+                    generateStateOnChangePropForCodeComponents(
+                      $state,
+                      "activePanelId",
+                      ["accordion2", "activePanelId"],
+                      AntdAccordion_Helpers
+                    ).apply(null, eventArgs);
+                  }
+                };
+                initializeCodeComponentStates(
+                  $state,
+                  [
+                    {
+                      name: "activePanelId",
+                      plasmicStateName: "accordion2.activePanelId"
+                    }
+                  ],
+                  [],
+                  AntdAccordion_Helpers ?? {},
+                  child$Props
+                );
+
+                return (
+                  <AntdAccordion
+                    data-plasmic-name={"accordion2"}
+                    data-plasmic-override={overrides.accordion2}
+                    {...child$Props}
+                  />
+                );
+              })()}
+            </div>
           </Stack__>
           <SideEffect
             data-plasmic-name={"runCodeGtmMetrica"}
@@ -2108,6 +2296,9 @@ const PlasmicDescendants = {
     "cancellationPolicy",
     "accordionCancellationPolicy",
     "refundrange",
+    "paymentSetting",
+    "accordion2",
+    "payment3",
     "runCodeGtmMetrica",
     "gtm"
   ],
@@ -2124,6 +2315,9 @@ const PlasmicDescendants = {
   ],
   accordionCancellationPolicy: ["accordionCancellationPolicy", "refundrange"],
   refundrange: ["refundrange"],
+  paymentSetting: ["paymentSetting", "accordion2", "payment3"],
+  accordion2: ["accordion2", "payment3"],
+  payment3: ["payment3"],
   runCodeGtmMetrica: ["runCodeGtmMetrica"],
   gtm: ["gtm"]
 } as const;
@@ -2141,6 +2335,9 @@ type NodeDefaultElementType = {
   cancellationPolicy: "div";
   accordionCancellationPolicy: typeof AntdAccordion;
   refundrange: typeof Input;
+  paymentSetting: "div";
+  accordion2: typeof AntdAccordion;
+  payment3: typeof Payment3;
   runCodeGtmMetrica: typeof SideEffect;
   gtm: typeof Embed;
 };
@@ -2216,6 +2413,9 @@ export const PlasmicBookingSetting = Object.assign(
       "accordionCancellationPolicy"
     ),
     refundrange: makeNodeComponent("refundrange"),
+    paymentSetting: makeNodeComponent("paymentSetting"),
+    accordion2: makeNodeComponent("accordion2"),
+    payment3: makeNodeComponent("payment3"),
     runCodeGtmMetrica: makeNodeComponent("runCodeGtmMetrica"),
     gtm: makeNodeComponent("gtm"),
 
