@@ -425,9 +425,9 @@ function PlasmicActivationFinish__RenderFunc(props: {
                     $steps["sendEvent"] = await $steps["sendEvent"];
                   }
 
-                  $steps["goTo"] = true
+                  $steps["goToBookList"] = true
                     ? (() => {
-                        const actionArgs = { destination: "/" };
+                        const actionArgs = { destination: `/book-list` };
                         return (({ destination }) => {
                           if (
                             typeof destination === "string" &&
@@ -443,11 +443,11 @@ function PlasmicActivationFinish__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["goTo"] != null &&
-                    typeof $steps["goTo"] === "object" &&
-                    typeof $steps["goTo"].then === "function"
+                    $steps["goToBookList"] != null &&
+                    typeof $steps["goToBookList"] === "object" &&
+                    typeof $steps["goToBookList"].then === "function"
                   ) {
-                    $steps["goTo"] = await $steps["goTo"];
+                    $steps["goToBookList"] = await $steps["goToBookList"];
                   }
                 }}
                 onLoad={async event => {
