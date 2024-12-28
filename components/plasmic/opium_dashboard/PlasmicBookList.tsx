@@ -3221,7 +3221,10 @@ function PlasmicBookList__RenderFunc(props: {
             }}
             params={(() => {
               try {
-                return { key: "booking:activate_online_payment" };
+                return {
+                  key: "booking:activate_online_payment",
+                  userid: $ctx.query.user_id
+                };
               } catch (e) {
                 if (
                   e instanceof TypeError ||
