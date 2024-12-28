@@ -87,10 +87,12 @@ export const PlasmicActivationOfficeCost__VariantProps =
 
 export type PlasmicActivationOfficeCost__ArgsType = {
   hasOnlineVisit?: boolean;
+  userId?: string;
 };
 type ArgPropType = keyof PlasmicActivationOfficeCost__ArgsType;
 export const PlasmicActivationOfficeCost__ArgProps = new Array<ArgPropType>(
-  "hasOnlineVisit"
+  "hasOnlineVisit",
+  "userId"
 );
 
 export type PlasmicActivationOfficeCost__OverridesType = {
@@ -103,6 +105,7 @@ export type PlasmicActivationOfficeCost__OverridesType = {
 
 export interface DefaultActivationOfficeCostProps {
   hasOnlineVisit?: boolean;
+  userId?: string;
   className?: string;
 }
 
@@ -604,9 +607,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                map: $state.map,
-                                apiadress: $state.addressApi.data,
-                                notifycell: $state.notifyCell.notifyCellValue
+                                userid: $props.userId,
+                                onlinevisit: $props.hasOnlineVisit
                               },
                               event_type:
                                 "click-next-button-office-step3-set-payment"
@@ -832,9 +834,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                map: $state.map,
-                                apiadress: $state.addressApi.data,
-                                notifycell: $state.notifyCell.notifyCellValue
+                                userid: $props.userId,
+                                onlinevisit: $props.hasOnlineVisit
                               },
                               event_type:
                                 "click-cancel-button-office-step3-set-payment"
@@ -978,7 +979,9 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 sty.text__qlSyo
               )}
             >
-              {"Enter some text"}
+              {
+                " \u0645\u0647\u0645 : \u0645\u0628\u0644\u063a \u0628\u064a\u0639\u0627\u0646\u0647 \u0627\u0649 \u0643\u0647 \u0628\u064a\u0645\u0627\u0631 \u064a\u0631\u062f\u0627\u062e\u062a \u0645\u0649 \u0643\u0646\u062f\u060c \u0628\u062e\u0634\u0649 \u0627\u0632 \u062d\u0642 \u0648\u064a\u0632\u064a\u062a \u0627\u0633\u062a. \u0628\u0646\u0627\u0628\u0631\u0627\u064a\u0646 \u0647\u0646\u0643\u0627\u0645 \u0645\u0631\u0627\u062c\u0639\u0647 \u0628\u064a\u0645\u0627\u0631 \u0648 \u062a\u0633\u0648\u064a\u0647 \u062d\u0636\u0648\u0631\u0649\u060c \u0627\u064a\u0646 \u0645\u0628\u0644\u063a \u0628\u0627\u064a\u062f \u0627\u0632 \u0643\u0644 \u0645\u0628\u0644\u063a \u0648\u064a\u0632\u064a\u062a \u0643\u0633\u0631 \u0634\u0648\u062f."
+              }
             </div>
             <Button
               children2={"\u0630\u062e\u06cc\u0631\u0647"}
@@ -1167,10 +1170,11 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                 event_group: "activation-page",
                                 data: {
                                   centers: $state.centersApi.data.data,
-                                  select: $state.select
+                                  select: $state.select,
+                                  userid: $props.userId
                                 },
                                 event_type:
-                                  "click-save-button-payment-office-step4"
+                                  "click-save-button-payment-office-rules-step4"
                               };
                             } catch (e) {
                               if (

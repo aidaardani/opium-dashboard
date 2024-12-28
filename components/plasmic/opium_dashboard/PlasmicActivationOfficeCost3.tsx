@@ -218,6 +218,19 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
                     throw e;
                   }
                 })()}
+                userId={(() => {
+                  try {
+                    return $ctx.query.user_id;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
               />
             </div>
           </div>
