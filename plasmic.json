@@ -2237,6 +2237,32 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicSelectionItem.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "u5OpNiUAc1Uk",
+          "name": "PaymentSetting",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicPaymentSetting.tsx",
+          "importSpec": {
+            "modulePath": "PaymentSetting.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicPaymentSetting.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "mbDXrFsrMCB0",
+          "name": "PaymentTotal",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicPaymentTotal.tsx",
+          "importSpec": {
+            "modulePath": "PaymentTotal.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicPaymentTotal.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -2659,6 +2685,60 @@
           "name": "Map",
           "displayName": "Map",
           "componentImportPath": "@/fragment/components/map"
+        }
+      ],
+      "customFunctions": []
+    },
+    {
+      "projectId": "jkU633o1Cz7HrJdwdxhVHk",
+      "projectApiToken": "RNOKYUdvtFBrgxbf09RPjYgL9LzpnT4pIsOrtpsqlLDYBRxYynkAo8OY9YRWPdoaSnRAwOO2e5PWfuVNypw",
+      "projectName": "plasmic-rich-components",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/plasmic_rich_components/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "codeComponents": [
+        {
+          "id": "FNIk-CnxQYXU",
+          "name": "RichLayout",
+          "displayName": "hostless-rich-layout",
+          "componentImportPath": "@plasmicpkgs/plasmic-rich-components/skinny/rich-layout"
+        },
+        {
+          "id": "k4RvFQUTZKCU",
+          "name": "RichTable",
+          "displayName": "hostless-rich-table",
+          "componentImportPath": "@plasmicpkgs/plasmic-rich-components/skinny/rich-table",
+          "helper": {
+            "name": "tableHelpers",
+            "importPath": "@plasmicpkgs/plasmic-rich-components/skinny/rich-table"
+          }
+        },
+        {
+          "id": "zV8WqibK3ZnC",
+          "name": "RichDetails",
+          "displayName": "hostless-rich-details",
+          "componentImportPath": "@plasmicpkgs/plasmic-rich-components/skinny/rich-details"
+        },
+        {
+          "id": "Hh2OL1EveIF",
+          "name": "RichList",
+          "displayName": "hostless-rich-list",
+          "componentImportPath": "@plasmicpkgs/plasmic-rich-components/skinny/rich-list"
+        },
+        {
+          "id": "UzObi2yVH_DH",
+          "name": "RichCalendar",
+          "displayName": "hostless-rich-calendar",
+          "componentImportPath": "@plasmicpkgs/plasmic-rich-components/skinny/rich-calendar",
+          "helper": {
+            "name": "calendarHelpers",
+            "importPath": "@plasmicpkgs/plasmic-rich-components/skinny/rich-calendar"
+          }
         }
       ],
       "customFunctions": []

@@ -65,7 +65,7 @@ import { accordionHelpers as AntdAccordion_Helpers } from "@plasmicpkgs/antd5/sk
 import { AntdAccordionItem } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
-import Payment3 from "../../../src/pages/payment"; // plasmic-import: jr26i6We0jwY/component
+import PaymentTotal from "../../PaymentTotal"; // plasmic-import: mbDXrFsrMCB0/component
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 
 import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
@@ -74,6 +74,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
+import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicBookingSetting.module.css"; // plasmic-import: Rm8MeSoy4UAw/css
 
@@ -104,7 +105,7 @@ export type PlasmicBookingSetting__OverridesType = {
   refundrange?: Flex__<typeof Input>;
   paymentSetting?: Flex__<"div">;
   accordion2?: Flex__<typeof AntdAccordion>;
-  payment3?: Flex__<typeof Payment3>;
+  paymentTotal?: Flex__<typeof PaymentTotal>;
   runCodeGtmMetrica?: Flex__<typeof SideEffect>;
   gtm?: Flex__<typeof Embed>;
 };
@@ -325,332 +326,273 @@ function PlasmicBookingSetting__RenderFunc(props: {
       `}</style>
 
       <div className={projectcss.plasmic_page_wrapper}>
-        <div
-          data-plasmic-name={"root"}
-          data-plasmic-override={overrides.root}
-          data-plasmic-root={true}
-          data-plasmic-for-node={forNode}
-          Dir={"rtl"}
-          className={classNames(
-            projectcss.all,
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
-            projectcss.plasmic_tokens,
-            plasmic_fragment_design_system_css.plasmic_tokens,
-            plasmic_antd_5_hostless_css.plasmic_tokens,
-            sty.root
-          )}
-        >
-          <SideEffect
-            data-plasmic-name={"sideEffect"}
-            data-plasmic-override={overrides.sideEffect}
-            className={classNames("__wab_instance", sty.sideEffect)}
-            onMount={async () => {
-              const $steps = {};
-
-              $steps["apiGetSettingBooking"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "GET",
-                        "https://apigw.paziresh24.com/nelson/v1/setting",
-                        (() => {
-                          try {
-                            return {
-                              key: "booking:booking_date_range",
-                              user_id: $ctx.query.user_id
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["apiGetSettingBooking"] != null &&
-                typeof $steps["apiGetSettingBooking"] === "object" &&
-                typeof $steps["apiGetSettingBooking"].then === "function"
-              ) {
-                $steps["apiGetSettingBooking"] = await $steps[
-                  "apiGetSettingBooking"
-                ];
-              }
-
-              $steps["updateSettings"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["settingBookingDateRange"]
-                      },
-                      operation: 0,
-                      value: $steps.apiGetSettingBooking.data
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateSettings"] != null &&
-                typeof $steps["updateSettings"] === "object" &&
-                typeof $steps["updateSettings"].then === "function"
-              ) {
-                $steps["updateSettings"] = await $steps["updateSettings"];
-              }
-
-              $steps["apiGetRefundSetting"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "GET",
-                        "https://apigw.paziresh24.com/nelson/v1/setting",
-                        (() => {
-                          try {
-                            return {
-                              key: "booking:delay_to_delete_book_refund",
-                              user_id: $ctx.query.user_id
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["apiGetRefundSetting"] != null &&
-                typeof $steps["apiGetRefundSetting"] === "object" &&
-                typeof $steps["apiGetRefundSetting"].then === "function"
-              ) {
-                $steps["apiGetRefundSetting"] = await $steps[
-                  "apiGetRefundSetting"
-                ];
-              }
-
-              $steps["updateSettingRefund"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["settingBookingRefundValue"]
-                      },
-                      operation: 0,
-                      value: $steps.apiGetRefundSetting.data
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateSettingRefund"] != null &&
-                typeof $steps["updateSettingRefund"] === "object" &&
-                typeof $steps["updateSettingRefund"].then === "function"
-              ) {
-                $steps["updateSettingRefund"] = await $steps[
-                  "updateSettingRefund"
-                ];
-              }
-
-              $steps["apiGetPaymentSetting"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "GET",
-                        "https://apigw.paziresh24.com/nelson/v1/setting",
-                        (() => {
-                          try {
-                            return {
-                              key: "booking:activate_online_payment",
-                              user_id: $ctx.query.user_id
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["apiGetPaymentSetting"] != null &&
-                typeof $steps["apiGetPaymentSetting"] === "object" &&
-                typeof $steps["apiGetPaymentSetting"].then === "function"
-              ) {
-                $steps["apiGetPaymentSetting"] = await $steps[
-                  "apiGetPaymentSetting"
-                ];
-              }
-
-              $steps["updateSettingBookingPaymentStatus"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["settingBookingPaymentStatus"]
-                      },
-                      operation: 0,
-                      value: $steps.apiGetPaymentSetting.data
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateSettingBookingPaymentStatus"] != null &&
-                typeof $steps["updateSettingBookingPaymentStatus"] ===
-                  "object" &&
-                typeof $steps["updateSettingBookingPaymentStatus"].then ===
-                  "function"
-              ) {
-                $steps["updateSettingBookingPaymentStatus"] = await $steps[
-                  "updateSettingBookingPaymentStatus"
-                ];
-              }
-
-              $steps["sendEventLoad"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return {
-                              group: "settings",
-                              data: {
-                                settingdetails: $state.settingBookingDateRange
-                              },
-                              type: "load-page"
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Splunk.sendLog"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["sendEventLoad"] != null &&
-                typeof $steps["sendEventLoad"] === "object" &&
-                typeof $steps["sendEventLoad"].then === "function"
-              ) {
-                $steps["sendEventLoad"] = await $steps["sendEventLoad"];
-              }
-            }}
-          />
-
-          <Stack__
-            as={"div"}
-            hasGap={true}
+        {(() => {
+          try {
+            return !!$ctx.query.user_id;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return false;
+            }
+            throw e;
+          }
+        })() ? (
+          <div
+            data-plasmic-name={"root"}
+            data-plasmic-override={overrides.root}
+            data-plasmic-root={true}
+            data-plasmic-for-node={forNode}
             Dir={"rtl"}
-            className={classNames(projectcss.all, sty.freeBox__oNzqi)}
+            className={classNames(
+              projectcss.all,
+              projectcss.root_reset,
+              projectcss.plasmic_default_styles,
+              projectcss.plasmic_mixins,
+              projectcss.plasmic_tokens,
+              plasmic_fragment_design_system_css.plasmic_tokens,
+              plasmic_antd_5_hostless_css.plasmic_tokens,
+              plasmic_plasmic_rich_components_css.plasmic_tokens,
+              sty.root
+            )}
           >
-            <div className={classNames(projectcss.all, sty.freeBox__ge59)}>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text___4Bhmm
-                )}
-              >
-                <React.Fragment>
-                  <React.Fragment>{""}</React.Fragment>
-                  {
-                    <h4
-                      data-plasmic-name={"h4"}
-                      data-plasmic-override={overrides.h4}
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.h4,
-                        projectcss.__wab_text,
-                        sty.h4
-                      )}
-                    >
-                      <React.Fragment>
-                        <span
-                          className={
-                            "plasmic_default__all plasmic_default__span"
-                          }
-                          style={{ fontWeight: 700 }}
-                        >
-                          {"\u062a\u0646\u0638\u06cc\u0645\u0627\u062a"}
-                        </span>
-                      </React.Fragment>
-                    </h4>
-                  }
-                  <React.Fragment>{""}</React.Fragment>
-                </React.Fragment>
-              </div>
-            </div>
-            <div
-              data-plasmic-name={"rangOfBooking"}
-              data-plasmic-override={overrides.rangOfBooking}
-              className={classNames(projectcss.all, sty.rangOfBooking)}
-              dir={"rtl"}
-              onClick={async event => {
+            <SideEffect
+              data-plasmic-name={"sideEffect"}
+              data-plasmic-override={overrides.sideEffect}
+              className={classNames("__wab_instance", sty.sideEffect)}
+              onMount={async () => {
                 const $steps = {};
 
-                $steps["sendEvent"] = true
+                $steps["apiGetSettingBooking"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "GET",
+                          "https://apigw.paziresh24.com/nelson/v1/setting",
+                          (() => {
+                            try {
+                              return {
+                                key: "booking:booking_date_range",
+                                user_id: $ctx.query.user_id
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["apiGetSettingBooking"] != null &&
+                  typeof $steps["apiGetSettingBooking"] === "object" &&
+                  typeof $steps["apiGetSettingBooking"].then === "function"
+                ) {
+                  $steps["apiGetSettingBooking"] = await $steps[
+                    "apiGetSettingBooking"
+                  ];
+                }
+
+                $steps["updateSettings"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["settingBookingDateRange"]
+                        },
+                        operation: 0,
+                        value: $steps.apiGetSettingBooking.data
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateSettings"] != null &&
+                  typeof $steps["updateSettings"] === "object" &&
+                  typeof $steps["updateSettings"].then === "function"
+                ) {
+                  $steps["updateSettings"] = await $steps["updateSettings"];
+                }
+
+                $steps["apiGetRefundSetting"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "GET",
+                          "https://apigw.paziresh24.com/nelson/v1/setting",
+                          (() => {
+                            try {
+                              return {
+                                key: "booking:delay_to_delete_book_refund",
+                                user_id: $ctx.query.user_id
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["apiGetRefundSetting"] != null &&
+                  typeof $steps["apiGetRefundSetting"] === "object" &&
+                  typeof $steps["apiGetRefundSetting"].then === "function"
+                ) {
+                  $steps["apiGetRefundSetting"] = await $steps[
+                    "apiGetRefundSetting"
+                  ];
+                }
+
+                $steps["updateSettingRefund"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["settingBookingRefundValue"]
+                        },
+                        operation: 0,
+                        value: $steps.apiGetRefundSetting.data
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateSettingRefund"] != null &&
+                  typeof $steps["updateSettingRefund"] === "object" &&
+                  typeof $steps["updateSettingRefund"].then === "function"
+                ) {
+                  $steps["updateSettingRefund"] = await $steps[
+                    "updateSettingRefund"
+                  ];
+                }
+
+                $steps["apiGetPaymentSetting"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "GET",
+                          "https://apigw.paziresh24.com/nelson/v1/setting",
+                          (() => {
+                            try {
+                              return {
+                                key: "booking:activate_online_payment",
+                                user_id: $ctx.query.user_id
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["apiGetPaymentSetting"] != null &&
+                  typeof $steps["apiGetPaymentSetting"] === "object" &&
+                  typeof $steps["apiGetPaymentSetting"].then === "function"
+                ) {
+                  $steps["apiGetPaymentSetting"] = await $steps[
+                    "apiGetPaymentSetting"
+                  ];
+                }
+
+                $steps["updateSettingBookingPaymentStatus"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["settingBookingPaymentStatus"]
+                        },
+                        operation: 0,
+                        value: $steps.apiGetPaymentSetting.data
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateSettingBookingPaymentStatus"] != null &&
+                  typeof $steps["updateSettingBookingPaymentStatus"] ===
+                    "object" &&
+                  typeof $steps["updateSettingBookingPaymentStatus"].then ===
+                    "function"
+                ) {
+                  $steps["updateSettingBookingPaymentStatus"] = await $steps[
+                    "updateSettingBookingPaymentStatus"
+                  ];
+                }
+
+                $steps["sendEventLoad"] = true
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -661,7 +603,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                 data: {
                                   settingdetails: $state.settingBookingDateRange
                                 },
-                                type: "click-accordion-rang-booking"
+                                type: "load-page"
                               };
                             } catch (e) {
                               if (
@@ -681,750 +623,63 @@ function PlasmicBookingSetting__RenderFunc(props: {
                     })()
                   : undefined;
                 if (
-                  $steps["sendEvent"] != null &&
-                  typeof $steps["sendEvent"] === "object" &&
-                  typeof $steps["sendEvent"].then === "function"
+                  $steps["sendEventLoad"] != null &&
+                  typeof $steps["sendEventLoad"] === "object" &&
+                  typeof $steps["sendEventLoad"].then === "function"
                 ) {
-                  $steps["sendEvent"] = await $steps["sendEvent"];
+                  $steps["sendEventLoad"] = await $steps["sendEventLoad"];
                 }
               }}
+            />
+
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              Dir={"rtl"}
+              className={classNames(projectcss.all, sty.freeBox__oNzqi)}
             >
-              {(() => {
-                const child$Props = {
-                  activeKey: generateStateValueProp($state, [
-                    "accordion",
-                    "activePanelId"
-                  ]),
-                  bordered: true,
-                  className: classNames("__wab_instance", sty.accordion),
-                  items: (
-                    <React.Fragment>
-                      <AntdAccordionItem
-                        className={classNames(
-                          "__wab_instance",
-                          sty.accordionItem__bVeey
-                        )}
-                        id={1}
-                        label2={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__a0Zqe
-                            )}
-                          >
-                            {
-                              "\u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a \u0622\u06cc\u0646\u062f\u0647"
-                            }
-                          </div>
-                        }
-                        showArrow={true}
-                      >
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox___1DFm2
-                          )}
-                        >
-                          {(() => {
-                            try {
-                              return (
-                                $state.to.value !== "" &&
-                                $state.from.value !== ""
-                              );
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return false;
-                              }
-                              throw e;
-                            }
-                          })() ? (
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text___5XwMp
-                              )}
-                            >
-                              <React.Fragment>
-                                {(() => {
-                                  try {
-                                    return `بیماران برای ${
-                                      $state.from.value === 0 ||
-                                      $state.from.value === "0"
-                                        ? "امروز"
-                                        : $state.from.value === "1"
-                                        ? "فردا"
-                                        : $state.from.value
-                                    } تا ${
-                                      $state.to.value
-                                    } روز دیگر می توانند نوبت بگیرند.`;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return "\u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0628\u0631\u0627\u06cc \u0628\u0627\u0632\u0647\u200c\u06cc \u0632\u0645\u0627\u0646\u06cc \u0645\u0634\u062e\u0635 \u0634\u062f\u0647\u060c \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u0646\u062f \u0646\u0648\u0628\u062a \u0628\u06af\u06cc\u0631\u0646\u062f.";
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                              </React.Fragment>
-                            </div>
-                          ) : null}
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__ae6B6
-                            )}
-                          >
-                            {(() => {
-                              const child$Props = {
-                                className: classNames(
-                                  "__wab_instance",
-                                  sty.from
-                                ),
-                                onChange: async (...eventArgs: any) => {
-                                  generateStateOnChangeProp($state, [
-                                    "from",
-                                    "value"
-                                  ]).apply(null, eventArgs);
-
-                                  (async value => {
-                                    const $steps = {};
-
-                                    $steps["updateFromValue"] =
-                                      value >= 0
-                                        ? (() => {
-                                            const actionArgs = {
-                                              variable: {
-                                                objRoot: $state,
-                                                variablePath: ["from", "value"]
-                                              },
-                                              operation: 0,
-                                              value: value
-                                            };
-                                            return (({
-                                              variable,
-                                              value,
-                                              startIndex,
-                                              deleteCount
-                                            }) => {
-                                              if (!variable) {
-                                                return;
-                                              }
-                                              const { objRoot, variablePath } =
-                                                variable;
-
-                                              $stateSet(
-                                                objRoot,
-                                                variablePath,
-                                                value
-                                              );
-                                              return value;
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                    if (
-                                      $steps["updateFromValue"] != null &&
-                                      typeof $steps["updateFromValue"] ===
-                                        "object" &&
-                                      typeof $steps["updateFromValue"].then ===
-                                        "function"
-                                    ) {
-                                      $steps["updateFromValue"] = await $steps[
-                                        "updateFromValue"
-                                      ];
-                                    }
-
-                                    $steps["updateFromValue2"] =
-                                      value < 0
-                                        ? (() => {
-                                            const actionArgs = {
-                                              variable: {
-                                                objRoot: $state,
-                                                variablePath: ["from", "value"]
-                                              },
-                                              operation: 0,
-                                              value: "0"
-                                            };
-                                            return (({
-                                              variable,
-                                              value,
-                                              startIndex,
-                                              deleteCount
-                                            }) => {
-                                              if (!variable) {
-                                                return;
-                                              }
-                                              const { objRoot, variablePath } =
-                                                variable;
-
-                                              $stateSet(
-                                                objRoot,
-                                                variablePath,
-                                                value
-                                              );
-                                              return value;
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                    if (
-                                      $steps["updateFromValue2"] != null &&
-                                      typeof $steps["updateFromValue2"] ===
-                                        "object" &&
-                                      typeof $steps["updateFromValue2"].then ===
-                                        "function"
-                                    ) {
-                                      $steps["updateFromValue2"] = await $steps[
-                                        "updateFromValue2"
-                                      ];
-                                    }
-                                  }).apply(null, eventArgs);
-                                },
-                                type: "number",
-                                value: generateStateValueProp($state, [
-                                  "from",
-                                  "value"
-                                ])
-                              };
-                              initializeCodeComponentStates(
-                                $state,
-                                [
-                                  {
-                                    name: "value",
-                                    plasmicStateName: "from.value"
-                                  }
-                                ],
-                                [],
-                                undefined ?? {},
-                                child$Props
-                              );
-                              initializePlasmicStates(
-                                $state,
-                                [
-                                  {
-                                    name: "from.value",
-                                    initFunc: ({ $props, $state, $queries }) =>
-                                      (() => {
-                                        try {
-                                          return (() => {
-                                            return $state
-                                              .settingBookingDateRange
-                                              .message ===
-                                              "این تنظیم برای کاربر وجود ندارد"
-                                              ? 0
-                                              : JSON.parse(
-                                                  $state
-                                                    .settingBookingDateRange[0]
-                                                    .value
-                                                ).from;
-                                          })();
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return undefined;
-                                          }
-                                          throw e;
-                                        }
-                                      })()
-                                  }
-                                ],
-                                []
-                              );
-                              return (
-                                <Input
-                                  data-plasmic-name={"from"}
-                                  data-plasmic-override={overrides.from}
-                                  {...child$Props}
-                                />
-                              );
-                            })()}
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__awejM
-                              )}
-                            >
-                              {"\u062a\u0627"}
-                            </div>
-                            {(() => {
-                              const child$Props = {
-                                className: classNames("__wab_instance", sty.to),
-                                onChange: async (...eventArgs: any) => {
-                                  generateStateOnChangeProp($state, [
-                                    "to",
-                                    "value"
-                                  ]).apply(null, eventArgs);
-
-                                  (async value => {
-                                    const $steps = {};
-
-                                    $steps["updateToValue"] =
-                                      value >= 0
-                                        ? (() => {
-                                            const actionArgs = {
-                                              variable: {
-                                                objRoot: $state,
-                                                variablePath: ["to", "value"]
-                                              },
-                                              operation: 0,
-                                              value: value
-                                            };
-                                            return (({
-                                              variable,
-                                              value,
-                                              startIndex,
-                                              deleteCount
-                                            }) => {
-                                              if (!variable) {
-                                                return;
-                                              }
-                                              const { objRoot, variablePath } =
-                                                variable;
-
-                                              $stateSet(
-                                                objRoot,
-                                                variablePath,
-                                                value
-                                              );
-                                              return value;
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                    if (
-                                      $steps["updateToValue"] != null &&
-                                      typeof $steps["updateToValue"] ===
-                                        "object" &&
-                                      typeof $steps["updateToValue"].then ===
-                                        "function"
-                                    ) {
-                                      $steps["updateToValue"] = await $steps[
-                                        "updateToValue"
-                                      ];
-                                    }
-
-                                    $steps["updateToValue2"] =
-                                      value < 0
-                                        ? (() => {
-                                            const actionArgs = {
-                                              variable: {
-                                                objRoot: $state,
-                                                variablePath: ["to", "value"]
-                                              },
-                                              operation: 0,
-                                              value: "0"
-                                            };
-                                            return (({
-                                              variable,
-                                              value,
-                                              startIndex,
-                                              deleteCount
-                                            }) => {
-                                              if (!variable) {
-                                                return;
-                                              }
-                                              const { objRoot, variablePath } =
-                                                variable;
-
-                                              $stateSet(
-                                                objRoot,
-                                                variablePath,
-                                                value
-                                              );
-                                              return value;
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                    if (
-                                      $steps["updateToValue2"] != null &&
-                                      typeof $steps["updateToValue2"] ===
-                                        "object" &&
-                                      typeof $steps["updateToValue2"].then ===
-                                        "function"
-                                    ) {
-                                      $steps["updateToValue2"] = await $steps[
-                                        "updateToValue2"
-                                      ];
-                                    }
-                                  }).apply(null, eventArgs);
-                                },
-                                type: "number",
-                                value: generateStateValueProp($state, [
-                                  "to",
-                                  "value"
-                                ])
-                              };
-                              initializeCodeComponentStates(
-                                $state,
-                                [
-                                  {
-                                    name: "value",
-                                    plasmicStateName: "to.value"
-                                  }
-                                ],
-                                [],
-                                undefined ?? {},
-                                child$Props
-                              );
-                              initializePlasmicStates(
-                                $state,
-                                [
-                                  {
-                                    name: "to.value",
-                                    initFunc: ({ $props, $state, $queries }) =>
-                                      (() => {
-                                        try {
-                                          return (() => {
-                                            return $state
-                                              .settingBookingDateRange
-                                              .message ===
-                                              "این تنظیم برای کاربر وجود ندارد"
-                                              ? 60
-                                              : JSON.parse(
-                                                  $state
-                                                    .settingBookingDateRange[0]
-                                                    .value
-                                                ).to;
-                                          })();
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return undefined;
-                                          }
-                                          throw e;
-                                        }
-                                      })()
-                                  }
-                                ],
-                                []
-                              );
-                              return (
-                                <Input
-                                  data-plasmic-name={"to"}
-                                  data-plasmic-override={overrides.to}
-                                  {...child$Props}
-                                />
-                              );
-                            })()}
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__l0Ywm
-                              )}
-                            >
-                              {"\u0631\u0648\u0632"}
-                            </div>
-                          </Stack__>
-                          <Button
-                            children2={"\u0630\u062e\u06cc\u0631\u0647"}
-                            className={classNames(
-                              "__wab_instance",
-                              sty.button___7IIwg
-                            )}
-                            loading={(() => {
-                              try {
-                                return $state.loadingBookingDateRange;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return [];
-                                }
-                                throw e;
-                              }
-                            })()}
-                            onClick={async event => {
-                              const $steps = {};
-
-                              $steps["startLoading"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: [
-                                          "loadingBookingDateRange"
-                                        ]
-                                      },
-                                      operation: 0,
-                                      value: true
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["startLoading"] != null &&
-                                typeof $steps["startLoading"] === "object" &&
-                                typeof $steps["startLoading"].then ===
-                                  "function"
-                              ) {
-                                $steps["startLoading"] = await $steps[
-                                  "startLoading"
-                                ];
-                              }
-
-                              $steps["apiPatchSetting"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      args: [
-                                        "PATCH",
-                                        "https://apigw.paziresh24.com/v1/nelson/setting/update",
-                                        (() => {
-                                          try {
-                                            return {
-                                              key: "booking:booking_date_range",
-                                              from: $state.from.value,
-                                              to: $state.to.value,
-                                              pattern_base: 1
-                                            };
-                                          } catch (e) {
-                                            if (
-                                              e instanceof TypeError ||
-                                              e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                            ) {
-                                              return undefined;
-                                            }
-                                            throw e;
-                                          }
-                                        })()
-                                      ]
-                                    };
-                                    return $globalActions[
-                                      "Fragment.apiRequest"
-                                    ]?.apply(null, [...actionArgs.args]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["apiPatchSetting"] != null &&
-                                typeof $steps["apiPatchSetting"] === "object" &&
-                                typeof $steps["apiPatchSetting"].then ===
-                                  "function"
-                              ) {
-                                $steps["apiPatchSetting"] = await $steps[
-                                  "apiPatchSetting"
-                                ];
-                              }
-
-                              $steps["loadingFinish"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: [
-                                          "loadingBookingDateRange"
-                                        ]
-                                      },
-                                      operation: 0,
-                                      value: false
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["loadingFinish"] != null &&
-                                typeof $steps["loadingFinish"] === "object" &&
-                                typeof $steps["loadingFinish"].then ===
-                                  "function"
-                              ) {
-                                $steps["loadingFinish"] = await $steps[
-                                  "loadingFinish"
-                                ];
-                              }
-
-                              $steps["showToast"] =
-                                $steps.apiPatchSetting.data.success === true
-                                  ? (() => {
-                                      const actionArgs = {
-                                        args: [
-                                          undefined,
-                                          "\u0628\u0627\u0632\u0647\u200c\u06cc \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f."
-                                        ]
-                                      };
-                                      return $globalActions[
-                                        "Fragment.showToast"
-                                      ]?.apply(null, [...actionArgs.args]);
-                                    })()
-                                  : undefined;
-                              if (
-                                $steps["showToast"] != null &&
-                                typeof $steps["showToast"] === "object" &&
-                                typeof $steps["showToast"].then === "function"
-                              ) {
-                                $steps["showToast"] = await $steps["showToast"];
-                              }
-
-                              $steps["sendEvent"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      args: [
-                                        (() => {
-                                          try {
-                                            return {
-                                              group: "settings",
-                                              data: {
-                                                from: $state.from.value,
-                                                to: $state.to.value,
-                                                settingdetails:
-                                                  $state.settingBookingDateRange
-                                              },
-                                              type: "click-button-save-rang-booking"
-                                            };
-                                          } catch (e) {
-                                            if (
-                                              e instanceof TypeError ||
-                                              e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                            ) {
-                                              return undefined;
-                                            }
-                                            throw e;
-                                          }
-                                        })()
-                                      ]
-                                    };
-                                    return $globalActions[
-                                      "Splunk.sendLog"
-                                    ]?.apply(null, [...actionArgs.args]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["sendEvent"] != null &&
-                                typeof $steps["sendEvent"] === "object" &&
-                                typeof $steps["sendEvent"].then === "function"
-                              ) {
-                                $steps["sendEvent"] = await $steps["sendEvent"];
-                              }
-                            }}
-                          />
-                        </Stack__>
-                      </AntdAccordionItem>
-                      <AntdAccordionItem
-                        className={classNames(
-                          "__wab_instance",
-                          sty.accordionItem__gfclz
-                        )}
-                        id={2}
-                        label2={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__rUMkO
-                            )}
-                          >
-                            {
-                              "\u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a \u0622\u06cc\u0646\u062f\u0647"
-                            }
-                          </div>
-                        }
-                        showArrow={true}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__fZiT3
-                          )}
-                        >
-                          {"Second Children"}
-                        </div>
-                      </AntdAccordionItem>
-                    </React.Fragment>
-                  ),
-                  onChange: async (...eventArgs: any) => {
-                    generateStateOnChangePropForCodeComponents(
-                      $state,
-                      "activePanelId",
-                      ["accordion", "activePanelId"],
-                      AntdAccordion_Helpers
-                    ).apply(null, eventArgs);
-                  }
-                };
-                initializeCodeComponentStates(
-                  $state,
-                  [
+              <div className={classNames(projectcss.all, sty.freeBox__ge59)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___4Bhmm
+                  )}
+                >
+                  <React.Fragment>
+                    <React.Fragment>{""}</React.Fragment>
                     {
-                      name: "activePanelId",
-                      plasmicStateName: "accordion.activePanelId"
+                      <h4
+                        data-plasmic-name={"h4"}
+                        data-plasmic-override={overrides.h4}
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.h4,
+                          projectcss.__wab_text,
+                          sty.h4
+                        )}
+                      >
+                        <React.Fragment>
+                          <span
+                            className={
+                              "plasmic_default__all plasmic_default__span"
+                            }
+                            style={{ fontWeight: 700 }}
+                          >
+                            {"\u062a\u0646\u0638\u06cc\u0645\u0627\u062a"}
+                          </span>
+                        </React.Fragment>
+                      </h4>
                     }
-                  ],
-                  [],
-                  AntdAccordion_Helpers ?? {},
-                  child$Props
-                );
-
-                return (
-                  <AntdAccordion
-                    data-plasmic-name={"accordion"}
-                    data-plasmic-override={overrides.accordion}
-                    {...child$Props}
-                  />
-                );
-              })()}
-            </div>
-            {(() => {
-              try {
-                return $state.settingBookingPaymentStatus[0].value == 1;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return false;
-                }
-                throw e;
-              }
-            })() ? (
+                    <React.Fragment>{""}</React.Fragment>
+                  </React.Fragment>
+                </div>
+              </div>
               <div
-                data-plasmic-name={"cancellationPolicy"}
-                data-plasmic-override={overrides.cancellationPolicy}
-                className={classNames(projectcss.all, sty.cancellationPolicy)}
+                data-plasmic-name={"rangOfBooking"}
+                data-plasmic-override={overrides.rangOfBooking}
+                className={classNames(projectcss.all, sty.rangOfBooking)}
+                dir={"rtl"}
                 onClick={async event => {
                   const $steps = {};
 
@@ -1438,9 +693,9 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                   group: "settings",
                                   data: {
                                     settingdetails:
-                                      $state.settingBookingRefundValue
+                                      $state.settingBookingDateRange
                                   },
-                                  type: "click-accordion-cancellation-range-booking"
+                                  type: "click-accordion-rang-booking"
                                 };
                               } catch (e) {
                                 if (
@@ -1471,20 +726,17 @@ function PlasmicBookingSetting__RenderFunc(props: {
                 {(() => {
                   const child$Props = {
                     activeKey: generateStateValueProp($state, [
-                      "accordionCancellationPolicy",
+                      "accordion",
                       "activePanelId"
                     ]),
                     bordered: true,
-                    className: classNames(
-                      "__wab_instance",
-                      sty.accordionCancellationPolicy
-                    ),
+                    className: classNames("__wab_instance", sty.accordion),
                     items: (
                       <React.Fragment>
                         <AntdAccordionItem
                           className={classNames(
                             "__wab_instance",
-                            sty.accordionItem___5VbYh
+                            sty.accordionItem__bVeey
                           )}
                           id={1}
                           label2={
@@ -1492,11 +744,11 @@ function PlasmicBookingSetting__RenderFunc(props: {
                               className={classNames(
                                 projectcss.all,
                                 projectcss.__wab_text,
-                                sty.text__eyyt
+                                sty.text__a0Zqe
                               )}
                             >
                               {
-                                "\u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0644\u063a\u0648 \u0646\u0648\u0628\u062a"
+                                "\u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a \u0622\u06cc\u0646\u062f\u0647"
                               }
                             </div>
                           }
@@ -1507,222 +759,445 @@ function PlasmicBookingSetting__RenderFunc(props: {
                             hasGap={true}
                             className={classNames(
                               projectcss.all,
-                              sty.freeBox__kbhem
+                              sty.freeBox___1DFm2
                             )}
                           >
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__zV7Mv
-                              )}
-                            >
-                              {(() => {
-                                try {
-                                  return !!$state.settingBookingRefundValue;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return false;
-                                  }
-                                  throw e;
+                            {(() => {
+                              try {
+                                return (
+                                  $state.to.value !== "" &&
+                                  $state.from.value !== ""
+                                );
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return false;
                                 }
-                              })() ? (
-                                <div
-                                  className={classNames(
-                                    projectcss.all,
-                                    projectcss.__wab_text,
-                                    sty.text__rZtv0
-                                  )}
-                                >
-                                  <React.Fragment>
-                                    {(() => {
-                                      try {
-                                        return `در صورت لغو نوبت تا «${
-                                          $state.refundrange.value ||
-                                          $state.settingBookingRefundValue.value
-                                        }» ساعت قبل از زمان ویزیت، وجه بیمار مسترد خواهد شد.`.replace(
-                                          /\d/g,
-                                          d =>
-                                            [
-                                              "۰",
-                                              "۱",
-                                              "۲",
-                                              "۳",
-                                              "۴",
-                                              "۵",
-                                              "۶",
-                                              "۷",
-                                              "۸",
-                                              "۹"
-                                            ][d]
-                                        );
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return "\u062f\u0631 \u0635\u0648\u0631\u062a \u0644\u063a\u0648 \u0646\u0648\u0628\u062a \u062a\u0627 5 \u0633\u0627\u0639\u062a \u0642\u0628\u0644 \u0627\u0632 \u0632\u0645\u0627\u0646 \u0648\u06cc\u0632\u06cc\u062a\u060c \u0627\u0645\u06a9\u0627\u0646 \u0627\u0633\u062a\u0631\u062f\u0627\u062f \u0648\u062c\u0647 \u0634\u0645\u0627 \u0645\u0645\u06a9\u0646 \u0645\u06cc \u0628\u0627\u0634\u062f.";
-                                        }
-                                        throw e;
-                                      }
-                                    })()}
-                                  </React.Fragment>
-                                </div>
-                              ) : null}
-                            </Stack__>
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__pDza
-                              )}
-                            >
-                              <Input
-                                data-plasmic-name={"refundrange"}
-                                data-plasmic-override={overrides.refundrange}
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.refundrange
-                                )}
-                                onChange={async (...eventArgs: any) => {
-                                  generateStateOnChangeProp($state, [
-                                    "refundrange",
-                                    "value"
-                                  ]).apply(null, eventArgs);
-
-                                  (async value => {
-                                    const $steps = {};
-
-                                    $steps["updateRefundrangeValue"] =
-                                      value >= 0
-                                        ? (() => {
-                                            const actionArgs = {
-                                              variable: {
-                                                objRoot: $state,
-                                                variablePath: [
-                                                  "refundrange",
-                                                  "value"
-                                                ]
-                                              },
-                                              operation: 0,
-                                              value: value
-                                            };
-                                            return (({
-                                              variable,
-                                              value,
-                                              startIndex,
-                                              deleteCount
-                                            }) => {
-                                              if (!variable) {
-                                                return;
-                                              }
-                                              const { objRoot, variablePath } =
-                                                variable;
-
-                                              $stateSet(
-                                                objRoot,
-                                                variablePath,
-                                                value
-                                              );
-                                              return value;
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                    if (
-                                      $steps["updateRefundrangeValue"] !=
-                                        null &&
-                                      typeof $steps[
-                                        "updateRefundrangeValue"
-                                      ] === "object" &&
-                                      typeof $steps["updateRefundrangeValue"]
-                                        .then === "function"
-                                    ) {
-                                      $steps["updateRefundrangeValue"] =
-                                        await $steps["updateRefundrangeValue"];
-                                    }
-
-                                    $steps["updateRefundrangeValue2"] =
-                                      value < 0
-                                        ? (() => {
-                                            const actionArgs = {
-                                              variable: {
-                                                objRoot: $state,
-                                                variablePath: [
-                                                  "refundrange",
-                                                  "value"
-                                                ]
-                                              },
-                                              operation: 0,
-                                              value: "0"
-                                            };
-                                            return (({
-                                              variable,
-                                              value,
-                                              startIndex,
-                                              deleteCount
-                                            }) => {
-                                              if (!variable) {
-                                                return;
-                                              }
-                                              const { objRoot, variablePath } =
-                                                variable;
-
-                                              $stateSet(
-                                                objRoot,
-                                                variablePath,
-                                                value
-                                              );
-                                              return value;
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                    if (
-                                      $steps["updateRefundrangeValue2"] !=
-                                        null &&
-                                      typeof $steps[
-                                        "updateRefundrangeValue2"
-                                      ] === "object" &&
-                                      typeof $steps["updateRefundrangeValue2"]
-                                        .then === "function"
-                                    ) {
-                                      $steps["updateRefundrangeValue2"] =
-                                        await $steps["updateRefundrangeValue2"];
-                                    }
-                                  }).apply(null, eventArgs);
-                                }}
-                                type={"number"}
-                                value={generateStateValueProp($state, [
-                                  "refundrange",
-                                  "value"
-                                ])}
-                              />
-
+                                throw e;
+                              }
+                            })() ? (
                               <div
                                 className={classNames(
                                   projectcss.all,
                                   projectcss.__wab_text,
-                                  sty.text__wycYf
+                                  sty.text___5XwMp
                                 )}
                               >
-                                {"\u0633\u0627\u0639\u062a"}
+                                <React.Fragment>
+                                  {(() => {
+                                    try {
+                                      return `بیماران برای ${
+                                        $state.from.value === 0 ||
+                                        $state.from.value === "0"
+                                          ? "امروز"
+                                          : $state.from.value === "1"
+                                          ? "فردا"
+                                          : $state.from.value
+                                      } تا ${
+                                        $state.to.value
+                                      } روز دیگر می توانند نوبت بگیرند.`;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return "\u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0628\u0631\u0627\u06cc \u0628\u0627\u0632\u0647\u200c\u06cc \u0632\u0645\u0627\u0646\u06cc \u0645\u0634\u062e\u0635 \u0634\u062f\u0647\u060c \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u0646\u062f \u0646\u0648\u0628\u062a \u0628\u06af\u06cc\u0631\u0646\u062f.";
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                </React.Fragment>
+                              </div>
+                            ) : null}
+                            <Stack__
+                              as={"div"}
+                              hasGap={true}
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__ae6B6
+                              )}
+                            >
+                              {(() => {
+                                const child$Props = {
+                                  className: classNames(
+                                    "__wab_instance",
+                                    sty.from
+                                  ),
+                                  onChange: async (...eventArgs: any) => {
+                                    generateStateOnChangeProp($state, [
+                                      "from",
+                                      "value"
+                                    ]).apply(null, eventArgs);
+
+                                    (async value => {
+                                      const $steps = {};
+
+                                      $steps["updateFromValue"] =
+                                        value >= 0
+                                          ? (() => {
+                                              const actionArgs = {
+                                                variable: {
+                                                  objRoot: $state,
+                                                  variablePath: [
+                                                    "from",
+                                                    "value"
+                                                  ]
+                                                },
+                                                operation: 0,
+                                                value: value
+                                              };
+                                              return (({
+                                                variable,
+                                                value,
+                                                startIndex,
+                                                deleteCount
+                                              }) => {
+                                                if (!variable) {
+                                                  return;
+                                                }
+                                                const {
+                                                  objRoot,
+                                                  variablePath
+                                                } = variable;
+
+                                                $stateSet(
+                                                  objRoot,
+                                                  variablePath,
+                                                  value
+                                                );
+                                                return value;
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps["updateFromValue"] != null &&
+                                        typeof $steps["updateFromValue"] ===
+                                          "object" &&
+                                        typeof $steps["updateFromValue"]
+                                          .then === "function"
+                                      ) {
+                                        $steps["updateFromValue"] =
+                                          await $steps["updateFromValue"];
+                                      }
+
+                                      $steps["updateFromValue2"] =
+                                        value < 0
+                                          ? (() => {
+                                              const actionArgs = {
+                                                variable: {
+                                                  objRoot: $state,
+                                                  variablePath: [
+                                                    "from",
+                                                    "value"
+                                                  ]
+                                                },
+                                                operation: 0,
+                                                value: "0"
+                                              };
+                                              return (({
+                                                variable,
+                                                value,
+                                                startIndex,
+                                                deleteCount
+                                              }) => {
+                                                if (!variable) {
+                                                  return;
+                                                }
+                                                const {
+                                                  objRoot,
+                                                  variablePath
+                                                } = variable;
+
+                                                $stateSet(
+                                                  objRoot,
+                                                  variablePath,
+                                                  value
+                                                );
+                                                return value;
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps["updateFromValue2"] != null &&
+                                        typeof $steps["updateFromValue2"] ===
+                                          "object" &&
+                                        typeof $steps["updateFromValue2"]
+                                          .then === "function"
+                                      ) {
+                                        $steps["updateFromValue2"] =
+                                          await $steps["updateFromValue2"];
+                                      }
+                                    }).apply(null, eventArgs);
+                                  },
+                                  type: "number",
+                                  value: generateStateValueProp($state, [
+                                    "from",
+                                    "value"
+                                  ])
+                                };
+                                initializeCodeComponentStates(
+                                  $state,
+                                  [
+                                    {
+                                      name: "value",
+                                      plasmicStateName: "from.value"
+                                    }
+                                  ],
+                                  [],
+                                  undefined ?? {},
+                                  child$Props
+                                );
+                                initializePlasmicStates(
+                                  $state,
+                                  [
+                                    {
+                                      name: "from.value",
+                                      initFunc: ({
+                                        $props,
+                                        $state,
+                                        $queries
+                                      }) =>
+                                        (() => {
+                                          try {
+                                            return (() => {
+                                              return $state
+                                                .settingBookingDateRange
+                                                .message ===
+                                                "این تنظیم برای کاربر وجود ندارد"
+                                                ? 0
+                                                : JSON.parse(
+                                                    $state
+                                                      .settingBookingDateRange[0]
+                                                      .value
+                                                  ).from;
+                                            })();
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return undefined;
+                                            }
+                                            throw e;
+                                          }
+                                        })()
+                                    }
+                                  ],
+                                  []
+                                );
+                                return (
+                                  <Input
+                                    data-plasmic-name={"from"}
+                                    data-plasmic-override={overrides.from}
+                                    {...child$Props}
+                                  />
+                                );
+                              })()}
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__awejM
+                                )}
+                              >
+                                {"\u062a\u0627"}
+                              </div>
+                              {(() => {
+                                const child$Props = {
+                                  className: classNames(
+                                    "__wab_instance",
+                                    sty.to
+                                  ),
+                                  onChange: async (...eventArgs: any) => {
+                                    generateStateOnChangeProp($state, [
+                                      "to",
+                                      "value"
+                                    ]).apply(null, eventArgs);
+
+                                    (async value => {
+                                      const $steps = {};
+
+                                      $steps["updateToValue"] =
+                                        value >= 0
+                                          ? (() => {
+                                              const actionArgs = {
+                                                variable: {
+                                                  objRoot: $state,
+                                                  variablePath: ["to", "value"]
+                                                },
+                                                operation: 0,
+                                                value: value
+                                              };
+                                              return (({
+                                                variable,
+                                                value,
+                                                startIndex,
+                                                deleteCount
+                                              }) => {
+                                                if (!variable) {
+                                                  return;
+                                                }
+                                                const {
+                                                  objRoot,
+                                                  variablePath
+                                                } = variable;
+
+                                                $stateSet(
+                                                  objRoot,
+                                                  variablePath,
+                                                  value
+                                                );
+                                                return value;
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps["updateToValue"] != null &&
+                                        typeof $steps["updateToValue"] ===
+                                          "object" &&
+                                        typeof $steps["updateToValue"].then ===
+                                          "function"
+                                      ) {
+                                        $steps["updateToValue"] = await $steps[
+                                          "updateToValue"
+                                        ];
+                                      }
+
+                                      $steps["updateToValue2"] =
+                                        value < 0
+                                          ? (() => {
+                                              const actionArgs = {
+                                                variable: {
+                                                  objRoot: $state,
+                                                  variablePath: ["to", "value"]
+                                                },
+                                                operation: 0,
+                                                value: "0"
+                                              };
+                                              return (({
+                                                variable,
+                                                value,
+                                                startIndex,
+                                                deleteCount
+                                              }) => {
+                                                if (!variable) {
+                                                  return;
+                                                }
+                                                const {
+                                                  objRoot,
+                                                  variablePath
+                                                } = variable;
+
+                                                $stateSet(
+                                                  objRoot,
+                                                  variablePath,
+                                                  value
+                                                );
+                                                return value;
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps["updateToValue2"] != null &&
+                                        typeof $steps["updateToValue2"] ===
+                                          "object" &&
+                                        typeof $steps["updateToValue2"].then ===
+                                          "function"
+                                      ) {
+                                        $steps["updateToValue2"] = await $steps[
+                                          "updateToValue2"
+                                        ];
+                                      }
+                                    }).apply(null, eventArgs);
+                                  },
+                                  type: "number",
+                                  value: generateStateValueProp($state, [
+                                    "to",
+                                    "value"
+                                  ])
+                                };
+                                initializeCodeComponentStates(
+                                  $state,
+                                  [
+                                    {
+                                      name: "value",
+                                      plasmicStateName: "to.value"
+                                    }
+                                  ],
+                                  [],
+                                  undefined ?? {},
+                                  child$Props
+                                );
+                                initializePlasmicStates(
+                                  $state,
+                                  [
+                                    {
+                                      name: "to.value",
+                                      initFunc: ({
+                                        $props,
+                                        $state,
+                                        $queries
+                                      }) =>
+                                        (() => {
+                                          try {
+                                            return (() => {
+                                              return $state
+                                                .settingBookingDateRange
+                                                .message ===
+                                                "این تنظیم برای کاربر وجود ندارد"
+                                                ? 60
+                                                : JSON.parse(
+                                                    $state
+                                                      .settingBookingDateRange[0]
+                                                      .value
+                                                  ).to;
+                                            })();
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return undefined;
+                                            }
+                                            throw e;
+                                          }
+                                        })()
+                                    }
+                                  ],
+                                  []
+                                );
+                                return (
+                                  <Input
+                                    data-plasmic-name={"to"}
+                                    data-plasmic-override={overrides.to}
+                                    {...child$Props}
+                                  />
+                                );
+                              })()}
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__l0Ywm
+                                )}
+                              >
+                                {"\u0631\u0648\u0632"}
                               </div>
                             </Stack__>
                             <Button
                               children2={"\u0630\u062e\u06cc\u0631\u0647"}
                               className={classNames(
                                 "__wab_instance",
-                                sty.button__zvsIw
+                                sty.button___7IIwg
                               )}
                               loading={(() => {
                                 try {
-                                  return $state.loadingDeleteBookingTimeRange;
+                                  return $state.loadingBookingDateRange;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -1743,7 +1218,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                         variable: {
                                           objRoot: $state,
                                           variablePath: [
-                                            "loadingDeleteBookingTimeRange"
+                                            "loadingBookingDateRange"
                                           ]
                                         },
                                         operation: 0,
@@ -1777,7 +1252,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                   ];
                                 }
 
-                                $steps["apiUpdateValueOfRefundPollicy"] = true
+                                $steps["apiPatchSetting"] = true
                                   ? (() => {
                                       const actionArgs = {
                                         args: [
@@ -1786,12 +1261,10 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                           (() => {
                                             try {
                                               return {
-                                                key: "booking:delay_to_delete_book_refund",
-                                                value: $state.refundrange.value,
-                                                pattern_base: 1,
-                                                settingdetails:
-                                                  $state
-                                                    .settingBookingRefundValue[0]
+                                                key: "booking:booking_date_range",
+                                                from: $state.from.value,
+                                                to: $state.to.value,
+                                                pattern_base: 1
                                               };
                                             } catch (e) {
                                               if (
@@ -1812,18 +1285,79 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     })()
                                   : undefined;
                                 if (
-                                  $steps["apiUpdateValueOfRefundPollicy"] !=
-                                    null &&
-                                  typeof $steps[
-                                    "apiUpdateValueOfRefundPollicy"
-                                  ] === "object" &&
-                                  typeof $steps["apiUpdateValueOfRefundPollicy"]
-                                    .then === "function"
+                                  $steps["apiPatchSetting"] != null &&
+                                  typeof $steps["apiPatchSetting"] ===
+                                    "object" &&
+                                  typeof $steps["apiPatchSetting"].then ===
+                                    "function"
                                 ) {
-                                  $steps["apiUpdateValueOfRefundPollicy"] =
-                                    await $steps[
-                                      "apiUpdateValueOfRefundPollicy"
-                                    ];
+                                  $steps["apiPatchSetting"] = await $steps[
+                                    "apiPatchSetting"
+                                  ];
+                                }
+
+                                $steps["loadingFinish"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: [
+                                            "loadingBookingDateRange"
+                                          ]
+                                        },
+                                        operation: 0,
+                                        value: false
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["loadingFinish"] != null &&
+                                  typeof $steps["loadingFinish"] === "object" &&
+                                  typeof $steps["loadingFinish"].then ===
+                                    "function"
+                                ) {
+                                  $steps["loadingFinish"] = await $steps[
+                                    "loadingFinish"
+                                  ];
+                                }
+
+                                $steps["showToast"] =
+                                  $steps.apiPatchSetting.data.success === true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          args: [
+                                            undefined,
+                                            "\u0628\u0627\u0632\u0647\u200c\u06cc \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f."
+                                          ]
+                                        };
+                                        return $globalActions[
+                                          "Fragment.showToast"
+                                        ]?.apply(null, [...actionArgs.args]);
+                                      })()
+                                    : undefined;
+                                if (
+                                  $steps["showToast"] != null &&
+                                  typeof $steps["showToast"] === "object" &&
+                                  typeof $steps["showToast"].then === "function"
+                                ) {
+                                  $steps["showToast"] = await $steps[
+                                    "showToast"
+                                  ];
                                 }
 
                                 $steps["sendEvent"] = true
@@ -1835,12 +1369,12 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                               return {
                                                 group: "settings",
                                                 data: {
-                                                  value:
-                                                    $state.refundrange.value,
+                                                  from: $state.from.value,
+                                                  to: $state.to.value,
                                                   settingdetails:
                                                     $state.settingBookingDateRange
                                                 },
-                                                type: "click-button-save-value-refund"
+                                                type: "click-button-save-rang-booking"
                                               };
                                             } catch (e) {
                                               if (
@@ -1869,71 +1403,6 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     "sendEvent"
                                   ];
                                 }
-
-                                $steps["showToast"] =
-                                  $steps.apiUpdateValueOfRefundPollicy.data
-                                    .success === true
-                                    ? (() => {
-                                        const actionArgs = {
-                                          args: [
-                                            undefined,
-                                            "\u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0644\u063a\u0648 \u0646\u0648\u0628\u062a \u0628\u0631\u0627\u06cc \u0634\u0645\u0627 \u0627\u0639\u0645\u0627\u0644 \u0634\u062f."
-                                          ]
-                                        };
-                                        return $globalActions[
-                                          "Fragment.showToast"
-                                        ]?.apply(null, [...actionArgs.args]);
-                                      })()
-                                    : undefined;
-                                if (
-                                  $steps["showToast"] != null &&
-                                  typeof $steps["showToast"] === "object" &&
-                                  typeof $steps["showToast"].then === "function"
-                                ) {
-                                  $steps["showToast"] = await $steps[
-                                    "showToast"
-                                  ];
-                                }
-
-                                $steps["finishLoading"] = true
-                                  ? (() => {
-                                      const actionArgs = {
-                                        variable: {
-                                          objRoot: $state,
-                                          variablePath: [
-                                            "loadingDeleteBookingTimeRange"
-                                          ]
-                                        },
-                                        operation: 0,
-                                        value: false
-                                      };
-                                      return (({
-                                        variable,
-                                        value,
-                                        startIndex,
-                                        deleteCount
-                                      }) => {
-                                        if (!variable) {
-                                          return;
-                                        }
-                                        const { objRoot, variablePath } =
-                                          variable;
-
-                                        $stateSet(objRoot, variablePath, value);
-                                        return value;
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                                if (
-                                  $steps["finishLoading"] != null &&
-                                  typeof $steps["finishLoading"] === "object" &&
-                                  typeof $steps["finishLoading"].then ===
-                                    "function"
-                                ) {
-                                  $steps["finishLoading"] = await $steps[
-                                    "finishLoading"
-                                  ];
-                                }
                               }}
                             />
                           </Stack__>
@@ -1941,7 +1410,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                         <AntdAccordionItem
                           className={classNames(
                             "__wab_instance",
-                            sty.accordionItem___0CglZ
+                            sty.accordionItem__gfclz
                           )}
                           id={2}
                           label2={
@@ -1949,7 +1418,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                               className={classNames(
                                 projectcss.all,
                                 projectcss.__wab_text,
-                                sty.text__toVZo
+                                sty.text__rUMkO
                               )}
                             >
                               {
@@ -1963,7 +1432,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                             className={classNames(
                               projectcss.all,
                               projectcss.__wab_text,
-                              sty.text__zk8Hq
+                              sty.text__fZiT3
                             )}
                           >
                             {"Second Children"}
@@ -1975,7 +1444,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                       generateStateOnChangePropForCodeComponents(
                         $state,
                         "activePanelId",
-                        ["accordionCancellationPolicy", "activePanelId"],
+                        ["accordion", "activePanelId"],
                         AntdAccordion_Helpers
                       ).apply(null, eventArgs);
                     }
@@ -1985,8 +1454,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                     [
                       {
                         name: "activePanelId",
-                        plasmicStateName:
-                          "accordionCancellationPolicy.activePanelId"
+                        plasmicStateName: "accordion.activePanelId"
                       }
                     ],
                     [],
@@ -1996,245 +1464,869 @@ function PlasmicBookingSetting__RenderFunc(props: {
 
                   return (
                     <AntdAccordion
-                      data-plasmic-name={"accordionCancellationPolicy"}
-                      data-plasmic-override={
-                        overrides.accordionCancellationPolicy
-                      }
+                      data-plasmic-name={"accordion"}
+                      data-plasmic-override={overrides.accordion}
                       {...child$Props}
                     />
                   );
                 })()}
               </div>
-            ) : null}
-            <div
-              data-plasmic-name={"paymentSetting"}
-              data-plasmic-override={overrides.paymentSetting}
-              className={classNames(projectcss.all, sty.paymentSetting)}
-              dir={"rtl"}
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["sendEvent"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          (() => {
-                            try {
-                              return {
-                                group: "settings",
-                                data: {
-                                  settingdetails: $state.settingBookingDateRange
-                                },
-                                type: "click-accordion-payment-setting"
-                              };
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Splunk.sendLog"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["sendEvent"] != null &&
-                  typeof $steps["sendEvent"] === "object" &&
-                  typeof $steps["sendEvent"].then === "function"
-                ) {
-                  $steps["sendEvent"] = await $steps["sendEvent"];
-                }
-              }}
-            >
               {(() => {
-                const child$Props = {
-                  activeKey: generateStateValueProp($state, [
-                    "accordion2",
-                    "activePanelId"
-                  ]),
-                  bordered: true,
-                  className: classNames("__wab_instance", sty.accordion2),
-                  items: (
-                    <React.Fragment>
-                      <AntdAccordionItem
-                        className={classNames(
-                          "__wab_instance",
-                          sty.accordionItem___5EhKh
-                        )}
-                        id={1}
-                        label2={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__oyvci
-                            )}
-                          >
-                            {
-                              "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u062a\u0633\u0648\u06cc\u0647 \u062d\u0633\u0627\u0628"
-                            }
-                          </div>
-                        }
-                        showArrow={true}
-                      >
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__tdVUz
-                          )}
-                        >
-                          <Payment3
-                            data-plasmic-name={"payment3"}
-                            data-plasmic-override={overrides.payment3}
+                try {
+                  return $state.settingBookingPaymentStatus[0].value == 1;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div
+                  data-plasmic-name={"cancellationPolicy"}
+                  data-plasmic-override={overrides.cancellationPolicy}
+                  className={classNames(projectcss.all, sty.cancellationPolicy)}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["sendEvent"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    group: "settings",
+                                    data: {
+                                      settingdetails:
+                                        $state.settingBookingRefundValue
+                                    },
+                                    type: "click-accordion-cancellation-range-booking"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendEvent"] != null &&
+                      typeof $steps["sendEvent"] === "object" &&
+                      typeof $steps["sendEvent"].then === "function"
+                    ) {
+                      $steps["sendEvent"] = await $steps["sendEvent"];
+                    }
+                  }}
+                >
+                  {(() => {
+                    const child$Props = {
+                      activeKey: generateStateValueProp($state, [
+                        "accordionCancellationPolicy",
+                        "activePanelId"
+                      ]),
+                      bordered: true,
+                      className: classNames(
+                        "__wab_instance",
+                        sty.accordionCancellationPolicy
+                      ),
+                      items: (
+                        <React.Fragment>
+                          <AntdAccordionItem
                             className={classNames(
                               "__wab_instance",
-                              sty.payment3
+                              sty.accordionItem___5VbYh
                             )}
-                            userId={(() => {
-                              try {
-                                return { user_id: $ctx.query.user_id };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
+                            id={1}
+                            label2={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__eyyt
+                                )}
+                              >
+                                {
+                                  "\u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0644\u063a\u0648 \u0646\u0648\u0628\u062a"
                                 }
-                                throw e;
-                              }
-                            })()}
-                          />
-                        </Stack__>
-                      </AntdAccordionItem>
-                      <AntdAccordionItem
-                        className={classNames(
-                          "__wab_instance",
-                          sty.accordionItem__nC8Bb
-                        )}
-                        id={2}
-                        label2={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__zBD
-                            )}
-                          >
-                            {
-                              "\u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a \u0622\u06cc\u0646\u062f\u0647"
+                              </div>
                             }
-                          </div>
-                        }
-                        showArrow={true}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text___4Uke4
-                          )}
-                        >
-                          {"Second Children"}
-                        </div>
-                      </AntdAccordionItem>
-                    </React.Fragment>
-                  ),
-                  onChange: async (...eventArgs: any) => {
-                    generateStateOnChangePropForCodeComponents(
+                            showArrow={true}
+                          >
+                            <Stack__
+                              as={"div"}
+                              hasGap={true}
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__kbhem
+                              )}
+                            >
+                              <Stack__
+                                as={"div"}
+                                hasGap={true}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__zV7Mv
+                                )}
+                              >
+                                {(() => {
+                                  try {
+                                    return !!$state.settingBookingRefundValue;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return false;
+                                    }
+                                    throw e;
+                                  }
+                                })() ? (
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.__wab_text,
+                                      sty.text__rZtv0
+                                    )}
+                                  >
+                                    <React.Fragment>
+                                      {(() => {
+                                        try {
+                                          return `در صورت لغو نوبت تا «${
+                                            $state.refundrange.value ||
+                                            $state.settingBookingRefundValue
+                                              .value
+                                          }» ساعت قبل از زمان ویزیت، وجه بیمار مسترد خواهد شد.`.replace(
+                                            /\d/g,
+                                            d =>
+                                              [
+                                                "۰",
+                                                "۱",
+                                                "۲",
+                                                "۳",
+                                                "۴",
+                                                "۵",
+                                                "۶",
+                                                "۷",
+                                                "۸",
+                                                "۹"
+                                              ][d]
+                                          );
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return "\u062f\u0631 \u0635\u0648\u0631\u062a \u0644\u063a\u0648 \u0646\u0648\u0628\u062a \u062a\u0627 5 \u0633\u0627\u0639\u062a \u0642\u0628\u0644 \u0627\u0632 \u0632\u0645\u0627\u0646 \u0648\u06cc\u0632\u06cc\u062a\u060c \u0627\u0645\u06a9\u0627\u0646 \u0627\u0633\u062a\u0631\u062f\u0627\u062f \u0648\u062c\u0647 \u0634\u0645\u0627 \u0645\u0645\u06a9\u0646 \u0645\u06cc \u0628\u0627\u0634\u062f.";
+                                          }
+                                          throw e;
+                                        }
+                                      })()}
+                                    </React.Fragment>
+                                  </div>
+                                ) : null}
+                              </Stack__>
+                              <Stack__
+                                as={"div"}
+                                hasGap={true}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__pDza
+                                )}
+                              >
+                                <Input
+                                  data-plasmic-name={"refundrange"}
+                                  data-plasmic-override={overrides.refundrange}
+                                  className={classNames(
+                                    "__wab_instance",
+                                    sty.refundrange
+                                  )}
+                                  onChange={async (...eventArgs: any) => {
+                                    generateStateOnChangeProp($state, [
+                                      "refundrange",
+                                      "value"
+                                    ]).apply(null, eventArgs);
+
+                                    (async value => {
+                                      const $steps = {};
+
+                                      $steps["updateRefundrangeValue"] =
+                                        value >= 0
+                                          ? (() => {
+                                              const actionArgs = {
+                                                variable: {
+                                                  objRoot: $state,
+                                                  variablePath: [
+                                                    "refundrange",
+                                                    "value"
+                                                  ]
+                                                },
+                                                operation: 0,
+                                                value: value
+                                              };
+                                              return (({
+                                                variable,
+                                                value,
+                                                startIndex,
+                                                deleteCount
+                                              }) => {
+                                                if (!variable) {
+                                                  return;
+                                                }
+                                                const {
+                                                  objRoot,
+                                                  variablePath
+                                                } = variable;
+
+                                                $stateSet(
+                                                  objRoot,
+                                                  variablePath,
+                                                  value
+                                                );
+                                                return value;
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps["updateRefundrangeValue"] !=
+                                          null &&
+                                        typeof $steps[
+                                          "updateRefundrangeValue"
+                                        ] === "object" &&
+                                        typeof $steps["updateRefundrangeValue"]
+                                          .then === "function"
+                                      ) {
+                                        $steps["updateRefundrangeValue"] =
+                                          await $steps[
+                                            "updateRefundrangeValue"
+                                          ];
+                                      }
+
+                                      $steps["updateRefundrangeValue2"] =
+                                        value < 0
+                                          ? (() => {
+                                              const actionArgs = {
+                                                variable: {
+                                                  objRoot: $state,
+                                                  variablePath: [
+                                                    "refundrange",
+                                                    "value"
+                                                  ]
+                                                },
+                                                operation: 0,
+                                                value: "0"
+                                              };
+                                              return (({
+                                                variable,
+                                                value,
+                                                startIndex,
+                                                deleteCount
+                                              }) => {
+                                                if (!variable) {
+                                                  return;
+                                                }
+                                                const {
+                                                  objRoot,
+                                                  variablePath
+                                                } = variable;
+
+                                                $stateSet(
+                                                  objRoot,
+                                                  variablePath,
+                                                  value
+                                                );
+                                                return value;
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps["updateRefundrangeValue2"] !=
+                                          null &&
+                                        typeof $steps[
+                                          "updateRefundrangeValue2"
+                                        ] === "object" &&
+                                        typeof $steps["updateRefundrangeValue2"]
+                                          .then === "function"
+                                      ) {
+                                        $steps["updateRefundrangeValue2"] =
+                                          await $steps[
+                                            "updateRefundrangeValue2"
+                                          ];
+                                      }
+                                    }).apply(null, eventArgs);
+                                  }}
+                                  type={"number"}
+                                  value={generateStateValueProp($state, [
+                                    "refundrange",
+                                    "value"
+                                  ])}
+                                />
+
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__wycYf
+                                  )}
+                                >
+                                  {"\u0633\u0627\u0639\u062a"}
+                                </div>
+                              </Stack__>
+                              <Button
+                                children2={"\u0630\u062e\u06cc\u0631\u0647"}
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.button__zvsIw
+                                )}
+                                loading={(() => {
+                                  try {
+                                    return $state.loadingDeleteBookingTimeRange;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return [];
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                                onClick={async event => {
+                                  const $steps = {};
+
+                                  $steps["startLoading"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          variable: {
+                                            objRoot: $state,
+                                            variablePath: [
+                                              "loadingDeleteBookingTimeRange"
+                                            ]
+                                          },
+                                          operation: 0,
+                                          value: true
+                                        };
+                                        return (({
+                                          variable,
+                                          value,
+                                          startIndex,
+                                          deleteCount
+                                        }) => {
+                                          if (!variable) {
+                                            return;
+                                          }
+                                          const { objRoot, variablePath } =
+                                            variable;
+
+                                          $stateSet(
+                                            objRoot,
+                                            variablePath,
+                                            value
+                                          );
+                                          return value;
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["startLoading"] != null &&
+                                    typeof $steps["startLoading"] ===
+                                      "object" &&
+                                    typeof $steps["startLoading"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["startLoading"] = await $steps[
+                                      "startLoading"
+                                    ];
+                                  }
+
+                                  $steps["apiUpdateValueOfRefundPollicy"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          args: [
+                                            "PATCH",
+                                            "https://apigw.paziresh24.com/v1/nelson/setting/update",
+                                            (() => {
+                                              try {
+                                                return {
+                                                  key: "booking:delay_to_delete_book_refund",
+                                                  value:
+                                                    $state.refundrange.value,
+                                                  pattern_base: 1,
+                                                  settingdetails:
+                                                    $state
+                                                      .settingBookingRefundValue[0]
+                                                };
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return undefined;
+                                                }
+                                                throw e;
+                                              }
+                                            })()
+                                          ]
+                                        };
+                                        return $globalActions[
+                                          "Fragment.apiRequest"
+                                        ]?.apply(null, [...actionArgs.args]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["apiUpdateValueOfRefundPollicy"] !=
+                                      null &&
+                                    typeof $steps[
+                                      "apiUpdateValueOfRefundPollicy"
+                                    ] === "object" &&
+                                    typeof $steps[
+                                      "apiUpdateValueOfRefundPollicy"
+                                    ].then === "function"
+                                  ) {
+                                    $steps["apiUpdateValueOfRefundPollicy"] =
+                                      await $steps[
+                                        "apiUpdateValueOfRefundPollicy"
+                                      ];
+                                  }
+
+                                  $steps["sendEvent"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          args: [
+                                            (() => {
+                                              try {
+                                                return {
+                                                  group: "settings",
+                                                  data: {
+                                                    value:
+                                                      $state.refundrange.value,
+                                                    settingdetails:
+                                                      $state.settingBookingDateRange
+                                                  },
+                                                  type: "click-button-save-value-refund"
+                                                };
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return undefined;
+                                                }
+                                                throw e;
+                                              }
+                                            })()
+                                          ]
+                                        };
+                                        return $globalActions[
+                                          "Splunk.sendLog"
+                                        ]?.apply(null, [...actionArgs.args]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["sendEvent"] != null &&
+                                    typeof $steps["sendEvent"] === "object" &&
+                                    typeof $steps["sendEvent"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["sendEvent"] = await $steps[
+                                      "sendEvent"
+                                    ];
+                                  }
+
+                                  $steps["showToast"] =
+                                    $steps.apiUpdateValueOfRefundPollicy.data
+                                      .success === true
+                                      ? (() => {
+                                          const actionArgs = {
+                                            args: [
+                                              undefined,
+                                              "\u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0644\u063a\u0648 \u0646\u0648\u0628\u062a \u0628\u0631\u0627\u06cc \u0634\u0645\u0627 \u0627\u0639\u0645\u0627\u0644 \u0634\u062f."
+                                            ]
+                                          };
+                                          return $globalActions[
+                                            "Fragment.showToast"
+                                          ]?.apply(null, [...actionArgs.args]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["showToast"] != null &&
+                                    typeof $steps["showToast"] === "object" &&
+                                    typeof $steps["showToast"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["showToast"] = await $steps[
+                                      "showToast"
+                                    ];
+                                  }
+
+                                  $steps["finishLoading"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          variable: {
+                                            objRoot: $state,
+                                            variablePath: [
+                                              "loadingDeleteBookingTimeRange"
+                                            ]
+                                          },
+                                          operation: 0,
+                                          value: false
+                                        };
+                                        return (({
+                                          variable,
+                                          value,
+                                          startIndex,
+                                          deleteCount
+                                        }) => {
+                                          if (!variable) {
+                                            return;
+                                          }
+                                          const { objRoot, variablePath } =
+                                            variable;
+
+                                          $stateSet(
+                                            objRoot,
+                                            variablePath,
+                                            value
+                                          );
+                                          return value;
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["finishLoading"] != null &&
+                                    typeof $steps["finishLoading"] ===
+                                      "object" &&
+                                    typeof $steps["finishLoading"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["finishLoading"] = await $steps[
+                                      "finishLoading"
+                                    ];
+                                  }
+                                }}
+                              />
+                            </Stack__>
+                          </AntdAccordionItem>
+                          <AntdAccordionItem
+                            className={classNames(
+                              "__wab_instance",
+                              sty.accordionItem___0CglZ
+                            )}
+                            id={2}
+                            label2={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__toVZo
+                                )}
+                              >
+                                {
+                                  "\u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a \u0622\u06cc\u0646\u062f\u0647"
+                                }
+                              </div>
+                            }
+                            showArrow={true}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__zk8Hq
+                              )}
+                            >
+                              {"Second Children"}
+                            </div>
+                          </AntdAccordionItem>
+                        </React.Fragment>
+                      ),
+                      onChange: async (...eventArgs: any) => {
+                        generateStateOnChangePropForCodeComponents(
+                          $state,
+                          "activePanelId",
+                          ["accordionCancellationPolicy", "activePanelId"],
+                          AntdAccordion_Helpers
+                        ).apply(null, eventArgs);
+                      }
+                    };
+                    initializeCodeComponentStates(
                       $state,
-                      "activePanelId",
-                      ["accordion2", "activePanelId"],
-                      AntdAccordion_Helpers
-                    ).apply(null, eventArgs);
-                  }
-                };
-                initializeCodeComponentStates(
-                  $state,
-                  [
-                    {
-                      name: "activePanelId",
-                      plasmicStateName: "accordion2.activePanelId"
+                      [
+                        {
+                          name: "activePanelId",
+                          plasmicStateName:
+                            "accordionCancellationPolicy.activePanelId"
+                        }
+                      ],
+                      [],
+                      AntdAccordion_Helpers ?? {},
+                      child$Props
+                    );
+
+                    return (
+                      <AntdAccordion
+                        data-plasmic-name={"accordionCancellationPolicy"}
+                        data-plasmic-override={
+                          overrides.accordionCancellationPolicy
+                        }
+                        {...child$Props}
+                      />
+                    );
+                  })()}
+                </div>
+              ) : null}
+              {false ? (
+                <div
+                  data-plasmic-name={"paymentSetting"}
+                  data-plasmic-override={overrides.paymentSetting}
+                  className={classNames(projectcss.all, sty.paymentSetting)}
+                  dir={"rtl"}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["sendEvent"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    group: "settings",
+                                    data: {
+                                      settingdetails:
+                                        $state.settingBookingDateRange
+                                    },
+                                    type: "click-accordion-payment-setting"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendEvent"] != null &&
+                      typeof $steps["sendEvent"] === "object" &&
+                      typeof $steps["sendEvent"].then === "function"
+                    ) {
+                      $steps["sendEvent"] = await $steps["sendEvent"];
                     }
-                  ],
-                  [],
-                  AntdAccordion_Helpers ?? {},
-                  child$Props
-                );
+                  }}
+                >
+                  {(() => {
+                    const child$Props = {
+                      activeKey: generateStateValueProp($state, [
+                        "accordion2",
+                        "activePanelId"
+                      ]),
+                      bordered: true,
+                      className: classNames("__wab_instance", sty.accordion2),
+                      items: (
+                        <React.Fragment>
+                          <AntdAccordionItem
+                            className={classNames(
+                              "__wab_instance",
+                              sty.accordionItem___5EhKh
+                            )}
+                            id={1}
+                            label2={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__oyvci
+                                )}
+                              >
+                                {
+                                  "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u062a\u0633\u0648\u06cc\u0647 \u062d\u0633\u0627\u0628"
+                                }
+                              </div>
+                            }
+                            showArrow={true}
+                          >
+                            <Stack__
+                              as={"div"}
+                              hasGap={true}
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__tdVUz
+                              )}
+                            >
+                              <PaymentTotal
+                                data-plasmic-name={"paymentTotal"}
+                                data-plasmic-override={overrides.paymentTotal}
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.paymentTotal
+                                )}
+                                userId={(() => {
+                                  try {
+                                    return $ctx.query.user_id;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              />
+                            </Stack__>
+                          </AntdAccordionItem>
+                          <AntdAccordionItem
+                            className={classNames(
+                              "__wab_instance",
+                              sty.accordionItem__nC8Bb
+                            )}
+                            id={2}
+                            label2={
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__zBD
+                                )}
+                              >
+                                {
+                                  "\u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a \u0622\u06cc\u0646\u062f\u0647"
+                                }
+                              </div>
+                            }
+                            showArrow={true}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text___4Uke4
+                              )}
+                            >
+                              {"Second Children"}
+                            </div>
+                          </AntdAccordionItem>
+                        </React.Fragment>
+                      ),
+                      onChange: async (...eventArgs: any) => {
+                        generateStateOnChangePropForCodeComponents(
+                          $state,
+                          "activePanelId",
+                          ["accordion2", "activePanelId"],
+                          AntdAccordion_Helpers
+                        ).apply(null, eventArgs);
+                      }
+                    };
+                    initializeCodeComponentStates(
+                      $state,
+                      [
+                        {
+                          name: "activePanelId",
+                          plasmicStateName: "accordion2.activePanelId"
+                        }
+                      ],
+                      [],
+                      AntdAccordion_Helpers ?? {},
+                      child$Props
+                    );
 
-                return (
-                  <AntdAccordion
-                    data-plasmic-name={"accordion2"}
-                    data-plasmic-override={overrides.accordion2}
-                    {...child$Props}
-                  />
-                );
-              })()}
-            </div>
-          </Stack__>
-          <SideEffect
-            data-plasmic-name={"runCodeGtmMetrica"}
-            data-plasmic-override={overrides.runCodeGtmMetrica}
-            className={classNames("__wab_instance", sty.runCodeGtmMetrica)}
-            onMount={async () => {
-              const $steps = {};
+                    return (
+                      <AntdAccordion
+                        data-plasmic-name={"accordion2"}
+                        data-plasmic-override={overrides.accordion2}
+                        {...child$Props}
+                      />
+                    );
+                  })()}
+                </div>
+              ) : null}
+            </Stack__>
+            <SideEffect
+              data-plasmic-name={"runCodeGtmMetrica"}
+              data-plasmic-override={overrides.runCodeGtmMetrica}
+              className={classNames("__wab_instance", sty.runCodeGtmMetrica)}
+              onMount={async () => {
+                const $steps = {};
 
-              $steps["runCode"] = true
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return (() => {
-                          function loadGTM() {
-                            var gtmScript = document.createElement("script");
-                            gtmScript.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            function loadGTM() {
+                              var gtmScript = document.createElement("script");
+                              gtmScript.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-P5RPLDP');`;
-                            document.head.appendChild(gtmScript);
-                            var gtmNoScript =
-                              document.createElement("noscript");
-                            gtmNoScript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"
+                              document.head.appendChild(gtmScript);
+                              var gtmNoScript =
+                                document.createElement("noscript");
+                              gtmNoScript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"
     height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
-                            document.body.insertBefore(
-                              gtmNoScript,
-                              document.body.firstChild
-                            );
-                          }
-                          return loadGTM();
-                        })();
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runCode"] != null &&
-                typeof $steps["runCode"] === "object" &&
-                typeof $steps["runCode"].then === "function"
-              ) {
-                $steps["runCode"] = await $steps["runCode"];
-              }
+                              document.body.insertBefore(
+                                gtmNoScript,
+                                document.body.firstChild
+                              );
+                            }
+                            return loadGTM();
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
 
-              $steps["loadMetrica"] = true
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return (() => {
-                          function loadMetrika() {
-                            var metrikaScript =
-                              document.createElement("script");
-                            metrikaScript.innerHTML = `(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+                $steps["loadMetrica"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            function loadMetrika() {
+                              var metrikaScript =
+                                document.createElement("script");
+                              metrikaScript.innerHTML = `(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
     m[i].l=1*new Date();
     for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
     k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
@@ -2246,43 +2338,44 @@ function PlasmicBookingSetting__RenderFunc(props: {
         accurateTrackBounce:true,
         webvisor:true
     });`;
-                            document.head.appendChild(metrikaScript);
-                            var metrikaNoScript =
-                              document.createElement("noscript");
-                            metrikaNoScript.innerHTML = `<div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div>`;
-                            document.body.insertBefore(
-                              metrikaNoScript,
-                              document.body.firstChild
-                            );
-                          }
-                          return loadMetrika();
-                        })();
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["loadMetrica"] != null &&
-                typeof $steps["loadMetrica"] === "object" &&
-                typeof $steps["loadMetrica"].then === "function"
-              ) {
-                $steps["loadMetrica"] = await $steps["loadMetrica"];
-              }
-            }}
-          />
+                              document.head.appendChild(metrikaScript);
+                              var metrikaNoScript =
+                                document.createElement("noscript");
+                              metrikaNoScript.innerHTML = `<div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div>`;
+                              document.body.insertBefore(
+                                metrikaNoScript,
+                                document.body.firstChild
+                              );
+                            }
+                            return loadMetrika();
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["loadMetrica"] != null &&
+                  typeof $steps["loadMetrica"] === "object" &&
+                  typeof $steps["loadMetrica"].then === "function"
+                ) {
+                  $steps["loadMetrica"] = await $steps["loadMetrica"];
+                }
+              }}
+            />
 
-          <Embed
-            data-plasmic-name={"gtm"}
-            data-plasmic-override={overrides.gtm}
-            className={classNames("__wab_instance", sty.gtm)}
-            code={
-              '\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"\nheight="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->\n\n<!-- Yandex.Metrika counter -->\n<script type="text/javascript" >\n   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n   m[i].l=1*new Date();\n   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})\n   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");\n\n   ym(98277236, "init", {\n        clickmap:true,\n        trackLinks:true,\n        accurateTrackBounce:true,\n        webvisor:true\n   });\n</script>\n<noscript><div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div></noscript>\n<!-- /Yandex.Metrika counter -->'
-            }
-          />
-        </div>
+            <Embed
+              data-plasmic-name={"gtm"}
+              data-plasmic-override={overrides.gtm}
+              className={classNames("__wab_instance", sty.gtm)}
+              code={
+                '\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"\nheight="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->\n\n<!-- Yandex.Metrika counter -->\n<script type="text/javascript" >\n   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n   m[i].l=1*new Date();\n   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})\n   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");\n\n   ym(98277236, "init", {\n        clickmap:true,\n        trackLinks:true,\n        accurateTrackBounce:true,\n        webvisor:true\n   });\n</script>\n<noscript><div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div></noscript>\n<!-- /Yandex.Metrika counter -->'
+              }
+            />
+          </div>
+        ) : null}
       </div>
     </React.Fragment>
   ) as React.ReactElement | null;
@@ -2302,7 +2395,7 @@ const PlasmicDescendants = {
     "refundrange",
     "paymentSetting",
     "accordion2",
-    "payment3",
+    "paymentTotal",
     "runCodeGtmMetrica",
     "gtm"
   ],
@@ -2319,9 +2412,9 @@ const PlasmicDescendants = {
   ],
   accordionCancellationPolicy: ["accordionCancellationPolicy", "refundrange"],
   refundrange: ["refundrange"],
-  paymentSetting: ["paymentSetting", "accordion2", "payment3"],
-  accordion2: ["accordion2", "payment3"],
-  payment3: ["payment3"],
+  paymentSetting: ["paymentSetting", "accordion2", "paymentTotal"],
+  accordion2: ["accordion2", "paymentTotal"],
+  paymentTotal: ["paymentTotal"],
   runCodeGtmMetrica: ["runCodeGtmMetrica"],
   gtm: ["gtm"]
 } as const;
@@ -2341,7 +2434,7 @@ type NodeDefaultElementType = {
   refundrange: typeof Input;
   paymentSetting: "div";
   accordion2: typeof AntdAccordion;
-  payment3: typeof Payment3;
+  paymentTotal: typeof PaymentTotal;
   runCodeGtmMetrica: typeof SideEffect;
   gtm: typeof Embed;
 };
@@ -2419,7 +2512,7 @@ export const PlasmicBookingSetting = Object.assign(
     refundrange: makeNodeComponent("refundrange"),
     paymentSetting: makeNodeComponent("paymentSetting"),
     accordion2: makeNodeComponent("accordion2"),
-    payment3: makeNodeComponent("payment3"),
+    paymentTotal: makeNodeComponent("paymentTotal"),
     runCodeGtmMetrica: makeNodeComponent("runCodeGtmMetrica"),
     gtm: makeNodeComponent("gtm"),
 

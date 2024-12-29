@@ -63,6 +63,7 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
+import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicSelectionItem.module.css"; // plasmic-import: vlrWM3QMUTqs/css
 
@@ -173,11 +174,14 @@ function PlasmicSelectionItem__RenderFunc(props: {
         projectcss.plasmic_tokens,
         plasmic_fragment_design_system_css.plasmic_tokens,
         plasmic_antd_5_hostless_css.plasmic_tokens,
+        plasmic_plasmic_rich_components_css.plasmic_tokens,
         sty.root,
         { [sty.rootisSelected]: hasVariant($state, "isSelected", "isSelected") }
       )}
     >
-      <div
+      <Stack__
+        as={"div"}
+        hasGap={true}
         className={classNames(projectcss.all, sty.freeBox__n4BcD, {
           [sty.freeBoxisSelected__n4BcDKlR9Z]: hasVariant(
             $state,
@@ -205,6 +209,16 @@ function PlasmicSelectionItem__RenderFunc(props: {
           }
         }}
       >
+        <div
+          className={classNames(projectcss.all, sty.freeBox__pm3Qi, {
+            [sty.freeBoxisSelected__pm3QiKlR9Z]: hasVariant(
+              $state,
+              "isSelected",
+              "isSelected"
+            )
+          })}
+        />
+
         <Stack__
           as={"div"}
           hasGap={true}
@@ -257,16 +271,7 @@ function PlasmicSelectionItem__RenderFunc(props: {
             </React.Fragment>
           </div>
         </Stack__>
-        <div
-          className={classNames(projectcss.all, sty.freeBox__pm3Qi, {
-            [sty.freeBoxisSelected__pm3QiKlR9Z]: hasVariant(
-              $state,
-              "isSelected",
-              "isSelected"
-            )
-          })}
-        />
-      </div>
+      </Stack__>
     </div>
   ) as React.ReactElement | null;
 }
