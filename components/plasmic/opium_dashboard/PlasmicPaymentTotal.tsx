@@ -487,7 +487,7 @@ function PlasmicPaymentTotal__RenderFunc(props: {
             })()}
             userId={(() => {
               try {
-                return $props.userId;
+                return $ctx.query.user_id;
               } catch (e) {
                 if (
                   e instanceof TypeError ||

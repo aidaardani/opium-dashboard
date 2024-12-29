@@ -94,6 +94,7 @@ export const PlasmicBookingSetting__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicBookingSetting__OverridesType = {
   root?: Flex__<"div">;
+  growthbook?: Flex__<typeof SideEffect>;
   sideEffect?: Flex__<typeof SideEffect>;
   h4?: Flex__<"h4">;
   rangOfBooking?: Flex__<"div">;
@@ -358,9 +359,65 @@ function PlasmicBookingSetting__RenderFunc(props: {
             )}
           >
             <SideEffect
+              data-plasmic-name={"growthbook"}
+              data-plasmic-override={overrides.growthbook}
+              className={classNames("__wab_instance", sty.growthbook)}
+              deps={(() => {
+                try {
+                  return [$ctx.GrowthBook.isReady];
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              onMount={async () => {
+                const $steps = {};
+
+                $steps["setAttributes"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return { user_id: +$ctx.query.user_id };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["GrowthBook.setAttributes"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["setAttributes"] != null &&
+                  typeof $steps["setAttributes"] === "object" &&
+                  typeof $steps["setAttributes"].then === "function"
+                ) {
+                  $steps["setAttributes"] = await $steps["setAttributes"];
+                }
+              }}
+            />
+
+            <SideEffect
               data-plasmic-name={"sideEffect"}
               data-plasmic-override={overrides.sideEffect}
               className={classNames("__wab_instance", sty.sideEffect)}
+              deps={undefined}
               onMount={async () => {
                 const $steps = {};
 
@@ -374,7 +431,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                             try {
                               return {
                                 key: "booking:booking_date_range",
-                                user_id: $ctx.query.user_id
+                                userid: $ctx.query.user_id
                               };
                             } catch (e) {
                               if (
@@ -448,7 +505,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                             try {
                               return {
                                 key: "booking:delay_to_delete_book_refund",
-                                user_id: $ctx.query.user_id
+                                userid: $ctx.query.user_id
                               };
                             } catch (e) {
                               if (
@@ -524,7 +581,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                             try {
                               return {
                                 key: "booking:activate_online_payment",
-                                user_id: $ctx.query.user_id
+                                userid: $ctx.query.user_id
                               };
                             } catch (e) {
                               if (
@@ -2093,7 +2150,19 @@ function PlasmicBookingSetting__RenderFunc(props: {
                   })()}
                 </div>
               ) : null}
-              {false ? (
+              {(() => {
+                try {
+                  return $ctx.GrowthBook.features["show-auto-payment"];
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
                 <div
                   data-plasmic-name={"paymentSetting"}
                   data-plasmic-override={overrides.paymentSetting}
@@ -2189,20 +2258,6 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                   "__wab_instance",
                                   sty.paymentTotal
                                 )}
-                                userId={(() => {
-                                  try {
-                                    return $ctx.query.user_id;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()}
                               />
                             </Stack__>
                           </AntdAccordionItem>
@@ -2384,6 +2439,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "growthbook",
     "sideEffect",
     "h4",
     "rangOfBooking",
@@ -2399,6 +2455,7 @@ const PlasmicDescendants = {
     "runCodeGtmMetrica",
     "gtm"
   ],
+  growthbook: ["growthbook"],
   sideEffect: ["sideEffect"],
   h4: ["h4"],
   rangOfBooking: ["rangOfBooking", "accordion", "from", "to"],
@@ -2423,6 +2480,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  growthbook: typeof SideEffect;
   sideEffect: typeof SideEffect;
   h4: "h4";
   rangOfBooking: "div";
@@ -2499,6 +2557,7 @@ export const PlasmicBookingSetting = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    growthbook: makeNodeComponent("growthbook"),
     sideEffect: makeNodeComponent("sideEffect"),
     h4: makeNodeComponent("h4"),
     rangOfBooking: makeNodeComponent("rangOfBooking"),

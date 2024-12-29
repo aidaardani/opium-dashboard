@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inconsolata%3Aital%2Cwght%400%2C200%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C800%3B0%2C900&family=Vazirmatn%3Aital%2Cwght%400%2C100%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C800%3B0%2C900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata%3Aital%2Cwght%400%2C200%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C800%3B0%2C900&family=Vazirmatn%3Aital%2Cwght%400%2C100%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C800%3B0%2C900&family=Inter%3Aital%2Cwght%400%2C100%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C800%3B0%2C900&display=swap");
 
 .plasmic_tokens {
   --token-IOWZQyrdKsEL: #27bda00d;
@@ -21,6 +21,38 @@
   --plasmic-token-system-bg-elevated: var(--token-yHtMhUE4LmGt);
   --token-aKAz0S7Xi5RN: 0.75rem;
   --plasmic-token-xs: var(--token-aKAz0S7Xi5RN);
+  --token-HnZ71H022VEt: 0.25rem;
+  --plasmic-token-size-4: var(--token-HnZ71H022VEt);
+  --token-qtgMaW0djcWt: #030712;
+  --plasmic-token-basic-text-primary: var(--token-qtgMaW0djcWt);
+  --token-ja_KZBrPIbVn: Inter;
+  --plasmic-token-sans-serif: var(--token-ja_KZBrPIbVn);
+  --token-32QMMwxFz4kW: 1rem;
+  --plasmic-token-font-md: var(--token-32QMMwxFz4kW);
+  --token-ACWd1l8gAAiC: 1.25;
+  --plasmic-token-line-height-md: var(--token-ACWd1l8gAAiC);
+  --token-eNrdreaV-yyE: 0.75rem;
+  --plasmic-token-font-sm: var(--token-eNrdreaV-yyE);
+  --token-Ob-x3gnw5fOV: 1;
+  --plasmic-token-line-height-sm: var(--token-Ob-x3gnw5fOV);
+  --token-Aauc__D_kWJe: 1.25rem;
+  --plasmic-token-font-lg: var(--token-Aauc__D_kWJe);
+  --token-6V66fqRxwJUw: 1.4;
+  --plasmic-token-line-height-lg: var(--token-6V66fqRxwJUw);
+  --token-4nkHJBlHYFDY: #6b7280;
+  --plasmic-token-basic-text-secondary: var(--token-4nkHJBlHYFDY);
+  --token-CVFO6fzYsS1_: #dc2626;
+  --plasmic-token-destructive-destructive: var(--token-CVFO6fzYsS1_);
+  --token-LucEawn4kec5: 0.5rem;
+  --plasmic-token-size-8: var(--token-LucEawn4kec5);
+  --token-rZ0LkoPr0aBH: 1.25rem;
+  --plasmic-token-size-20: var(--token-rZ0LkoPr0aBH);
+  --token-xegfwFg3Spe4: #9ca3af;
+  --plasmic-token-basic-ring: var(--token-xegfwFg3Spe4);
+  --token-jKWXB7hOHC63: #2563eb;
+  --plasmic-token-brand-brand: var(--token-jKWXB7hOHC63);
+  --token-K62Mx1xnSMbY: 0.375rem;
+  --plasmic-token-size-6: var(--token-K62Mx1xnSMbY);
 }
 
 .plasmic_tokens {

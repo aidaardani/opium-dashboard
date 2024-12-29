@@ -104,6 +104,7 @@ export type PlasmicPaymentSetting__OverridesType = {
   apiRequest?: Flex__<typeof ApiRequest>;
   getUserPrefrence?: Flex__<typeof ApiRequest>;
   radioGroup?: Flex__<typeof AntdRadioGroup>;
+  radio?: Flex__<typeof AntdRadio>;
 };
 
 export interface DefaultPaymentSettingProps {
@@ -243,6 +244,12 @@ function PlasmicPaymentSetting__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "selectedItem",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -397,6 +404,10 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                     "getUserPrefrence",
                     "data"
                   ]).apply(null, eventArgs);
+
+                  (async data => {
+                    const $steps = {};
+                  }).apply(null, eventArgs);
                 }}
                 params={(() => {
                   try {
@@ -444,63 +455,113 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                     ]).apply(null, eventArgs);
                   }}
                   optionType={"default"}
-                  options={(() => {
-                    try {
-                      return $state.apiRequest.data?.map(item => ({
-                        label: item.Title,
-                        value: item.Kind
-                      }));
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return [];
-                      }
-                      throw e;
-                    }
-                  })()}
-                  useChildren={false}
+                  options={[]}
                   value={generateStateValueProp($state, [
                     "radioGroup",
                     "value"
                   ])}
                 >
-                  <AntdRadio
-                    className={classNames("__wab_instance", sty.radio__oVpZo)}
-                    value={"op1"}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__gKaAs
-                      )}
-                    >
-                      {"Option 1"}
-                    </div>
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox___3S0Y)}
-                    />
-
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__cd7S2)}
-                    />
-                  </AntdRadio>
-                  <AntdRadio
-                    className={classNames("__wab_instance", sty.radio__lJWcY)}
-                    value={"op2"}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__yKxCg
-                      )}
-                    >
-                      {"Option 2"}
-                    </div>
-                  </AntdRadio>
+                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                    (() => {
+                      try {
+                        return $state.apiRequest.data?.map(item => ({
+                          label: item.Title,
+                          value: item.Kind,
+                          description: item.Description
+                        }));
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()
+                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                    const currentItem = __plasmic_item_0;
+                    const currentIndex = __plasmic_idx_0;
+                    return (
+                      <AntdRadio
+                        data-plasmic-name={"radio"}
+                        data-plasmic-override={overrides.radio}
+                        className={classNames("__wab_instance", sty.radio)}
+                        key={currentIndex}
+                        value={(() => {
+                          try {
+                            return currentItem.value;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}
+                      >
+                        <Stack__
+                          as={"div"}
+                          hasGap={true}
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__niafZ
+                          )}
+                        >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__gKaAs
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return currentItem.label;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "Option 1";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__bt0Xl
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return currentItem.description;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "Option 1";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                        </Stack__>
+                      </AntdRadio>
+                    );
+                  })}
                 </AntdRadioGroup>
               </ApiRequest>
             </ApiRequest>
@@ -707,7 +768,7 @@ function PlasmicPaymentSetting__RenderFunc(props: {
               <Button
                 children2={"\u0627\u0646\u0635\u0631\u0627\u0641"}
                 className={classNames("__wab_instance", sty.button__ao0M5)}
-                color={"red"}
+                color={"softSand"}
                 onClick={async event => {
                   const $steps = {};
 
@@ -757,11 +818,19 @@ function PlasmicPaymentSetting__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "dialog", "apiRequest", "getUserPrefrence", "radioGroup"],
+  root: [
+    "root",
+    "dialog",
+    "apiRequest",
+    "getUserPrefrence",
+    "radioGroup",
+    "radio"
+  ],
   dialog: ["dialog"],
-  apiRequest: ["apiRequest", "getUserPrefrence", "radioGroup"],
-  getUserPrefrence: ["getUserPrefrence", "radioGroup"],
-  radioGroup: ["radioGroup"]
+  apiRequest: ["apiRequest", "getUserPrefrence", "radioGroup", "radio"],
+  getUserPrefrence: ["getUserPrefrence", "radioGroup", "radio"],
+  radioGroup: ["radioGroup", "radio"],
+  radio: ["radio"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -772,6 +841,7 @@ type NodeDefaultElementType = {
   apiRequest: typeof ApiRequest;
   getUserPrefrence: typeof ApiRequest;
   radioGroup: typeof AntdRadioGroup;
+  radio: typeof AntdRadio;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -838,6 +908,7 @@ export const PlasmicPaymentSetting = Object.assign(
     apiRequest: makeNodeComponent("apiRequest"),
     getUserPrefrence: makeNodeComponent("getUserPrefrence"),
     radioGroup: makeNodeComponent("radioGroup"),
+    radio: makeNodeComponent("radio"),
 
     // Metadata about props expected for PlasmicPaymentSetting
     internalVariantProps: PlasmicPaymentSetting__VariantProps,

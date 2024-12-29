@@ -101,6 +101,166 @@
       }
     },
     {
+      "name": "Basic/Ring",
+      "type": "color",
+      "value": "#9CA3AF",
+      "category": "color",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "xegfwFg3Spe4"
+      }
+    },
+    {
+      "name": "Basic/Text-Primary",
+      "type": "color",
+      "value": "#030712",
+      "category": "color",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "qtgMaW0djcWt"
+      }
+    },
+    {
+      "name": "Basic/Text-Secondary",
+      "type": "color",
+      "value": "#6B7280",
+      "category": "color",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "4nkHJBlHYFDY"
+      }
+    },
+    {
+      "name": "Brand/Brand",
+      "type": "color",
+      "value": "#2563EB",
+      "category": "color",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "jKWXB7hOHC63"
+      }
+    },
+    {
+      "name": "Destructive/Destructive",
+      "type": "color",
+      "value": "#DC2626",
+      "category": "color",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "CVFO6fzYsS1_"
+      }
+    },
+    {
+      "name": "Font-LG",
+      "type": "fontsize",
+      "value": "1.25rem",
+      "category": "fontsize",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "Aauc__D_kWJe"
+      }
+    },
+    {
+      "name": "Font-MD",
+      "type": "fontsize",
+      "value": "1rem",
+      "category": "fontsize",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "32QMMwxFz4kW"
+      }
+    },
+    {
+      "name": "Font-SM",
+      "type": "fontsize",
+      "value": "0.75rem",
+      "category": "fontsize",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "eNrdreaV-yyE"
+      }
+    },
+    {
+      "name": "Line-height-LG",
+      "type": "lineheight",
+      "value": "1.4",
+      "category": "lineheight",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "6V66fqRxwJUw"
+      }
+    },
+    {
+      "name": "Line-height-MD",
+      "type": "lineheight",
+      "value": "1.25",
+      "category": "lineheight",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "ACWd1l8gAAiC"
+      }
+    },
+    {
+      "name": "Line-height-SM",
+      "type": "lineheight",
+      "value": "1",
+      "category": "lineheight",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "Ob-x3gnw5fOV"
+      }
+    },
+    {
+      "name": "Sans-serif",
+      "type": "fontfamily",
+      "value": "Inter",
+      "category": "fontfamily",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "ja_KZBrPIbVn"
+      }
+    },
+    {
+      "name": "Size-20",
+      "type": "spacing",
+      "value": "1.25rem",
+      "category": "spacing",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "rZ0LkoPr0aBH"
+      }
+    },
+    {
+      "name": "Size-4",
+      "type": "spacing",
+      "value": "0.25rem",
+      "category": "spacing",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "HnZ71H022VEt"
+      }
+    },
+    {
+      "name": "Size-6",
+      "type": "spacing",
+      "value": "0.375rem",
+      "category": "spacing",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "K62Mx1xnSMbY"
+      }
+    },
+    {
+      "name": "Size-8",
+      "type": "spacing",
+      "value": "0.5rem",
+      "category": "spacing",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "LucEawn4kec5"
+      }
+    },
+    {
       "name": "System: Bg Container",
       "type": "color",
       "value": "var(--antd-colorBgContainer)",
