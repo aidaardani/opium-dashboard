@@ -102,6 +102,7 @@ export type PlasmicActivationOfficeCost__OverridesType = {
   dialog2?: Flex__<typeof Dialog>;
   input2?: Flex__<typeof Input>;
   shabaApi?: Flex__<typeof ApiRequest>;
+  درحالدریافتاطلاعات?: Flex__<"div">;
   input?: Flex__<typeof Input>;
   centersApi?: Flex__<typeof ApiRequest>;
 };
@@ -609,13 +610,19 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
               errorDisplay={null}
               loadingDisplay={
                 <div
+                  data-plasmic-name={
+                    "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
+                  }
+                  data-plasmic-override={overrides.درحالدریافتاطلاعات}
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text__t3W4X
+                    sty.درحالدریافتاطلاعات
                   )}
                 >
-                  {"Loading..."}
+                  {
+                    "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a..."
+                  }
                 </div>
               }
               method={"GET"}
@@ -648,7 +655,11 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                             variablePath: ["shabaValue"]
                           },
                           operation: 0,
-                          value: $state.shabaApi.data.IBAN
+                          value: (() => {
+                            if ($state.shabaApi.data) {
+                              return $state.shabaApi.data.IBAN;
+                            }
+                          })()
                         };
                         return (({
                           variable,
@@ -1395,13 +1406,20 @@ const PlasmicDescendants = {
     "dialog2",
     "input2",
     "shabaApi",
+    "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a",
     "input",
     "centersApi"
   ],
   select: ["select"],
   dialog2: ["dialog2"],
   input2: ["input2"],
-  shabaApi: ["shabaApi"],
+  shabaApi: [
+    "shabaApi",
+    "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
+  ],
+  درحالدریافتاطلاعات: [
+    "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
+  ],
   input: ["input"],
   centersApi: ["centersApi"]
 } as const;
@@ -1414,6 +1432,7 @@ type NodeDefaultElementType = {
   dialog2: typeof Dialog;
   input2: typeof Input;
   shabaApi: typeof ApiRequest;
+  درحالدریافتاطلاعات: "div";
   input: typeof Input;
   centersApi: typeof ApiRequest;
 };
@@ -1482,6 +1501,9 @@ export const PlasmicActivationOfficeCost = Object.assign(
     dialog2: makeNodeComponent("dialog2"),
     input2: makeNodeComponent("input2"),
     shabaApi: makeNodeComponent("shabaApi"),
+    درحالدریافتاطلاعات: makeNodeComponent(
+      "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
+    ),
     input: makeNodeComponent("input"),
     centersApi: makeNodeComponent("centersApi"),
 

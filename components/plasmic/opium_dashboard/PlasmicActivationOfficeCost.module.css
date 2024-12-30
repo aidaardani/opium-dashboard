@@ -116,12 +116,13 @@
   max-width: 100%;
   object-fit: cover;
 }
-.text__t3W4X {
+.درحالدریافتاطلاعات {
   position: relative;
   width: 100%;
   height: auto;
   max-width: 100%;
   min-width: 0;
+  padding: 8px;
 }
 .text__oCbf5 {
   width: 100%;
@@ -131,6 +132,7 @@
   font-weight: 300;
   font-size: 11px;
   min-width: 0;
+  padding: 8px;
 }
 .input:global(.__wab_instance) {
   width: 100%;

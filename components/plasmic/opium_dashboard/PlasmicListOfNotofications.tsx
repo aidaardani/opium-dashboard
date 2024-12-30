@@ -434,395 +434,432 @@ function PlasmicListOfNotofications__RenderFunc(props: {
       `}</style>
 
       <div className={projectcss.plasmic_page_wrapper}>
-        <div
-          data-plasmic-name={"root"}
-          data-plasmic-override={overrides.root}
-          data-plasmic-root={true}
-          data-plasmic-for-node={forNode}
-          className={classNames(
-            projectcss.all,
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
-            projectcss.plasmic_tokens,
-            plasmic_fragment_design_system_css.plasmic_tokens,
-            plasmic_antd_5_hostless_css.plasmic_tokens,
-            plasmic_plasmic_rich_components_css.plasmic_tokens,
-            sty.root
-          )}
-        >
-          <SideEffect
-            data-plasmic-name={"sideEffect"}
-            data-plasmic-override={overrides.sideEffect}
-            className={classNames("__wab_instance", sty.sideEffect)}
-            onMount={async () => {
-              const $steps = {};
+        {(() => {
+          try {
+            return !!$ctx.query.user_id;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return false;
+            }
+            throw e;
+          }
+        })() ? (
+          <div
+            data-plasmic-name={"root"}
+            data-plasmic-override={overrides.root}
+            data-plasmic-root={true}
+            data-plasmic-for-node={forNode}
+            className={classNames(
+              projectcss.all,
+              projectcss.root_reset,
+              projectcss.plasmic_default_styles,
+              projectcss.plasmic_mixins,
+              projectcss.plasmic_tokens,
+              plasmic_fragment_design_system_css.plasmic_tokens,
+              plasmic_antd_5_hostless_css.plasmic_tokens,
+              plasmic_plasmic_rich_components_css.plasmic_tokens,
+              sty.root
+            )}
+          >
+            <SideEffect
+              data-plasmic-name={"sideEffect"}
+              data-plasmic-override={overrides.sideEffect}
+              className={classNames("__wab_instance", sty.sideEffect)}
+              onMount={async () => {
+                const $steps = {};
 
-              $steps["apiGetNoticationSettingForThisUser"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "GET",
-                        "https://apigw.paziresh24.com/v1/get-notification-setting",
-                        (() => {
-                          try {
-                            return {
-                              user_id: $ctx.query.user_id
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
+                $steps["apiGetNoticationSettingForThisUser"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "GET",
+                          "https://apigw.paziresh24.com/v1/get-notification-setting",
+                          (() => {
+                            try {
+                              return {
+                                user_id: $ctx.query.user_id
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
                             }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["apiGetNoticationSettingForThisUser"] != null &&
-                typeof $steps["apiGetNoticationSettingForThisUser"] ===
-                  "object" &&
-                typeof $steps["apiGetNoticationSettingForThisUser"].then ===
-                  "function"
-              ) {
-                $steps["apiGetNoticationSettingForThisUser"] = await $steps[
-                  "apiGetNoticationSettingForThisUser"
-                ];
-              }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["apiGetNoticationSettingForThisUser"] != null &&
+                  typeof $steps["apiGetNoticationSettingForThisUser"] ===
+                    "object" &&
+                  typeof $steps["apiGetNoticationSettingForThisUser"].then ===
+                    "function"
+                ) {
+                  $steps["apiGetNoticationSettingForThisUser"] = await $steps[
+                    "apiGetNoticationSettingForThisUser"
+                  ];
+                }
 
-              $steps["updateNotificationSettingForThisUser"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["notificationSettingForThisUser"]
-                      },
-                      operation: 0,
-                      value: $steps.apiGetNoticationSettingForThisUser.data
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
+                $steps["updateNotificationSettingForThisUser"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["notificationSettingForThisUser"]
+                        },
+                        operation: 0,
+                        value: $steps.apiGetNoticationSettingForThisUser.data
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
 
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateNotificationSettingForThisUser"] != null &&
-                typeof $steps["updateNotificationSettingForThisUser"] ===
-                  "object" &&
-                typeof $steps["updateNotificationSettingForThisUser"].then ===
-                  "function"
-              ) {
-                $steps["updateNotificationSettingForThisUser"] = await $steps[
-                  "updateNotificationSettingForThisUser"
-                ];
-              }
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateNotificationSettingForThisUser"] != null &&
+                  typeof $steps["updateNotificationSettingForThisUser"] ===
+                    "object" &&
+                  typeof $steps["updateNotificationSettingForThisUser"].then ===
+                    "function"
+                ) {
+                  $steps["updateNotificationSettingForThisUser"] = await $steps[
+                    "updateNotificationSettingForThisUser"
+                  ];
+                }
 
-              $steps["apiGetNotificationsRecievers"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        undefined,
-                        "https://apigw.paziresh24.com/v1/martin/receivers"
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["apiGetNotificationsRecievers"] != null &&
-                typeof $steps["apiGetNotificationsRecievers"] === "object" &&
-                typeof $steps["apiGetNotificationsRecievers"].then ===
-                  "function"
-              ) {
-                $steps["apiGetNotificationsRecievers"] = await $steps[
-                  "apiGetNotificationsRecievers"
-                ];
-              }
+                $steps["apiGetNotificationsRecievers"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          undefined,
+                          "https://apigw.paziresh24.com/v1/martin/receivers"
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["apiGetNotificationsRecievers"] != null &&
+                  typeof $steps["apiGetNotificationsRecievers"] === "object" &&
+                  typeof $steps["apiGetNotificationsRecievers"].then ===
+                    "function"
+                ) {
+                  $steps["apiGetNotificationsRecievers"] = await $steps[
+                    "apiGetNotificationsRecievers"
+                  ];
+                }
 
-              $steps["updateStateNotoficationsRecivers"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["notoficationsRecivers"]
-                      },
-                      operation: 0,
-                      value: $steps.apiGetNotificationsRecievers.data
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
+                $steps["updateStateNotoficationsRecivers"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["notoficationsRecivers"]
+                        },
+                        operation: 0,
+                        value: $steps.apiGetNotificationsRecievers.data
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
 
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateStateNotoficationsRecivers"] != null &&
-                typeof $steps["updateStateNotoficationsRecivers"] ===
-                  "object" &&
-                typeof $steps["updateStateNotoficationsRecivers"].then ===
-                  "function"
-              ) {
-                $steps["updateStateNotoficationsRecivers"] = await $steps[
-                  "updateStateNotoficationsRecivers"
-                ];
-              }
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateStateNotoficationsRecivers"] != null &&
+                  typeof $steps["updateStateNotoficationsRecivers"] ===
+                    "object" &&
+                  typeof $steps["updateStateNotoficationsRecivers"].then ===
+                    "function"
+                ) {
+                  $steps["updateStateNotoficationsRecivers"] = await $steps[
+                    "updateStateNotoficationsRecivers"
+                  ];
+                }
 
-              $steps["apiGetNotificationEvents"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "GET",
-                        "https://apigw.paziresh24.com/v1/martin/events"
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["apiGetNotificationEvents"] != null &&
-                typeof $steps["apiGetNotificationEvents"] === "object" &&
-                typeof $steps["apiGetNotificationEvents"].then === "function"
-              ) {
-                $steps["apiGetNotificationEvents"] = await $steps[
-                  "apiGetNotificationEvents"
-                ];
-              }
+                $steps["apiGetNotificationEvents"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "GET",
+                          "https://apigw.paziresh24.com/v1/martin/events"
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["apiGetNotificationEvents"] != null &&
+                  typeof $steps["apiGetNotificationEvents"] === "object" &&
+                  typeof $steps["apiGetNotificationEvents"].then === "function"
+                ) {
+                  $steps["apiGetNotificationEvents"] = await $steps[
+                    "apiGetNotificationEvents"
+                  ];
+                }
 
-              $steps["updateNotificationSettingForThisUser2"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["notificationsevents"]
-                      },
-                      operation: 0,
-                      value: $steps.apiGetNotificationEvents.data
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
+                $steps["updateNotificationSettingForThisUser2"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["notificationsevents"]
+                        },
+                        operation: 0,
+                        value: $steps.apiGetNotificationEvents.data
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
 
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateNotificationSettingForThisUser2"] != null &&
-                typeof $steps["updateNotificationSettingForThisUser2"] ===
-                  "object" &&
-                typeof $steps["updateNotificationSettingForThisUser2"].then ===
-                  "function"
-              ) {
-                $steps["updateNotificationSettingForThisUser2"] = await $steps[
-                  "updateNotificationSettingForThisUser2"
-                ];
-              }
-            }}
-          />
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateNotificationSettingForThisUser2"] != null &&
+                  typeof $steps["updateNotificationSettingForThisUser2"] ===
+                    "object" &&
+                  typeof $steps["updateNotificationSettingForThisUser2"]
+                    .then === "function"
+                ) {
+                  $steps["updateNotificationSettingForThisUser2"] =
+                    await $steps["updateNotificationSettingForThisUser2"];
+                }
+              }}
+            />
 
-          <div
-            data-plasmic-name={"subject"}
-            data-plasmic-override={overrides.subject}
-            className={classNames(projectcss.all, sty.subject)}
-          >
             <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__yrnT
-              )}
+              data-plasmic-name={"subject"}
+              data-plasmic-override={overrides.subject}
+              className={classNames(projectcss.all, sty.subject)}
             >
-              {"\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc"}
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__yrnT
+                )}
+              >
+                {
+                  "\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc"
+                }
+              </div>
             </div>
-          </div>
-          <div
-            data-plasmic-name={"description"}
-            data-plasmic-override={overrides.description}
-            className={classNames(projectcss.all, sty.description)}
-          >
             <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text___4AJnv
-              )}
+              data-plasmic-name={"description"}
+              data-plasmic-override={overrides.description}
+              className={classNames(projectcss.all, sty.description)}
             >
-              <React.Fragment>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___4AJnv
+                )}
+              >
                 <React.Fragment>
-                  {
-                    "\u067e\u0632\u0634\u06a9 \u0645\u062d\u062a\u0631\u0645\u060c\n"
-                  }
-                </React.Fragment>
-                <span
-                  className={"plasmic_default__all plasmic_default__span"}
-                  style={{ fontWeight: 400 }}
-                >
-                  {
-                    " \u0642\u0627\u0628\u0644\u06cc\u062a \u00ab\u0627\u0637\u0644\u0627\u0639\u200c\u0631\u0633\u0627\u0646\u06cc \u062e\u0648\u062f\u06a9\u0627\u0631\u00bb \u0627\u06cc\u0646 \u0627\u0645\u06a9\u0627\u0646 \u0631\u0627 \u0645\u06cc\u200c\u062f\u0647\u062f \u062a\u0627 \u0628\u0627 \u0628\u0647\u0631\u0647\u200c\u06af\u06cc\u0631\u06cc \u0627\u0632 \u0627\u0639\u0644\u0627\u0646\u200c\u0647\u0627 \u0648 \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc\u200c\u0647\u0627\u06cc \u062e\u0648\u062f\u06a9\u0627\u0631\u060c \u0645\u062f\u06cc\u0631\u06cc\u062a \u0632\u0645\u0627\u0646 \u062f\u0642\u06cc\u0642\u200c\u062a\u0631\u06cc \u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u06cc\u062f \u0648 \u062a\u062c\u0631\u0628\u0647 \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0631\u0627 \u0628\u0647\u0628\u0648\u062f \u0628\u062e\u0634\u06cc\u062f. \u0627\u06cc\u0646 \u0648\u06cc\u0698\u06af\u06cc \u0628\u0627 \u0647\u062f\u0641 \u0633\u0627\u062f\u0647\u200c\u0633\u0627\u0632\u06cc \u0641\u0631\u0627\u06cc\u0646\u062f\u0647\u0627\u06cc \u0627\u0637\u0644\u0627\u0639\u200c\u0631\u0633\u0627\u0646\u06cc \u0648 \u0627\u0641\u0632\u0627\u06cc\u0634 \u0628\u0647\u0631\u0647\u200c\u0648\u0631\u06cc \u0637\u0631\u0627\u062d\u06cc \u0634\u062f\u0647 \u0627\u0633\u062a."
-                  }
-                </span>
-                <React.Fragment>{"\n\n"}</React.Fragment>
-              </React.Fragment>
-            </div>
-          </div>
-          <div
-            data-plasmic-name={"addnewworkflow"}
-            data-plasmic-override={overrides.addnewworkflow}
-            className={classNames(projectcss.all, sty.addnewworkflow)}
-          >
-            <Dialog
-              data-plasmic-name={"dialogaddnewworkflow"}
-              data-plasmic-override={overrides.dialogaddnewworkflow}
-              body={
-                <div className={classNames(projectcss.all, sty.freeBox__qlUGr)}>
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"sendnotifications"}
-                    data-plasmic-override={overrides.sendnotifications}
-                    hasGap={true}
-                    className={classNames(
-                      projectcss.all,
-                      sty.sendnotifications
-                    )}
+                  <React.Fragment>
+                    {
+                      "\u067e\u0632\u0634\u06a9 \u0645\u062d\u062a\u0631\u0645\u060c\n"
+                    }
+                  </React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 400 }}
                   >
-                    <div
+                    {
+                      " \u0642\u0627\u0628\u0644\u06cc\u062a \u00ab\u0627\u0637\u0644\u0627\u0639\u200c\u0631\u0633\u0627\u0646\u06cc \u062e\u0648\u062f\u06a9\u0627\u0631\u00bb \u0627\u06cc\u0646 \u0627\u0645\u06a9\u0627\u0646 \u0631\u0627 \u0645\u06cc\u200c\u062f\u0647\u062f \u062a\u0627 \u0628\u0627 \u0628\u0647\u0631\u0647\u200c\u06af\u06cc\u0631\u06cc \u0627\u0632 \u0627\u0639\u0644\u0627\u0646\u200c\u0647\u0627 \u0648 \u06cc\u0627\u062f\u0622\u0648\u0631\u06cc\u200c\u0647\u0627\u06cc \u062e\u0648\u062f\u06a9\u0627\u0631\u060c \u0645\u062f\u06cc\u0631\u06cc\u062a \u0632\u0645\u0627\u0646 \u062f\u0642\u06cc\u0642\u200c\u062a\u0631\u06cc \u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u06cc\u062f \u0648 \u062a\u062c\u0631\u0628\u0647 \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0631\u0627 \u0628\u0647\u0628\u0648\u062f \u0628\u062e\u0634\u06cc\u062f. \u0627\u06cc\u0646 \u0648\u06cc\u0698\u06af\u06cc \u0628\u0627 \u0647\u062f\u0641 \u0633\u0627\u062f\u0647\u200c\u0633\u0627\u0632\u06cc \u0641\u0631\u0627\u06cc\u0646\u062f\u0647\u0627\u06cc \u0627\u0637\u0644\u0627\u0639\u200c\u0631\u0633\u0627\u0646\u06cc \u0648 \u0627\u0641\u0632\u0627\u06cc\u0634 \u0628\u0647\u0631\u0647\u200c\u0648\u0631\u06cc \u0637\u0631\u0627\u062d\u06cc \u0634\u062f\u0647 \u0627\u0633\u062a."
+                    }
+                  </span>
+                  <React.Fragment>{"\n\n"}</React.Fragment>
+                </React.Fragment>
+              </div>
+            </div>
+            <div
+              data-plasmic-name={"addnewworkflow"}
+              data-plasmic-override={overrides.addnewworkflow}
+              className={classNames(projectcss.all, sty.addnewworkflow)}
+            >
+              <Dialog
+                data-plasmic-name={"dialogaddnewworkflow"}
+                data-plasmic-override={overrides.dialogaddnewworkflow}
+                body={
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__qlUGr)}
+                  >
+                    <Stack__
+                      as={"div"}
+                      data-plasmic-name={"sendnotifications"}
+                      data-plasmic-override={overrides.sendnotifications}
+                      hasGap={true}
                       className={classNames(
                         projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__abege
+                        sty.sendnotifications
                       )}
                     >
-                      {
-                        "\u0686\u0647 \u0632\u0645\u0627\u0646\u06cc \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc \u0627\u0646\u062c\u0627\u0645 \u0634\u0648\u062f\u061f"
-                      }
-                    </div>
-                    <Popover
-                      data-plasmic-name={"fragmentPopoverSendEvents"}
-                      data-plasmic-override={
-                        overrides.fragmentPopoverSendEvents
-                      }
-                      className={classNames(
-                        "__wab_instance",
-                        sty.fragmentPopoverSendEvents
-                      )}
-                      content={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__gIrXg
-                          )}
-                        >
-                          {(_par =>
-                            !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                            (() => {
-                              try {
-                                return $state.notificationsevents.map(
-                                  item => item.Title
-                                );
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return [];
-                                }
-                                throw e;
-                              }
-                            })()
-                          ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                            const currentItem = __plasmic_item_0;
-                            const currentIndex = __plasmic_idx_0;
-                            return (
-                              <div
-                                data-plasmic-name={"whichevents"}
-                                data-plasmic-override={overrides.whichevents}
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.whichevents
-                                )}
-                                key={currentIndex}
-                                onClick={async event => {
-                                  const $steps = {};
-
-                                  $steps["updateSelectedeevntinnewworkflow"] =
-                                    true
-                                      ? (() => {
-                                          const actionArgs = {
-                                            variable: {
-                                              objRoot: $state,
-                                              variablePath: [
-                                                "selectedeventinworkflow"
-                                              ]
-                                            },
-                                            operation: 0,
-                                            value: currentItem
-                                          };
-                                          return (({
-                                            variable,
-                                            value,
-                                            startIndex,
-                                            deleteCount
-                                          }) => {
-                                            if (!variable) {
-                                              return;
-                                            }
-                                            const { objRoot, variablePath } =
-                                              variable;
-
-                                            $stateSet(
-                                              objRoot,
-                                              variablePath,
-                                              value
-                                            );
-                                            return value;
-                                          })?.apply(null, [actionArgs]);
-                                        })()
-                                      : undefined;
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__abege
+                        )}
+                      >
+                        {
+                          "\u0686\u0647 \u0632\u0645\u0627\u0646\u06cc \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc \u0627\u0646\u062c\u0627\u0645 \u0634\u0648\u062f\u061f"
+                        }
+                      </div>
+                      <Popover
+                        data-plasmic-name={"fragmentPopoverSendEvents"}
+                        data-plasmic-override={
+                          overrides.fragmentPopoverSendEvents
+                        }
+                        className={classNames(
+                          "__wab_instance",
+                          sty.fragmentPopoverSendEvents
+                        )}
+                        content={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__gIrXg
+                            )}
+                          >
+                            {(_par =>
+                              !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                              (() => {
+                                try {
+                                  return $state.notificationsevents.map(
+                                    item => item.Title
+                                  );
+                                } catch (e) {
                                   if (
-                                    $steps[
-                                      "updateSelectedeevntinnewworkflow"
-                                    ] != null &&
-                                    typeof $steps[
-                                      "updateSelectedeevntinnewworkflow"
-                                    ] === "object" &&
-                                    typeof $steps[
-                                      "updateSelectedeevntinnewworkflow"
-                                    ].then === "function"
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
                                   ) {
+                                    return [];
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                              const currentItem = __plasmic_item_0;
+                              const currentIndex = __plasmic_idx_0;
+                              return (
+                                <div
+                                  data-plasmic-name={"whichevents"}
+                                  data-plasmic-override={overrides.whichevents}
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.whichevents
+                                  )}
+                                  key={currentIndex}
+                                  onClick={async event => {
+                                    const $steps = {};
+
                                     $steps["updateSelectedeevntinnewworkflow"] =
-                                      await $steps[
+                                      true
+                                        ? (() => {
+                                            const actionArgs = {
+                                              variable: {
+                                                objRoot: $state,
+                                                variablePath: [
+                                                  "selectedeventinworkflow"
+                                                ]
+                                              },
+                                              operation: 0,
+                                              value: currentItem
+                                            };
+                                            return (({
+                                              variable,
+                                              value,
+                                              startIndex,
+                                              deleteCount
+                                            }) => {
+                                              if (!variable) {
+                                                return;
+                                              }
+                                              const { objRoot, variablePath } =
+                                                variable;
+
+                                              $stateSet(
+                                                objRoot,
+                                                variablePath,
+                                                value
+                                              );
+                                              return value;
+                                            })?.apply(null, [actionArgs]);
+                                          })()
+                                        : undefined;
+                                    if (
+                                      $steps[
+                                        "updateSelectedeevntinnewworkflow"
+                                      ] != null &&
+                                      typeof $steps[
+                                        "updateSelectedeevntinnewworkflow"
+                                      ] === "object" &&
+                                      typeof $steps[
+                                        "updateSelectedeevntinnewworkflow"
+                                      ].then === "function"
+                                    ) {
+                                      $steps[
+                                        "updateSelectedeevntinnewworkflow"
+                                      ] = await $steps[
                                         "updateSelectedeevntinnewworkflow"
                                       ];
-                                  }
+                                    }
 
-                                  $steps["updateFragmentPopoverSendWhomOpen"] =
-                                    true
+                                    $steps[
+                                      "updateFragmentPopoverSendWhomOpen"
+                                    ] = true
                                       ? (() => {
                                           const actionArgs = {
                                             variable: {
@@ -856,316 +893,324 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                           })?.apply(null, [actionArgs]);
                                         })()
                                       : undefined;
-                                  if (
-                                    $steps[
-                                      "updateFragmentPopoverSendWhomOpen"
-                                    ] != null &&
-                                    typeof $steps[
-                                      "updateFragmentPopoverSendWhomOpen"
-                                    ] === "object" &&
-                                    typeof $steps[
-                                      "updateFragmentPopoverSendWhomOpen"
-                                    ].then === "function"
-                                  ) {
-                                    $steps[
-                                      "updateFragmentPopoverSendWhomOpen"
-                                    ] = await $steps[
-                                      "updateFragmentPopoverSendWhomOpen"
-                                    ];
-                                  }
-                                }}
-                              >
-                                <div
-                                  data-plasmic-name={"whichevent"}
-                                  data-plasmic-override={overrides.whichevent}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.whichevent
-                                  )}
+                                    if (
+                                      $steps[
+                                        "updateFragmentPopoverSendWhomOpen"
+                                      ] != null &&
+                                      typeof $steps[
+                                        "updateFragmentPopoverSendWhomOpen"
+                                      ] === "object" &&
+                                      typeof $steps[
+                                        "updateFragmentPopoverSendWhomOpen"
+                                      ].then === "function"
+                                    ) {
+                                      $steps[
+                                        "updateFragmentPopoverSendWhomOpen"
+                                      ] = await $steps[
+                                        "updateFragmentPopoverSendWhomOpen"
+                                      ];
+                                    }
+                                  }}
                                 >
                                   <div
+                                    data-plasmic-name={"whichevent"}
+                                    data-plasmic-override={overrides.whichevent}
                                     className={classNames(
                                       projectcss.all,
-                                      projectcss.__wab_text,
-                                      sty.text__ezw4K
+                                      sty.whichevent
                                     )}
                                   >
-                                    <React.Fragment>
-                                      {(() => {
-                                        try {
-                                          return currentItem;
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return "";
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.__wab_text,
+                                        sty.text__ezw4K
+                                      )}
+                                    >
+                                      <React.Fragment>
+                                        {(() => {
+                                          try {
+                                            return currentItem;
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return "";
+                                            }
+                                            throw e;
                                           }
-                                          throw e;
+                                        })()}
+                                      </React.Fragment>
+                                    </div>
+                                    {(() => {
+                                      try {
+                                        return (
+                                          $state.selectedeventinworkflow ===
+                                          currentItem
+                                        );
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return false;
                                         }
-                                      })()}
-                                    </React.Fragment>
+                                        throw e;
+                                      }
+                                    })() ? (
+                                      <CheckSvgIcon
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.svg__s0Lz
+                                        )}
+                                        role={"img"}
+                                      />
+                                    ) : null}
                                   </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        }
+                        onOpenChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "fragmentPopoverSendEvents",
+                            "open"
+                          ]).apply(null, eventArgs);
+                        }}
+                        open={generateStateValueProp($state, [
+                          "fragmentPopoverSendEvents",
+                          "open"
+                        ])}
+                        ref={ref => {
+                          $refs["fragmentPopoverSendEvents"] = ref;
+                        }}
+                        trigger={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__mqX2M
+                            )}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__gcg67
+                              )}
+                            >
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__vMMxT
+                                )}
+                              >
+                                <React.Fragment>
                                   {(() => {
                                     try {
-                                      return (
-                                        $state.selectedeventinworkflow ===
-                                        currentItem
-                                      );
+                                      return $state.selectedeventinworkflow;
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
                                         e?.plasmicType ===
                                           "PlasmicUndefinedDataError"
                                       ) {
-                                        return false;
+                                        return "";
                                       }
                                       throw e;
                                     }
-                                  })() ? (
-                                    <CheckSvgIcon
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.svg__s0Lz
-                                      )}
-                                      role={"img"}
-                                    />
-                                  ) : null}
-                                </div>
+                                  })()}
+                                </React.Fragment>
                               </div>
-                            );
-                          })}
-                        </div>
-                      }
-                      onOpenChange={async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "fragmentPopoverSendEvents",
-                          "open"
-                        ]).apply(null, eventArgs);
-                      }}
-                      open={generateStateValueProp($state, [
-                        "fragmentPopoverSendEvents",
-                        "open"
-                      ])}
-                      ref={ref => {
-                        $refs["fragmentPopoverSendEvents"] = ref;
-                      }}
-                      trigger={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__mqX2M
-                          )}
-                        >
+                              {(() => {
+                                try {
+                                  return $state.fragmentPopoverSendEvents.open;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return false;
+                                  }
+                                  throw e;
+                                }
+                              })() ? (
+                                <ChevronUpIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__m609U
+                                  )}
+                                  role={"img"}
+                                />
+                              ) : null}
+                              {(() => {
+                                try {
+                                  return (
+                                    $state.fragmentPopoverSendEvents.open ===
+                                    false
+                                  );
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return true;
+                                  }
+                                  throw e;
+                                }
+                              })() ? (
+                                <ChevronDownIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__huCe
+                                  )}
+                                  role={"img"}
+                                />
+                              ) : null}
+                            </div>
+                          </div>
+                        }
+                      />
+                    </Stack__>
+                    <Stack__
+                      as={"div"}
+                      data-plasmic-name={"sendwhom"}
+                      data-plasmic-override={overrides.sendwhom}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.sendwhom)}
+                    >
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__iaOa4
+                        )}
+                      >
+                        {
+                          "\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc \u0628\u0647 \u0686\u0647 \u06a9\u0633\u06cc \u0627\u0646\u062c\u0627\u0645 \u0634\u0648\u062f\u061f"
+                        }
+                      </div>
+                      <Popover
+                        data-plasmic-name={"fragmentPopoverSendWhom"}
+                        data-plasmic-override={
+                          overrides.fragmentPopoverSendWhom
+                        }
+                        className={classNames(
+                          "__wab_instance",
+                          sty.fragmentPopoverSendWhom
+                        )}
+                        content={
                           <div
                             className={classNames(
                               projectcss.all,
-                              sty.freeBox__gcg67
+                              sty.freeBox__xzjEc
                             )}
                           >
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__vMMxT
-                              )}
-                            >
-                              <React.Fragment>
-                                {(() => {
-                                  try {
-                                    return $state.selectedeventinworkflow;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return "";
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                              </React.Fragment>
-                            </div>
-                            {(() => {
-                              try {
-                                return $state.fragmentPopoverSendEvents.open;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return false;
-                                }
-                                throw e;
-                              }
-                            })() ? (
-                              <ChevronUpIcon
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.svg__m609U
-                                )}
-                                role={"img"}
-                              />
-                            ) : null}
-                            {(() => {
-                              try {
-                                return (
-                                  $state.fragmentPopoverSendEvents.open ===
-                                  false
-                                );
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return true;
-                                }
-                                throw e;
-                              }
-                            })() ? (
-                              <ChevronDownIcon
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.svg__huCe
-                                )}
-                                role={"img"}
-                              />
-                            ) : null}
-                          </div>
-                        </div>
-                      }
-                    />
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"sendwhom"}
-                    data-plasmic-override={overrides.sendwhom}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.sendwhom)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__iaOa4
-                      )}
-                    >
-                      {
-                        "\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc \u0628\u0647 \u0686\u0647 \u06a9\u0633\u06cc \u0627\u0646\u062c\u0627\u0645 \u0634\u0648\u062f\u061f"
-                      }
-                    </div>
-                    <Popover
-                      data-plasmic-name={"fragmentPopoverSendWhom"}
-                      data-plasmic-override={overrides.fragmentPopoverSendWhom}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.fragmentPopoverSendWhom
-                      )}
-                      content={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__xzjEc
-                          )}
-                        >
-                          {(_par =>
-                            !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                            (() => {
-                              try {
-                                return $state.selectedeventinworkflow ===
-                                  "یادآور نوبت"
-                                  ? $state.notoficationsRecivers
-                                      .filter(
-                                        item =>
-                                          item.Title !== "پزشک" &&
-                                          item.Title !== "منشی"
-                                      )
-                                      .map(item => item.Title)
-                                  : $state.notoficationsRecivers.map(
-                                      item => item.Title
-                                    );
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return [];
-                                }
-                                throw e;
-                              }
-                            })()
-                          ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                            const currentItem = __plasmic_item_0;
-                            const currentIndex = __plasmic_idx_0;
-                            return (
-                              <div
-                                data-plasmic-name={"whoshouldsend"}
-                                data-plasmic-override={overrides.whoshouldsend}
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.whoshouldsend
-                                )}
-                                key={currentIndex}
-                                onClick={async event => {
-                                  const $steps = {};
-
-                                  $steps[
-                                    "updateSelectedrecieverinnewworkflow"
-                                  ] = true
-                                    ? (() => {
-                                        const actionArgs = {
-                                          variable: {
-                                            objRoot: $state,
-                                            variablePath: [
-                                              "selectedrecieverinnewworkflow"
-                                            ]
-                                          },
-                                          operation: 0,
-                                          value: currentItem
-                                        };
-                                        return (({
-                                          variable,
-                                          value,
-                                          startIndex,
-                                          deleteCount
-                                        }) => {
-                                          if (!variable) {
-                                            return;
-                                          }
-                                          const { objRoot, variablePath } =
-                                            variable;
-
-                                          $stateSet(
-                                            objRoot,
-                                            variablePath,
-                                            value
-                                          );
-                                          return value;
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
+                            {(_par =>
+                              !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                              (() => {
+                                try {
+                                  return $state.selectedeventinworkflow ===
+                                    "یادآور نوبت"
+                                    ? $state.notoficationsRecivers
+                                        .filter(
+                                          item =>
+                                            item.Title !== "پزشک" &&
+                                            item.Title !== "منشی"
+                                        )
+                                        .map(item => item.Title)
+                                    : $state.notoficationsRecivers.map(
+                                        item => item.Title
+                                      );
+                                } catch (e) {
                                   if (
-                                    $steps[
-                                      "updateSelectedrecieverinnewworkflow"
-                                    ] != null &&
-                                    typeof $steps[
-                                      "updateSelectedrecieverinnewworkflow"
-                                    ] === "object" &&
-                                    typeof $steps[
-                                      "updateSelectedrecieverinnewworkflow"
-                                    ].then === "function"
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
                                   ) {
+                                    return [];
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                              const currentItem = __plasmic_item_0;
+                              const currentIndex = __plasmic_idx_0;
+                              return (
+                                <div
+                                  data-plasmic-name={"whoshouldsend"}
+                                  data-plasmic-override={
+                                    overrides.whoshouldsend
+                                  }
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.whoshouldsend
+                                  )}
+                                  key={currentIndex}
+                                  onClick={async event => {
+                                    const $steps = {};
+
                                     $steps[
                                       "updateSelectedrecieverinnewworkflow"
-                                    ] = await $steps[
-                                      "updateSelectedrecieverinnewworkflow"
-                                    ];
-                                  }
+                                    ] = true
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: [
+                                                "selectedrecieverinnewworkflow"
+                                              ]
+                                            },
+                                            operation: 0,
+                                            value: currentItem
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
 
-                                  $steps["updateFragmentPopoverSendWhomOpen"] =
-                                    true
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                    if (
+                                      $steps[
+                                        "updateSelectedrecieverinnewworkflow"
+                                      ] != null &&
+                                      typeof $steps[
+                                        "updateSelectedrecieverinnewworkflow"
+                                      ] === "object" &&
+                                      typeof $steps[
+                                        "updateSelectedrecieverinnewworkflow"
+                                      ].then === "function"
+                                    ) {
+                                      $steps[
+                                        "updateSelectedrecieverinnewworkflow"
+                                      ] = await $steps[
+                                        "updateSelectedrecieverinnewworkflow"
+                                      ];
+                                    }
+
+                                    $steps[
+                                      "updateFragmentPopoverSendWhomOpen"
+                                    ] = true
                                       ? (() => {
                                           const actionArgs = {
                                             variable: {
@@ -1199,46 +1244,333 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                           })?.apply(null, [actionArgs]);
                                         })()
                                       : undefined;
-                                  if (
-                                    $steps[
-                                      "updateFragmentPopoverSendWhomOpen"
-                                    ] != null &&
-                                    typeof $steps[
-                                      "updateFragmentPopoverSendWhomOpen"
-                                    ] === "object" &&
-                                    typeof $steps[
-                                      "updateFragmentPopoverSendWhomOpen"
-                                    ].then === "function"
-                                  ) {
-                                    $steps[
-                                      "updateFragmentPopoverSendWhomOpen"
-                                    ] = await $steps[
-                                      "updateFragmentPopoverSendWhomOpen"
-                                    ];
-                                  }
-                                }}
+                                    if (
+                                      $steps[
+                                        "updateFragmentPopoverSendWhomOpen"
+                                      ] != null &&
+                                      typeof $steps[
+                                        "updateFragmentPopoverSendWhomOpen"
+                                      ] === "object" &&
+                                      typeof $steps[
+                                        "updateFragmentPopoverSendWhomOpen"
+                                      ].then === "function"
+                                    ) {
+                                      $steps[
+                                        "updateFragmentPopoverSendWhomOpen"
+                                      ] = await $steps[
+                                        "updateFragmentPopoverSendWhomOpen"
+                                      ];
+                                    }
+                                  }}
+                                >
+                                  <div
+                                    data-plasmic-name={"subjectwhoshouldsend"}
+                                    data-plasmic-override={
+                                      overrides.subjectwhoshouldsend
+                                    }
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.subjectwhoshouldsend
+                                    )}
+                                  >
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.__wab_text,
+                                        sty.text__ejYym
+                                      )}
+                                    >
+                                      <React.Fragment>
+                                        {(() => {
+                                          try {
+                                            return currentItem;
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return "";
+                                            }
+                                            throw e;
+                                          }
+                                        })()}
+                                      </React.Fragment>
+                                    </div>
+                                    {(() => {
+                                      try {
+                                        return (
+                                          $state.selectedrecieverinnewworkflow ===
+                                          currentItem
+                                        );
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return false;
+                                        }
+                                        throw e;
+                                      }
+                                    })() ? (
+                                      <CheckSvgIcon
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.svg___0ApT
+                                        )}
+                                        role={"img"}
+                                      />
+                                    ) : null}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        }
+                        onOpenChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "fragmentPopoverSendWhom",
+                            "open"
+                          ]).apply(null, eventArgs);
+                        }}
+                        open={generateStateValueProp($state, [
+                          "fragmentPopoverSendWhom",
+                          "open"
+                        ])}
+                        ref={ref => {
+                          $refs["fragmentPopoverSendWhom"] = ref;
+                        }}
+                        trigger={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__kdc0Z
+                            )}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__l9WuU
+                              )}
+                            >
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__nRkc
+                                )}
                               >
-                                <div
-                                  data-plasmic-name={"subjectwhoshouldsend"}
-                                  data-plasmic-override={
-                                    overrides.subjectwhoshouldsend
+                                <React.Fragment>
+                                  {(() => {
+                                    try {
+                                      return $state.selectedeventinworkflow ===
+                                        "یادآور نوبت"
+                                        ? "بیمار"
+                                        : $state.selectedrecieverinnewworkflow;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return "";
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                </React.Fragment>
+                              </div>
+                              {(() => {
+                                try {
+                                  return $state.fragmentPopoverSendWhom.open;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return false;
                                   }
+                                  throw e;
+                                }
+                              })() ? (
+                                <ChevronUpIcon
                                   className={classNames(
                                     projectcss.all,
-                                    sty.subjectwhoshouldsend
+                                    sty.svg__aAHwy
                                   )}
+                                  role={"img"}
+                                />
+                              ) : null}
+                              {(() => {
+                                try {
+                                  return (
+                                    $state.fragmentPopoverSendWhom.open ===
+                                    false
+                                  );
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return true;
+                                  }
+                                  throw e;
+                                }
+                              })() ? (
+                                <ChevronDownIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg___7BlA
+                                  )}
+                                  role={"img"}
+                                />
+                              ) : null}
+                            </div>
+                          </div>
+                        }
+                      />
+                    </Stack__>
+                    <Stack__
+                      as={"div"}
+                      data-plasmic-name={"sendwhat"}
+                      data-plasmic-override={overrides.sendwhat}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.sendwhat)}
+                    >
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__eCwEp
+                        )}
+                      >
+                        {
+                          "\u062f\u0631 \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc \u0686\u0647 \u0645\u062a\u0646\u06cc \u0627\u0631\u0633\u0627\u0644 \u0634\u0648\u062f\u061f"
+                        }
+                      </div>
+                      <Popover
+                        data-plasmic-name={"fragmentPopoverSendWhat"}
+                        data-plasmic-override={
+                          overrides.fragmentPopoverSendWhat
+                        }
+                        className={classNames(
+                          "__wab_instance",
+                          sty.fragmentPopoverSendWhat
+                        )}
+                        content={
+                          <Stack__
+                            as={"div"}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__qCnfd
+                            )}
+                          >
+                            <Stack__
+                              as={"div"}
+                              hasGap={true}
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__yEAd
+                              )}
+                            >
+                              {(() => {
+                                try {
+                                  return (
+                                    $state.selectedrecieverinnewworkflow !=
+                                    "doctor"
+                                  );
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return true;
+                                  }
+                                  throw e;
+                                }
+                              })() ? (
+                                <div
+                                  data-plasmic-name={"drname"}
+                                  data-plasmic-override={overrides.drname}
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.drname
+                                  )}
+                                  onClick={async event => {
+                                    const $steps = {};
+
+                                    $steps[
+                                      "updateSelecteddrnameinnewworkflowscontent"
+                                    ] = true
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: [
+                                                "selecteddrnameinnewworkflowscontent"
+                                              ]
+                                            },
+                                            operation: 0,
+                                            value:
+                                              ($state.selecteddrnameinnewworkflowscontent =
+                                                !$state.selecteddrnameinnewworkflowscontent)
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                    if (
+                                      $steps[
+                                        "updateSelecteddrnameinnewworkflowscontent"
+                                      ] != null &&
+                                      typeof $steps[
+                                        "updateSelecteddrnameinnewworkflowscontent"
+                                      ] === "object" &&
+                                      typeof $steps[
+                                        "updateSelecteddrnameinnewworkflowscontent"
+                                      ].then === "function"
+                                    ) {
+                                      $steps[
+                                        "updateSelecteddrnameinnewworkflowscontent"
+                                      ] = await $steps[
+                                        "updateSelecteddrnameinnewworkflowscontent"
+                                      ];
+                                    }
+                                  }}
                                 >
                                   <div
                                     className={classNames(
                                       projectcss.all,
                                       projectcss.__wab_text,
-                                      sty.text__ejYym
+                                      sty.text__ptq6M
                                     )}
                                   >
                                     <React.Fragment>
                                       {(() => {
                                         try {
-                                          return currentItem;
+                                          return "نام پزشک";
                                         } catch (e) {
                                           if (
                                             e instanceof TypeError ||
@@ -1254,10 +1586,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                   </div>
                                   {(() => {
                                     try {
-                                      return (
-                                        $state.selectedrecieverinnewworkflow ===
-                                        currentItem
-                                      );
+                                      return $state.selecteddrnameinnewworkflowscontent;
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -1272,202 +1601,38 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                     <CheckSvgIcon
                                       className={classNames(
                                         projectcss.all,
-                                        sty.svg___0ApT
+                                        sty.svg__qmkwC
                                       )}
                                       role={"img"}
                                     />
                                   ) : null}
                                 </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      }
-                      onOpenChange={async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "fragmentPopoverSendWhom",
-                          "open"
-                        ]).apply(null, eventArgs);
-                      }}
-                      open={generateStateValueProp($state, [
-                        "fragmentPopoverSendWhom",
-                        "open"
-                      ])}
-                      ref={ref => {
-                        $refs["fragmentPopoverSendWhom"] = ref;
-                      }}
-                      trigger={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__kdc0Z
-                          )}
-                        >
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__l9WuU
-                            )}
-                          >
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__nRkc
-                              )}
-                            >
-                              <React.Fragment>
-                                {(() => {
-                                  try {
-                                    return $state.selectedeventinworkflow ===
-                                      "یادآور نوبت"
-                                      ? "بیمار"
-                                      : $state.selectedrecieverinnewworkflow;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return "";
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                              </React.Fragment>
-                            </div>
-                            {(() => {
-                              try {
-                                return $state.fragmentPopoverSendWhom.open;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return false;
-                                }
-                                throw e;
-                              }
-                            })() ? (
-                              <ChevronUpIcon
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.svg__aAHwy
-                                )}
-                                role={"img"}
-                              />
-                            ) : null}
-                            {(() => {
-                              try {
-                                return (
-                                  $state.fragmentPopoverSendWhom.open === false
-                                );
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return true;
-                                }
-                                throw e;
-                              }
-                            })() ? (
-                              <ChevronDownIcon
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.svg___7BlA
-                                )}
-                                role={"img"}
-                              />
-                            ) : null}
-                          </div>
-                        </div>
-                      }
-                    />
-                  </Stack__>
-                  <Stack__
-                    as={"div"}
-                    data-plasmic-name={"sendwhat"}
-                    data-plasmic-override={overrides.sendwhat}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.sendwhat)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__eCwEp
-                      )}
-                    >
-                      {
-                        "\u062f\u0631 \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc \u0686\u0647 \u0645\u062a\u0646\u06cc \u0627\u0631\u0633\u0627\u0644 \u0634\u0648\u062f\u061f"
-                      }
-                    </div>
-                    <Popover
-                      data-plasmic-name={"fragmentPopoverSendWhat"}
-                      data-plasmic-override={overrides.fragmentPopoverSendWhat}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.fragmentPopoverSendWhat
-                      )}
-                      content={
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__qCnfd
-                          )}
-                        >
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__yEAd
-                            )}
-                          >
-                            {(() => {
-                              try {
-                                return (
-                                  $state.selectedrecieverinnewworkflow !=
-                                  "doctor"
-                                );
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return true;
-                                }
-                                throw e;
-                              }
-                            })() ? (
+                              ) : null}
                               <div
-                                data-plasmic-name={"drname"}
-                                data-plasmic-override={overrides.drname}
+                                data-plasmic-name={"patientname"}
+                                data-plasmic-override={overrides.patientname}
                                 className={classNames(
                                   projectcss.all,
-                                  sty.drname
+                                  sty.patientname
                                 )}
                                 onClick={async event => {
                                   const $steps = {};
 
                                   $steps[
-                                    "updateSelecteddrnameinnewworkflowscontent"
+                                    "updateSelecteddrpatientinnewworkflowscontent"
                                   ] = true
                                     ? (() => {
                                         const actionArgs = {
                                           variable: {
                                             objRoot: $state,
                                             variablePath: [
-                                              "selecteddrnameinnewworkflowscontent"
+                                              "selecteddrpatientinnewworkflowscontent"
                                             ]
                                           },
                                           operation: 0,
                                           value:
-                                            ($state.selecteddrnameinnewworkflowscontent =
-                                              !$state.selecteddrnameinnewworkflowscontent)
+                                            ($state.selecteddrpatientinnewworkflowscontent =
+                                              !$state.selecteddrpatientinnewworkflowscontent)
                                         };
                                         return (({
                                           variable,
@@ -1492,19 +1657,19 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                     : undefined;
                                   if (
                                     $steps[
-                                      "updateSelecteddrnameinnewworkflowscontent"
+                                      "updateSelecteddrpatientinnewworkflowscontent"
                                     ] != null &&
                                     typeof $steps[
-                                      "updateSelecteddrnameinnewworkflowscontent"
+                                      "updateSelecteddrpatientinnewworkflowscontent"
                                     ] === "object" &&
                                     typeof $steps[
-                                      "updateSelecteddrnameinnewworkflowscontent"
+                                      "updateSelecteddrpatientinnewworkflowscontent"
                                     ].then === "function"
                                   ) {
                                     $steps[
-                                      "updateSelecteddrnameinnewworkflowscontent"
+                                      "updateSelecteddrpatientinnewworkflowscontent"
                                     ] = await $steps[
-                                      "updateSelecteddrnameinnewworkflowscontent"
+                                      "updateSelecteddrpatientinnewworkflowscontent"
                                     ];
                                   }
                                 }}
@@ -1513,13 +1678,13 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                   className={classNames(
                                     projectcss.all,
                                     projectcss.__wab_text,
-                                    sty.text__ptq6M
+                                    sty.text__lvwL
                                   )}
                                 >
                                   <React.Fragment>
                                     {(() => {
                                       try {
-                                        return "نام پزشک";
+                                        return "نام بیمار";
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
@@ -1535,7 +1700,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                 </div>
                                 {(() => {
                                   try {
-                                    return $state.selecteddrnameinnewworkflowscontent;
+                                    return $state.selecteddrpatientinnewworkflowscontent;
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
@@ -1550,564 +1715,512 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                   <CheckSvgIcon
                                     className={classNames(
                                       projectcss.all,
-                                      sty.svg__qmkwC
+                                      sty.svg__o5Qdx
                                     )}
                                     role={"img"}
                                   />
                                 ) : null}
                               </div>
-                            ) : null}
-                            <div
-                              data-plasmic-name={"patientname"}
-                              data-plasmic-override={overrides.patientname}
-                              className={classNames(
-                                projectcss.all,
-                                sty.patientname
-                              )}
-                              onClick={async event => {
-                                const $steps = {};
-
-                                $steps[
-                                  "updateSelecteddrpatientinnewworkflowscontent"
-                                ] = true
-                                  ? (() => {
-                                      const actionArgs = {
-                                        variable: {
-                                          objRoot: $state,
-                                          variablePath: [
-                                            "selecteddrpatientinnewworkflowscontent"
-                                          ]
-                                        },
-                                        operation: 0,
-                                        value:
-                                          ($state.selecteddrpatientinnewworkflowscontent =
-                                            !$state.selecteddrpatientinnewworkflowscontent)
-                                      };
-                                      return (({
-                                        variable,
-                                        value,
-                                        startIndex,
-                                        deleteCount
-                                      }) => {
-                                        if (!variable) {
-                                          return;
-                                        }
-                                        const { objRoot, variablePath } =
-                                          variable;
-
-                                        $stateSet(objRoot, variablePath, value);
-                                        return value;
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                                if (
-                                  $steps[
-                                    "updateSelecteddrpatientinnewworkflowscontent"
-                                  ] != null &&
-                                  typeof $steps[
-                                    "updateSelecteddrpatientinnewworkflowscontent"
-                                  ] === "object" &&
-                                  typeof $steps[
-                                    "updateSelecteddrpatientinnewworkflowscontent"
-                                  ].then === "function"
-                                ) {
-                                  $steps[
-                                    "updateSelecteddrpatientinnewworkflowscontent"
-                                  ] = await $steps[
-                                    "updateSelecteddrpatientinnewworkflowscontent"
-                                  ];
-                                }
-                              }}
-                            >
                               <div
+                                data-plasmic-name={"refid"}
+                                data-plasmic-override={overrides.refid}
                                 className={classNames(
                                   projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__lvwL
+                                  sty.refid
                                 )}
-                              >
-                                <React.Fragment>
-                                  {(() => {
-                                    try {
-                                      return "نام بیمار";
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return "";
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                </React.Fragment>
-                              </div>
-                              {(() => {
-                                try {
-                                  return $state.selecteddrpatientinnewworkflowscontent;
-                                } catch (e) {
+                                onClick={async event => {
+                                  const $steps = {};
+
+                                  $steps[
+                                    "updateSelectedrefidinnewworkflowscontent"
+                                  ] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          variable: {
+                                            objRoot: $state,
+                                            variablePath: [
+                                              "selectedrefidinnewworkflowscontent"
+                                            ]
+                                          },
+                                          operation: 0,
+                                          value:
+                                            ($state.selectedrefidinnewworkflowscontent =
+                                              !$state.selectedrefidinnewworkflowscontent)
+                                        };
+                                        return (({
+                                          variable,
+                                          value,
+                                          startIndex,
+                                          deleteCount
+                                        }) => {
+                                          if (!variable) {
+                                            return;
+                                          }
+                                          const { objRoot, variablePath } =
+                                            variable;
+
+                                          $stateSet(
+                                            objRoot,
+                                            variablePath,
+                                            value
+                                          );
+                                          return value;
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
                                   if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
+                                    $steps[
+                                      "updateSelectedrefidinnewworkflowscontent"
+                                    ] != null &&
+                                    typeof $steps[
+                                      "updateSelectedrefidinnewworkflowscontent"
+                                    ] === "object" &&
+                                    typeof $steps[
+                                      "updateSelectedrefidinnewworkflowscontent"
+                                    ].then === "function"
                                   ) {
-                                    return false;
+                                    $steps[
+                                      "updateSelectedrefidinnewworkflowscontent"
+                                    ] = await $steps[
+                                      "updateSelectedrefidinnewworkflowscontent"
+                                    ];
                                   }
-                                  throw e;
-                                }
-                              })() ? (
-                                <CheckSvgIcon
+                                }}
+                              >
+                                <div
                                   className={classNames(
                                     projectcss.all,
-                                    sty.svg__o5Qdx
+                                    projectcss.__wab_text,
+                                    sty.text___24JZ
                                   )}
-                                  role={"img"}
-                                />
-                              ) : null}
-                            </div>
-                            <div
-                              data-plasmic-name={"refid"}
-                              data-plasmic-override={overrides.refid}
-                              className={classNames(projectcss.all, sty.refid)}
-                              onClick={async event => {
-                                const $steps = {};
-
-                                $steps[
-                                  "updateSelectedrefidinnewworkflowscontent"
-                                ] = true
-                                  ? (() => {
-                                      const actionArgs = {
-                                        variable: {
-                                          objRoot: $state,
-                                          variablePath: [
-                                            "selectedrefidinnewworkflowscontent"
-                                          ]
-                                        },
-                                        operation: 0,
-                                        value:
-                                          ($state.selectedrefidinnewworkflowscontent =
-                                            !$state.selectedrefidinnewworkflowscontent)
-                                      };
-                                      return (({
-                                        variable,
-                                        value,
-                                        startIndex,
-                                        deleteCount
-                                      }) => {
-                                        if (!variable) {
-                                          return;
+                                >
+                                  <React.Fragment>
+                                    {(() => {
+                                      try {
+                                        return "کد پیگیری";
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return "";
                                         }
-                                        const { objRoot, variablePath } =
-                                          variable;
-
-                                        $stateSet(objRoot, variablePath, value);
-                                        return value;
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                                if (
-                                  $steps[
-                                    "updateSelectedrefidinnewworkflowscontent"
-                                  ] != null &&
-                                  typeof $steps[
-                                    "updateSelectedrefidinnewworkflowscontent"
-                                  ] === "object" &&
-                                  typeof $steps[
-                                    "updateSelectedrefidinnewworkflowscontent"
-                                  ].then === "function"
-                                ) {
-                                  $steps[
-                                    "updateSelectedrefidinnewworkflowscontent"
-                                  ] = await $steps[
-                                    "updateSelectedrefidinnewworkflowscontent"
-                                  ];
-                                }
-                              }}
-                            >
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text___24JZ
-                                )}
-                              >
-                                <React.Fragment>
-                                  {(() => {
-                                    try {
-                                      return "کد پیگیری";
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return "";
+                                        throw e;
                                       }
-                                      throw e;
-                                    }
-                                  })()}
-                                </React.Fragment>
-                              </div>
-                              {(() => {
-                                try {
-                                  return $state.selectedrefidinnewworkflowscontent;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return false;
-                                  }
-                                  throw e;
-                                }
-                              })() ? (
-                                <CheckSvgIcon
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.svg__nlkdy
-                                  )}
-                                  role={"img"}
-                                />
-                              ) : null}
-                            </div>
-                            <div
-                              data-plasmic-name={"booktime"}
-                              data-plasmic-override={overrides.booktime}
-                              className={classNames(
-                                projectcss.all,
-                                sty.booktime
-                              )}
-                              onClick={async event => {
-                                const $steps = {};
-
-                                $steps[
-                                  "updateSelectedbooktimeinnewworkflowscontent"
-                                ] = true
-                                  ? (() => {
-                                      const actionArgs = {
-                                        variable: {
-                                          objRoot: $state,
-                                          variablePath: [
-                                            "selectedbooktimeinnewworkflowscontent"
-                                          ]
-                                        },
-                                        operation: 0,
-                                        value:
-                                          ($state.selectedbooktimeinnewworkflowscontent =
-                                            !$state.selectedbooktimeinnewworkflowscontent)
-                                      };
-                                      return (({
-                                        variable,
-                                        value,
-                                        startIndex,
-                                        deleteCount
-                                      }) => {
-                                        if (!variable) {
-                                          return;
-                                        }
-                                        const { objRoot, variablePath } =
-                                          variable;
-
-                                        $stateSet(objRoot, variablePath, value);
-                                        return value;
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                                if (
-                                  $steps[
-                                    "updateSelectedbooktimeinnewworkflowscontent"
-                                  ] != null &&
-                                  typeof $steps[
-                                    "updateSelectedbooktimeinnewworkflowscontent"
-                                  ] === "object" &&
-                                  typeof $steps[
-                                    "updateSelectedbooktimeinnewworkflowscontent"
-                                  ].then === "function"
-                                ) {
-                                  $steps[
-                                    "updateSelectedbooktimeinnewworkflowscontent"
-                                  ] = await $steps[
-                                    "updateSelectedbooktimeinnewworkflowscontent"
-                                  ];
-                                }
-                              }}
-                            >
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__weJmp
-                                )}
-                              >
-                                <React.Fragment>
-                                  {(() => {
-                                    try {
-                                      return "زمان نوبت";
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return "";
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                </React.Fragment>
-                              </div>
-                              {(() => {
-                                try {
-                                  return $state.selectedbooktimeinnewworkflowscontent;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return false;
-                                  }
-                                  throw e;
-                                }
-                              })() ? (
-                                <CheckSvgIcon
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.svg__g5L9W
-                                  )}
-                                  role={"img"}
-                                />
-                              ) : null}
-                            </div>
-                          </Stack__>
-                        </Stack__>
-                      }
-                      onOpenChange={async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "fragmentPopoverSendWhat",
-                          "open"
-                        ]).apply(null, eventArgs);
-                      }}
-                      open={generateStateValueProp($state, [
-                        "fragmentPopoverSendWhat",
-                        "open"
-                      ])}
-                      ref={ref => {
-                        $refs["fragmentPopoverSendWhat"] = ref;
-                      }}
-                      trigger={
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox___0FJxc
-                          )}
-                        >
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__c7Vp
-                            )}
-                          >
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__pG65M
-                              )}
-                            >
-                              <React.Fragment>
+                                    })()}
+                                  </React.Fragment>
+                                </div>
                                 {(() => {
                                   try {
-                                    return $state.selecteddrnameinnewworkflowscontent ||
-                                      $state.selecteddrpatientinnewworkflowscontent ||
-                                      $state.selectedrefidinnewworkflowscontent ||
-                                      $state.selectedbooktimeinnewworkflowscontent
-                                      ? ($state.selecteddrnameinnewworkflowscontent
-                                          ? "نام پزشک"
-                                          : "") +
-                                          ($state.selecteddrpatientinnewworkflowscontent
-                                            ? ", نام بیمار"
-                                            : "") +
-                                          ($state.selectedrefidinnewworkflowscontent
-                                            ? ", کد پیگیری"
-                                            : "") +
-                                          ($state.selectedbooktimeinnewworkflowscontent
-                                            ? ", زمان نوبت"
-                                            : "")
-                                      : "شامل ....";
+                                    return $state.selectedrefidinnewworkflowscontent;
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||
                                       e?.plasmicType ===
                                         "PlasmicUndefinedDataError"
                                     ) {
-                                      return "\u0634\u0627\u0645\u0644 ...";
+                                      return false;
                                     }
                                     throw e;
                                   }
-                                })()}
-                              </React.Fragment>
-                            </div>
-                            {(() => {
-                              try {
-                                return $state.fragmentPopoverSendWhat.open;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return true;
-                                }
-                                throw e;
-                              }
-                            })() ? (
-                              <ChevronUpIcon
+                                })() ? (
+                                  <CheckSvgIcon
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.svg__nlkdy
+                                    )}
+                                    role={"img"}
+                                  />
+                                ) : null}
+                              </div>
+                              <div
+                                data-plasmic-name={"booktime"}
+                                data-plasmic-override={overrides.booktime}
                                 className={classNames(
                                   projectcss.all,
-                                  sty.svg__elZto
+                                  sty.booktime
                                 )}
-                                role={"img"}
-                              />
-                            ) : null}
-                            {(() => {
-                              try {
-                                return !$state.fragmentPopoverSendWhat.open;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return false;
-                                }
-                                throw e;
-                              }
-                            })() ? (
-                              <ChevronDownIcon
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.svg__izBjd
-                                )}
-                                role={"img"}
-                              />
-                            ) : null}
-                          </div>
-                        </Stack__>
-                      }
-                    />
+                                onClick={async event => {
+                                  const $steps = {};
 
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__yv1Us
-                      )}
-                    >
-                      {
-                        "\u062a\u0648\u062c\u0647 : \u0645\u0648\u0627\u0631\u062f\u06cc \u06a9\u0647 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0631\u062f\u06cc\u062f \u0628\u0647 \u0645\u062a\u0646 \u0632\u06cc\u0631\u060c \u067e\u06cc\u0648\u0633\u062a \u062e\u0648\u0627\u0647\u062f \u0634\u062f.\n\u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u0645\u062a\u0646 \u0632\u06cc\u0631 \u0631\u0627 \u0646\u06cc\u0632 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0646\u06cc\u062f \u0648 \u0646\u0645\u0648\u0646\u0647 \u0645\u062a\u0646 \u067e\u06cc\u0627\u0645\u06a9 \u0631\u0627 \u062f\u0631 \u0632\u06cc\u0631 \u0645\u0634\u0627\u0647\u062f\u0647 \u06a9\u0646\u06cc\u062f."
-                      }
-                    </div>
-                    <MultilineTextInput
-                      data-plasmic-name={"multilineTextInput"}
-                      data-plasmic-override={overrides.multilineTextInput}
-                      autoSize={true}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.multilineTextInput
-                      )}
-                      onValueChange={async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "multilineTextInput",
-                          "value"
-                        ]).apply(null, eventArgs);
+                                  $steps[
+                                    "updateSelectedbooktimeinnewworkflowscontent"
+                                  ] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          variable: {
+                                            objRoot: $state,
+                                            variablePath: [
+                                              "selectedbooktimeinnewworkflowscontent"
+                                            ]
+                                          },
+                                          operation: 0,
+                                          value:
+                                            ($state.selectedbooktimeinnewworkflowscontent =
+                                              !$state.selectedbooktimeinnewworkflowscontent)
+                                        };
+                                        return (({
+                                          variable,
+                                          value,
+                                          startIndex,
+                                          deleteCount
+                                        }) => {
+                                          if (!variable) {
+                                            return;
+                                          }
+                                          const { objRoot, variablePath } =
+                                            variable;
 
-                        if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
-                        ) {
-                          return;
+                                          $stateSet(
+                                            objRoot,
+                                            variablePath,
+                                            value
+                                          );
+                                          return value;
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps[
+                                      "updateSelectedbooktimeinnewworkflowscontent"
+                                    ] != null &&
+                                    typeof $steps[
+                                      "updateSelectedbooktimeinnewworkflowscontent"
+                                    ] === "object" &&
+                                    typeof $steps[
+                                      "updateSelectedbooktimeinnewworkflowscontent"
+                                    ].then === "function"
+                                  ) {
+                                    $steps[
+                                      "updateSelectedbooktimeinnewworkflowscontent"
+                                    ] = await $steps[
+                                      "updateSelectedbooktimeinnewworkflowscontent"
+                                    ];
+                                  }
+                                }}
+                              >
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__weJmp
+                                  )}
+                                >
+                                  <React.Fragment>
+                                    {(() => {
+                                      try {
+                                        return "زمان نوبت";
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return "";
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                  </React.Fragment>
+                                </div>
+                                {(() => {
+                                  try {
+                                    return $state.selectedbooktimeinnewworkflowscontent;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return false;
+                                    }
+                                    throw e;
+                                  }
+                                })() ? (
+                                  <CheckSvgIcon
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.svg__g5L9W
+                                    )}
+                                    role={"img"}
+                                  />
+                                ) : null}
+                              </div>
+                            </Stack__>
+                          </Stack__>
                         }
-                      }}
-                      value={generateStateValueProp($state, [
-                        "multilineTextInput",
-                        "value"
-                      ])}
-                    />
+                        onOpenChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "fragmentPopoverSendWhat",
+                            "open"
+                          ]).apply(null, eventArgs);
+                        }}
+                        open={generateStateValueProp($state, [
+                          "fragmentPopoverSendWhat",
+                          "open"
+                        ])}
+                        ref={ref => {
+                          $refs["fragmentPopoverSendWhat"] = ref;
+                        }}
+                        trigger={
+                          <Stack__
+                            as={"div"}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox___0FJxc
+                            )}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__c7Vp
+                              )}
+                            >
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__pG65M
+                                )}
+                              >
+                                <React.Fragment>
+                                  {(() => {
+                                    try {
+                                      return $state.selecteddrnameinnewworkflowscontent ||
+                                        $state.selecteddrpatientinnewworkflowscontent ||
+                                        $state.selectedrefidinnewworkflowscontent ||
+                                        $state.selectedbooktimeinnewworkflowscontent
+                                        ? ($state.selecteddrnameinnewworkflowscontent
+                                            ? "نام پزشک"
+                                            : "") +
+                                            ($state.selecteddrpatientinnewworkflowscontent
+                                              ? ", نام بیمار"
+                                              : "") +
+                                            ($state.selectedrefidinnewworkflowscontent
+                                              ? ", کد پیگیری"
+                                              : "") +
+                                            ($state.selectedbooktimeinnewworkflowscontent
+                                              ? ", زمان نوبت"
+                                              : "")
+                                        : "شامل ....";
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return "\u0634\u0627\u0645\u0644 ...";
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                </React.Fragment>
+                              </div>
+                              {(() => {
+                                try {
+                                  return $state.fragmentPopoverSendWhat.open;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return true;
+                                  }
+                                  throw e;
+                                }
+                              })() ? (
+                                <ChevronUpIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__elZto
+                                  )}
+                                  role={"img"}
+                                />
+                              ) : null}
+                              {(() => {
+                                try {
+                                  return !$state.fragmentPopoverSendWhat.open;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return false;
+                                  }
+                                  throw e;
+                                }
+                              })() ? (
+                                <ChevronDownIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__izBjd
+                                  )}
+                                  role={"img"}
+                                />
+                              ) : null}
+                            </div>
+                          </Stack__>
+                        }
+                      />
 
-                    <Stack__
-                      as={"div"}
-                      data-plasmic-name={"sample"}
-                      data-plasmic-override={overrides.sample}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.sample)}
-                    >
                       <div
                         className={classNames(
                           projectcss.all,
-                          sty.freeBox__nYiFa
+                          projectcss.__wab_text,
+                          sty.text__yv1Us
                         )}
+                      >
+                        {
+                          "\u062a\u0648\u062c\u0647 : \u0645\u0648\u0627\u0631\u062f\u06cc \u06a9\u0647 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0631\u062f\u06cc\u062f \u0628\u0647 \u0645\u062a\u0646 \u0632\u06cc\u0631\u060c \u067e\u06cc\u0648\u0633\u062a \u062e\u0648\u0627\u0647\u062f \u0634\u062f.\n\u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u0645\u062a\u0646 \u0632\u06cc\u0631 \u0631\u0627 \u0646\u06cc\u0632 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0646\u06cc\u062f \u0648 \u0646\u0645\u0648\u0646\u0647 \u0645\u062a\u0646 \u067e\u06cc\u0627\u0645\u06a9 \u0631\u0627 \u062f\u0631 \u0632\u06cc\u0631 \u0645\u0634\u0627\u0647\u062f\u0647 \u06a9\u0646\u06cc\u062f."
+                        }
+                      </div>
+                      <MultilineTextInput
+                        data-plasmic-name={"multilineTextInput"}
+                        data-plasmic-override={overrides.multilineTextInput}
+                        autoSize={true}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.multilineTextInput
+                        )}
+                        onValueChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "multilineTextInput",
+                            "value"
+                          ]).apply(null, eventArgs);
+
+                          if (
+                            eventArgs.length > 1 &&
+                            eventArgs[1] &&
+                            eventArgs[1]._plasmic_state_init_
+                          ) {
+                            return;
+                          }
+                        }}
+                        value={generateStateValueProp($state, [
+                          "multilineTextInput",
+                          "value"
+                        ])}
+                      />
+
+                      <Stack__
+                        as={"div"}
+                        data-plasmic-name={"sample"}
+                        data-plasmic-override={overrides.sample}
+                        hasGap={true}
+                        className={classNames(projectcss.all, sty.sample)}
                       >
                         <div
                           className={classNames(
                             projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__tpRzu
+                            sty.freeBox__nYiFa
                           )}
                         >
-                          {
-                            "\u0646\u0645\u0648\u0646\u0647 \u067e\u06cc\u0627\u0645\u06a9:"
-                          }
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__tpRzu
+                            )}
+                          >
+                            {
+                              "\u0646\u0645\u0648\u0646\u0647 \u067e\u06cc\u0627\u0645\u06a9:"
+                            }
+                          </div>
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__y4XfP
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return (() => {
+                                    const finalText =
+                                      $state.multilineTextInput.value
+                                        .replace(/<p>/g, "")
+                                        .replace(/<\/p>/g, "") +
+                                      "\n" +
+                                      ($state.selecteddrnameinnewworkflowscontent
+                                        ? ` ${$state.userDetail.data.name} ${$state.userDetail.data.family}`
+                                        : "") +
+                                      "\n" +
+                                      ($state.selecteddrpatientinnewworkflowscontent
+                                        ? "نام بیمار: آیدا اردانی"
+                                        : "") +
+                                      "\n" +
+                                      ($state.selectedrefidinnewworkflowscontent
+                                        ? "کدپیگیری : ۱۲۳۴۵۶"
+                                        : "") +
+                                      "\n" +
+                                      ($state.selectedbooktimeinnewworkflowscontent
+                                        ? "زمان نوبت:‌۱۴۰۳/۰۷/‍۱۰-‍۱۳:۳۰"
+                                        : "");
+                                    const charCount = finalText.length;
+                                    let finalPrice = 0;
+                                    if (charCount < 70) {
+                                      finalPrice = 965;
+                                    } else if (
+                                      charCount >= 70 &&
+                                      charCount < 140
+                                    ) {
+                                      finalPrice = 965 * 2;
+                                    } else {
+                                      finalPrice =
+                                        965 * Math.ceil(charCount / 70);
+                                    }
+                                    return finalPrice + " ریال";
+                                  })();
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
                         </div>
                         <div
                           className={classNames(
                             projectcss.all,
                             projectcss.__wab_text,
-                            sty.text__y4XfP
+                            sty.text__r5VNb
                           )}
                         >
                           <React.Fragment>
                             {(() => {
                               try {
-                                return (() => {
-                                  const finalText =
-                                    $state.multilineTextInput.value
-                                      .replace(/<p>/g, "")
-                                      .replace(/<\/p>/g, "") +
-                                    "\n" +
-                                    ($state.selecteddrnameinnewworkflowscontent
-                                      ? ` ${$state.userDetail.data.name} ${$state.userDetail.data.family}`
-                                      : "") +
-                                    "\n" +
-                                    ($state.selecteddrpatientinnewworkflowscontent
-                                      ? "نام بیمار: آیدا اردانی"
-                                      : "") +
-                                    "\n" +
-                                    ($state.selectedrefidinnewworkflowscontent
-                                      ? "کدپیگیری : ۱۲۳۴۵۶"
-                                      : "") +
-                                    "\n" +
-                                    ($state.selectedbooktimeinnewworkflowscontent
-                                      ? "زمان نوبت:‌۱۴۰۳/۰۷/‍۱۰-‍۱۳:۳۰"
-                                      : "");
-                                  const charCount = finalText.length;
-                                  let finalPrice = 0;
-                                  if (charCount < 70) {
-                                    finalPrice = 965;
-                                  } else if (
-                                    charCount >= 70 &&
-                                    charCount < 140
-                                  ) {
-                                    finalPrice = 965 * 2;
-                                  } else {
-                                    finalPrice =
-                                      965 * Math.ceil(charCount / 70);
-                                  }
-                                  return finalPrice + " ریال";
-                                })();
+                                return (
+                                  $state.multilineTextInput.value
+                                    .replace(/<p>/g, "")
+                                    .replace(/<\/p>/g, "") +
+                                  "\n" +
+                                  ($state.selecteddrnameinnewworkflowscontent
+                                    ? ` ${$state.userDetail.data.name} ${$state.userDetail.data.family}`
+                                    : "") +
+                                  "\n" +
+                                  ($state.selecteddrpatientinnewworkflowscontent
+                                    ? "نام بیمار: آیدا اردانی"
+                                    : "") +
+                                  "\n" +
+                                  ($state.selectedrefidinnewworkflowscontent
+                                    ? "کدپیگیری : ۱۲۳۴۵۶"
+                                    : "") +
+                                  "\n" +
+                                  ($state.selectedbooktimeinnewworkflowscontent
+                                    ? "زمان نوبت:‌۱۴۰۳/۰۷/‍۱۰-‍۱۳:۳۰"
+                                    : "")
+                                );
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -2120,122 +2233,130 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                             })()}
                           </React.Fragment>
                         </div>
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__r5VNb
-                        )}
-                      >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return (
-                                $state.multilineTextInput.value
-                                  .replace(/<p>/g, "")
-                                  .replace(/<\/p>/g, "") +
-                                "\n" +
-                                ($state.selecteddrnameinnewworkflowscontent
-                                  ? ` ${$state.userDetail.data.name} ${$state.userDetail.data.family}`
-                                  : "") +
-                                "\n" +
-                                ($state.selecteddrpatientinnewworkflowscontent
-                                  ? "نام بیمار: آیدا اردانی"
-                                  : "") +
-                                "\n" +
-                                ($state.selectedrefidinnewworkflowscontent
-                                  ? "کدپیگیری : ۱۲۳۴۵۶"
-                                  : "") +
-                                "\n" +
-                                ($state.selectedbooktimeinnewworkflowscontent
-                                  ? "زمان نوبت:‌۱۴۰۳/۰۷/‍۱۰-‍۱۳:۳۰"
-                                  : "")
-                              );
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
-                      </div>
-                      {(() => {
-                        const child$Props = {
-                          activeKey: generateStateValueProp($state, [
-                            "accordion",
-                            "activePanelId"
-                          ]),
-                          bordered: true,
-                          className: classNames(
-                            "__wab_instance",
-                            sty.accordion
-                          ),
-                          items: (
-                            <React.Fragment>
-                              <AntdAccordionItem
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.accordionItem__fgd4R
-                                )}
-                                id={1}
-                                label2={
-                                  <div
-                                    className={classNames(
-                                      projectcss.all,
-                                      projectcss.__wab_text,
-                                      sty.text__lmMet
-                                    )}
-                                  >
-                                    {
-                                      "\u0645\u0634\u0627\u0647\u062f\u0647 \u0647\u0632\u06cc\u0646\u0647 \u0648 \u0646\u0645\u0648\u0646\u0647 \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc\u200c"
-                                    }
-                                  </div>
-                                }
-                                showArrow={true}
-                              >
-                                <Stack__
-                                  as={"div"}
-                                  data-plasmic-name={"sample2"}
-                                  data-plasmic-override={overrides.sample2}
-                                  hasGap={true}
+                        {(() => {
+                          const child$Props = {
+                            activeKey: generateStateValueProp($state, [
+                              "accordion",
+                              "activePanelId"
+                            ]),
+                            bordered: true,
+                            className: classNames(
+                              "__wab_instance",
+                              sty.accordion
+                            ),
+                            items: (
+                              <React.Fragment>
+                                <AntdAccordionItem
                                   className={classNames(
-                                    projectcss.all,
-                                    sty.sample2
+                                    "__wab_instance",
+                                    sty.accordionItem__fgd4R
                                   )}
+                                  id={1}
+                                  label2={
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.__wab_text,
+                                        sty.text__lmMet
+                                      )}
+                                    >
+                                      {
+                                        "\u0645\u0634\u0627\u0647\u062f\u0647 \u0647\u0632\u06cc\u0646\u0647 \u0648 \u0646\u0645\u0648\u0646\u0647 \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc\u200c"
+                                      }
+                                    </div>
+                                  }
+                                  showArrow={true}
                                 >
-                                  <div
+                                  <Stack__
+                                    as={"div"}
+                                    data-plasmic-name={"sample2"}
+                                    data-plasmic-override={overrides.sample2}
+                                    hasGap={true}
                                     className={classNames(
                                       projectcss.all,
-                                      sty.freeBox__fAkyB
+                                      sty.sample2
                                     )}
                                   >
                                     <div
                                       className={classNames(
                                         projectcss.all,
-                                        projectcss.__wab_text,
-                                        sty.text__rua0D
+                                        sty.freeBox__fAkyB
                                       )}
                                     >
-                                      {
-                                        "\u0645\u062a\u0646 \u067e\u06cc\u0627\u0645"
-                                      }
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          projectcss.__wab_text,
+                                          sty.text__rua0D
+                                        )}
+                                      >
+                                        {
+                                          "\u0645\u062a\u0646 \u067e\u06cc\u0627\u0645"
+                                        }
+                                      </div>
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          projectcss.__wab_text,
+                                          sty.text__s1VhW
+                                        )}
+                                      >
+                                        <React.Fragment>
+                                          {(() => {
+                                            try {
+                                              return "750 تومان";
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return "";
+                                              }
+                                              throw e;
+                                            }
+                                          })()}
+                                        </React.Fragment>
+                                      </div>
                                     </div>
                                     <div
                                       className={classNames(
                                         projectcss.all,
                                         projectcss.__wab_text,
-                                        sty.text__s1VhW
+                                        sty.text___08Mzx
                                       )}
                                     >
                                       <React.Fragment>
                                         {(() => {
                                           try {
-                                            return "750 تومان";
+                                            return (() => {
+                                              return (
+                                                $state.multilineTextInput.value
+                                                  .replace(/<p>/g, "\n")
+                                                  .replace(/<\/p>/g, "")
+                                                  .trim() +
+                                                "\n" +
+                                                ($state.selecteddrnameinnewworkflowscontent ||
+                                                $state.selecteddrpatientinnewworkflowscontent ||
+                                                $state.selectedrefidinnewworkflowscontent ||
+                                                $state.selectedbooktimeinnewworkflowscontent
+                                                  ? (
+                                                      ($state.selecteddrnameinnewworkflowscontent
+                                                        ? "نام پزشک: نرگس رضایی\n"
+                                                        : "") +
+                                                      ($state.selecteddrpatientinnewworkflowscontent
+                                                        ? "نام بیمار: آیدا اردانی\n"
+                                                        : "") +
+                                                      ($state.selectedrefidinnewworkflowscontent
+                                                        ? "کد پیگیری: ۱۲۳۴۵۶\n"
+                                                        : "") +
+                                                      ($state.selectedbooktimeinnewworkflowscontent
+                                                        ? "زمان نوبت: ۱۴۰۳/۰۷/۱۰-۱۳:۳۰\n"
+                                                        : "")
+                                                    ).trim()
+                                                  : "")
+                                              );
+                                            })();
                                           } catch (e) {
                                             if (
                                               e instanceof TypeError ||
@@ -2249,257 +2370,98 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                         })()}
                                       </React.Fragment>
                                     </div>
-                                  </div>
-                                  <div
-                                    className={classNames(
-                                      projectcss.all,
-                                      projectcss.__wab_text,
-                                      sty.text___08Mzx
-                                    )}
-                                  >
-                                    <React.Fragment>
-                                      {(() => {
-                                        try {
-                                          return (() => {
-                                            return (
-                                              $state.multilineTextInput.value
-                                                .replace(/<p>/g, "\n")
-                                                .replace(/<\/p>/g, "")
-                                                .trim() +
-                                              "\n" +
-                                              ($state.selecteddrnameinnewworkflowscontent ||
-                                              $state.selecteddrpatientinnewworkflowscontent ||
-                                              $state.selectedrefidinnewworkflowscontent ||
-                                              $state.selectedbooktimeinnewworkflowscontent
-                                                ? (
-                                                    ($state.selecteddrnameinnewworkflowscontent
-                                                      ? "نام پزشک: نرگس رضایی\n"
-                                                      : "") +
-                                                    ($state.selecteddrpatientinnewworkflowscontent
-                                                      ? "نام بیمار: آیدا اردانی\n"
-                                                      : "") +
-                                                    ($state.selectedrefidinnewworkflowscontent
-                                                      ? "کد پیگیری: ۱۲۳۴۵۶\n"
-                                                      : "") +
-                                                    ($state.selectedbooktimeinnewworkflowscontent
-                                                      ? "زمان نوبت: ۱۴۰۳/۰۷/۱۰-۱۳:۳۰\n"
-                                                      : "")
-                                                  ).trim()
-                                                : "")
-                                            );
-                                          })();
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return "";
-                                          }
-                                          throw e;
-                                        }
-                                      })()}
-                                    </React.Fragment>
-                                  </div>
-                                </Stack__>
-                              </AntdAccordionItem>
-                              <AntdAccordionItem
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.accordionItem__g33F
-                                )}
-                                id={2}
-                                label2={
-                                  <div
-                                    className={classNames(
-                                      projectcss.all,
-                                      projectcss.__wab_text,
-                                      sty.text__y5Jxk
-                                    )}
-                                  >
-                                    {"Second Item"}
-                                  </div>
-                                }
-                                showArrow={true}
-                              >
-                                <div
+                                  </Stack__>
+                                </AntdAccordionItem>
+                                <AntdAccordionItem
                                   className={classNames(
-                                    projectcss.all,
-                                    projectcss.__wab_text,
-                                    sty.text__gHoB
+                                    "__wab_instance",
+                                    sty.accordionItem__g33F
                                   )}
+                                  id={2}
+                                  label2={
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.__wab_text,
+                                        sty.text__y5Jxk
+                                      )}
+                                    >
+                                      {"Second Item"}
+                                    </div>
+                                  }
+                                  showArrow={true}
                                 >
-                                  {"Second Children"}
-                                </div>
-                              </AntdAccordionItem>
-                            </React.Fragment>
-                          ),
-                          onChange: async (...eventArgs: any) => {
-                            generateStateOnChangePropForCodeComponents(
-                              $state,
-                              "activePanelId",
-                              ["accordion", "activePanelId"],
-                              AntdAccordion_Helpers
-                            ).apply(null, eventArgs);
-                          }
-                        };
-                        initializeCodeComponentStates(
-                          $state,
-                          [
-                            {
-                              name: "activePanelId",
-                              plasmicStateName: "accordion.activePanelId"
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.__wab_text,
+                                      sty.text__gHoB
+                                    )}
+                                  >
+                                    {"Second Children"}
+                                  </div>
+                                </AntdAccordionItem>
+                              </React.Fragment>
+                            ),
+                            onChange: async (...eventArgs: any) => {
+                              generateStateOnChangePropForCodeComponents(
+                                $state,
+                                "activePanelId",
+                                ["accordion", "activePanelId"],
+                                AntdAccordion_Helpers
+                              ).apply(null, eventArgs);
                             }
-                          ],
-                          [],
-                          AntdAccordion_Helpers ?? {},
-                          child$Props
-                        );
+                          };
+                          initializeCodeComponentStates(
+                            $state,
+                            [
+                              {
+                                name: "activePanelId",
+                                plasmicStateName: "accordion.activePanelId"
+                              }
+                            ],
+                            [],
+                            AntdAccordion_Helpers ?? {},
+                            child$Props
+                          );
 
-                        return (
-                          <AntdAccordion
-                            data-plasmic-name={"accordion"}
-                            data-plasmic-override={overrides.accordion}
-                            {...child$Props}
-                          />
-                        );
-                      })()}
+                          return (
+                            <AntdAccordion
+                              data-plasmic-name={"accordion"}
+                              data-plasmic-override={overrides.accordion}
+                              {...child$Props}
+                            />
+                          );
+                        })()}
+                      </Stack__>
                     </Stack__>
-                  </Stack__>
-                  <div
-                    data-plasmic-name={"save"}
-                    data-plasmic-override={overrides.save}
-                    className={classNames(projectcss.all, sty.save)}
-                  >
-                    <Button
-                      data-plasmic-name={"button"}
-                      data-plasmic-override={overrides.button}
-                      children2={"\u0630\u062e\u06cc\u0631\u0647"}
-                      className={classNames("__wab_instance", sty.button)}
-                      loading={(() => {
-                        try {
-                          return $state.stateLoadingAddNewWorkflow;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return [];
+                    <div
+                      data-plasmic-name={"save"}
+                      data-plasmic-override={overrides.save}
+                      className={classNames(projectcss.all, sty.save)}
+                    >
+                      <Button
+                        data-plasmic-name={"button"}
+                        data-plasmic-override={overrides.button}
+                        children2={"\u0630\u062e\u06cc\u0631\u0647"}
+                        className={classNames("__wab_instance", sty.button)}
+                        loading={(() => {
+                          try {
+                            return $state.stateLoadingAddNewWorkflow;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
                           }
-                          throw e;
-                        }
-                      })()}
-                      onClick={async event => {
-                        const $steps = {};
+                        })()}
+                        onClick={async event => {
+                          const $steps = {};
 
-                        $steps["startLoading"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["stateLoadingAddNewWorkflow"]
-                                },
-                                operation: 0,
-                                value: true
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["startLoading"] != null &&
-                          typeof $steps["startLoading"] === "object" &&
-                          typeof $steps["startLoading"].then === "function"
-                        ) {
-                          $steps["startLoading"] = await $steps["startLoading"];
-                        }
-
-                        $steps["apiCheckKavenegarApiKey"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  "GET",
-                                  "https://apigw.paziresh24.com/v1/martin/check-kavenegar-apikey",
-                                  (() => {
-                                    try {
-                                      return {
-                                        receivers:
-                                          $state.notoficationsRecivers.find(
-                                            event =>
-                                              event.Title ===
-                                              $state.selectedrecieverinnewworkflow
-                                          ).name,
-                                        events: $state.notificationsevents.find(
-                                          event =>
-                                            event.Title ===
-                                            $state.selectedeventinworkflow
-                                        ).name,
-                                        channels: "sms",
-                                        user_id: $ctx.query.user_id,
-                                        content:
-                                          $state.multilineTextInput.value,
-                                        objectofcontent: JSON.stringify(
-                                          [
-                                            $state.selecteddrnameinnewworkflowscontent
-                                              ? "drname"
-                                              : "",
-                                            $state.selecteddrpatientinnewworkflowscontent
-                                              ? "patientname"
-                                              : "",
-                                            $state.selectedrefidinnewworkflowscontent
-                                              ? "refid"
-                                              : "",
-                                            $state.selectedbooktimeinnewworkflowscontent
-                                              ? "booktime"
-                                              : ""
-                                          ].filter(Boolean)
-                                        )
-                                      };
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.apiRequest"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["apiCheckKavenegarApiKey"] != null &&
-                          typeof $steps["apiCheckKavenegarApiKey"] ===
-                            "object" &&
-                          typeof $steps["apiCheckKavenegarApiKey"].then ===
-                            "function"
-                        ) {
-                          $steps["apiCheckKavenegarApiKey"] = await $steps[
-                            "apiCheckKavenegarApiKey"
-                          ];
-                        }
-
-                        $steps["finishLoading"] =
-                          $steps.apiCheckKavenegarApiKey.data.message ===
-                          "successful"
+                          $steps["startLoading"] = true
                             ? (() => {
                                 const actionArgs = {
                                   variable: {
@@ -2507,7 +2469,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                     variablePath: ["stateLoadingAddNewWorkflow"]
                                   },
                                   operation: 0,
-                                  value: false
+                                  value: true
                                 };
                                 return (({
                                   variable,
@@ -2525,207 +2487,25 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                 })?.apply(null, [actionArgs]);
                               })()
                             : undefined;
-                        if (
-                          $steps["finishLoading"] != null &&
-                          typeof $steps["finishLoading"] === "object" &&
-                          typeof $steps["finishLoading"].then === "function"
-                        ) {
-                          $steps["finishLoading"] = await $steps[
-                            "finishLoading"
-                          ];
-                        }
+                          if (
+                            $steps["startLoading"] != null &&
+                            typeof $steps["startLoading"] === "object" &&
+                            typeof $steps["startLoading"].then === "function"
+                          ) {
+                            $steps["startLoading"] = await $steps[
+                              "startLoading"
+                            ];
+                          }
 
-                        $steps["showToast"] =
-                          $steps.apiCheckKavenegarApiKey.data.message ===
-                          "successful"
+                          $steps["apiCheckKavenegarApiKey"] = true
                             ? (() => {
                                 const actionArgs = {
                                   args: [
-                                    undefined,
-                                    "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0646\u062c\u0627\u0645 \u0634\u062f."
-                                  ]
-                                };
-                                return $globalActions[
-                                  "Fragment.showToast"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
-                        if (
-                          $steps["showToast"] != null &&
-                          typeof $steps["showToast"] === "object" &&
-                          typeof $steps["showToast"].then === "function"
-                        ) {
-                          $steps["showToast"] = await $steps["showToast"];
-                        }
-
-                        $steps["updateReceiptDialogOpen"] = false
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["receiptDialog", "open"]
-                                },
-                                operation: 0,
-                                value: true
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateReceiptDialogOpen"] != null &&
-                          typeof $steps["updateReceiptDialogOpen"] ===
-                            "object" &&
-                          typeof $steps["updateReceiptDialogOpen"].then ===
-                            "function"
-                        ) {
-                          $steps["updateReceiptDialogOpen"] = await $steps[
-                            "updateReceiptDialogOpen"
-                          ];
-                        }
-
-                        $steps["updateDialogaddnewworkflowOpen"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["dialogaddnewworkflow", "open"]
-                                },
-                                operation: 0,
-                                value: false
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateDialogaddnewworkflowOpen"] != null &&
-                          typeof $steps["updateDialogaddnewworkflowOpen"] ===
-                            "object" &&
-                          typeof $steps["updateDialogaddnewworkflowOpen"]
-                            .then === "function"
-                        ) {
-                          $steps["updateDialogaddnewworkflowOpen"] =
-                            await $steps["updateDialogaddnewworkflowOpen"];
-                        }
-
-                        $steps["apiGetNoticationSettingForThisUser"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  undefined,
-                                  "https://apigw.paziresh24.com/v1/get-notification-setting",
-                                  (() => {
-                                    try {
-                                      return { user_id: $ctx.query.user_id };
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.apiRequest"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["apiGetNoticationSettingForThisUser"] !=
-                            null &&
-                          typeof $steps[
-                            "apiGetNoticationSettingForThisUser"
-                          ] === "object" &&
-                          typeof $steps["apiGetNoticationSettingForThisUser"]
-                            .then === "function"
-                        ) {
-                          $steps["apiGetNoticationSettingForThisUser"] =
-                            await $steps["apiGetNoticationSettingForThisUser"];
-                        }
-
-                        $steps["updateNotificationSettingForThisUser"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: [
-                                    "notificationSettingForThisUser"
-                                  ]
-                                },
-                                operation: 0,
-                                value:
-                                  $steps.apiGetNoticationSettingForThisUser.data
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateNotificationSettingForThisUser"] !=
-                            null &&
-                          typeof $steps[
-                            "updateNotificationSettingForThisUser"
-                          ] === "object" &&
-                          typeof $steps["updateNotificationSettingForThisUser"]
-                            .then === "function"
-                        ) {
-                          $steps["updateNotificationSettingForThisUser"] =
-                            await $steps[
-                              "updateNotificationSettingForThisUser"
-                            ];
-                        }
-
-                        $steps["sendLog"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  (() => {
-                                    try {
-                                      return {
-                                        group: "notificationspanel",
-                                        data: {
+                                    "GET",
+                                    "https://apigw.paziresh24.com/v1/martin/check-kavenegar-apikey",
+                                    (() => {
+                                      try {
+                                        return {
                                           receivers:
                                             $state.notoficationsRecivers.find(
                                               event =>
@@ -2758,302 +2538,198 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                                 : ""
                                             ].filter(Boolean)
                                           )
-                                        },
-                                        type: "add-specific-notification"
-                                      };
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
+                                        };
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
                                       }
-                                      throw e;
-                                    }
-                                  })()
-                                ]
-                              };
-                              return $globalActions["Splunk.sendLog"]?.apply(
-                                null,
-                                [...actionArgs.args]
-                              );
-                            })()
-                          : undefined;
-                        if (
-                          $steps["sendLog"] != null &&
-                          typeof $steps["sendLog"] === "object" &&
-                          typeof $steps["sendLog"].then === "function"
-                        ) {
-                          $steps["sendLog"] = await $steps["sendLog"];
-                        }
-                      }}
-                    />
-
-                    <Dialog
-                      data-plasmic-name={"receiptDialog"}
-                      data-plasmic-override={overrides.receiptDialog}
-                      body={
-                        <Receipt
-                          data-plasmic-name={"receipt"}
-                          data-plasmic-override={overrides.receipt}
-                          className={classNames("__wab_instance", sty.receipt)}
-                          event={(() => {
-                            try {
-                              return $state.selectedeventinworkflow;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}
-                        />
-                      }
-                      className={classNames(
-                        "__wab_instance",
-                        sty.receiptDialog
-                      )}
-                      onOpenChange={async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "receiptDialog",
-                          "open"
-                        ]).apply(null, eventArgs);
-
-                        if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
-                        ) {
-                          return;
-                        }
-                      }}
-                      open={generateStateValueProp($state, [
-                        "receiptDialog",
-                        "open"
-                      ])}
-                      title={
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__cHtCm
-                          )}
-                        >
-                          {"Dialog title"}
-                        </div>
-                      }
-                      trigger={null}
-                    />
-                  </div>
-                </div>
-              }
-              className={classNames("__wab_instance", sty.dialogaddnewworkflow)}
-              onOpenChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "dialogaddnewworkflow",
-                  "open"
-                ]).apply(null, eventArgs);
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-
-                (async val => {
-                  const $steps = {};
-
-                  $steps["sendLog"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            (() => {
-                              try {
-                                return {
-                                  group: "notificationspanel",
-                                  data: { userdata: $state.userDetail.data },
-                                  type: "add-notification"
+                                    })()
+                                  ]
                                 };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Splunk.sendLog"]?.apply(null, [
-                          ...actionArgs.args
-                        ]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["sendLog"] != null &&
-                    typeof $steps["sendLog"] === "object" &&
-                    typeof $steps["sendLog"].then === "function"
-                  ) {
-                    $steps["sendLog"] = await $steps["sendLog"];
-                  }
-                }).apply(null, eventArgs);
-              }}
-              open={generateStateValueProp($state, [
-                "dialogaddnewworkflow",
-                "open"
-              ])}
-              title={
-                "\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc \u062c\u062f\u06cc\u062f"
-              }
-              trigger={
-                <Button
-                  data-plasmic-name={"addnewworkflowbutton"}
-                  data-plasmic-override={overrides.addnewworkflowbutton}
-                  children2={
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__idSQh
-                      )}
-                    >
-                      {
-                        "+ \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc \u062c\u062f\u06cc\u062f"
-                      }
-                    </div>
-                  }
-                  className={classNames("__wab_instance")}
-                  endIcon={
-                    <ChevronLeftIcon
-                      className={classNames(projectcss.all, sty.svg__sD8S)}
-                      role={"img"}
-                    />
-                  }
-                  startIcon={
-                    <ChevronRightIcon
-                      className={classNames(projectcss.all, sty.svg__iFaaI)}
-                      role={"img"}
-                    />
-                  }
-                />
-              }
-            />
-          </div>
-          {(() => {
-            try {
-              return $state.notificationSettingForThisUser[0].list.length > 0;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return false;
-              }
-              throw e;
-            }
-          })() ? (
-            <Stack__
-              as={"div"}
-              data-plasmic-name={"listofnotifications"}
-              data-plasmic-override={overrides.listofnotifications}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.listofnotifications)}
-            >
-              <div
-                data-plasmic-name={
-                  "\u0627\u0637\u0644\u0627\u0639\u0631\u0633\u0627\u0646\u06cc\u0647\u0627\u06cc\u0645\u0648\u062c\u0648\u062f"
-                }
-                data-plasmic-override={overrides.اطلاعرسانیهایموجود}
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.اطلاعرسانیهایموجود
-                )}
-              >
-                {hasVariant(globalVariants, "screen", "mobileOnly") ? (
-                  <React.Fragment>
-                    <span
-                      className={"plasmic_default__all plasmic_default__span"}
-                      style={{ fontWeight: 400 }}
-                    >
-                      {
-                        "\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc\u200c\u0647\u0627\u06cc \u0645\u0648\u062c\u0648\u062f"
-                      }
-                    </span>
-                  </React.Fragment>
-                ) : (
-                  <React.Fragment>
-                    <span
-                      className={"plasmic_default__all plasmic_default__span"}
-                      style={{ fontWeight: 700 }}
-                    >
-                      {
-                        "\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc\u200c\u0647\u0627\u06cc \u0645\u0648\u062c\u0648\u062f"
-                      }
-                    </span>
-                  </React.Fragment>
-                )}
-              </div>
-              {(() => {
-                try {
-                  return true;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })()
-                ? (_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                    (() => {
-                      try {
-                        return $state.notificationSettingForThisUser[0].list;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
-                        }
-                        throw e;
-                      }
-                    })()
-                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                    const currentItem = __plasmic_item_0;
-                    const currentIndex = __plasmic_idx_0;
-                    return (
-                      <Userworkflow
-                        data-plasmic-name={"userworkflow"}
-                        data-plasmic-override={overrides.userworkflow}
-                        className={classNames(
-                          "__wab_instance",
-                          sty.userworkflow
-                        )}
-                        currentItem={currentItem}
-                        key={currentIndex}
-                        notificationSettingForThisUser={
-                          $state.notificationSettingForThisUser[0].list[0]
-                        }
-                        refresh={async () => {
-                          const $steps = {};
+                                return $globalActions[
+                                  "Fragment.apiRequest"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["apiCheckKavenegarApiKey"] != null &&
+                            typeof $steps["apiCheckKavenegarApiKey"] ===
+                              "object" &&
+                            typeof $steps["apiCheckKavenegarApiKey"].then ===
+                              "function"
+                          ) {
+                            $steps["apiCheckKavenegarApiKey"] = await $steps[
+                              "apiCheckKavenegarApiKey"
+                            ];
+                          }
+
+                          $steps["finishLoading"] =
+                            $steps.apiCheckKavenegarApiKey.data.message ===
+                            "successful"
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: [
+                                        "stateLoadingAddNewWorkflow"
+                                      ]
+                                    },
+                                    operation: 0,
+                                    value: false
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["finishLoading"] != null &&
+                            typeof $steps["finishLoading"] === "object" &&
+                            typeof $steps["finishLoading"].then === "function"
+                          ) {
+                            $steps["finishLoading"] = await $steps[
+                              "finishLoading"
+                            ];
+                          }
+
+                          $steps["showToast"] =
+                            $steps.apiCheckKavenegarApiKey.data.message ===
+                            "successful"
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      undefined,
+                                      "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0646\u062c\u0627\u0645 \u0634\u062f."
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.showToast"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["showToast"] != null &&
+                            typeof $steps["showToast"] === "object" &&
+                            typeof $steps["showToast"].then === "function"
+                          ) {
+                            $steps["showToast"] = await $steps["showToast"];
+                          }
+
+                          $steps["updateReceiptDialogOpen"] = false
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["receiptDialog", "open"]
+                                  },
+                                  operation: 0,
+                                  value: true
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateReceiptDialogOpen"] != null &&
+                            typeof $steps["updateReceiptDialogOpen"] ===
+                              "object" &&
+                            typeof $steps["updateReceiptDialogOpen"].then ===
+                              "function"
+                          ) {
+                            $steps["updateReceiptDialogOpen"] = await $steps[
+                              "updateReceiptDialogOpen"
+                            ];
+                          }
+
+                          $steps["updateDialogaddnewworkflowOpen"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: [
+                                      "dialogaddnewworkflow",
+                                      "open"
+                                    ]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateDialogaddnewworkflowOpen"] != null &&
+                            typeof $steps["updateDialogaddnewworkflowOpen"] ===
+                              "object" &&
+                            typeof $steps["updateDialogaddnewworkflowOpen"]
+                              .then === "function"
+                          ) {
+                            $steps["updateDialogaddnewworkflowOpen"] =
+                              await $steps["updateDialogaddnewworkflowOpen"];
+                          }
 
                           $steps["apiGetNoticationSettingForThisUser"] = true
                             ? (() => {
                                 const actionArgs = {
                                   args: [
                                     undefined,
-                                    "https://apigw.paziresh24.com/v1/get-notification-setting"
+                                    "https://apigw.paziresh24.com/v1/get-notification-setting",
+                                    (() => {
+                                      try {
+                                        return { user_id: $ctx.query.user_id };
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
                                   ]
                                 };
                                 return $globalActions[
@@ -3121,74 +2797,491 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                 "updateNotificationSettingForThisUser"
                               ];
                           }
+
+                          $steps["sendLog"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    (() => {
+                                      try {
+                                        return {
+                                          group: "notificationspanel",
+                                          data: {
+                                            receivers:
+                                              $state.notoficationsRecivers.find(
+                                                event =>
+                                                  event.Title ===
+                                                  $state.selectedrecieverinnewworkflow
+                                              ).name,
+                                            events:
+                                              $state.notificationsevents.find(
+                                                event =>
+                                                  event.Title ===
+                                                  $state.selectedeventinworkflow
+                                              ).name,
+                                            channels: "sms",
+                                            user_id: $ctx.query.user_id,
+                                            content:
+                                              $state.multilineTextInput.value,
+                                            objectofcontent: JSON.stringify(
+                                              [
+                                                $state.selecteddrnameinnewworkflowscontent
+                                                  ? "drname"
+                                                  : "",
+                                                $state.selecteddrpatientinnewworkflowscontent
+                                                  ? "patientname"
+                                                  : "",
+                                                $state.selectedrefidinnewworkflowscontent
+                                                  ? "refid"
+                                                  : "",
+                                                $state.selectedbooktimeinnewworkflowscontent
+                                                  ? "booktime"
+                                                  : ""
+                                              ].filter(Boolean)
+                                            )
+                                          },
+                                          type: "add-specific-notification"
+                                        };
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
+                                };
+                                return $globalActions["Splunk.sendLog"]?.apply(
+                                  null,
+                                  [...actionArgs.args]
+                                );
+                              })()
+                            : undefined;
+                          if (
+                            $steps["sendLog"] != null &&
+                            typeof $steps["sendLog"] === "object" &&
+                            typeof $steps["sendLog"].then === "function"
+                          ) {
+                            $steps["sendLog"] = await $steps["sendLog"];
+                          }
                         }}
                       />
-                    );
-                  })
-                : null}
-            </Stack__>
-          ) : null}
-          <MetrikaYandex
-            data-plasmic-name={"metrikaYandex"}
-            data-plasmic-override={overrides.metrikaYandex}
-            className={classNames("__wab_instance", sty.metrikaYandex)}
-          />
 
-          <SideEffect
-            data-plasmic-name={"runCodeGtmMetrica"}
-            data-plasmic-override={overrides.runCodeGtmMetrica}
-            className={classNames("__wab_instance", sty.runCodeGtmMetrica)}
-            onMount={async () => {
-              const $steps = {};
+                      <Dialog
+                        data-plasmic-name={"receiptDialog"}
+                        data-plasmic-override={overrides.receiptDialog}
+                        body={
+                          <Receipt
+                            data-plasmic-name={"receipt"}
+                            data-plasmic-override={overrides.receipt}
+                            className={classNames(
+                              "__wab_instance",
+                              sty.receipt
+                            )}
+                            event={(() => {
+                              try {
+                                return $state.selectedeventinworkflow;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
+                          />
+                        }
+                        className={classNames(
+                          "__wab_instance",
+                          sty.receiptDialog
+                        )}
+                        onOpenChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "receiptDialog",
+                            "open"
+                          ]).apply(null, eventArgs);
 
-              $steps["runCode"] = true
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return (() => {
-                          function loadGTM() {
-                            var gtmScript = document.createElement("script");
-                            gtmScript.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                          if (
+                            eventArgs.length > 1 &&
+                            eventArgs[1] &&
+                            eventArgs[1]._plasmic_state_init_
+                          ) {
+                            return;
+                          }
+                        }}
+                        open={generateStateValueProp($state, [
+                          "receiptDialog",
+                          "open"
+                        ])}
+                        title={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__cHtCm
+                            )}
+                          >
+                            {"Dialog title"}
+                          </div>
+                        }
+                        trigger={null}
+                      />
+                    </div>
+                  </div>
+                }
+                className={classNames(
+                  "__wab_instance",
+                  sty.dialogaddnewworkflow
+                )}
+                onOpenChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "dialogaddnewworkflow",
+                    "open"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+
+                  (async val => {
+                    const $steps = {};
+
+                    $steps["sendLog"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    group: "notificationspanel",
+                                    data: { userdata: $state.userDetail.data },
+                                    type: "add-notification"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendLog"] != null &&
+                      typeof $steps["sendLog"] === "object" &&
+                      typeof $steps["sendLog"].then === "function"
+                    ) {
+                      $steps["sendLog"] = await $steps["sendLog"];
+                    }
+                  }).apply(null, eventArgs);
+                }}
+                open={generateStateValueProp($state, [
+                  "dialogaddnewworkflow",
+                  "open"
+                ])}
+                title={
+                  "\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc \u062c\u062f\u06cc\u062f"
+                }
+                trigger={
+                  <Button
+                    data-plasmic-name={"addnewworkflowbutton"}
+                    data-plasmic-override={overrides.addnewworkflowbutton}
+                    children2={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__idSQh
+                        )}
+                      >
+                        {
+                          "+ \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc \u062c\u062f\u06cc\u062f"
+                        }
+                      </div>
+                    }
+                    className={classNames("__wab_instance")}
+                    endIcon={
+                      <ChevronLeftIcon
+                        className={classNames(projectcss.all, sty.svg__sD8S)}
+                        role={"img"}
+                      />
+                    }
+                    startIcon={
+                      <ChevronRightIcon
+                        className={classNames(projectcss.all, sty.svg__iFaaI)}
+                        role={"img"}
+                      />
+                    }
+                  />
+                }
+              />
+            </div>
+            {(() => {
+              try {
+                return $state.notificationSettingForThisUser[0].list.length > 0;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })() ? (
+              <Stack__
+                as={"div"}
+                data-plasmic-name={"listofnotifications"}
+                data-plasmic-override={overrides.listofnotifications}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.listofnotifications)}
+              >
+                <div
+                  data-plasmic-name={
+                    "\u0627\u0637\u0644\u0627\u0639\u0631\u0633\u0627\u0646\u06cc\u0647\u0627\u06cc\u0645\u0648\u062c\u0648\u062f"
+                  }
+                  data-plasmic-override={overrides.اطلاعرسانیهایموجود}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.اطلاعرسانیهایموجود
+                  )}
+                >
+                  {hasVariant(globalVariants, "screen", "mobileOnly") ? (
+                    <React.Fragment>
+                      <span
+                        className={"plasmic_default__all plasmic_default__span"}
+                        style={{ fontWeight: 400 }}
+                      >
+                        {
+                          "\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc\u200c\u0647\u0627\u06cc \u0645\u0648\u062c\u0648\u062f"
+                        }
+                      </span>
+                    </React.Fragment>
+                  ) : (
+                    <React.Fragment>
+                      <span
+                        className={"plasmic_default__all plasmic_default__span"}
+                        style={{ fontWeight: 700 }}
+                      >
+                        {
+                          "\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc\u200c\u0647\u0627\u06cc \u0645\u0648\u062c\u0648\u062f"
+                        }
+                      </span>
+                    </React.Fragment>
+                  )}
+                </div>
+                {(() => {
+                  try {
+                    return true;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return false;
+                    }
+                    throw e;
+                  }
+                })()
+                  ? (_par =>
+                      !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                      (() => {
+                        try {
+                          return $state.notificationSettingForThisUser[0].list;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()
+                    ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                      const currentItem = __plasmic_item_0;
+                      const currentIndex = __plasmic_idx_0;
+                      return (
+                        <Userworkflow
+                          data-plasmic-name={"userworkflow"}
+                          data-plasmic-override={overrides.userworkflow}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.userworkflow
+                          )}
+                          currentItem={currentItem}
+                          key={currentIndex}
+                          notificationSettingForThisUser={
+                            $state.notificationSettingForThisUser[0].list[0]
+                          }
+                          refresh={async () => {
+                            const $steps = {};
+
+                            $steps["apiGetNoticationSettingForThisUser"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      undefined,
+                                      "https://apigw.paziresh24.com/v1/get-notification-setting"
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.apiRequest"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["apiGetNoticationSettingForThisUser"] !=
+                                null &&
+                              typeof $steps[
+                                "apiGetNoticationSettingForThisUser"
+                              ] === "object" &&
+                              typeof $steps[
+                                "apiGetNoticationSettingForThisUser"
+                              ].then === "function"
+                            ) {
+                              $steps["apiGetNoticationSettingForThisUser"] =
+                                await $steps[
+                                  "apiGetNoticationSettingForThisUser"
+                                ];
+                            }
+
+                            $steps["updateNotificationSettingForThisUser"] =
+                              true
+                                ? (() => {
+                                    const actionArgs = {
+                                      variable: {
+                                        objRoot: $state,
+                                        variablePath: [
+                                          "notificationSettingForThisUser"
+                                        ]
+                                      },
+                                      operation: 0,
+                                      value:
+                                        $steps
+                                          .apiGetNoticationSettingForThisUser
+                                          .data
+                                    };
+                                    return (({
+                                      variable,
+                                      value,
+                                      startIndex,
+                                      deleteCount
+                                    }) => {
+                                      if (!variable) {
+                                        return;
+                                      }
+                                      const { objRoot, variablePath } =
+                                        variable;
+
+                                      $stateSet(objRoot, variablePath, value);
+                                      return value;
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                            if (
+                              $steps["updateNotificationSettingForThisUser"] !=
+                                null &&
+                              typeof $steps[
+                                "updateNotificationSettingForThisUser"
+                              ] === "object" &&
+                              typeof $steps[
+                                "updateNotificationSettingForThisUser"
+                              ].then === "function"
+                            ) {
+                              $steps["updateNotificationSettingForThisUser"] =
+                                await $steps[
+                                  "updateNotificationSettingForThisUser"
+                                ];
+                            }
+                          }}
+                        />
+                      );
+                    })
+                  : null}
+              </Stack__>
+            ) : null}
+            <MetrikaYandex
+              data-plasmic-name={"metrikaYandex"}
+              data-plasmic-override={overrides.metrikaYandex}
+              className={classNames("__wab_instance", sty.metrikaYandex)}
+            />
+
+            <SideEffect
+              data-plasmic-name={"runCodeGtmMetrica"}
+              data-plasmic-override={overrides.runCodeGtmMetrica}
+              className={classNames("__wab_instance", sty.runCodeGtmMetrica)}
+              onMount={async () => {
+                const $steps = {};
+
+                $steps["runCode"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            function loadGTM() {
+                              var gtmScript = document.createElement("script");
+                              gtmScript.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-P5RPLDP');`;
-                            document.head.appendChild(gtmScript);
-                            var gtmNoScript =
-                              document.createElement("noscript");
-                            gtmNoScript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"
+                              document.head.appendChild(gtmScript);
+                              var gtmNoScript =
+                                document.createElement("noscript");
+                              gtmNoScript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"
     height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
-                            document.body.insertBefore(
-                              gtmNoScript,
-                              document.body.firstChild
-                            );
-                          }
-                          return loadGTM();
-                        })();
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runCode"] != null &&
-                typeof $steps["runCode"] === "object" &&
-                typeof $steps["runCode"].then === "function"
-              ) {
-                $steps["runCode"] = await $steps["runCode"];
-              }
+                              document.body.insertBefore(
+                                gtmNoScript,
+                                document.body.firstChild
+                              );
+                            }
+                            return loadGTM();
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
 
-              $steps["loadMetrica"] = true
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return (() => {
-                          function loadMetrika() {
-                            var metrikaScript =
-                              document.createElement("script");
-                            metrikaScript.innerHTML = `(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+                $steps["loadMetrica"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            function loadMetrika() {
+                              var metrikaScript =
+                                document.createElement("script");
+                              metrikaScript.innerHTML = `(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
     m[i].l=1*new Date();
     for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
     k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
@@ -3200,43 +3293,44 @@ function PlasmicListOfNotofications__RenderFunc(props: {
         accurateTrackBounce:true,
         webvisor:true
     });`;
-                            document.head.appendChild(metrikaScript);
-                            var metrikaNoScript =
-                              document.createElement("noscript");
-                            metrikaNoScript.innerHTML = `<div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div>`;
-                            document.body.insertBefore(
-                              metrikaNoScript,
-                              document.body.firstChild
-                            );
-                          }
-                          return loadMetrika();
-                        })();
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["loadMetrica"] != null &&
-                typeof $steps["loadMetrica"] === "object" &&
-                typeof $steps["loadMetrica"].then === "function"
-              ) {
-                $steps["loadMetrica"] = await $steps["loadMetrica"];
-              }
-            }}
-          />
+                              document.head.appendChild(metrikaScript);
+                              var metrikaNoScript =
+                                document.createElement("noscript");
+                              metrikaNoScript.innerHTML = `<div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div>`;
+                              document.body.insertBefore(
+                                metrikaNoScript,
+                                document.body.firstChild
+                              );
+                            }
+                            return loadMetrika();
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["loadMetrica"] != null &&
+                  typeof $steps["loadMetrica"] === "object" &&
+                  typeof $steps["loadMetrica"].then === "function"
+                ) {
+                  $steps["loadMetrica"] = await $steps["loadMetrica"];
+                }
+              }}
+            />
 
-          <Embed
-            data-plasmic-name={"gtm"}
-            data-plasmic-override={overrides.gtm}
-            className={classNames("__wab_instance", sty.gtm)}
-            code={
-              '\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"\nheight="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->\n\n<!-- Yandex.Metrika counter -->\n<script type="text/javascript" >\n   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n   m[i].l=1*new Date();\n   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})\n   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");\n\n   ym(98277236, "init", {\n        clickmap:true,\n        trackLinks:true,\n        accurateTrackBounce:true,\n        webvisor:true\n   });\n</script>\n<noscript><div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div></noscript>\n<!-- /Yandex.Metrika counter -->'
-            }
-          />
-        </div>
+            <Embed
+              data-plasmic-name={"gtm"}
+              data-plasmic-override={overrides.gtm}
+              className={classNames("__wab_instance", sty.gtm)}
+              code={
+                '\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"\nheight="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->\n\n<!-- Yandex.Metrika counter -->\n<script type="text/javascript" >\n   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n   m[i].l=1*new Date();\n   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})\n   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");\n\n   ym(98277236, "init", {\n        clickmap:true,\n        trackLinks:true,\n        accurateTrackBounce:true,\n        webvisor:true\n   });\n</script>\n<noscript><div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div></noscript>\n<!-- /Yandex.Metrika counter -->'
+              }
+            />
+          </div>
+        ) : null}
       </div>
     </React.Fragment>
   ) as React.ReactElement | null;
