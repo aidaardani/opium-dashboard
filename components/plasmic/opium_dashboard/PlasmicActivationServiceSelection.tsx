@@ -388,7 +388,7 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
                               return {
                                 event_group: "activation-page",
                                 data: { data: $state.profileApi.data.data },
-                                event_type: "click-edit-profile-button"
+                                event_type: "click-edit-profile-button-step1"
                               };
                             } catch (e) {
                               if (

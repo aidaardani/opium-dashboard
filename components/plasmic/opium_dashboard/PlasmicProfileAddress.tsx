@@ -4057,8 +4057,10 @@ function PlasmicProfileAddress__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.centersApi.data.data.find(item => item.type_id == 1)
-                .province;
+              return Number(
+                $state.centersApi.data.data.find(item => item.type_id == 1)
+                  .province
+              );
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -4083,8 +4085,9 @@ function PlasmicProfileAddress__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.centersApi.data.data.find(item => item.type_id == 1)
-                .city;
+              return Number(
+                $state.centersApi.data.data.find(item => item.type_id == 1).city
+              );
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -5373,8 +5376,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                                 item => item.tell
                               );
                               return {
-                                address: "$state.address.value",
-                                city: "$state.citySelect.value",
+                                address: $state.address.value,
+                                city: $state.citySelect.value,
                                 lat: $state.map.lat,
                                 lon: $state.map.lng,
                                 province: $state.provinceSelect.value,

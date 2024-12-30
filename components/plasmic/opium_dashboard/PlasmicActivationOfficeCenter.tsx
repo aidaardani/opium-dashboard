@@ -4334,7 +4334,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                               apiadress: $state.addressApi.data,
                               notifycell: $state.notifyCell.notifyCellValue
                             },
-                            event_type: "click-edit-adress-input"
+                            event_type: "click-edit-adress-input-step2"
                           };
                         } catch (e) {
                           if (
@@ -4444,7 +4444,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                             pagepath: $ctx.pagePath,
                             userid: $ctx.query.user_id
                           },
-                          event_type: "click-next-button-office-step2"
+                          event_type: "click-done-address-button-office-step2"
                         };
                       } catch (e) {
                         if (

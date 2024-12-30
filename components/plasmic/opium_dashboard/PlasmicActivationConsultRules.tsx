@@ -479,7 +479,8 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                                 userid: $ctx.query.user_id,
                                 pagepath: $ctx.pagePath
                               },
-                              event_type: "click-accept-rules-button-consult"
+                              event_type:
+                                "click-accept-rules-button-consult-step2"
                             };
                           } catch (e) {
                             if (
@@ -594,7 +595,8 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                                 userid: $ctx.query.user_id,
                                 pagepath: $ctx.pagePath
                               },
-                              event_type: "click-reject-rules-button-consult"
+                              event_type:
+                                "click-reject-rules-button-consult-step2"
                             };
                           } catch (e) {
                             if (

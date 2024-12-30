@@ -366,7 +366,7 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
                               input: $state.input.value,
                               pagepath: $ctx.pagePath
                             },
-                            event_type: "click-save-button-consult-price"
+                            event_type: "click-save-button-consult-price-step4"
                           };
                         } catch (e) {
                           if (

@@ -403,6 +403,54 @@ function PlasmicDuration__RenderFunc(props: {
                   "fragmentPopover",
                   "open"
                 ]).apply(null, eventArgs);
+
+                (async open => {
+                  const $steps = {};
+
+                  $steps["invokeGlobalAction"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  event_group: "activation-page",
+                                  data: {
+                                    map: $state.map,
+                                    apiadress: $state.addressApi.data,
+                                    notifycell:
+                                      $state.notifyCell.notifyCellValue
+                                  },
+                                  event_type:
+                                    "click-open-info-button-consult-step5"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction"] != null &&
+                    typeof $steps["invokeGlobalAction"] === "object" &&
+                    typeof $steps["invokeGlobalAction"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction"] = await $steps[
+                      "invokeGlobalAction"
+                    ];
+                  }
+                }).apply(null, eventArgs);
               }}
               open={generateStateValueProp($state, ["fragmentPopover", "open"])}
               ref={ref => {
@@ -457,7 +505,7 @@ function PlasmicDuration__RenderFunc(props: {
                                     Service:
                                       $state.duration.data.workhours[0].service
                                   },
-                                  type: "click-plus-button-duration"
+                                  type: "click-plus-button-duration-step5"
                                 };
                               } catch (e) {
                                 if (

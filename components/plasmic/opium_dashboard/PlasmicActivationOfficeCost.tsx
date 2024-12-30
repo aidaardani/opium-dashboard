@@ -249,7 +249,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "dialog2.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => true
       },
       {
         path: "shabaValue",
@@ -493,7 +493,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 )}
               >
                 {
-                  "\u0634\u0645\u0627\u0631\u0647 \u0634\u0628\u0627 \u0628\u0631\u0627\u06cc \u0648\u0627\u0631\u06cc\u0632 \u0645\u0628\u0627\u0644\u063a \u0628\u06cc\u0639\u0627\u0646\u0647 \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0628\u0647 \u062d\u0633\u0627\u0628 \u0634\u0645\u0627 \u0646\u06cc\u0627\u0632 \u0627\u0633\u062a."
+                  "\u0628\u0631\u0627\u06cc \u062a\u0633\u0648\u06cc\u0647 \u0628\u06cc\u0639\u0627\u0646\u0647 \u0648 \u0648\u0627\u0631\u06cc\u0632 \u0622\u0646 \u0628\u0647 \u062d\u0633\u0627\u0628 \u0634\u0645\u0627\u060c \u0646\u06cc\u0627\u0632 \u0627\u0633\u062a \u06a9\u0647 \u0634\u0645\u0627\u0631\u0647 \u06a9\u0627\u0631\u062a \u062e\u0648\u062f \u0631\u0627 \u062b\u0628\u062a \u06a9\u0646\u06cc\u062f."
                 }
               </div>
             }
@@ -558,7 +558,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
             }}
             open={generateStateValueProp($state, ["dialog2", "open"])}
             title={
-              "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u0634\u0645\u0627\u0631\u0647 \u0634\u0628\u0627"
+              "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u0634\u0645\u0627\u0631\u0647 \u06a9\u0627\u0631\u062a"
             }
             trigger={
               <Icon15Icon
@@ -580,6 +580,49 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
 
             (async value => {
               const $steps = {};
+
+              $steps["invokeGlobalAction"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "activation-page",
+                              data: {
+                                map: $state.map,
+                                apiadress: $state.addressApi.data,
+                                notifycell: $state.notifyCell.notifyCellValue
+                              },
+                              event_type:
+                                "change-card-number-office-input-step3"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] = await $steps[
+                  "invokeGlobalAction"
+                ];
+              }
             }).apply(null, eventArgs);
           }}
           placeholder={
@@ -1055,7 +1098,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                 onlinevisit: $props.hasOnlineVisit
                               },
                               event_type:
-                                "click-next-button-office-step3-set-payment"
+                                "click-add-cost-button-office-step3-set-payment"
                             };
                           } catch (e) {
                             if (
@@ -1323,7 +1366,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                 onlinevisit: $props.hasOnlineVisit
                               },
                               event_type:
-                                "click-cancel-button-office-step3-set-payment"
+                                "click-cancel-cost-button-office-step3-set-payment"
                             };
                           } catch (e) {
                             if (

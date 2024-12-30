@@ -720,7 +720,8 @@ function PlasmicProfileChannels__RenderFunc(props: {
                                       userid: $ctx.query.user_id,
                                       pagepath: $ctx.pagePath
                                     },
-                                    event_type: "click-active-safecall-button"
+                                    event_type:
+                                      "click-active-safecall-button-step3"
                                   };
                                 } catch (e) {
                                   if (
@@ -931,7 +932,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
                                   pagepath: $ctx.pagePath
                                 },
                                 event_type:
-                                  "click-save-consult-messenger-button"
+                                  "click-save-consult-messenger-button-step3"
                               };
                             } catch (e) {
                               if (
