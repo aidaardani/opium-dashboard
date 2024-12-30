@@ -3035,192 +3035,147 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                 }
               />
             </div>
-            {(() => {
-              try {
-                return $state.notificationSettingForThisUser[0].list.length > 0;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return false;
+            <Stack__
+              as={"div"}
+              data-plasmic-name={"listofnotifications"}
+              data-plasmic-override={overrides.listofnotifications}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.listofnotifications)}
+            >
+              <div
+                data-plasmic-name={
+                  "\u0627\u0637\u0644\u0627\u0639\u0631\u0633\u0627\u0646\u06cc\u0647\u0627\u06cc\u0645\u0648\u062c\u0648\u062f"
                 }
-                throw e;
-              }
-            })() ? (
-              <Stack__
-                as={"div"}
-                data-plasmic-name={"listofnotifications"}
-                data-plasmic-override={overrides.listofnotifications}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.listofnotifications)}
+                data-plasmic-override={overrides.اطلاعرسانیهایموجود}
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.اطلاعرسانیهایموجود
+                )}
               >
-                <div
-                  data-plasmic-name={
-                    "\u0627\u0637\u0644\u0627\u0639\u0631\u0633\u0627\u0646\u06cc\u0647\u0627\u06cc\u0645\u0648\u062c\u0648\u062f"
-                  }
-                  data-plasmic-override={overrides.اطلاعرسانیهایموجود}
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.اطلاعرسانیهایموجود
-                  )}
-                >
-                  {hasVariant(globalVariants, "screen", "mobileOnly") ? (
-                    <React.Fragment>
-                      <span
-                        className={"plasmic_default__all plasmic_default__span"}
-                        style={{ fontWeight: 400 }}
-                      >
-                        {
-                          "\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc\u200c\u0647\u0627\u06cc \u0645\u0648\u062c\u0648\u062f"
-                        }
-                      </span>
-                    </React.Fragment>
-                  ) : (
-                    <React.Fragment>
-                      <span
-                        className={"plasmic_default__all plasmic_default__span"}
-                        style={{ fontWeight: 700 }}
-                      >
-                        {
-                          "\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc\u200c\u0647\u0627\u06cc \u0645\u0648\u062c\u0648\u062f"
-                        }
-                      </span>
-                    </React.Fragment>
-                  )}
-                </div>
-                {(() => {
+                {hasVariant(globalVariants, "screen", "mobileOnly") ? (
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 400 }}
+                    >
+                      {
+                        "\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc\u200c\u0647\u0627\u06cc \u0645\u0648\u062c\u0648\u062f"
+                      }
+                    </span>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 700 }}
+                    >
+                      {
+                        "\u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc\u200c\u0647\u0627\u06cc \u0645\u0648\u062c\u0648\u062f"
+                      }
+                    </span>
+                  </React.Fragment>
+                )}
+              </div>
+              {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                (() => {
                   try {
-                    return true;
+                    return $state.notificationSettingForThisUser[0].list;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
                       e?.plasmicType === "PlasmicUndefinedDataError"
                     ) {
-                      return false;
+                      return [];
                     }
                     throw e;
                   }
                 })()
-                  ? (_par =>
-                      !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                      (() => {
-                        try {
-                          return $state.notificationSettingForThisUser[0].list;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return [];
-                          }
-                          throw e;
-                        }
-                      })()
-                    ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                      const currentItem = __plasmic_item_0;
-                      const currentIndex = __plasmic_idx_0;
-                      return (
-                        <Userworkflow
-                          data-plasmic-name={"userworkflow"}
-                          data-plasmic-override={overrides.userworkflow}
-                          className={classNames(
-                            "__wab_instance",
-                            sty.userworkflow
-                          )}
-                          currentItem={currentItem}
-                          key={currentIndex}
-                          notificationSettingForThisUser={
-                            $state.notificationSettingForThisUser[0].list[0]
-                          }
-                          refresh={async () => {
-                            const $steps = {};
+              ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                const currentItem = __plasmic_item_0;
+                const currentIndex = __plasmic_idx_0;
+                return (
+                  <Userworkflow
+                    data-plasmic-name={"userworkflow"}
+                    data-plasmic-override={overrides.userworkflow}
+                    className={classNames("__wab_instance", sty.userworkflow)}
+                    currentItem={currentItem}
+                    key={currentIndex}
+                    notificationSettingForThisUser={
+                      $state.notificationSettingForThisUser[0].list[0]
+                    }
+                    refresh={async () => {
+                      const $steps = {};
 
-                            $steps["apiGetNoticationSettingForThisUser"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      undefined,
-                                      "https://apigw.paziresh24.com/v1/get-notification-setting"
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "Fragment.apiRequest"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["apiGetNoticationSettingForThisUser"] !=
-                                null &&
-                              typeof $steps[
-                                "apiGetNoticationSettingForThisUser"
-                              ] === "object" &&
-                              typeof $steps[
-                                "apiGetNoticationSettingForThisUser"
-                              ].then === "function"
-                            ) {
-                              $steps["apiGetNoticationSettingForThisUser"] =
-                                await $steps[
-                                  "apiGetNoticationSettingForThisUser"
-                                ];
-                            }
+                      $steps["apiGetNoticationSettingForThisUser"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                undefined,
+                                "https://apigw.paziresh24.com/v1/get-notification-setting"
+                              ]
+                            };
+                            return $globalActions["Fragment.apiRequest"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["apiGetNoticationSettingForThisUser"] != null &&
+                        typeof $steps["apiGetNoticationSettingForThisUser"] ===
+                          "object" &&
+                        typeof $steps["apiGetNoticationSettingForThisUser"]
+                          .then === "function"
+                      ) {
+                        $steps["apiGetNoticationSettingForThisUser"] =
+                          await $steps["apiGetNoticationSettingForThisUser"];
+                      }
 
-                            $steps["updateNotificationSettingForThisUser"] =
-                              true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: [
-                                          "notificationSettingForThisUser"
-                                        ]
-                                      },
-                                      operation: 0,
-                                      value:
-                                        $steps
-                                          .apiGetNoticationSettingForThisUser
-                                          .data
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
+                      $steps["updateNotificationSettingForThisUser"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["notificationSettingForThisUser"]
+                              },
+                              operation: 0,
+                              value:
+                                $steps.apiGetNoticationSettingForThisUser.data
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
 
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                            if (
-                              $steps["updateNotificationSettingForThisUser"] !=
-                                null &&
-                              typeof $steps[
-                                "updateNotificationSettingForThisUser"
-                              ] === "object" &&
-                              typeof $steps[
-                                "updateNotificationSettingForThisUser"
-                              ].then === "function"
-                            ) {
-                              $steps["updateNotificationSettingForThisUser"] =
-                                await $steps[
-                                  "updateNotificationSettingForThisUser"
-                                ];
-                            }
-                          }}
-                        />
-                      );
-                    })
-                  : null}
-              </Stack__>
-            ) : null}
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateNotificationSettingForThisUser"] !=
+                          null &&
+                        typeof $steps[
+                          "updateNotificationSettingForThisUser"
+                        ] === "object" &&
+                        typeof $steps["updateNotificationSettingForThisUser"]
+                          .then === "function"
+                      ) {
+                        $steps["updateNotificationSettingForThisUser"] =
+                          await $steps["updateNotificationSettingForThisUser"];
+                      }
+                    }}
+                  />
+                );
+              })}
+            </Stack__>
             <MetrikaYandex
               data-plasmic-name={"metrikaYandex"}
               data-plasmic-override={overrides.metrikaYandex}

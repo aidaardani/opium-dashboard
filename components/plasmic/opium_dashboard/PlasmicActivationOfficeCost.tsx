@@ -249,7 +249,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "dialog2.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => true
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       },
       {
         path: "shabaValue",
@@ -493,7 +493,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 )}
               >
                 {
-                  "\u0628\u0631\u0627\u06cc \u062a\u0633\u0648\u06cc\u0647 \u0628\u06cc\u0639\u0627\u0646\u0647 \u0648 \u0648\u0627\u0631\u06cc\u0632 \u0622\u0646 \u0628\u0647 \u062d\u0633\u0627\u0628 \u0634\u0645\u0627\u060c \u0646\u06cc\u0627\u0632 \u0627\u0633\u062a \u06a9\u0647 \u0634\u0645\u0627\u0631\u0647 \u06a9\u0627\u0631\u062a \u062e\u0648\u062f \u0631\u0627 \u062b\u0628\u062a \u06a9\u0646\u06cc\u062f."
+                  "\u0628\u0631\u0627\u06cc \u062a\u0633\u0648\u06cc\u0647 \u0628\u06cc\u0639\u0627\u0646\u0647 \u0646\u06cc\u0627\u0632 \u0627\u0633\u062a \u06a9\u0647 \u0634\u0645\u0627\u0631\u0647 \u06a9\u0627\u0631\u062a \u062e\u0648\u062f \u0631\u0627 \u062b\u0628\u062a \u06a9\u0646\u06cc\u062f."
                 }
               </div>
             }
@@ -664,7 +664,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                   )}
                 >
                   {
-                    "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a..."
+                    "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0634\u0645\u0627\u0631\u0647 \u0634\u0628\u0627..."
                   }
                 </div>
               }
