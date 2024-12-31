@@ -472,8 +472,9 @@ function PlasmicPaymentTotal__RenderFunc(props: {
                   $state.apiRequest.data.data.find(
                     center => center.user_center_id == $state.selectedCenter
                   )?.user_center_id ??
-                  $state.centers.find(item => item.is_active_booking === true)
-                    .user_center_id
+                  $state.apiRequest.data.data.find(
+                    item => item.is_active_booking === true
+                  ).user_center_id
                 );
               } catch (e) {
                 if (
@@ -487,7 +488,7 @@ function PlasmicPaymentTotal__RenderFunc(props: {
             })()}
             userId={(() => {
               try {
-                return $ctx.query.user_id;
+                return $props.userId;
               } catch (e) {
                 if (
                   e instanceof TypeError ||

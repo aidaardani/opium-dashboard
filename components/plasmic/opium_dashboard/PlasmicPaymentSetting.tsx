@@ -411,7 +411,10 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                 }}
                 params={(() => {
                   try {
-                    return { user_id: $props.userId };
+                    return {
+                      user_id: $props.userId,
+                      user_center_id: $props.selectedCenter
+                    };
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -641,7 +644,8 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                                     center =>
                                       center.user_center_id ===
                                       $props.selectedCenter
-                                  ).id
+                                  ).id,
+                                  userid: $props.userId.toString()
                                 };
                               } catch (e) {
                                 if (
