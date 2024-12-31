@@ -1207,8 +1207,9 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
               }
 
               $steps["goToPage"] =
-                $state.input2.value === "" ||
-                $state.input2.value.trim().length === 16
+                ($state.input2.value === "" ||
+                  $state.input2.value.trim().length === 16) &&
+                $steps.costApi.status === "success"
                   ? (() => {
                       const actionArgs = {
                         destination: (() => {
