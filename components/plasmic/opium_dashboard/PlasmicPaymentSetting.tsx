@@ -105,6 +105,7 @@ export type PlasmicPaymentSetting__OverridesType = {
   getUserPrefrence?: Flex__<typeof ApiRequest>;
   radioGroup?: Flex__<typeof AntdRadioGroup>;
   radio?: Flex__<typeof AntdRadio>;
+  button?: Flex__<typeof Button>;
 };
 
 export interface DefaultPaymentSettingProps {
@@ -576,8 +577,10 @@ function PlasmicPaymentSetting__RenderFunc(props: {
               className={classNames(projectcss.all, sty.freeBox__iaAir)}
             >
               <Button
+                data-plasmic-name={"button"}
+                data-plasmic-override={overrides.button}
                 children2={"\u062a\u0627\u06cc\u06cc\u062f"}
-                className={classNames("__wab_instance", sty.button__y23A2)}
+                className={classNames("__wab_instance", sty.button)}
                 loading={(() => {
                   try {
                     return $state.loading;
@@ -709,42 +712,6 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                     $steps["stopLoading"] = await $steps["stopLoading"];
                   }
 
-                  $steps["updateDialogOpen"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["dialog", "open"]
-                          },
-                          operation: 0,
-                          value: false
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateDialogOpen"] != null &&
-                    typeof $steps["updateDialogOpen"] === "object" &&
-                    typeof $steps["updateDialogOpen"].then === "function"
-                  ) {
-                    $steps["updateDialogOpen"] = await $steps[
-                      "updateDialogOpen"
-                    ];
-                  }
-
                   $steps["showToast"] = true
                     ? (() => {
                         const actionArgs = {
@@ -766,49 +733,45 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                   ) {
                     $steps["showToast"] = await $steps["showToast"];
                   }
-                }}
-              />
 
-              <Button
-                children2={"\u0627\u0646\u0635\u0631\u0627\u0641"}
-                className={classNames("__wab_instance", sty.button__ao0M5)}
-                color={"softSand"}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["updateDialogOpen"] = true
+                  $steps["invokeGlobalAction"] = true
                     ? (() => {
                         const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["dialog", "open"]
-                          },
-                          operation: 0,
-                          value: false
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  group: "setting",
+                                  data: {
+                                    userid: $ctx.query.user_id,
+                                    centers: $props.center
+                                  },
+                                  type: "change-kind-of-payment"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
                         };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
                       })()
                     : undefined;
                   if (
-                    $steps["updateDialogOpen"] != null &&
-                    typeof $steps["updateDialogOpen"] === "object" &&
-                    typeof $steps["updateDialogOpen"].then === "function"
+                    $steps["invokeGlobalAction"] != null &&
+                    typeof $steps["invokeGlobalAction"] === "object" &&
+                    typeof $steps["invokeGlobalAction"].then === "function"
                   ) {
-                    $steps["updateDialogOpen"] = await $steps[
-                      "updateDialogOpen"
+                    $steps["invokeGlobalAction"] = await $steps[
+                      "invokeGlobalAction"
                     ];
                   }
                 }}
@@ -828,13 +791,15 @@ const PlasmicDescendants = {
     "apiRequest",
     "getUserPrefrence",
     "radioGroup",
-    "radio"
+    "radio",
+    "button"
   ],
   dialog: ["dialog"],
   apiRequest: ["apiRequest", "getUserPrefrence", "radioGroup", "radio"],
   getUserPrefrence: ["getUserPrefrence", "radioGroup", "radio"],
   radioGroup: ["radioGroup", "radio"],
-  radio: ["radio"]
+  radio: ["radio"],
+  button: ["button"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -846,6 +811,7 @@ type NodeDefaultElementType = {
   getUserPrefrence: typeof ApiRequest;
   radioGroup: typeof AntdRadioGroup;
   radio: typeof AntdRadio;
+  button: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -913,6 +879,7 @@ export const PlasmicPaymentSetting = Object.assign(
     getUserPrefrence: makeNodeComponent("getUserPrefrence"),
     radioGroup: makeNodeComponent("radioGroup"),
     radio: makeNodeComponent("radio"),
+    button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicPaymentSetting
     internalVariantProps: PlasmicPaymentSetting__VariantProps,
