@@ -49,6 +49,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
 }
 .text__agfLp {
   position: relative;
@@ -56,6 +57,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
 }
 .freeBox__oNzqi {
   display: flex;
