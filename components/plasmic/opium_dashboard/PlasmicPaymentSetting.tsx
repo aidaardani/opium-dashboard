@@ -741,7 +741,7 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                             (() => {
                               try {
                                 return {
-                                  group: "setting",
+                                  event_group: "setting",
                                   kind: $state.radioGroup.value,
                                   selectedCenter: $props.selectedCenter,
                                   centerId: $props.center.find(
@@ -750,7 +750,7 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                                       $props.selectedCenter
                                   ).id,
                                   userid: $props.userId.toString(),
-                                  type: "change-kind-of-payment"
+                                  event_type: "change-kind-of-payment"
                                 };
                               } catch (e) {
                                 if (
