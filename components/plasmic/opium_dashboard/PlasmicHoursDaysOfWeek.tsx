@@ -970,7 +970,8 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                                   data: {
                                     usercenterid: $props.userCenterId,
                                     centerid: $props.centerId,
-                                    workhours: $state.workhoursApi.data.data
+                                    workhours: $state.workhoursApi.data.data,
+                                    pagepath: $ctx.pagePath
                                   },
                                   event_type:
                                     "click-save-button-workhoure-step5"
