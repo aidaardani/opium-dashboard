@@ -1489,8 +1489,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                               event_group: "activation-page",
                               data: {
                                 userid: $ctx.query.user_id,
-                                onlinevisit: $props.hasOnlineVisit,
-                                data: $state.profileApi.data.data
+                                onlinevisit: $props.hasOnlineVisit
                               },
                               event_type:
                                 "click-cancel-cost-button-office-step3-set-payment"
