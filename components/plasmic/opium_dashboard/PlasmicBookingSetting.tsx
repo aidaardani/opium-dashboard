@@ -2274,7 +2274,16 @@ function PlasmicBookingSetting__RenderFunc(props: {
               ) : null}
               {(() => {
                 try {
-                  return $ctx.GrowthBook.features["show-auto-payment"];
+                  return (
+                    $ctx.GrowthBook.features["show-auto-payment"] &&
+                    $state.centers.data.data.some(
+                      center =>
+                        (center.id !== "5532" &&
+                          center.type_id === 1 &&
+                          center.is_active_booking) ||
+                        (center.id === "5532" && center.is_active_booking)
+                    )
+                  );
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -2562,6 +2571,40 @@ function PlasmicBookingSetting__RenderFunc(props: {
                 '\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"\nheight="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->\n\n<!-- Yandex.Metrika counter -->\n<script type="text/javascript" >\n   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n   m[i].l=1*new Date();\n   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})\n   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");\n\n   ym(98277236, "init", {\n        clickmap:true,\n        trackLinks:true,\n        accurateTrackBounce:true,\n        webvisor:true\n   });\n</script>\n<noscript><div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div></noscript>\n<!-- /Yandex.Metrika counter -->'
               }
             />
+
+            {(() => {
+              try {
+                return !$state.centers.data.data.some(
+                  center =>
+                    (center.id !== "5532" &&
+                      center.type_id === 1 &&
+                      center.is_active_booking) ||
+                    (center.id === "5532" && center.is_active_booking)
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })() ? (
+              <div className={classNames(projectcss.all, sty.freeBox__ggYrc)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__vR6Tr
+                  )}
+                >
+                  {
+                    "\u0634\u0645\u0627 \u062f\u0631 \u062d\u0627\u0644 \u062d\u0627\u0638\u0631 \u0647\u06cc\u0686 \u0645\u0631\u06a9\u0632\u06cc \u0628\u0627 \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0627\u06cc\u0646\u062a\u0631\u0646\u062a\u06cc \u0641\u0639\u0627\u0644 \u0646\u062f\u0627\u0631\u06cc\u062f."
+                  }
+                </div>
+              </div>
+            ) : null}
           </div>
         ) : null}
       </div>

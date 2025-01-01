@@ -638,3 +638,27 @@
   max-width: 100%;
   object-fit: cover;
 }
+.freeBox__ggYrc {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: var(--token-BU1JCAY6hntB);
+  min-width: 0;
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid var(--token-VeLONbiJQakl);
+}
+.text__vR6Tr {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: center;
+  font-weight: 500;
+  min-width: 0;
+}
