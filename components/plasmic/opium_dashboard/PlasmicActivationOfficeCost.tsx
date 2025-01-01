@@ -1175,7 +1175,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                               return {
                                 event_group: "activation-page",
                                 data: {
-                                  userid: $props.userId,
+                                  userid: $ctx.query.user_id,
                                   onlinevisit: $props.hasOnlineVisit
                                 },
                                 event_type:
@@ -1446,7 +1446,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                userid: $props.userId,
+                                userid: $ctx.query.user_id,
                                 onlinevisit: $props.hasOnlineVisit
                               },
                               event_type:
