@@ -131,6 +131,8 @@ function PlasmicActivationOfficeCenter2__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const $globalActions = useGlobalActions?.();
+
   return (
     <React.Fragment>
       <Head>
@@ -173,6 +175,47 @@ function PlasmicActivationOfficeCenter2__RenderFunc(props: {
             plasmic_plasmic_rich_components_css.plasmic_tokens,
             sty.root
           )}
+          onLoad={async event => {
+            const $steps = {};
+
+            $steps["sendEvent"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            event_group: "activation-page",
+                            data: {
+                              data: $state.profileApi.data.data
+                            },
+                            event_type: "load-page-step2"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Splunk.sendLog"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["sendEvent"] != null &&
+              typeof $steps["sendEvent"] === "object" &&
+              typeof $steps["sendEvent"].then === "function"
+            ) {
+              $steps["sendEvent"] = await $steps["sendEvent"];
+            }
+          }}
         >
           <div
             data-plasmic-name={"header"}

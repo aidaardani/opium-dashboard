@@ -175,6 +175,29 @@ function PlasmicActivationFinish__RenderFunc(props: {
             plasmic_plasmic_rich_components_css.plasmic_tokens,
             sty.root
           )}
+          onLoad={async event => {
+            const $steps = {};
+
+            $steps["sendEvent"] = true
+              ? (() => {
+                  const actionArgs = {};
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
+                    }
+                    const { objRoot, variablePath } = variable;
+                    undefined;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["sendEvent"] != null &&
+              typeof $steps["sendEvent"] === "object" &&
+              typeof $steps["sendEvent"].then === "function"
+            ) {
+              $steps["sendEvent"] = await $steps["sendEvent"];
+            }
+          }}
         >
           <div
             data-plasmic-name={"header"}

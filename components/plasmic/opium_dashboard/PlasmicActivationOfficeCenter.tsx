@@ -4318,49 +4318,6 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
           as={"div"}
           hasGap={true}
           className={classNames(projectcss.all, sty.freeBox__itFNx)}
-          onClick={async event => {
-            const $steps = {};
-
-            $steps["sendLog"] = true
-              ? (() => {
-                  const actionArgs = {
-                    args: [
-                      (() => {
-                        try {
-                          return {
-                            event_group: "activation-page",
-                            data: {
-                              map: $state.map,
-                              apiadress: $state.addressApi.data,
-                              notifycell: $state.notifyCell.notifyCellValue
-                            },
-                            event_type: "click-edit-adress-input-step2"
-                          };
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()
-                    ]
-                  };
-                  return $globalActions["Splunk.sendLog"]?.apply(null, [
-                    ...actionArgs.args
-                  ]);
-                })()
-              : undefined;
-            if (
-              $steps["sendLog"] != null &&
-              typeof $steps["sendLog"] === "object" &&
-              typeof $steps["sendLog"].then === "function"
-            ) {
-              $steps["sendLog"] = await $steps["sendLog"];
-            }
-          }}
         >
           <Icon26Icon
             className={classNames(projectcss.all, sty.svg__xlRns)}
@@ -4442,7 +4399,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                             apiadress: $state.addressApi.data,
                             notifycell: $state.notifyCell.notifyCellValue,
                             pagepath: $ctx.pagePath,
-                            userid: $ctx.query.user_id
+                            userid: $ctx.query.user_id,
+                            data: $state.profileApi.data.data
                           },
                           event_type: "click-done-address-button-office-step2"
                         };

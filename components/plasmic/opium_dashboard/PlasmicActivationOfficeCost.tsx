@@ -824,6 +824,48 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
               null,
               eventArgs
             );
+
+            (async value => {
+              const $steps = {};
+
+              $steps["sendEvent"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "activation-page",
+                              data: {
+                                data: $state.profileApi.data.data
+                              },
+                              event_type: "change-custom-price-step3"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["sendEvent"] != null &&
+                typeof $steps["sendEvent"] === "object" &&
+                typeof $steps["sendEvent"].then === "function"
+              ) {
+                $steps["sendEvent"] = await $steps["sendEvent"];
+              }
+            }).apply(null, eventArgs);
           }}
           placeholder={
             "\u0642\u06cc\u0645\u062a \u062f\u0644\u062e\u0648\u0627\u0647 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"
@@ -1447,7 +1489,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                               event_group: "activation-page",
                               data: {
                                 userid: $ctx.query.user_id,
-                                onlinevisit: $props.hasOnlineVisit
+                                onlinevisit: $props.hasOnlineVisit,
+                                data: $state.profileApi.data.data
                               },
                               event_type:
                                 "click-cancel-cost-button-office-step3-set-payment"

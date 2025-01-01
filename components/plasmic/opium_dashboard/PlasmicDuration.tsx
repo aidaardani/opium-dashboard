@@ -505,7 +505,7 @@ function PlasmicDuration__RenderFunc(props: {
                                     Service:
                                       $state.duration.data.workhours[0].service
                                   },
-                                  type: "click-plus-button-duration-step5"
+                                  type: "click-plus-button-duration-step4"
                                 };
                               } catch (e) {
                                 if (
