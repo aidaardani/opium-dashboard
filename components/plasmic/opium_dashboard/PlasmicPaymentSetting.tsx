@@ -734,7 +734,7 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                     $steps["showToast"] = await $steps["showToast"];
                   }
 
-                  $steps["invokeGlobalAction"] = true
+                  $steps["sendEvent"] = true
                     ? (() => {
                         const actionArgs = {
                           args: [
@@ -742,10 +742,14 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                               try {
                                 return {
                                   group: "setting",
-                                  data: {
-                                    userid: $ctx.query.user_id,
-                                    centers: $props.center
-                                  },
+                                  kind: $state.radioGroup.value,
+                                  selectedCenter: $props.selectedCenter,
+                                  centerId: $props.center.find(
+                                    center =>
+                                      center.user_center_id ===
+                                      $props.selectedCenter
+                                  ).id,
+                                  userid: $props.userId.toString(),
                                   type: "change-kind-of-payment"
                                 };
                               } catch (e) {
@@ -766,13 +770,11 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["invokeGlobalAction"] != null &&
-                    typeof $steps["invokeGlobalAction"] === "object" &&
-                    typeof $steps["invokeGlobalAction"].then === "function"
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
                   ) {
-                    $steps["invokeGlobalAction"] = await $steps[
-                      "invokeGlobalAction"
-                    ];
+                    $steps["sendEvent"] = await $steps["sendEvent"];
                   }
                 }}
               />

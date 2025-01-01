@@ -683,9 +683,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                             try {
                               return {
                                 group: "settings",
-                                data: {
-                                  settingdetails: $state.settingBookingDateRange
-                                },
+                                userid: $ctx.query.user_id,
                                 type: "load-page"
                               };
                             } catch (e) {
@@ -2303,10 +2301,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                 try {
                                   return {
                                     group: "settings",
-                                    data: {
-                                      settingdetails:
-                                        $state.settingBookingDateRange
-                                    },
+                                    userid: $ctx.query.user_id,
                                     type: "click-accordion-payment-setting"
                                   };
                                 } catch (e) {
