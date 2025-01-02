@@ -515,7 +515,7 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
               $steps["goToActivationMessengers"] = true
                 ? (() => {
                     const actionArgs = {
-                      destination: `/activation-page/cunsult/messengers?userId=${$ctx.query.userId}`
+                      destination: `/activation-page/consult/messengers?userId=${$ctx.query.userId}`
                     };
                     return (({ destination }) => {
                       if (
