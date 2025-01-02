@@ -568,50 +568,6 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
               null,
               eventArgs
             );
-
-            (async value => {
-              const $steps = {};
-
-              $steps["sendEvent"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return {
-                              event_group: "activation-page",
-                              data: {
-                                userID: $ctx.query.user_id,
-                                pagePath: $ctx.pagePath
-                              },
-                              event_type:
-                                "change-card-number-office-input-step3"
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Splunk.sendLog"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["sendEvent"] != null &&
-                typeof $steps["sendEvent"] === "object" &&
-                typeof $steps["sendEvent"].then === "function"
-              ) {
-                $steps["sendEvent"] = await $steps["sendEvent"];
-              }
-            }).apply(null, eventArgs);
           }}
           placeholder={
             "\u0634\u0645\u0627\u0631\u0647 \u06a9\u0627\u0631\u062a \u062e\u0648\u062f \u0631\u0627 \u062b\u0628\u062a \u06a9\u0646\u06cc\u062f..."
