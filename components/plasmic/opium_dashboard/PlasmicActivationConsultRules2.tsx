@@ -187,8 +187,8 @@ function PlasmicActivationConsultRules2__RenderFunc(props: {
                           return {
                             event_group: "activation-page",
                             data: {
-                              pagepath: $ctx.pagePath,
-                              userid: $ctx.query.user_id
+                              pagepath: window.location.href,
+                              userid: $ctx.query.userId
                             },
                             event_type: "load-rules-page-in-activation"
                           };
@@ -253,6 +253,19 @@ function PlasmicActivationConsultRules2__RenderFunc(props: {
                   "__wab_instance",
                   sty.activationConsultRules
                 )}
+                userId={(() => {
+                  try {
+                    return $ctx.query.userId;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
               />
             </div>
           </div>

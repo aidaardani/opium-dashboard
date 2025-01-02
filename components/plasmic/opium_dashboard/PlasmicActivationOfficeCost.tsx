@@ -366,8 +366,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                           return {
                             event_group: "activation-page",
                             data: {
-                              userID: $ctx.query.user_id,
-                              pagePath: $ctx.pagePath
+                              userId: $props.userId,
+                              pagePath: window.location.href
                             },
                             event_type: "click-change-price-office-button-step3"
                           };
@@ -520,15 +520,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                         args: [
                           (() => {
                             try {
-                              return {
-                                event_group: "activation-page",
-                                data: {
-                                  userid: $props.userId,
-                                  onlinevisit: $props.hasOnlineVisit
-                                },
-                                event_type:
-                                  "click-info-button-office-step3-set-payment"
-                              };
+                              return undefined;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -1175,8 +1167,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                   return {
                                     event_group: "activation-page",
                                     data: {
-                                      userID: $ctx.query.user_id,
-                                      pagePath: $ctx.pagePath,
+                                      userId: $props.userId,
+                                      pagePath: window.location.href,
                                       onlinevisit: $props.hasOnlineVisit,
                                       isActiveCardNumber: true,
                                       isCustomPrice:
@@ -1189,8 +1181,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                   return {
                                     event_group: "activation-page",
                                     data: {
-                                      userID: $ctx.query.user_id,
-                                      pagePath: $ctx.pagePath,
+                                      userId: $props.userId,
+                                      pagePath: window.location.href,
                                       onlinevisit: $props.hasOnlineVisit,
                                       isActiveCardNumber: false,
                                       isCustomPrice:
@@ -1236,7 +1228,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                           try {
                             return `/activation-page/office/duration?${
                               $props.hasOnlineVisit ? "onlineVisit=true" : ""
-                            }`;
+                            }/?userId=${$props.userId}`;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1466,8 +1458,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                userID: $ctx.query.user_id,
-                                pagePath: $ctx.pagePath,
+                                userId: $props.userId,
+                                pagePath: window.location.href,
                                 onlinevisit: $props.hasOnlineVisit
                               },
                               event_type:
@@ -1506,7 +1498,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                           try {
                             return `/activation-page/office/duration?${
                               $props.hasOnlineVisit ? "onlineVisit=true" : ""
-                            }`;
+                            }/?userId=${$props.userId}`;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||

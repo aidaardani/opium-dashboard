@@ -620,6 +620,46 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
             onClick={async event => {
               const $steps = {};
 
+              $steps["sendEvent"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "activation-page",
+                              data: {
+                                userId: $state.profileApi.data.data.id,
+                                pagePath: window.location.href,
+                                selectedServices: $state.selectedServices
+                              },
+                              event_type: "load-page-step1"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["sendEvent"] != null &&
+                typeof $steps["sendEvent"] === "object" &&
+                typeof $steps["sendEvent"].then === "function"
+              ) {
+                $steps["sendEvent"] = await $steps["sendEvent"];
+              }
+
               $steps["goToPage"] = true
                 ? (() => {
                     const actionArgs = {
@@ -632,10 +672,10 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
                             const hasOnline =
                               $state.selectedServices.includes("consult");
                             return service
-                              ? `/activation-page/office/center?${
-                                  hasOnline && "onlineVisit=true"
-                                }`
-                              : "/activation-page/consult/rules";
+                              ? `/activation-page/office/center?userId=${
+                                  $state.profileApi.data.data.id
+                                }&${hasOnline ? "onlineVisit=true" : ""}`
+                              : `/activation-page/consult/rules?userId=${$state.profileApi.data.data.id}`;
                           })();
                         } catch (e) {
                           if (
@@ -668,46 +708,6 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
                 typeof $steps["goToPage"].then === "function"
               ) {
                 $steps["goToPage"] = await $steps["goToPage"];
-              }
-
-              $steps["sendEvent"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return {
-                              event_group: "activation-page",
-                              data: {
-                                userID: $ctx.query.user_id,
-                                pagePath: $ctx.pagePath,
-                                selectedServices: $state.selectedServices
-                              },
-                              event_type: "click-next-button-step1"
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Splunk.sendLog"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["sendEvent"] != null &&
-                typeof $steps["sendEvent"] === "object" &&
-                typeof $steps["sendEvent"].then === "function"
-              ) {
-                $steps["sendEvent"] = await $steps["sendEvent"];
               }
             }}
           />

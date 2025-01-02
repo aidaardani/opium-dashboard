@@ -92,6 +92,7 @@ export type PlasmicHoursDaysOfWeek__ArgsType = {
   customOnSubmit?: (workhours: any) => void;
   forwardPage?: string;
   isLoadingSave?: boolean;
+  userId?: string;
 };
 type ArgPropType = keyof PlasmicHoursDaysOfWeek__ArgsType;
 export const PlasmicHoursDaysOfWeek__ArgProps = new Array<ArgPropType>(
@@ -101,7 +102,8 @@ export const PlasmicHoursDaysOfWeek__ArgProps = new Array<ArgPropType>(
   "userCenterId",
   "customOnSubmit",
   "forwardPage",
-  "isLoadingSave"
+  "isLoadingSave",
+  "userId"
 );
 
 export type PlasmicHoursDaysOfWeek__OverridesType = {
@@ -121,6 +123,7 @@ export interface DefaultHoursDaysOfWeekProps {
   customOnSubmit?: (workhours: any) => void;
   forwardPage?: string;
   isLoadingSave?: boolean;
+  userId?: string;
   className?: string;
 }
 
@@ -439,6 +442,19 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     return;
                   }
                 }}
+                userId={(() => {
+                  try {
+                    return $props.userId;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
               />
             </div>
           ) : null}
@@ -919,6 +935,49 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     ];
                   }
 
+                  $steps["sendEvent"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  event_group: "activation-page",
+                                  data: {
+                                    usercenterid: $props.userCenterId,
+                                    centerid: $props.centerId,
+                                    workhours: $state.workhoursApi.data.data,
+                                    userId: $props.userId,
+                                    pagePath: window.location.href
+                                  },
+                                  event_type:
+                                    "click-save-button-workhoure-step4"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
+                  ) {
+                    $steps["sendEvent"] = await $steps["sendEvent"];
+                  }
+
                   $steps["redirect"] =
                     !!$props.forwardPage && $steps.saveWorkhours.status == 200
                       ? (() => {
@@ -957,49 +1016,6 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     typeof $steps["redirect"].then === "function"
                   ) {
                     $steps["redirect"] = await $steps["redirect"];
-                  }
-
-                  $steps["sendEvent"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            (() => {
-                              try {
-                                return {
-                                  event_group: "activation-page",
-                                  data: {
-                                    usercenterid: $props.userCenterId,
-                                    centerid: $props.centerId,
-                                    workhours: $state.workhoursApi.data.data,
-                                    userID: $ctx.query.user_id,
-                                    pagePath: $ctx.pagePath
-                                  },
-                                  event_type:
-                                    "click-save-button-workhoure-step4"
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Splunk.sendLog"]?.apply(null, [
-                          ...actionArgs.args
-                        ]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["sendEvent"] != null &&
-                    typeof $steps["sendEvent"] === "object" &&
-                    typeof $steps["sendEvent"].then === "function"
-                  ) {
-                    $steps["sendEvent"] = await $steps["sendEvent"];
                   }
                 }}
               />

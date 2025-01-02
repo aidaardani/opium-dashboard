@@ -221,6 +221,48 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
             plasmic_plasmic_rich_components_css.plasmic_tokens,
             sty.root
           )}
+          onLoad={async event => {
+            const $steps = {};
+
+            $steps["sendEvent"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            event_group: "activation-page",
+                            data: {
+                              pagepath: window.location.href,
+                              userid: $ctx.query.userId
+                            },
+                            event_type: "load-messengers-page-in-activation"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Splunk.sendLog"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["sendEvent"] != null &&
+              typeof $steps["sendEvent"] === "object" &&
+              typeof $steps["sendEvent"].then === "function"
+            ) {
+              $steps["sendEvent"] = await $steps["sendEvent"];
+            }
+          }}
         >
           <div
             data-plasmic-name={"header"}
@@ -576,7 +618,20 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
                       ) && $steps.updateChannelsApi.status == 200
                         ? (() => {
                             const actionArgs = {
-                              destination: `/activation-page/consult/duration-2`
+                              destination: (() => {
+                                try {
+                                  return `/activation-page/consult/duration-2?userId=${$ctx.query.userId}`;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return `/activation-page/consult/duration-2`;
+                                  }
+                                  throw e;
+                                }
+                              })()
                             };
                             return (({ destination }) => {
                               if (
@@ -599,6 +654,51 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
                     ) {
                       $steps["goTo"] = await $steps["goTo"];
                     }
+
+                    $steps["updateIsLoading3"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    event_group: "activation-page",
+                                    data: {
+                                      usercenterid: $props.userCenterId,
+                                      centerid: $props.centerId,
+                                      workhours: $state.workhoursApi.data.data,
+                                      userId: $ctx.query.userId,
+                                      pagePath: window.location.href
+                                    },
+                                    event_type: "save-changes-messengers"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateIsLoading3"] != null &&
+                      typeof $steps["updateIsLoading3"] === "object" &&
+                      typeof $steps["updateIsLoading3"].then === "function"
+                    ) {
+                      $steps["updateIsLoading3"] = await $steps[
+                        "updateIsLoading3"
+                      ];
+                    }
                   }}
                   isLoadingSubmit={(() => {
                     try {
@@ -609,6 +709,19 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
                         e?.plasmicType === "PlasmicUndefinedDataError"
                       ) {
                         return false;
+                      }
+                      throw e;
+                    }
+                  })()}
+                  userId={(() => {
+                    try {
+                      return $ctx.query.userId;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
                       }
                       throw e;
                     }

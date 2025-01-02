@@ -200,8 +200,8 @@ function PlasmicActivationOfficeCenter2__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                userID: $ctx.query.user_id,
-                                pagePath: $ctx.pagePath
+                                userID: $ctx.query.userId,
+                                pagePath: window.location.href
                               },
                               event_type: "load-page-step2"
                             };
@@ -277,6 +277,19 @@ function PlasmicActivationOfficeCenter2__RenderFunc(props: {
                         e?.plasmicType === "PlasmicUndefinedDataError"
                       ) {
                         return false;
+                      }
+                      throw e;
+                    }
+                  })()}
+                  userId={(() => {
+                    try {
+                      return $ctx.query.userId;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
                       }
                       throw e;
                     }

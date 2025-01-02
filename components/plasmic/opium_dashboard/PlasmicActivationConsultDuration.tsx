@@ -297,6 +297,48 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
             plasmic_plasmic_rich_components_css.plasmic_tokens,
             sty.root
           )}
+          onLoad={async event => {
+            const $steps = {};
+
+            $steps["sendEvent"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            event_group: "activation-page",
+                            data: {
+                              userId: $ctx.query.userId,
+                              pagePath: window.location.href
+                            },
+                            event_type: "load-consult-duration-page"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Splunk.sendLog"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["sendEvent"] != null &&
+              typeof $steps["sendEvent"] === "object" &&
+              typeof $steps["sendEvent"].then === "function"
+            ) {
+              $steps["sendEvent"] = await $steps["sendEvent"];
+            }
+          }}
         >
           <div
             data-plasmic-name={"header"}
@@ -428,7 +470,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                           "hoursDaysOfWeek",
                           "duration"
                         ])}
-                        forwardPage={"/activation-page/finish"}
+                        forwardPage={`/activation-pa${undefined}ge/finish`}
                         onDurationChange={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
                             "hoursDaysOfWeek",
@@ -448,6 +490,19 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                             return $state.centersApi.data.data.find(
                               item => item.id == 5532
                             ).user_center_id;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()}
+                        userId={(() => {
+                          try {
+                            return $ctx.query.userId;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||

@@ -200,8 +200,7 @@ function PlasmicActivationPage__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                userID: $ctx.query.user_id,
-                                pagePath: $ctx.pagePath,
+                                pagePath: window.location.href,
                                 selectedServices: $state.selectedServices
                               },
                               event_type: "load-page-step1"

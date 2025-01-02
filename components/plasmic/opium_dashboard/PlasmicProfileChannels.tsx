@@ -92,11 +92,13 @@ export const PlasmicProfileChannels__VariantProps =
 export type PlasmicProfileChannels__ArgsType = {
   customOnSubmit?: (channels: any) => void;
   isLoadingSubmit?: boolean;
+  userId?: string;
 };
 type ArgPropType = keyof PlasmicProfileChannels__ArgsType;
 export const PlasmicProfileChannels__ArgProps = new Array<ArgPropType>(
   "customOnSubmit",
-  "isLoadingSubmit"
+  "isLoadingSubmit",
+  "userId"
 );
 
 export type PlasmicProfileChannels__OverridesType = {
@@ -111,6 +113,7 @@ export type PlasmicProfileChannels__OverridesType = {
 export interface DefaultProfileChannelsProps {
   customOnSubmit?: (channels: any) => void;
   isLoadingSubmit?: boolean;
+  userId?: string;
   className?: string;
 }
 
@@ -928,8 +931,8 @@ function PlasmicProfileChannels__RenderFunc(props: {
                               return {
                                 event_group: "activation-page",
                                 data: {
-                                  userid: $ctx.query.user_id,
-                                  pagepath: $ctx.pagePath
+                                  userid: $props.userId,
+                                  pagepath: window.location.href
                                 },
                                 event_type:
                                   "click-save-consult-messenger-button-step3"

@@ -100,13 +100,15 @@ export type PlasmicDuration__ArgsType = {
   newduration?: string;
   onNewdurationChange?: (val: string) => void;
   oldDuration?: number;
+  userId?: string;
 };
 type ArgPropType = keyof PlasmicDuration__ArgsType;
 export const PlasmicDuration__ArgProps = new Array<ArgPropType>(
   "centerId",
   "newduration",
   "onNewdurationChange",
-  "oldDuration"
+  "oldDuration",
+  "userId"
 );
 
 export type PlasmicDuration__OverridesType = {
@@ -124,6 +126,7 @@ export interface DefaultDurationProps {
   newduration?: string;
   onNewdurationChange?: (val: string) => void;
   oldDuration?: number;
+  userId?: string;
   check?: SingleBooleanChoiceArg<"check">;
   className?: string;
 }
@@ -407,7 +410,7 @@ function PlasmicDuration__RenderFunc(props: {
                 (async open => {
                   const $steps = {};
 
-                  $steps["invokeGlobalAction"] = true
+                  $steps["sendEvent"] = true
                     ? (() => {
                         const actionArgs = {
                           args: [
@@ -416,10 +419,8 @@ function PlasmicDuration__RenderFunc(props: {
                                 return {
                                   event_group: "activation-page",
                                   data: {
-                                    map: $state.map,
-                                    apiadress: $state.addressApi.data,
-                                    notifycell:
-                                      $state.notifyCell.notifyCellValue
+                                    userId: $props.userId,
+                                    pagePath: window.location.href
                                   },
                                   event_type:
                                     "click-open-info-button-consult-step5"
@@ -442,13 +443,11 @@ function PlasmicDuration__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["invokeGlobalAction"] != null &&
-                    typeof $steps["invokeGlobalAction"] === "object" &&
-                    typeof $steps["invokeGlobalAction"].then === "function"
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
                   ) {
-                    $steps["invokeGlobalAction"] = await $steps[
-                      "invokeGlobalAction"
-                    ];
+                    $steps["sendEvent"] = await $steps["sendEvent"];
                   }
                 }).apply(null, eventArgs);
               }}
@@ -1032,8 +1031,8 @@ function PlasmicDuration__RenderFunc(props: {
                                       group: "workhour",
                                       data: {
                                         center_id: $props.centerId,
-                                        userID: $ctx.query.user_id,
-                                        pagePath: $ctx.pagePath,
+                                        userId: $props.userId,
+                                        pagePath: window.location.href,
                                         duration: currentItem.name
                                       },
                                       type: "click-button-duration"

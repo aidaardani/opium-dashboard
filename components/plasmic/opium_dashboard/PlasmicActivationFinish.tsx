@@ -200,8 +200,8 @@ function PlasmicActivationFinish__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                userID: $ctx.query.user_id,
-                                pagePath: $ctx.pagePath
+                                userID: $ctx.query.userId,
+                                pagePath: window.location.href
                               },
                               event_type: "load-page-activation-finish"
                             };
@@ -450,9 +450,9 @@ function PlasmicActivationFinish__RenderFunc(props: {
                                   return {
                                     event_group: "activation-page",
                                     data: {
-                                      pagepath: $ctx.pagePath,
+                                      pagepath: window.location.href,
                                       office: $ctx.query.office,
-                                      userid: $ctx.query.user_id
+                                      userid: $ctx.query.userId
                                     },
                                     event_type:
                                       "click-start-booking-in-activation"

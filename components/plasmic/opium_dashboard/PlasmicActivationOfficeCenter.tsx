@@ -91,10 +91,12 @@ export const PlasmicActivationOfficeCenter__VariantProps =
 
 export type PlasmicActivationOfficeCenter__ArgsType = {
   hasOnline?: boolean;
+  userId?: string;
 };
 type ArgPropType = keyof PlasmicActivationOfficeCenter__ArgsType;
 export const PlasmicActivationOfficeCenter__ArgProps = new Array<ArgPropType>(
-  "hasOnline"
+  "hasOnline",
+  "userId"
 );
 
 export type PlasmicActivationOfficeCenter__OverridesType = {
@@ -112,6 +114,7 @@ export type PlasmicActivationOfficeCenter__OverridesType = {
 
 export interface DefaultActivationOfficeCenterProps {
   hasOnline?: boolean;
+  userId?: string;
   className?: string;
 }
 
@@ -4875,8 +4878,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                                     notifycell:
                                       $state.notifyCell.notifyCellValue,
                                     center: $state.centersApi.data.data,
-                                    pagepath: $ctx.pagePath,
-                                    userid: $ctx.query.user_id
+                                    pagepath: window.location.href,
+                                    userid: $props.userId
                                   },
                                   event_type:
                                     "click-save-button-office-step2-office-tell"
@@ -4913,8 +4916,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                             destination: (() => {
                               try {
                                 return `/activation-page/office/cost?${
-                                  $props.hasOnline && "onlineVisit=true"
-                                }`;
+                                  $props.hasOnline ? "onlineVisit=true" : ""
+                                }/?userId=${$props.userId}`;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||

@@ -82,9 +82,13 @@ type VariantPropType = keyof PlasmicActivationConsultRules__VariantsArgs;
 export const PlasmicActivationConsultRules__VariantProps =
   new Array<VariantPropType>();
 
-export type PlasmicActivationConsultRules__ArgsType = {};
+export type PlasmicActivationConsultRules__ArgsType = {
+  userId?: string;
+};
 type ArgPropType = keyof PlasmicActivationConsultRules__ArgsType;
-export const PlasmicActivationConsultRules__ArgProps = new Array<ArgPropType>();
+export const PlasmicActivationConsultRules__ArgProps = new Array<ArgPropType>(
+  "userId"
+);
 
 export type PlasmicActivationConsultRules__OverridesType = {
   root?: Flex__<"div">;
@@ -94,6 +98,7 @@ export type PlasmicActivationConsultRules__OverridesType = {
 };
 
 export interface DefaultActivationConsultRulesProps {
+  userId?: string;
   className?: string;
 }
 
@@ -476,8 +481,8 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                userid: $ctx.query.user_id,
-                                pagepath: $ctx.pagePath
+                                userid: $props.userId,
+                                pagepath: window.location.href
                               },
                               event_type:
                                 "click-accept-rules-button-consult-step2"
@@ -510,7 +515,7 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
               $steps["goToActivationMessengers"] = true
                 ? (() => {
                     const actionArgs = {
-                      destination: `/activation-page/consult/messengers`
+                      destination: `/activation-page/cunsult/messengers?userId=${$ctx.query.userId}`
                     };
                     return (({ destination }) => {
                       if (
@@ -592,8 +597,8 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                userid: $ctx.query.user_id,
-                                pagepath: $ctx.pagePath
+                                userid: $ctx.query.userId,
+                                pagepath: window.location.href
                               },
                               event_type:
                                 "click-reject-rules-button-consult-step2"

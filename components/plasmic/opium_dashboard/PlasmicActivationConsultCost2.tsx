@@ -84,11 +84,13 @@ export const PlasmicActivationConsultCost2__VariantProps =
 export type PlasmicActivationConsultCost2__ArgsType = {
   hasOnlineVisit?: boolean;
   channels?: string;
+  userId?: string;
 };
 type ArgPropType = keyof PlasmicActivationConsultCost2__ArgsType;
 export const PlasmicActivationConsultCost2__ArgProps = new Array<ArgPropType>(
   "hasOnlineVisit",
-  "channels"
+  "channels",
+  "userId"
 );
 
 export type PlasmicActivationConsultCost2__OverridesType = {
@@ -101,6 +103,7 @@ export type PlasmicActivationConsultCost2__OverridesType = {
 export interface DefaultActivationConsultCost2Props {
   hasOnlineVisit?: boolean;
   channels?: string;
+  userId?: string;
   className?: string;
 }
 
@@ -362,9 +365,9 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
                           return {
                             event_group: "activation-page",
                             data: {
-                              userid: $ctx.query.user_id,
+                              userid: $props.userId,
                               input: $state.input.value,
-                              pagepath: $ctx.pagePath
+                              pagepath: window.location.href
                             },
                             event_type: "click-save-button-consult-price-step4"
                           };

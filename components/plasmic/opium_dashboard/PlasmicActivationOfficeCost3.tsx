@@ -199,8 +199,8 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                userID: $ctx.query.user_id,
-                                pagePath: $ctx.pagePath
+                                userId: $ctx.query.userId,
+                                pagePath: window.location.href
                               },
                               event_type: "load-page-step3"
                             };
@@ -282,7 +282,7 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
                   })()}
                   userId={(() => {
                     try {
-                      return $ctx.query.user_id;
+                      return $ctx.query.userId;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||

@@ -246,8 +246,8 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                userID: $ctx.query.user_id,
-                                pagePath: $ctx.pagePath
+                                userId: $ctx.query.userId,
+                                pagePath: window.location.href
                               },
                               event_type: "load-page-duration-step4"
                             };
@@ -427,8 +427,8 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
                       forwardPage={(() => {
                         try {
                           return $ctx.query.onlineVisit == "true"
-                            ? "/activation-page/consult/rules"
-                            : "/activation-page/finish?office=true";
+                            ? `/activation-page/consult/rules/?userId=${$ctx.query.userId}`
+                            : `/activation-page/finish?office=true/?userId=${$ctx.query.userId}`;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -458,6 +458,19 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
                           return $state.centersApi.data.data.find(
                             item => item.type_id == 1
                           ).user_center_id;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
+                      userId={(() => {
+                        try {
+                          return $ctx.query.userId;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
