@@ -254,7 +254,7 @@ function PlasmicActivationOfficeCenter2__RenderFunc(props: {
                 )}
                 hasOnline={(() => {
                   try {
-                    return $ctx.query.onlineVisit;
+                    return $ctx.query.onlineVisit == "true";
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
