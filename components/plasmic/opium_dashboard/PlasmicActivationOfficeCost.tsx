@@ -366,9 +366,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                           return {
                             event_group: "activation-page",
                             data: {
-                              map: $state.map,
-                              apiadress: $state.addressApi.data,
-                              notifycell: $state.notifyCell.notifyCellValue
+                              userID: $ctx.query.user_id,
+                              pagePath: $ctx.pagePath
                             },
                             event_type: "click-change-price-office-button-step3"
                           };
@@ -590,9 +589,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                map: $state.map,
-                                apiadress: $state.addressApi.data,
-                                notifycell: $state.notifyCell.notifyCellValue
+                                userID: $ctx.query.user_id,
+                                pagePath: $ctx.pagePath
                               },
                               event_type:
                                 "change-card-number-office-input-step3"
@@ -837,7 +835,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                data: $state.profileApi.data.data
+                                userID: $ctx.query.user_id,
+                                pagePath: $ctx.pagePath
                               },
                               event_type: "change-custom-price-step3"
                             };
@@ -1217,7 +1216,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                               return {
                                 event_group: "activation-page",
                                 data: {
-                                  userid: $ctx.query.user_id,
+                                  userID: $ctx.query.user_id,
+                                  pagePath: $ctx.pagePath,
                                   onlinevisit: $props.hasOnlineVisit
                                 },
                                 event_type:
@@ -1488,7 +1488,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                userid: $ctx.query.user_id,
+                                userID: $ctx.query.user_id,
+                                pagePath: $ctx.pagePath,
                                 onlinevisit: $props.hasOnlineVisit
                               },
                               event_type:

@@ -199,7 +199,8 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                data: $state.profileApi.data.data
+                                userID: $ctx.query.user_id,
+                                pagePath: $ctx.pagePath
                               },
                               event_type: "load-page-step3"
                             };

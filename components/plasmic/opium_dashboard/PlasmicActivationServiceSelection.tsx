@@ -679,7 +679,8 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                data: $state.profileApi.data.data,
+                                userID: $ctx.query.user_id,
+                                pagePath: $ctx.pagePath,
                                 selectedServices: $state.selectedServices
                               },
                               event_type: "click-next-button-step1"

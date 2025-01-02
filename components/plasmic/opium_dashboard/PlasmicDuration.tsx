@@ -498,12 +498,9 @@ function PlasmicDuration__RenderFunc(props: {
                                 return {
                                   group: "workhour",
                                   data: {
-                                    center_id: $props.centerId,
-                                    user_center_id:
-                                      $state.duration.data.workhours[0]
-                                        .user_center_id,
-                                    Service:
-                                      $state.duration.data.workhours[0].service
+                                    userID: $ctx.query.user_id,
+                                    pagePath: $ctx.pagePath,
+                                    center_id: $props.centerId
                                   },
                                   type: "click-plus-button-duration-step4"
                                 };

@@ -4399,8 +4399,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                             apiadress: $state.addressApi.data,
                             notifycell: $state.notifyCell.notifyCellValue,
                             pagepath: $ctx.pagePath,
-                            userid: $ctx.query.user_id,
-                            data: $state.profileApi.data.data
+                            userid: $ctx.query.user_id
                           },
                           event_type: "click-done-address-button-office-step2"
                         };
@@ -4914,7 +4913,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                             destination: (() => {
                               try {
                                 return `/activation-page/office/cost?${
-                                  $props.hasOnline ? "onlineVisit=true" : ""
+                                  $props.hasOnline && "onlineVisit=true"
                                 }`;
                               } catch (e) {
                                 if (
