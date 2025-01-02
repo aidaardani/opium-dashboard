@@ -822,49 +822,6 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
               null,
               eventArgs
             );
-
-            (async value => {
-              const $steps = {};
-
-              $steps["sendEvent"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return {
-                              event_group: "activation-page",
-                              data: {
-                                userID: $ctx.query.user_id,
-                                pagePath: $ctx.pagePath
-                              },
-                              event_type: "change-custom-price-step3"
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Splunk.sendLog"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["sendEvent"] != null &&
-                typeof $steps["sendEvent"] === "object" &&
-                typeof $steps["sendEvent"].then === "function"
-              ) {
-                $steps["sendEvent"] = await $steps["sendEvent"];
-              }
-            }).apply(null, eventArgs);
           }}
           placeholder={
             "\u0642\u06cc\u0645\u062a \u062f\u0644\u062e\u0648\u0627\u0647 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"
@@ -1213,16 +1170,37 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                         args: [
                           (() => {
                             try {
-                              return {
-                                event_group: "activation-page",
-                                data: {
-                                  userID: $ctx.query.user_id,
-                                  pagePath: $ctx.pagePath,
-                                  onlinevisit: $props.hasOnlineVisit
-                                },
-                                event_type:
-                                  "click-add-cost-button-office-step3-set-payment"
-                              };
+                              return (() => {
+                                if ($state.shabaApi.data) {
+                                  return {
+                                    event_group: "activation-page",
+                                    data: {
+                                      userID: $ctx.query.user_id,
+                                      pagePath: $ctx.pagePath,
+                                      onlinevisit: $props.hasOnlineVisit,
+                                      isActiveCardNumber: true,
+                                      isCustomPrice:
+                                        $state.select.value === "custom"
+                                    },
+                                    event_type:
+                                      "click-add-cost-button-office-step3-set-payment"
+                                  };
+                                } else {
+                                  return {
+                                    event_group: "activation-page",
+                                    data: {
+                                      userID: $ctx.query.user_id,
+                                      pagePath: $ctx.pagePath,
+                                      onlinevisit: $props.hasOnlineVisit,
+                                      isActiveCardNumber: false,
+                                      isCustomPrice:
+                                        $state.select.value === "custom"
+                                    },
+                                    event_type:
+                                      "click-add-cost-button-office-step3-set-payment"
+                                  };
+                                }
+                              })();
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||

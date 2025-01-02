@@ -975,7 +975,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                                     pagePath: $ctx.pagePath
                                   },
                                   event_type:
-                                    "click-save-button-workhoure-step5"
+                                    "click-save-button-workhoure-step4"
                                 };
                               } catch (e) {
                                 if (

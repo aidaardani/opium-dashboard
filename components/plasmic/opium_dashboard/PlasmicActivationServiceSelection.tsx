@@ -633,7 +633,7 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
                               $state.selectedServices.includes("consult");
                             return service
                               ? `/activation-page/office/center?${
-                                  hasOnline ? "onlineVisit=true" : ""
+                                  hasOnline && "onlineVisit=true"
                                 }`
                               : "/activation-page/consult/rules";
                           })();

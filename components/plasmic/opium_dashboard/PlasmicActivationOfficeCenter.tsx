@@ -4879,7 +4879,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                                     userid: $ctx.query.user_id
                                   },
                                   event_type:
-                                    "click-next-button-office-step2-office-tell"
+                                    "click-save-button-office-step2-office-tell"
                                 };
                               } catch (e) {
                                 if (
