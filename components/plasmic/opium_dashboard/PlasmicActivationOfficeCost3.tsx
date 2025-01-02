@@ -158,146 +158,129 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
       `}</style>
 
       <div className={projectcss.plasmic_page_wrapper}>
-        {(() => {
-          try {
-            return !!$ctx.query.user_id;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return false;
-            }
-            throw e;
-          }
-        })() ? (
-          <div
-            data-plasmic-name={"root"}
-            data-plasmic-override={overrides.root}
-            data-plasmic-root={true}
-            data-plasmic-for-node={forNode}
-            className={classNames(
-              projectcss.all,
-              projectcss.root_reset,
-              projectcss.plasmic_default_styles,
-              projectcss.plasmic_mixins,
-              projectcss.plasmic_tokens,
-              plasmic_fragment_design_system_css.plasmic_tokens,
-              plasmic_antd_5_hostless_css.plasmic_tokens,
-              plasmic_plasmic_rich_components_css.plasmic_tokens,
-              sty.root
-            )}
-            onLoad={async event => {
-              const $steps = {};
+        <div
+          data-plasmic-name={"root"}
+          data-plasmic-override={overrides.root}
+          data-plasmic-root={true}
+          data-plasmic-for-node={forNode}
+          className={classNames(
+            projectcss.all,
+            projectcss.root_reset,
+            projectcss.plasmic_default_styles,
+            projectcss.plasmic_mixins,
+            projectcss.plasmic_tokens,
+            plasmic_fragment_design_system_css.plasmic_tokens,
+            plasmic_antd_5_hostless_css.plasmic_tokens,
+            plasmic_plasmic_rich_components_css.plasmic_tokens,
+            sty.root
+          )}
+          onLoad={async event => {
+            const $steps = {};
 
-              $steps["sendEvent"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return {
-                              event_group: "activation-page",
-                              data: {
-                                userId: $ctx.query.userId,
-                                pagePath: window.location.href
-                              },
-                              event_type: "load-page-step3"
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
+            $steps["sendEvent"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            event_group: "activation-page",
+                            data: {
+                              userId: $ctx.query.userId,
+                              pagePath: window.location.href
+                            },
+                            event_type: "load-page-step3"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
                           }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Splunk.sendLog"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["sendEvent"] != null &&
-                typeof $steps["sendEvent"] === "object" &&
-                typeof $steps["sendEvent"].then === "function"
-              ) {
-                $steps["sendEvent"] = await $steps["sendEvent"];
-              }
-            }}
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Splunk.sendLog"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["sendEvent"] != null &&
+              typeof $steps["sendEvent"] === "object" &&
+              typeof $steps["sendEvent"].then === "function"
+            ) {
+              $steps["sendEvent"] = await $steps["sendEvent"];
+            }
+          }}
+        >
+          <div
+            data-plasmic-name={"header"}
+            data-plasmic-override={overrides.header}
+            className={classNames(projectcss.all, sty.header)}
           >
             <div
-              data-plasmic-name={"header"}
-              data-plasmic-override={overrides.header}
-              className={classNames(projectcss.all, sty.header)}
+              data-plasmic-name={"text"}
+              data-plasmic-override={overrides.text}
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text
+              )}
             >
-              <div
-                data-plasmic-name={"text"}
-                data-plasmic-override={overrides.text}
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text
-                )}
-              >
-                {"\u0628\u06cc\u0639\u0627\u0646\u0647"}
-              </div>
-            </div>
-            <div className={classNames(projectcss.all, sty.freeBox__wLaJb)}>
-              <div className={classNames(projectcss.all, sty.freeBox__btaRg)}>
-                <ActivationProcess
-                  data-plasmic-name={"activationProcess"}
-                  data-plasmic-override={overrides.activationProcess}
-                  className={classNames(
-                    "__wab_instance",
-                    sty.activationProcess
-                  )}
-                  step={3}
-                />
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox___2TZEj)}>
-                <ActivationOfficeCost
-                  data-plasmic-name={"activationOfficeCost"}
-                  data-plasmic-override={overrides.activationOfficeCost}
-                  className={classNames(
-                    "__wab_instance",
-                    sty.activationOfficeCost
-                  )}
-                  hasOnlineVisit={(() => {
-                    try {
-                      return $ctx.query.onlineVisit == "true";
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return false;
-                      }
-                      throw e;
-                    }
-                  })()}
-                  userId={(() => {
-                    try {
-                      return $ctx.query.userId;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
-                    }
-                  })()}
-                />
-              </div>
+              {"\u0628\u06cc\u0639\u0627\u0646\u0647"}
             </div>
           </div>
-        ) : null}
+          <div className={classNames(projectcss.all, sty.freeBox__wLaJb)}>
+            <div className={classNames(projectcss.all, sty.freeBox__btaRg)}>
+              <ActivationProcess
+                data-plasmic-name={"activationProcess"}
+                data-plasmic-override={overrides.activationProcess}
+                className={classNames("__wab_instance", sty.activationProcess)}
+                step={3}
+              />
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox___2TZEj)}>
+              <ActivationOfficeCost
+                data-plasmic-name={"activationOfficeCost"}
+                data-plasmic-override={overrides.activationOfficeCost}
+                className={classNames(
+                  "__wab_instance",
+                  sty.activationOfficeCost
+                )}
+                hasOnlineVisit={(() => {
+                  try {
+                    return $ctx.query.onlineVisit == "true";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return false;
+                    }
+                    throw e;
+                  }
+                })()}
+                userId={(() => {
+                  try {
+                    return $ctx.query.userId;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </React.Fragment>
   ) as React.ReactElement | null;

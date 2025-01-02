@@ -205,289 +205,272 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
       `}</style>
 
       <div className={projectcss.plasmic_page_wrapper}>
-        {(() => {
-          try {
-            return !!$ctx.query.user_id;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return false;
-            }
-            throw e;
-          }
-        })() ? (
-          <div
-            data-plasmic-name={"root"}
-            data-plasmic-override={overrides.root}
-            data-plasmic-root={true}
-            data-plasmic-for-node={forNode}
-            className={classNames(
-              projectcss.all,
-              projectcss.root_reset,
-              projectcss.plasmic_default_styles,
-              projectcss.plasmic_mixins,
-              projectcss.plasmic_tokens,
-              plasmic_fragment_design_system_css.plasmic_tokens,
-              plasmic_antd_5_hostless_css.plasmic_tokens,
-              plasmic_plasmic_rich_components_css.plasmic_tokens,
-              sty.root
-            )}
-            onLoad={async event => {
-              const $steps = {};
+        <div
+          data-plasmic-name={"root"}
+          data-plasmic-override={overrides.root}
+          data-plasmic-root={true}
+          data-plasmic-for-node={forNode}
+          className={classNames(
+            projectcss.all,
+            projectcss.root_reset,
+            projectcss.plasmic_default_styles,
+            projectcss.plasmic_mixins,
+            projectcss.plasmic_tokens,
+            plasmic_fragment_design_system_css.plasmic_tokens,
+            plasmic_antd_5_hostless_css.plasmic_tokens,
+            plasmic_plasmic_rich_components_css.plasmic_tokens,
+            sty.root
+          )}
+          onLoad={async event => {
+            const $steps = {};
 
-              $steps["sendEvent"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return {
-                              event_group: "activation-page",
-                              data: {
-                                userId: $ctx.query.userId,
-                                pagePath: window.location.href
-                              },
-                              event_type: "load-page-duration-step4"
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
+            $steps["sendEvent"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            event_group: "activation-page",
+                            data: {
+                              userId: $ctx.query.userId,
+                              pagePath: window.location.href
+                            },
+                            event_type: "load-page-duration-step4"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
                           }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Splunk.sendLog"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["sendEvent"] != null &&
-                typeof $steps["sendEvent"] === "object" &&
-                typeof $steps["sendEvent"].then === "function"
-              ) {
-                $steps["sendEvent"] = await $steps["sendEvent"];
-              }
-            }}
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Splunk.sendLog"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["sendEvent"] != null &&
+              typeof $steps["sendEvent"] === "object" &&
+              typeof $steps["sendEvent"].then === "function"
+            ) {
+              $steps["sendEvent"] = await $steps["sendEvent"];
+            }
+          }}
+        >
+          <div
+            data-plasmic-name={"header"}
+            data-plasmic-override={overrides.header}
+            className={classNames(projectcss.all, sty.header)}
           >
             <div
-              data-plasmic-name={"header"}
-              data-plasmic-override={overrides.header}
-              className={classNames(projectcss.all, sty.header)}
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__thTjF
+              )}
             >
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__thTjF
-                )}
-              >
-                {"\u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc"}
-              </div>
+              {"\u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc"}
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox__rtyql)}>
-              <div className={classNames(projectcss.all, sty.freeBox__yZm6V)}>
-                <ActivationProcess
-                  data-plasmic-name={"activationProcess"}
-                  data-plasmic-override={overrides.activationProcess}
-                  className={classNames(
-                    "__wab_instance",
-                    sty.activationProcess
-                  )}
-                  step={4}
-                />
-              </div>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__tbTeQ)}
+          </div>
+          <div className={classNames(projectcss.all, sty.freeBox__rtyql)}>
+            <div className={classNames(projectcss.all, sty.freeBox__yZm6V)}>
+              <ActivationProcess
+                data-plasmic-name={"activationProcess"}
+                data-plasmic-override={overrides.activationProcess}
+                className={classNames("__wab_instance", sty.activationProcess)}
+                step={4}
+              />
+            </div>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__tbTeQ)}
+            >
+              <ApiRequest
+                data-plasmic-name={"centersApi"}
+                data-plasmic-override={overrides.centersApi}
+                className={classNames("__wab_instance", sty.centersApi)}
+                errorDisplay={null}
+                loadingDisplay={
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__rxNv)}
+                  >
+                    <Icon34Icon
+                      data-plasmic-name={"svg"}
+                      data-plasmic-override={overrides.svg}
+                      className={classNames(projectcss.all, sty.svg)}
+                      role={"img"}
+                    />
+                  </div>
+                }
+                method={"GET"}
+                onError={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "centersApi",
+                    "error"
+                  ]).apply(null, eventArgs);
+                }}
+                onLoading={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "centersApi",
+                    "loading"
+                  ]).apply(null, eventArgs);
+                }}
+                onSuccess={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "centersApi",
+                    "data"
+                  ]).apply(null, eventArgs);
+                }}
+                ref={ref => {
+                  $refs["centersApi"] = ref;
+                }}
+                url={"https://api.paziresh24.com/V1/doctor/centers"}
               >
-                <ApiRequest
-                  data-plasmic-name={"centersApi"}
-                  data-plasmic-override={overrides.centersApi}
-                  className={classNames("__wab_instance", sty.centersApi)}
-                  errorDisplay={null}
-                  loadingDisplay={
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__rxNv)}
-                    >
-                      <Icon34Icon
-                        data-plasmic-name={"svg"}
-                        data-plasmic-override={overrides.svg}
-                        className={classNames(projectcss.all, sty.svg)}
-                        role={"img"}
-                      />
-                    </div>
-                  }
-                  method={"GET"}
-                  onError={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "centersApi",
-                      "error"
-                    ]).apply(null, eventArgs);
-                  }}
-                  onLoading={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "centersApi",
-                      "loading"
-                    ]).apply(null, eventArgs);
-                  }}
-                  onSuccess={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "centersApi",
-                      "data"
-                    ]).apply(null, eventArgs);
-                  }}
-                  ref={ref => {
-                    $refs["centersApi"] = ref;
-                  }}
-                  url={"https://api.paziresh24.com/V1/doctor/centers"}
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox___7OQm)}
                 >
                   <Stack__
                     as={"div"}
                     hasGap={true}
-                    className={classNames(projectcss.all, sty.freeBox___7OQm)}
+                    className={classNames(projectcss.all, sty.freeBox__uscdy)}
                   >
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.freeBox__uscdy)}
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__hq7Kh
+                      )}
                     >
                       <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__hq7Kh
-                        )}
-                      >
-                        <div
-                          className={projectcss.__wab_expr_html_text}
-                          dangerouslySetInnerHTML={{
-                            __html: (() => {
-                              try {
-                                return `پزشکان <b>متخصص طب هوا و فضا و زیر سطحی</b> بطور معمول هر ویزیتشان حدود 10 دقیقه طول می کشد.`;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return " \u0628\u0637\u0648\u0631 \u0645\u0639\u0645\u0648\u0644 \u0647\u0631 \u0648\u06cc\u0632\u06cc\u062a\u0634\u0627\u0646 \u062d\u062f\u0648\u062f 10 \u062f\u0642\u06cc\u0642\u0647 \u0637\u0648\u0644 \u0645\u06cc \u06a9\u0634\u062f.";
-                                }
-                                throw e;
+                        className={projectcss.__wab_expr_html_text}
+                        dangerouslySetInnerHTML={{
+                          __html: (() => {
+                            try {
+                              return `پزشکان <b>متخصص طب هوا و فضا و زیر سطحی</b> بطور معمول هر ویزیتشان حدود 10 دقیقه طول می کشد.`;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return " \u0628\u0637\u0648\u0631 \u0645\u0639\u0645\u0648\u0644 \u0647\u0631 \u0648\u06cc\u0632\u06cc\u062a\u0634\u0627\u0646 \u062d\u062f\u0648\u062f 10 \u062f\u0642\u06cc\u0642\u0647 \u0637\u0648\u0644 \u0645\u06cc \u06a9\u0634\u062f.";
                               }
-                            })()
-                          }}
-                        />
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text___8ScPp
-                        )}
-                      >
-                        {
-                          "\u0627\u06af\u0631 \u062f\u0631 \u0645\u0637\u0628 \u067e\u0631\u0648\u0633\u06cc\u062c\u0631 \u0647\u0627\u06cc \u062f\u0631\u0645\u0627\u0646\u06cc \u0627\u0646\u062c\u0627\u0645 \u0645\u06cc \u062f\u0647\u06cc\u062f \u0627\u06cc\u0646 \u0632\u0645\u0627\u0646 \u0631\u0627 \u0637\u0648\u0644\u0627\u0646\u06cc \u062a\u0631 \u06a9\u0646\u06cc\u062f."
-                        }
-                      </div>
-                    </Stack__>
-                    <HoursDaysOfWeek
-                      data-plasmic-name={"hoursDaysOfWeek"}
-                      data-plasmic-override={overrides.hoursDaysOfWeek}
-                      centerId={(() => {
-                        try {
-                          return $state.centersApi.data.data.find(
-                            item => item.type_id == 1
-                          ).id;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
+                              throw e;
+                            }
+                          })()
+                        }}
+                      />
+                    </div>
+                    <div
                       className={classNames(
-                        "__wab_instance",
-                        sty.hoursDaysOfWeek
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text___8ScPp
                       )}
-                      duration={generateStateValueProp($state, [
+                    >
+                      {
+                        "\u0627\u06af\u0631 \u062f\u0631 \u0645\u0637\u0628 \u067e\u0631\u0648\u0633\u06cc\u062c\u0631 \u0647\u0627\u06cc \u062f\u0631\u0645\u0627\u0646\u06cc \u0627\u0646\u062c\u0627\u0645 \u0645\u06cc \u062f\u0647\u06cc\u062f \u0627\u06cc\u0646 \u0632\u0645\u0627\u0646 \u0631\u0627 \u0637\u0648\u0644\u0627\u0646\u06cc \u062a\u0631 \u06a9\u0646\u06cc\u062f."
+                      }
+                    </div>
+                  </Stack__>
+                  <HoursDaysOfWeek
+                    data-plasmic-name={"hoursDaysOfWeek"}
+                    data-plasmic-override={overrides.hoursDaysOfWeek}
+                    centerId={(() => {
+                      try {
+                        return $state.centersApi.data.data.find(
+                          item => item.type_id == 1
+                        ).id;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    className={classNames(
+                      "__wab_instance",
+                      sty.hoursDaysOfWeek
+                    )}
+                    duration={generateStateValueProp($state, [
+                      "hoursDaysOfWeek",
+                      "duration"
+                    ])}
+                    forwardPage={(() => {
+                      try {
+                        return $ctx.query.onlineVisit == "true"
+                          ? `/activation-page/consult/rules/?userId=${$ctx.query.userId}`
+                          : `/activation-page/finish?office=true/?userId=${$ctx.query.userId}`;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    onDurationChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
                         "hoursDaysOfWeek",
                         "duration"
-                      ])}
-                      forwardPage={(() => {
-                        try {
-                          return $ctx.query.onlineVisit == "true"
-                            ? `/activation-page/consult/rules/?userId=${$ctx.query.userId}`
-                            : `/activation-page/finish?office=true/?userId=${$ctx.query.userId}`;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                      onDurationChange={async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "hoursDaysOfWeek",
-                          "duration"
-                        ]).apply(null, eventArgs);
+                      ]).apply(null, eventArgs);
 
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    userCenterId={(() => {
+                      try {
+                        return $state.centersApi.data.data.find(
+                          item => item.type_id == 1
+                        ).user_center_id;
+                      } catch (e) {
                         if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
                         ) {
-                          return;
+                          return undefined;
                         }
-                      }}
-                      userCenterId={(() => {
-                        try {
-                          return $state.centersApi.data.data.find(
-                            item => item.type_id == 1
-                          ).user_center_id;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
+                        throw e;
+                      }
+                    })()}
+                    userId={(() => {
+                      try {
+                        return $ctx.query.userId;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
                         }
-                      })()}
-                      userId={(() => {
-                        try {
-                          return $ctx.query.userId;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                    />
-                  </Stack__>
-                </ApiRequest>
-              </Stack__>
-            </div>
+                        throw e;
+                      }
+                    })()}
+                  />
+                </Stack__>
+              </ApiRequest>
+            </Stack__>
           </div>
-        ) : null}
+        </div>
       </div>
     </React.Fragment>
   ) as React.ReactElement | null;
