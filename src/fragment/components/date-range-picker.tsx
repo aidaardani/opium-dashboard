@@ -4,6 +4,7 @@ import {
   DayValue,
   utils,
 } from "@hassanmojab/react-modern-calendar-datepicker";
+import "react-modern-calendar-datepicker/lib/DatePicker.css";
 
 import React, { useState } from "react";
 
