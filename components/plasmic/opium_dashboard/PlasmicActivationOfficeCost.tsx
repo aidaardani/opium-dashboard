@@ -980,6 +980,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                 if ($state.input2.value === "") {
                                   return {
                                     active: 1,
+                                    center_id: centerId,
                                     card_number: "",
                                     deposit_amount: cost,
                                     shaba: null

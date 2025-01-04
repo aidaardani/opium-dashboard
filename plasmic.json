@@ -2315,6 +2315,19 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicRadioGroup.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "UVeZcFTG7GoM",
+          "name": "Vacation",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicVacation.tsx",
+          "importSpec": {
+            "modulePath": "Vacation.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicVacation.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
