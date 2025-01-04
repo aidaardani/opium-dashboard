@@ -2,6 +2,7 @@ import * as React from "react";
 import {
   PlasmicCanvasHost,
   registerComponent,
+  registerFunction,
   registerGlobalContext,
 } from "@plasmicapp/react-web/lib/host";
 import { Fragment, fragmentMeta } from "@/fragment/fragment";
@@ -20,6 +21,7 @@ import { Hamdast, hamdastMeta } from "@/hamdast/hamdast";
 import { TextEditor, TextEditorMeta } from "@/fragment/components/text-editor";
 import { FileInput, fileInputMeta } from "@/fragment/components/file-input";
 import Map, { mapMeta } from "@/fragment/components/map";
+import moment from "jalali-moment";
 export default function PlasmicHost() {
   return <PlasmicCanvasHost />;
 }
@@ -39,3 +41,7 @@ registerComponent(Chart, chartMeta);
 registerComponent(TextEditor, TextEditorMeta);
 registerComponent(FileInput, fileInputMeta);
 registerComponent(Map, mapMeta);
+registerFunction(moment, {
+  name: "moment",
+  importPath: "jalali-moment",
+});
