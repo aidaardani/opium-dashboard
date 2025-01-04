@@ -2752,7 +2752,15 @@
           "componentImportPath": "@/fragment/components/map"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [
+        {
+          "defaultExport": false,
+          "id": "moment",
+          "importPath": "jalali-moment",
+          "name": "moment",
+          "namespace": null
+        }
+      ]
     },
     {
       "projectId": "jkU633o1Cz7HrJdwdxhVHk",

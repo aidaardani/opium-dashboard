@@ -249,6 +249,10 @@
   border-radius: var(--token-_c276Gs_1FIE);
   padding: var(--token-_c276Gs_1FIE) var(--token-Fv8-L_kN-2Ma);
 }
+.profileApi:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
 .button__mfJ7:global(.__wab_instance) {
   max-width: 100%;
   width: 100%;

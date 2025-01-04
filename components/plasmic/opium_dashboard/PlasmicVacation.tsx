@@ -78,6 +78,7 @@ import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: BN2FHeznHhq_/icon
 
+import { moment as __fn_moment } from "jalali-moment"; // plasmic-import: moment/customFunction
 import __lib_dayjs from "dayjs";
 
 createPlasmicElementProxy;
@@ -107,6 +108,7 @@ export interface DefaultVacationProps {
 }
 
 const $$ = {
+  moment: __fn_moment,
   dayjs: __lib_dayjs
 };
 

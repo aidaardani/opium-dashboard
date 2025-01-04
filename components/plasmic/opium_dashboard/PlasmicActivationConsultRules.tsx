@@ -60,6 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import Checkbox from "../../Checkbox"; // plasmic-import: IDR0sAqN5tth/component
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 
@@ -94,6 +95,7 @@ export type PlasmicActivationConsultRules__OverridesType = {
   root?: Flex__<"div">;
   img?: Flex__<typeof PlasmicImg__>;
   checkbox?: Flex__<typeof Checkbox>;
+  profileApi?: Flex__<typeof ApiRequest>;
   dialog?: Flex__<typeof Dialog>;
 };
 
@@ -197,6 +199,30 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "profileApi.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "profileApi"
+      },
+      {
+        path: "profileApi.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "profileApi"
+      },
+      {
+        path: "profileApi.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "profileApi"
       }
     ],
     [$props, $ctx, $refs]
@@ -443,106 +469,138 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
           hasGap={true}
           className={classNames(projectcss.all, sty.freeBox__wpZS)}
         >
-          <Button
-            children2={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text___49O1R
-                )}
-              >
-                {"\u0645\u0648\u0627\u0641\u0642\u0645"}
-              </div>
-            }
-            className={classNames("__wab_instance", sty.button__mG0GN)}
-            isDisabled={(() => {
-              try {
-                return $state.checkedRules.length !== $state.rules.length;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return [];
-                }
-                throw e;
-              }
-            })()}
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["sendEvent"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return {
-                              event_group: "activation-page",
-                              data: {
-                                userid: $props.userId,
-                                pagepath: window.location.href
-                              },
-                              event_type:
-                                "click-accept-rules-button-consult-step2"
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Splunk.sendLog"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["sendEvent"] != null &&
-                typeof $steps["sendEvent"] === "object" &&
-                typeof $steps["sendEvent"].then === "function"
-              ) {
-                $steps["sendEvent"] = await $steps["sendEvent"];
-              }
-
-              $steps["goToActivationMessengers"] = true
-                ? (() => {
-                    const actionArgs = {
-                      destination: `/activation-page/consult/messengers?userId=${$ctx.query.userId}`
-                    };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["goToActivationMessengers"] != null &&
-                typeof $steps["goToActivationMessengers"] === "object" &&
-                typeof $steps["goToActivationMessengers"].then === "function"
-              ) {
-                $steps["goToActivationMessengers"] = await $steps[
-                  "goToActivationMessengers"
-                ];
-              }
+          <ApiRequest
+            data-plasmic-name={"profileApi"}
+            data-plasmic-override={overrides.profileApi}
+            className={classNames("__wab_instance", sty.profileApi)}
+            errorDisplay={null}
+            loadingDisplay={null}
+            method={"GET"}
+            onError={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["profileApi", "error"]).apply(
+                null,
+                eventArgs
+              );
             }}
-          />
+            onLoading={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "profileApi",
+                "loading"
+              ]).apply(null, eventArgs);
+            }}
+            onSuccess={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["profileApi", "data"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            ref={ref => {
+              $refs["profileApi"] = ref;
+            }}
+            url={"https://api.paziresh24.com/V1/doctor/profile"}
+          >
+            <Button
+              children2={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___49O1R
+                  )}
+                >
+                  {"\u0645\u0648\u0627\u0641\u0642\u0645"}
+                </div>
+              }
+              className={classNames("__wab_instance", sty.button__mG0GN)}
+              isDisabled={(() => {
+                try {
+                  return $state.checkedRules.length !== $state.rules.length;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()}
+              onClick={async event => {
+                const $steps = {};
 
+                $steps["sendEvent"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                event_group: "activation-page",
+                                data: {
+                                  userid: $props.userId,
+                                  pagepath: window.location.href
+                                },
+                                event_type:
+                                  "click-accept-rules-button-consult-step2"
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["sendEvent"] != null &&
+                  typeof $steps["sendEvent"] === "object" &&
+                  typeof $steps["sendEvent"].then === "function"
+                ) {
+                  $steps["sendEvent"] = await $steps["sendEvent"];
+                }
+
+                $steps["goToActivationMessengers"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        destination: `/activation-page/consult/messengers?userId=${
+                          $state.profileApi?.data?.data?.id || ""
+                        }`
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["goToActivationMessengers"] != null &&
+                  typeof $steps["goToActivationMessengers"] === "object" &&
+                  typeof $steps["goToActivationMessengers"].then === "function"
+                ) {
+                  $steps["goToActivationMessengers"] = await $steps[
+                    "goToActivationMessengers"
+                  ];
+                }
+              }}
+            />
+          </ApiRequest>
           <Button
             children2={
               <div
@@ -858,9 +916,10 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "img", "checkbox", "dialog"],
+  root: ["root", "img", "checkbox", "profileApi", "dialog"],
   img: ["img"],
   checkbox: ["checkbox"],
+  profileApi: ["profileApi"],
   dialog: ["dialog"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -870,6 +929,7 @@ type NodeDefaultElementType = {
   root: "div";
   img: typeof PlasmicImg__;
   checkbox: typeof Checkbox;
+  profileApi: typeof ApiRequest;
   dialog: typeof Dialog;
 };
 
@@ -935,6 +995,7 @@ export const PlasmicActivationConsultRules = Object.assign(
     // Helper components rendering sub-elements
     img: makeNodeComponent("img"),
     checkbox: makeNodeComponent("checkbox"),
+    profileApi: makeNodeComponent("profileApi"),
     dialog: makeNodeComponent("dialog"),
 
     // Metadata about props expected for PlasmicActivationConsultRules
