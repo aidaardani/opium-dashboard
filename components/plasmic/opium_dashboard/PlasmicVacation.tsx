@@ -59,6 +59,8 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
+import DrCenters from "../../DrCenters"; // plasmic-import: IkLsGKQP_uPj/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZzFQxrO/codeComponent
 
@@ -70,8 +72,10 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicVacation.module.css"; // plasmic-import: UVeZcFTG7GoM/css
 
+import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
+import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: BN2FHeznHhq_/icon
 
 import __lib_dayjs from "dayjs";
 
@@ -88,9 +92,12 @@ export const PlasmicVacation__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicVacation__OverridesType = {
   root?: Flex__<"div">;
+  centersApi?: Flex__<typeof ApiRequest>;
+  drCenters?: Flex__<typeof DrCenters>;
   button?: Flex__<typeof Button>;
   year?: Flex__<typeof Select>;
   month?: Flex__<typeof Select>;
+  vacationApi?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultVacationProps {
@@ -306,6 +313,60 @@ function PlasmicVacation__RenderFunc(props: {
             monthNum: 12
           }
         ]
+      },
+      {
+        path: "drCenters.selectedCenter",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "centersApi.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "centersApi"
+      },
+      {
+        path: "centersApi.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "centersApi"
+      },
+      {
+        path: "centersApi.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "centersApi"
+      },
+      {
+        path: "vacationApi.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "vacationApi"
+      },
+      {
+        path: "vacationApi.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "vacationApi"
+      },
+      {
+        path: "vacationApi.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "vacationApi"
       }
     ],
     [$props, $ctx, $refs]
@@ -337,26 +398,131 @@ function PlasmicVacation__RenderFunc(props: {
         sty.root
       )}
     >
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text___9HMe
-        )}
+      <Stack__
+        as={"div"}
+        hasGap={true}
+        className={classNames(projectcss.all, sty.freeBox__coCru)}
       >
-        {"\u062b\u0628\u062a \u0645\u0631\u062e\u0635\u06cc"}
-      </div>
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__im41R
-        )}
-      >
-        {
-          "\u0634\u0645\u0627 \u0645\u06cc \u062a\u0648\u0627\u0646\u06cc\u062f \u0628\u0631\u0627\u06cc \u0633\u0627\u0639\u0627\u062a\u06cc \u06a9\u0647 \u0637\u0628\u0642 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u062e\u0648\u062f \u062d\u0636\u0648\u0631 \u0646\u062f\u0627\u0631\u06cc\u062f\u060c \u0645\u0631\u062e\u0635\u06cc \u0627\u0639\u0645\u0627\u0644 \u06a9\u0646\u06cc\u062f."
-        }
-      </div>
+        <Stack__
+          as={"div"}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.freeBox__p3Mdz)}
+        >
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text___9HMe
+            )}
+          >
+            {"\u062b\u0628\u062a \u0645\u0631\u062e\u0635\u06cc"}
+          </div>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__im41R
+            )}
+          >
+            {
+              "\u0634\u0645\u0627 \u0645\u06cc \u062a\u0648\u0627\u0646\u06cc\u062f \u0628\u0631\u0627\u06cc \u0633\u0627\u0639\u0627\u062a\u06cc \u06a9\u0647 \u0637\u0628\u0642 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u062e\u0648\u062f \u062d\u0636\u0648\u0631 \u0646\u062f\u0627\u0631\u06cc\u062f\u060c \u0645\u0631\u062e\u0635\u06cc \u0627\u0639\u0645\u0627\u0644 \u06a9\u0646\u06cc\u062f."
+            }
+          </div>
+        </Stack__>
+        <ApiRequest
+          data-plasmic-name={"centersApi"}
+          data-plasmic-override={overrides.centersApi}
+          className={classNames("__wab_instance", sty.centersApi)}
+          errorDisplay={
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__q12TZ
+              )}
+            >
+              {
+                "\u062e\u0637\u0627 \u062f\u0631 \u062f\u0631\u06cc\u0627\u0641\u062a \u0645\u0631\u0627\u06a9\u0632"
+              }
+            </div>
+          }
+          loadingDisplay={
+            <div className={classNames(projectcss.all, sty.freeBox__l84Dy)}>
+              <Icon34Icon
+                className={classNames(projectcss.all, sty.svg__kUErt)}
+                role={"img"}
+              />
+            </div>
+          }
+          method={"GET"}
+          onError={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["centersApi", "error"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onLoading={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["centersApi", "loading"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onSuccess={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["centersApi", "data"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          ref={ref => {
+            $refs["centersApi"] = ref;
+          }}
+          url={"https://api.paziresh24.com/V1/doctor/centers"}
+        >
+          <DrCenters
+            data-plasmic-name={"drCenters"}
+            data-plasmic-override={overrides.drCenters}
+            centers={(() => {
+              try {
+                return (() => {
+                  return $state.centersApi.data.data.map(center => ({
+                    name: center.name,
+                    id: center.id,
+                    type_id: center.type_id,
+                    address: center.address,
+                    tells: center.tells,
+                    user_center_id: center.user_center_id,
+                    is_active_booking: center.is_active_booking
+                  }));
+                })();
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            className={classNames("__wab_instance", sty.drCenters)}
+            hasAllOption={false}
+            onSelectedCenterChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "drCenters",
+                "selectedCenter"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+            }}
+          />
+        </ApiRequest>
+      </Stack__>
       <Button
         data-plasmic-name={"button"}
         data-plasmic-override={overrides.button}
@@ -606,37 +772,117 @@ function PlasmicVacation__RenderFunc(props: {
           })()}
         </Stack__>
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__wzSnE)}>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__zEsQz
-          )}
-        >
-          {
-            "\u0645\u0631\u062e\u0635\u06cc \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f"
+      <ApiRequest
+        data-plasmic-name={"vacationApi"}
+        data-plasmic-override={overrides.vacationApi}
+        className={classNames("__wab_instance", sty.vacationApi)}
+        errorDisplay={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__qU1YR
+            )}
+          >
+            {
+              "\u062e\u0637\u0627\u06cc\u06cc \u062f\u0631 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0631\u062e \u062f\u0627\u062f\u0647 \u0627\u0633\u062a"
+            }
+          </div>
+        }
+        loadingDisplay={
+          <div className={classNames(projectcss.all, sty.freeBox__rvYZl)}>
+            <Icon10Icon
+              className={classNames(projectcss.all, sty.svg__lxDgP)}
+              role={"img"}
+            />
+          </div>
+        }
+        method={"GET"}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["vacationApi", "error"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["vacationApi", "loading"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["vacationApi", "data"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        ref={ref => {
+          $refs["vacationApi"] = ref;
+        }}
+        url={(() => {
+          try {
+            return (() => {
+              return `https://api.paziresh24.com/V1/doctor/vacation/${
+                $state.drCenters?.selectedCenter || ""
+              }`;
+            })();
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
           }
+        })()}
+      >
+        <div className={classNames(projectcss.all, sty.freeBox__wzSnE)}>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__zEsQz
+            )}
+          >
+            {
+              "\u0645\u0631\u062e\u0635\u06cc \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f"
+            }
+          </div>
         </div>
-      </div>
+      </ApiRequest>
     </Stack__>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "button", "year", "month"],
+  root: [
+    "root",
+    "centersApi",
+    "drCenters",
+    "button",
+    "year",
+    "month",
+    "vacationApi"
+  ],
+  centersApi: ["centersApi", "drCenters"],
+  drCenters: ["drCenters"],
   button: ["button"],
   year: ["year"],
-  month: ["month"]
+  month: ["month"],
+  vacationApi: ["vacationApi"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  centersApi: typeof ApiRequest;
+  drCenters: typeof DrCenters;
   button: typeof Button;
   year: typeof Select;
   month: typeof Select;
+  vacationApi: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -699,9 +945,12 @@ export const PlasmicVacation = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    centersApi: makeNodeComponent("centersApi"),
+    drCenters: makeNodeComponent("drCenters"),
     button: makeNodeComponent("button"),
     year: makeNodeComponent("year"),
     month: makeNodeComponent("month"),
+    vacationApi: makeNodeComponent("vacationApi"),
 
     // Metadata about props expected for PlasmicVacation
     internalVariantProps: PlasmicVacation__VariantProps,

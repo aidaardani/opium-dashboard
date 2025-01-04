@@ -963,27 +963,9 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                   ? (() => {
                       const actionArgs = {
                         args: [
-                          "GET",
+                          "PATCH",
                           "https://api.paziresh24.com/V1/doctor/payments/settings/",
-                          (() => {
-                            try {
-                              return (() => {
-                                const centerId =
-                                  $state.centersApi.data.data.find(
-                                    item => item.type_id == 1
-                                  ).id;
-                                return { center_id: centerId };
-                              })();
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })(),
+                          undefined,
                           (() => {
                             try {
                               return (() => {
@@ -996,7 +978,11 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                     ? +$state.input.value * 10
                                     : $state.select.value;
                                 if ($state.input2.value === "") {
-                                  return { center_id: centerId };
+                                  return {
+                                    active: 1,
+                                    center_id: centerId,
+                                    deposit_amount: cost
+                                  };
                                 } else {
                                   return {
                                     active: 1,
