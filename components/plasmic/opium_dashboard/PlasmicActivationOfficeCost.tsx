@@ -965,7 +965,25 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                         args: [
                           "GET",
                           "https://api.paziresh24.com/V1/doctor/payments/settings/",
-                          undefined,
+                          (() => {
+                            try {
+                              return (() => {
+                                const centerId =
+                                  $state.centersApi.data.data.find(
+                                    item => item.type_id == 1
+                                  ).id;
+                                return { center_id: centerId };
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
                           (() => {
                             try {
                               return (() => {

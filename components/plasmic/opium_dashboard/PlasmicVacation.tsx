@@ -146,7 +146,25 @@ function PlasmicVacation__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return undefined;
+              return (() => {
+                const formatter = new Intl.DateTimeFormat(
+                  "fa-IR-u-ca-persian",
+                  { month: "numeric" }
+                );
+                const jalaliMonthName = formatter.format(new Date());
+                const convertPersianToEnglishNumbers = str => {
+                  const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+                  const englishDigits = "0123456789";
+                  return str
+                    .split("")
+                    .map(char => {
+                      const index = persianDigits.indexOf(char);
+                      return index !== -1 ? englishDigits[index] : char;
+                    })
+                    .join("");
+                };
+                return +convertPersianToEnglishNumbers(jalaliMonthName);
+              })();
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -482,43 +500,124 @@ function PlasmicVacation__RenderFunc(props: {
               />
             );
           })()}
-          <Select
-            data-plasmic-name={"month"}
-            data-plasmic-override={overrides.month}
-            onChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["month", "value"]).apply(
-                null,
-                eventArgs
-              );
-            }}
-            onOpenChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["month", "open"]).apply(
-                null,
-                eventArgs
-              );
-            }}
-            open={generateStateValueProp($state, ["month", "open"])}
-            options={(() => {
-              try {
-                return $state.monthData.map(item => ({
-                  label: item.persian_name,
-                  value: item.monthNum
-                }));
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return [{}];
+          {(() => {
+            const child$Props = {
+              onChange: async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["month", "value"]).apply(
+                  null,
+                  eventArgs
+                );
+              },
+              onOpenChange: async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["month", "open"]).apply(
+                  null,
+                  eventArgs
+                );
+              },
+              open: generateStateValueProp($state, ["month", "open"]),
+              options: (() => {
+                try {
+                  return $state.monthData.map(item => ({
+                    label: item.persian_name,
+                    value: item.monthNum
+                  }));
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [{}];
+                  }
+                  throw e;
                 }
-                throw e;
-              }
-            })()}
-            placeholder={"\u0645\u0627\u0647"}
-            triggerClassName={classNames("__wab_instance", sty.month)}
-            value={generateStateValueProp($state, ["month", "value"])}
-          />
+              })(),
+              placeholder: "\u0645\u0627\u0647",
+              triggerClassName: classNames("__wab_instance", sty.month),
+              value: generateStateValueProp($state, ["month", "value"])
+            };
+            initializeCodeComponentStates(
+              $state,
+              [
+                {
+                  name: "value",
+                  plasmicStateName: "month.value"
+                },
+                {
+                  name: "open",
+                  plasmicStateName: "month.open"
+                }
+              ],
+              [],
+              undefined ?? {},
+              child$Props
+            );
+            initializePlasmicStates(
+              $state,
+              [
+                {
+                  name: "month.value",
+                  initFunc: ({ $props, $state, $queries }) =>
+                    (() => {
+                      try {
+                        return (() => {
+                          const formatter = new Intl.DateTimeFormat(
+                            "fa-IR-u-ca-persian",
+                            { month: "numeric" }
+                          );
+                          const jalaliMonthName = formatter.format(new Date());
+                          const convertPersianToEnglishNumbers = str => {
+                            const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+                            const englishDigits = "0123456789";
+                            return str
+                              .split("")
+                              .map(char => {
+                                const index = persianDigits.indexOf(char);
+                                return index !== -1
+                                  ? englishDigits[index]
+                                  : char;
+                              })
+                              .join("");
+                          };
+                          return +convertPersianToEnglishNumbers(
+                            jalaliMonthName
+                          );
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                }
+              ],
+              []
+            );
+            return (
+              <Select
+                data-plasmic-name={"month"}
+                data-plasmic-override={overrides.month}
+                {...child$Props}
+              />
+            );
+          })()}
         </Stack__>
+      </div>
+      <div className={classNames(projectcss.all, sty.freeBox__wzSnE)}>
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__zEsQz
+          )}
+        >
+          {
+            "\u0645\u0631\u062e\u0635\u06cc \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f"
+          }
+        </div>
       </div>
     </Stack__>
   ) as React.ReactElement | null;
