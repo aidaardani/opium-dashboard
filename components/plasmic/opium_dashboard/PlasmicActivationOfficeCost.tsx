@@ -981,13 +981,13 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                   return {
                                     active: 1,
                                     center_id: centerId,
-                                    deposit_amount: cost
+                                    deposit_amount: Number(cost) * 10
                                   };
                                 } else {
                                   return {
                                     active: 1,
                                     center_id: centerId,
-                                    deposit_amount: cost,
+                                    deposit_amount: Number(cost) * 10,
                                     card_number:
                                       $state.shabaApi.data.card_number,
                                     IBAN: $state.shabaApi.data.IBAN,
