@@ -963,7 +963,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                   ? (() => {
                       const actionArgs = {
                         args: [
-                          "PATCH",
+                          "GET",
                           "https://api.paziresh24.com/V1/doctor/payments/settings/",
                           undefined,
                           (() => {
@@ -978,13 +978,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                     ? +$state.input.value * 10
                                     : $state.select.value;
                                 if ($state.input2.value === "") {
-                                  return {
-                                    active: 1,
-                                    center_id: centerId,
-                                    card_number: "",
-                                    deposit_amount: cost,
-                                    shaba: null
-                                  };
+                                  return { center_id: centerId };
                                 } else {
                                   return {
                                     active: 1,

@@ -73,6 +73,8 @@ import sty from "./PlasmicVacation.module.css"; // plasmic-import: UVeZcFTG7GoM/
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 
+import __lib_dayjs from "dayjs";
+
 createPlasmicElementProxy;
 
 export type PlasmicVacation__VariantMembers = {};
@@ -95,7 +97,9 @@ export interface DefaultVacationProps {
   className?: string;
 }
 
-const $$ = {};
+const $$ = {
+  dayjs: __lib_dayjs
+};
 
 function useNextRouter() {
   try {
@@ -139,7 +143,20 @@ function PlasmicVacation__RenderFunc(props: {
         path: "month.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return undefined;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "month.open",
@@ -151,7 +168,29 @@ function PlasmicVacation__RenderFunc(props: {
         path: "year.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                $$.dayjs.locale("fa");
+                const currentYear = $$.dayjs().year();
+                const convertToJalali = year => {
+                  const now = new Date(`${year}-01-01`);
+                  const norooz = new Date(`${year}-03-21`);
+                  return now < norooz ? year - 622 : year - 621;
+                };
+                return convertToJalali(currentYear);
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "year.open",
@@ -332,28 +371,117 @@ function PlasmicVacation__RenderFunc(props: {
             "\u0644\u06cc\u0633\u062a \u0645\u0631\u062e\u0635\u06cc \u0647\u0627\u06cc \u062b\u0628\u062a \u0634\u062f\u0647:"
           }
         </div>
-        <div className={classNames(projectcss.all, sty.freeBox__rjW9A)}>
-          <Select
-            data-plasmic-name={"year"}
-            data-plasmic-override={overrides.year}
-            onChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["year", "value"]).apply(
-                null,
-                eventArgs
-              );
-            }}
-            onOpenChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["year", "open"]).apply(
-                null,
-                eventArgs
-              );
-            }}
-            open={generateStateValueProp($state, ["year", "open"])}
-            placeholder={"\u0633\u0627\u0644"}
-            triggerClassName={classNames("__wab_instance", sty.year)}
-            value={generateStateValueProp($state, ["year", "value"])}
-          />
+        <Stack__
+          as={"div"}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.freeBox__rjW9A)}
+        >
+          {(() => {
+            const child$Props = {
+              onChange: async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["year", "value"]).apply(
+                  null,
+                  eventArgs
+                );
+              },
+              onOpenChange: async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["year", "open"]).apply(
+                  null,
+                  eventArgs
+                );
+              },
+              open: generateStateValueProp($state, ["year", "open"]),
+              options: (() => {
+                try {
+                  return (() => {
+                    $$.dayjs.locale("fa");
+                    const currentYear = $$.dayjs().year();
+                    const years = [
+                      currentYear - 1,
+                      currentYear,
+                      currentYear + 1
+                    ];
 
+                    const convertToJalali = year => {
+                      const now = new Date(`${year}-01-01`);
+                      const norooz = new Date(`${year}-03-21`);
+                      return now < norooz ? year - 622 : year - 621;
+                    };
+                    return years.map(year => ({
+                      label: convertToJalali(year),
+                      value: convertToJalali(year)
+                    }));
+                  })();
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })(),
+              placeholder: "\u0633\u0627\u0644",
+              triggerClassName: classNames("__wab_instance", sty.year),
+              value: generateStateValueProp($state, ["year", "value"])
+            };
+            initializeCodeComponentStates(
+              $state,
+              [
+                {
+                  name: "value",
+                  plasmicStateName: "year.value"
+                },
+                {
+                  name: "open",
+                  plasmicStateName: "year.open"
+                }
+              ],
+              [],
+              undefined ?? {},
+              child$Props
+            );
+            initializePlasmicStates(
+              $state,
+              [
+                {
+                  name: "year.value",
+                  initFunc: ({ $props, $state, $queries }) =>
+                    (() => {
+                      try {
+                        return (() => {
+                          $$.dayjs.locale("fa");
+                          const currentYear = $$.dayjs().year();
+                          const convertToJalali = year => {
+                            const now = new Date(`${year}-01-01`);
+                            const norooz = new Date(`${year}-03-21`);
+                            return now < norooz ? year - 622 : year - 621;
+                          };
+                          return convertToJalali(currentYear);
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                }
+              ],
+              []
+            );
+            return (
+              <Select
+                data-plasmic-name={"year"}
+                data-plasmic-override={overrides.year}
+                {...child$Props}
+              />
+            );
+          })()}
           <Select
             data-plasmic-name={"month"}
             data-plasmic-override={overrides.month}
@@ -390,7 +518,7 @@ function PlasmicVacation__RenderFunc(props: {
             triggerClassName={classNames("__wab_instance", sty.month)}
             value={generateStateValueProp($state, ["month", "value"])}
           />
-        </div>
+        </Stack__>
       </div>
     </Stack__>
   ) as React.ReactElement | null;
