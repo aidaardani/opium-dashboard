@@ -22,6 +22,10 @@ import { TextEditor, TextEditorMeta } from "@/fragment/components/text-editor";
 import { FileInput, fileInputMeta } from "@/fragment/components/file-input";
 import Map, { mapMeta } from "@/fragment/components/map";
 import moment from "jalali-moment";
+import {
+  dateRangePicker,
+  DateRangePicker,
+} from "@/fragment/components/date-range-picker";
 export default function PlasmicHost() {
   return <PlasmicCanvasHost />;
 }
@@ -41,6 +45,7 @@ registerComponent(Chart, chartMeta);
 registerComponent(TextEditor, TextEditorMeta);
 registerComponent(FileInput, fileInputMeta);
 registerComponent(Map, mapMeta);
+registerComponent(DateRangePicker, dateRangePicker);
 registerFunction(moment, {
   name: "moment",
   importPath: "jalali-moment",
