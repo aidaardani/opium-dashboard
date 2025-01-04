@@ -1183,10 +1183,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                         destination: (() => {
                           try {
                             return `/activation-page/office/duration?${
-                              $props.hasOnlineVisit ? "onlineVisit=true" : ""
-                            }${$props.hasOnlineVisit ? "&" : ""}userId=${
-                              $props.userId
-                            }`;
+                              $props.hasOnlineVisit ? "onlineVisit=true&" : ""
+                            }userId=${$props.userId}`;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||

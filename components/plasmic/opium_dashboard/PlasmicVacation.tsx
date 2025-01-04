@@ -61,6 +61,7 @@ import {
 
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import DrCenters from "../../DrCenters"; // plasmic-import: IkLsGKQP_uPj/component
+import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZzFQxrO/codeComponent
 
@@ -94,6 +95,7 @@ export type PlasmicVacation__OverridesType = {
   root?: Flex__<"div">;
   centersApi?: Flex__<typeof ApiRequest>;
   drCenters?: Flex__<typeof DrCenters>;
+  dialog?: Flex__<typeof Dialog>;
   button?: Flex__<typeof Button>;
   year?: Flex__<typeof Select>;
   month?: Flex__<typeof Select>;
@@ -367,6 +369,12 @@ function PlasmicVacation__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "vacationApi"
+      },
+      {
+        path: "dialog.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -523,24 +531,56 @@ function PlasmicVacation__RenderFunc(props: {
           />
         </ApiRequest>
       </Stack__>
-      <Button
-        data-plasmic-name={"button"}
-        data-plasmic-override={overrides.button}
-        children2={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__q1Lg6
-            )}
-          >
-            {
-              "\u0627\u0636\u0627\u0641\u0647 \u06a9\u0631\u062f\u0646 \u0645\u0631\u062e\u0635\u06cc"
+      <Dialog
+        data-plasmic-name={"dialog"}
+        data-plasmic-override={overrides.dialog}
+        className={classNames("__wab_instance", sty.dialog)}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        open={generateStateValueProp($state, ["dialog", "open"])}
+        trigger={
+          <Button
+            data-plasmic-name={"button"}
+            data-plasmic-override={overrides.button}
+            children2={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__oKyrr
+                )}
+              >
+                {"Show dialog"}
+              </div>
             }
-          </div>
+            className={classNames("__wab_instance", sty.button)}
+            endIcon={
+              <ChevronLeftIcon
+                className={classNames(projectcss.all, sty.svg__rUim5)}
+                role={"img"}
+              />
+            }
+            outline={true}
+            startIcon={
+              <ChevronRightIcon
+                className={classNames(projectcss.all, sty.svg__s8Zhz)}
+                role={"img"}
+              />
+            }
+          />
         }
-        className={classNames("__wab_instance", sty.button)}
-        outline={true}
       />
 
       <div className={classNames(projectcss.all, sty.freeBox__r1Pkt)}>
@@ -822,8 +862,31 @@ function PlasmicVacation__RenderFunc(props: {
         url={(() => {
           try {
             return (() => {
+              const centerId = $state.centersApi.data?.data?.find(
+                item => item.user_center_id == $state.drCenters?.selectedCenter
+              )?.id;
+              const getFirstAndLastMonthDay = (year, month) => {
+                const firstDayOfMonth = $$.moment(
+                  [year, month],
+                  "jYYYY,jM,jD"
+                ).startOf("jMonth");
+                const lastDayOfMonth = $$.moment(
+                  [year, month],
+                  "jYYYY,jM,jD"
+                ).endOf("jMonth");
+                return {
+                  firstDayOfMonth: firstDayOfMonth.unix(),
+                  lastDayOfMonth: lastDayOfMonth.unix()
+                };
+              };
+              const date = getFirstAndLastMonthDay(
+                $state.year.value,
+                $state.month.value
+              );
               return `https://api.paziresh24.com/V1/doctor/vacation/${
-                $state.drCenters?.selectedCenter || ""
+                centerId || ""
+              }?from=${date?.firstDayOfMonth || ""}&to=${
+                date?.lastDayOfMonth || ""
               }`;
             })();
           } catch (e) {
@@ -837,19 +900,122 @@ function PlasmicVacation__RenderFunc(props: {
           }
         })()}
       >
-        <div className={classNames(projectcss.all, sty.freeBox__wzSnE)}>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__zEsQz
-            )}
-          >
-            {
-              "\u0645\u0631\u062e\u0635\u06cc \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f"
+        {(() => {
+          try {
+            return $state.vacationApi.data.data.length == 0;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
             }
+            throw e;
+          }
+        })() ? (
+          <div className={classNames(projectcss.all, sty.freeBox__wzSnE)}>
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__zEsQz
+              )}
+            >
+              {
+                "\u0645\u0631\u062e\u0635\u06cc \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f"
+              }
+            </div>
           </div>
-        </div>
+        ) : null}
+        {(() => {
+          try {
+            return $state.vacationApi.data.data.length > 0;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })() ? (
+          <div className={classNames(projectcss.all, sty.freeBox__pQyuJ)}>
+            {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+              (() => {
+                try {
+                  return $state.vacationApi.data.data;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()
+            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+              const currentItem = __plasmic_item_0;
+              const currentIndex = __plasmic_idx_0;
+              return (
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__dc1Y)}
+                  key={currentIndex}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__hPbEr
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return `${currentItem.formatted_from} الی ${currentItem.formatted_to}`;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___28Ia
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return `مدت زمان: ${currentItem.formatted_duration}`;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
+                </Stack__>
+              );
+            })}
+          </div>
+        ) : null}
       </ApiRequest>
     </Stack__>
   ) as React.ReactElement | null;
@@ -860,6 +1026,7 @@ const PlasmicDescendants = {
     "root",
     "centersApi",
     "drCenters",
+    "dialog",
     "button",
     "year",
     "month",
@@ -867,6 +1034,7 @@ const PlasmicDescendants = {
   ],
   centersApi: ["centersApi", "drCenters"],
   drCenters: ["drCenters"],
+  dialog: ["dialog", "button"],
   button: ["button"],
   year: ["year"],
   month: ["month"],
@@ -879,6 +1047,7 @@ type NodeDefaultElementType = {
   root: "div";
   centersApi: typeof ApiRequest;
   drCenters: typeof DrCenters;
+  dialog: typeof Dialog;
   button: typeof Button;
   year: typeof Select;
   month: typeof Select;
@@ -947,6 +1116,7 @@ export const PlasmicVacation = Object.assign(
     // Helper components rendering sub-elements
     centersApi: makeNodeComponent("centersApi"),
     drCenters: makeNodeComponent("drCenters"),
+    dialog: makeNodeComponent("dialog"),
     button: makeNodeComponent("button"),
     year: makeNodeComponent("year"),
     month: makeNodeComponent("month"),

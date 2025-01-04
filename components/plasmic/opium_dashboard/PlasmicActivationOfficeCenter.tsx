@@ -4916,10 +4916,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                             destination: (() => {
                               try {
                                 return `/activation-page/office/cost?${
-                                  $props.hasOnline ? "onlineVisit=true" : ""
-                                }${$props.hasOnline ? "&" : ""}userId=${
-                                  $props.userId
-                                }`;
+                                  $props.hasOnline ? "onlineVisit=true&" : ""
+                                }userId=${$props.userId}`;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
