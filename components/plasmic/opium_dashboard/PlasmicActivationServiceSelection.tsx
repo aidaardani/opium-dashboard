@@ -630,6 +630,7 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
                               event_group: "activation-page",
                               data: {
                                 userId: $state.profileApi.data.data.id,
+                                userCell: $state.profileApi.data.data.cell,
                                 pagePath: window.location.href,
                                 selectedServices: $state.selectedServices
                               },

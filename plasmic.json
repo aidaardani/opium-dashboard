@@ -2750,6 +2750,12 @@
           "name": "Map",
           "displayName": "Map",
           "componentImportPath": "@/fragment/components/map"
+        },
+        {
+          "id": "zo8onduV273r",
+          "name": "DateRangePicker",
+          "displayName": "DateRangePicker",
+          "componentImportPath": "@/fragment/components/date-range-picker"
         }
       ],
       "customFunctions": [

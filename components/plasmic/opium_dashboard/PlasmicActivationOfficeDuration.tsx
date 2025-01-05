@@ -412,7 +412,7 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
                       try {
                         return $ctx.query.onlineVisit == "true"
                           ? `/activation-page/consult/rules/?userId=${$ctx.query.userId}`
-                          : `/activation-page/finish?office=true/?userId=${$ctx.query.userId}`;
+                          : `/activation-page/finish?office=true&userId=${$ctx.query.userId}`;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||

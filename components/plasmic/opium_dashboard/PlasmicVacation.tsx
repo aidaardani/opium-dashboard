@@ -63,7 +63,11 @@ import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-impor
 import DrCenters from "../../DrCenters"; // plasmic-import: IkLsGKQP_uPj/component
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
+import { DateRangePicker } from "@/fragment/components/date-range-picker"; // plasmic-import: zo8onduV273r/codeComponent
+import Checkbox from "../../Checkbox"; // plasmic-import: IDR0sAqN5tth/component
 import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZzFQxrO/codeComponent
+import { DatePicker } from "@/fragment/components/date-picker"; // plasmic-import: b38lDo6Nm8Rh/codeComponent
+import { TimePicker } from "@/fragment/components/time-picker"; // plasmic-import: 0Mwoeihejk-H/codeComponent
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -77,6 +81,8 @@ import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: BN2FHeznHhq_/icon
+import Icon26Icon from "./icons/PlasmicIcon__Icon26"; // plasmic-import: frSwMvWOgAN1/icon
+import Icon4Icon from "./icons/PlasmicIcon__Icon4"; // plasmic-import: z62U0rB8gsLE/icon
 
 import { moment as __fn_moment } from "jalali-moment"; // plasmic-import: moment/customFunction
 import __lib_dayjs from "dayjs";
@@ -96,11 +102,22 @@ export type PlasmicVacation__OverridesType = {
   root?: Flex__<"div">;
   centersApi?: Flex__<typeof ApiRequest>;
   drCenters?: Flex__<typeof DrCenters>;
-  dialog?: Flex__<typeof Dialog>;
-  button?: Flex__<typeof Button>;
+  addVocationDialog?: Flex__<typeof Dialog>;
+  dateRangePicker?: Flex__<typeof DateRangePicker>;
+  checkbox?: Flex__<typeof Checkbox>;
   year?: Flex__<typeof Select>;
   month?: Flex__<typeof Select>;
   vacationApi?: Flex__<typeof ApiRequest>;
+  errorDialog?: Flex__<typeof Dialog>;
+  changeDateDialog?: Flex__<typeof Dialog>;
+  selectDate?: Flex__<typeof Dialog>;
+  datePicker?: Flex__<typeof DatePicker>;
+  selectTime?: Flex__<typeof Dialog>;
+  timePicker?: Flex__<typeof TimePicker>;
+  deleteDialog?: Flex__<typeof Dialog>;
+  editDialog?: Flex__<typeof Dialog>;
+  dateRangePicker2?: Flex__<typeof DateRangePicker>;
+  checkbox2?: Flex__<typeof Checkbox>;
 };
 
 export interface DefaultVacationProps {
@@ -147,6 +164,8 @@ function PlasmicVacation__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
+
+  const $globalActions = useGlobalActions?.();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
@@ -373,10 +392,258 @@ function PlasmicVacation__RenderFunc(props: {
         refName: "vacationApi"
       },
       {
-        path: "dialog.open",
+        path: "addVocationDialog.open",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "dateRangePicker.selectedDays",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({
+          from: null,
+          to: null
+        })
+      },
+      {
+        path: "errorDialog.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "changeDateDialog.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "selectDate.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "datePicker.value",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "datePicker.values",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => []
+      },
+      {
+        path: "selectTime.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "timePicker.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                const convertTimeStampToFormattedTime = time => {
+                  const date = new Date(time * 1000);
+                  const hours = date.getHours();
+                  const minutes = date.getMinutes();
+                  const timeString = `${hours}:${
+                    minutes.toString().length === 1 ? `0${minutes}` : minutes
+                  }`;
+                  return timeString;
+                };
+                switch ($state.timePickerType) {
+                  case "EDIT_FROM_TIME":
+                    return convertTimeStampToFormattedTime(
+                      $state.selectedVacation.from
+                    );
+                  case "FROM_TIME":
+                    return convertTimeStampToFormattedTime(
+                      $state.selectedVacation.from
+                    );
+                  case "TO_TIME":
+                    return convertTimeStampToFormattedTime(
+                      $state.selectedVacation.to
+                    );
+                  case "EDIT_TO_TIME":
+                    return convertTimeStampToFormattedTime(
+                      $state.selectedVacation.to
+                    );
+                  default:
+                    return "00:00";
+                }
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "isLoadingDelete",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "checkbox.isChecked",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "timePickerType",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "fromTime",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "toTime",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "isLoadingSubmitVacation",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "deleteDialog.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "selectedVacation",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({
+          from: null,
+          to: null
+        })
+      },
+      {
+        path: "isLoadingDeleteVacation",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "editDialog.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "dateRangePicker2.selectedDays",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                const convertTimestampToDate = time => {
+                  const date = new Date(time * 1000);
+                  return date.toLocaleDateString();
+                };
+                const formattedDateToDateObject = formattedDate => {
+                  if (!formattedDate) return null;
+                  const dateObject = $$.moment(formattedDate);
+                  return {
+                    year: dateObject.year(),
+                    month: dateObject.month() + 1,
+                    day: dateObject.date()
+                  };
+                };
+                const from = formattedDateToDateObject(
+                  $$.moment
+                    .from(
+                      convertTimestampToDate(+$state.selectedVacation.from),
+                      "YYYY/MM/DD"
+                    )
+                    .locale("fa")
+                    .format("YYYY/MM/DD")
+                );
+                const to = formattedDateToDateObject(
+                  $$.moment
+                    .from(
+                      convertTimestampToDate(+$state.selectedVacation.to),
+                      "YYYY/MM/DD"
+                    )
+                    .locale("fa")
+                    .format("YYYY/MM/DD")
+                );
+                return {
+                  from: from || null,
+                  to: to || null
+                };
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return { from: null, to: null };
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "checkbox2.isChecked",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                const convertTimeStampToFormattedTime = time => {
+                  const date = new Date(time * 1000);
+                  const hours = date.getHours();
+                  const minutes = date.getMinutes();
+                  const timeString = `${hours}:${
+                    minutes.toString().length === 1 ? `0${minutes}` : minutes
+                  }`;
+                  return timeString;
+                };
+                const fromTime = convertTimeStampToFormattedTime(
+                  $state.selectedVacation.from
+                );
+                const toTime = convertTimeStampToFormattedTime(
+                  $state.selectedVacation.to
+                );
+                return fromTime == "0:00" && toTime == "23:59";
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -534,14 +801,816 @@ function PlasmicVacation__RenderFunc(props: {
         </ApiRequest>
       </Stack__>
       <Dialog
-        data-plasmic-name={"dialog"}
-        data-plasmic-override={overrides.dialog}
-        className={classNames("__wab_instance", sty.dialog)}
+        data-plasmic-name={"addVocationDialog"}
+        data-plasmic-override={overrides.addVocationDialog}
+        body={
+          <div className={classNames(projectcss.all, sty.freeBox__esgU9)}>
+            <DateRangePicker
+              data-plasmic-name={"dateRangePicker"}
+              data-plasmic-override={overrides.dateRangePicker}
+              className={classNames("__wab_instance", sty.dateRangePicker)}
+              locale={"fa"}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "dateRangePicker",
+                  "selectedDays"
+                ]).apply(null, eventArgs);
+              }}
+              selectedDays={generateStateValueProp($state, [
+                "dateRangePicker",
+                "selectedDays"
+              ])}
+            />
+
+            {(() => {
+              try {
+                return (
+                  !$state.checkbox.isChecked &&
+                  !!$state.dateRangePicker.selectedDays.from
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__gtp5T)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__vZrMz
+                  )}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateSelectTimeOpen"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["selectTime", "open"]
+                            },
+                            operation: 4
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            const oldValue = $stateGet(objRoot, variablePath);
+                            $stateSet(objRoot, variablePath, !oldValue);
+                            return !oldValue;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateSelectTimeOpen"] != null &&
+                      typeof $steps["updateSelectTimeOpen"] === "object" &&
+                      typeof $steps["updateSelectTimeOpen"].then === "function"
+                    ) {
+                      $steps["updateSelectTimeOpen"] = await $steps[
+                        "updateSelectTimeOpen"
+                      ];
+                    }
+
+                    $steps["updateTimePickerType"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["timePickerType"]
+                            },
+                            operation: 0,
+                            value: "FROM_TIME"
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateTimePickerType"] != null &&
+                      typeof $steps["updateTimePickerType"] === "object" &&
+                      typeof $steps["updateTimePickerType"].then === "function"
+                    ) {
+                      $steps["updateTimePickerType"] = await $steps[
+                        "updateTimePickerType"
+                      ];
+                    }
+                  }}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return `از ساعت ${
+                          !!$state.fromTime ? $state.fromTime : ""
+                        }`;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u0627\u0632 \u0633\u0627\u0639\u062a";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__uDmX2
+                  )}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateSelectTimeOpen"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["selectTime", "open"]
+                            },
+                            operation: 4
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            const oldValue = $stateGet(objRoot, variablePath);
+                            $stateSet(objRoot, variablePath, !oldValue);
+                            return !oldValue;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateSelectTimeOpen"] != null &&
+                      typeof $steps["updateSelectTimeOpen"] === "object" &&
+                      typeof $steps["updateSelectTimeOpen"].then === "function"
+                    ) {
+                      $steps["updateSelectTimeOpen"] = await $steps[
+                        "updateSelectTimeOpen"
+                      ];
+                    }
+
+                    $steps["updateTimePickerType"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["timePickerType"]
+                            },
+                            operation: 0,
+                            value: "TO_TIME"
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateTimePickerType"] != null &&
+                      typeof $steps["updateTimePickerType"] === "object" &&
+                      typeof $steps["updateTimePickerType"].then === "function"
+                    ) {
+                      $steps["updateTimePickerType"] = await $steps[
+                        "updateTimePickerType"
+                      ];
+                    }
+                  }}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return `تا ساعت ${
+                          !!$state.toTime ? $state.toTime : ""
+                        }`;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u062a\u0627 \u0633\u0627\u0639\u062a";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+              </Stack__>
+            ) : null}
+            <div className={classNames(projectcss.all, sty.freeBox__vCfSi)}>
+              {(() => {
+                try {
+                  return !!$state.dateRangePicker.selectedDays.from;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <Checkbox
+                  data-plasmic-name={"checkbox"}
+                  data-plasmic-override={overrides.checkbox}
+                  className={classNames("__wab_instance", sty.checkbox)}
+                  isChecked={
+                    generateStateValueProp($state, ["checkbox", "isChecked"]) ??
+                    false
+                  }
+                  onChange={async (...eventArgs: any) => {
+                    ((...eventArgs) => {
+                      generateStateOnChangeProp($state, [
+                        "checkbox",
+                        "isChecked"
+                      ])(eventArgs[0]);
+                    }).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__whniE
+                    )}
+                  >
+                    {
+                      "\u062b\u0628\u062a \u0645\u0631\u062e\u0635\u06cc \u0628\u0631\u0627\u06cc \u062a\u0645\u0627\u0645 \u0631\u0648\u0632"
+                    }
+                  </div>
+                </Checkbox>
+              ) : null}
+            </div>
+            <Button
+              children2={"\u062b\u0628\u062a \u0645\u0631\u062e\u0635\u06cc"}
+              className={classNames("__wab_instance", sty.button__eKdDh)}
+              isDisabled={(() => {
+                try {
+                  return (
+                    !(
+                      $state.dateRangePicker.selectedDays.to &&
+                      $state.dateRangePicker.selectedDays.from
+                    ) ||
+                    !(
+                      ($state.fromTime && $state.toTime) ||
+                      $state.checkbox.isChecked
+                    )
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "isDisabled";
+                  }
+                  throw e;
+                }
+              })()}
+              loading={(() => {
+                try {
+                  return $state.isLoadingSubmitVacation;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateIsLoadingSubmitVacation"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["isLoadingSubmitVacation"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateIsLoadingSubmitVacation"] != null &&
+                  typeof $steps["updateIsLoadingSubmitVacation"] === "object" &&
+                  typeof $steps["updateIsLoadingSubmitVacation"].then ===
+                    "function"
+                ) {
+                  $steps["updateIsLoadingSubmitVacation"] = await $steps[
+                    "updateIsLoadingSubmitVacation"
+                  ];
+                }
+
+                $steps["submitVacation"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "POST",
+                          (() => {
+                            try {
+                              return (() => {
+                                const centerId =
+                                  $state.centersApi.data.data.find(
+                                    center =>
+                                      center.user_center_id ==
+                                      $state.drCenters.selectedCenter
+                                  )?.id || "";
+                                return `https://api.paziresh24.com/V1/doctor/vacation/${centerId}`;
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          undefined,
+                          (() => {
+                            try {
+                              return (() => {
+                                const dateObjectToFormattedDate =
+                                  dateObject => {
+                                    return `${dateObject?.year}/${dateObject?.month}/${dateObject?.day}`;
+                                  };
+                                const convertDateAndTimeToTimeStamp = (
+                                  date,
+                                  time
+                                ) => {
+                                  return $$.moment
+                                    .from(
+                                      `${dateObjectToFormattedDate(
+                                        date
+                                      )} ${time}`,
+                                      "fa",
+                                      "JYYYY/JMM/JDD HH:mm"
+                                    )
+                                    .unix();
+                                };
+                                const fromTime = $state.checkbox.isChecked
+                                  ? "00:00"
+                                  : $state.fromTime;
+                                const fromDate = convertDateAndTimeToTimeStamp(
+                                  $state.dateRangePicker.selectedDays.from,
+                                  fromTime
+                                );
+                                const toTime = $state.checkbox.isChecked
+                                  ? "23:59"
+                                  : $state.toTime;
+                                const toDate = convertDateAndTimeToTimeStamp(
+                                  $state.dateRangePicker.selectedDays.to,
+                                  toTime
+                                );
+                                return {
+                                  from: fromDate,
+                                  to: toDate
+                                };
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["submitVacation"] != null &&
+                  typeof $steps["submitVacation"] === "object" &&
+                  typeof $steps["submitVacation"].then === "function"
+                ) {
+                  $steps["submitVacation"] = await $steps["submitVacation"];
+                }
+
+                $steps["updateIsLoadingSubmitVacation2"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["isLoadingSubmitVacation"]
+                        },
+                        operation: 0,
+                        value: false
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateIsLoadingSubmitVacation2"] != null &&
+                  typeof $steps["updateIsLoadingSubmitVacation2"] ===
+                    "object" &&
+                  typeof $steps["updateIsLoadingSubmitVacation2"].then ===
+                    "function"
+                ) {
+                  $steps["updateIsLoadingSubmitVacation2"] = await $steps[
+                    "updateIsLoadingSubmitVacation2"
+                  ];
+                }
+
+                $steps["updateAddVocationDialogOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["addVocationDialog", "open"]
+                        },
+                        operation: 4
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateAddVocationDialogOpen"] != null &&
+                  typeof $steps["updateAddVocationDialogOpen"] === "object" &&
+                  typeof $steps["updateAddVocationDialogOpen"].then ===
+                    "function"
+                ) {
+                  $steps["updateAddVocationDialogOpen"] = await $steps[
+                    "updateAddVocationDialogOpen"
+                  ];
+                }
+
+                $steps["toast"] = !!$steps.submitVacation.data?.message
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return $steps.submitVacation.status == 200
+                                ? "success"
+                                : "error";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          (() => {
+                            try {
+                              return $steps.submitVacation.data?.message || "";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["toast"] != null &&
+                  typeof $steps["toast"] === "object" &&
+                  typeof $steps["toast"].then === "function"
+                ) {
+                  $steps["toast"] = await $steps["toast"];
+                }
+
+                $steps["refetchVocation"] =
+                  $steps.submitVacation.status == 200
+                    ? (() => {
+                        const actionArgs = {
+                          tplRef: "vacationApi",
+                          action: "refresh"
+                        };
+                        return (({ tplRef, action, args }) => {
+                          return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                if (
+                  $steps["refetchVocation"] != null &&
+                  typeof $steps["refetchVocation"] === "object" &&
+                  typeof $steps["refetchVocation"].then === "function"
+                ) {
+                  $steps["refetchVocation"] = await $steps["refetchVocation"];
+                }
+
+                $steps["fromDateUpdate"] =
+                  $steps.submitVacation.status != 409
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: [
+                              "dateRangePicker",
+                              "selectedDays",
+                              "from"
+                            ]
+                          },
+                          operation: 0,
+                          value: null
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                if (
+                  $steps["fromDateUpdate"] != null &&
+                  typeof $steps["fromDateUpdate"] === "object" &&
+                  typeof $steps["fromDateUpdate"].then === "function"
+                ) {
+                  $steps["fromDateUpdate"] = await $steps["fromDateUpdate"];
+                }
+
+                $steps["toDateUpdate"] =
+                  $steps.submitVacation.status != 409
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: [
+                              "dateRangePicker",
+                              "selectedDays",
+                              "to"
+                            ]
+                          },
+                          operation: 0,
+                          value: null
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                if (
+                  $steps["toDateUpdate"] != null &&
+                  typeof $steps["toDateUpdate"] === "object" &&
+                  typeof $steps["toDateUpdate"].then === "function"
+                ) {
+                  $steps["toDateUpdate"] = await $steps["toDateUpdate"];
+                }
+
+                $steps["updateCheckboxIsChecked"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["checkbox", "isChecked"]
+                        },
+                        operation: 0,
+                        value: false
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateCheckboxIsChecked"] != null &&
+                  typeof $steps["updateCheckboxIsChecked"] === "object" &&
+                  typeof $steps["updateCheckboxIsChecked"].then === "function"
+                ) {
+                  $steps["updateCheckboxIsChecked"] = await $steps[
+                    "updateCheckboxIsChecked"
+                  ];
+                }
+
+                $steps["updateErrorDialogOpen"] =
+                  $steps.submitVacation.status == 409
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["errorDialog", "open"]
+                          },
+                          operation: 0,
+                          value: true
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                if (
+                  $steps["updateErrorDialogOpen"] != null &&
+                  typeof $steps["updateErrorDialogOpen"] === "object" &&
+                  typeof $steps["updateErrorDialogOpen"].then === "function"
+                ) {
+                  $steps["updateErrorDialogOpen"] = await $steps[
+                    "updateErrorDialogOpen"
+                  ];
+                }
+
+                $steps["updateSelectedVacation"] =
+                  $steps.submitVacation.status == 409
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["selectedVacation"]
+                          },
+                          operation: 0,
+                          value: {
+                            from: $state.dateRangePicker.selectedDays.from,
+                            to: $state.dateRangePicker.selectedDays.to
+                          }
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                if (
+                  $steps["updateSelectedVacation"] != null &&
+                  typeof $steps["updateSelectedVacation"] === "object" &&
+                  typeof $steps["updateSelectedVacation"].then === "function"
+                ) {
+                  $steps["updateSelectedVacation"] = await $steps[
+                    "updateSelectedVacation"
+                  ];
+                }
+              }}
+            />
+          </div>
+        }
+        className={classNames("__wab_instance", sty.addVocationDialog)}
         onOpenChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["dialog", "open"]).apply(
-            null,
-            eventArgs
-          );
+          generateStateOnChangeProp($state, [
+            "addVocationDialog",
+            "open"
+          ]).apply(null, eventArgs);
 
           if (
             eventArgs.length > 1 &&
@@ -551,11 +1620,10 @@ function PlasmicVacation__RenderFunc(props: {
             return;
           }
         }}
-        open={generateStateValueProp($state, ["dialog", "open"])}
+        open={generateStateValueProp($state, ["addVocationDialog", "open"])}
+        title={"\u062b\u0628\u062a \u0645\u0631\u062e\u0635\u06cc"}
         trigger={
           <Button
-            data-plasmic-name={"button"}
-            data-plasmic-override={overrides.button}
             children2={
               <div
                 className={classNames(
@@ -564,16 +1632,146 @@ function PlasmicVacation__RenderFunc(props: {
                   sty.text__oKyrr
                 )}
               >
-                {"Show dialog"}
+                {
+                  "\u0627\u0636\u0627\u0641\u0647 \u06a9\u0631\u062f\u0646 \u0645\u0631\u062e\u0635\u06cc"
+                }
               </div>
             }
-            className={classNames("__wab_instance", sty.button)}
+            className={classNames("__wab_instance", sty.button__rwvhc)}
             endIcon={
               <ChevronLeftIcon
                 className={classNames(projectcss.all, sty.svg__rUim5)}
                 role={"img"}
               />
             }
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["updateDateRangePickerSelectedDays"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["dateRangePicker", "selectedDays"]
+                      },
+                      operation: 0,
+                      value: {
+                        from: null,
+                        to: null
+                      }
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateDateRangePickerSelectedDays"] != null &&
+                typeof $steps["updateDateRangePickerSelectedDays"] ===
+                  "object" &&
+                typeof $steps["updateDateRangePickerSelectedDays"].then ===
+                  "function"
+              ) {
+                $steps["updateDateRangePickerSelectedDays"] = await $steps[
+                  "updateDateRangePickerSelectedDays"
+                ];
+              }
+
+              $steps["updateCheckboxIsChecked"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["checkbox", "isChecked"]
+                      },
+                      operation: 0,
+                      value: false
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateCheckboxIsChecked"] != null &&
+                typeof $steps["updateCheckboxIsChecked"] === "object" &&
+                typeof $steps["updateCheckboxIsChecked"].then === "function"
+              ) {
+                $steps["updateCheckboxIsChecked"] = await $steps[
+                  "updateCheckboxIsChecked"
+                ];
+              }
+
+              $steps["updateFromTime"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["fromTime"]
+                      },
+                      operation: 0,
+                      value: ""
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateFromTime"] != null &&
+                typeof $steps["updateFromTime"] === "object" &&
+                typeof $steps["updateFromTime"].then === "function"
+              ) {
+                $steps["updateFromTime"] = await $steps["updateFromTime"];
+              }
+
+              $steps["updateToTime"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["toTime"]
+                      },
+                      operation: 0,
+                      value: ""
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateToTime"] != null &&
+                typeof $steps["updateToTime"] === "object" &&
+                typeof $steps["updateToTime"].then === "function"
+              ) {
+                $steps["updateToTime"] = await $steps["updateToTime"];
+              }
+            }}
             outline={true}
             startIcon={
               <ChevronRightIcon
@@ -826,9 +2024,7 @@ function PlasmicVacation__RenderFunc(props: {
               sty.text__qU1YR
             )}
           >
-            {
-              "\u062e\u0637\u0627\u06cc\u06cc \u062f\u0631 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0631\u062e \u062f\u0627\u062f\u0647 \u0627\u0633\u062a"
-            }
+            {""}
           </div>
         }
         loadingDisplay={
@@ -942,7 +2138,11 @@ function PlasmicVacation__RenderFunc(props: {
             throw e;
           }
         })() ? (
-          <div className={classNames(projectcss.all, sty.freeBox__pQyuJ)}>
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__pQyuJ)}
+          >
             {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
               (() => {
                 try {
@@ -968,57 +2168,2310 @@ function PlasmicVacation__RenderFunc(props: {
                   key={currentIndex}
                 >
                   <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__hPbEr
-                    )}
+                    className={classNames(projectcss.all, sty.freeBox__zhCmD)}
                   >
-                    <React.Fragment>
-                      {(() => {
-                        try {
-                          return `${currentItem.formatted_from} الی ${currentItem.formatted_to}`;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "";
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__hPbEr
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return `${currentItem.formatted_from} الی ${currentItem.formatted_to}`;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "";
+                            }
+                            throw e;
                           }
-                          throw e;
-                        }
-                      })()}
-                    </React.Fragment>
+                        })()}
+                      </React.Fragment>
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text___28Ia
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return `مدت زمان: ${currentItem.formatted_duration}`;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
                   </div>
+                  {(() => {
+                    try {
+                      return +currentItem.to > Math.floor(Date.now() / 1000);
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <Stack__
+                      as={"div"}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.freeBox__vvyn9)}
+                    >
+                      <Icon26Icon
+                        className={classNames(projectcss.all, sty.svg__yOhmm)}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["updateSelectedVacation"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["selectedVacation"]
+                                  },
+                                  operation: 0,
+                                  value: {
+                                    from: currentItem.from,
+                                    to: currentItem.to
+                                  }
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateSelectedVacation"] != null &&
+                            typeof $steps["updateSelectedVacation"] ===
+                              "object" &&
+                            typeof $steps["updateSelectedVacation"].then ===
+                              "function"
+                          ) {
+                            $steps["updateSelectedVacation"] = await $steps[
+                              "updateSelectedVacation"
+                            ];
+                          }
+
+                          $steps["updateEditDialogOpen"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["editDialog", "open"]
+                                  },
+                                  operation: 4
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  const oldValue = $stateGet(
+                                    objRoot,
+                                    variablePath
+                                  );
+                                  $stateSet(objRoot, variablePath, !oldValue);
+                                  return !oldValue;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateEditDialogOpen"] != null &&
+                            typeof $steps["updateEditDialogOpen"] ===
+                              "object" &&
+                            typeof $steps["updateEditDialogOpen"].then ===
+                              "function"
+                          ) {
+                            $steps["updateEditDialogOpen"] = await $steps[
+                              "updateEditDialogOpen"
+                            ];
+                          }
+                        }}
+                        role={"img"}
+                      />
+
+                      <Icon4Icon
+                        className={classNames(projectcss.all, sty.svg___8IMu)}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["updateSelectedVacation"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["selectedVacation"]
+                                  },
+                                  operation: 0,
+                                  value: {
+                                    from: currentItem.from,
+                                    to: currentItem.to
+                                  }
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateSelectedVacation"] != null &&
+                            typeof $steps["updateSelectedVacation"] ===
+                              "object" &&
+                            typeof $steps["updateSelectedVacation"].then ===
+                              "function"
+                          ) {
+                            $steps["updateSelectedVacation"] = await $steps[
+                              "updateSelectedVacation"
+                            ];
+                          }
+
+                          $steps["updateDeleteDialogOpen"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["deleteDialog", "open"]
+                                  },
+                                  operation: 4
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  const oldValue = $stateGet(
+                                    objRoot,
+                                    variablePath
+                                  );
+                                  $stateSet(objRoot, variablePath, !oldValue);
+                                  return !oldValue;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateDeleteDialogOpen"] != null &&
+                            typeof $steps["updateDeleteDialogOpen"] ===
+                              "object" &&
+                            typeof $steps["updateDeleteDialogOpen"].then ===
+                              "function"
+                          ) {
+                            $steps["updateDeleteDialogOpen"] = await $steps[
+                              "updateDeleteDialogOpen"
+                            ];
+                          }
+                        }}
+                        role={"img"}
+                      />
+                    </Stack__>
+                  ) : null}
+                </Stack__>
+              );
+            })}
+          </Stack__>
+        ) : null}
+      </ApiRequest>
+      <Dialog
+        data-plasmic-name={"errorDialog"}
+        data-plasmic-override={overrides.errorDialog}
+        body={
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__o8Zyk)}
+          >
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__fb8Az
+              )}
+            >
+              {
+                "\u062f\u0631 \u0627\u06cc\u0646 \u0628\u0627\u0632\u0647 \u06f1 \u0646\u0648\u0628\u062a \u0648\u062c\u0648\u062f \u062f\u0627\u0631\u062f\u060c \u0686\u06af\u0648\u0646\u0647 \u0622\u0646\u0647\u0627 \u0631\u0627 \u0645\u062f\u06cc\u0631\u06cc\u062a \u0645\u06cc \u06a9\u0646\u06cc\u062f\u061f"
+              }
+            </div>
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__hn28D
+              )}
+            >
+              {
+                "\u062f\u0631\ufee7\ufec8\ufeae \u062f\u0627\ufeb7\ufe98\ufeea \ufe91\ufe8e\ufeb7\ufbff\ufeaa \ufb90\ufeea \ufb58\ufeb2 \u0627\u0632 \ufea3\ufeac\u0641 \u06cc\u0627 \u062c\u0627\u0628\u062c\u0627\u06cc\u06cc \u0646\u0648\u0628\u062a \ufe91\ufeae\u0627\u06cc \ufe91\ufbff\ufee4\ufe8e\u0631\u0627\u0646 \ufb58\ufbff\ufe8e\ufee3\ufb8f \u0627\u0631\ufeb3\ufe8e\u0644 \ufee3\ufbfd \ufeb7\ufeee\u062f."
+              }
+            </div>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__fYxVg)}
+            >
+              <Button
+                children2={
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text___28Ia
+                      sty.text__thyUh
                     )}
                   >
-                    <React.Fragment>
-                      {(() => {
+                    {"\u062d\u0630\u0641 \u0646\u0648\u0628\u062a"}
+                  </div>
+                }
+                className={classNames("__wab_instance", sty.button__romfO)}
+                loading={(() => {
+                  try {
+                    return $state.isLoadingDelete;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateIsLoadingDelete"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["isLoadingDelete"]
+                          },
+                          operation: 0,
+                          value: true
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateIsLoadingDelete"] != null &&
+                    typeof $steps["updateIsLoadingDelete"] === "object" &&
+                    typeof $steps["updateIsLoadingDelete"].then === "function"
+                  ) {
+                    $steps["updateIsLoadingDelete"] = await $steps[
+                      "updateIsLoadingDelete"
+                    ];
+                  }
+
+                  $steps["deleteBooks"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "POST",
+                            (() => {
+                              try {
+                                return (() => {
+                                  const centerId =
+                                    $state.centersApi.data.data.find(
+                                      center =>
+                                        center.user_center_id ==
+                                        $state.drCenters.selectedCenter
+                                    )?.id;
+                                  return `https://api.paziresh24.com/V1/doctor/books/${
+                                    centerId || ""
+                                  }/delete`;
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            undefined,
+                            (() => {
+                              try {
+                                return (() => {
+                                  const dateObjectToFormattedDate =
+                                    dateObject => {
+                                      return `${dateObject?.year}/${dateObject?.month}/${dateObject?.day}`;
+                                    };
+                                  const convertDateAndTimeToTimeStamp = (
+                                    date,
+                                    time
+                                  ) => {
+                                    return $$.moment
+                                      .from(
+                                        `${dateObjectToFormattedDate(
+                                          date
+                                        )} ${time}`,
+                                        "fa",
+                                        "JYYYY/JMM/JDD HH:mm"
+                                      )
+                                      .unix();
+                                  };
+                                  const fromTime = $state.checkbox.isChecked
+                                    ? "00:00"
+                                    : $state.fromTime;
+                                  const fromDate =
+                                    convertDateAndTimeToTimeStamp(
+                                      $state.dateRangePicker.selectedDays.from,
+                                      fromTime
+                                    );
+                                  const toTime = $state.checkbox.isChecked
+                                    ? "23:59"
+                                    : $state.toTime;
+                                  const toDate = convertDateAndTimeToTimeStamp(
+                                    $state.dateRangePicker.selectedDays.to,
+                                    toTime
+                                  );
+                                  return {
+                                    from: fromDate,
+                                    to: toDate
+                                  };
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["deleteBooks"] != null &&
+                    typeof $steps["deleteBooks"] === "object" &&
+                    typeof $steps["deleteBooks"].then === "function"
+                  ) {
+                    $steps["deleteBooks"] = await $steps["deleteBooks"];
+                  }
+
+                  $steps["updateIsLoadingDelete2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["isLoadingDelete"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateIsLoadingDelete2"] != null &&
+                    typeof $steps["updateIsLoadingDelete2"] === "object" &&
+                    typeof $steps["updateIsLoadingDelete2"].then === "function"
+                  ) {
+                    $steps["updateIsLoadingDelete2"] = await $steps[
+                      "updateIsLoadingDelete2"
+                    ];
+                  }
+
+                  $steps["closeDialog"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["errorDialog", "open"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["closeDialog"] != null &&
+                    typeof $steps["closeDialog"] === "object" &&
+                    typeof $steps["closeDialog"].then === "function"
+                  ) {
+                    $steps["closeDialog"] = await $steps["closeDialog"];
+                  }
+
+                  $steps["toast"] =
+                    $steps.deleteBooks.status == 200
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              undefined,
+                              "\u0645\u0631\u062e\u0635\u06cc \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062b\u0628\u062a \u0634\u062f."
+                            ]
+                          };
+                          return $globalActions["Fragment.showToast"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                  if (
+                    $steps["toast"] != null &&
+                    typeof $steps["toast"] === "object" &&
+                    typeof $steps["toast"].then === "function"
+                  ) {
+                    $steps["toast"] = await $steps["toast"];
+                  }
+
+                  $steps["refetch"] =
+                    $steps.deleteBooks.status == 200
+                      ? (() => {
+                          const actionArgs = {
+                            tplRef: "vacationApi",
+                            action: "refresh"
+                          };
+                          return (({ tplRef, action, args }) => {
+                            return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps["refetch"] != null &&
+                    typeof $steps["refetch"] === "object" &&
+                    typeof $steps["refetch"].then === "function"
+                  ) {
+                    $steps["refetch"] = await $steps["refetch"];
+                  }
+                }}
+                outline={true}
+              />
+
+              <Button
+                children2={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___7MZ8F
+                    )}
+                  >
+                    {
+                      "\u062c\u0627\u0628\u062c\u0627 \u06a9\u0631\u062f\u0646 \u0646\u0648\u0628\u062a"
+                    }
+                  </div>
+                }
+                className={classNames("__wab_instance", sty.button__djAfO)}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateChangeDateDialogOpen"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["changeDateDialog", "open"]
+                          },
+                          operation: 4
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, !oldValue);
+                          return !oldValue;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateChangeDateDialogOpen"] != null &&
+                    typeof $steps["updateChangeDateDialogOpen"] === "object" &&
+                    typeof $steps["updateChangeDateDialogOpen"].then ===
+                      "function"
+                  ) {
+                    $steps["updateChangeDateDialogOpen"] = await $steps[
+                      "updateChangeDateDialogOpen"
+                    ];
+                  }
+                }}
+                outline={true}
+              />
+            </Stack__>
+          </Stack__>
+        }
+        className={classNames("__wab_instance", sty.errorDialog)}
+        noTrigger={true}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["errorDialog", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        open={generateStateValueProp($state, ["errorDialog", "open"])}
+        title={"\u0645\u0631\u062e\u0635\u06cc"}
+        trigger={null}
+      />
+
+      <Dialog
+        data-plasmic-name={"changeDateDialog"}
+        data-plasmic-override={overrides.changeDateDialog}
+        body={
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__v9WaA)}
+          >
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__dhi47
+              )}
+            >
+              {"\u0646\u0648\u0628\u062a \u0647\u0627 \u0628\u0647 "}
+            </div>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__qMfdl)}
+            >
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__y8Ykp
+                )}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateSelectDateOpen"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["selectDate", "open"]
+                          },
+                          operation: 4
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, !oldValue);
+                          return !oldValue;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateSelectDateOpen"] != null &&
+                    typeof $steps["updateSelectDateOpen"] === "object" &&
+                    typeof $steps["updateSelectDateOpen"].then === "function"
+                  ) {
+                    $steps["updateSelectDateOpen"] = await $steps[
+                      "updateSelectDateOpen"
+                    ];
+                  }
+                }}
+              >
+                {"\u062a\u0627\u0631\u06cc\u062e"}
+              </div>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__kI4Xy
+                )}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateSelectTimeOpen"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["selectTime", "open"]
+                          },
+                          operation: 4
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, !oldValue);
+                          return !oldValue;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateSelectTimeOpen"] != null &&
+                    typeof $steps["updateSelectTimeOpen"] === "object" &&
+                    typeof $steps["updateSelectTimeOpen"].then === "function"
+                  ) {
+                    $steps["updateSelectTimeOpen"] = await $steps[
+                      "updateSelectTimeOpen"
+                    ];
+                  }
+                }}
+              >
+                {"\u0633\u0627\u0639\u062a"}
+              </div>
+            </Stack__>
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__gsPOp
+              )}
+            >
+              {"\u0645\u0646\u062a\u0642\u0644 \u0634\u0648\u062f."}
+            </div>
+            <Button
+              children2={"\u062a\u0627\u06cc\u06cc\u062f"}
+              className={classNames("__wab_instance", sty.button__vIp1U)}
+            />
+          </Stack__>
+        }
+        className={classNames("__wab_instance", sty.changeDateDialog)}
+        noTrigger={true}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["changeDateDialog", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        open={generateStateValueProp($state, ["changeDateDialog", "open"])}
+        title={
+          "\u062c\u0627\u0628\u062c\u0627\u06cc\u06cc \u0646\u0648\u0628\u062a"
+        }
+        trigger={null}
+      />
+
+      <Dialog
+        data-plasmic-name={"selectDate"}
+        data-plasmic-override={overrides.selectDate}
+        body={
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__ahm6J)}
+          >
+            <DatePicker
+              data-plasmic-name={"datePicker"}
+              data-plasmic-override={overrides.datePicker}
+              className={classNames("__wab_instance", sty.datePicker)}
+              holidays={[]}
+              locale={"fa"}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "datePicker",
+                  "value"
+                ]).apply(null, eventArgs);
+                generateStateOnChangeProp($state, [
+                  "datePicker",
+                  "values"
+                ]).apply(null, eventArgs);
+              }}
+              value={generateStateValueProp($state, ["datePicker", "value"])}
+              values={generateStateValueProp($state, ["datePicker", "values"])}
+            />
+
+            <Button
+              children2={"\u062a\u0627\u06cc\u06cc\u062f"}
+              className={classNames("__wab_instance", sty.button__gGfXg)}
+            />
+          </Stack__>
+        }
+        className={classNames("__wab_instance", sty.selectDate)}
+        noTrigger={true}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["selectDate", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        open={generateStateValueProp($state, ["selectDate", "open"])}
+        title={
+          "\u0627\u0646\u062a\u062e\u0627\u0628 \u062a\u0627\u0631\u06cc\u062e"
+        }
+        trigger={null}
+      />
+
+      <Dialog
+        data-plasmic-name={"selectTime"}
+        data-plasmic-override={overrides.selectTime}
+        body={
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__oZPy)}
+          >
+            <TimePicker
+              data-plasmic-name={"timePicker"}
+              data-plasmic-override={overrides.timePicker}
+              className={classNames("__wab_instance", sty.timePicker)}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "timePicker",
+                  "value"
+                ]).apply(null, eventArgs);
+              }}
+              value={generateStateValueProp($state, ["timePicker", "value"])}
+            />
+
+            <Button
+              children2={"\u062a\u0627\u06cc\u06cc\u062f"}
+              className={classNames("__wab_instance", sty.button___5AhZc)}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateFromTime"] =
+                  $state.timePickerType === "FROM_TIME" ||
+                  $state.timePickerType === "EDIT_FROM_TIME"
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["fromTime"]
+                          },
+                          operation: 0,
+                          value: $state.timePicker.value
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                if (
+                  $steps["updateFromTime"] != null &&
+                  typeof $steps["updateFromTime"] === "object" &&
+                  typeof $steps["updateFromTime"].then === "function"
+                ) {
+                  $steps["updateFromTime"] = await $steps["updateFromTime"];
+                }
+
+                $steps["updateToTime"] =
+                  $state.timePickerType === "TO_TIME" ||
+                  $state.timePickerType === "EDIT_TO_TIME"
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["toTime"]
+                          },
+                          operation: 0,
+                          value: $state.timePicker.value
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                if (
+                  $steps["updateToTime"] != null &&
+                  typeof $steps["updateToTime"] === "object" &&
+                  typeof $steps["updateToTime"].then === "function"
+                ) {
+                  $steps["updateToTime"] = await $steps["updateToTime"];
+                }
+
+                $steps["updateSelectTimeOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["selectTime", "open"]
+                        },
+                        operation: 4
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateSelectTimeOpen"] != null &&
+                  typeof $steps["updateSelectTimeOpen"] === "object" &&
+                  typeof $steps["updateSelectTimeOpen"].then === "function"
+                ) {
+                  $steps["updateSelectTimeOpen"] = await $steps[
+                    "updateSelectTimeOpen"
+                  ];
+                }
+              }}
+            />
+          </Stack__>
+        }
+        className={classNames("__wab_instance", sty.selectTime)}
+        noTrigger={true}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["selectTime", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        open={generateStateValueProp($state, ["selectTime", "open"])}
+        title={"\u0627\u0646\u062a\u062e\u0627\u0628 \u0633\u0627\u0639\u062a"}
+        trigger={null}
+      />
+
+      <Dialog
+        data-plasmic-name={"deleteDialog"}
+        data-plasmic-override={overrides.deleteDialog}
+        body={
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox___9UkGr)}
+          >
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text___59HW1
+              )}
+            >
+              {
+                "\u0622\u06cc\u0627 \u0627\u0632 \u062d\u0630\u0641 \u0645\u0631\u062e\u0635\u06cc \u062e\u0648\u062f \u0627\u0637\u0645\u06cc\u0646\u0627\u0646 \u062f\u0627\u0631\u06cc\u062f\u061f"
+              }
+            </div>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__siU1P)}
+            >
+              <Button
+                children2={"\u062d\u0630\u0641 \u0645\u0631\u062e\u0635\u06cc"}
+                className={classNames("__wab_instance", sty.button__dvvA1)}
+                color={"red"}
+                loading={(() => {
+                  try {
+                    return $state.isLoadingDeleteVacation;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateIsLoadingDeleteVacation"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["isLoadingDeleteVacation"]
+                          },
+                          operation: 0,
+                          value: true
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateIsLoadingDeleteVacation"] != null &&
+                    typeof $steps["updateIsLoadingDeleteVacation"] ===
+                      "object" &&
+                    typeof $steps["updateIsLoadingDeleteVacation"].then ===
+                      "function"
+                  ) {
+                    $steps["updateIsLoadingDeleteVacation"] = await $steps[
+                      "updateIsLoadingDeleteVacation"
+                    ];
+                  }
+
+                  $steps["deleteVacation"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "DELETE",
+                            (() => {
+                              try {
+                                return (() => {
+                                  const centerId =
+                                    $state.centersApi.data.data.find(
+                                      center =>
+                                        center.user_center_id ==
+                                        $state.drCenters.selectedCenter
+                                    )?.id || "";
+                                  return `https://api.paziresh24.com/V1/doctor/vacation/${centerId}?from=${$state.selectedVacation.from}&to=${$state.selectedVacation.to}`;
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            undefined,
+                            (() => {
+                              try {
+                                return {
+                                  ...$ctx.Fragment.apiConfig,
+                                  ...$ctx.Fragment.previewApiConfig
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["deleteVacation"] != null &&
+                    typeof $steps["deleteVacation"] === "object" &&
+                    typeof $steps["deleteVacation"].then === "function"
+                  ) {
+                    $steps["deleteVacation"] = await $steps["deleteVacation"];
+                  }
+
+                  $steps["updateIsLoadingDeleteVacation2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["isLoadingDeleteVacation"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateIsLoadingDeleteVacation2"] != null &&
+                    typeof $steps["updateIsLoadingDeleteVacation2"] ===
+                      "object" &&
+                    typeof $steps["updateIsLoadingDeleteVacation2"].then ===
+                      "function"
+                  ) {
+                    $steps["updateIsLoadingDeleteVacation2"] = await $steps[
+                      "updateIsLoadingDeleteVacation2"
+                    ];
+                  }
+
+                  $steps["toast"] = !!$steps.deleteVacation.data.message
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return $steps.deleteVacation.status == 200
+                                  ? "success"
+                                  : "error";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            (() => {
+                              try {
+                                return (
+                                  $steps.deleteVacation.data?.message || ""
+                                );
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["toast"] != null &&
+                    typeof $steps["toast"] === "object" &&
+                    typeof $steps["toast"].then === "function"
+                  ) {
+                    $steps["toast"] = await $steps["toast"];
+                  }
+
+                  $steps["closeDialog"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["deleteDialog", "open"]
+                          },
+                          operation: 4
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, !oldValue);
+                          return !oldValue;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["closeDialog"] != null &&
+                    typeof $steps["closeDialog"] === "object" &&
+                    typeof $steps["closeDialog"].then === "function"
+                  ) {
+                    $steps["closeDialog"] = await $steps["closeDialog"];
+                  }
+
+                  $steps["refetchData"] =
+                    $steps.deleteVacation.status == 200
+                      ? (() => {
+                          const actionArgs = {
+                            tplRef: "vacationApi",
+                            action: "refresh"
+                          };
+                          return (({ tplRef, action, args }) => {
+                            return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps["refetchData"] != null &&
+                    typeof $steps["refetchData"] === "object" &&
+                    typeof $steps["refetchData"].then === "function"
+                  ) {
+                    $steps["refetchData"] = await $steps["refetchData"];
+                  }
+                }}
+                outline={true}
+              />
+
+              <Button
+                children2={"\u0627\u0646\u0635\u0631\u0627\u0641"}
+                className={classNames("__wab_instance", sty.button__lm6LO)}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateDeleteDialogOpen"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["deleteDialog", "open"]
+                          },
+                          operation: 4
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, !oldValue);
+                          return !oldValue;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateDeleteDialogOpen"] != null &&
+                    typeof $steps["updateDeleteDialogOpen"] === "object" &&
+                    typeof $steps["updateDeleteDialogOpen"].then === "function"
+                  ) {
+                    $steps["updateDeleteDialogOpen"] = await $steps[
+                      "updateDeleteDialogOpen"
+                    ];
+                  }
+                }}
+                outline={true}
+              />
+            </Stack__>
+          </Stack__>
+        }
+        className={classNames("__wab_instance", sty.deleteDialog)}
+        noTrigger={true}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["deleteDialog", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        open={generateStateValueProp($state, ["deleteDialog", "open"])}
+        title={"\u062d\u0630\u0641 \u0645\u0631\u062e\u0635\u06cc"}
+        trigger={null}
+      />
+
+      <Dialog
+        data-plasmic-name={"editDialog"}
+        data-plasmic-override={overrides.editDialog}
+        body={
+          <div className={classNames(projectcss.all, sty.freeBox__w6Swm)}>
+            {(() => {
+              const child$Props = {
+                className: classNames("__wab_instance", sty.dateRangePicker2),
+                locale: "fa",
+                onChange: async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "dateRangePicker2",
+                    "selectedDays"
+                  ]).apply(null, eventArgs);
+                },
+                selectedDays: generateStateValueProp($state, [
+                  "dateRangePicker2",
+                  "selectedDays"
+                ])
+              };
+              initializeCodeComponentStates(
+                $state,
+                [
+                  {
+                    name: "selectedDays",
+                    plasmicStateName: "dateRangePicker2.selectedDays"
+                  }
+                ],
+                [],
+                undefined ?? {},
+                child$Props
+              );
+              initializePlasmicStates(
+                $state,
+                [
+                  {
+                    name: "dateRangePicker2.selectedDays",
+                    initFunc: ({ $props, $state, $queries }) =>
+                      (() => {
                         try {
-                          return `مدت زمان: ${currentItem.formatted_duration}`;
+                          return (() => {
+                            const convertTimestampToDate = time => {
+                              const date = new Date(time * 1000);
+                              return date.toLocaleDateString();
+                            };
+                            const formattedDateToDateObject = formattedDate => {
+                              if (!formattedDate) return null;
+                              const dateObject = $$.moment(formattedDate);
+                              return {
+                                year: dateObject.year(),
+                                month: dateObject.month() + 1,
+                                day: dateObject.date()
+                              };
+                            };
+                            const from = formattedDateToDateObject(
+                              $$.moment
+                                .from(
+                                  convertTimestampToDate(
+                                    +$state.selectedVacation.from
+                                  ),
+                                  "YYYY/MM/DD"
+                                )
+                                .locale("fa")
+                                .format("YYYY/MM/DD")
+                            );
+                            const to = formattedDateToDateObject(
+                              $$.moment
+                                .from(
+                                  convertTimestampToDate(
+                                    +$state.selectedVacation.to
+                                  ),
+                                  "YYYY/MM/DD"
+                                )
+                                .locale("fa")
+                                .format("YYYY/MM/DD")
+                            );
+                            return {
+                              from: from || null,
+                              to: to || null
+                            };
+                          })();
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
                             e?.plasmicType === "PlasmicUndefinedDataError"
                           ) {
-                            return "";
+                            return { from: null, to: null };
                           }
                           throw e;
                         }
-                      })()}
-                    </React.Fragment>
-                  </div>
-                </Stack__>
+                      })()
+                  }
+                ],
+                []
               );
-            })}
+              return (
+                <DateRangePicker
+                  data-plasmic-name={"dateRangePicker2"}
+                  data-plasmic-override={overrides.dateRangePicker2}
+                  {...child$Props}
+                />
+              );
+            })()}
+            {(() => {
+              try {
+                return (
+                  !$state.checkbox2.isChecked &&
+                  !!$state.dateRangePicker2.selectedDays.from
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__cnac)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___8BHs3
+                  )}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateSelectTimeOpen"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["selectTime", "open"]
+                            },
+                            operation: 4
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            const oldValue = $stateGet(objRoot, variablePath);
+                            $stateSet(objRoot, variablePath, !oldValue);
+                            return !oldValue;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateSelectTimeOpen"] != null &&
+                      typeof $steps["updateSelectTimeOpen"] === "object" &&
+                      typeof $steps["updateSelectTimeOpen"].then === "function"
+                    ) {
+                      $steps["updateSelectTimeOpen"] = await $steps[
+                        "updateSelectTimeOpen"
+                      ];
+                    }
+
+                    $steps["updateTimePickerType"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["timePickerType"]
+                            },
+                            operation: 0,
+                            value: "EDIT_FROM_TIME"
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateTimePickerType"] != null &&
+                      typeof $steps["updateTimePickerType"] === "object" &&
+                      typeof $steps["updateTimePickerType"].then === "function"
+                    ) {
+                      $steps["updateTimePickerType"] = await $steps[
+                        "updateTimePickerType"
+                      ];
+                    }
+                  }}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return (() => {
+                          const convertTimeStampToFormattedTime = time => {
+                            const date = new Date(time * 1000);
+                            const hours = date.getHours();
+                            const minutes = date.getMinutes();
+                            const timeString = `${hours}:${
+                              minutes.toString().length === 1
+                                ? `0${minutes}`
+                                : minutes
+                            }`;
+                            return timeString;
+                          };
+                          return `از ساعت ${
+                            !!$state.selectedVacation.from
+                              ? convertTimeStampToFormattedTime(
+                                  $state.selectedVacation.from
+                                )
+                              : ""
+                          }`;
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u0627\u0632 \u0633\u0627\u0639\u062a";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__ikMmY
+                  )}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateSelectTimeOpen"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["selectTime", "open"]
+                            },
+                            operation: 4
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            const oldValue = $stateGet(objRoot, variablePath);
+                            $stateSet(objRoot, variablePath, !oldValue);
+                            return !oldValue;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateSelectTimeOpen"] != null &&
+                      typeof $steps["updateSelectTimeOpen"] === "object" &&
+                      typeof $steps["updateSelectTimeOpen"].then === "function"
+                    ) {
+                      $steps["updateSelectTimeOpen"] = await $steps[
+                        "updateSelectTimeOpen"
+                      ];
+                    }
+
+                    $steps["updateTimePickerType"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["timePickerType"]
+                            },
+                            operation: 0,
+                            value: "EDIT_TO_TIME"
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateTimePickerType"] != null &&
+                      typeof $steps["updateTimePickerType"] === "object" &&
+                      typeof $steps["updateTimePickerType"].then === "function"
+                    ) {
+                      $steps["updateTimePickerType"] = await $steps[
+                        "updateTimePickerType"
+                      ];
+                    }
+                  }}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return (() => {
+                          const convertTimeStampToFormattedTime = time => {
+                            const date = new Date(time * 1000);
+                            const hours = date.getHours();
+                            const minutes = date.getMinutes();
+                            const timeString = `${hours}:${
+                              minutes.toString().length === 1
+                                ? `0${minutes}`
+                                : minutes
+                            }`;
+                            return timeString;
+                          };
+                          return `تا ساعت ${
+                            !!$state.selectedVacation.to
+                              ? convertTimeStampToFormattedTime(
+                                  $state.selectedVacation.to
+                                )
+                              : ""
+                          }`;
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u062a\u0627 \u0633\u0627\u0639\u062a";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+              </Stack__>
+            ) : null}
+            <div className={classNames(projectcss.all, sty.freeBox__fxWyW)}>
+              {(() => {
+                try {
+                  return !!$state.dateRangePicker2.selectedDays.from;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <Checkbox
+                  data-plasmic-name={"checkbox2"}
+                  data-plasmic-override={overrides.checkbox2}
+                  className={classNames("__wab_instance", sty.checkbox2)}
+                  isChecked={
+                    generateStateValueProp($state, [
+                      "checkbox2",
+                      "isChecked"
+                    ]) ?? false
+                  }
+                  onChange={async (...eventArgs: any) => {
+                    ((...eventArgs) => {
+                      generateStateOnChangeProp($state, [
+                        "checkbox2",
+                        "isChecked"
+                      ])(eventArgs[0]);
+                    }).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__h7IJy
+                    )}
+                  >
+                    {
+                      "\u062b\u0628\u062a \u0645\u0631\u062e\u0635\u06cc \u0628\u0631\u0627\u06cc \u062a\u0645\u0627\u0645 \u0631\u0648\u0632"
+                    }
+                  </div>
+                </Checkbox>
+              ) : null}
+            </div>
+            <Button
+              children2={
+                "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0645\u0631\u062e\u0635\u06cc"
+              }
+              className={classNames("__wab_instance", sty.button__ngzhi)}
+              isDisabled={(() => {
+                try {
+                  return (
+                    !(
+                      $state.dateRangePicker2.selectedDays.to &&
+                      $state.dateRangePicker2.selectedDays.from
+                    ) ||
+                    !(
+                      ($state.fromTime && $state.toTime) ||
+                      $state.checkbox2.isChecked
+                    )
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "isDisabled";
+                  }
+                  throw e;
+                }
+              })()}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateIsLoadingSubmitVacation"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["isLoadingSubmitVacation"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateIsLoadingSubmitVacation"] != null &&
+                  typeof $steps["updateIsLoadingSubmitVacation"] === "object" &&
+                  typeof $steps["updateIsLoadingSubmitVacation"].then ===
+                    "function"
+                ) {
+                  $steps["updateIsLoadingSubmitVacation"] = await $steps[
+                    "updateIsLoadingSubmitVacation"
+                  ];
+                }
+
+                $steps["updateVacation"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "PUT",
+                          (() => {
+                            try {
+                              return (() => {
+                                const centerId =
+                                  $state.centersApi.data.data.find(
+                                    center =>
+                                      center.user_center_id ==
+                                      $state.drCenters.selectedCenter
+                                  )?.id || "";
+                                return `https://api.paziresh24.com/V1/doctor/vacation/${centerId}`;
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          undefined,
+                          (() => {
+                            try {
+                              return (() => {
+                                const dateObjectToFormattedDate =
+                                  dateObject => {
+                                    return `${dateObject?.year}/${dateObject?.month}/${dateObject?.day}`;
+                                  };
+                                const convertDateAndTimeToTimeStamp = (
+                                  date,
+                                  time
+                                ) => {
+                                  return $$.moment
+                                    .from(
+                                      `${dateObjectToFormattedDate(
+                                        date
+                                      )} ${time}`,
+                                      "fa",
+                                      "JYYYY/JMM/JDD HH:mm"
+                                    )
+                                    .unix();
+                                };
+                                const fromTime = $state.checkbox2.isChecked
+                                  ? "00:00"
+                                  : $state.fromTime;
+                                const fromDate = convertDateAndTimeToTimeStamp(
+                                  $state.dateRangePicker2.selectedDays.from,
+                                  fromTime
+                                );
+                                const toTime = $state.checkbox2.isChecked
+                                  ? "23:59"
+                                  : $state.toTime;
+                                const toDate = convertDateAndTimeToTimeStamp(
+                                  $state.dateRangePicker2.selectedDays.to,
+                                  toTime
+                                );
+                                return {
+                                  from: fromDate,
+                                  old_from: $state.selectedVacation.from,
+                                  to: toDate,
+                                  old_to: $state.selectedVacation.to
+                                };
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateVacation"] != null &&
+                  typeof $steps["updateVacation"] === "object" &&
+                  typeof $steps["updateVacation"].then === "function"
+                ) {
+                  $steps["updateVacation"] = await $steps["updateVacation"];
+                }
+
+                $steps["runCode"] = false
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return (() => {
+                            const centerId =
+                              $state.centersApi.data.data.find(
+                                center =>
+                                  center.user_center_id ==
+                                  $state.drCenters.selectedCenter
+                              )?.id || "";
+                            const dateObjectToFormattedDate = dateObject => {
+                              return `${dateObject?.year}/${dateObject?.month}/${dateObject?.day}`;
+                            };
+                            const convertDateAndTimeToTimeStamp = (
+                              date,
+                              time
+                            ) => {
+                              return $$.moment
+                                .from(
+                                  `${dateObjectToFormattedDate(date)} ${time}`,
+                                  "fa",
+                                  "JYYYY/JMM/JDD HH:mm"
+                                )
+                                .unix();
+                            };
+                            const fromTime = $state.checkbox2.isChecked
+                              ? "00:00"
+                              : $state.fromTime;
+                            const fromDate = convertDateAndTimeToTimeStamp(
+                              $state.dateRangePicker2.selectedDays.from,
+                              fromTime
+                            );
+                            const toTime = $state.checkbox2.isChecked
+                              ? "23:59"
+                              : $state.toTime;
+                            const toDate = convertDateAndTimeToTimeStamp(
+                              $state.dateRangePicker2.selectedDays.to,
+                              toTime
+                            );
+                            return fetch(
+                              `https://api.paziresh24.com/V1/doctor/vacation/${centerId}`,
+                              {
+                                method: "PUT",
+                                credentials: "include",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                  from: fromDate,
+                                  old_from: $state.selectedVacation.from,
+                                  to: toDate,
+                                  old_to: $state.selectedVacation.to
+                                })
+                              }
+                            );
+                          })();
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+
+                $steps["updateIsLoadingSubmitVacation2"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["isLoadingSubmitVacation"]
+                        },
+                        operation: 0,
+                        value: false
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateIsLoadingSubmitVacation2"] != null &&
+                  typeof $steps["updateIsLoadingSubmitVacation2"] ===
+                    "object" &&
+                  typeof $steps["updateIsLoadingSubmitVacation2"].then ===
+                    "function"
+                ) {
+                  $steps["updateIsLoadingSubmitVacation2"] = await $steps[
+                    "updateIsLoadingSubmitVacation2"
+                  ];
+                }
+
+                $steps["updateEditDialogOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["editDialog", "open"]
+                        },
+                        operation: 4
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateEditDialogOpen"] != null &&
+                  typeof $steps["updateEditDialogOpen"] === "object" &&
+                  typeof $steps["updateEditDialogOpen"].then === "function"
+                ) {
+                  $steps["updateEditDialogOpen"] = await $steps[
+                    "updateEditDialogOpen"
+                  ];
+                }
+
+                $steps["toast"] = !!$steps.updateVacation.data?.message
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return $steps.updateVacation.status == 200
+                                ? "success"
+                                : "error";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          (() => {
+                            try {
+                              return $steps.updateVacation.data?.message || "";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["toast"] != null &&
+                  typeof $steps["toast"] === "object" &&
+                  typeof $steps["toast"].then === "function"
+                ) {
+                  $steps["toast"] = await $steps["toast"];
+                }
+
+                $steps["refetchVocation"] =
+                  $steps.updateVacation.status == 200
+                    ? (() => {
+                        const actionArgs = {
+                          tplRef: "vacationApi",
+                          action: "refresh"
+                        };
+                        return (({ tplRef, action, args }) => {
+                          return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                if (
+                  $steps["refetchVocation"] != null &&
+                  typeof $steps["refetchVocation"] === "object" &&
+                  typeof $steps["refetchVocation"].then === "function"
+                ) {
+                  $steps["refetchVocation"] = await $steps["refetchVocation"];
+                }
+
+                $steps["fromDateUpdate"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: [
+                            "dateRangePicker2",
+                            "selectedDays",
+                            "from"
+                          ]
+                        },
+                        operation: 0,
+                        value: null
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["fromDateUpdate"] != null &&
+                  typeof $steps["fromDateUpdate"] === "object" &&
+                  typeof $steps["fromDateUpdate"].then === "function"
+                ) {
+                  $steps["fromDateUpdate"] = await $steps["fromDateUpdate"];
+                }
+
+                $steps["toDateUpdate"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: [
+                            "dateRangePicker2",
+                            "selectedDays",
+                            "to"
+                          ]
+                        },
+                        operation: 0,
+                        value: null
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["toDateUpdate"] != null &&
+                  typeof $steps["toDateUpdate"] === "object" &&
+                  typeof $steps["toDateUpdate"].then === "function"
+                ) {
+                  $steps["toDateUpdate"] = await $steps["toDateUpdate"];
+                }
+
+                $steps["updateCheckboxIsChecked"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["checkbox2", "isChecked"]
+                        },
+                        operation: 0,
+                        value: false
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateCheckboxIsChecked"] != null &&
+                  typeof $steps["updateCheckboxIsChecked"] === "object" &&
+                  typeof $steps["updateCheckboxIsChecked"].then === "function"
+                ) {
+                  $steps["updateCheckboxIsChecked"] = await $steps[
+                    "updateCheckboxIsChecked"
+                  ];
+                }
+              }}
+            />
           </div>
-        ) : null}
-      </ApiRequest>
+        }
+        className={classNames("__wab_instance", sty.editDialog)}
+        noTrigger={true}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["editDialog", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        open={generateStateValueProp($state, ["editDialog", "open"])}
+        title={
+          "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0645\u0631\u062e\u0635\u06cc"
+        }
+        trigger={null}
+      />
     </Stack__>
   ) as React.ReactElement | null;
 }
@@ -1028,19 +4481,41 @@ const PlasmicDescendants = {
     "root",
     "centersApi",
     "drCenters",
-    "dialog",
-    "button",
+    "addVocationDialog",
+    "dateRangePicker",
+    "checkbox",
     "year",
     "month",
-    "vacationApi"
+    "vacationApi",
+    "errorDialog",
+    "changeDateDialog",
+    "selectDate",
+    "datePicker",
+    "selectTime",
+    "timePicker",
+    "deleteDialog",
+    "editDialog",
+    "dateRangePicker2",
+    "checkbox2"
   ],
   centersApi: ["centersApi", "drCenters"],
   drCenters: ["drCenters"],
-  dialog: ["dialog", "button"],
-  button: ["button"],
+  addVocationDialog: ["addVocationDialog", "dateRangePicker", "checkbox"],
+  dateRangePicker: ["dateRangePicker"],
+  checkbox: ["checkbox"],
   year: ["year"],
   month: ["month"],
-  vacationApi: ["vacationApi"]
+  vacationApi: ["vacationApi"],
+  errorDialog: ["errorDialog"],
+  changeDateDialog: ["changeDateDialog"],
+  selectDate: ["selectDate", "datePicker"],
+  datePicker: ["datePicker"],
+  selectTime: ["selectTime", "timePicker"],
+  timePicker: ["timePicker"],
+  deleteDialog: ["deleteDialog"],
+  editDialog: ["editDialog", "dateRangePicker2", "checkbox2"],
+  dateRangePicker2: ["dateRangePicker2"],
+  checkbox2: ["checkbox2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1049,11 +4524,22 @@ type NodeDefaultElementType = {
   root: "div";
   centersApi: typeof ApiRequest;
   drCenters: typeof DrCenters;
-  dialog: typeof Dialog;
-  button: typeof Button;
+  addVocationDialog: typeof Dialog;
+  dateRangePicker: typeof DateRangePicker;
+  checkbox: typeof Checkbox;
   year: typeof Select;
   month: typeof Select;
   vacationApi: typeof ApiRequest;
+  errorDialog: typeof Dialog;
+  changeDateDialog: typeof Dialog;
+  selectDate: typeof Dialog;
+  datePicker: typeof DatePicker;
+  selectTime: typeof Dialog;
+  timePicker: typeof TimePicker;
+  deleteDialog: typeof Dialog;
+  editDialog: typeof Dialog;
+  dateRangePicker2: typeof DateRangePicker;
+  checkbox2: typeof Checkbox;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1118,11 +4604,22 @@ export const PlasmicVacation = Object.assign(
     // Helper components rendering sub-elements
     centersApi: makeNodeComponent("centersApi"),
     drCenters: makeNodeComponent("drCenters"),
-    dialog: makeNodeComponent("dialog"),
-    button: makeNodeComponent("button"),
+    addVocationDialog: makeNodeComponent("addVocationDialog"),
+    dateRangePicker: makeNodeComponent("dateRangePicker"),
+    checkbox: makeNodeComponent("checkbox"),
     year: makeNodeComponent("year"),
     month: makeNodeComponent("month"),
     vacationApi: makeNodeComponent("vacationApi"),
+    errorDialog: makeNodeComponent("errorDialog"),
+    changeDateDialog: makeNodeComponent("changeDateDialog"),
+    selectDate: makeNodeComponent("selectDate"),
+    datePicker: makeNodeComponent("datePicker"),
+    selectTime: makeNodeComponent("selectTime"),
+    timePicker: makeNodeComponent("timePicker"),
+    deleteDialog: makeNodeComponent("deleteDialog"),
+    editDialog: makeNodeComponent("editDialog"),
+    dateRangePicker2: makeNodeComponent("dateRangePicker2"),
+    checkbox2: makeNodeComponent("checkbox2"),
 
     // Metadata about props expected for PlasmicVacation
     internalVariantProps: PlasmicVacation__VariantProps,

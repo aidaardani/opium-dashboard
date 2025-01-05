@@ -470,19 +470,31 @@
 }
 .onOffButton {
   display: flex;
-  flex-direction: column;
-  position: relative;
-  align-items: center;
-  justify-content: flex-start;
+  position: fixed;
   width: 100%;
   height: auto;
   max-width: 100%;
+  background: linear-gradient(
+      var(--token-41VRhDKfihhY),
+      var(--token-41VRhDKfihhY)
+    ),
+    #e2e8f0;
+  flex-direction: column;
+  left: 0;
+  top: auto;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
   min-width: 0;
+  border-radius: 8px;
   padding: 8px;
 }
 .apiUserCenterService:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
+  position: relative;
+  left: auto;
+  top: auto;
 }
 .text__tZsTq {
   position: relative;
@@ -490,6 +502,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
 }
 .text__qWoOv {
   position: relative;
@@ -497,6 +510,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
 }
 .activeDeactiveOnlineVisit {
   display: flex;
@@ -504,10 +518,12 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  width: auto;
+  width: 100%;
   height: auto;
   max-width: 100%;
-  background: #ffffff;
+  background: var(--token-BU1JCAY6hntB);
+  min-width: 0;
+  border-radius: 8px;
   padding: 8px;
 }
 .determiningTheSituationDialog:global(.__wab_instance):global(.__wab_instance) {
@@ -650,6 +666,7 @@
 }
 .button___8I0Vg:global(.__wab_instance) {
   max-width: 100%;
+  display: none;
 }
 .svg__ifrY {
   position: relative;
@@ -668,6 +685,79 @@
   object-fit: cover;
   width: auto;
   height: 1em;
+}
+.switch2 {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid var(--token-BU1JCAY6hntB);
+}
+.switch2 > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  margin-left: calc(0px - var(--token-_c276Gs_1FIE));
+  width: calc(100% + var(--token-_c276Gs_1FIE));
+}
+.switch2 > :global(.__wab_flex-container) > *,
+.switch2 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.switch2 > :global(.__wab_flex-container) > picture > img,
+.switch2
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: var(--token-_c276Gs_1FIE);
+}
+.freeBox__oqT1 {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  padding: 8px;
+}
+.text__kaR94 {
+  position: relative;
+  width: 90px;
+  height: auto;
+  max-width: 100%;
+  color: #000000;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.text__eePvN {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-lw4xv_KKpd4e);
+  font-weight: 600;
+  min-width: 0;
+}
+.text__uwwRn {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-CVFO6fzYsS1_);
+  font-weight: 600;
+  min-width: 0;
+}
+._switch:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+  color: #2563eb;
 }
 .runCodeGtmMetrica:global(.__wab_instance) {
   max-width: 100%;
