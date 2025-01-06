@@ -92,11 +92,13 @@ export const PlasmicActivationOfficeCenter__VariantProps =
 export type PlasmicActivationOfficeCenter__ArgsType = {
   hasOnline?: boolean;
   userId?: string;
+  userCell?: string;
 };
 type ArgPropType = keyof PlasmicActivationOfficeCenter__ArgsType;
 export const PlasmicActivationOfficeCenter__ArgProps = new Array<ArgPropType>(
   "hasOnline",
-  "userId"
+  "userId",
+  "userCell"
 );
 
 export type PlasmicActivationOfficeCenter__OverridesType = {
@@ -116,6 +118,7 @@ export type PlasmicActivationOfficeCenter__OverridesType = {
 export interface DefaultActivationOfficeCenterProps {
   hasOnline?: boolean;
   userId?: string;
+  userCell?: string;
   className?: string;
 }
 
@@ -4939,7 +4942,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                                         $state.notifyCell.notifyCellValue,
                                       center: $state.centersApi.data.data,
                                       pagepath: window.location.href,
-                                      userid: $props.userId
+                                      userid: $props.userId,
+                                      userCell: $state.profileApi.data.data.cell
                                     },
                                     event_type:
                                       "click-save-button-office-step2-office-tell"

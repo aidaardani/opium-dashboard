@@ -265,6 +265,19 @@ function PlasmicActivationOfficeCenter2__RenderFunc(props: {
                     throw e;
                   }
                 })()}
+                userCell={(() => {
+                  try {
+                    return undefined;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
                 userId={(() => {
                   try {
                     return $ctx.query.userId;
