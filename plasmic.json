@@ -2328,6 +2328,20 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicVacation.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "Fc4GMHIdVUfc",
+          "name": "VacationPage",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicVacationPage.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/activation-page/consult/messengers-2.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicVacationPage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/activation-page/consult/messengers-2"
         }
       ],
       "icons": [

@@ -2141,7 +2141,11 @@ function PlasmicVacation__RenderFunc(props: {
           <Stack__
             as={"div"}
             hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__pQyuJ)}
+            className={classNames(
+              projectcss.all,
+              sty.freeBox__pQyuJ,
+              "no-scroll"
+            )}
           >
             {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
               (() => {
@@ -3768,13 +3772,12 @@ function PlasmicVacation__RenderFunc(props: {
                             }`;
                             return timeString;
                           };
-                          return `از ساعت ${
-                            !!$state.selectedVacation.from
-                              ? convertTimeStampToFormattedTime(
-                                  $state.selectedVacation.from
-                                )
-                              : ""
-                          }`;
+                          const time = $state.fromTime
+                            ? $state.fromTime
+                            : convertTimeStampToFormattedTime(
+                                $state.selectedVacation.from
+                              );
+                          return `از ساعت ${!!time ? time : ""}`;
                         })();
                       } catch (e) {
                         if (
@@ -3885,13 +3888,12 @@ function PlasmicVacation__RenderFunc(props: {
                             }`;
                             return timeString;
                           };
-                          return `تا ساعت ${
-                            !!$state.selectedVacation.to
-                              ? convertTimeStampToFormattedTime(
-                                  $state.selectedVacation.to
-                                )
-                              : ""
-                          }`;
+                          const time = !!$state.toTime
+                            ? $state.toTime
+                            : convertTimeStampToFormattedTime(
+                                $state.selectedVacation.to
+                              );
+                          return `تا ساعت ${!!time ? time : ""}`;
                         })();
                       } catch (e) {
                         if (

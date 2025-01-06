@@ -374,8 +374,10 @@
   flex-direction: column;
   position: relative;
   width: 100%;
-  height: auto;
+  height: 21rem;
   max-width: 100%;
+  overflow-x: visible;
+  overflow-y: auto;
   min-width: 0;
   padding: 0px;
 }

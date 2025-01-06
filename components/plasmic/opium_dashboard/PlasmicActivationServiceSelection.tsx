@@ -634,7 +634,7 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
                                 pagePath: window.location.href,
                                 selectedServices: $state.selectedServices
                               },
-                              event_type: "load-page-step1"
+                              event_type: "click-save-button-step1"
                             };
                           } catch (e) {
                             if (

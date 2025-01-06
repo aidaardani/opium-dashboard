@@ -888,13 +888,13 @@
   max-width: 100%;
 }
 .listofnotifications {
+  display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
   height: auto;
   max-width: 100%;
   min-width: 0;
-  display: none;
   border-radius: 8px;
   padding: 8px;
   border: 1px solid var(--token-Y3HOiwZmAcAF);

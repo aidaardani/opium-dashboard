@@ -59,7 +59,7 @@
   height: auto;
   max-width: 100%;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: flex-end;
   top: 0;
   left: auto;
   right: 0;
@@ -98,7 +98,7 @@
 }
 .freeBox__i1Uj {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   position: relative;
   width: 100%;
   height: auto;
@@ -107,7 +107,7 @@
   padding: 0px;
 }
 .freeBox__i1Uj > :global(.__wab_flex-container) {
-  flex-direction: row;
+  flex-direction: row-reverse;
   align-items: center;
   justify-content: flex-start;
   margin-left: calc(0px - var(--token-_c276Gs_1FIE));
