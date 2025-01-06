@@ -1023,6 +1023,7 @@ function PlasmicSpecificnotification__RenderFunc(props: {
         <MultilineTextInput
           data-plasmic-name={"multilineTextInput"}
           data-plasmic-override={overrides.multilineTextInput}
+          autoSize={true}
           className={classNames("__wab_instance", sty.multilineTextInput)}
           onValueChange={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, [
