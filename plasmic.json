@@ -964,8 +964,7 @@
           "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
@@ -3061,6 +3060,21 @@
       "codeComponents": [],
       "customFunctions": [],
       "jsBundleThemes": []
+    },
+    {
+      "projectId": "9UibdRruyX43DxnB8Q1QXF",
+      "projectApiToken": "ZNj972EbwCfknN1MAhdxLU3H7BjjWdUah5wjYLBnTSIVLgc0W6mbuSO49RMpnrdKocnSMgvQwlZ1GHOA3TuCg",
+      "projectName": "nanoid",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/nanoid/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "codeComponents": [],
+      "customFunctions": []
     }
   ],
   "globalVariants": {
