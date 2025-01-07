@@ -495,7 +495,7 @@ function PlasmicDuration__RenderFunc(props: {
                             (() => {
                               try {
                                 return {
-                                  group: "workhour",
+                                  event_group: "workhour",
                                   data: {
                                     userID: $ctx.query.user_id,
                                     pagePath: $ctx.pagePath,
@@ -1028,7 +1028,7 @@ function PlasmicDuration__RenderFunc(props: {
                                 (() => {
                                   try {
                                     return {
-                                      group: "workhour",
+                                      event_group: "workhour",
                                       data: {
                                         center_id: $props.centerId,
                                         userId: $props.userId,

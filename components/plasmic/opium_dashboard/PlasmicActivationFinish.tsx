@@ -403,7 +403,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                     dangerouslySetInnerHTML={{
                       __html: (() => {
                         try {
-                          return `<p>برای هر گونه سوال یا توضیح بیشتر، لطفا با ما <a style="color: blue" href="https://newsupport.paziresh24.com/new-ticket/?department=4&amp;product=9">ارتباط</a> بگیرید. تیم ما اینجاست تا از شما در هر مرحله حمایت کند.</p>`;
+                          return "اگر در هر مرحله از ثبت‌نام <b>سوالی</b>، <b>ابهامی</b> یا <b>انتقادی</b> داشتید، لطفاً روی دکمه <b>گفتگو با پشتیبان</b> کلیک کنید. ما آماده‌ایم تا به شما کمک کنیم!";
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -422,56 +422,29 @@ function PlasmicActivationFinish__RenderFunc(props: {
                 data-plasmic-name={"button"}
                 data-plasmic-override={overrides.button}
                 children2={
-                  "\u0634\u0631\u0648\u0639 \u0646\u0648\u0628\u062a \u062f\u0647\u06cc"
+                  "\u06af\u0641\u062a\u06af\u0648 \u0628\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646"
                 }
                 className={classNames("__wab_instance", sty.button)}
                 onClick={async event => {
                   const $steps = {};
 
-                  $steps["sendEvent"] = true
+                  $steps["goToPage"] = true
                     ? (() => {
                         const actionArgs = {
-                          args: [
-                            (() => {
-                              try {
-                                return {
-                                  event_group: "activation-page",
-                                  data: {
-                                    pagepath: window.location.href,
-                                    office: $ctx.query.office,
-                                    userid: $ctx.query.userId
-                                  },
-                                  event_type:
-                                    "click-start-booking-in-activation"
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
+                          destination: (() => {
+                            try {
+                              return "https://t.me/sybigdeli";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
                               }
-                            })()
-                          ]
+                              throw e;
+                            }
+                          })()
                         };
-                        return $globalActions["Splunk.sendLog"]?.apply(null, [
-                          ...actionArgs.args
-                        ]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["sendEvent"] != null &&
-                    typeof $steps["sendEvent"] === "object" &&
-                    typeof $steps["sendEvent"].then === "function"
-                  ) {
-                    $steps["sendEvent"] = await $steps["sendEvent"];
-                  }
-
-                  $steps["goToBookList"] = true
-                    ? (() => {
-                        const actionArgs = { destination: `/book-list` };
                         return (({ destination }) => {
                           if (
                             typeof destination === "string" &&
@@ -487,11 +460,11 @@ function PlasmicActivationFinish__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["goToBookList"] != null &&
-                    typeof $steps["goToBookList"] === "object" &&
-                    typeof $steps["goToBookList"].then === "function"
+                    $steps["goToPage"] != null &&
+                    typeof $steps["goToPage"] === "object" &&
+                    typeof $steps["goToPage"].then === "function"
                   ) {
-                    $steps["goToBookList"] = await $steps["goToBookList"];
+                    $steps["goToPage"] = await $steps["goToPage"];
                   }
                 }}
                 onLoad={async event => {
