@@ -319,7 +319,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         )}
       >
         {
-          "\u067e\u0631\u062f\u0627\u062e\u062a \u0628\u06cc\u0639\u0627\u0646\u0647 \u062f\u0631 \u0632\u0645\u0627\u0646 \u062b\u0628\u062a \u0646\u0648\u0628\u062a \u0627\u06cc\u0646\u062a\u0631\u0646\u062a\u06cc\u060c \u0628\u0631\u0627\u06cc \u062d\u0641\u0638 \u062a\u0639\u0647\u062f \u062d\u0636\u0648\u0631 \u0628\u06cc\u0645\u0627\u0631 \u062f\u0631 \u0645\u0637\u0628 \u0627\u0633\u062a \u0648 \u0645\u06cc\u200c\u0628\u0627\u06cc\u0633\u062a \u0627\u0632 \u0647\u0632\u06cc\u0646\u0647 \u0648\u06cc\u0632\u06cc\u062a \u06a9\u0633\u0631 \u0634\u0648\u062f."
+          "\u067e\u0631\u062f\u0627\u062e\u062a \u0628\u06cc\u0639\u0627\u0646\u0647 \u0628\u0631\u0627\u06cc \u062d\u0641\u0638 \u062a\u0639\u0647\u062f \u062d\u0636\u0648\u0631 \u0628\u06cc\u0645\u0627\u0631 \u062f\u0631 \u0645\u0637\u0628 \u0627\u0633\u062a . \u06a9\u0644 \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a \u0645\u062a\u0639\u0644\u0642 \u0628\u0647 \u067e\u0632\u0634\u06a9 \u0627\u0633\u062a \u0648 \u0645\u06cc\u200c\u0628\u0627\u06cc\u0633\u062a \u0627\u0632 \u0647\u0632\u06cc\u0646\u0647 \u0648\u06cc\u0632\u06cc\u062a \u06a9\u0633\u0631 \u0634\u0648\u062f."
         }
       </div>
       <div
@@ -919,9 +919,32 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["validationToast"] = await $steps["validationToast"];
               }
 
+              $steps["costValidation"] =
+                $state.select.value === undefined
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "error",
+                          "\u0648\u0627\u0631\u062f \u06a9\u0631\u062f\u0646 \u0645\u0628\u0644\u063a \u0628\u06cc\u0639\u0627\u0646\u0647 \u0627\u0644\u0632\u0627\u0645\u06cc \u0627\u0633\u062a"
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+              if (
+                $steps["costValidation"] != null &&
+                typeof $steps["costValidation"] === "object" &&
+                typeof $steps["costValidation"].then === "function"
+              ) {
+                $steps["costValidation"] = await $steps["costValidation"];
+              }
+
               $steps["updateIsLoadingSave"] =
-                $state.input2.value === "" ||
-                $state.input2.value.trim().length === 16
+                ($state.input2.value === "" ||
+                  $state.input2.value.trim().length === 16) &&
+                $state.select.value !== undefined
                   ? (() => {
                       const actionArgs = {
                         variable: {
@@ -958,8 +981,9 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
               }
 
               $steps["costApi"] =
-                $state.input2.value === "" ||
-                $state.input2.value.trim().length === 16
+                ($state.input2.value === "" ||
+                  $state.input2.value.trim().length === 16) &&
+                $state.select.value !== undefined
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -981,7 +1005,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                   return {
                                     active: 1,
                                     center_id: centerId,
-                                    deposit_amount: Number(cost) * 10
+                                    deposit_amount: Number(cost) * 10,
+                                    deposit_amount: $state.select.value
                                   };
                                 } else {
                                   return {
@@ -1024,8 +1049,9 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
               }
 
               $steps["updateIsLoadingSave2"] =
-                $state.input2.value === "" ||
-                $state.input2.value.trim().length === 16
+                ($state.input2.value === "" ||
+                  $state.input2.value.trim().length === 16) &&
+                $state.select.value !== undefined
                   ? (() => {
                       const actionArgs = {
                         variable: {
@@ -1177,7 +1203,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
               $steps["goToPage"] =
                 ($state.input2.value === "" ||
                   $state.input2.value.trim().length === 16) &&
-                $state.centersApi.data.status === "SUCCESS"
+                $steps.costApi.status === 200
                   ? (() => {
                       const actionArgs = {
                         destination: (() => {
