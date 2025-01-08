@@ -587,11 +587,22 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                   <React.Fragment>
                     {(() => {
                       try {
-                        return $props.center.some(
-                          center =>
-                            center.user_center_id === $props.selectedCenter &&
-                            center.id !== "5532"
-                        )
+                        return ![
+                          "5149629",
+                          "2306391",
+                          "4032102",
+                          "326636",
+                          "1143749",
+                          "1188775",
+                          "4042914",
+                          "3574718",
+                          "6688061"
+                        ].includes($props.userId) &&
+                          $props.center.some(
+                            center =>
+                              center.user_center_id === $props.selectedCenter &&
+                              center.id !== "5532"
+                          )
                           ? "به زودی این قابلیت برای مطب نیز اضافه می شود"
                           : "تایید";
                       } catch (e) {
@@ -612,7 +623,18 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                     return $props.center.some(
                       center =>
                         center.user_center_id === $props.selectedCenter &&
-                        center.id !== "5532"
+                        center.id !== "5532" &&
+                        ![
+                          "5149629",
+                          "2306391",
+                          "4032102",
+                          "326636",
+                          "1143749",
+                          "1188775",
+                          "4042914",
+                          "3574718",
+                          "6688061"
+                        ].includes($props.userId)
                     );
                   } catch (e) {
                     if (

@@ -2275,7 +2275,19 @@ function PlasmicBookingSetting__RenderFunc(props: {
               {(() => {
                 try {
                   return $state.centers.data.data.some(
-                    center => center.id === "5532" && center.is_active_booking
+                    center =>
+                      (center.id === "5532" && center.is_active_booking) ||
+                      [
+                        "5149629",
+                        "2306391",
+                        "4032102",
+                        "326636",
+                        "1143749",
+                        "1188775",
+                        "4042914",
+                        "3574718",
+                        "6688061"
+                      ].includes($ctx.query.user_id)
                   );
                 } catch (e) {
                   if (
