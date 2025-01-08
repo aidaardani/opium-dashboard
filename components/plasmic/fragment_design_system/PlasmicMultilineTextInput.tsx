@@ -78,14 +78,14 @@ export const PlasmicMultilineTextInput__VariantProps =
 
 export type PlasmicMultilineTextInput__ArgsType = {
   value?: string;
-  onValueChange?: (val: string) => void;
+  onValueChange2?: (val: string) => void;
   placeholder?: string;
   autoSize?: boolean;
 };
 type ArgPropType = keyof PlasmicMultilineTextInput__ArgsType;
 export const PlasmicMultilineTextInput__ArgProps = new Array<ArgPropType>(
   "value",
-  "onValueChange",
+  "onValueChange2",
   "placeholder",
   "autoSize"
 );
@@ -97,7 +97,7 @@ export type PlasmicMultilineTextInput__OverridesType = {
 
 export interface DefaultMultilineTextInputProps {
   value?: string;
-  onValueChange?: (val: string) => void;
+  onValueChange2?: (val: string) => void;
   placeholder?: string;
   autoSize?: boolean;
   className?: string;
@@ -174,7 +174,7 @@ function PlasmicMultilineTextInput__RenderFunc(props: {
         variableType: "text",
 
         valueProp: "value",
-        onChangeProp: "onValueChange"
+        onChangeProp: "onValueChange2"
       },
       {
         path: "height",

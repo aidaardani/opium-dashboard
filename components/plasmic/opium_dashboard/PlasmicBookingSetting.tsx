@@ -2274,15 +2274,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
               ) : null}
               {(() => {
                 try {
-                  return (
-                    $ctx.GrowthBook.features["show-auto-payment"] &&
-                    $state.centers.data.data.some(
-                      center =>
-                        (center.id !== "5532" &&
-                          center.type_id === 1 &&
-                          center.is_active_booking) ||
-                        (center.id === "5532" && center.is_active_booking)
-                    )
+                  return $state.centers.data.data.some(
+                    center => center.id === "5532" && center.is_active_booking
                   );
                 } catch (e) {
                   if (

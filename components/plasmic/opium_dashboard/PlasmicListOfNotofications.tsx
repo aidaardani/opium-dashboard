@@ -2086,7 +2086,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                           "__wab_instance",
                           sty.multilineTextInput
                         )}
-                        onValueChange={async (...eventArgs: any) => {
+                        onValueChange2={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
                             "multilineTextInput",
                             "value"

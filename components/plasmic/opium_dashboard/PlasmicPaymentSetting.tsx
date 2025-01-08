@@ -232,9 +232,11 @@ function PlasmicPaymentSetting__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.getUserPrefrence.data.list.find(
-                list => list.user_center_id == $props.selectedCenter
-              ).PaymentPreference;
+              return (
+                $state.getUserPrefrence.data.list.find(
+                  list => list.user_center_id == $props.selectedCenter
+                )?.PaymentPreference || "ontime"
+              );
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -439,9 +441,11 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                   className={classNames("__wab_instance", sty.radioGroup)}
                   defaultValue={(() => {
                     try {
-                      return $state.getUserPrefrence.data.list.find(
-                        list => list.user_center_id == $props.selectedCenter
-                      ).PaymentPreference;
+                      return (
+                        $state.getUserPrefrence.data.list.find(
+                          list => list.user_center_id == $props.selectedCenter
+                        )?.PaymentPreference || "ontime"
+                      );
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -579,8 +583,47 @@ function PlasmicPaymentSetting__RenderFunc(props: {
               <Button
                 data-plasmic-name={"button"}
                 data-plasmic-override={overrides.button}
-                children2={"\u062a\u0627\u06cc\u06cc\u062f"}
+                children2={
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $props.center.some(
+                          center =>
+                            center.user_center_id === $props.selectedCenter &&
+                            center.id !== "5532"
+                        )
+                          ? "به زودی این قابلیت برای مطب نیز اضافه می شود"
+                          : "تایید";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u062a\u0627\u06cc\u06cc\u062f";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                }
                 className={classNames("__wab_instance", sty.button)}
+                isDisabled={(() => {
+                  try {
+                    return $props.center.some(
+                      center =>
+                        center.user_center_id === $props.selectedCenter &&
+                        center.id !== "5532"
+                    );
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
                 loading={(() => {
                   try {
                     return $state.loading;

@@ -61,6 +61,7 @@ import {
 
 import ActivationProcess from "../../ActivationProcess"; // plasmic-import: 1sYr9T24RxmQ/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
+import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -73,6 +74,8 @@ import sty from "./PlasmicActivationFinish.module.css"; // plasmic-import: mPvOW
 
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
+import EitaaIcon from "../fragment_icons/icons/PlasmicIcon__Eitaa"; // plasmic-import: qxWwW7vbw7na/icon
+import TelegramIcon from "../fragment_icons/icons/PlasmicIcon__Telegram"; // plasmic-import: vu4uxcIH4gVk/icon
 
 createPlasmicElementProxy;
 
@@ -90,7 +93,7 @@ export type PlasmicActivationFinish__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<"div">;
   sideEffect?: Flex__<typeof SideEffect>;
-  button?: Flex__<typeof Button>;
+  dialog?: Flex__<typeof Dialog>;
 };
 
 export interface DefaultActivationFinishProps {}
@@ -134,6 +137,24 @@ function PlasmicActivationFinish__RenderFunc(props: {
   const $refs = refsRef.current;
 
   const $globalActions = useGlobalActions?.();
+
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "dialog.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $refs
+  });
 
   return (
     <React.Fragment>
@@ -418,98 +439,363 @@ function PlasmicActivationFinish__RenderFunc(props: {
                   />
                 </div>
               </Stack__>
-              <Button
-                data-plasmic-name={"button"}
-                data-plasmic-override={overrides.button}
-                children2={
-                  "\u06af\u0641\u062a\u06af\u0648 \u0628\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646"
-                }
-                className={classNames("__wab_instance", sty.button)}
-                onClick={async event => {
-                  const $steps = {};
+              <Dialog
+                data-plasmic-name={"dialog"}
+                data-plasmic-override={overrides.dialog}
+                body={
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__t7LFe)}
+                  >
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__jj79K)}
+                    >
+                      <Stack__
+                        as={"div"}
+                        hasGap={true}
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__o8Duz
+                        )}
+                      >
+                        <EitaaIcon
+                          className={classNames(
+                            projectcss.all,
+                            sty.svg___82QdX
+                          )}
+                          role={"img"}
+                        />
 
-                  $steps["goToPage"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          destination: (() => {
-                            try {
-                              return "https://t.me/sybigdeli";
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__a7ZMf
+                          )}
+                        >
+                          {
+                            "\u06af\u0641\u062a\u06af\u0648 \u062f\u0631 \u0627\u06cc\u062a\u0627"
                           }
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["goToPage"] != null &&
-                    typeof $steps["goToPage"] === "object" &&
-                    typeof $steps["goToPage"].then === "function"
-                  ) {
-                    $steps["goToPage"] = await $steps["goToPage"];
-                  }
-                }}
-                onLoad={async event => {
-                  const $steps = {};
+                        </div>
+                      </Stack__>
+                      <Button
+                        children2={
+                          "\u0634\u0631\u0648\u0639 \u06af\u0641\u062a\u06af\u0648"
+                        }
+                        className={classNames(
+                          "__wab_instance",
+                          sty.button___8Qu9G
+                        )}
+                        onClick={async event => {
+                          const $steps = {};
 
-                  $steps["sendEvent"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            (() => {
-                              try {
-                                return {
-                                  event_group: "activation-page",
-                                  data: {
-                                    pagepath: $ctx.pagePath,
-                                    office: $ctx.query.office,
-                                    userid: $ctx.query.user_id
-                                  },
-                                  event_type: "load-finish-page-in-activation"
+                          $steps["sendEvent"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    (() => {
+                                      try {
+                                        return {
+                                          event_group: "activation-page",
+                                          data: {
+                                            userId: $ctx.query.userId,
+                                            pagePath: window.location.href
+                                          },
+                                          event_type: "click-call-support"
+                                        };
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
                                 };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Splunk.sendLog"]?.apply(null, [
-                          ...actionArgs.args
-                        ]);
-                      })()
-                    : undefined;
+                                return $globalActions["Splunk.sendLog"]?.apply(
+                                  null,
+                                  [...actionArgs.args]
+                                );
+                              })()
+                            : undefined;
+                          if (
+                            $steps["sendEvent"] != null &&
+                            typeof $steps["sendEvent"] === "object" &&
+                            typeof $steps["sendEvent"].then === "function"
+                          ) {
+                            $steps["sendEvent"] = await $steps["sendEvent"];
+                          }
+
+                          $steps["goToPage"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  destination: (() => {
+                                    try {
+                                      return "https://eitaa.com/sybigdeli";
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                };
+                                return (({ destination }) => {
+                                  if (
+                                    typeof destination === "string" &&
+                                    destination.startsWith("#")
+                                  ) {
+                                    document
+                                      .getElementById(destination.substr(1))
+                                      .scrollIntoView({ behavior: "smooth" });
+                                  } else {
+                                    __nextRouter?.push(destination);
+                                  }
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["goToPage"] != null &&
+                            typeof $steps["goToPage"] === "object" &&
+                            typeof $steps["goToPage"].then === "function"
+                          ) {
+                            $steps["goToPage"] = await $steps["goToPage"];
+                          }
+                        }}
+                        onLoad={async event => {
+                          const $steps = {};
+                        }}
+                      />
+                    </div>
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__gBgcw)}
+                    >
+                      <Stack__
+                        as={"div"}
+                        hasGap={true}
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox___6R4A3
+                        )}
+                      >
+                        <TelegramIcon
+                          className={classNames(projectcss.all, sty.svg__lmXhH)}
+                          role={"img"}
+                        />
+
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__y40Hk
+                          )}
+                        >
+                          {
+                            "\u06af\u0641\u062a\u06af\u0648 \u062f\u0631 \u062a\u0644\u06af\u0631\u0627\u0645"
+                          }
+                        </div>
+                      </Stack__>
+                      <Button
+                        children2={
+                          "\u0634\u0631\u0648\u0639 \u06af\u0641\u062a\u06af\u0648"
+                        }
+                        className={classNames(
+                          "__wab_instance",
+                          sty.button__n1GX3
+                        )}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["sendEvent"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    (() => {
+                                      try {
+                                        return {
+                                          event_group: "activation-page",
+                                          data: {
+                                            userId: $ctx.query.userId,
+                                            pagePath: window.location.href
+                                          },
+                                          event_type: "click-call-support"
+                                        };
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
+                                };
+                                return $globalActions["Splunk.sendLog"]?.apply(
+                                  null,
+                                  [...actionArgs.args]
+                                );
+                              })()
+                            : undefined;
+                          if (
+                            $steps["sendEvent"] != null &&
+                            typeof $steps["sendEvent"] === "object" &&
+                            typeof $steps["sendEvent"].then === "function"
+                          ) {
+                            $steps["sendEvent"] = await $steps["sendEvent"];
+                          }
+
+                          $steps["goToPage"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  destination: (() => {
+                                    try {
+                                      return "https://t.me/sybigdeli";
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                };
+                                return (({ destination }) => {
+                                  if (
+                                    typeof destination === "string" &&
+                                    destination.startsWith("#")
+                                  ) {
+                                    document
+                                      .getElementById(destination.substr(1))
+                                      .scrollIntoView({ behavior: "smooth" });
+                                  } else {
+                                    __nextRouter?.push(destination);
+                                  }
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["goToPage"] != null &&
+                            typeof $steps["goToPage"] === "object" &&
+                            typeof $steps["goToPage"].then === "function"
+                          ) {
+                            $steps["goToPage"] = await $steps["goToPage"];
+                          }
+                        }}
+                        onLoad={async event => {
+                          const $steps = {};
+                        }}
+                      />
+                    </div>
+                  </div>
+                }
+                className={classNames("__wab_instance", sty.dialog)}
+                onOpenChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+                    null,
+                    eventArgs
+                  );
+
                   if (
-                    $steps["sendEvent"] != null &&
-                    typeof $steps["sendEvent"] === "object" &&
-                    typeof $steps["sendEvent"].then === "function"
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
                   ) {
-                    $steps["sendEvent"] = await $steps["sendEvent"];
+                    return;
                   }
                 }}
+                open={generateStateValueProp($state, ["dialog", "open"])}
+                title={
+                  "\u0627\u0646\u062a\u062e\u0627\u0628 \u067e\u06cc\u0627\u0645 \u0631\u0633\u0627\u0646 \u0628\u0631\u0627\u06cc \u0634\u0631\u0648\u0639 \u06af\u0641\u062a\u06af\u0648"
+                }
+                trigger={
+                  <Button
+                    children2={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__k804G
+                        )}
+                      >
+                        {
+                          "\u06af\u0641\u062a\u06af\u0648 \u0628\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646"
+                        }
+                      </div>
+                    }
+                    className={classNames("__wab_instance", sty.button__zqRvf)}
+                    endIcon={
+                      <ChevronLeftIcon
+                        className={classNames(projectcss.all, sty.svg___8X59)}
+                        role={"img"}
+                      />
+                    }
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["invokeGlobalAction"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return {
+                                      event_group: "activation-page",
+                                      data: {
+                                        userId: $ctx.query.userId,
+                                        pagePath: window.location.href
+                                      },
+                                      event_type: "click-open-call-support"
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["invokeGlobalAction"] != null &&
+                        typeof $steps["invokeGlobalAction"] === "object" &&
+                        typeof $steps["invokeGlobalAction"].then === "function"
+                      ) {
+                        $steps["invokeGlobalAction"] = await $steps[
+                          "invokeGlobalAction"
+                        ];
+                      }
+                    }}
+                    startIcon={
+                      <ChevronRightIcon
+                        className={classNames(projectcss.all, sty.svg__epMw0)}
+                        role={"img"}
+                      />
+                    }
+                  />
+                }
               />
             </div>
           </div>
@@ -520,10 +806,10 @@ function PlasmicActivationFinish__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "sideEffect", "button"],
+  root: ["root", "header", "sideEffect", "dialog"],
   header: ["header"],
   sideEffect: ["sideEffect"],
-  button: ["button"]
+  dialog: ["dialog"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -532,7 +818,7 @@ type NodeDefaultElementType = {
   root: "div";
   header: "div";
   sideEffect: typeof SideEffect;
-  button: typeof Button;
+  dialog: typeof Dialog;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -597,7 +883,7 @@ export const PlasmicActivationFinish = Object.assign(
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
     sideEffect: makeNodeComponent("sideEffect"),
-    button: makeNodeComponent("button"),
+    dialog: makeNodeComponent("dialog"),
 
     // Metadata about props expected for PlasmicActivationFinish
     internalVariantProps: PlasmicActivationFinish__VariantProps,
