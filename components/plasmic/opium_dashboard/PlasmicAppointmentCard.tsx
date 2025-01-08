@@ -1802,6 +1802,39 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     role={"img"}
                   />
                 ) : null}
+                {(
+                  hasVariant(globalVariants, "screen", "mobileOnly")
+                    ? true
+                    : (() => {
+                        try {
+                          return (
+                            (!$props.onlineChannel ||
+                              $props.onlineChannel === undefined) &&
+                            $props.centerId === "5532"
+                          );
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return false;
+                          }
+                          throw e;
+                        }
+                      })()
+                ) ? (
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__bdRsh
+                    )}
+                  >
+                    {
+                      "(\u0648\u06cc\u0632\u06cc\u062a\u200c \u0622\u0646\u0644\u0627\u06cc\u0646)"
+                    }
+                  </div>
+                ) : null}
               </Stack__>
               <div
                 className={classNames(
@@ -1826,6 +1859,69 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   })()}
                 </React.Fragment>
               </div>
+              {(
+                hasVariant(globalVariants, "screen", "mobileOnly")
+                  ? (() => {
+                      try {
+                        return (
+                          (!$props.onlineChannel ||
+                            $props.onlineChannel === undefined) &&
+                          $props.centerId === "5532"
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return false;
+                        }
+                        throw e;
+                      }
+                    })()
+                  : false
+              ) ? (
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__fOBj7
+                  )}
+                >
+                  {hasVariant(globalVariants, "screen", "mobileOnly") ? (
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return "(ویزیت‌ آنلاین)";
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "09136020023";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  ) : (
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return $props.nationalcode;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "09136020023";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  )}
+                </div>
+              ) : null}
               {(
                 hasVariant(globalVariants, "screen", "mobileOnly")
                   ? true
