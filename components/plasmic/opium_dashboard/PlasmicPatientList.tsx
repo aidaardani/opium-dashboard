@@ -1071,7 +1071,7 @@ function PlasmicPatientList__RenderFunc(props: {
                 paymentStatus={(() => {
                   try {
                     return currentItem.type === "prescription"
-                      ? "پرداخت شامل این بیمار نمی‌شود"
+                      ? "نسخه ـ بدون پرداخت"
                       : (() => {
                           const paymentStatusMapping = {
                             paid: "پرداخت شده",

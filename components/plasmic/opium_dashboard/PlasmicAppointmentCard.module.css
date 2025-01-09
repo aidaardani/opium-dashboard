@@ -267,7 +267,36 @@
   position: relative;
   font-weight: 100;
   width: 70px;
-  font-size: 14px;
+  font-size: 12px;
+  color: #16a34a;
+}
+.text__uc8T3 {
+  position: relative;
+  font-weight: 300;
+  width: 70px;
+  font-size: 12px;
+  color: var(--token-4nkHJBlHYFDY);
+}
+.text___1QPgH {
+  position: relative;
+  font-weight: 100;
+  width: 70px;
+  font-size: 12px;
+  color: #ff7875;
+}
+.text__ttc07 {
+  position: relative;
+  font-weight: 100;
+  width: auto;
+  font-size: 12px;
+  color: #ff7875;
+}
+.text__gAZjp {
+  position: relative;
+  font-weight: 100;
+  width: auto;
+  font-size: 12px;
+  color: #ff7875;
 }
 .freeBox__vEfgU {
   display: flex;
