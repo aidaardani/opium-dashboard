@@ -523,7 +523,7 @@ function PlasmicBookList__RenderFunc(props: {
                 return (
                   $state.apiAllCenters.data.data.some(
                     center => center.id === "5532"
-                  ) || $state.apiPayment.data[0].value === 1
+                  ) || $state.apiPayment.data[0].value === "1"
                 );
               } catch (e) {
                 if (
