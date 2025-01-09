@@ -595,7 +595,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     $props.cost !== undefined &&
                     $props.cost !== "" &&
                     $props.cost !== "0 تومان" &&
-                    $props.cost !== "NaN تومان"
+                    $props.cost !== "NaN تومان" &&
+                    $props.paymentStatus === "پرداخت شده"
                   );
                 } catch (e) {
                   if (
@@ -1933,6 +1934,36 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   className={classNames(projectcss.all, sty.freeBox__zrFqj)}
                 />
               ) : null}
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__uOFD,
+                  {
+                    [sty.textonlineBorder__uOFD5Rn5G]: hasVariant(
+                      $state,
+                      "onlineBorder",
+                      "onlineBorder"
+                    )
+                  }
+                )}
+              >
+                <React.Fragment>
+                  {(() => {
+                    try {
+                      return $props.paymentStatus;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                      }
+                      throw e;
+                    }
+                  })()}
+                </React.Fragment>
+              </div>
             </Stack__>
           </Stack__>
         }

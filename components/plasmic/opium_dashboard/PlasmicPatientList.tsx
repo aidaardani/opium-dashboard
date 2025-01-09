@@ -744,7 +744,10 @@ function PlasmicPatientList__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.appointmentCard)}
                 cost={(() => {
                   try {
-                    return (currentItem.cost / 10).toLocaleString() + " تومان";
+                    return currentItem.cost
+                      ? (currentItem.cost / 10).toLocaleString() + " تومان"
+                      : (currentItem.user_payment / 10).toLocaleString() +
+                          " تومان";
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -1073,7 +1076,7 @@ function PlasmicPatientList__RenderFunc(props: {
                           const paymentStatusMapping = {
                             paid: "پرداخت شده",
                             not_paid: "پرداخت نشده",
-                            refund: "استرداد شده",
+                            refunded: "استرداد شده",
                             "not-need-to-pay": "پرداخت برای نوبت غیرفعال است."
                           };
                           return paymentStatusMapping[

@@ -263,6 +263,12 @@
     display: none;
   }
 }
+.text__uOFD {
+  position: relative;
+  font-weight: 100;
+  width: 70px;
+  font-size: 14px;
+}
 .freeBox__vEfgU {
   display: flex;
   position: relative;
