@@ -66,6 +66,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
 }
 .text__dggG {
   position: relative;
