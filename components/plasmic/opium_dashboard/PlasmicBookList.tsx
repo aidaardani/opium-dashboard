@@ -1079,11 +1079,11 @@ function PlasmicBookList__RenderFunc(props: {
                         "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
                       ] = !(
                         $state.apiAllCenters.data.data.some(
-                          center => center.id === 5532
+                          center => center.id === "5532"
                         ) &&
                         !$state.apiAllCenters.data.data.some(
                           center =>
-                            center.id !== 5532 &&
+                            center.id !== "5532" &&
                             center.type_id === 1 &&
                             center["is active booking"] === true
                         )
