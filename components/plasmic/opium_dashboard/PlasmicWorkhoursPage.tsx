@@ -327,16 +327,14 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                   const $steps = {};
 
                   $steps["goToHttpsOpiumDashboardPaziresh24ComActivationPage"] =
-                    !(
-                      $state.apIworkhours.data.data.some(
-                        center => center.id === "5532"
-                      ) &&
-                      !$state.apIworkhours.data.data.some(
-                        center =>
-                          center.id !== "5532" &&
-                          center.type_id === 1 &&
-                          center["is active booking"] === true
-                      )
+                    !$state.apIworkhours.data.data.some(
+                      center => center.id === "5532"
+                    ) &&
+                    !$state.apIworkhours.data.data.some(
+                      center =>
+                        center.id !== "5532" &&
+                        center.type_id === 1 &&
+                        center.is_active_booking === true
                     )
                       ? (() => {
                           const actionArgs = {
