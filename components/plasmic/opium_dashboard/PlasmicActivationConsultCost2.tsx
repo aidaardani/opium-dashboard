@@ -308,6 +308,45 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
         value={generateStateValueProp($state, ["input", "value"])}
       />
 
+      {(() => {
+        try {
+          return !!$state.input.value;
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return true;
+          }
+          throw e;
+        }
+      })() ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__ttxM2
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return `${(+$state.input.value).toLocaleString()} ${
+                  $state.input.value ? "تومان" : ""
+                }`;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+      ) : null}
       <div className={classNames(projectcss.all, sty.freeBox__atevk)}>
         <div
           className={classNames(
@@ -499,45 +538,6 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
           </div>
         ) : null}
       </div>
-      {(() => {
-        try {
-          return !!$state.input.value;
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return true;
-          }
-          throw e;
-        }
-      })() ? (
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__ttxM2
-          )}
-        >
-          <React.Fragment>
-            {(() => {
-              try {
-                return `${(+$state.input.value).toLocaleString()} ${
-                  $state.input.value ? "تومان" : ""
-                }`;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "";
-                }
-                throw e;
-              }
-            })()}
-          </React.Fragment>
-        </div>
-      ) : null}
       <div
         className={classNames(
           projectcss.all,
@@ -615,15 +615,31 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
                     args: [
                       (() => {
                         try {
-                          return {
-                            event_group: "activation-page",
-                            data: {
-                              userid: $props.userId,
-                              input: $state.input.value,
-                              pagepath: window.location.href
-                            },
-                            event_type: "click-save-button-consult-price-step4"
-                          };
+                          return (() => {
+                            if ($state.shabaApi.data) {
+                              return {
+                                event_group: "activation-page",
+                                data: {
+                                  userId: $props.userId,
+                                  pagePath: window.location.href,
+                                  isActiveCardNumber: true
+                                },
+                                event_type:
+                                  "click-save-button-consult-price-step4"
+                              };
+                            } else {
+                              return {
+                                event_group: "activation-page",
+                                data: {
+                                  userId: $props.userId,
+                                  pagePath: window.location.href,
+                                  isActiveCardNumber: false
+                                },
+                                event_type:
+                                  "click-save-button-consult-price-step4"
+                              };
+                            }
+                          })();
                         } catch (e) {
                           if (
                             e instanceof TypeError ||

@@ -407,6 +407,12 @@ function PlasmicBookList__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "provider",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -1075,6 +1081,80 @@ function PlasmicBookList__RenderFunc(props: {
                     (async data => {
                       const $steps = {};
 
+                      $steps["provider"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "GET",
+                                (() => {
+                                  try {
+                                    return (
+                                      "https://apigw.paziresh24.com/v1/providers?user_id=" +
+                                      $ctx.query.user_id
+                                    );
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.apiRequest"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["provider"] != null &&
+                        typeof $steps["provider"] === "object" &&
+                        typeof $steps["provider"].then === "function"
+                      ) {
+                        $steps["provider"] = await $steps["provider"];
+                      }
+
+                      $steps["updateProvider"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["provider"]
+                              },
+                              operation: 0,
+                              value: $steps.provider.data
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateProvider"] != null &&
+                        typeof $steps["updateProvider"] === "object" &&
+                        typeof $steps["updateProvider"].then === "function"
+                      ) {
+                        $steps["updateProvider"] = await $steps[
+                          "updateProvider"
+                        ];
+                      }
+
                       $steps[
                         "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
                       ] =
@@ -1086,7 +1166,9 @@ function PlasmicBookList__RenderFunc(props: {
                             center.id !== "5532" &&
                             center.type_id === 1 &&
                             center.is_active_booking === true
-                        )
+                        ) &&
+                        $state.provider.providers.length > 0 &&
+                        $state.provider.providers[0].job_title === "doctor"
                           ? (() => {
                               const actionArgs = {
                                 destination:

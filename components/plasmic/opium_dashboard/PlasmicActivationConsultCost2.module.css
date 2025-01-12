@@ -34,6 +34,15 @@
   object-fit: cover;
   min-width: 0;
 }
+.text__ttxM2 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: #2b2f3399;
+  font-size: var(--token-6NbVMeD6zQwn);
+  min-width: 0;
+}
 .freeBox__atevk {
   display: flex;
   flex-direction: column;
@@ -107,15 +116,6 @@
   color: var(--token-Le07ngBUPl2h);
   font-weight: 300;
   font-size: 11px;
-  min-width: 0;
-}
-.text__ttxM2 {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  color: #2b2f3399;
-  font-size: var(--token-6NbVMeD6zQwn);
   min-width: 0;
 }
 .text___80Vt4 {
