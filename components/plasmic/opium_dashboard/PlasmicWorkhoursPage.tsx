@@ -322,6 +322,99 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                   "apIworkhours",
                   "data"
                 ]).apply(null, eventArgs);
+
+                (async data => {
+                  const $steps = {};
+
+                  $steps["goToHttpsOpiumDashboardPaziresh24ComActivationPage"] =
+                    !(
+                      $state.apIworkhours.data.data.some(
+                        center => center.id === 5532
+                      ) &&
+                      !$state.apiAllCenters.data.data.some(
+                        center =>
+                          center.id !== 5532 &&
+                          center.type_id === 1 &&
+                          center["is active booking"] === true
+                      )
+                    )
+                      ? (() => {
+                          const actionArgs = {
+                            destination:
+                              "https://opium-dashboard.paziresh24.com/activation-page/"
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps[
+                      "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
+                    ] != null &&
+                    typeof $steps[
+                      "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
+                    ] === "object" &&
+                    typeof $steps[
+                      "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
+                    ].then === "function"
+                  ) {
+                    $steps[
+                      "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
+                    ] = await $steps[
+                      "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
+                    ];
+                  }
+
+                  $steps["sendEvent"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  group: "activation-page",
+                                  data: {
+                                    center: $state.apiAllCenters.data.data,
+                                    userid: $ctx.query.user_id,
+                                    pagepath: $ctx.pagePath
+                                  },
+                                  type: "redirect-to-activation"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
+                  ) {
+                    $steps["sendEvent"] = await $steps["sendEvent"];
+                  }
+                }).apply(null, eventArgs);
               }}
               ref={ref => {
                 $refs["apIworkhours"] = ref;
