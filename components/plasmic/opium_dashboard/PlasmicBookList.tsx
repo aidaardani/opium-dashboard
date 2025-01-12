@@ -1077,36 +1077,35 @@ function PlasmicBookList__RenderFunc(props: {
 
                       $steps[
                         "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
-                      ] = !(
-                        $state.apiAllCenters.data.data.some(
+                      ] =
+                        !$state.apiAllCenters.data.data.some(
                           center => center.id === "5532"
                         ) &&
                         !$state.apiAllCenters.data.data.some(
                           center =>
                             center.id !== "5532" &&
                             center.type_id === 1 &&
-                            center["is active booking"] === true
+                            center.is_active_booking === true
                         )
-                      )
-                        ? (() => {
-                            const actionArgs = {
-                              destination:
-                                "https://opium-dashboard.paziresh24.com/activation-page/"
-                            };
-                            return (({ destination }) => {
-                              if (
-                                typeof destination === "string" &&
-                                destination.startsWith("#")
-                              ) {
-                                document
-                                  .getElementById(destination.substr(1))
-                                  .scrollIntoView({ behavior: "smooth" });
-                              } else {
-                                __nextRouter?.push(destination);
-                              }
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
+                          ? (() => {
+                              const actionArgs = {
+                                destination:
+                                  "https://opium-dashboard.paziresh24.com/activation-page/"
+                              };
+                              return (({ destination }) => {
+                                if (
+                                  typeof destination === "string" &&
+                                  destination.startsWith("#")
+                                ) {
+                                  document
+                                    .getElementById(destination.substr(1))
+                                    .scrollIntoView({ behavior: "smooth" });
+                                } else {
+                                  __nextRouter?.push(destination);
+                                }
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
                       if (
                         $steps[
                           "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
