@@ -1075,52 +1075,53 @@ function PlasmicBookList__RenderFunc(props: {
                     (async data => {
                       const $steps = {};
 
-                      $steps["goToOpiumDashboardPaziresh24ComActivationPage"] =
-                        !(
-                          $state.apiAllCenters.data.data.some(
-                            center => center.id === 5532
-                          ) &&
-                          !$state.apiAllCenters.data.data.some(
-                            center =>
-                              center.id !== 5532 &&
-                              center.type_id === 1 &&
-                              center["is active booking"] === true
-                          )
+                      $steps[
+                        "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
+                      ] = !(
+                        $state.apiAllCenters.data.data.some(
+                          center => center.id === 5532
+                        ) &&
+                        !$state.apiAllCenters.data.data.some(
+                          center =>
+                            center.id !== 5532 &&
+                            center.type_id === 1 &&
+                            center["is active booking"] === true
                         )
-                          ? (() => {
-                              const actionArgs = {
-                                destination:
-                                  "opium-dashboard.paziresh24.com/activation-page"
-                              };
-                              return (({ destination }) => {
-                                if (
-                                  typeof destination === "string" &&
-                                  destination.startsWith("#")
-                                ) {
-                                  document
-                                    .getElementById(destination.substr(1))
-                                    .scrollIntoView({ behavior: "smooth" });
-                                } else {
-                                  __nextRouter?.push(destination);
-                                }
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
+                      )
+                        ? (() => {
+                            const actionArgs = {
+                              destination:
+                                "https://opium-dashboard.paziresh24.com/activation-page/"
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
                       if (
                         $steps[
-                          "goToOpiumDashboardPaziresh24ComActivationPage"
+                          "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
                         ] != null &&
                         typeof $steps[
-                          "goToOpiumDashboardPaziresh24ComActivationPage"
+                          "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
                         ] === "object" &&
                         typeof $steps[
-                          "goToOpiumDashboardPaziresh24ComActivationPage"
+                          "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
                         ].then === "function"
                       ) {
                         $steps[
-                          "goToOpiumDashboardPaziresh24ComActivationPage"
+                          "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
                         ] = await $steps[
-                          "goToOpiumDashboardPaziresh24ComActivationPage"
+                          "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
                         ];
                       }
 
