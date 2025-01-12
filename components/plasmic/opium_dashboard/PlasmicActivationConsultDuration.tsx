@@ -1006,7 +1006,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                               );
                                             return {
                                               active: 1,
-                                              center_id: 5532,
+                                              center_id: "5532",
                                               deposit_amount: cost,
                                               card_number: cardNumber,
                                               IBAN: IBAN,
