@@ -60,6 +60,8 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
+import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -70,6 +72,8 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicActivationConsultCost2.module.css"; // plasmic-import: nfu3aryCX9a4/css
 
+import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: euu18ryAtnAt/icon
+import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: BMYyZW6g83gg/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 
@@ -96,7 +100,8 @@ export const PlasmicActivationConsultCost2__ArgProps = new Array<ArgPropType>(
 export type PlasmicActivationConsultCost2__OverridesType = {
   root?: Flex__<"div">;
   input?: Flex__<typeof Input>;
-  freeBox?: Flex__<"div">;
+  cardNumberInput?: Flex__<typeof TextInput>;
+  shabaApi?: Flex__<typeof ApiRequest>;
   button?: Flex__<typeof Button>;
 };
 
@@ -196,6 +201,42 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "cardNumberInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "shabaApi.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "shabaApi"
+      },
+      {
+        path: "shabaApi.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "shabaApi"
+      },
+      {
+        path: "shabaApi.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "shabaApi"
+      },
+      {
+        path: "shabaValue",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -267,6 +308,219 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
         value={generateStateValueProp($state, ["input", "value"])}
       />
 
+      <div className={classNames(projectcss.all, sty.freeBox__atevk)}>
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__aX0S2
+          )}
+        >
+          {"\u0634\u0645\u0627\u0631\u0647 \u06a9\u0627\u0631\u062a"}
+        </div>
+        <TextInput
+          data-plasmic-name={"cardNumberInput"}
+          data-plasmic-override={overrides.cardNumberInput}
+          className={classNames("__wab_instance", sty.cardNumberInput)}
+          onChange={async (...eventArgs: any) => {
+            ((...eventArgs) => {
+              generateStateOnChangeProp($state, ["cardNumberInput", "value"])(
+                (e => e.target?.value).apply(null, eventArgs)
+              );
+            }).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          placeholder={
+            "\u0634\u0645\u0627\u0631\u0647 \u06a9\u0627\u0631\u062a \u062e\u0648\u062f \u0631\u0627 \u062b\u0628\u062a \u06a9\u0646\u06cc\u062f..."
+          }
+          value={
+            generateStateValueProp($state, ["cardNumberInput", "value"]) ?? ""
+          }
+        />
+
+        {(() => {
+          try {
+            return $state.cardNumberInput.value.trim().length >= 16;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })() ? (
+          <div className={classNames(projectcss.all, sty.freeBox__g1CNf)}>
+            <ApiRequest
+              data-plasmic-name={"shabaApi"}
+              data-plasmic-override={overrides.shabaApi}
+              className={classNames("__wab_instance", sty.shabaApi)}
+              errorDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___2PFzS
+                  )}
+                >
+                  {"Error fetching data"}
+                </div>
+              }
+              loadingDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___1M61V
+                  )}
+                >
+                  {"Loading..."}
+                </div>
+              }
+              method={"GET"}
+              onError={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["shabaApi", "error"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                (async error => {
+                  const $steps = {};
+
+                  $steps["showToast"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u062e\u0637\u0627 \u062f\u0631 \u062f\u0631\u06cc\u0627\u0641\u062a \u0634\u0645\u0627\u0631\u0647 \u06a9\u0627\u0631\u062a"
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["showToast"] != null &&
+                    typeof $steps["showToast"] === "object" &&
+                    typeof $steps["showToast"].then === "function"
+                  ) {
+                    $steps["showToast"] = await $steps["showToast"];
+                  }
+                }).apply(null, eventArgs);
+              }}
+              onLoading={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "shabaApi",
+                  "loading"
+                ]).apply(null, eventArgs);
+              }}
+              onSuccess={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["shabaApi", "data"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                (async data => {
+                  const $steps = {};
+
+                  $steps["updateShabaValue"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["shabaValue"]
+                          },
+                          operation: 0,
+                          value:
+                            $state.shabaApi.data && $state.shabaApi.data.IBAN
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateShabaValue"] != null &&
+                    typeof $steps["updateShabaValue"] === "object" &&
+                    typeof $steps["updateShabaValue"].then === "function"
+                  ) {
+                    $steps["updateShabaValue"] = await $steps[
+                      "updateShabaValue"
+                    ];
+                  }
+                }).apply(null, eventArgs);
+              }}
+              params={(() => {
+                try {
+                  return {
+                    card_number: $state.cardNumberInput.value.trim()
+                  };
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              ref={ref => {
+                $refs["shabaApi"] = ref;
+              }}
+              url={"https://api.paziresh24.com/V1/doctor/payments/iban-inquiry"}
+            >
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__zJpZg
+                )}
+              >
+                <React.Fragment>
+                  {(() => {
+                    try {
+                      return (
+                        "شماره شبا : " +
+                        ($state.shabaValue ? $state.shabaValue : "")
+                      );
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "";
+                      }
+                      throw e;
+                    }
+                  })()}
+                </React.Fragment>
+              </div>
+            </ApiRequest>
+          </div>
+        ) : null}
+      </div>
       {(() => {
         try {
           return !!$state.input.value;
@@ -319,10 +573,8 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
       </div>
       <Stack__
         as={"div"}
-        data-plasmic-name={"freeBox"}
-        data-plasmic-override={overrides.freeBox}
         hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox)}
+        className={classNames(projectcss.all, sty.freeBox__zaL)}
       >
         <Button
           data-plasmic-name={"button"}
@@ -332,7 +584,30 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
           onClick={async event => {
             const $steps = {};
 
-            $steps["invokeGlobalAction"] = (() => {
+            $steps["validationTosat"] =
+              $state.cardNumberInput.value !== "" &&
+              $state.cardNumberInput.value.trim().length !== 16
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "error",
+                        "\u0634\u0645\u0627\u0631\u0647 \u06a9\u0627\u0631\u062a \u0645\u0639\u062a\u0628\u0631 \u0646\u0645\u06cc \u0628\u0627\u0634\u062f"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+            if (
+              $steps["validationTosat"] != null &&
+              typeof $steps["validationTosat"] === "object" &&
+              typeof $steps["validationTosat"].then === "function"
+            ) {
+              $steps["validationTosat"] = await $steps["validationTosat"];
+            }
+
+            $steps["showToast"] = (() => {
               const regex = /^\d+$/;
               return !regex.test($state.input.value);
             })()
@@ -349,11 +624,11 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
                 })()
               : undefined;
             if (
-              $steps["invokeGlobalAction"] != null &&
-              typeof $steps["invokeGlobalAction"] === "object" &&
-              typeof $steps["invokeGlobalAction"].then === "function"
+              $steps["showToast"] != null &&
+              typeof $steps["showToast"] === "object" &&
+              typeof $steps["showToast"].then === "function"
             ) {
-              $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
+              $steps["showToast"] = await $steps["showToast"];
             }
 
             $steps["sendEvent"] = true
@@ -409,7 +684,13 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
                           const queryParams = globalThis.encodeURIComponent(
                             JSON.stringify(cost)
                           );
-                          return `/activation-page/consult/duration-2?price=${queryParams}&channels=${$props.channels}`;
+                          return `/activation-page/consult/duration-2?price=${queryParams}&channels=${
+                            $props.channels
+                          }&card_number=${$state.cardNumberInput.value.trim()}&IBAN=${$state.shabaApi.data.IBAN.slice(
+                            2
+                          ).toString()}&deposit_owners=${
+                            $state.shabaApi.data.deposit_owners[0]
+                          }&bank_name=${$state.shabaApi.data.bank_name}`;
                         })();
                       } catch (e) {
                         if (
@@ -451,9 +732,10 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "input", "freeBox", "button"],
+  root: ["root", "input", "cardNumberInput", "shabaApi", "button"],
   input: ["input"],
-  freeBox: ["freeBox", "button"],
+  cardNumberInput: ["cardNumberInput"],
+  shabaApi: ["shabaApi"],
   button: ["button"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -462,7 +744,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   input: typeof Input;
-  freeBox: "div";
+  cardNumberInput: typeof TextInput;
+  shabaApi: typeof ApiRequest;
   button: typeof Button;
 };
 
@@ -527,7 +810,8 @@ export const PlasmicActivationConsultCost2 = Object.assign(
   {
     // Helper components rendering sub-elements
     input: makeNodeComponent("input"),
-    freeBox: makeNodeComponent("freeBox"),
+    cardNumberInput: makeNodeComponent("cardNumberInput"),
+    shabaApi: makeNodeComponent("shabaApi"),
     button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicActivationConsultCost2

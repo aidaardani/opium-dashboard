@@ -2352,6 +2352,19 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/activation-page/consult/messengers-2"
+        },
+        {
+          "id": "ogJ87YqNHCc1",
+          "name": "ProfileMenuItems",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicProfileMenuItems.tsx",
+          "importSpec": {
+            "modulePath": "ProfileMenuItems.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicProfileMenuItems.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

@@ -1071,6 +1071,100 @@ function PlasmicBookList__RenderFunc(props: {
                       "apiAllCenters",
                       "data"
                     ]).apply(null, eventArgs);
+
+                    (async data => {
+                      const $steps = {};
+
+                      $steps["goToOpiumDashboardPaziresh24ComActivationPage"] =
+                        !(
+                          $state.apiAllCenters.data.data.some(
+                            center => center.id === 5532
+                          ) &&
+                          !$state.apiAllCenters.data.data.some(
+                            center =>
+                              center.id !== 5532 &&
+                              center.type_id === 1 &&
+                              center["is active booking"] === true
+                          )
+                        )
+                          ? (() => {
+                              const actionArgs = {
+                                destination:
+                                  "opium-dashboard.paziresh24.com/activation-page"
+                              };
+                              return (({ destination }) => {
+                                if (
+                                  typeof destination === "string" &&
+                                  destination.startsWith("#")
+                                ) {
+                                  document
+                                    .getElementById(destination.substr(1))
+                                    .scrollIntoView({ behavior: "smooth" });
+                                } else {
+                                  __nextRouter?.push(destination);
+                                }
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps[
+                          "goToOpiumDashboardPaziresh24ComActivationPage"
+                        ] != null &&
+                        typeof $steps[
+                          "goToOpiumDashboardPaziresh24ComActivationPage"
+                        ] === "object" &&
+                        typeof $steps[
+                          "goToOpiumDashboardPaziresh24ComActivationPage"
+                        ].then === "function"
+                      ) {
+                        $steps[
+                          "goToOpiumDashboardPaziresh24ComActivationPage"
+                        ] = await $steps[
+                          "goToOpiumDashboardPaziresh24ComActivationPage"
+                        ];
+                      }
+
+                      $steps["sendLog"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return {
+                                      group: "activation-page",
+                                      data: {
+                                        center: $state.apiAllCenters.data.data,
+                                        userid: $ctx.query.user_id
+                                      },
+                                      type: "redirect-to-activation"
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendLog"] != null &&
+                        typeof $steps["sendLog"] === "object" &&
+                        typeof $steps["sendLog"].then === "function"
+                      ) {
+                        $steps["sendLog"] = await $steps["sendLog"];
+                      }
+                    }).apply(null, eventArgs);
                   }}
                   params={(() => {
                     try {
