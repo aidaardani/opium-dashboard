@@ -1168,7 +1168,8 @@ function PlasmicBookList__RenderFunc(props: {
                             center.is_active_booking === true
                         ) &&
                         $state.provider.providers.length > 0 &&
-                        $state.provider.providers[0].job_title === "doctor"
+                        $state.provider.providers[0].job_title === "doctor" &&
+                        !$state.provider.providers[0].slug.includes("منشی")
                           ? (() => {
                               const actionArgs = {
                                 destination:
