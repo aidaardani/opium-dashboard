@@ -1040,6 +1040,49 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               $steps["costApi"] = await $steps["costApi"];
                             }
 
+                            $steps["addToAutoPayment"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "POST",
+                                      "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/add-to-auto-payment",
+                                      undefined,
+                                      (() => {
+                                        try {
+                                          return {
+                                            centers:
+                                              $state.centersApi.data.data,
+                                            userid: $ctx.query.user_id
+                                          };
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.apiRequest"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["addToAutoPayment"] != null &&
+                              typeof $steps["addToAutoPayment"] === "object" &&
+                              typeof $steps["addToAutoPayment"].then ===
+                                "function"
+                            ) {
+                              $steps["addToAutoPayment"] = await $steps[
+                                "addToAutoPayment"
+                              ];
+                            }
+
                             $steps["updateIsLoadingSave2"] = true
                               ? (() => {
                                   const actionArgs = {

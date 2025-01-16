@@ -421,7 +421,9 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
                     sty.text___1M61V
                   )}
                 >
-                  {"Loading..."}
+                  {
+                    "\u062f\u0631 \u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0634\u0645\u0627\u0631\u0647 \u0634\u0628\u0627..."
+                  }
                 </div>
               }
               method={"GET"}
