@@ -973,65 +973,68 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               ];
                             }
 
-                            $steps["costApi"] = $steps.activeConsultMutation
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      "PATCH",
-                                      "https://api.paziresh24.com/V1/doctor/payments/settings/",
-                                      undefined,
-                                      (() => {
-                                        try {
-                                          return (() => {
-                                            const cost = JSON.parse(
-                                              globalThis.decodeURIComponent(
-                                                $ctx.query.price
-                                              )
-                                            );
-                                            const cardNumber =
-                                              globalThis.decodeURIComponent(
-                                                $ctx.query.card_number
+                            $steps["costApi"] =
+                              $steps.activeConsultMutation &&
+                              $ctx.query.card_number !== undefined &&
+                              $ctx.query.card_number !== ""
+                                ? (() => {
+                                    const actionArgs = {
+                                      args: [
+                                        "PATCH",
+                                        "https://api.paziresh24.com/V1/doctor/payments/settings/",
+                                        undefined,
+                                        (() => {
+                                          try {
+                                            return (() => {
+                                              const cost = JSON.parse(
+                                                globalThis.decodeURIComponent(
+                                                  $ctx.query.price
+                                                )
                                               );
-                                            const IBAN =
-                                              globalThis.decodeURIComponent(
-                                                $ctx.query.IBAN
-                                              );
-                                            const depositOwners =
-                                              globalThis.decodeURIComponent(
-                                                $ctx.query.deposit_owners
-                                              );
-                                            const bankName =
-                                              globalThis.decodeURIComponent(
-                                                $ctx.query.bank_name
-                                              );
-                                            return {
-                                              active: 1,
-                                              center_id: "5532",
-                                              deposit_amount: cost,
-                                              card_number: cardNumber,
-                                              IBAN: IBAN,
-                                              deposit_owners: depositOwners,
-                                              bank_name: bankName
-                                            };
-                                          })();
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return undefined;
+                                              const cardNumber =
+                                                globalThis.decodeURIComponent(
+                                                  $ctx.query.card_number
+                                                );
+                                              const IBAN =
+                                                globalThis.decodeURIComponent(
+                                                  $ctx.query.IBAN
+                                                );
+                                              const depositOwners =
+                                                globalThis.decodeURIComponent(
+                                                  $ctx.query.deposit_owners
+                                                );
+                                              const bankName =
+                                                globalThis.decodeURIComponent(
+                                                  $ctx.query.bank_name
+                                                );
+                                              return {
+                                                active: 1,
+                                                center_id: "5532",
+                                                deposit_amount: cost,
+                                                card_number: cardNumber,
+                                                IBAN: IBAN,
+                                                deposit_owners: depositOwners,
+                                                bank_name: bankName
+                                              };
+                                            })();
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return undefined;
+                                            }
+                                            throw e;
                                           }
-                                          throw e;
-                                        }
-                                      })()
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "Fragment.apiRequest"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
+                                        })()
+                                      ]
+                                    };
+                                    return $globalActions[
+                                      "Fragment.apiRequest"
+                                    ]?.apply(null, [...actionArgs.args]);
+                                  })()
+                                : undefined;
                             if (
                               $steps["costApi"] != null &&
                               typeof $steps["costApi"] === "object" &&
@@ -1041,7 +1044,8 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                             }
 
                             $steps["addToAutoPayment"] =
-                              $ctx.query.card_number !== undefined
+                              $ctx.query.card_number !== undefined &&
+                              $ctx.query.card_number !== ""
                                 ? (() => {
                                     const actionArgs = {
                                       args: [
