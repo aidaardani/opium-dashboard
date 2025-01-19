@@ -719,11 +719,11 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
                           );
                           return `/activation-page/consult/duration-2?price=${queryParams}&channels=${
                             $props.channels
-                          }&card_number=${$state.cardNumberInput.value.trim()}&IBAN=${$state.shabaApi.data.IBAN.slice(
+                          }&card_number=${$state.cardNumberInput?.value.trim()}&IBAN=IR${$state.shabaApi.data?.IBAN.slice(
                             2
                           ).toString()}&deposit_owners=${
-                            $state.shabaApi.data.deposit_owners[0]
-                          }&bank_name=${$state.shabaApi.data.bank_name}`;
+                            $state.shabaApi.data?.deposit_owners[0]
+                          }&bank_name=${$state.shabaApi.data?.bank_name}`;
                         })();
                       } catch (e) {
                         if (
