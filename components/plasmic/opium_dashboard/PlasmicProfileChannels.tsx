@@ -499,6 +499,34 @@ function PlasmicProfileChannels__RenderFunc(props: {
               }
             </div>
           </Stack__>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__iieff
+            )}
+          >
+            <React.Fragment>
+              <React.Fragment>
+                {
+                  "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0645\u06cc \u0628\u0627\u06cc\u0633\u062a \u0627\u0632 "
+                }
+              </React.Fragment>
+              <span
+                className={"plasmic_default__all plasmic_default__span"}
+                style={{ fontWeight: 700 }}
+              >
+                {
+                  "\u0631\u0627\u0633 \u0632\u0645\u0627\u0646 \u0646\u0648\u0628\u062a \u0628\u06cc\u0645\u0627\u0631"
+                }
+              </span>
+              <React.Fragment>
+                {
+                  "\u060c \u062f\u0631 \u06cc\u06a9\u06cc \u0627\u0632 \u062f\u0648 \u067e\u06cc\u0627\u0645 \u0631\u0633\u0627\u0646 (\u0627\u06cc\u062a\u0627 \u06cc\u0627 \u0648\u0627\u062a\u0633\u0627\u067e) \u06a9\u0647 \u0634\u0645\u0627 \u0627\u0639\u0644\u0627\u0645 \u200c\u200c\u0645\u06cc\u200c\u06a9\u0646\u06cc\u062f \u0648  \u0628\u06cc\u0645\u0627\u0631 \u0627\u0646\u062a\u062e\u0627\u0628 \u0645\u06cc\u200c\u06a9\u0646\u062f \u0627\u0646\u062c\u0627\u0645 \u0634\u0648\u062f."
+                }
+              </React.Fragment>
+            </React.Fragment>
+          </div>
           <Stack__
             as={"div"}
             hasGap={true}

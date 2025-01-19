@@ -110,7 +110,6 @@ export type PlasmicHoursDaysOfWeek__OverridesType = {
   root?: Flex__<"div">;
   workhoursApi?: Flex__<typeof ApiRequest>;
   svg?: Flex__<"svg">;
-  text?: Flex__<"div">;
   durationOfWorkhour?: Flex__<typeof Duration>;
   workhours?: Flex__<typeof Workhours>;
 };
@@ -314,12 +313,10 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
         errorDisplay={
           <div className={classNames(projectcss.all, sty.freeBox__weZzw)}>
             <div
-              data-plasmic-name={"text"}
-              data-plasmic-override={overrides.text}
               className={classNames(
                 projectcss.all,
                 projectcss.__wab_text,
-                sty.text
+                sty.text__aA4Zf
               )}
             >
               {
@@ -456,6 +453,50 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                   }
                 })()}
               />
+            </div>
+          ) : null}
+          {(() => {
+            try {
+              return $props.centerId == 5532;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })() ? (
+            <div className={classNames(projectcss.all, sty.freeBox__ytpcb)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___9Lhvh
+                )}
+              >
+                <React.Fragment>
+                  <React.Fragment>
+                    {
+                      "\u062f\u0631 \u062a\u0639\u0631\u06cc\u0641 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc\u060c \u062f\u0642\u062a \u06a9\u0646\u06cc\u062f \u06a9\u0647 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0628\u0627\u06cc\u062f \u062f\u0631 "
+                    }
+                  </React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 700 }}
+                  >
+                    {
+                      "\u0631\u0623\u0633 \u0632\u0645\u0627\u0646 \u0646\u0648\u0628\u062a \u0628\u06cc\u0645\u0627\u0631"
+                    }
+                  </span>
+                  <React.Fragment>
+                    {
+                      " \u0622\u063a\u0627\u0632 \u0634\u0648\u062f\u061b \u0628\u0646\u0627\u0628\u0631\u0627\u06cc\u0646 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u062e\u0648\u062f \u0631\u0627 \u0628\u0647\u200c\u06af\u0648\u0646\u0647\u200c\u0627\u06cc \u062a\u0646\u0638\u06cc\u0645 \u06a9\u0646\u06cc\u062f \u06a9\u0647 \u0628\u062a\u0648\u0627\u0646\u06cc\u062f \u062f\u0631 \u0631\u0623\u0633 \u0632\u0645\u0627\u0646 \u0646\u0648\u0628\u062a\u060c \u0628\u0647 \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u067e\u0627\u0633\u062e \u062f\u0647\u06cc\u062f."
+                    }
+                  </React.Fragment>
+                </React.Fragment>
+              </div>
             </div>
           ) : null}
           <div className={classNames(projectcss.all, sty.freeBox__kIPq)}>
@@ -1145,23 +1186,9 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: [
-    "root",
-    "workhoursApi",
-    "svg",
-    "text",
-    "durationOfWorkhour",
-    "workhours"
-  ],
-  workhoursApi: [
-    "workhoursApi",
-    "svg",
-    "text",
-    "durationOfWorkhour",
-    "workhours"
-  ],
+  root: ["root", "workhoursApi", "svg", "durationOfWorkhour", "workhours"],
+  workhoursApi: ["workhoursApi", "svg", "durationOfWorkhour", "workhours"],
   svg: ["svg"],
-  text: ["text"],
   durationOfWorkhour: ["durationOfWorkhour"],
   workhours: ["workhours"]
 } as const;
@@ -1172,7 +1199,6 @@ type NodeDefaultElementType = {
   root: "div";
   workhoursApi: typeof ApiRequest;
   svg: "svg";
-  text: "div";
   durationOfWorkhour: typeof Duration;
   workhours: typeof Workhours;
 };
@@ -1239,7 +1265,6 @@ export const PlasmicHoursDaysOfWeek = Object.assign(
     // Helper components rendering sub-elements
     workhoursApi: makeNodeComponent("workhoursApi"),
     svg: makeNodeComponent("svg"),
-    text: makeNodeComponent("text"),
     durationOfWorkhour: makeNodeComponent("durationOfWorkhour"),
     workhours: makeNodeComponent("workhours"),
 
