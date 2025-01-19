@@ -73,6 +73,7 @@
   color: var(--token-u3OudfMChOo3);
   font-size: var(--token-aKAz0S7Xi5RN);
   white-space: pre;
+  font-weight: 700;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .text__uQdQp {
@@ -89,7 +90,7 @@
   font-size: 0.7rem;
   white-space: pre;
   right: auto;
-  font-weight: 300;
+  font-weight: 700;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .text__jpEeO {
