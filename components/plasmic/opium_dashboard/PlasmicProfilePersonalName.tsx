@@ -197,41 +197,128 @@ function PlasmicProfilePersonalName__RenderFunc(props: {
         sty.root
       )}
     >
-      <Input
-        data-plasmic-name={"firstName"}
-        data-plasmic-override={overrides.firstName}
-        className={classNames("__wab_instance", sty.firstName)}
-        disabled={false}
-        name={"name"}
-        onChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["firstName", "value"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        placeholder={"\u0646\u0627\u0645"}
-        type={"text"}
-        value={generateStateValueProp($state, ["firstName", "value"])}
-      />
+      <Stack__
+        as={"div"}
+        hasGap={true}
+        className={classNames(projectcss.all, sty.freeBox___9Qm6P)}
+      >
+        <Input
+          data-plasmic-name={"firstName"}
+          data-plasmic-override={overrides.firstName}
+          className={classNames("__wab_instance", sty.firstName)}
+          disabled={false}
+          name={"name"}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["firstName", "value"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          placeholder={"\u0646\u0627\u0645"}
+          type={"text"}
+          value={generateStateValueProp($state, ["firstName", "value"])}
+        />
 
-      <Input
-        data-plasmic-name={"lastName"}
-        data-plasmic-override={overrides.lastName}
-        className={classNames("__wab_instance", sty.lastName)}
-        disabled={false}
-        name={"lastname"}
-        onChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["lastName", "value"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        placeholder={
-          "\u0646\u0627\u0645 \u062e\u0627\u0646\u0648\u0627\u062f\u06af\u06cc"
-        }
-        type={"text"}
-        value={generateStateValueProp($state, ["lastName", "value"])}
-      />
+        {(() => {
+          try {
+            return $state.firstName.value.trim().length > 15;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })() ? (
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text___6VPiQ
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return "نام نمی تواند بیشتر از 15 کاراکتر باشد.";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+        ) : null}
+      </Stack__>
+      <Stack__
+        as={"div"}
+        hasGap={true}
+        className={classNames(projectcss.all, sty.freeBox__tbLnE)}
+      >
+        <Input
+          data-plasmic-name={"lastName"}
+          data-plasmic-override={overrides.lastName}
+          className={classNames("__wab_instance", sty.lastName)}
+          disabled={false}
+          name={"lastname"}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["lastName", "value"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          placeholder={
+            "\u0646\u0627\u0645 \u062e\u0627\u0646\u0648\u0627\u062f\u06af\u06cc"
+          }
+          type={"text"}
+          value={generateStateValueProp($state, ["lastName", "value"])}
+        />
+
+        {(() => {
+          try {
+            return $state.lastName.value.trim().length > 20;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })() ? (
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__x9Xb
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return "نام خانوادگی نمی تواند بیشتر از 20 کاراکتر باشد.";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+        ) : null}
+      </Stack__>
     </Stack__>
   ) as React.ReactElement | null;
 }

@@ -1066,12 +1066,22 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                           undefined,
                           (() => {
                             try {
-                              return {
-                                name: $state.profilePersonalName.firstNameValue,
-                                family:
-                                  $state.profilePersonalName.lastNameValue,
-                                national_code: $state.nationalCode.value
-                              };
+                              return (() => {
+                                if (
+                                  $state.profilePersonalName.firstNameValue.trim()
+                                    .length < 15 &&
+                                  $state.profilePersonalName.lastNameValue.trim()
+                                    .length < 20
+                                ) {
+                                  return {
+                                    name: $state.profilePersonalName
+                                      .firstNameValue,
+                                    family:
+                                      $state.profilePersonalName.lastNameValue,
+                                    national_code: $state.nationalCode.value
+                                  };
+                                }
+                              })();
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
