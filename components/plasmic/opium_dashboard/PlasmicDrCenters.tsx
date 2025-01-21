@@ -681,7 +681,7 @@ function PlasmicDrCenters__RenderFunc(props: {
                         const actionArgs = {
                           destination: (() => {
                             try {
-                              return `https://opium-dashboard.paziresh24.com/activation-page/consult/rules/?userId=${$state.apiRequest.data.data.id}`;
+                              return `/activation-page/consult/rules/?userId=${$state.apiRequest.data.data.id}`;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -884,13 +884,13 @@ function PlasmicDrCenters__RenderFunc(props: {
                         const actionArgs = {
                           destination: (() => {
                             try {
-                              return `https://opium-dashboard.paziresh24.com/activation-page/office/center/?userId=${$state.apiRequest.data.data.id}`;
+                              return `/activation-page/office/center/?userId=${$state.apiRequest.data.data.id}`;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
                                 e?.plasmicType === "PlasmicUndefinedDataError"
                               ) {
-                                return "";
+                                return undefined;
                               }
                               throw e;
                             }
