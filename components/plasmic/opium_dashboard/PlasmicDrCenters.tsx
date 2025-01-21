@@ -65,7 +65,6 @@ import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/compone
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import ActiveVisitOnline from "../../ActiveVisitOnline"; // plasmic-import: JRdpm2ALL90Q/component
 import ActiveOfficeBooking from "../../ActiveOfficeBooking"; // plasmic-import: s9QYwyQBTqhJ/component
-import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -80,8 +79,6 @@ import ChevronDownIcon from "../fragment_icons/icons/PlasmicIcon__ChevronDown"; 
 import ChevronUpIcon from "../fragment_icons/icons/PlasmicIcon__ChevronUp"; // plasmic-import: YXreB8gS3SjV/icon
 import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: euu18ryAtnAt/icon
 import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: BMYyZW6g83gg/icon
-import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
-import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 
 createPlasmicElementProxy;
 
@@ -108,7 +105,6 @@ export type PlasmicDrCenters__OverridesType = {
   textInput?: Flex__<typeof TextInput>;
   apiRequest?: Flex__<typeof ApiRequest>;
   activeVisitOnline?: Flex__<typeof ActiveVisitOnline>;
-  button?: Flex__<typeof Button>;
 };
 
 export interface DefaultDrCentersProps {
@@ -964,56 +960,6 @@ function PlasmicDrCenters__RenderFunc(props: {
                 }}
               />
             ) : null}
-            <Button
-              data-plasmic-name={"button"}
-              data-plasmic-override={overrides.button}
-              children2={
-                "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646"
-              }
-              className={classNames("__wab_instance", sty.button)}
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["goToPage"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        destination: (() => {
-                          try {
-                            return `/activation-page/consult/rules/9c40a150-0ac5-43de-9d8b-a814d924a137/?userId=${$state.apiRequest.data.data.id}`;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToPage"] != null &&
-                  typeof $steps["goToPage"] === "object" &&
-                  typeof $steps["goToPage"].then === "function"
-                ) {
-                  $steps["goToPage"] = await $steps["goToPage"];
-                }
-              }}
-            />
           </Stack__>
         }
         onOpenChange={async (...eventArgs: any) => {
@@ -1122,20 +1068,17 @@ const PlasmicDescendants = {
     "fragmentPopover",
     "textInput",
     "apiRequest",
-    "activeVisitOnline",
-    "button"
+    "activeVisitOnline"
   ],
   fragmentPopover: [
     "fragmentPopover",
     "textInput",
     "apiRequest",
-    "activeVisitOnline",
-    "button"
+    "activeVisitOnline"
   ],
   textInput: ["textInput"],
   apiRequest: ["apiRequest"],
-  activeVisitOnline: ["activeVisitOnline"],
-  button: ["button"]
+  activeVisitOnline: ["activeVisitOnline"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1146,7 +1089,6 @@ type NodeDefaultElementType = {
   textInput: typeof TextInput;
   apiRequest: typeof ApiRequest;
   activeVisitOnline: typeof ActiveVisitOnline;
-  button: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1213,7 +1155,6 @@ export const PlasmicDrCenters = Object.assign(
     textInput: makeNodeComponent("textInput"),
     apiRequest: makeNodeComponent("apiRequest"),
     activeVisitOnline: makeNodeComponent("activeVisitOnline"),
-    button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicDrCenters
     internalVariantProps: PlasmicDrCenters__VariantProps,

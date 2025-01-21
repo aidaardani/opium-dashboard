@@ -150,6 +150,8 @@ function PlasmicProfile__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const $globalActions = useGlobalActions?.();
+
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -459,6 +461,48 @@ function PlasmicProfile__RenderFunc(props: {
               ["accordion", "activePanelId"],
               AntdAccordion_Helpers
             ).apply(null, eventArgs);
+
+            (async activeIds => {
+              const $steps = {};
+
+              $steps["sendEvent"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              group: "active-online-visit",
+                              data: {
+                                accordionId: $state.accordion.activePanelId
+                              },
+                              type: "click-button-dr-centers"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["sendEvent"] != null &&
+                typeof $steps["sendEvent"] === "object" &&
+                typeof $steps["sendEvent"].then === "function"
+              ) {
+                $steps["sendEvent"] = await $steps["sendEvent"];
+              }
+            }).apply(null, eventArgs);
           }
         };
         initializeCodeComponentStates(
