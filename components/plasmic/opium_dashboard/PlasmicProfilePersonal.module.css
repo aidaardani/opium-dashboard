@@ -40,7 +40,7 @@
   width: 24px;
   height: 1em;
 }
-.freeBox {
+.freeBox___7IsrU {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -50,7 +50,7 @@
   min-width: 0;
   padding: 0px;
 }
-.freeBox > :global(.__wab_flex-container) {
+.freeBox___7IsrU > :global(.__wab_flex-container) {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
@@ -58,10 +58,10 @@
   margin-top: calc(0px - var(--token-vMUQwr5Jto1d));
   height: calc(100% + var(--token-vMUQwr5Jto1d));
 }
-.freeBox > :global(.__wab_flex-container) > *,
-.freeBox > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.freeBox > :global(.__wab_flex-container) > picture > img,
-.freeBox
+.freeBox___7IsrU > :global(.__wab_flex-container) > *,
+.freeBox___7IsrU > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox___7IsrU > :global(.__wab_flex-container) > picture > img,
+.freeBox___7IsrU
   > :global(.__wab_flex-container)
   > :global(.__wab_slot)
   > picture
@@ -71,17 +71,77 @@
 .profilePersonalName:global(.__wab_instance) {
   max-width: 100%;
 }
+.freeBox__uaxwu {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
+.text__jj6KA {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 4px;
+}
 .nationalCode:global(.__wab_instance) {
   width: 100%;
   max-width: 100%;
   object-fit: cover;
   min-width: 0;
 }
+.freeBox__e78Wg {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
+.text__oyYs7 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 4px;
+}
 .medicalCode:global(.__wab_instance) {
   width: 100%;
   max-width: 100%;
   object-fit: cover;
   min-width: 0;
+}
+.freeBox__skXy5 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
+.text__thjEv {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 4px;
 }
 .profilePersonalPhoneNumber:global(.__wab_instance) {
   max-width: 100%;
@@ -112,6 +172,26 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
+}
+.freeBox__l8Vrq {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
+.text__loV48 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 4px;
 }
 .notifyCell:global(.__wab_instance) {
   width: 100%;

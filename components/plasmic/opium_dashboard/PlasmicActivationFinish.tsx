@@ -745,7 +745,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                     onClick={async event => {
                       const $steps = {};
 
-                      $steps["invokeGlobalAction"] = true
+                      $steps["sendEvent"] = true
                         ? (() => {
                             const actionArgs = {
                               args: [
@@ -779,13 +779,11 @@ function PlasmicActivationFinish__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["invokeGlobalAction"] != null &&
-                        typeof $steps["invokeGlobalAction"] === "object" &&
-                        typeof $steps["invokeGlobalAction"].then === "function"
+                        $steps["sendEvent"] != null &&
+                        typeof $steps["sendEvent"] === "object" &&
+                        typeof $steps["sendEvent"].then === "function"
                       ) {
-                        $steps["invokeGlobalAction"] = await $steps[
-                          "invokeGlobalAction"
-                        ];
+                        $steps["sendEvent"] = await $steps["sendEvent"];
                       }
                     }}
                     startIcon={

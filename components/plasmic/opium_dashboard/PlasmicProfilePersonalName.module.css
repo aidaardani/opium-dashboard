@@ -49,6 +49,14 @@
   > img {
   margin-top: 4px;
 }
+.text__uRmj {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 4px;
+}
 .firstName:global(.__wab_instance) {
   width: 100%;
   max-width: 100%;
@@ -56,6 +64,14 @@
   outline-style: none;
   outline-color: transparent;
   outline-offset: 0px;
+  min-width: 0;
+}
+.text__oXAd {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-WR9d568ToYeY);
   min-width: 0;
 }
 .text___6VPiQ {
@@ -94,6 +110,14 @@
   > img {
   margin-top: 4px;
 }
+.text__zgckb {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 4px;
+}
 .lastName:global(.__wab_instance) {
   width: 100%;
   max-width: 100%;
@@ -104,6 +128,14 @@
   min-width: 0;
 }
 .text__x9Xb {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-WR9d568ToYeY);
+  min-width: 0;
+}
+.text__usnfV {
   position: relative;
   width: 100%;
   height: auto;

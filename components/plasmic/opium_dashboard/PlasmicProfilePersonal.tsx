@@ -111,7 +111,6 @@ export type PlasmicProfilePersonal__OverridesType = {
   root?: Flex__<"div">;
   auth?: Flex__<typeof ApiRequest>;
   profile?: Flex__<typeof ApiRequest>;
-  freeBox?: Flex__<"div">;
   profilePersonalName?: Flex__<typeof ProfilePersonalName>;
   nationalCode?: Flex__<typeof Input>;
   medicalCode?: Flex__<typeof Input>;
@@ -542,10 +541,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         >
           <Stack__
             as={"div"}
-            data-plasmic-name={"freeBox"}
-            data-plasmic-override={overrides.freeBox}
             hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox)}
+            className={classNames(projectcss.all, sty.freeBox___7IsrU)}
           >
             {(hasVariant($state, "noName", "noName") ? false : true) ? (
               <ProfilePersonalName
@@ -600,114 +597,152 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 }}
               />
             ) : null}
-            {(
-              hasVariant($state, "noNationalCode", "noNationalCode")
-                ? false
-                : true
-            ) ? (
-              <Input
-                data-plasmic-name={"nationalCode"}
-                data-plasmic-override={overrides.nationalCode}
-                className={classNames("__wab_instance", sty.nationalCode, {
-                  [sty.nationalCodenoMedicalCode]: hasVariant(
-                    $state,
-                    "noMedicalCode",
-                    "noMedicalCode"
-                  ),
-                  [sty.nationalCodenoName]: hasVariant(
-                    $state,
-                    "noName",
-                    "noName"
-                  ),
-                  [sty.nationalCodenoNationalCode]: hasVariant(
-                    $state,
-                    "noNationalCode",
-                    "noNationalCode"
-                  )
-                })}
-                name={"nationalCode"}
-                onChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
+            <div className={classNames(projectcss.all, sty.freeBox__uaxwu)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__jj6KA
+                )}
+              >
+                {"\u06a9\u062f \u0645\u0644\u06cc"}
+              </div>
+              {(
+                hasVariant($state, "noNationalCode", "noNationalCode")
+                  ? false
+                  : true
+              ) ? (
+                <Input
+                  data-plasmic-name={"nationalCode"}
+                  data-plasmic-override={overrides.nationalCode}
+                  className={classNames("__wab_instance", sty.nationalCode, {
+                    [sty.nationalCodenoMedicalCode]: hasVariant(
+                      $state,
+                      "noMedicalCode",
+                      "noMedicalCode"
+                    ),
+                    [sty.nationalCodenoName]: hasVariant(
+                      $state,
+                      "noName",
+                      "noName"
+                    ),
+                    [sty.nationalCodenoNationalCode]: hasVariant(
+                      $state,
+                      "noNationalCode",
+                      "noNationalCode"
+                    )
+                  })}
+                  name={"nationalCode"}
+                  onChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "nationalCode",
+                      "value"
+                    ]).apply(null, eventArgs);
+                  }}
+                  placeholder={"\u06a9\u062f \u0645\u0644\u06cc"}
+                  type={"text"}
+                  value={generateStateValueProp($state, [
                     "nationalCode",
                     "value"
-                  ]).apply(null, eventArgs);
-                }}
-                placeholder={"\u06a9\u062f \u0645\u0644\u06cc"}
-                type={"text"}
-                value={generateStateValueProp($state, [
-                  "nationalCode",
-                  "value"
-                ])}
-              />
-            ) : null}
-            {(
-              hasVariant($state, "noMedicalCode", "noMedicalCode")
-                ? false
-                : true
-            ) ? (
-              <Input
-                data-plasmic-name={"medicalCode"}
-                data-plasmic-override={overrides.medicalCode}
-                className={classNames("__wab_instance", sty.medicalCode, {
-                  [sty.medicalCodenoMedicalCode]: hasVariant(
-                    $state,
-                    "noMedicalCode",
-                    "noMedicalCode"
-                  ),
-                  [sty.medicalCodenoPhoneNumber]: hasVariant(
-                    $state,
-                    "noPhoneNumber",
-                    "noPhoneNumber"
-                  )
-                })}
-                name={"nationalCode"}
-                onChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "medicalCode",
-                    "value"
-                  ]).apply(null, eventArgs);
-                }}
-                placeholder={
-                  "\u0634\u0645\u0627\u0631\u0647 \u0646\u0638\u0627\u0645 \u067e\u0632\u0634\u06a9\u06cc"
-                }
-                type={"text"}
-                value={generateStateValueProp($state, ["medicalCode", "value"])}
-              />
-            ) : null}
-            {(
-              hasVariant($state, "noPhoneNumber", "noPhoneNumber")
-                ? false
-                : true
-            ) ? (
-              <ProfilePersonalPhoneNumber
-                data-plasmic-name={"profilePersonalPhoneNumber"}
-                data-plasmic-override={overrides.profilePersonalPhoneNumber}
+                  ])}
+                />
+              ) : null}
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox__e78Wg)}>
+              <div
                 className={classNames(
-                  "__wab_instance",
-                  sty.profilePersonalPhoneNumber,
-                  {
-                    [sty.profilePersonalPhoneNumbernoPhoneNumber]: hasVariant(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__oyYs7
+                )}
+              >
+                {
+                  "\u06a9\u062f \u0646\u0638\u0627\u0645 \u0648\u0638\u06cc\u0641\u0647"
+                }
+              </div>
+              {(
+                hasVariant($state, "noMedicalCode", "noMedicalCode")
+                  ? false
+                  : true
+              ) ? (
+                <Input
+                  data-plasmic-name={"medicalCode"}
+                  data-plasmic-override={overrides.medicalCode}
+                  className={classNames("__wab_instance", sty.medicalCode, {
+                    [sty.medicalCodenoMedicalCode]: hasVariant(
+                      $state,
+                      "noMedicalCode",
+                      "noMedicalCode"
+                    ),
+                    [sty.medicalCodenoPhoneNumber]: hasVariant(
                       $state,
                       "noPhoneNumber",
                       "noPhoneNumber"
                     )
+                  })}
+                  name={"nationalCode"}
+                  onChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "medicalCode",
+                      "value"
+                    ]).apply(null, eventArgs);
+                  }}
+                  placeholder={
+                    "\u0634\u0645\u0627\u0631\u0647 \u0646\u0638\u0627\u0645 \u067e\u0632\u0634\u06a9\u06cc"
                   }
+                  type={"text"}
+                  value={generateStateValueProp($state, [
+                    "medicalCode",
+                    "value"
+                  ])}
+                />
+              ) : null}
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox__skXy5)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__thjEv
                 )}
-                phoneNumber={(() => {
-                  try {
-                    return $state.profile.data.data.cell;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
+              >
+                {"\u062a\u0644\u0641\u0646 \u0647\u0645\u0631\u0627\u0647"}
+              </div>
+              {(
+                hasVariant($state, "noPhoneNumber", "noPhoneNumber")
+                  ? false
+                  : true
+              ) ? (
+                <ProfilePersonalPhoneNumber
+                  data-plasmic-name={"profilePersonalPhoneNumber"}
+                  data-plasmic-override={overrides.profilePersonalPhoneNumber}
+                  className={classNames(
+                    "__wab_instance",
+                    sty.profilePersonalPhoneNumber,
+                    {
+                      [sty.profilePersonalPhoneNumbernoPhoneNumber]: hasVariant(
+                        $state,
+                        "noPhoneNumber",
+                        "noPhoneNumber"
+                      )
                     }
-                    throw e;
-                  }
-                })()}
-              />
-            ) : null}
+                  )}
+                  phoneNumber={(() => {
+                    try {
+                      return $state.profile.data.data.cell;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                />
+              ) : null}
+            </div>
             <ApiRequest
               data-plasmic-name={"providerApi"}
               data-plasmic-override={overrides.providerApi}
@@ -827,25 +862,38 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   }
                 })()}
               >
-                <Input
-                  data-plasmic-name={"notifyCell"}
-                  data-plasmic-override={overrides.notifyCell}
-                  className={classNames("__wab_instance", sty.notifyCell)}
-                  onChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
+                <div className={classNames(projectcss.all, sty.freeBox__l8Vrq)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__loV48
+                    )}
+                  >
+                    {
+                      "\u062a\u0644\u0641\u0646 \u0647\u0645\u0631\u0627\u0647 \u0645\u0646\u0634\u06cc"
+                    }
+                  </div>
+                  <Input
+                    data-plasmic-name={"notifyCell"}
+                    data-plasmic-override={overrides.notifyCell}
+                    className={classNames("__wab_instance", sty.notifyCell)}
+                    onChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "notifyCell",
+                        "value"
+                      ]).apply(null, eventArgs);
+                    }}
+                    placeholder={
+                      "\u0634\u0645\u0627\u0631\u0647 \u0645\u0646\u0634\u06cc"
+                    }
+                    type={"text"}
+                    value={generateStateValueProp($state, [
                       "notifyCell",
                       "value"
-                    ]).apply(null, eventArgs);
-                  }}
-                  placeholder={
-                    "\u0634\u0645\u0627\u0631\u0647 \u0645\u0646\u0634\u06cc"
-                  }
-                  type={"text"}
-                  value={generateStateValueProp($state, [
-                    "notifyCell",
-                    "value"
-                  ])}
-                />
+                    ])}
+                  />
+                </div>
               </ApiRequest>
             </ApiRequest>
             <TextEditor
@@ -1230,7 +1278,6 @@ const PlasmicDescendants = {
     "root",
     "auth",
     "profile",
-    "freeBox",
     "profilePersonalName",
     "nationalCode",
     "medicalCode",
@@ -1244,7 +1291,6 @@ const PlasmicDescendants = {
   auth: [
     "auth",
     "profile",
-    "freeBox",
     "profilePersonalName",
     "nationalCode",
     "medicalCode",
@@ -1257,19 +1303,6 @@ const PlasmicDescendants = {
   ],
   profile: [
     "profile",
-    "freeBox",
-    "profilePersonalName",
-    "nationalCode",
-    "medicalCode",
-    "profilePersonalPhoneNumber",
-    "providerApi",
-    "notifyCellApi",
-    "notifyCell",
-    "fragmentTextEditor",
-    "button"
-  ],
-  freeBox: [
-    "freeBox",
     "profilePersonalName",
     "nationalCode",
     "medicalCode",
@@ -1297,7 +1330,6 @@ type NodeDefaultElementType = {
   root: "div";
   auth: typeof ApiRequest;
   profile: typeof ApiRequest;
-  freeBox: "div";
   profilePersonalName: typeof ProfilePersonalName;
   nationalCode: typeof Input;
   medicalCode: typeof Input;
@@ -1371,7 +1403,6 @@ export const PlasmicProfilePersonal = Object.assign(
     // Helper components rendering sub-elements
     auth: makeNodeComponent("auth"),
     profile: makeNodeComponent("profile"),
-    freeBox: makeNodeComponent("freeBox"),
     profilePersonalName: makeNodeComponent("profilePersonalName"),
     nationalCode: makeNodeComponent("nationalCode"),
     medicalCode: makeNodeComponent("medicalCode"),

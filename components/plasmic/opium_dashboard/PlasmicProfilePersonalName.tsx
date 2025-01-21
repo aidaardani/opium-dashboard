@@ -202,6 +202,15 @@ function PlasmicProfilePersonalName__RenderFunc(props: {
         hasGap={true}
         className={classNames(projectcss.all, sty.freeBox___9Qm6P)}
       >
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__uRmj
+          )}
+        >
+          {"\u0646\u0627\u0645"}
+        </div>
         <Input
           data-plasmic-name={"firstName"}
           data-plasmic-override={overrides.firstName}
@@ -219,6 +228,50 @@ function PlasmicProfilePersonalName__RenderFunc(props: {
           value={generateStateValueProp($state, ["firstName", "value"])}
         />
 
+        {(() => {
+          try {
+            return (() => {
+              const pattern =
+                /(?:کاردان|کارشناس|کارشناس ارشد|دانشجوی دکترای|دکترای|دانشجوی تخصص|متخصص|دانشجوی دکترای تخصصی|دکترای تخصصی|دانشجوی فوق تخصص|فوق تخصص|دانشجوی فلوشیپ|فلوشیپ|نامشخص|مشاور|دکتر)/;
+              function containsKeyword(inputText) {
+                return pattern.test(inputText);
+              }
+              return containsKeyword($state.firstName.value);
+            })();
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })() ? (
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__oXAd
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return "استفاده از درجه های علمی مانند دکتر ، کارشناس و ... در نام مجاز نمی باشد.";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+        ) : null}
         {(() => {
           try {
             return $state.firstName.value.trim().length > 15;
@@ -262,6 +315,17 @@ function PlasmicProfilePersonalName__RenderFunc(props: {
         hasGap={true}
         className={classNames(projectcss.all, sty.freeBox__tbLnE)}
       >
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__zgckb
+          )}
+        >
+          {
+            "\u0646\u0627\u0645 \u062e\u0627\u0646\u0648\u0627\u062f\u06af\u06cc"
+          }
+        </div>
         <Input
           data-plasmic-name={"lastName"}
           data-plasmic-override={overrides.lastName}
@@ -305,6 +369,50 @@ function PlasmicProfilePersonalName__RenderFunc(props: {
               {(() => {
                 try {
                   return "نام خانوادگی نمی تواند بیشتر از 20 کاراکتر باشد.";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+        ) : null}
+        {(() => {
+          try {
+            return (() => {
+              const pattern =
+                /(?:کاردان|کارشناس|کارشناس ارشد|دانشجوی دکترای|دکترای|دانشجوی تخصص|متخصص|دانشجوی دکترای تخصصی|دکترای تخصصی|دانشجوی فوق تخصص|فوق تخصص|دانشجوی فلوشیپ|فلوشیپ|نامشخص|مشاور)/;
+              function containsKeyword(inputText) {
+                return pattern.test(inputText);
+              }
+              return containsKeyword($state.lastName.value);
+            })();
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })() ? (
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__usnfV
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return "استفاده از درجه های علمی مانند دکتر ، کارشناس و ... در نام خانوادگی مجاز نمی باشد.";
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
