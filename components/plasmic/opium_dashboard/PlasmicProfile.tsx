@@ -471,30 +471,35 @@ function PlasmicProfile__RenderFunc(props: {
                       args: [
                         (() => {
                           try {
-                            return (function getStringById(id) {
-                              switch (id) {
-                                case "1":
-                                  return "String for ID 1";
-                                case "2":
-                                  return "String for ID 2";
-                                case "3":
-                                  return "String for ID 3";
-                                case "4":
-                                  return "String for ID 4";
-                                case "5":
-                                  return "String for ID 5";
-                                case "88":
-                                  return "String for ID 5";
-                                default:
-                                  return "Unknown ID";
+                            return (() => {
+                              function getStringById(id) {
+                                switch (id) {
+                                  case "1":
+                                    return "active-personal-information";
+                                  case "2":
+                                    return "active-expertise";
+                                  case "3":
+                                    return "active-messengers";
+                                  case "4":
+                                    return "active-static-password";
+                                  case "5":
+                                    return "active-writing-setting";
+                                  case "88":
+                                    return "active-address-phone";
+                                  default:
+                                    return "Unknown-ID";
+                                }
                               }
-                            })({
-                              group: "active-online-visit",
-                              data: {
-                                accordionId: $state.accordion.activePanelId
-                              },
-                              type: "click-button-dr-centers"
-                            });
+                              return {
+                                group: "active-online-visit",
+                                data: {
+                                  accordionId: $state.accordion.activePanelId
+                                },
+                                type: getStringById(
+                                  $state.accordion.activePanelId
+                                )
+                              };
+                            })();
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
