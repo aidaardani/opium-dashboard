@@ -487,15 +487,15 @@ function PlasmicProfile__RenderFunc(props: {
                                   case "88":
                                     return "active-address-phone";
                                   default:
-                                    return "Unknown-ID";
+                                    return "not-activated";
                                 }
                               }
                               return {
-                                group: "active-online-visit",
+                                event_group: "edit-profile",
                                 data: {
                                   accordionId: $state.accordion.activePanelId
                                 },
-                                type: getStringById(
+                                event_type: getStringById(
                                   $state.accordion.activePanelId
                                 )
                               };

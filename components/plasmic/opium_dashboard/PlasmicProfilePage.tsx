@@ -125,6 +125,8 @@ function PlasmicProfilePage__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const $globalActions = useGlobalActions?.();
+
   return (
     <React.Fragment>
       <Head></Head>
@@ -155,26 +157,42 @@ function PlasmicProfilePage__RenderFunc(props: {
           onLoad={async event => {
             const $steps = {};
 
-            $steps["updateStateVariable"] = true
+            $steps["sendEvent"] = true
               ? (() => {
-                  const actionArgs = {};
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
-                    undefined;
-                  })?.apply(null, [actionArgs]);
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            event_group: "edit-profile",
+                            data: {
+                              pagePath: window.location.href
+                            },
+                            event_type: "load-page-edit-profile"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Splunk.sendLog"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
                 })()
               : undefined;
             if (
-              $steps["updateStateVariable"] != null &&
-              typeof $steps["updateStateVariable"] === "object" &&
-              typeof $steps["updateStateVariable"].then === "function"
+              $steps["sendEvent"] != null &&
+              typeof $steps["sendEvent"] === "object" &&
+              typeof $steps["sendEvent"].then === "function"
             ) {
-              $steps["updateStateVariable"] = await $steps[
-                "updateStateVariable"
-              ];
+              $steps["sendEvent"] = await $steps["sendEvent"];
             }
           }}
         >
