@@ -1115,11 +1115,24 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                           (() => {
                             try {
                               return (() => {
+                                const pattern =
+                                  /(?:کاردان|کارشناس|کارشناس ارشد|دانشجوی دکترای|دکترای|دانشجوی تخصص|متخصص|دانشجوی دکترای تخصصی|دکترای تخصصی|دانشجوی فوق تخصص|فوق تخصص|دانشجوی فلوشیپ|فلوشیپ|نامشخص|مشاور|دکتر)/;
+                                function containsKeyword(inputText) {
+                                  return pattern.test(inputText);
+                                }
+                                const isHaveKeywordFirstName = containsKeyword(
+                                  $state.profilePersonalName.firstNameValue
+                                );
+                                const isHaveKeywordLastName = containsKeyword(
+                                  $state.profilePersonalName.lastNameValue
+                                );
                                 if (
                                   $state.profilePersonalName.firstNameValue.trim()
                                     .length < 15 &&
                                   $state.profilePersonalName.lastNameValue.trim()
-                                    .length < 20
+                                    .length < 20 &&
+                                  isHaveKeywordFirstName === false &&
+                                  isHaveKeywordLastName === false
                                 ) {
                                   return {
                                     name: $state.profilePersonalName
