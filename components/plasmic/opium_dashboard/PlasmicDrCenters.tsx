@@ -681,7 +681,7 @@ function PlasmicDrCenters__RenderFunc(props: {
                         const actionArgs = {
                           destination: (() => {
                             try {
-                              return `/activation-page/consult/rules/?userId=${$state.apiRequest.data.data.id}`;
+                              return `/activation-page/consult/rules/9c40a150-0ac5-43de-9d8b-a814d924a137/?userId=${$state.apiRequest.data.data.id}`;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||

@@ -471,13 +471,30 @@ function PlasmicProfile__RenderFunc(props: {
                       args: [
                         (() => {
                           try {
-                            return {
+                            return (function getStringById(id) {
+                              switch (id) {
+                                case "1":
+                                  return "String for ID 1";
+                                case "2":
+                                  return "String for ID 2";
+                                case "3":
+                                  return "String for ID 3";
+                                case "4":
+                                  return "String for ID 4";
+                                case "5":
+                                  return "String for ID 5";
+                                case "88":
+                                  return "String for ID 5";
+                                default:
+                                  return "Unknown ID";
+                              }
+                            })({
                               group: "active-online-visit",
                               data: {
                                 accordionId: $state.accordion.activePanelId
                               },
                               type: "click-button-dr-centers"
-                            };
+                            });
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
