@@ -275,7 +275,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "cityDialog.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       },
       {
         path: "selectProvince.value",
@@ -4891,7 +4891,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                     }
 
                     $steps["updateCityDialogOpen"] =
-                      $steps.centerMutation.status == 400
+                      $steps.centerMutation.status == "400" ||
+                      $steps.centerMutation.status == "500"
                         ? (() => {
                             const actionArgs = {
                               variable: {
