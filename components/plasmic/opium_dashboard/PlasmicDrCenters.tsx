@@ -62,6 +62,7 @@ import {
 import { Popover } from "@/fragment/components/popover"; // plasmic-import: umJXC-fyxDQn/codeComponent
 import DrCenter from "../../DrCenter"; // plasmic-import: Y5f_I7uzx8ZQ/component
 import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import ActiveVisitOnline from "../../ActiveVisitOnline"; // plasmic-import: JRdpm2ALL90Q/component
 import ActiveOfficeBooking from "../../ActiveOfficeBooking"; // plasmic-import: s9QYwyQBTqhJ/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
@@ -101,8 +102,8 @@ export const PlasmicDrCenters__ArgProps = new Array<ArgPropType>(
 export type PlasmicDrCenters__OverridesType = {
   root?: Flex__<"div">;
   fragmentPopover?: Flex__<typeof Popover>;
-  text?: Flex__<"div">;
   textInput?: Flex__<typeof TextInput>;
+  apiRequest?: Flex__<typeof ApiRequest>;
   activeVisitOnline?: Flex__<typeof ActiveVisitOnline>;
 };
 
@@ -194,6 +195,36 @@ function PlasmicDrCenters__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "apiprofile",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "apiRequest.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest"
+      },
+      {
+        path: "apiRequest.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest"
+      },
+      {
+        path: "apiRequest.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest"
       }
     ],
     [$props, $ctx, $refs]
@@ -570,6 +601,57 @@ function PlasmicDrCenters__RenderFunc(props: {
                   );
                 })
               : null}
+            <ApiRequest
+              data-plasmic-name={"apiRequest"}
+              data-plasmic-override={overrides.apiRequest}
+              className={classNames("__wab_instance", sty.apiRequest)}
+              errorDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___5Rh0U
+                  )}
+                >
+                  {"Error fetching data"}
+                </div>
+              }
+              loadingDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__an9Et
+                  )}
+                >
+                  {"Loading..."}
+                </div>
+              }
+              method={"GET"}
+              onError={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apiRequest",
+                  "error"
+                ]).apply(null, eventArgs);
+              }}
+              onLoading={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apiRequest",
+                  "loading"
+                ]).apply(null, eventArgs);
+              }}
+              onSuccess={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+                  null,
+                  eventArgs
+                );
+              }}
+              ref={ref => {
+                $refs["apiRequest"] = ref;
+              }}
+              url={"https://api.paziresh24.com/V1/doctor/profile"}
+            />
+
             {(() => {
               try {
                 return (
@@ -594,41 +676,43 @@ function PlasmicDrCenters__RenderFunc(props: {
                 onselected={async () => {
                   const $steps = {};
 
-                  $steps["goToHttpsDrPaziresh24ComActivationConsultRules"] =
-                    true
-                      ? (() => {
-                          const actionArgs = {
-                            destination:
-                              "https://dr.paziresh24.com/activation/consult/rules"
-                          };
-                          return (({ destination }) => {
-                            if (
-                              typeof destination === "string" &&
-                              destination.startsWith("#")
-                            ) {
-                              document
-                                .getElementById(destination.substr(1))
-                                .scrollIntoView({ behavior: "smooth" });
-                            } else {
-                              __nextRouter?.push(destination);
+                  $steps["goToPage"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          destination: (() => {
+                            try {
+                              return `https://opium-dashboard.paziresh24.com/activation-page/consult/rules/?userId=${$state.apiRequest.data.data.id}`;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "";
+                              }
+                              throw e;
                             }
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
+                          })()
+                        };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
                   if (
-                    $steps["goToHttpsDrPaziresh24ComActivationConsultRules"] !=
-                      null &&
-                    typeof $steps[
-                      "goToHttpsDrPaziresh24ComActivationConsultRules"
-                    ] === "object" &&
-                    typeof $steps[
-                      "goToHttpsDrPaziresh24ComActivationConsultRules"
-                    ].then === "function"
+                    $steps["goToPage"] != null &&
+                    typeof $steps["goToPage"] === "object" &&
+                    typeof $steps["goToPage"].then === "function"
                   ) {
-                    $steps["goToHttpsDrPaziresh24ComActivationConsultRules"] =
-                      await $steps[
-                        "goToHttpsDrPaziresh24ComActivationConsultRules"
-                      ];
+                    $steps["goToPage"] = await $steps["goToPage"];
                   }
 
                   $steps["sendEvent"] = true
@@ -795,10 +879,22 @@ function PlasmicDrCenters__RenderFunc(props: {
                 onselected={async () => {
                   const $steps = {};
 
-                  $steps["goToHttpsDrPaziresh24ComActivation"] = true
+                  $steps["goToPage"] = true
                     ? (() => {
                         const actionArgs = {
-                          destination: "https://dr.paziresh24.com/activation"
+                          destination: (() => {
+                            try {
+                              return `https://opium-dashboard.paziresh24.com/activation-page/office/center/?userId=${$state.apiRequest.data.data.id}`;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "";
+                              }
+                              throw e;
+                            }
+                          })()
                         };
                         return (({ destination }) => {
                           if (
@@ -815,15 +911,11 @@ function PlasmicDrCenters__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["goToHttpsDrPaziresh24ComActivation"] != null &&
-                    typeof $steps["goToHttpsDrPaziresh24ComActivation"] ===
-                      "object" &&
-                    typeof $steps["goToHttpsDrPaziresh24ComActivation"].then ===
-                      "function"
+                    $steps["goToPage"] != null &&
+                    typeof $steps["goToPage"] === "object" &&
+                    typeof $steps["goToPage"].then === "function"
                   ) {
-                    $steps["goToHttpsDrPaziresh24ComActivation"] = await $steps[
-                      "goToHttpsDrPaziresh24ComActivation"
-                    ];
+                    $steps["goToPage"] = await $steps["goToPage"];
                   }
 
                   $steps["sendEvent"] = true
@@ -887,12 +979,10 @@ function PlasmicDrCenters__RenderFunc(props: {
               dr={"rtl"}
             >
               <div
-                data-plasmic-name={"text"}
-                data-plasmic-override={overrides.text}
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text
+                  sty.text__bVBru
                 )}
               >
                 <React.Fragment>
@@ -973,15 +1063,21 @@ function PlasmicDrCenters__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "fragmentPopover", "text", "textInput", "activeVisitOnline"],
-  fragmentPopover: [
+  root: [
+    "root",
     "fragmentPopover",
-    "text",
     "textInput",
+    "apiRequest",
     "activeVisitOnline"
   ],
-  text: ["text"],
+  fragmentPopover: [
+    "fragmentPopover",
+    "textInput",
+    "apiRequest",
+    "activeVisitOnline"
+  ],
   textInput: ["textInput"],
+  apiRequest: ["apiRequest"],
   activeVisitOnline: ["activeVisitOnline"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -990,8 +1086,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   fragmentPopover: typeof Popover;
-  text: "div";
   textInput: typeof TextInput;
+  apiRequest: typeof ApiRequest;
   activeVisitOnline: typeof ActiveVisitOnline;
 };
 
@@ -1056,8 +1152,8 @@ export const PlasmicDrCenters = Object.assign(
   {
     // Helper components rendering sub-elements
     fragmentPopover: makeNodeComponent("fragmentPopover"),
-    text: makeNodeComponent("text"),
     textInput: makeNodeComponent("textInput"),
+    apiRequest: makeNodeComponent("apiRequest"),
     activeVisitOnline: makeNodeComponent("activeVisitOnline"),
 
     // Metadata about props expected for PlasmicDrCenters

@@ -57,7 +57,7 @@
   min-width: 0;
   min-height: 0;
 }
-.text {
+.text__bVBru {
   position: relative;
   width: 100%;
   height: auto;
@@ -156,6 +156,24 @@
   min-height: 0;
   -webkit-transition-property: all;
   -webkit-transition-duration: 1s;
+}
+.apiRequest:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.text__an9Et {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.text___5Rh0U {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
 }
 .activeVisitOnline:global(.__wab_instance) {
   max-width: 100%;

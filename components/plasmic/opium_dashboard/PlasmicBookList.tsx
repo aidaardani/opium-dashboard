@@ -1173,6 +1173,12 @@ function PlasmicBookList__RenderFunc(props: {
                             center.type_id === 3 &&
                             center.is_active_booking === true
                         ) &&
+                        !$state.apiAllCenters.data.data.some(
+                          center =>
+                            center.id !== "5532" &&
+                            center.type_id === 2 &&
+                            center.is_active_booking === true
+                        ) &&
                         $state.provider.providers.length > 0 &&
                         $state.provider.providers[0].job_title === "doctor" &&
                         !$state.provider.providers[0].slug.includes("منشی")
