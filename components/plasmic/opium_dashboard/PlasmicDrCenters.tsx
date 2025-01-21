@@ -676,7 +676,7 @@ function PlasmicDrCenters__RenderFunc(props: {
                 onselected={async () => {
                   const $steps = {};
 
-                  $steps["goToPage"] = true
+                  $steps["goToPage"] = $state.apiRequest.data.data.id
                     ? (() => {
                         const actionArgs = {
                           destination: (() => {
