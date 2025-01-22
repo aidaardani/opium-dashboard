@@ -657,7 +657,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 )}
               >
                 {
-                  "\u06a9\u062f \u0646\u0638\u0627\u0645 \u067e\u0632\u0634\u06a9\u06cc"
+                  "\u0634\u0645\u0627\u0631\u0647 \u0646\u0638\u0627\u0645 \u067e\u0632\u0634\u06a9\u06cc"
                 }
               </div>
               {(

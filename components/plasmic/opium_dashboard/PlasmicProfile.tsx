@@ -483,7 +483,7 @@ function PlasmicProfile__RenderFunc(props: {
                                   case "4":
                                     return "active-static-password";
                                   case "5":
-                                    return "active-writing-setting";
+                                    return "active-writing-settings";
                                   case "88":
                                     return "active-address-phone";
                                   default:
