@@ -103,6 +103,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
 }
 .freeBox__itFNx {
   display: flex;
@@ -273,6 +274,66 @@
 .changeadreesDialog:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
 }
+.freeBox___8UZ8S {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  z-index: 99999;
+  min-width: 0;
+  padding: 8px;
+}
+.freeBox___8UZ8S > :global(.__wab_flex-container) {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  margin-top: calc(0px - var(--token-_c276Gs_1FIE));
+  height: calc(100% + var(--token-_c276Gs_1FIE));
+}
+.freeBox___8UZ8S > :global(.__wab_flex-container) > *,
+.freeBox___8UZ8S > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox___8UZ8S > :global(.__wab_flex-container) > picture > img,
+.freeBox___8UZ8S
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-top: var(--token-_c276Gs_1FIE);
+}
+.selectProvince2:global(.__wab_instance) {
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  z-index: 99999;
+  min-width: 0;
+}
+.selectCity2:global(.__wab_instance) {
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  min-width: 0;
+}
+.button__n1O2L:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+  display: none;
+}
+.svg__gi9QS {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.svg__xhtRg {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
 .freeBox__kajpA {
   display: flex;
   flex-direction: column;
@@ -424,6 +485,21 @@
   max-width: 100%;
   object-fit: cover;
   min-width: 0;
+}
+.adressTextInput2:global(.__wab_instance) {
+  max-width: 100%;
+}
+.svg___8MOga {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.svg__a0SCz {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
 }
 .button__dwc6R:global(.__wab_instance) {
   max-width: 100%;

@@ -65,8 +65,8 @@ import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import ProfileTells from "../../ProfileTells"; // plasmic-import: yzo0JdTgs2uD/component
 import ProfileNotifyCell from "../../ProfileNotifyCell"; // plasmic-import: ZGi1LAR5yxN_/component
-import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
 import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZzFQxrO/codeComponent
+import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -114,10 +114,13 @@ export type PlasmicActivationOfficeCenter__OverridesType = {
   notifyCell?: Flex__<typeof ProfileNotifyCell>;
   profileApi?: Flex__<typeof ApiRequest>;
   changeadreesDialog?: Flex__<typeof Dialog>;
+  selectProvince2?: Flex__<typeof Select>;
+  selectCity2?: Flex__<typeof Select>;
   adressTextInput?: Flex__<typeof TextInput>;
   cityDialog?: Flex__<typeof Dialog>;
   selectProvince?: Flex__<typeof Select>;
   selectCity?: Flex__<typeof Select>;
+  adressTextInput2?: Flex__<typeof TextInput>;
 };
 
 export interface DefaultActivationOfficeCenterProps {
@@ -4230,7 +4233,78 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.addressApi.data.formatted_address;
+              return $state.selectProvince2.value && $state.selectCity2.value
+                ? $state.province
+                    .find(
+                      province =>
+                        province.id === $state.selectProvince2.value.toString()
+                    )
+                    ?.name.toString() +
+                    ", " +
+                    $state.cities
+                      .find(
+                        city => city.id === $state.selectCity2.value.toString()
+                      )
+                      ?.name.toString() +
+                    ", "
+                : "";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "selectProvince2.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "selectProvince2.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "selectCity2.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "selectCity2.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "adressTextInput2.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $state.selectProvince.value && $state.selectCity.value
+                ? $state.province
+                    .find(
+                      province =>
+                        province.id === $state.selectProvince.value.toString()
+                    )
+                    ?.name.toString() +
+                    ", " +
+                    $state.cities
+                      .find(
+                        city => city.id === $state.selectCity.value.toString()
+                      )
+                      ?.name.toString() +
+                    ", "
+                : "";
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -4805,10 +4879,11 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                                       item => item.tell
                                     );
                                     return {
-                                      address: $state.adressTextInput.value
-                                        ? $state.adressTextInput.value
-                                        : $state.addressApi?.data
-                                            ?.formatted_address,
+                                      address:
+                                        $state.adressTextInput2.value ||
+                                        $state.adressTextInput.value ||
+                                        $state.addressApi?.data
+                                          ?.formatted_address,
                                       lat: $state.map.lat,
                                       lon: $state.map.lng,
                                       tells: [
@@ -4816,12 +4891,22 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                                         ...newTell
                                       ],
 
-                                      ...($state.selectProvince.value && {
-                                        province: $state.selectProvince.value
-                                      }),
-                                      ...($state.selectCity.value && {
-                                        city: $state.selectCity.value
-                                      })
+                                      ...($state.selectProvince.value
+                                        ? {
+                                            province:
+                                              $state.selectProvince.value
+                                          }
+                                        : $state.selectProvince2.value
+                                        ? {
+                                            province:
+                                              $state.selectProvince2.value
+                                          }
+                                        : {}),
+                                      ...($state.selectCity.value
+                                        ? { city: $state.selectCity.value }
+                                        : $state.selectCity2.value
+                                        ? { city: $state.selectCity2.value }
+                                        : {})
                                     };
                                   })();
                                 } catch (e) {
@@ -5115,125 +5200,370 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         data-plasmic-name={"changeadreesDialog"}
         data-plasmic-override={overrides.changeadreesDialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__kajpA)}
-          >
-            <TextInput
-              data-plasmic-name={"adressTextInput"}
-              data-plasmic-override={overrides.adressTextInput}
-              className={classNames("__wab_instance", sty.adressTextInput)}
-              onChange={async (...eventArgs: any) => {
-                ((...eventArgs) => {
+          <React.Fragment>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox___8UZ8S)}
+            >
+              <Select
+                data-plasmic-name={"selectProvince2"}
+                data-plasmic-override={overrides.selectProvince2}
+                name={"province"}
+                onChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
+                    "selectProvince2",
+                    "value"
+                  ]).apply(null, eventArgs);
+
+                  (async value => {
+                    const $steps = {};
+                  }).apply(null, eventArgs);
+                }}
+                onOpenChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "selectProvince2",
+                    "open"
+                  ]).apply(null, eventArgs);
+                }}
+                open={generateStateValueProp($state, [
+                  "selectProvince2",
+                  "open"
+                ])}
+                options={(() => {
+                  try {
+                    return $state.province.map(province => ({
+                      label: province.name,
+                      value: +province.id
+                    }));
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                placeholder={"\u0627\u0633\u062a\u0627\u0646"}
+                triggerClassName={classNames(
+                  "__wab_instance",
+                  sty.selectProvince2
+                )}
+                value={generateStateValueProp($state, [
+                  "selectProvince2",
+                  "value"
+                ])}
+              />
+
+              <Select
+                data-plasmic-name={"selectCity2"}
+                data-plasmic-override={overrides.selectCity2}
+                onChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "selectCity2",
+                    "value"
+                  ]).apply(null, eventArgs);
+                }}
+                onOpenChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "selectCity2",
+                    "open"
+                  ]).apply(null, eventArgs);
+                }}
+                open={generateStateValueProp($state, ["selectCity2", "open"])}
+                options={(() => {
+                  try {
+                    return $state.cities
+                      .filter(
+                        city =>
+                          +city.province_id == +$state.selectProvince2.value
+                      )
+                      .map(item => ({
+                        label: item.name,
+                        value: +item.id
+                      }));
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                placeholder={"\u0634\u0647\u0631"}
+                triggerClassName={classNames("__wab_instance", sty.selectCity2)}
+                value={generateStateValueProp($state, ["selectCity2", "value"])}
+              />
+
+              <Button
+                children2={"\u0630\u062e\u06cc\u0631\u0647"}
+                className={classNames("__wab_instance", sty.button__n1O2L)}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateCityDialogOpen"] = !!$state.selectProvince2
+                    .value
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["cityDialog", "open"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateCityDialogOpen"] != null &&
+                    typeof $steps["updateCityDialogOpen"] === "object" &&
+                    typeof $steps["updateCityDialogOpen"].then === "function"
+                  ) {
+                    $steps["updateCityDialogOpen"] = await $steps[
+                      "updateCityDialogOpen"
+                    ];
+                  }
+                }}
+              />
+            </Stack__>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__kajpA)}
+            >
+              <TextInput
+                data-plasmic-name={"adressTextInput"}
+                data-plasmic-override={overrides.adressTextInput}
+                className={classNames("__wab_instance", sty.adressTextInput)}
+                onChange={async (...eventArgs: any) => {
+                  ((...eventArgs) => {
+                    generateStateOnChangeProp($state, [
+                      "adressTextInput",
+                      "value"
+                    ])((e => e.target?.value).apply(null, eventArgs));
+                  }).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+                placeholder={(() => {
+                  try {
+                    return "آدرس را وارد کنید...";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                type={"text"}
+                value={
+                  generateStateValueProp($state, [
                     "adressTextInput",
                     "value"
-                  ])((e => e.target?.value).apply(null, eventArgs));
-                }).apply(null, eventArgs);
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
+                  ]) ?? ""
                 }
-              }}
-              type={"text"}
-              value={
-                generateStateValueProp($state, ["adressTextInput", "value"]) ??
-                ""
-              }
-            />
+              />
 
-            <Button
-              children2={"\u0630\u062e\u06cc\u0631\u0647"}
-              className={classNames("__wab_instance", sty.button__pQQsN)}
-              onClick={async event => {
-                const $steps = {};
+              <Button
+                children2={"\u0630\u062e\u06cc\u0631\u0647"}
+                className={classNames("__wab_instance", sty.button__pQQsN)}
+                onClick={async event => {
+                  const $steps = {};
 
-                $steps["updateTellsDialogOpen"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["tellsDialog", "open"]
-                        },
-                        operation: 4
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        const oldValue = $stateGet(objRoot, variablePath);
-                        $stateSet(objRoot, variablePath, !oldValue);
-                        return !oldValue;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateTellsDialogOpen"] != null &&
-                  typeof $steps["updateTellsDialogOpen"] === "object" &&
-                  typeof $steps["updateTellsDialogOpen"].then === "function"
-                ) {
-                  $steps["updateTellsDialogOpen"] = await $steps[
-                    "updateTellsDialogOpen"
-                  ];
-                }
-
-                $steps["sendEvent"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          (() => {
-                            try {
-                              return {
-                                event_group: "activation-page",
-                                data: {
-                                  map: $state.map,
-                                  apiadress: $state.adressTextInput.value,
-                                  notifycell: $state.notifyCell.notifyCellValue,
-                                  pagepath: $ctx.pagePath,
-                                  userid: $ctx.query.user_id
-                                },
-                                event_type:
-                                  "click-save-change-address-button-office-step2"
-                              };
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
+                  $steps["updateTellsDialogOpen"] =
+                    !!$state.selectProvince2.value && !!$state.selectCity2.value
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["tellsDialog", "open"]
+                            },
+                            operation: 4
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
                             }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Splunk.sendLog"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["sendEvent"] != null &&
-                  typeof $steps["sendEvent"] === "object" &&
-                  typeof $steps["sendEvent"].then === "function"
-                ) {
-                  $steps["sendEvent"] = await $steps["sendEvent"];
-                }
-              }}
-            />
-          </Stack__>
+                            const { objRoot, variablePath } = variable;
+
+                            const oldValue = $stateGet(objRoot, variablePath);
+                            $stateSet(objRoot, variablePath, !oldValue);
+                            return !oldValue;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps["updateTellsDialogOpen"] != null &&
+                    typeof $steps["updateTellsDialogOpen"] === "object" &&
+                    typeof $steps["updateTellsDialogOpen"].then === "function"
+                  ) {
+                    $steps["updateTellsDialogOpen"] = await $steps[
+                      "updateTellsDialogOpen"
+                    ];
+                  }
+
+                  $steps["showToast"] = !$state.selectProvince2.value
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u0644\u0637\u0641\u0627 \u0627\u0633\u062a\u0627\u0646 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["showToast"] != null &&
+                    typeof $steps["showToast"] === "object" &&
+                    typeof $steps["showToast"].then === "function"
+                  ) {
+                    $steps["showToast"] = await $steps["showToast"];
+                  }
+
+                  $steps["showToast2"] = !$state.selectCity2.value
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u0644\u0637\u0641\u0627 \u0634\u0647\u0631 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["showToast2"] != null &&
+                    typeof $steps["showToast2"] === "object" &&
+                    typeof $steps["showToast2"].then === "function"
+                  ) {
+                    $steps["showToast2"] = await $steps["showToast2"];
+                  }
+
+                  $steps["sendEvent"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  event_group: "activation-page",
+                                  data: {
+                                    map: $state.map,
+                                    apiadress: $state.adressTextInput.value,
+                                    notifycell:
+                                      $state.notifyCell.notifyCellValue,
+                                    pagepath: $ctx.pagePath,
+                                    userid: $ctx.query.user_id
+                                  },
+                                  event_type:
+                                    "click-save-change-address-button-office-step2"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
+                  ) {
+                    $steps["sendEvent"] = await $steps["sendEvent"];
+                  }
+
+                  $steps["updateChangeadreesDialogOpen"] =
+                    !!$state.selectProvince2.value && !!$state.selectCity2.value
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["changeadreesDialog", "open"]
+                            },
+                            operation: 0,
+                            value: false
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps["updateChangeadreesDialogOpen"] != null &&
+                    typeof $steps["updateChangeadreesDialogOpen"] ===
+                      "object" &&
+                    typeof $steps["updateChangeadreesDialogOpen"].then ===
+                      "function"
+                  ) {
+                    $steps["updateChangeadreesDialogOpen"] = await $steps[
+                      "updateChangeadreesDialogOpen"
+                    ];
+                  }
+                }}
+              />
+            </Stack__>
+          </React.Fragment>
         }
         className={classNames("__wab_instance", sty.changeadreesDialog)}
         noTrigger={true}
@@ -5374,38 +5704,79 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
               value={generateStateValueProp($state, ["selectCity", "value"])}
             />
 
+            <TextInput
+              data-plasmic-name={"adressTextInput2"}
+              data-plasmic-override={overrides.adressTextInput2}
+              className={classNames("__wab_instance", sty.adressTextInput2)}
+              onChange={async (...eventArgs: any) => {
+                ((...eventArgs) => {
+                  generateStateOnChangeProp($state, [
+                    "adressTextInput2",
+                    "value"
+                  ])((e => e.target?.value).apply(null, eventArgs));
+                }).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              placeholder={(() => {
+                try {
+                  return "آدرس را وارد کنید....";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              type={"text"}
+              value={
+                generateStateValueProp($state, ["adressTextInput2", "value"]) ??
+                ""
+              }
+            />
+
             <Button
               children2={"\u0630\u062e\u06cc\u0631\u0647"}
               className={classNames("__wab_instance", sty.button__dwc6R)}
               onClick={async event => {
                 const $steps = {};
 
-                $steps["updateCityDialogOpen"] = !!$state.selectProvince.value
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["cityDialog", "open"]
-                        },
-                        operation: 0,
-                        value: false
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
+                $steps["updateCityDialogOpen"] =
+                  !!$state.selectProvince.value && !!$state.selectCity.value
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["cityDialog", "open"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
 
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
                 if (
                   $steps["updateCityDialogOpen"] != null &&
                   typeof $steps["updateCityDialogOpen"] === "object" &&
@@ -5414,6 +5785,48 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                   $steps["updateCityDialogOpen"] = await $steps[
                     "updateCityDialogOpen"
                   ];
+                }
+
+                $steps["showToast"] = !$state.selectProvince.value
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "error",
+                          "\u0644\u0637\u0641\u0627 \u0627\u0633\u062a\u0627\u0646 \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f."
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["showToast"] != null &&
+                  typeof $steps["showToast"] === "object" &&
+                  typeof $steps["showToast"].then === "function"
+                ) {
+                  $steps["showToast"] = await $steps["showToast"];
+                }
+
+                $steps["showToast2"] = !$state.selectCity.value
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "error",
+                          "\u0644\u0637\u0641\u0627 \u0634\u0647\u0631 \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f."
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["showToast2"] != null &&
+                  typeof $steps["showToast2"] === "object" &&
+                  typeof $steps["showToast2"].then === "function"
+                ) {
+                  $steps["showToast2"] = await $steps["showToast2"];
                 }
               }}
             />
@@ -5456,10 +5869,13 @@ const PlasmicDescendants = {
     "notifyCell",
     "profileApi",
     "changeadreesDialog",
+    "selectProvince2",
+    "selectCity2",
     "adressTextInput",
     "cityDialog",
     "selectProvince",
-    "selectCity"
+    "selectCity",
+    "adressTextInput2"
   ],
   map: ["map"],
   addressApi: ["addressApi"],
@@ -5474,11 +5890,24 @@ const PlasmicDescendants = {
   tells: ["tells"],
   notifyCell: ["notifyCell"],
   profileApi: ["profileApi"],
-  changeadreesDialog: ["changeadreesDialog", "adressTextInput"],
+  changeadreesDialog: [
+    "changeadreesDialog",
+    "selectProvince2",
+    "selectCity2",
+    "adressTextInput"
+  ],
+  selectProvince2: ["selectProvince2"],
+  selectCity2: ["selectCity2"],
   adressTextInput: ["adressTextInput"],
-  cityDialog: ["cityDialog", "selectProvince", "selectCity"],
+  cityDialog: [
+    "cityDialog",
+    "selectProvince",
+    "selectCity",
+    "adressTextInput2"
+  ],
   selectProvince: ["selectProvince"],
-  selectCity: ["selectCity"]
+  selectCity: ["selectCity"],
+  adressTextInput2: ["adressTextInput2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -5493,10 +5922,13 @@ type NodeDefaultElementType = {
   notifyCell: typeof ProfileNotifyCell;
   profileApi: typeof ApiRequest;
   changeadreesDialog: typeof Dialog;
+  selectProvince2: typeof Select;
+  selectCity2: typeof Select;
   adressTextInput: typeof TextInput;
   cityDialog: typeof Dialog;
   selectProvince: typeof Select;
   selectCity: typeof Select;
+  adressTextInput2: typeof TextInput;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -5567,10 +5999,13 @@ export const PlasmicActivationOfficeCenter = Object.assign(
     notifyCell: makeNodeComponent("notifyCell"),
     profileApi: makeNodeComponent("profileApi"),
     changeadreesDialog: makeNodeComponent("changeadreesDialog"),
+    selectProvince2: makeNodeComponent("selectProvince2"),
+    selectCity2: makeNodeComponent("selectCity2"),
     adressTextInput: makeNodeComponent("adressTextInput"),
     cityDialog: makeNodeComponent("cityDialog"),
     selectProvince: makeNodeComponent("selectProvince"),
     selectCity: makeNodeComponent("selectCity"),
+    adressTextInput2: makeNodeComponent("adressTextInput2"),
 
     // Metadata about props expected for PlasmicActivationOfficeCenter
     internalVariantProps: PlasmicActivationOfficeCenter__VariantProps,
