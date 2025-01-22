@@ -65,6 +65,7 @@ import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import ProfileTells from "../../ProfileTells"; // plasmic-import: yzo0JdTgs2uD/component
 import ProfileNotifyCell from "../../ProfileNotifyCell"; // plasmic-import: ZGi1LAR5yxN_/component
+import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
 import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZzFQxrO/codeComponent
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -79,6 +80,8 @@ import Icon26Icon from "./icons/PlasmicIcon__Icon26"; // plasmic-import: frSwMvW
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
+import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: euu18ryAtnAt/icon
+import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: BMYyZW6g83gg/icon
 import Icon7Icon from "./icons/PlasmicIcon__Icon7"; // plasmic-import: -MDfk7M6FyZh/icon
 
 createPlasmicElementProxy;
@@ -110,6 +113,8 @@ export type PlasmicActivationOfficeCenter__OverridesType = {
   tells?: Flex__<typeof ProfileTells>;
   notifyCell?: Flex__<typeof ProfileNotifyCell>;
   profileApi?: Flex__<typeof ApiRequest>;
+  changeadreesDialog?: Flex__<typeof Dialog>;
+  adressTextInput?: Flex__<typeof TextInput>;
   cityDialog?: Flex__<typeof Dialog>;
   selectProvince?: Flex__<typeof Select>;
   selectCity?: Flex__<typeof Select>;
@@ -4211,6 +4216,31 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "profileApi"
+      },
+      {
+        path: "changeadreesDialog.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "adressTextInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $state.addressApi.data.formatted_address;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -4349,6 +4379,40 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
           as={"div"}
           hasGap={true}
           className={classNames(projectcss.all, sty.freeBox__itFNx)}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["updateChangeadreesDialogOpen"] = true
+              ? (() => {
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["changeadreesDialog", "open"]
+                    },
+                    operation: 0,
+                    value: true
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
+                    }
+                    const { objRoot, variablePath } = variable;
+
+                    $stateSet(objRoot, variablePath, value);
+                    return value;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["updateChangeadreesDialogOpen"] != null &&
+              typeof $steps["updateChangeadreesDialogOpen"] === "object" &&
+              typeof $steps["updateChangeadreesDialogOpen"].then === "function"
+            ) {
+              $steps["updateChangeadreesDialogOpen"] = await $steps[
+                "updateChangeadreesDialogOpen"
+              ];
+            }
+          }}
         >
           <Icon26Icon
             className={classNames(projectcss.all, sty.svg__xlRns)}
@@ -4741,9 +4805,10 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                                       item => item.tell
                                     );
                                     return {
-                                      address:
-                                        $state.addressApi?.data
-                                          ?.formatted_address,
+                                      address: $state.adressTextInput.value
+                                        ? $state.adressTextInput.value
+                                        : $state.addressApi?.data
+                                            ?.formatted_address,
                                       lat: $state.map.lat,
                                       lon: $state.map.lng,
                                       tells: [
@@ -5047,6 +5112,153 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
       />
 
       <Dialog
+        data-plasmic-name={"changeadreesDialog"}
+        data-plasmic-override={overrides.changeadreesDialog}
+        body={
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__kajpA)}
+          >
+            <TextInput
+              data-plasmic-name={"adressTextInput"}
+              data-plasmic-override={overrides.adressTextInput}
+              className={classNames("__wab_instance", sty.adressTextInput)}
+              onChange={async (...eventArgs: any) => {
+                ((...eventArgs) => {
+                  generateStateOnChangeProp($state, [
+                    "adressTextInput",
+                    "value"
+                  ])((e => e.target?.value).apply(null, eventArgs));
+                }).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              type={"text"}
+              value={
+                generateStateValueProp($state, ["adressTextInput", "value"]) ??
+                ""
+              }
+            />
+
+            <Button
+              children2={"\u0630\u062e\u06cc\u0631\u0647"}
+              className={classNames("__wab_instance", sty.button__pQQsN)}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateTellsDialogOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["tellsDialog", "open"]
+                        },
+                        operation: 4
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateTellsDialogOpen"] != null &&
+                  typeof $steps["updateTellsDialogOpen"] === "object" &&
+                  typeof $steps["updateTellsDialogOpen"].then === "function"
+                ) {
+                  $steps["updateTellsDialogOpen"] = await $steps[
+                    "updateTellsDialogOpen"
+                  ];
+                }
+
+                $steps["sendEvent"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                event_group: "activation-page",
+                                data: {
+                                  map: $state.map,
+                                  apiadress: $state.adressTextInput.value,
+                                  notifycell: $state.notifyCell.notifyCellValue,
+                                  pagepath: $ctx.pagePath,
+                                  userid: $ctx.query.user_id
+                                },
+                                event_type:
+                                  "click-save-change-address-button-office-step2"
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["sendEvent"] != null &&
+                  typeof $steps["sendEvent"] === "object" &&
+                  typeof $steps["sendEvent"].then === "function"
+                ) {
+                  $steps["sendEvent"] = await $steps["sendEvent"];
+                }
+              }}
+            />
+          </Stack__>
+        }
+        className={classNames("__wab_instance", sty.changeadreesDialog)}
+        noTrigger={true}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "changeadreesDialog",
+            "open"
+          ]).apply(null, eventArgs);
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        open={generateStateValueProp($state, ["changeadreesDialog", "open"])}
+        title={
+          "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0622\u062f\u0631\u0633 \u0645\u0637\u0628"
+        }
+        trigger={null}
+      />
+
+      <Dialog
         data-plasmic-name={"cityDialog"}
         data-plasmic-override={overrides.cityDialog}
         body={
@@ -5243,6 +5455,8 @@ const PlasmicDescendants = {
     "tells",
     "notifyCell",
     "profileApi",
+    "changeadreesDialog",
+    "adressTextInput",
     "cityDialog",
     "selectProvince",
     "selectCity"
@@ -5260,6 +5474,8 @@ const PlasmicDescendants = {
   tells: ["tells"],
   notifyCell: ["notifyCell"],
   profileApi: ["profileApi"],
+  changeadreesDialog: ["changeadreesDialog", "adressTextInput"],
+  adressTextInput: ["adressTextInput"],
   cityDialog: ["cityDialog", "selectProvince", "selectCity"],
   selectProvince: ["selectProvince"],
   selectCity: ["selectCity"]
@@ -5276,6 +5492,8 @@ type NodeDefaultElementType = {
   tells: typeof ProfileTells;
   notifyCell: typeof ProfileNotifyCell;
   profileApi: typeof ApiRequest;
+  changeadreesDialog: typeof Dialog;
+  adressTextInput: typeof TextInput;
   cityDialog: typeof Dialog;
   selectProvince: typeof Select;
   selectCity: typeof Select;
@@ -5348,6 +5566,8 @@ export const PlasmicActivationOfficeCenter = Object.assign(
     tells: makeNodeComponent("tells"),
     notifyCell: makeNodeComponent("notifyCell"),
     profileApi: makeNodeComponent("profileApi"),
+    changeadreesDialog: makeNodeComponent("changeadreesDialog"),
+    adressTextInput: makeNodeComponent("adressTextInput"),
     cityDialog: makeNodeComponent("cityDialog"),
     selectProvince: makeNodeComponent("selectProvince"),
     selectCity: makeNodeComponent("selectCity"),
