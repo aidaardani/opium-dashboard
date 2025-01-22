@@ -470,7 +470,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                           "hoursDaysOfWeek",
                           "duration"
                         ])}
-                        forwardPage={`/activation-pa${undefined}ge/finish`}
+                        forwardPage={"/activation-page/finish"}
                         onDurationChange={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
                             "hoursDaysOfWeek",
