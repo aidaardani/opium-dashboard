@@ -220,6 +220,12 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "apiSpeciality"
+      },
+      {
+        path: "provider",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -326,6 +332,79 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                 (async data => {
                   const $steps = {};
 
+                  $steps["provider"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "GET",
+                            (() => {
+                              try {
+                                return (
+                                  "https://apigw.paziresh24.com/v1/providers?user_id=" +
+                                  $ctx.query.user_id
+                                );
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["provider"] != null &&
+                    typeof $steps["provider"] === "object" &&
+                    typeof $steps["provider"].then === "function"
+                  ) {
+                    $steps["provider"] = await $steps["provider"];
+                  }
+
+                  $steps["updateStateProvider"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["provider"]
+                          },
+                          operation: 0,
+                          value: $steps.provider.data
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateStateProvider"] != null &&
+                    typeof $steps["updateStateProvider"] === "object" &&
+                    typeof $steps["updateStateProvider"].then === "function"
+                  ) {
+                    $steps["updateStateProvider"] = await $steps[
+                      "updateStateProvider"
+                    ];
+                  }
+
                   $steps["goToHttpsOpiumDashboardPaziresh24ComActivationPage"] =
                     !$state.apIworkhours.data.data.some(
                       center => center.id === "5532"
@@ -335,7 +414,22 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                         center.id !== "5532" &&
                         center.type_id === 1 &&
                         center.is_active_booking === true
-                    )
+                    ) &&
+                    !$state.apIworkhours.data.data.some(
+                      center =>
+                        center.id !== "5532" &&
+                        center.type_id === 3 &&
+                        center.is_active_booking === true
+                    ) &&
+                    !$state.apIworkhours.data.data.some(
+                      center =>
+                        center.id !== "5532" &&
+                        center.type_id === 2 &&
+                        center.is_active_booking === true
+                    ) &&
+                    $state.provider.providers.length > 0 &&
+                    $state.provider.providers[0].job_title === "doctor" &&
+                    !$state.provider.providers[0].slug.includes("منشی")
                       ? (() => {
                           const actionArgs = {
                             destination:
