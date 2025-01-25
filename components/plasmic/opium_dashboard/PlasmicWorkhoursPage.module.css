@@ -74,6 +74,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
 }
 .freeBox___9HgIy {
   display: flex;
@@ -184,6 +185,7 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
 }
 .text__hlG9O {
   position: relative;
@@ -191,4 +193,5 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
+  display: none;
 }
