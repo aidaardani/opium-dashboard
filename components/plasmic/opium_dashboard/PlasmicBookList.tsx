@@ -1181,7 +1181,8 @@ function PlasmicBookList__RenderFunc(props: {
                         ) &&
                         $state.provider.providers.length > 0 &&
                         $state.provider.providers[0].job_title === "doctor" &&
-                        !$state.provider.providers[0].slug.includes("منشی")
+                        !$state.provider.providers[0].slug.includes("منشی") &&
+                        $state.provider.providers[0].user_id !== 11868
                           ? (() => {
                               const actionArgs = {
                                 destination:
