@@ -411,7 +411,6 @@ function PlasmicReceipt__RenderFunc(props: {
           <AntdInputNumber
             data-plasmic-name={"numberInput"}
             data-plasmic-override={overrides.numberInput}
-            className={classNames("__wab_instance", sty.numberInput)}
             onChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["numberInput", "value"]).apply(
                 null,

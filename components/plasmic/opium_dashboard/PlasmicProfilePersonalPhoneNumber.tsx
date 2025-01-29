@@ -704,31 +704,33 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                   $steps["updateStep"] = await $steps["updateStep"];
                 }
 
-                $steps["invokeGlobalAction2"] = false
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "error",
-                          (() => {
-                            try {
-                              return $steps.sendCodeApi.message;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                $steps["invokeGlobalAction2"] =
+                  $steps.sendCodeApi.status !== 200
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            (() => {
+                              try {
+                                return $steps.sendCodeApi.message;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Fragment.showToast"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
                 if (
                   $steps["invokeGlobalAction2"] != null &&
                   typeof $steps["invokeGlobalAction2"] === "object" &&
