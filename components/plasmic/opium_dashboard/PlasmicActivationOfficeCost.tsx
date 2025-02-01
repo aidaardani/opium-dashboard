@@ -1552,7 +1552,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 )}
               >
                 {
-                  "\u0635\u0631\u0641\u200c\u0646\u0638\u0631 \u0627\u0632 \u0628\u06cc\u0639\u0627\u0646\u0647"
+                  "\u0635\u0631\u0641 \u0646\u0638\u0631 \u0627\u0632  \u062f\u0631\u06cc\u0627\u0641\u062a \u0647\u0632\u06cc\u0646\u0647"
                 }
               </div>
             }

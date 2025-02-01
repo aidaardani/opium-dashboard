@@ -59,9 +59,9 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import ActivationOnload from "../../ActivationOnload"; // plasmic-import: iHrwG1Y3kEmP/component
 import ActivationProcess from "../../ActivationProcess"; // plasmic-import: 1sYr9T24RxmQ/component
 import ActivationOfficeCost from "../../ActivationOfficeCost"; // plasmic-import: Uq71V-zgrZxq/component
-import ActivationOnload from "../../ActivationOnload"; // plasmic-import: iHrwG1Y3kEmP/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -85,11 +85,11 @@ export const PlasmicActivationOfficeCost3__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicActivationOfficeCost3__OverridesType = {
   root?: Flex__<"div">;
+  activationOnload?: Flex__<typeof ActivationOnload>;
   header?: Flex__<"div">;
   text?: Flex__<"div">;
   activationProcess?: Flex__<typeof ActivationProcess>;
   activationOfficeCost?: Flex__<typeof ActivationOfficeCost>;
-  activationOnload?: Flex__<typeof ActivationOnload>;
 };
 
 export interface DefaultActivationOfficeCost3Props {}
@@ -175,6 +175,26 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
             sty.root
           )}
         >
+          <ActivationOnload
+            data-plasmic-name={"activationOnload"}
+            data-plasmic-override={overrides.activationOnload}
+            className={classNames("__wab_instance", sty.activationOnload)}
+            step={"3"}
+            userInfoId={(() => {
+              try {
+                return $ctx.query.userId;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          />
+
           <div
             data-plasmic-name={"header"}
             data-plasmic-override={overrides.header}
@@ -238,25 +258,6 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
               />
             </div>
           </div>
-          <ActivationOnload
-            data-plasmic-name={"activationOnload"}
-            data-plasmic-override={overrides.activationOnload}
-            className={classNames("__wab_instance", sty.activationOnload)}
-            step={"3"}
-            userInfoId={(() => {
-              try {
-                return $ctx.query.userId;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })()}
-          />
         </div>
       </div>
     </React.Fragment>
@@ -266,28 +267,28 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "activationOnload",
     "header",
     "text",
     "activationProcess",
-    "activationOfficeCost",
-    "activationOnload"
+    "activationOfficeCost"
   ],
+  activationOnload: ["activationOnload"],
   header: ["header", "text"],
   text: ["text"],
   activationProcess: ["activationProcess"],
-  activationOfficeCost: ["activationOfficeCost"],
-  activationOnload: ["activationOnload"]
+  activationOfficeCost: ["activationOfficeCost"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  activationOnload: typeof ActivationOnload;
   header: "div";
   text: "div";
   activationProcess: typeof ActivationProcess;
   activationOfficeCost: typeof ActivationOfficeCost;
-  activationOnload: typeof ActivationOnload;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -350,11 +351,11 @@ export const PlasmicActivationOfficeCost3 = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    activationOnload: makeNodeComponent("activationOnload"),
     header: makeNodeComponent("header"),
     text: makeNodeComponent("text"),
     activationProcess: makeNodeComponent("activationProcess"),
     activationOfficeCost: makeNodeComponent("activationOfficeCost"),
-    activationOnload: makeNodeComponent("activationOnload"),
 
     // Metadata about props expected for PlasmicActivationOfficeCost3
     internalVariantProps: PlasmicActivationOfficeCost3__VariantProps,
