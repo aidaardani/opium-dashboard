@@ -88,7 +88,8 @@ export const PlasmicActivationOnload__ArgProps = new Array<ArgPropType>(
 );
 
 export type PlasmicActivationOnload__OverridesType = {
-  root?: Flex__<typeof SideEffect>;
+  root?: Flex__<"div">;
+  sideEffect?: Flex__<typeof SideEffect>;
 };
 
 export interface DefaultActivationOnloadProps {
@@ -138,13 +139,13 @@ function PlasmicActivationOnload__RenderFunc(props: {
   const $globalActions = useGlobalActions?.();
 
   return (
-    <SideEffect
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
       className={classNames(
-        "__wab_instance",
+        projectcss.all,
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
@@ -154,94 +155,102 @@ function PlasmicActivationOnload__RenderFunc(props: {
         plasmic_plasmic_rich_components_css.plasmic_tokens,
         sty.root
       )}
-      onMount={async () => {
-        const $steps = {};
+    >
+      <SideEffect
+        data-plasmic-name={"sideEffect"}
+        data-plasmic-override={overrides.sideEffect}
+        className={classNames("__wab_instance", sty.sideEffect)}
+        onMount={async () => {
+          const $steps = {};
 
-        $steps["invokeGlobalAction"] = true
-          ? (() => {
-              const actionArgs = {
-                args: [
-                  (() => {
-                    try {
-                      return {
-                        event_group: "activation-page",
-                        data: {
-                          userId: $props.userInfoId,
-                          pagePath: window.location.href
-                        },
-                        event_type: "load-page-step" + $props.step
-                      };
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
+          $steps["invokeGlobalAction"] = true
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    (() => {
+                      try {
+                        return {
+                          event_group: "activation-page",
+                          data: {
+                            userId: $props.userInfoId,
+                            pagePath: window.location.href
+                          },
+                          event_type: "load-page-step" + $props.step
+                        };
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
                       }
-                      throw e;
-                    }
-                  })()
-                ]
-              };
-              return $globalActions["Splunk.sendLog"]?.apply(null, [
-                ...actionArgs.args
-              ]);
-            })()
-          : undefined;
-        if (
-          $steps["invokeGlobalAction"] != null &&
-          typeof $steps["invokeGlobalAction"] === "object" &&
-          typeof $steps["invokeGlobalAction"].then === "function"
-        ) {
-          $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
-        }
+                    })()
+                  ]
+                };
+                return $globalActions["Splunk.sendLog"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["invokeGlobalAction"] != null &&
+            typeof $steps["invokeGlobalAction"] === "object" &&
+            typeof $steps["invokeGlobalAction"].then === "function"
+          ) {
+            $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
+          }
 
-        $steps["invokeGlobalAction2"] = true
-          ? (() => {
-              const actionArgs = {
-                args: [
-                  (() => {
-                    try {
-                      return {
-                        user_info_id: $props.userInfoId
-                      };
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
+          $steps["invokeGlobalAction2"] = true
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    (() => {
+                      try {
+                        return {
+                          user_info_id: $props.userInfoId
+                        };
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
                       }
-                      throw e;
-                    }
-                  })()
-                ]
-              };
-              return $globalActions["GrowthBook.setAttributes"]?.apply(null, [
-                ...actionArgs.args
-              ]);
-            })()
-          : undefined;
-        if (
-          $steps["invokeGlobalAction2"] != null &&
-          typeof $steps["invokeGlobalAction2"] === "object" &&
-          typeof $steps["invokeGlobalAction2"].then === "function"
-        ) {
-          $steps["invokeGlobalAction2"] = await $steps["invokeGlobalAction2"];
-        }
-      }}
-    />
+                    })()
+                  ]
+                };
+                return $globalActions["GrowthBook.setAttributes"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["invokeGlobalAction2"] != null &&
+            typeof $steps["invokeGlobalAction2"] === "object" &&
+            typeof $steps["invokeGlobalAction2"].then === "function"
+          ) {
+            $steps["invokeGlobalAction2"] = await $steps["invokeGlobalAction2"];
+          }
+        }}
+      />
+    </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root"]
+  root: ["root", "sideEffect"],
+  sideEffect: ["sideEffect"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
-  root: typeof SideEffect;
+  root: "div";
+  sideEffect: typeof SideEffect;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -304,6 +313,7 @@ export const PlasmicActivationOnload = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    sideEffect: makeNodeComponent("sideEffect"),
 
     // Metadata about props expected for PlasmicActivationOnload
     internalVariantProps: PlasmicActivationOnload__VariantProps,
