@@ -164,7 +164,9 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.costOffice[6].value;
+              return $ctx.GrowthBook.features["moshir-katibe-payment"] === true
+                ? $state.costOffice[6].value
+                : "";
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -325,220 +327,405 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         sty.root
       )}
     >
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text___53Jnw
-        )}
-      >
-        <React.Fragment>
+      {(() => {
+        try {
+          return $ctx.GrowthBook.features["moshir-katibe-payment"] === false;
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return false;
+          }
+          throw e;
+        }
+      })() ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text___53Jnw
+          )}
+        >
           <React.Fragment>
-            {"\u067e\u0631\u062f\u0627\u062e\u062a "}
+            <React.Fragment>
+              {
+                "\u067e\u0631\u062f\u0627\u062e\u062a \u0628\u06cc\u0639\u0627\u0646\u0647 \u0628\u0631\u0627\u06cc "
+              }
+            </React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {
+                "\u062d\u0641\u0638 \u062a\u0639\u0647\u062f \u062d\u0636\u0648\u0631 \u0628\u06cc\u0645\u0627\u0631"
+              }
+            </span>
+            <React.Fragment>
+              {" \u062f\u0631 \u0645\u0637\u0628 \u0627\u0633\u062a . "}
+            </React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {"\u06a9\u0644"}
+            </span>
+            <React.Fragment>
+              {" \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a "}
+            </React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {
+                "\u0645\u062a\u0639\u0644\u0642 \u0628\u0647 \u067e\u0632\u0634\u06a9"
+              }
+            </span>
+            <React.Fragment>
+              {
+                " \u0627\u0633\u062a \u0648 \u0645\u06cc\u200c\u0628\u0627\u06cc\u0633\u062a \u0627\u0632 \u0647\u0632\u06cc\u0646\u0647 \u0648\u06cc\u0632\u06cc\u062a "
+              }
+            </React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {"\u06a9\u0633\u0631"}
+            </span>
+            <React.Fragment>{" \u0634\u0648\u062f."}</React.Fragment>
           </React.Fragment>
-          <span
-            className={"plasmic_default__all plasmic_default__span"}
-            style={{ fontWeight: 700 }}
-          >
-            {"\u0647\u0632\u06cc\u0646\u0647 \u0648\u06cc\u0632\u06cc\u062a"}
-          </span>
+        </div>
+      ) : null}
+      {(() => {
+        try {
+          return $ctx.GrowthBook.features["moshir-katibe-payment"];
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return false;
+          }
+          throw e;
+        }
+      })() ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text___9FcAs
+          )}
+        >
           <React.Fragment>
-            {
-              " \u062c\u0647\u062a \u062d\u0641\u0638 \u062a\u0639\u0647\u062f \u062d\u0636\u0648\u0631 \u0628\u06cc\u0645\u0627\u0631 \u062f\u0631 \u0645\u0637\u0628 \u0627\u0633\u062a. \n"
-            }
+            <React.Fragment>
+              {"\u067e\u0631\u062f\u0627\u062e\u062a "}
+            </React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {"\u0647\u0632\u06cc\u0646\u0647 \u0648\u06cc\u0632\u06cc\u062a"}
+            </span>
+            <React.Fragment>
+              {
+                " \u062c\u0647\u062a \u062d\u0641\u0638 \u062a\u0639\u0647\u062f \u062d\u0636\u0648\u0631 \u0628\u06cc\u0645\u0627\u0631 \u062f\u0631 \u0645\u0637\u0628 \u0627\u0633\u062a. \n"
+              }
+            </React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {"\u06a9\u0644"}
+            </span>
+            <React.Fragment>
+              {" \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a "}
+            </React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {
+                "\u0645\u062a\u0639\u0644\u0642 \u0628\u0647 \u067e\u0632\u0634\u06a9"
+              }
+            </span>
+            <React.Fragment>
+              {" \u0627\u0633\u062a \u0648 \u067e\u0633 \u0627\u0632 "}
+            </React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {
+                "\u062b\u0628\u062a \u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062a\u0633\u0648\u06cc\u0647"
+              }
+            </span>
+            <React.Fragment>
+              {
+                " \u0628\u0647 \u062d\u0633\u0627\u0628 \u067e\u0632\u0634\u06a9 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f."
+              }
+            </React.Fragment>
           </React.Fragment>
-          <span
-            className={"plasmic_default__all plasmic_default__span"}
-            style={{ fontWeight: 700 }}
-          >
-            {"\u06a9\u0644"}
-          </span>
+        </div>
+      ) : null}
+      {(() => {
+        try {
+          return $ctx.GrowthBook.features["moshir-katibe-payment"] === false;
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return false;
+          }
+          throw e;
+        }
+      })() ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__eyCn6
+          )}
+        >
           <React.Fragment>
-            {" \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a "}
+            {(() => {
+              try {
+                return "میانگین مبلغ بیعانه تعیین‌شده توسط همکاران شما،50,000 تومان است.";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "";
+                }
+                throw e;
+              }
+            })()}
           </React.Fragment>
-          <span
-            className={"plasmic_default__all plasmic_default__span"}
-            style={{ fontWeight: 700 }}
-          >
-            {
-              "\u0645\u062a\u0639\u0644\u0642 \u0628\u0647 \u067e\u0632\u0634\u06a9"
-            }
-          </span>
+        </div>
+      ) : null}
+      {(() => {
+        try {
+          return $ctx.GrowthBook.features["moshir-katibe-payment"];
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return false;
+          }
+          throw e;
+        }
+      })() ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__h9EsV
+          )}
+        >
           <React.Fragment>
-            {" \u0627\u0633\u062a \u0648 \u067e\u0633 \u0627\u0632 "}
+            {(() => {
+              try {
+                return ` مبلغ پیشنهادی ${(189000).toLocaleString()} تومان است. با کلیک روی کادر زیر می‌توانید مبلغ را تغییر دهید.`;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "";
+                }
+                throw e;
+              }
+            })()}
           </React.Fragment>
-          <span
-            className={"plasmic_default__all plasmic_default__span"}
-            style={{ fontWeight: 700 }}
-          >
-            {
-              "\u062b\u0628\u062a \u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062a\u0633\u0648\u06cc\u0647"
-            }
-          </span>
-          <React.Fragment>
-            {
-              " \u0628\u0647 \u062d\u0633\u0627\u0628 \u067e\u0632\u0634\u06a9 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f."
-            }
-          </React.Fragment>
-        </React.Fragment>
-      </div>
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__eyCn6
-        )}
-      >
-        <React.Fragment>
-          {(() => {
+        </div>
+      ) : null}
+      {(() => {
+        const child$Props = {
+          onChange: async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["select", "value"]).apply(
+              null,
+              eventArgs
+            );
+
+            (async value => {
+              const $steps = {};
+
+              $steps["sendEvent"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "activation-page",
+                              data: {
+                                userId: $props.userId,
+                                pagePath: window.location.href
+                              },
+                              event_type:
+                                "click-change-price-office-button-step3"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["sendEvent"] != null &&
+                typeof $steps["sendEvent"] === "object" &&
+                typeof $steps["sendEvent"].then === "function"
+              ) {
+                $steps["sendEvent"] = await $steps["sendEvent"];
+              }
+            }).apply(null, eventArgs);
+          },
+          onOpenChange: async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["select", "open"]).apply(
+              null,
+              eventArgs
+            );
+
+            (async open => {
+              const $steps = {};
+
+              $steps["sendEvent"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "activation-page",
+                              data: {
+                                map: $state.map,
+                                apiadress: $state.addressApi.data,
+                                notifycell: $state.notifyCell.notifyCellValue
+                              },
+                              event_type:
+                                "click-open-change-price-office-button-step3"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["sendEvent"] != null &&
+                typeof $steps["sendEvent"] === "object" &&
+                typeof $steps["sendEvent"].then === "function"
+              ) {
+                $steps["sendEvent"] = await $steps["sendEvent"];
+              }
+            }).apply(null, eventArgs);
+          },
+          open: generateStateValueProp($state, ["select", "open"]),
+          options: (() => {
             try {
-              return ` مبلغ پیشنهادی ${(189000).toLocaleString()} تومان است. با کلیک روی کادر زیر می‌توانید مبلغ را تغییر دهید.`;
+              return $state.costOffice;
             } catch (e) {
               if (
                 e instanceof TypeError ||
                 e?.plasmicType === "PlasmicUndefinedDataError"
               ) {
-                return "";
+                return [{}];
               }
               throw e;
             }
-          })()}
-        </React.Fragment>
-      </div>
-      <Select
-        data-plasmic-name={"select"}
-        data-plasmic-override={overrides.select}
-        onChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["select", "value"]).apply(
-            null,
-            eventArgs
-          );
-
-          (async value => {
-            const $steps = {};
-
-            $steps["sendEvent"] = true
-              ? (() => {
-                  const actionArgs = {
-                    args: [
-                      (() => {
-                        try {
-                          return {
-                            event_group: "activation-page",
-                            data: {
-                              userId: $props.userId,
-                              pagePath: window.location.href
-                            },
-                            event_type: "click-change-price-office-button-step3"
-                          };
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()
-                    ]
-                  };
-                  return $globalActions["Splunk.sendLog"]?.apply(null, [
-                    ...actionArgs.args
-                  ]);
+          })(),
+          placeholder: (() => {
+            try {
+              return $ctx.GrowthBook.features["moshir-katibe-payment"] === true
+                ? $state.costOffice[6].label
+                : "مبلغ ویزیت";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })(),
+          triggerClassName: classNames("__wab_instance", sty.select),
+          value: generateStateValueProp($state, ["select", "value"])
+        };
+        initializeCodeComponentStates(
+          $state,
+          [
+            {
+              name: "value",
+              plasmicStateName: "select.value"
+            },
+            {
+              name: "open",
+              plasmicStateName: "select.open"
+            }
+          ],
+          [],
+          undefined ?? {},
+          child$Props
+        );
+        initializePlasmicStates(
+          $state,
+          [
+            {
+              name: "select.value",
+              initFunc: ({ $props, $state, $queries }) =>
+                (() => {
+                  try {
+                    return $ctx.GrowthBook.features["moshir-katibe-payment"] ===
+                      true
+                      ? $state.costOffice[6].value
+                      : "";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
                 })()
-              : undefined;
-            if (
-              $steps["sendEvent"] != null &&
-              typeof $steps["sendEvent"] === "object" &&
-              typeof $steps["sendEvent"].then === "function"
-            ) {
-              $steps["sendEvent"] = await $steps["sendEvent"];
             }
-          }).apply(null, eventArgs);
-        }}
-        onOpenChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["select", "open"]).apply(
-            null,
-            eventArgs
-          );
-
-          (async open => {
-            const $steps = {};
-
-            $steps["sendEvent"] = true
-              ? (() => {
-                  const actionArgs = {
-                    args: [
-                      (() => {
-                        try {
-                          return {
-                            event_group: "activation-page",
-                            data: {
-                              map: $state.map,
-                              apiadress: $state.addressApi.data,
-                              notifycell: $state.notifyCell.notifyCellValue
-                            },
-                            event_type:
-                              "click-open-change-price-office-button-step3"
-                          };
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()
-                    ]
-                  };
-                  return $globalActions["Splunk.sendLog"]?.apply(null, [
-                    ...actionArgs.args
-                  ]);
-                })()
-              : undefined;
-            if (
-              $steps["sendEvent"] != null &&
-              typeof $steps["sendEvent"] === "object" &&
-              typeof $steps["sendEvent"].then === "function"
-            ) {
-              $steps["sendEvent"] = await $steps["sendEvent"];
-            }
-          }).apply(null, eventArgs);
-        }}
-        open={generateStateValueProp($state, ["select", "open"])}
-        options={(() => {
-          try {
-            return $state.costOffice;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return [{}];
-            }
-            throw e;
-          }
-        })()}
-        placeholder={(() => {
-          try {
-            return $state.costOffice[6].label;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-        triggerClassName={classNames("__wab_instance", sty.select)}
-        value={generateStateValueProp($state, ["select", "value"])}
-      />
-
+          ],
+          []
+        );
+        return (
+          <Select
+            data-plasmic-name={"select"}
+            data-plasmic-override={overrides.select}
+            {...child$Props}
+          />
+        );
+      })()}
       <div className={classNames(projectcss.all, sty.freeBox___2UgG0)}>
         <div className={classNames(projectcss.all, sty.freeBox__lix9F)}>
           <div
