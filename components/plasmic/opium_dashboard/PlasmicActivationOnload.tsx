@@ -160,10 +160,23 @@ function PlasmicActivationOnload__RenderFunc(props: {
         data-plasmic-name={"sideEffect"}
         data-plasmic-override={overrides.sideEffect}
         className={classNames("__wab_instance", sty.sideEffect)}
+        deps={(() => {
+          try {
+            return [$ctx.GrowthBook.isReady, $props.userInfoId];
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
         onMount={async () => {
           const $steps = {};
 
-          $steps["invokeGlobalAction"] = true
+          $steps["invokeGlobalAction"] = $props.userInfoId
             ? (() => {
                 const actionArgs = {
                   args: [
@@ -202,32 +215,34 @@ function PlasmicActivationOnload__RenderFunc(props: {
             $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
           }
 
-          $steps["invokeGlobalAction2"] = true
-            ? (() => {
-                const actionArgs = {
-                  args: [
-                    (() => {
-                      try {
-                        return {
-                          user_info_id: $props.userInfoId
-                        };
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+          $steps["invokeGlobalAction2"] =
+            $ctx.GrowthBook.isReady && $props.userInfoId
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            user_info_id: $props.userInfoId
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()
-                  ]
-                };
-                return $globalActions["GrowthBook.setAttributes"]?.apply(null, [
-                  ...actionArgs.args
-                ]);
-              })()
-            : undefined;
+                      })()
+                    ]
+                  };
+                  return $globalActions["GrowthBook.setAttributes"]?.apply(
+                    null,
+                    [...actionArgs.args]
+                  );
+                })()
+              : undefined;
           if (
             $steps["invokeGlobalAction2"] != null &&
             typeof $steps["invokeGlobalAction2"] === "object" &&
