@@ -351,6 +351,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
             <div className={classNames(projectcss.all, sty.freeBox__phLNe)}>
               {(() => {
                 const child$Props = {
+                  className: classNames("__wab_instance", sty.oldPassword),
                   onChange: async (...eventArgs: any) => {
                     generateStateOnChangePropForCodeComponents(
                       $state,
@@ -396,6 +397,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
           >
             {(() => {
               const child$Props = {
+                className: classNames("__wab_instance", sty.passwordInput),
                 onChange: async (...eventArgs: any) => {
                   generateStateOnChangePropForCodeComponents(
                     $state,
@@ -434,6 +436,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
             })()}
             {(() => {
               const child$Props = {
+                className: classNames("__wab_instance", sty.repeatPassword),
                 onChange: async (...eventArgs: any) => {
                   generateStateOnChangePropForCodeComponents(
                     $state,

@@ -61,6 +61,7 @@ import {
 
 import ActivationProcess from "../../ActivationProcess"; // plasmic-import: 1sYr9T24RxmQ/component
 import ActivationOfficeCost from "../../ActivationOfficeCost"; // plasmic-import: Uq71V-zgrZxq/component
+import ActivationOnload from "../../ActivationOnload"; // plasmic-import: iHrwG1Y3kEmP/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -88,6 +89,7 @@ export type PlasmicActivationOfficeCost3__OverridesType = {
   text?: Flex__<"div">;
   activationProcess?: Flex__<typeof ActivationProcess>;
   activationOfficeCost?: Flex__<typeof ActivationOfficeCost>;
+  activationOnload?: Flex__<typeof ActivationOnload>;
 };
 
 export interface DefaultActivationOfficeCost3Props {}
@@ -129,8 +131,6 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
-
-  const $globalActions = useGlobalActions?.();
 
   return (
     <React.Fragment>
@@ -174,48 +174,6 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
             plasmic_plasmic_rich_components_css.plasmic_tokens,
             sty.root
           )}
-          onLoad={async event => {
-            const $steps = {};
-
-            $steps["sendEvent"] = true
-              ? (() => {
-                  const actionArgs = {
-                    args: [
-                      (() => {
-                        try {
-                          return {
-                            event_group: "activation-page",
-                            data: {
-                              userId: $ctx.query.userId,
-                              pagePath: window.location.href
-                            },
-                            event_type: "load-page-step3"
-                          };
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()
-                    ]
-                  };
-                  return $globalActions["Splunk.sendLog"]?.apply(null, [
-                    ...actionArgs.args
-                  ]);
-                })()
-              : undefined;
-            if (
-              $steps["sendEvent"] != null &&
-              typeof $steps["sendEvent"] === "object" &&
-              typeof $steps["sendEvent"].then === "function"
-            ) {
-              $steps["sendEvent"] = await $steps["sendEvent"];
-            }
-          }}
         >
           <div
             data-plasmic-name={"header"}
@@ -280,6 +238,25 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
               />
             </div>
           </div>
+          <ActivationOnload
+            data-plasmic-name={"activationOnload"}
+            data-plasmic-override={overrides.activationOnload}
+            className={classNames("__wab_instance", sty.activationOnload)}
+            step={"3"}
+            userInfoId={(() => {
+              try {
+                return $ctx.query.userId;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -287,11 +264,19 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "text", "activationProcess", "activationOfficeCost"],
+  root: [
+    "root",
+    "header",
+    "text",
+    "activationProcess",
+    "activationOfficeCost",
+    "activationOnload"
+  ],
   header: ["header", "text"],
   text: ["text"],
   activationProcess: ["activationProcess"],
-  activationOfficeCost: ["activationOfficeCost"]
+  activationOfficeCost: ["activationOfficeCost"],
+  activationOnload: ["activationOnload"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -302,6 +287,7 @@ type NodeDefaultElementType = {
   text: "div";
   activationProcess: typeof ActivationProcess;
   activationOfficeCost: typeof ActivationOfficeCost;
+  activationOnload: typeof ActivationOnload;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -368,6 +354,7 @@ export const PlasmicActivationOfficeCost3 = Object.assign(
     text: makeNodeComponent("text"),
     activationProcess: makeNodeComponent("activationProcess"),
     activationOfficeCost: makeNodeComponent("activationOfficeCost"),
+    activationOnload: makeNodeComponent("activationOnload"),
 
     // Metadata about props expected for PlasmicActivationOfficeCost3
     internalVariantProps: PlasmicActivationOfficeCost3__VariantProps,

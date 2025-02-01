@@ -342,8 +342,7 @@
           "componentImportPath": "@plasmicpkgs/radix-ui"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "k6BnBuAUepzRX8Qs2WvkKs",
@@ -786,8 +785,7 @@
           "componentImportPath": "@plasmicpkgs/antd5/skinny/registerBreadcrumb"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "a3pmZtcpA5asHkNtN3SGoF",
@@ -2365,6 +2363,19 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/new-page-3"
+        },
+        {
+          "id": "iHrwG1Y3kEmP",
+          "name": "ActivationOnload",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationOnload.tsx",
+          "importSpec": {
+            "modulePath": "ActivationOnload.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationOnload.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -2674,6 +2685,11 @@
           "id": "zE-XMlpjtHXC",
           "name": "image 4",
           "filePath": "../public/plasmic/opium_dashboard/images/image4.png"
+        },
+        {
+          "id": "awYMe7tblYWB",
+          "name": "image 5",
+          "filePath": "../public/plasmic/opium_dashboard/images/image5.png"
         }
       ],
       "indirect": false,

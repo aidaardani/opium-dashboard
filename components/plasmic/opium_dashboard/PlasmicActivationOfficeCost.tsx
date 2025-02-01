@@ -161,7 +161,20 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "select.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $state.costOffice[6].value;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "select.open",
@@ -180,6 +193,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           { label: "40,000 \u062a\u0648\u0645\u0627\u0646", value: "40000" },
           { label: "50,000 \u062a\u0648\u0645\u0627\u0646", value: "50000" },
           { label: "100,000 \u062a\u0648\u0645\u0627\u0646", value: "100000" },
+          { label: "189,000 \u062a\u0648\u0645\u0627\u0646", value: "189000" },
           {
             label:
               "\u0642\u06cc\u0645\u062a \u062f\u0644\u062e\u0648\u0627\u0647",
@@ -318,9 +332,55 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           sty.text___53Jnw
         )}
       >
-        {
-          "\u067e\u0631\u062f\u0627\u062e\u062a \u0628\u06cc\u0639\u0627\u0646\u0647 \u0628\u0631\u0627\u06cc \u062d\u0641\u0638 \u062a\u0639\u0647\u062f \u062d\u0636\u0648\u0631 \u0628\u06cc\u0645\u0627\u0631 \u062f\u0631 \u0645\u0637\u0628 \u0627\u0633\u062a . \u06a9\u0644 \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a \u0645\u062a\u0639\u0644\u0642 \u0628\u0647 \u067e\u0632\u0634\u06a9 \u0627\u0633\u062a \u0648 \u0645\u06cc\u200c\u0628\u0627\u06cc\u0633\u062a \u0627\u0632 \u0647\u0632\u06cc\u0646\u0647 \u0648\u06cc\u0632\u06cc\u062a \u06a9\u0633\u0631 \u0634\u0648\u062f."
-        }
+        <React.Fragment>
+          <React.Fragment>
+            {"\u067e\u0631\u062f\u0627\u062e\u062a "}
+          </React.Fragment>
+          <span
+            className={"plasmic_default__all plasmic_default__span"}
+            style={{ fontWeight: 700 }}
+          >
+            {"\u0647\u0632\u06cc\u0646\u0647 \u0648\u06cc\u0632\u06cc\u062a"}
+          </span>
+          <React.Fragment>
+            {
+              " \u062c\u0647\u062a \u062d\u0641\u0638 \u062a\u0639\u0647\u062f \u062d\u0636\u0648\u0631 \u0628\u06cc\u0645\u0627\u0631 \u062f\u0631 \u0645\u0637\u0628 \u0627\u0633\u062a. \n"
+            }
+          </React.Fragment>
+          <span
+            className={"plasmic_default__all plasmic_default__span"}
+            style={{ fontWeight: 700 }}
+          >
+            {"\u06a9\u0644"}
+          </span>
+          <React.Fragment>
+            {" \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a "}
+          </React.Fragment>
+          <span
+            className={"plasmic_default__all plasmic_default__span"}
+            style={{ fontWeight: 700 }}
+          >
+            {
+              "\u0645\u062a\u0639\u0644\u0642 \u0628\u0647 \u067e\u0632\u0634\u06a9"
+            }
+          </span>
+          <React.Fragment>
+            {" \u0627\u0633\u062a \u0648 \u067e\u0633 \u0627\u0632 "}
+          </React.Fragment>
+          <span
+            className={"plasmic_default__all plasmic_default__span"}
+            style={{ fontWeight: 700 }}
+          >
+            {
+              "\u062b\u0628\u062a \u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062a\u0633\u0648\u06cc\u0647"
+            }
+          </span>
+          <React.Fragment>
+            {
+              " \u0628\u0647 \u062d\u0633\u0627\u0628 \u067e\u0632\u0634\u06a9 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f."
+            }
+          </React.Fragment>
+        </React.Fragment>
       </div>
       <div
         className={classNames(
@@ -332,7 +392,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         <React.Fragment>
           {(() => {
             try {
-              return `میانگین مبلغ بیعانه تعیین‌شده توسط همکاران شما،${(50000).toLocaleString()} تومان است.`;
+              return ` مبلغ پیشنهادی ${(189000).toLocaleString()} تومان است. با کلیک روی کادر زیر می‌توانید مبلغ را تغییر دهید.`;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -462,9 +522,19 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
             throw e;
           }
         })()}
-        placeholder={
-          "\u0645\u0628\u0644\u063a \u0628\u06cc\u0639\u0627\u0646\u0647"
-        }
+        placeholder={(() => {
+          try {
+            return $state.costOffice[6].label;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
         triggerClassName={classNames("__wab_instance", sty.select)}
         value={generateStateValueProp($state, ["select", "value"])}
       />
@@ -622,7 +692,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 (async error => {
                   const $steps = {};
 
-                  $steps["shabaApiToast"] = true
+                  $steps["shabaApiToast"] = !!$state.shabaApi.data.message
                     ? (() => {
                         const actionArgs = {
                           args: [
@@ -1046,6 +1116,45 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 typeof $steps["costApi"].then === "function"
               ) {
                 $steps["costApi"] = await $steps["costApi"];
+              }
+
+              $steps["setPayment"] = $ctx.GrowthBook.features[
+                "moshir-katibe-payment"
+              ]
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "GET",
+                        "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/set-payment",
+                        (() => {
+                          try {
+                            return $state.centersApi.data.data.find(
+                              center =>
+                                center.type_id === 1 && center.id !== "5532"
+                            );
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["setPayment"] != null &&
+                typeof $steps["setPayment"] === "object" &&
+                typeof $steps["setPayment"].then === "function"
+              ) {
+                $steps["setPayment"] = await $steps["setPayment"];
               }
 
               $steps["updateIsLoadingSave2"] =

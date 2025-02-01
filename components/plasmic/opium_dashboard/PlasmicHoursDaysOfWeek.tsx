@@ -818,7 +818,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     $steps["saveWorkhours"] = await $steps["saveWorkhours"];
                   }
 
-                  $steps["runCode3"] =
+                  $steps["showToastSuccessful"] =
                     $steps.saveWorkhours.data.status === "SUCCESS" &&
                     $state.workhours.every(wh =>
                       wh.checkboxIsChecked ? !wh.warning : true
@@ -837,14 +837,16 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                         })()
                       : undefined;
                   if (
-                    $steps["runCode3"] != null &&
-                    typeof $steps["runCode3"] === "object" &&
-                    typeof $steps["runCode3"].then === "function"
+                    $steps["showToastSuccessful"] != null &&
+                    typeof $steps["showToastSuccessful"] === "object" &&
+                    typeof $steps["showToastSuccessful"].then === "function"
                   ) {
-                    $steps["runCode3"] = await $steps["runCode3"];
+                    $steps["showToastSuccessful"] = await $steps[
+                      "showToastSuccessful"
+                    ];
                   }
 
-                  $steps["runCode4"] =
+                  $steps["showToast"] =
                     $steps.saveWorkhours.data.status != "SUCCESS"
                       ? (() => {
                           const actionArgs = {
@@ -876,11 +878,11 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                         })()
                       : undefined;
                   if (
-                    $steps["runCode4"] != null &&
-                    typeof $steps["runCode4"] === "object" &&
-                    typeof $steps["runCode4"].then === "function"
+                    $steps["showToast"] != null &&
+                    typeof $steps["showToast"] === "object" &&
+                    typeof $steps["showToast"].then === "function"
                   ) {
-                    $steps["runCode4"] = await $steps["runCode4"];
+                    $steps["showToast"] = await $steps["showToast"];
                   }
 
                   $steps["sendSuccessEvent"] =
