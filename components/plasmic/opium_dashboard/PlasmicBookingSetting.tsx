@@ -1417,7 +1417,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
 
                                   $steps["apiPatchSetting"] =
                                     $state.to.value !== "" &&
-                                    $state.to.value !== undefined
+                                    $state.to.value !== undefined &&
+                                    $state.from.value !== ""
                                       ? (() => {
                                           const actionArgs = {
                                             args: [
@@ -1528,6 +1529,32 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                   ) {
                                     $steps["showToast2"] = await $steps[
                                       "showToast2"
+                                    ];
+                                  }
+
+                                  $steps["showToast3"] =
+                                    $state.to.value == "" &&
+                                    $state.from.value == ""
+                                      ? (() => {
+                                          const actionArgs = {
+                                            args: [
+                                              "error",
+                                              '\u0645\u0642\u062f\u0627\u0631 "\u0627\u0632 \u0686\u0647 \u0631\u0648\u0632\u06cc" \u0646\u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u062f \u062e\u0627\u0644\u06cc \u0628\u0627\u0634\u062f.'
+                                            ]
+                                          };
+                                          return $globalActions[
+                                            "Fragment.showToast"
+                                          ]?.apply(null, [...actionArgs.args]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["showToast3"] != null &&
+                                    typeof $steps["showToast3"] === "object" &&
+                                    typeof $steps["showToast3"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["showToast3"] = await $steps[
+                                      "showToast3"
                                     ];
                                   }
 
