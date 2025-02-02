@@ -1415,38 +1415,40 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     ];
                                   }
 
-                                  $steps["apiPatchSetting"] = true
-                                    ? (() => {
-                                        const actionArgs = {
-                                          args: [
-                                            "PATCH",
-                                            "https://apigw.paziresh24.com/v1/nelson/setting/update",
-                                            (() => {
-                                              try {
-                                                return {
-                                                  key: "booking:booking_date_range",
-                                                  from: $state.from.value,
-                                                  to: $state.to.value,
-                                                  pattern_base: 1
-                                                };
-                                              } catch (e) {
-                                                if (
-                                                  e instanceof TypeError ||
-                                                  e?.plasmicType ===
-                                                    "PlasmicUndefinedDataError"
-                                                ) {
-                                                  return undefined;
+                                  $steps["apiPatchSetting"] =
+                                    $state.to.value !== "" &&
+                                    $state.to.value !== undefined
+                                      ? (() => {
+                                          const actionArgs = {
+                                            args: [
+                                              "PATCH",
+                                              "https://apigw.paziresh24.com/v1/nelson/setting/update",
+                                              (() => {
+                                                try {
+                                                  return {
+                                                    key: "booking:booking_date_range",
+                                                    from: $state.from.value,
+                                                    to: $state.to.value,
+                                                    pattern_base: 1
+                                                  };
+                                                } catch (e) {
+                                                  if (
+                                                    e instanceof TypeError ||
+                                                    e?.plasmicType ===
+                                                      "PlasmicUndefinedDataError"
+                                                  ) {
+                                                    return undefined;
+                                                  }
+                                                  throw e;
                                                 }
-                                                throw e;
-                                              }
-                                            })()
-                                          ]
-                                        };
-                                        return $globalActions[
-                                          "Fragment.apiRequest"
-                                        ]?.apply(null, [...actionArgs.args]);
-                                      })()
-                                    : undefined;
+                                              })()
+                                            ]
+                                          };
+                                          return $globalActions[
+                                            "Fragment.apiRequest"
+                                          ]?.apply(null, [...actionArgs.args]);
+                                        })()
+                                      : undefined;
                                   if (
                                     $steps["apiPatchSetting"] != null &&
                                     typeof $steps["apiPatchSetting"] ===
@@ -1501,6 +1503,31 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                   ) {
                                     $steps["loadingFinish"] = await $steps[
                                       "loadingFinish"
+                                    ];
+                                  }
+
+                                  $steps["showToast2"] =
+                                    $state.to.value == ""
+                                      ? (() => {
+                                          const actionArgs = {
+                                            args: [
+                                              "error",
+                                              '\u0645\u0642\u062f\u0627\u0631 "\u062a\u0627 \u0686\u0647 \u0631\u0648\u0632\u06cc" \u0646\u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u062f \u062e\u0627\u0644\u06cc \u0628\u0627\u0634\u062f.'
+                                            ]
+                                          };
+                                          return $globalActions[
+                                            "Fragment.showToast"
+                                          ]?.apply(null, [...actionArgs.args]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["showToast2"] != null &&
+                                    typeof $steps["showToast2"] === "object" &&
+                                    typeof $steps["showToast2"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["showToast2"] = await $steps[
+                                      "showToast2"
                                     ];
                                   }
 
