@@ -59,10 +59,10 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import ActivationOnload from "../../ActivationOnload"; // plasmic-import: iHrwG1Y3kEmP/component
 import ActivationProcess from "../../ActivationProcess"; // plasmic-import: 1sYr9T24RxmQ/component
 import ActivationOfficeCost from "../../ActivationOfficeCost"; // plasmic-import: Uq71V-zgrZxq/component
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -92,6 +92,7 @@ export type PlasmicActivationOfficeCost3__OverridesType = {
   text?: Flex__<"div">;
   activationProcess?: Flex__<typeof ActivationProcess>;
   activationOfficeCost?: Flex__<typeof ActivationOfficeCost>;
+  sideEffect?: Flex__<typeof SideEffect>;
   embedHtml?: Flex__<typeof Embed>;
 };
 
@@ -134,8 +135,6 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
-
-  const $globalActions = useGlobalActions?.();
 
   return (
     <React.Fragment>
@@ -180,64 +179,6 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
             sty.root
           )}
         >
-          <SideEffect
-            className={classNames("__wab_instance", sty.sideEffect__dZpe9)}
-            deps={(() => {
-              try {
-                return [$ctx.GrowthBook.isReady, $ctx.query.userId];
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })()}
-            onMount={async () => {
-              const $steps = {};
-
-              $steps["setAttributes"] =
-                $ctx.GrowthBook.isReady && $ctx.query.userId
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          (() => {
-                            try {
-                              return (() => {
-                                {
-                                  user_info_id: $ctx.query.userId;
-                                }
-                              })();
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions["GrowthBook.setAttributes"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
-              if (
-                $steps["setAttributes"] != null &&
-                typeof $steps["setAttributes"] === "object" &&
-                typeof $steps["setAttributes"].then === "function"
-              ) {
-                $steps["setAttributes"] = await $steps["setAttributes"];
-              }
-            }}
-          />
-
           <ActivationOnload
             data-plasmic-name={"activationOnload"}
             data-plasmic-override={overrides.activationOnload}
@@ -322,7 +263,9 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
             </div>
           </div>
           <SideEffect
-            className={classNames("__wab_instance", sty.sideEffect__dI6M1)}
+            data-plasmic-name={"sideEffect"}
+            data-plasmic-override={overrides.sideEffect}
+            className={classNames("__wab_instance", sty.sideEffect)}
             onMount={async () => {
               const $steps = {};
 
@@ -435,6 +378,7 @@ const PlasmicDescendants = {
     "text",
     "activationProcess",
     "activationOfficeCost",
+    "sideEffect",
     "embedHtml"
   ],
   activationOnload: ["activationOnload"],
@@ -442,6 +386,7 @@ const PlasmicDescendants = {
   text: ["text"],
   activationProcess: ["activationProcess"],
   activationOfficeCost: ["activationOfficeCost"],
+  sideEffect: ["sideEffect"],
   embedHtml: ["embedHtml"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -454,6 +399,7 @@ type NodeDefaultElementType = {
   text: "div";
   activationProcess: typeof ActivationProcess;
   activationOfficeCost: typeof ActivationOfficeCost;
+  sideEffect: typeof SideEffect;
   embedHtml: typeof Embed;
 };
 
@@ -522,6 +468,7 @@ export const PlasmicActivationOfficeCost3 = Object.assign(
     text: makeNodeComponent("text"),
     activationProcess: makeNodeComponent("activationProcess"),
     activationOfficeCost: makeNodeComponent("activationOfficeCost"),
+    sideEffect: makeNodeComponent("sideEffect"),
     embedHtml: makeNodeComponent("embedHtml"),
 
     // Metadata about props expected for PlasmicActivationOfficeCost3

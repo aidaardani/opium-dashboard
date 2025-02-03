@@ -223,6 +223,7 @@ function PlasmicActivationOnload__RenderFunc(props: {
                       (() => {
                         try {
                           return {
+                            ...$ctx.GrowthBook.attributes,
                             user_info_id: $props.userInfoId
                           };
                         } catch (e) {

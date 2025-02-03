@@ -329,7 +329,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
     >
       {(() => {
         try {
-          return $ctx.GrowthBook.features["moshir-katibe-payment"] === false;
+          return $ctx.GrowthBook?.features?.["moshir-katibe-payment"] === false;
         } catch (e) {
           if (
             e instanceof TypeError ||
@@ -398,7 +398,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
       ) : null}
       {(() => {
         try {
-          return $ctx.GrowthBook.features["moshir-katibe-payment"];
+          return $ctx.GrowthBook?.features?.["moshir-katibe-payment"];
         } catch (e) {
           if (
             e instanceof TypeError ||
@@ -469,7 +469,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
       ) : null}
       {(() => {
         try {
-          return $ctx.GrowthBook.features["moshir-katibe-payment"] === false;
+          return $ctx.GrowthBook?.features?.["moshir-katibe-payment"] === false;
         } catch (e) {
           if (
             e instanceof TypeError ||
@@ -506,7 +506,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
       ) : null}
       {(() => {
         try {
-          return $ctx.GrowthBook.features["moshir-katibe-payment"];
+          return $ctx.GrowthBook?.features?.["moshir-katibe-payment"];
         } catch (e) {
           if (
             e instanceof TypeError ||
@@ -1182,7 +1182,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                       const actionArgs = {
                         args: [
                           "error",
-                          "\u0648\u0627\u0631\u062f \u06a9\u0631\u062f\u0646 \u0645\u0628\u0644\u063a \u0628\u06cc\u0639\u0627\u0646\u0647 \u0627\u0644\u0632\u0627\u0645\u06cc \u0627\u0633\u062a"
+                          "\u0648\u0627\u0631\u062f \u06a9\u0631\u062f\u0646 \u0645\u0628\u0644\u063a  \u0627\u0644\u0632\u0627\u0645\u06cc \u0627\u0633\u062a"
                         ]
                       };
                       return $globalActions["Fragment.showToast"]?.apply(null, [
@@ -1196,6 +1196,29 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 typeof $steps["costValidation"].then === "function"
               ) {
                 $steps["costValidation"] = await $steps["costValidation"];
+              }
+
+              $steps["showToast2"] =
+                $state.select.value === "custom" &&
+                ($state.input.value === "" || $state.input.value === "0")
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "error",
+                          "\u0645\u0628\u0644\u063a \u0648\u06cc\u0632\u06cc\u062a \u0646\u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u062f \u0635\u0641\u0631 \u0628\u0627\u0634\u062f"
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+              if (
+                $steps["showToast2"] != null &&
+                typeof $steps["showToast2"] === "object" &&
+                typeof $steps["showToast2"].then === "function"
+              ) {
+                $steps["showToast2"] = await $steps["showToast2"];
               }
 
               $steps["updateIsLoadingSave"] =

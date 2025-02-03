@@ -511,7 +511,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                             try {
                               return (
                                 $ctx.query.office != "true" &&
-                                "جزئیات نوبت ویزیت آنلاین ، چگونه به پزشک اطلاع داده می شود؟"
+                                "از کجا بفهمم که کسی ، نوبت ویزیت آنلاین گرفته؟"
                               );
                             } catch (e) {
                               if (
@@ -537,7 +537,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                             try {
                               return (
                                 $ctx.query.office != "true" &&
-                                "هر زمان که بیماری نوبت ویزیت آنلاین دریافت کند، پیامکی حاوی جزئیات نوبت برای شما ارسال خواهد شد."
+                                "پس از ثبت نوبت، پیامکی شامل اطلاعات بیمار و زمان نوبت برای شما ارسال میگردد."
                               );
                             } catch (e) {
                               if (
@@ -568,7 +568,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                             try {
                               return (
                                 $ctx.query.office != "true" &&
-                                "در صورتی گرفتن نوبت ویزیت آنلاین ، پزشک چگونه بیمار را ویزیت کند؟"
+                                "اگر بیمار در زمان ویزیت آنلاین حاضر نشد، چه کاری انجام دهم؟"
                               );
                             } catch (e) {
                               if (
@@ -594,7 +594,67 @@ function PlasmicActivationFinish__RenderFunc(props: {
                             try {
                               return (
                                 $ctx.query.office != "true" &&
-                                "پس از گرفتن نوبت ویزیت آنلاین، یک پیامک حاوی جزئیات نوبت، از جمله زمان و نحوه ویزیت، به پزشک ارسال می‌شود."
+                                "در صورتی که بیمار در زمان ویزیت آنلاین حاضر نشد، ابتدا خودتان از طریق پیام‌رسان با او ارتباط بگیرید و یادآوری کنید."
+                              );
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0634\u0645\u0627 \u062b\u0628\u062a \u0634\u062f \u0648 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0634\u0645\u0627 \u062a\u0627 \u0633\u0627\u0639\u0627\u062a\u06cc \u062f\u06cc\u06af\u0631 \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u0646\u062f \u0645\u0633\u062a\u0642\u06cc\u0645\u0627\u064b \u0627\u0632 \u0637\u0631\u06cc\u0642 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u06a9\u0646\u0646\u062f.";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </div>
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        sty.freeBox___5DX5Y
+                      )}
+                    >
+                      <h6
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.h6,
+                          projectcss.__wab_text,
+                          sty.h6__nGrIt
+                        )}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return (
+                                $ctx.query.office != "true" &&
+                                "درآمد هر ویزیت چه زمانی برای من واریز میشه؟"
+                              );
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </h6>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__sO3M
+                        )}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return (
+                                $ctx.query.office != "true" &&
+                                "پس از پایان هر ویزیت، هزینه آن ویزیت در بامداد روز بعد به موجودی حساب کاربری شما اضافه خواهد شد."
                               );
                             } catch (e) {
                               if (
@@ -631,7 +691,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                               )}
                             >
                               {
-                                "\u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u067e\u0632\u0634\u06a9 \u067e\u0633 \u0627\u0632 \u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u062f\u0631 \u0686\u0647 \u0648\u0636\u0639\u06cc\u062a\u06cc \u0642\u0631\u0627\u0631 \u062f\u0627\u0631\u062f\u061f"
+                                "\u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0645\u0646 \u067e\u0633 \u0627\u0632 \u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u062f\u0631 \u0686\u0647 \u0648\u0636\u0639\u06cc\u062a\u06cc \u0642\u0631\u0627\u0631 \u062f\u0627\u0631\u062f\u061f"
                               }
                             </h6>
                           }
@@ -665,6 +725,61 @@ function PlasmicActivationFinish__RenderFunc(props: {
                       ) : null}
                     </div>
                     <div
+                      className={classNames(projectcss.all, sty.freeBox__fMwvv)}
+                    >
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__zfOtv
+                        )}
+                      >
+                        <React.Fragment>
+                          <React.Fragment>{""}</React.Fragment>
+                          {
+                            <h6
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.h6,
+                                projectcss.__wab_text,
+                                sty.h6___7VfVm
+                              )}
+                            >
+                              {
+                                "\u0622\u06cc\u0627 \u067e\u0630\u06cc\u0631\u0634 \u06f2\u06f4 \u0627\u0645\u06a9\u0627\u0646 \u062a\u0628\u0644\u06cc\u063a\u0627\u062a \u0631\u0627 \u0641\u0631\u0627\u0647\u0645 \u0645\u06cc\u200c\u06a9\u0646\u062f\u061f"
+                              }
+                            </h6>
+                          }
+                          <React.Fragment>{""}</React.Fragment>
+                        </React.Fragment>
+                      </div>
+                      {(() => {
+                        try {
+                          return $ctx.query.office != "true";
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return true;
+                          }
+                          throw e;
+                        }
+                      })() ? (
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text___84In
+                          )}
+                        >
+                          {
+                            "\u062f\u0631 \u062d\u0627\u0644 \u062d\u0627\u0636\u0631 \u0627\u0645\u06a9\u0627\u0646\u06cc \u0628\u0631\u0627\u06cc \u0627\u0646\u062c\u0627\u0645 \u062a\u0628\u0644\u06cc\u063a\u0627\u062a \u062f\u0627\u062e\u0644 \u067e\u0630\u06cc\u0631\u0634 24 \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f."
+                          }
+                        </div>
+                      ) : null}
+                    </div>
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__o1S1V)}
                     >
                       <div
@@ -686,7 +801,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                               )}
                             >
                               {
-                                "\u0686\u06af\u0648\u0646\u0647 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646 \u0631\u062a\u0628\u0647 \u062e\u0648\u062f \u0631\u0627 \u062f\u0631 \u067e\u0630\u06cc\u0631\u0634 \u06f2\u06f4 \u0627\u0631\u062a\u0642\u0627 \u062f\u0627\u062f\u061f"
+                                "\u0686\u06af\u0648\u0646\u0647 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646 \u0631\u062a\u0628\u0647 \u062e\u0648\u062f \u0631\u0627 \u062f\u0631 \u067e\u0630\u06cc\u0631\u0634 \u06f2\u06f4 \u0627\u0641\u0632\u0627\u06cc\u0634 \u062f\u0627\u062f\u061f"
                               }
                             </h6>
                           }
@@ -713,9 +828,25 @@ function PlasmicActivationFinish__RenderFunc(props: {
                             sty.text__oi49J
                           )}
                         >
-                          {
-                            '\u0628\u0631\u0627\u06cc \u062f\u0631\u06cc\u0627\u0641\u062a \u0631\u0627\u0647\u0646\u0645\u0627\u06cc\u06cc \u0628\u06cc\u0634\u062a\u0631 \u062f\u0631\u0628\u0627\u0631\u0647 \u0627\u0641\u0632\u0627\u06cc\u0634 \u0631\u062a\u0628\u0647\u060c \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u0628\u0647 \u0628\u062e\u0634 **"\u0639\u0645\u0644\u06a9\u0631\u062f \u0645\u0646"** \u062f\u0631 \u067e\u0646\u0644 \u06a9\u0627\u0631\u0628\u0631\u06cc \u062e\u0648\u062f \u0645\u0631\u0627\u062c\u0639\u0647 \u06a9\u0646\u06cc\u062f.'
-                          }
+                          <div
+                            className={projectcss.__wab_expr_html_text}
+                            dangerouslySetInnerHTML={{
+                              __html: (() => {
+                                try {
+                                  return "برای دریافت راهنمایی بیشتر درباره افزایش رتبه، می‌توانید به بخش <b>عملکرد من</b> در پنل کاربری خود مراجعه کنید.";
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return '\u0628\u0631\u0627\u06cc \u062f\u0631\u06cc\u0627\u0641\u062a \u0631\u0627\u0647\u0646\u0645\u0627\u06cc\u06cc \u0628\u06cc\u0634\u062a\u0631 \u062f\u0631\u0628\u0627\u0631\u0647 \u0627\u0641\u0632\u0627\u06cc\u0634 \u0631\u062a\u0628\u0647\u060c \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u0628\u0647 \u0628\u062e\u0634 **"\u0639\u0645\u0644\u06a9\u0631\u062f \u0645\u0646"** \u062f\u0631 \u067e\u0646\u0644 \u06a9\u0627\u0631\u0628\u0631\u06cc \u062e\u0648\u062f \u0645\u0631\u0627\u062c\u0639\u0647 \u06a9\u0646\u06cc\u062f.';
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            }}
+                          />
                         </div>
                       ) : null}
                     </div>

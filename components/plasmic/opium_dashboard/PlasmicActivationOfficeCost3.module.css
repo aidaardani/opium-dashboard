@@ -22,10 +22,6 @@
 .root > * {
   grid-column: 4;
 }
-.sideEffect__dZpe9:global(.__wab_instance) {
-  max-width: 100%;
-  object-fit: cover;
-}
 .header {
   display: flex;
   flex-direction: row;
@@ -109,7 +105,7 @@
 .activationOfficeCost:global(.__wab_instance) {
   max-width: 100%;
 }
-.sideEffect__dI6M1:global(.__wab_instance) {
+.sideEffect:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
 }
