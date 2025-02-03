@@ -1610,7 +1610,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                       onlinevisit: $props.hasOnlineVisit,
                                       isActiveCardNumber: true,
                                       isCustomPrice:
-                                        $state.select.value === "custom"
+                                        $state.select.value === "custom",
+                                      price: $state.select.value
                                     },
                                     event_type:
                                       "click-add-cost-button-office-step3-set-payment"
@@ -1624,7 +1625,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                       onlinevisit: $props.hasOnlineVisit,
                                       isActiveCardNumber: false,
                                       isCustomPrice:
-                                        $state.select.value === "custom"
+                                        $state.select.value === "custom",
+                                      price: $state.select.value
                                     },
                                     event_type:
                                       "click-add-cost-button-office-step3-set-payment"
