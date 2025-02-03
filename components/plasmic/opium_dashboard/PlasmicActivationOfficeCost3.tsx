@@ -213,7 +213,7 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
                 sty.text
               )}
             >
-              {"\u0628\u06cc\u0639\u0627\u0646\u0647"}
+              {"\u0645\u0628\u0644\u063a \u0648\u06cc\u0632\u06cc\u062a"}
             </div>
           </div>
           <div className={classNames(projectcss.all, sty.freeBox__wLaJb)}>

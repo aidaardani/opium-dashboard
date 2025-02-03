@@ -155,7 +155,7 @@ function PlasmicActivationProcess__RenderFunc(props: {
             step: 2
           },
           {
-            title: "\u0628\u06cc\u0639\u0627\u0646\u0647",
+            title: "\u0645\u0628\u0644\u063a \u0648\u06cc\u0632\u06cc\u062a",
             subTitle:
               "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0645\u0637\u0628",
             step: 3
