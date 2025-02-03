@@ -779,39 +779,6 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                 ) {
                   $steps["showToast2"] = await $steps["showToast2"];
                 }
-
-                $steps["showToast3"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "error",
-                          (() => {
-                            try {
-                              return undefined;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Fragment.showToast"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["showToast3"] != null &&
-                  typeof $steps["showToast3"] === "object" &&
-                  typeof $steps["showToast3"].then === "function"
-                ) {
-                  $steps["showToast3"] = await $steps["showToast3"];
-                }
               }}
             />
           </Stack__>

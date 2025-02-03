@@ -59,10 +59,10 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZzFQxrO/codeComponent
 import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
-import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -98,6 +98,7 @@ export const PlasmicActivationOfficeCost__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicActivationOfficeCost__OverridesType = {
   root?: Flex__<"div">;
+  apiGetVezaratCost?: Flex__<typeof ApiRequest>;
   select?: Flex__<typeof Select>;
   input?: Flex__<typeof Input>;
   dialog2?: Flex__<typeof Dialog>;
@@ -188,20 +189,66 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "costOffice",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
-          { label: "10,000 \u062a\u0648\u0645\u0627\u0646", value: "10000" },
-          { label: "20,000 \u062a\u0648\u0645\u0627\u0646", value: "20000" },
-          { label: "30,000 \u062a\u0648\u0645\u0627\u0646", value: "30000" },
-          { label: "40,000 \u062a\u0648\u0645\u0627\u0646", value: "40000" },
-          { label: "50,000 \u062a\u0648\u0645\u0627\u0646", value: "50000" },
-          { label: "100,000 \u062a\u0648\u0645\u0627\u0646", value: "100000" },
-          { label: "189,000 \u062a\u0648\u0645\u0627\u0646", value: "189000" },
-          {
-            label:
-              "\u0642\u06cc\u0645\u062a \u062f\u0644\u062e\u0648\u0627\u0647",
-            value: "custom"
-          }
-        ]
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return [
+                { label: "10,000 تومان", value: "10000" },
+                { label: "20,000 تومان", value: "20000" },
+                { label: "30,000 تومان", value: "30000" },
+                { label: "40,000 تومان", value: "40000" },
+                { label: "50,000 تومان", value: "50000" },
+                { label: "100,000 تومان", value: "100000" },
+                {
+                  label: `${$state.apiGetVezaratCost.data[0].price} تومان`,
+                  value: `${$state.apiGetVezaratCost.data[0].price}`
+                },
+                { label: "قیمت دلخواه", value: "custom" }
+              ];
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [
+                  {
+                    label: "10,000 \u062a\u0648\u0645\u0627\u0646",
+                    value: "10000"
+                  },
+                  {
+                    label: "20,000 \u062a\u0648\u0645\u0627\u0646",
+                    value: "20000"
+                  },
+                  {
+                    label: "30,000 \u062a\u0648\u0645\u0627\u0646",
+                    value: "30000"
+                  },
+                  {
+                    label: "40,000 \u062a\u0648\u0645\u0627\u0646",
+                    value: "40000"
+                  },
+                  {
+                    label: "50,000 \u062a\u0648\u0645\u0627\u0646",
+                    value: "50000"
+                  },
+                  {
+                    label: "100,000 \u062a\u0648\u0645\u0627\u0646",
+                    value: "100000"
+                  },
+                  {
+                    label: "189,000 \u062a\u0648\u0645\u0627\u0646",
+                    value: "189000"
+                  },
+                  {
+                    label:
+                      "\u0642\u06cc\u0645\u062a \u062f\u0644\u062e\u0648\u0627\u0647",
+                    value: "custom"
+                  }
+                ];
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "input.value",
@@ -296,6 +343,30 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "shabaApi"
+      },
+      {
+        path: "apiGetVezaratCost.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiGetVezaratCost"
+      },
+      {
+        path: "apiGetVezaratCost.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiGetVezaratCost"
+      },
+      {
+        path: "apiGetVezaratCost.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiGetVezaratCost"
       }
     ],
     [$props, $ctx, $refs]
@@ -327,6 +398,70 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         sty.root
       )}
     >
+      <ApiRequest
+        data-plasmic-name={"apiGetVezaratCost"}
+        data-plasmic-override={overrides.apiGetVezaratCost}
+        className={classNames("__wab_instance", sty.apiGetVezaratCost)}
+        errorDisplay={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__rUxn6
+            )}
+          >
+            {"Error fetching data"}
+          </div>
+        }
+        loadingDisplay={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__nmjuh
+            )}
+          >
+            {"Loading..."}
+          </div>
+        }
+        method={"GET"}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "apiGetVezaratCost",
+            "error"
+          ]).apply(null, eventArgs);
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "apiGetVezaratCost",
+            "loading"
+          ]).apply(null, eventArgs);
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "apiGetVezaratCost",
+            "data"
+          ]).apply(null, eventArgs);
+        }}
+        params={(() => {
+          try {
+            return { user_info_id: $props.userId };
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+        ref={ref => {
+          $refs["apiGetVezaratCost"] = ref;
+        }}
+        url={"https://apigw.paziresh24.com/v1/n8n-nelson/webhook/suggest-cost"}
+      />
+
       {(() => {
         try {
           return $ctx.GrowthBook?.features?.["moshir-katibe-payment"] === false;
@@ -512,7 +647,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
             e instanceof TypeError ||
             e?.plasmicType === "PlasmicUndefinedDataError"
           ) {
-            return false;
+            return true;
           }
           throw e;
         }
@@ -527,7 +662,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           <React.Fragment>
             {(() => {
               try {
-                return ` مبلغ پیشنهادی ${(189000).toLocaleString()} تومان است. با کلیک روی کادر زیر می‌توانید مبلغ را تغییر دهید.`;
+                return `  مبلغ پیشنهادی در تخصص شما ${$state.apiGetVezaratCost.data[0].price} تومان است. با کلیک روی کادر زیر می‌توانید مبلغ را تغییر دهید. `;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -1845,6 +1980,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "apiGetVezaratCost",
     "select",
     "input",
     "dialog2",
@@ -1853,6 +1989,7 @@ const PlasmicDescendants = {
     "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a",
     "centersApi"
   ],
+  apiGetVezaratCost: ["apiGetVezaratCost"],
   select: ["select"],
   input: ["input"],
   dialog2: ["dialog2"],
@@ -1871,6 +2008,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  apiGetVezaratCost: typeof ApiRequest;
   select: typeof Select;
   input: typeof Input;
   dialog2: typeof Dialog;
@@ -1940,6 +2078,7 @@ export const PlasmicActivationOfficeCost = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    apiGetVezaratCost: makeNodeComponent("apiGetVezaratCost"),
     select: makeNodeComponent("select"),
     input: makeNodeComponent("input"),
     dialog2: makeNodeComponent("dialog2"),
