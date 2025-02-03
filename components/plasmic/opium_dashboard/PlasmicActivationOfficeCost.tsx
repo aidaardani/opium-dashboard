@@ -662,9 +662,9 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           <React.Fragment>
             {(() => {
               try {
-                return `  مبلغ پیشنهادی در تخصص شما ${
-                  $state.apiGetVezaratCost.data[0].price / 10 || 150000
-                } تومان است. با کلیک روی کادر زیر می‌توانید مبلغ را تغییر دهید. `;
+                return `تخصص شما مبلغ پیشنهادی ${
+                  $state.apiGetVezaratCost.data[0].price / 10
+                } تومان است. با کلیک روی کادر زیر می‌توانید مبلغ را تغییر دهید.`;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -1416,7 +1416,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                   ).id;
                                 const cost =
                                   $state.select.value == "custom"
-                                    ? +$state.input.value * 10
+                                    ? +$state.input.value
                                     : $state.select.value;
                                 if ($state.input2.value === "") {
                                   return {
@@ -1465,7 +1465,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["costApi"] = await $steps["costApi"];
               }
 
-              $steps["setPayment"] = $ctx.GrowthBook.features[
+              $steps["setPayment"] = $ctx.GrowthBook?.features?.[
                 "moshir-katibe-payment"
               ]
                 ? (() => {
