@@ -60,8 +60,8 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZzFQxrO/codeComponent
-import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
+import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
@@ -99,11 +99,11 @@ export const PlasmicActivationOfficeCost__ArgProps = new Array<ArgPropType>(
 export type PlasmicActivationOfficeCost__OverridesType = {
   root?: Flex__<"div">;
   select?: Flex__<typeof Select>;
+  input?: Flex__<typeof Input>;
   dialog2?: Flex__<typeof Dialog>;
   input2?: Flex__<typeof Input>;
   shabaApi?: Flex__<typeof ApiRequest>;
   درحالدریافتاطلاعات?: Flex__<"div">;
-  input?: Flex__<typeof Input>;
   centersApi?: Flex__<typeof ApiRequest>;
 };
 
@@ -726,6 +726,75 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           />
         );
       })()}
+      {(() => {
+        try {
+          return $state.select.value == "custom";
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return true;
+          }
+          throw e;
+        }
+      })() ? (
+        <Input
+          data-plasmic-name={"input"}
+          data-plasmic-override={overrides.input}
+          className={classNames("__wab_instance", sty.input)}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["input", "value"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          placeholder={
+            "\u0642\u06cc\u0645\u062a \u062f\u0644\u062e\u0648\u0627\u0647 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"
+          }
+          type={"text"}
+          value={generateStateValueProp($state, ["input", "value"])}
+        />
+      ) : null}
+      {(() => {
+        try {
+          return $state.select.value == "custom";
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return true;
+          }
+          throw e;
+        }
+      })() ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text___6XZtN
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return `${(+$state.input.value).toLocaleString()} ${
+                  $state.input.value ? "تومان" : ""
+                }`;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+      ) : null}
       <div className={classNames(projectcss.all, sty.freeBox___2UgG0)}>
         <div className={classNames(projectcss.all, sty.freeBox__lix9F)}>
           <div
@@ -1005,75 +1074,6 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           </div>
         ) : null}
       </div>
-      {(() => {
-        try {
-          return $state.select.value == "custom";
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return true;
-          }
-          throw e;
-        }
-      })() ? (
-        <Input
-          data-plasmic-name={"input"}
-          data-plasmic-override={overrides.input}
-          className={classNames("__wab_instance", sty.input)}
-          onChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["input", "value"]).apply(
-              null,
-              eventArgs
-            );
-          }}
-          placeholder={
-            "\u0642\u06cc\u0645\u062a \u062f\u0644\u062e\u0648\u0627\u0647 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"
-          }
-          type={"text"}
-          value={generateStateValueProp($state, ["input", "value"])}
-        />
-      ) : null}
-      {(() => {
-        try {
-          return $state.select.value == "custom";
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return true;
-          }
-          throw e;
-        }
-      })() ? (
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text___6XZtN
-          )}
-        >
-          <React.Fragment>
-            {(() => {
-              try {
-                return `${(+$state.input.value).toLocaleString()} ${
-                  $state.input.value ? "تومان" : ""
-                }`;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "";
-                }
-                throw e;
-              }
-            })()}
-          </React.Fragment>
-        </div>
-      ) : null}
       <ApiRequest
         data-plasmic-name={"centersApi"}
         data-plasmic-override={overrides.centersApi}
@@ -1823,14 +1823,15 @@ const PlasmicDescendants = {
   root: [
     "root",
     "select",
+    "input",
     "dialog2",
     "input2",
     "shabaApi",
     "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a",
-    "input",
     "centersApi"
   ],
   select: ["select"],
+  input: ["input"],
   dialog2: ["dialog2"],
   input2: ["input2"],
   shabaApi: [
@@ -1840,7 +1841,6 @@ const PlasmicDescendants = {
   درحالدریافتاطلاعات: [
     "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
   ],
-  input: ["input"],
   centersApi: ["centersApi"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -1849,11 +1849,11 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   select: typeof Select;
+  input: typeof Input;
   dialog2: typeof Dialog;
   input2: typeof Input;
   shabaApi: typeof ApiRequest;
   درحالدریافتاطلاعات: "div";
-  input: typeof Input;
   centersApi: typeof ApiRequest;
 };
 
@@ -1918,13 +1918,13 @@ export const PlasmicActivationOfficeCost = Object.assign(
   {
     // Helper components rendering sub-elements
     select: makeNodeComponent("select"),
+    input: makeNodeComponent("input"),
     dialog2: makeNodeComponent("dialog2"),
     input2: makeNodeComponent("input2"),
     shabaApi: makeNodeComponent("shabaApi"),
     درحالدریافتاطلاعات: makeNodeComponent(
       "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
     ),
-    input: makeNodeComponent("input"),
     centersApi: makeNodeComponent("centersApi"),
 
     // Metadata about props expected for PlasmicActivationOfficeCost
