@@ -200,8 +200,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 { label: "50,000 تومان", value: "50000" },
                 { label: "100,000 تومان", value: "100000" },
                 {
-                  label: `${$state.apiGetVezaratCost.data[0].price} تومان`,
-                  value: `${$state.apiGetVezaratCost.data[0].price}`
+                  label: `${$state.apiGetVezaratCost.data[0].price / 10} تومان`,
+                  value: `${$state.apiGetVezaratCost.data[0].price / 10}`
                 },
                 { label: "قیمت دلخواه", value: "custom" }
               ];
@@ -662,7 +662,9 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           <React.Fragment>
             {(() => {
               try {
-                return `  مبلغ پیشنهادی در تخصص شما ${$state.apiGetVezaratCost.data[0].price} تومان است. با کلیک روی کادر زیر می‌توانید مبلغ را تغییر دهید. `;
+                return `  مبلغ پیشنهادی در تخصص شما ${
+                  $state.apiGetVezaratCost.data[0].price / 10 || 150000
+                } تومان است. با کلیک روی کادر زیر می‌توانید مبلغ را تغییر دهید. `;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
