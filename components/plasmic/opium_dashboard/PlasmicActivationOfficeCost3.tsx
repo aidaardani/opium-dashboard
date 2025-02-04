@@ -180,87 +180,89 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
             sty.root
           )}
         >
-          <SideEffect
-            className={classNames("__wab_instance", sty.sideEffect___8Mywl)}
-            deps={(() => {
-              try {
-                return [$ctx.GrowthBook.isReady, $ctx.query.userId];
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
+          {false ? (
+            <SideEffect
+              className={classNames("__wab_instance", sty.sideEffect___8Mywl)}
+              deps={(() => {
+                try {
+                  return [$ctx.GrowthBook.isReady, $ctx.query.userId];
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
                 }
-                throw e;
-              }
-            })()}
-            onMount={async () => {
-              const $steps = {};
+              })()}
+              onMount={async () => {
+                const $steps = {};
 
-              $steps["invokeGlobalAction"] = [
-                $ctx.GrowthBook.isReady,
-                $ctx.query.userId
-              ]
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return {
-                              ...$ctx.GrowthBook.attributes,
-                              user_info_id: $ctx.query.userId
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
+                $steps["invokeGlobalAction"] = [
+                  $ctx.GrowthBook.isReady,
+                  $ctx.query.userId
+                ]
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                ...$ctx.GrowthBook.attributes,
+                                user_info_id: $ctx.query.userId
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
                             }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["GrowthBook.setAttributes"]?.apply(
-                      null,
-                      [...actionArgs.args]
-                    );
-                  })()
-                : undefined;
-              if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
-              ) {
-                $steps["invokeGlobalAction"] = await $steps[
-                  "invokeGlobalAction"
-                ];
-              }
-            }}
-          />
-
-          <ActivationOnload
-            data-plasmic-name={"activationOnload"}
-            data-plasmic-override={overrides.activationOnload}
-            className={classNames("__wab_instance", sty.activationOnload)}
-            step={"3"}
-            userInfoId={(() => {
-              try {
-                return $ctx.query.userId;
-              } catch (e) {
+                          })()
+                        ]
+                      };
+                      return $globalActions["GrowthBook.setAttributes"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
                 if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
                 ) {
-                  return undefined;
+                  $steps["invokeGlobalAction"] = await $steps[
+                    "invokeGlobalAction"
+                  ];
                 }
-                throw e;
-              }
-            })()}
-          />
-
+              }}
+            />
+          ) : null}
+          {false ? (
+            <ActivationOnload
+              data-plasmic-name={"activationOnload"}
+              data-plasmic-override={overrides.activationOnload}
+              className={classNames("__wab_instance", sty.activationOnload)}
+              step={"3"}
+              userInfoId={(() => {
+                try {
+                  return $ctx.query.userId;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+            />
+          ) : null}
           <div
             data-plasmic-name={"header"}
             data-plasmic-override={overrides.header}
