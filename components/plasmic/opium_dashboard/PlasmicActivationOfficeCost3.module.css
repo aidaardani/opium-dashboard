@@ -22,6 +22,13 @@
 .root > * {
   grid-column: 4;
 }
+.sideEffect___8Mywl:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.activationOnload:global(.__wab_instance) {
+  display: none;
+}
 .header {
   display: flex;
   flex-direction: row;
@@ -105,7 +112,7 @@
 .activationOfficeCost:global(.__wab_instance) {
   max-width: 100%;
 }
-.sideEffect:global(.__wab_instance) {
+.sideEffect__dI6M1:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
 }
