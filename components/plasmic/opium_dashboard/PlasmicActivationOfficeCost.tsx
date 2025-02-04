@@ -1378,9 +1378,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["costApi"] = await $steps["costApi"];
               }
 
-              $steps["setPayment"] = $ctx.GrowthBook?.features?.[
-                "moshir-katibe-payment"
-              ]
+              $steps["setPayment"] = true
                 ? (() => {
                     const actionArgs = {
                       args: [
