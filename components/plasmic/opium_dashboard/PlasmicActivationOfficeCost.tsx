@@ -563,7 +563,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
             <React.Fragment>
               {(() => {
                 try {
-                  return "در حال دریافت مبلغ پیشنهادی....";
+                  return "کل مبلغ ویزیت که بیمار باید بپردازد را انتخاب کنید. (در حال دریافت مبلغ پیشنهادی به شما هستیم...)";
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
