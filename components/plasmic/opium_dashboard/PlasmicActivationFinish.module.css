@@ -458,12 +458,32 @@
   min-width: 0;
   padding: 8px;
 }
-.text__pdxuw {
+.freeBox__s9BTv {
+  display: flex;
+  flex-direction: row;
   position: relative;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
   height: auto;
   max-width: 100%;
   min-width: 0;
+  padding: 8px;
+}
+.svg__vP3Zb {
+  object-fit: cover;
+  max-width: 100%;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+.text__pdxuw {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+.h6__hyqm1 {
+  width: auto;
 }
 .text__oi49J {
   position: relative;
@@ -486,8 +506,26 @@
   min-width: 0;
   padding: 8px;
 }
-.text___3LYcg {
+.freeBox__dg7Vm {
+  display: flex;
+  flex-direction: row;
   position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.svg__fk9Cd {
+  object-fit: cover;
+  max-width: 100%;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+.text___3LYcg {
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -514,6 +552,25 @@
   min-width: 0;
   padding: 8px;
 }
+.freeBox__ng7CS {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.svg__luZlz {
+  object-fit: cover;
+  max-width: 100%;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
 .text__sO3M {
   position: relative;
   width: 100%;
@@ -534,8 +591,26 @@
   min-width: 0;
   padding: 8px;
 }
-.text__zfOtv {
+.freeBox__rGtj {
+  display: flex;
+  flex-direction: row;
   position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.svg__y1Xpi {
+  object-fit: cover;
+  max-width: 100%;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+.text__zfOtv {
   width: 100%;
   height: auto;
   max-width: 100%;
@@ -562,8 +637,19 @@
   min-width: 0;
   padding: 8px;
 }
-.text__l886H {
+.freeBox__fpPzb {
+  display: flex;
+  flex-direction: row;
   position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.text__l886H {
   width: 100%;
   height: auto;
   max-width: 100%;

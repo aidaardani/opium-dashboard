@@ -59,6 +59,8 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -66,6 +68,18 @@ import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css";
 import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicHamburgerMenu.module.css"; // plasmic-import: mlLx75iyGp5E/css
+
+import Icons8HomeSvgIcon from "./icons/PlasmicIcon__Icons8HomeSvg"; // plasmic-import: hnY_iGcTv3Tn/icon
+import Icon16Icon from "./icons/PlasmicIcon__Icon16"; // plasmic-import: 8j1U_g9afFrU/icon
+import Icon8Icon from "./icons/PlasmicIcon__Icon8"; // plasmic-import: myuWpZoZw4pf/icon
+import Icons8Chart641SvgIcon from "./icons/PlasmicIcon__Icons8Chart641Svg"; // plasmic-import: ukLlcKsYJ9pu/icon
+import Icon9Icon from "./icons/PlasmicIcon__Icon9"; // plasmic-import: WD9d-X_nOEzc/icon
+import Icon12Icon from "./icons/PlasmicIcon__Icon12"; // plasmic-import: jRnh11j7PY60/icon
+import Icon7Icon from "./icons/PlasmicIcon__Icon7"; // plasmic-import: -MDfk7M6FyZh/icon
+import Icon17Icon from "./icons/PlasmicIcon__Icon17"; // plasmic-import: 0ELPoF5hq6sg/icon
+import Icons8Power50SvgIcon from "./icons/PlasmicIcon__Icons8Power50Svg"; // plasmic-import: Dr2zavNXBUHX/icon
+import Icons8Support64SvgIcon from "./icons/PlasmicIcon__Icons8Support64Svg"; // plasmic-import: sZKHYviUIdem/icon
+import Icons8HamburgerMenuSvgIcon from "./icons/PlasmicIcon__Icons8HamburgerMenuSvg"; // plasmic-import: tjRzMyni2IMv/icon
 
 createPlasmicElementProxy;
 
@@ -80,7 +94,6 @@ export const PlasmicHamburgerMenu__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHamburgerMenu__OverridesType = {
   root?: Flex__<"div">;
-  section?: Flex__<"section">;
 };
 
 export interface DefaultHamburgerMenuProps {}
@@ -123,6 +136,24 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "isOpenSideBar",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $refs
+  });
+
   return (
     <React.Fragment>
       <Head></Head>
@@ -133,29 +164,487 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
         }
       `}</style>
 
-      <div className={projectcss.plasmic_page_wrapper}>
-        <div
-          data-plasmic-name={"root"}
-          data-plasmic-override={overrides.root}
-          data-plasmic-root={true}
-          data-plasmic-for-node={forNode}
-          className={classNames(
-            projectcss.all,
-            projectcss.root_reset,
-            projectcss.plasmic_default_styles,
-            projectcss.plasmic_mixins,
-            projectcss.plasmic_tokens,
-            plasmic_fragment_design_system_css.plasmic_tokens,
-            plasmic_antd_5_hostless_css.plasmic_tokens,
-            plasmic_plasmic_rich_components_css.plasmic_tokens,
-            sty.root
-          )}
-        >
-          <section
-            data-plasmic-name={"section"}
-            data-plasmic-override={overrides.section}
-            className={classNames(projectcss.all, sty.section)}
-          />
+      <div
+        data-plasmic-name={"root"}
+        data-plasmic-override={overrides.root}
+        data-plasmic-root={true}
+        data-plasmic-for-node={forNode}
+        className={classNames(
+          projectcss.all,
+          projectcss.root_reset,
+          projectcss.plasmic_default_styles,
+          projectcss.plasmic_mixins,
+          projectcss.plasmic_tokens,
+          plasmic_fragment_design_system_css.plasmic_tokens,
+          plasmic_antd_5_hostless_css.plasmic_tokens,
+          plasmic_plasmic_rich_components_css.plasmic_tokens,
+          sty.root
+        )}
+      >
+        <div className={classNames(projectcss.all, sty.freeBox__svjj0)}>
+          <div className={classNames(projectcss.all, sty.freeBox__keLl0)}>
+            {(() => {
+              try {
+                return $state.isOpenSideBar === true;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <div className={classNames(projectcss.all, sty.freeBox___501Uu)}>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__f5BHs)}
+                >
+                  <Icons8HomeSvgIcon
+                    className={classNames(projectcss.all, sty.svg__qmWfw)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__dvMHj
+                    )}
+                  >
+                    {
+                      "\u0644\u06cc\u0633\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 "
+                    }
+                  </div>
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__tmgG0)}
+                >
+                  <Icon16Icon
+                    className={classNames(projectcss.all, sty.svg__fp0Nr)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___4Yr9S
+                    )}
+                  >
+                    {
+                      "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644"
+                    }
+                  </div>
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__s2Yhm)}
+                >
+                  <Icon8Icon
+                    className={classNames(projectcss.all, sty.svg__rjUm)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__p6IDu
+                    )}
+                  >
+                    {"\u0646\u0633\u062e\u0647 \u0646\u0648\u06cc\u0633\u06cc"}
+                  </div>
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__p8Cb9)}
+                >
+                  <Icons8Chart641SvgIcon
+                    className={classNames(projectcss.all, sty.svg__zIprN)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___8J4H
+                    )}
+                  >
+                    {
+                      "\u0631\u062a\u0628\u0647 \u0645\u0646 \u062f\u0631 \u067e\u0630\u06cc\u0631\u0634 24"
+                    }
+                  </div>
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__fq2WC)}
+                >
+                  <Icon9Icon
+                    className={classNames(projectcss.all, sty.svg___4RQid)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__jc4Il
+                    )}
+                  >
+                    {
+                      "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u0646\u0648\u0628\u062a \u062f\u0647\u06cc"
+                    }
+                  </div>
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__lbXao)}
+                >
+                  <Icon12Icon
+                    className={classNames(projectcss.all, sty.svg__cLYB)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___1Mzj
+                    )}
+                  >
+                    {"\u067e\u0631\u062f\u0627\u062e\u062a"}
+                  </div>
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__vGj1R)}
+                >
+                  <Icon7Icon
+                    className={classNames(projectcss.all, sty.svg__pjMp4)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__geIUn
+                    )}
+                  >
+                    {
+                      "\u0642\u0648\u0627\u0646\u06cc\u0646 \u0645\u0634\u0627\u0648\u0631\u0647"
+                    }
+                  </div>
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__jg0Em)}
+                >
+                  <Icon17Icon
+                    className={classNames(projectcss.all, sty.svg___2Pqh8)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__xy6Ol
+                    )}
+                  >
+                    {
+                      "\u0646\u0638\u0631\u0627\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646"
+                    }
+                  </div>
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__do5VU)}
+                >
+                  <Icons8Power50SvgIcon
+                    className={classNames(projectcss.all, sty.svg__ckkWj)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___2MrTx
+                    )}
+                  >
+                    {"\u062e\u0631\u0648\u062c"}
+                  </div>
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__wAkIz)}
+                >
+                  <Icons8Support64SvgIcon
+                    className={classNames(projectcss.all, sty.svg__sGfXx)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__fYKtn
+                    )}
+                  >
+                    {
+                      "\u0627\u0631\u062a\u0628\u0627\u0637 \u0628\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc"
+                    }
+                  </div>
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__xi3L1)}
+                >
+                  <PlasmicImg__
+                    alt={""}
+                    className={classNames(sty.img__w6Ync)}
+                    displayHeight={"40px"}
+                    displayMaxHeight={"none"}
+                    displayMaxWidth={"100%"}
+                    displayMinHeight={"0"}
+                    displayMinWidth={"0"}
+                    displayWidth={"40px"}
+                    loading={"lazy"}
+                    src={{
+                      src: "/plasmic/opium_dashboard/images/image2.png",
+                      fullWidth: 120,
+                      fullHeight: 120,
+                      aspectRatio: undefined
+                    }}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__vCDsa
+                    )}
+                  >
+                    {"\u067e\u0630\u06cc\u0631\u0634 24"}
+                  </div>
+                </Stack__>
+              </div>
+            ) : null}
+            {(() => {
+              try {
+                return $state.isOpenSideBar === false;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <div className={classNames(projectcss.all, sty.freeBox__p96N)}>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__etPcH)}
+                >
+                  <Icons8HomeSvgIcon
+                    className={classNames(projectcss.all, sty.svg__xsVh)}
+                    role={"img"}
+                  />
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__dYhdW)}
+                >
+                  <Icon16Icon
+                    className={classNames(projectcss.all, sty.svg__iydM)}
+                    role={"img"}
+                  />
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox___4Fm)}
+                >
+                  <Icon8Icon
+                    className={classNames(projectcss.all, sty.svg__ftWhG)}
+                    role={"img"}
+                  />
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__e5Hsn)}
+                >
+                  <Icons8Chart641SvgIcon
+                    className={classNames(projectcss.all, sty.svg___1AWpm)}
+                    role={"img"}
+                  />
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__we95)}
+                >
+                  <Icon9Icon
+                    className={classNames(projectcss.all, sty.svg__tdseQ)}
+                    role={"img"}
+                  />
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__r0AKq)}
+                >
+                  <Icon12Icon
+                    className={classNames(projectcss.all, sty.svg__uJdxc)}
+                    role={"img"}
+                  />
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__t5FSl)}
+                >
+                  <Icon7Icon
+                    className={classNames(projectcss.all, sty.svg__llLdi)}
+                    role={"img"}
+                  />
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__y14Jg)}
+                >
+                  <Icon17Icon
+                    className={classNames(projectcss.all, sty.svg__eeuw7)}
+                    role={"img"}
+                  />
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__e7Bty)}
+                >
+                  <Icons8Power50SvgIcon
+                    className={classNames(projectcss.all, sty.svg__yKhsh)}
+                    role={"img"}
+                  />
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__mdUI)}
+                >
+                  <Icons8Support64SvgIcon
+                    className={classNames(projectcss.all, sty.svg___4EsLt)}
+                    role={"img"}
+                  />
+                </Stack__>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__wZh1K)}
+                >
+                  <PlasmicImg__
+                    alt={""}
+                    className={classNames(sty.img___670Sr)}
+                    displayHeight={"40px"}
+                    displayMaxHeight={"none"}
+                    displayMaxWidth={"100%"}
+                    displayMinHeight={"0"}
+                    displayMinWidth={"0"}
+                    displayWidth={"40px"}
+                    loading={"lazy"}
+                    src={{
+                      src: "/plasmic/opium_dashboard/images/image2.png",
+                      fullWidth: 120,
+                      fullHeight: 120,
+                      aspectRatio: undefined
+                    }}
+                  />
+                </Stack__>
+              </div>
+            ) : null}
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox___0BiG)}
+            >
+              <Icons8HamburgerMenuSvgIcon
+                className={classNames(projectcss.all, sty.svg__ndVnO)}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateVariable"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          operation: 0,
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["isOpenSideBar"]
+                          },
+                          value: !$state.isOpenSideBar
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateVariable"] != null &&
+                    typeof $steps["updateVariable"] === "object" &&
+                    typeof $steps["updateVariable"].then === "function"
+                  ) {
+                    $steps["updateVariable"] = await $steps["updateVariable"];
+                  }
+                }}
+                role={"img"}
+              />
+
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__nJw9L
+                )}
+              >
+                {
+                  "\u0644\u06cc\u0633\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646"
+                }
+              </div>
+            </Stack__>
+          </div>
         </div>
       </div>
     </React.Fragment>
@@ -163,15 +652,13 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "section"],
-  section: ["section"]
+  root: ["root"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  section: "section";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -234,7 +721,6 @@ export const PlasmicHamburgerMenu = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    section: makeNodeComponent("section"),
 
     // Metadata about props expected for PlasmicHamburgerMenu
     internalVariantProps: PlasmicHamburgerMenu__VariantProps,

@@ -711,28 +711,40 @@ function PlasmicActivationFinish__RenderFunc(props: {
                       <div
                         className={classNames(
                           projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__pdxuw
+                          sty.freeBox__s9BTv
                         )}
                       >
-                        <React.Fragment>
-                          <React.Fragment>{""}</React.Fragment>
-                          {
-                            <h6
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.h6,
-                                projectcss.__wab_text,
-                                sty.h6__hyqm1
-                              )}
-                            >
-                              {
-                                "\u0686\u06af\u0648\u0646\u0647 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646 \u0631\u062a\u0628\u0647 \u062e\u0648\u062f \u0631\u0627 \u062f\u0631 \u067e\u0630\u06cc\u0631\u0634 \u06f2\u06f4 \u0627\u0641\u0632\u0627\u06cc\u0634 \u062f\u0627\u062f\u061f"
-                              }
-                            </h6>
-                          }
-                          <React.Fragment>{""}</React.Fragment>
-                        </React.Fragment>
+                        <Icon28Icon
+                          className={classNames(projectcss.all, sty.svg__vP3Zb)}
+                          role={"img"}
+                        />
+
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__pdxuw
+                          )}
+                        >
+                          <React.Fragment>
+                            <React.Fragment>{""}</React.Fragment>
+                            {
+                              <h6
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.h6,
+                                  projectcss.__wab_text,
+                                  sty.h6__hyqm1
+                                )}
+                              >
+                                {
+                                  "\u0686\u06af\u0648\u0646\u0647 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646 \u0631\u062a\u0628\u0647 \u062e\u0648\u062f \u0631\u0627 \u062f\u0631 \u067e\u0630\u06cc\u0631\u0634 \u06f2\u06f4 \u0627\u0641\u0632\u0627\u06cc\u0634 \u062f\u0627\u062f\u061f"
+                                }
+                              </h6>
+                            }
+                            <React.Fragment>{""}</React.Fragment>
+                          </React.Fragment>
+                        </div>
                       </div>
                       <div
                         className={classNames(
@@ -767,28 +779,40 @@ function PlasmicActivationFinish__RenderFunc(props: {
                       <div
                         className={classNames(
                           projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text___3LYcg
+                          sty.freeBox__dg7Vm
                         )}
                       >
-                        <React.Fragment>
-                          <React.Fragment>{""}</React.Fragment>
-                          {
-                            <h6
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.h6,
-                                projectcss.__wab_text,
-                                sty.h6___76K0I
-                              )}
-                            >
-                              {
-                                "\u0627\u06af\u0631 \u062f\u0631 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u0634\u0631\u0627\u06cc\u0637 \u067e\u0627\u0633\u062e\u06af\u0648\u06cc\u06cc \u0628\u0647 \u0628\u06cc\u0645\u0627\u0631 \u0631\u0627 \u0646\u062f\u0627\u0634\u062a\u0645 \u060c \u0686\u0647 \u06a9\u0627\u0631 \u06a9\u0646\u0645\u061f"
-                              }
-                            </h6>
-                          }
-                          <React.Fragment>{""}</React.Fragment>
-                        </React.Fragment>
+                        <Icon28Icon
+                          className={classNames(projectcss.all, sty.svg__fk9Cd)}
+                          role={"img"}
+                        />
+
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text___3LYcg
+                          )}
+                        >
+                          <React.Fragment>
+                            <React.Fragment>{""}</React.Fragment>
+                            {
+                              <h6
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.h6,
+                                  projectcss.__wab_text,
+                                  sty.h6___76K0I
+                                )}
+                              >
+                                {
+                                  "\u0627\u06af\u0631 \u062f\u0631 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u0634\u0631\u0627\u06cc\u0637 \u067e\u0627\u0633\u062e\u06af\u0648\u06cc\u06cc \u0628\u0647 \u0628\u06cc\u0645\u0627\u0631 \u0631\u0627 \u0646\u062f\u0627\u0634\u062a\u0645 \u060c \u0686\u0647 \u06a9\u0627\u0631 \u06a9\u0646\u0645\u061f"
+                                }
+                              </h6>
+                            }
+                            <React.Fragment>{""}</React.Fragment>
+                          </React.Fragment>
+                        </div>
                       </div>
                       <div
                         className={classNames(
@@ -823,33 +847,45 @@ function PlasmicActivationFinish__RenderFunc(props: {
                         sty.freeBox___5DX5Y
                       )}
                     >
-                      <h6
+                      <div
                         className={classNames(
                           projectcss.all,
-                          projectcss.h6,
-                          projectcss.__wab_text,
-                          sty.h6__nGrIt
+                          sty.freeBox__ng7CS
                         )}
                       >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return (
-                                $ctx.query.office != "true" &&
-                                "درآمد هر ویزیت چه زمانی برای من واریز میشه؟"
-                              );
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646";
+                        <Icon28Icon
+                          className={classNames(projectcss.all, sty.svg__luZlz)}
+                          role={"img"}
+                        />
+
+                        <h6
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.h6,
+                            projectcss.__wab_text,
+                            sty.h6__nGrIt
+                          )}
+                        >
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return (
+                                  $ctx.query.office != "true" &&
+                                  "درآمد هر ویزیت چه زمانی برای من واریز میشه؟"
+                                );
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646";
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
-                      </h6>
+                            })()}
+                          </React.Fragment>
+                        </h6>
+                      </div>
                       <div
                         className={classNames(
                           projectcss.all,
@@ -883,28 +919,40 @@ function PlasmicActivationFinish__RenderFunc(props: {
                       <div
                         className={classNames(
                           projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__zfOtv
+                          sty.freeBox__rGtj
                         )}
                       >
-                        <React.Fragment>
-                          <React.Fragment>{""}</React.Fragment>
-                          {
-                            <h6
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.h6,
-                                projectcss.__wab_text,
-                                sty.h6___7VfVm
-                              )}
-                            >
-                              {
-                                "\u0622\u06cc\u0627 \u067e\u0630\u06cc\u0631\u0634 \u06f2\u06f4 \u0627\u0645\u06a9\u0627\u0646 \u062a\u0628\u0644\u06cc\u063a\u0627\u062a \u0631\u0627 \u0641\u0631\u0627\u0647\u0645 \u0645\u06cc\u200c\u06a9\u0646\u062f\u061f"
-                              }
-                            </h6>
-                          }
-                          <React.Fragment>{""}</React.Fragment>
-                        </React.Fragment>
+                        <Icon28Icon
+                          className={classNames(projectcss.all, sty.svg__y1Xpi)}
+                          role={"img"}
+                        />
+
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__zfOtv
+                          )}
+                        >
+                          <React.Fragment>
+                            <React.Fragment>{""}</React.Fragment>
+                            {
+                              <h6
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.h6,
+                                  projectcss.__wab_text,
+                                  sty.h6___7VfVm
+                                )}
+                              >
+                                {
+                                  "\u0622\u06cc\u0627 \u067e\u0630\u06cc\u0631\u0634 \u06f2\u06f4 \u0627\u0645\u06a9\u0627\u0646 \u062a\u0628\u0644\u06cc\u063a\u0627\u062a \u0631\u0627 \u0641\u0631\u0627\u0647\u0645 \u0645\u06cc\u200c\u06a9\u0646\u062f\u061f"
+                                }
+                              </h6>
+                            }
+                            <React.Fragment>{""}</React.Fragment>
+                          </React.Fragment>
+                        </div>
                       </div>
                       <div
                         className={classNames(
@@ -924,28 +972,35 @@ function PlasmicActivationFinish__RenderFunc(props: {
                       <div
                         className={classNames(
                           projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__l886H
+                          sty.freeBox__fpPzb
                         )}
                       >
-                        <React.Fragment>
-                          <React.Fragment>{""}</React.Fragment>
-                          {
-                            <h6
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.h6,
-                                projectcss.__wab_text,
-                                sty.h6__mwIqv
-                              )}
-                            >
-                              {
-                                "\u06af\u0641\u062a\u06af\u0648 \u0628\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646 "
-                              }
-                            </h6>
-                          }
-                          <React.Fragment>{""}</React.Fragment>
-                        </React.Fragment>
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__l886H
+                          )}
+                        >
+                          <React.Fragment>
+                            <React.Fragment>{""}</React.Fragment>
+                            {
+                              <h6
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.h6,
+                                  projectcss.__wab_text,
+                                  sty.h6__mwIqv
+                                )}
+                              >
+                                {
+                                  "\u06af\u0641\u062a\u06af\u0648 \u0628\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646 "
+                                }
+                              </h6>
+                            }
+                            <React.Fragment>{""}</React.Fragment>
+                          </React.Fragment>
+                        </div>
                       </div>
                       <div
                         className={classNames(

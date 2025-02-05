@@ -2381,6 +2381,16 @@
       }
     },
     {
+      "name": "Unnamed Style Token",
+      "type": "spacing",
+      "value": "1px",
+      "category": "spacing",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "hJ7EShMSgH3R"
+      }
+    },
+    {
       "name": "X Large",
       "type": "fontsize",
       "value": "1.25rem",

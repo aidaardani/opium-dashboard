@@ -571,48 +571,6 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                   ];
                 }
 
-                $steps["otpCodeApi"] =
-                  $state.step == "OTP_CODE"
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "PUT",
-                            "https://api.paziresh24.com/V1/doctor/profile/change-mobile",
-                            undefined,
-                            (() => {
-                              try {
-                                return (() => {
-                                  return {
-                                    username: $state.newPhoneNumber.value,
-                                    password: $state.otpCode.value
-                                  };
-                                })();
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Fragment.apiRequest"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                if (
-                  $steps["otpCodeApi"] != null &&
-                  typeof $steps["otpCodeApi"] === "object" &&
-                  typeof $steps["otpCodeApi"].then === "function"
-                ) {
-                  $steps["otpCodeApi"] = await $steps["otpCodeApi"];
-                }
-
                 $steps["updateDialogOpen"] =
                   $steps.otpCodeApi.status == 200 && $state.step == "OTP_CODE"
                     ? (() => {

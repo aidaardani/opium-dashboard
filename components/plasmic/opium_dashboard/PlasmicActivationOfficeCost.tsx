@@ -162,22 +162,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "select.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          (() => {
-            try {
-              return $state.costOffice[6].value
-                ? $state.costOffice[6].value
-                : 150000;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
         path: "select.open",
@@ -398,63 +383,61 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         sty.root
       )}
     >
-      {false ? (
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text___53Jnw
-          )}
-        >
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text___53Jnw
+        )}
+      >
+        <React.Fragment>
           <React.Fragment>
-            <React.Fragment>
-              {
-                "\u067e\u0631\u062f\u0627\u062e\u062a \u0628\u06cc\u0639\u0627\u0646\u0647 \u0628\u0631\u0627\u06cc "
-              }
-            </React.Fragment>
-            <span
-              className={"plasmic_default__all plasmic_default__span"}
-              style={{ fontWeight: 700 }}
-            >
-              {
-                "\u062d\u0641\u0638 \u062a\u0639\u0647\u062f \u062d\u0636\u0648\u0631 \u0628\u06cc\u0645\u0627\u0631"
-              }
-            </span>
-            <React.Fragment>
-              {" \u062f\u0631 \u0645\u0637\u0628 \u0627\u0633\u062a . "}
-            </React.Fragment>
-            <span
-              className={"plasmic_default__all plasmic_default__span"}
-              style={{ fontWeight: 700 }}
-            >
-              {"\u06a9\u0644"}
-            </span>
-            <React.Fragment>
-              {" \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a "}
-            </React.Fragment>
-            <span
-              className={"plasmic_default__all plasmic_default__span"}
-              style={{ fontWeight: 700 }}
-            >
-              {
-                "\u0645\u062a\u0639\u0644\u0642 \u0628\u0647 \u067e\u0632\u0634\u06a9"
-              }
-            </span>
-            <React.Fragment>
-              {
-                " \u0627\u0633\u062a \u0648 \u0645\u06cc\u200c\u0628\u0627\u06cc\u0633\u062a \u0627\u0632 \u0647\u0632\u06cc\u0646\u0647 \u0648\u06cc\u0632\u06cc\u062a "
-              }
-            </React.Fragment>
-            <span
-              className={"plasmic_default__all plasmic_default__span"}
-              style={{ fontWeight: 700 }}
-            >
-              {"\u06a9\u0633\u0631"}
-            </span>
-            <React.Fragment>{" \u0634\u0648\u062f."}</React.Fragment>
+            {
+              "\u067e\u0631\u062f\u0627\u062e\u062a \u0628\u06cc\u0639\u0627\u0646\u0647 \u0628\u0631\u0627\u06cc "
+            }
           </React.Fragment>
-        </div>
-      ) : null}
+          <span
+            className={"plasmic_default__all plasmic_default__span"}
+            style={{ fontWeight: 700 }}
+          >
+            {
+              "\u062d\u0641\u0638 \u062a\u0639\u0647\u062f \u062d\u0636\u0648\u0631 \u0628\u06cc\u0645\u0627\u0631"
+            }
+          </span>
+          <React.Fragment>
+            {" \u062f\u0631 \u0645\u0637\u0628 \u0627\u0633\u062a . "}
+          </React.Fragment>
+          <span
+            className={"plasmic_default__all plasmic_default__span"}
+            style={{ fontWeight: 700 }}
+          >
+            {"\u06a9\u0644"}
+          </span>
+          <React.Fragment>
+            {" \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a "}
+          </React.Fragment>
+          <span
+            className={"plasmic_default__all plasmic_default__span"}
+            style={{ fontWeight: 700 }}
+          >
+            {
+              "\u0645\u062a\u0639\u0644\u0642 \u0628\u0647 \u067e\u0632\u0634\u06a9"
+            }
+          </span>
+          <React.Fragment>
+            {
+              " \u0627\u0633\u062a \u0648 \u0645\u06cc\u200c\u0628\u0627\u06cc\u0633\u062a \u0627\u0632 \u0647\u0632\u06cc\u0646\u0647 \u0648\u06cc\u0632\u06cc\u062a "
+            }
+          </React.Fragment>
+          <span
+            className={"plasmic_default__all plasmic_default__span"}
+            style={{ fontWeight: 700 }}
+          >
+            {"\u06a9\u0633\u0631"}
+          </span>
+          <React.Fragment>{" \u0634\u0648\u062f."}</React.Fragment>
+        </React.Fragment>
+      </div>
       <div
         className={classNames(
           projectcss.all,
@@ -512,31 +495,29 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           </React.Fragment>
         </React.Fragment>
       </div>
-      {false ? (
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__eyCn6
-          )}
-        >
-          <React.Fragment>
-            {(() => {
-              try {
-                return "میانگین مبلغ بیعانه تعیین‌شده توسط همکاران شما،50,000 تومان است.";
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "";
-                }
-                throw e;
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__eyCn6
+        )}
+      >
+        <React.Fragment>
+          {(() => {
+            try {
+              return "میانگین مبلغ بیعانه تعیین‌شده توسط همکاران شما،50,000 تومان است.";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return "";
               }
-            })()}
-          </React.Fragment>
-        </div>
-      ) : null}
+              throw e;
+            }
+          })()}
+        </React.Fragment>
+      </div>
       <ApiRequest
         data-plasmic-name={"apiGetVezaratCost"}
         data-plasmic-override={overrides.apiGetVezaratCost}
@@ -759,9 +740,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         })()}
         placeholder={(() => {
           try {
-            return $state.costOffice[6].label
-              ? $state.costOffice[6].label
-              : "مبلغ ویزیت";
+            return "مبلغ ویزیت";
           } catch (e) {
             if (
               e instanceof TypeError ||
@@ -1378,7 +1357,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["costApi"] = await $steps["costApi"];
               }
 
-              $steps["setPayment"] = true
+              $steps["setPayment"] = false
                 ? (() => {
                     const actionArgs = {
                       args: [

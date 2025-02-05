@@ -53,6 +53,8 @@
   --plasmic-token-brand-brand: var(--token-jKWXB7hOHC63);
   --token-K62Mx1xnSMbY: 0.375rem;
   --plasmic-token-size-6: var(--token-K62Mx1xnSMbY);
+  --token-hJ7EShMSgH3R: 1px;
+  --plasmic-token-unnamed-style-token: var(--token-hJ7EShMSgH3R);
 }
 
 .plasmic_tokens {
