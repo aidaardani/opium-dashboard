@@ -94,6 +94,7 @@ export const PlasmicHamburgerMenu__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHamburgerMenu__OverridesType = {
   root?: Flex__<"div">;
+  img?: Flex__<typeof PlasmicImg__>;
 };
 
 export interface DefaultHamburgerMenuProps {}
@@ -183,408 +184,427 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
       >
         <div className={classNames(projectcss.all, sty.freeBox__svjj0)}>
           <div className={classNames(projectcss.all, sty.freeBox__keLl0)}>
-            {(() => {
-              try {
-                return $state.isOpenSideBar === true;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
+            <div
+              className={classNames(projectcss.all, sty.freeBox__p96N, ``)}
+              style={(() => {
+                try {
+                  return $state.isOpenSideBar === true
+                    ? { width: "220px" }
+                    : { width: "64px" };
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
                 }
-                throw e;
-              }
-            })() ? (
-              <div className={classNames(projectcss.all, sty.freeBox___501Uu)}>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__f5BHs)}
-                >
-                  <Icons8HomeSvgIcon
-                    className={classNames(projectcss.all, sty.svg__qmWfw)}
-                    role={"img"}
-                  />
+              })()}
+            >
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__s0AfW)}
+              >
+                <Icons8HomeSvgIcon
+                  className={classNames(projectcss.all, sty.svg__gdZly)}
+                  role={"img"}
+                />
 
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__dvMHj
-                    )}
-                  >
-                    {
-                      "\u0644\u06cc\u0633\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 "
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__zkHqb
+                  )}
+                  style={(() => {
+                    try {
+                      return undefined;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                  </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__tmgG0)}
+                  })()}
                 >
-                  <Icon16Icon
-                    className={classNames(projectcss.all, sty.svg__fp0Nr)}
-                    role={"img"}
-                  />
+                  {
+                    "\u0644\u06cc\u0633\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 "
+                  }
+                </div>
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__fleUv)}
+              >
+                <Icon16Icon
+                  className={classNames(projectcss.all, sty.svg__lYyKc)}
+                  role={"img"}
+                />
 
+                {(() => {
+                  try {
+                    return $state.isOpenSideBar === true;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text___4Yr9S
+                      sty.text___8VvRr
                     )}
                   >
                     {
                       "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644"
                     }
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__s2Yhm)}
-                >
-                  <Icon8Icon
-                    className={classNames(projectcss.all, sty.svg__rjUm)}
-                    role={"img"}
-                  />
+                ) : null}
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox___5VmVt)}
+              >
+                <Icon8Icon
+                  className={classNames(projectcss.all, sty.svg__y2Pix)}
+                  role={"img"}
+                />
 
+                {(() => {
+                  try {
+                    return $state.isOpenSideBar === true;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__p6IDu
+                      sty.text__tY9D
                     )}
                   >
                     {"\u0646\u0633\u062e\u0647 \u0646\u0648\u06cc\u0633\u06cc"}
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__p8Cb9)}
-                >
-                  <Icons8Chart641SvgIcon
-                    className={classNames(projectcss.all, sty.svg__zIprN)}
-                    role={"img"}
-                  />
+                ) : null}
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__mIeJs)}
+              >
+                <Icons8Chart641SvgIcon
+                  className={classNames(projectcss.all, sty.svg__y2Zbh)}
+                  role={"img"}
+                />
 
+                {(() => {
+                  try {
+                    return $state.isOpenSideBar === true;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text___8J4H
+                      sty.text__xUgTf
                     )}
                   >
                     {
                       "\u0631\u062a\u0628\u0647 \u0645\u0646 \u062f\u0631 \u067e\u0630\u06cc\u0631\u0634 24"
                     }
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__fq2WC)}
-                >
-                  <Icon9Icon
-                    className={classNames(projectcss.all, sty.svg___4RQid)}
-                    role={"img"}
-                  />
+                ) : null}
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__plunK)}
+              >
+                <Icon9Icon
+                  className={classNames(projectcss.all, sty.svg__gHa2O)}
+                  role={"img"}
+                />
 
+                {(() => {
+                  try {
+                    return $state.isOpenSideBar === true;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__jc4Il
+                      sty.text__xUJh1
                     )}
                   >
                     {
                       "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u0646\u0648\u0628\u062a \u062f\u0647\u06cc"
                     }
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__lbXao)}
-                >
-                  <Icon12Icon
-                    className={classNames(projectcss.all, sty.svg__cLYB)}
-                    role={"img"}
-                  />
+                ) : null}
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__bz3A)}
+              >
+                <Icon12Icon
+                  className={classNames(projectcss.all, sty.svg__nDjJe)}
+                  role={"img"}
+                />
 
+                {(() => {
+                  try {
+                    return $state.isOpenSideBar === true;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text___1Mzj
+                      sty.text__zrebp
                     )}
                   >
                     {"\u067e\u0631\u062f\u0627\u062e\u062a"}
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__vGj1R)}
-                >
-                  <Icon7Icon
-                    className={classNames(projectcss.all, sty.svg__pjMp4)}
-                    role={"img"}
-                  />
+                ) : null}
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__rvusO)}
+              >
+                <Icon7Icon
+                  className={classNames(projectcss.all, sty.svg___4CWbC)}
+                  role={"img"}
+                />
 
+                {(() => {
+                  try {
+                    return $state.isOpenSideBar === true;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__geIUn
+                      sty.text__bwIin
                     )}
                   >
                     {
                       "\u0642\u0648\u0627\u0646\u06cc\u0646 \u0645\u0634\u0627\u0648\u0631\u0647"
                     }
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__jg0Em)}
-                >
-                  <Icon17Icon
-                    className={classNames(projectcss.all, sty.svg___2Pqh8)}
-                    role={"img"}
-                  />
+                ) : null}
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__tMfvv)}
+              >
+                <Icon17Icon
+                  className={classNames(projectcss.all, sty.svg__czZjI)}
+                  role={"img"}
+                />
 
+                {(() => {
+                  try {
+                    return $state.isOpenSideBar === true;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__xy6Ol
+                      sty.text__pblv3
                     )}
                   >
                     {
                       "\u0646\u0638\u0631\u0627\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646"
                     }
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__do5VU)}
-                >
-                  <Icons8Power50SvgIcon
-                    className={classNames(projectcss.all, sty.svg__ckkWj)}
-                    role={"img"}
-                  />
+                ) : null}
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__wgcR7)}
+              >
+                <Icons8Power50SvgIcon
+                  className={classNames(projectcss.all, sty.svg__q0Yco)}
+                  role={"img"}
+                />
 
+                {(() => {
+                  try {
+                    return $state.isOpenSideBar === true;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text___2MrTx
+                      sty.text__bsLju
                     )}
                   >
                     {"\u062e\u0631\u0648\u062c"}
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__wAkIz)}
-                >
-                  <Icons8Support64SvgIcon
-                    className={classNames(projectcss.all, sty.svg__sGfXx)}
-                    role={"img"}
-                  />
+                ) : null}
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__blEnR)}
+              >
+                <Icons8Support64SvgIcon
+                  className={classNames(projectcss.all, sty.svg___7AbY9)}
+                  role={"img"}
+                />
 
+                {(() => {
+                  try {
+                    return $state.isOpenSideBar === true;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__fYKtn
+                      sty.text__tSmWv
                     )}
                   >
                     {
                       "\u0627\u0631\u062a\u0628\u0627\u0637 \u0628\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc"
                     }
                   </div>
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__xi3L1)}
-                >
-                  <PlasmicImg__
-                    alt={""}
-                    className={classNames(sty.img__w6Ync)}
-                    displayHeight={"40px"}
-                    displayMaxHeight={"none"}
-                    displayMaxWidth={"100%"}
-                    displayMinHeight={"0"}
-                    displayMinWidth={"0"}
-                    displayWidth={"40px"}
-                    loading={"lazy"}
-                    src={{
-                      src: "/plasmic/opium_dashboard/images/image2.png",
-                      fullWidth: 120,
-                      fullHeight: 120,
-                      aspectRatio: undefined
-                    }}
-                  />
+                ) : null}
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__okTde)}
+              >
+                <PlasmicImg__
+                  data-plasmic-name={"img"}
+                  data-plasmic-override={overrides.img}
+                  alt={""}
+                  className={classNames(sty.img)}
+                  displayHeight={"40px"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"40px"}
+                  loading={"lazy"}
+                  src={{
+                    src: "/plasmic/opium_dashboard/images/image2.png",
+                    fullWidth: 120,
+                    fullHeight: 120,
+                    aspectRatio: undefined
+                  }}
+                />
 
+                {(() => {
+                  try {
+                    return $state.isOpenSideBar === true;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__vCDsa
+                      sty.text__oc3Sm
                     )}
                   >
                     {"\u067e\u0630\u06cc\u0631\u0634 24"}
                   </div>
-                </Stack__>
-              </div>
-            ) : null}
-            {(() => {
-              try {
-                return $state.isOpenSideBar === false;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
-                }
-                throw e;
-              }
-            })() ? (
-              <div className={classNames(projectcss.all, sty.freeBox__p96N)}>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__etPcH)}
-                >
-                  <Icons8HomeSvgIcon
-                    className={classNames(projectcss.all, sty.svg__xsVh)}
-                    role={"img"}
-                  />
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__dYhdW)}
-                >
-                  <Icon16Icon
-                    className={classNames(projectcss.all, sty.svg__iydM)}
-                    role={"img"}
-                  />
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox___4Fm)}
-                >
-                  <Icon8Icon
-                    className={classNames(projectcss.all, sty.svg__ftWhG)}
-                    role={"img"}
-                  />
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__e5Hsn)}
-                >
-                  <Icons8Chart641SvgIcon
-                    className={classNames(projectcss.all, sty.svg___1AWpm)}
-                    role={"img"}
-                  />
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__we95)}
-                >
-                  <Icon9Icon
-                    className={classNames(projectcss.all, sty.svg__tdseQ)}
-                    role={"img"}
-                  />
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__r0AKq)}
-                >
-                  <Icon12Icon
-                    className={classNames(projectcss.all, sty.svg__uJdxc)}
-                    role={"img"}
-                  />
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__t5FSl)}
-                >
-                  <Icon7Icon
-                    className={classNames(projectcss.all, sty.svg__llLdi)}
-                    role={"img"}
-                  />
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__y14Jg)}
-                >
-                  <Icon17Icon
-                    className={classNames(projectcss.all, sty.svg__eeuw7)}
-                    role={"img"}
-                  />
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__e7Bty)}
-                >
-                  <Icons8Power50SvgIcon
-                    className={classNames(projectcss.all, sty.svg__yKhsh)}
-                    role={"img"}
-                  />
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__mdUI)}
-                >
-                  <Icons8Support64SvgIcon
-                    className={classNames(projectcss.all, sty.svg___4EsLt)}
-                    role={"img"}
-                  />
-                </Stack__>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__wZh1K)}
-                >
-                  <PlasmicImg__
-                    alt={""}
-                    className={classNames(sty.img___670Sr)}
-                    displayHeight={"40px"}
-                    displayMaxHeight={"none"}
-                    displayMaxWidth={"100%"}
-                    displayMinHeight={"0"}
-                    displayMinWidth={"0"}
-                    displayWidth={"40px"}
-                    loading={"lazy"}
-                    src={{
-                      src: "/plasmic/opium_dashboard/images/image2.png",
-                      fullWidth: 120,
-                      fullHeight: 120,
-                      aspectRatio: undefined
-                    }}
-                  />
-                </Stack__>
-              </div>
-            ) : null}
+                ) : null}
+              </Stack__>
+            </div>
             <Stack__
               as={"div"}
               hasGap={true}
@@ -652,13 +672,15 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root"]
+  root: ["root", "img"],
+  img: ["img"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  img: typeof PlasmicImg__;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -721,6 +743,7 @@ export const PlasmicHamburgerMenu = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicHamburgerMenu
     internalVariantProps: PlasmicHamburgerMenu__VariantProps,
