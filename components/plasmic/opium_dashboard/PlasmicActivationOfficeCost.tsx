@@ -472,104 +472,41 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         className={classNames(
           projectcss.all,
           projectcss.__wab_text,
-          sty.text___9FcAs
+          sty.text__idNkm
         )}
       >
         <React.Fragment>
-          <React.Fragment>{""}</React.Fragment>
-          {
-            <ul
-              className={classNames(
-                projectcss.all,
-                projectcss.ul,
-                sty.ul__aMwAs
-              )}
-            >
-              <li
-                className={classNames(
-                  projectcss.all,
-                  projectcss.li,
-                  projectcss.__wab_text,
-                  sty.li___2Wg6I
-                )}
-              >
-                <React.Fragment>
-                  <React.Fragment>
-                    {"\u067e\u0631\u062f\u0627\u062e\u062a "}
-                  </React.Fragment>
-                  <span
-                    className={"plasmic_default__all plasmic_default__span"}
-                    style={{ fontWeight: 700 }}
-                  >
-                    {
-                      "\u0647\u0632\u06cc\u0646\u0647 \u0648\u06cc\u0632\u06cc\u062a"
-                    }
-                  </span>
-                  <React.Fragment>
-                    {
-                      " \u062c\u0647\u062a \u062d\u0641\u0638 \u062a\u0639\u0647\u062f \u062d\u0636\u0648\u0631 \u0628\u06cc\u0645\u0627\u0631 \u062f\u0631 \u0645\u0637\u0628 \u0627\u0633\u062a. "
-                    }
-                  </React.Fragment>
-                </React.Fragment>
-              </li>
-            </ul>
-          }
-          <React.Fragment>{""}</React.Fragment>
-          {
-            <ul
-              className={classNames(
-                projectcss.all,
-                projectcss.ul,
-                sty.ul__zs7Mq
-              )}
-            >
-              <li
-                className={classNames(
-                  projectcss.all,
-                  projectcss.li,
-                  projectcss.__wab_text,
-                  sty.li__m427
-                )}
-              >
-                <React.Fragment>
-                  <span
-                    className={"plasmic_default__all plasmic_default__span"}
-                    style={{ fontWeight: 700 }}
-                  >
-                    {"\u06a9\u0644"}
-                  </span>
-                  <React.Fragment>
-                    {" \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a "}
-                  </React.Fragment>
-                  <span
-                    className={"plasmic_default__all plasmic_default__span"}
-                    style={{ fontWeight: 700 }}
-                  >
-                    {
-                      "\u0645\u062a\u0639\u0644\u0642 \u0628\u0647 \u067e\u0632\u0634\u06a9"
-                    }
-                  </span>
-                  <React.Fragment>
-                    {" \u0627\u0633\u062a \u0648 "}
-                  </React.Fragment>
-                  <span
-                    className={"plasmic_default__all plasmic_default__span"}
-                    style={{ fontWeight: 700 }}
-                  >
-                    {
-                      "\u0631\u0648\u0632\u0627\u0646\u0647 \u0628\u0647 \u0637\u0648\u0631 \u062e\u0648\u062f\u06a9\u0627\u0631"
-                    }
-                  </span>
-                  <React.Fragment>
-                    {
-                      " \u0628\u0647 \u062d\u0633\u0627\u0628 \u067e\u0632\u0634\u06a9 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f."
-                    }
-                  </React.Fragment>
-                </React.Fragment>
-              </li>
-            </ul>
-          }
-          <React.Fragment>{""}</React.Fragment>
+          <span
+            className={"plasmic_default__all plasmic_default__span"}
+            style={{ fontWeight: 700 }}
+          >
+            {"\u06a9\u0644"}
+          </span>
+          <React.Fragment>
+            {" \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a \u00a0"}
+          </React.Fragment>
+          <span
+            className={"plasmic_default__all plasmic_default__span"}
+            style={{ fontWeight: 700 }}
+          >
+            {
+              "\u0645\u062a\u0639\u0644\u0642 \u0628\u0647 \u067e\u0632\u0634\u06a9"
+            }
+          </span>
+          <React.Fragment>{" \u0627\u0633\u062a \u0648 "}</React.Fragment>
+          <span
+            className={"plasmic_default__all plasmic_default__span"}
+            style={{ fontWeight: 700 }}
+          >
+            {
+              "\u0631\u0648\u0632\u0627\u0646\u0647 \u0628\u0647 \u0637\u0648\u0631 \u062e\u0648\u062f\u06a9\u0627\u0631"
+            }
+          </span>
+          <React.Fragment>
+            {
+              "\u00a0\u0628\u0647 \u062d\u0633\u0627\u0628 \u067e\u0632\u0634\u06a9 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f."
+            }
+          </React.Fragment>
         </React.Fragment>
       </div>
       <div
@@ -1245,7 +1182,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           )}
         >
           {
-            "\u062f\u0631 \u0635\u0648\u0631\u062a\u06cc \u06a9\u0647 \u0628\u06cc\u0645\u0627\u0631 \u0646\u0648\u0628\u062a \u062e\u0648\u062f \u0631\u0627 \u062a\u0627 5 \u0633\u0627\u0639\u062a \u067e\u06cc\u0634 \u0627\u0632 \u0633\u0627\u0639\u062a \u0646\u0648\u0628\u062a \u0644\u063a\u0648 \u0646\u0645\u0627\u06cc\u062f\u060c \u0648\u062c\u0647 \u067e\u0631\u062f\u0627\u062e\u062a\u06cc \u0628\u06cc\u0645\u0627\u0631 \u0627\u0633\u062a\u0631\u062f\u0627\u062f \u0645\u06cc \u06af\u0631\u062f\u062f."
+            "\u062c\u0632\u0626\u06cc\u0627\u062a \u067e\u0631\u062f\u0627\u062e\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u062f\u0631 \u0645\u0646\u0648\u06cc \u0645\u062f\u06cc\u0631\u06cc\u062a \u0645\u0627\u0644\u06cc \u062f\u0631\u062c \u0645\u06cc\u200c\u0634\u0648\u062f."
           }
         </div>
         <Stack__
@@ -1977,68 +1914,78 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                     onClick={async event => {
                       const $steps = {};
 
-                      $steps["costApi"] =
-                        ($state.input2.value === "" ||
-                          $state.input2.value.trim().length === 16) &&
-                        $state.select.value !== undefined
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  "PATCH",
-                                  "https://api.paziresh24.com/V1/doctor/payments/settings/",
-                                  undefined,
-                                  (() => {
-                                    try {
-                                      return (() => {
-                                        const centerId =
-                                          $state.centersApi.data.data.find(
-                                            item => item.type_id == 1
-                                          ).id;
-                                        const cost =
-                                          $state.select.value == "custom"
-                                            ? +$state.input.value
-                                            : $state.select.value;
-                                        if ($state.input2.value === "") {
-                                          return {
-                                            active: 1,
-                                            center_id: centerId,
-                                            deposit_amount: Number(cost) * 10,
-                                            deposit_amount: $state.select.value
-                                          };
-                                        } else {
-                                          return {
-                                            active: 1,
-                                            center_id: centerId,
-                                            deposit_amount: Number(cost) * 10,
-                                            card_number:
-                                              $state.shabaApi.data.card_number,
-                                            IBAN: $state.shabaApi.data.IBAN,
-                                            deposit_owners:
-                                              $state.shabaApi.data
-                                                .deposit_owners[0],
-                                            bank_name:
-                                              $state.shabaApi.data.bank_name
-                                          };
-                                        }
-                                      })();
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
+                      $steps["costApi"] = (() => {
+                        return (
+                          ($state.input2.value === "" ||
+                            $state.input2.value.trim().length === 16) &&
+                          $state.select.value !== undefined &&
+                          ($state.select.value === "custom"
+                            ? $state.input.value !== "0" &&
+                              $state.input.value.trim() !== ""
+                            : true)
+                        );
+                      })()
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "PATCH",
+                                "https://api.paziresh24.com/V1/doctor/payments/settings/",
+                                undefined,
+                                (() => {
+                                  try {
+                                    return (() => {
+                                      const centerId =
+                                        $state.centersApi.data.data.find(
+                                          item => item.type_id == 1
+                                        ).id;
+                                      const cost =
+                                        ($state.select.value === "custom"
+                                          ? +$state.input.value
+                                          : +$state.select.value) * 10;
+                                      if ($state.input2.value === "") {
+                                        return {
+                                          active: 1,
+                                          center_id: centerId,
+                                          deposit_amount:
+                                            ($state.select.value === "custom"
+                                              ? $state.input.value
+                                              : $state.select.value) * 10
+                                        };
+                                      } else {
+                                        return {
+                                          active: 1,
+                                          center_id: centerId,
+                                          deposit_amount: Number(cost) * 10,
+                                          card_number:
+                                            $state.shabaApi.data.card_number,
+                                          IBAN: $state.shabaApi.data.IBAN,
+                                          deposit_owners:
+                                            $state.shabaApi.data
+                                              .deposit_owners[0],
+                                          bank_name:
+                                            $state.shabaApi.data.bank_name
+                                        };
                                       }
-                                      throw e;
+                                    })();
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
                                     }
-                                  })()
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.apiRequest"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.apiRequest"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
                       if (
                         $steps["costApi"] != null &&
                         typeof $steps["costApi"] === "object" &&
@@ -2047,19 +1994,32 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                         $steps["costApi"] = await $steps["costApi"];
                       }
 
-                      $steps["setPayment"] = true
+                      $steps["setPayment"] = (() => {
+                        return $state.select.value === "custom"
+                          ? $state.input.value !== "0" &&
+                              $state.input.value.trim() !== ""
+                          : true;
+                      })()
                         ? (() => {
                             const actionArgs = {
                               args: [
-                                "GET",
+                                "POST",
                                 "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/set-payment",
+                                undefined,
                                 (() => {
                                   try {
-                                    return $state.centersApi.data.data.find(
-                                      center =>
-                                        center.type_id === 1 &&
-                                        center.id !== "5532"
-                                    );
+                                    return {
+                                      amount:
+                                        ($state.select.value === "custom"
+                                          ? +$state.input.value
+                                          : $state.select.value) * 10,
+                                      centerid:
+                                        $state.centersApi.data.data.find(
+                                          center =>
+                                            center.type_id === 1 &&
+                                            center.id !== "5532"
+                                        )
+                                    };
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||

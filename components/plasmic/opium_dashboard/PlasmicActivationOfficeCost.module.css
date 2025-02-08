@@ -33,26 +33,17 @@
   border-radius: var(--token-fhaz6q6bl-fW);
   padding: var(--token-_c276Gs_1FIE) var(--token-Fv8-L_kN-2Ma);
 }
-.text___9FcAs {
+.text__idNkm {
   position: relative;
   width: 100%;
   height: auto;
   max-width: 100%;
   background: #f3f6f9;
   color: var(--token-u3OudfMChOo3);
-  font-size: var(--token-6NbVMeD6zQwn);
+  font-size: 17px;
   min-width: 0;
   border-radius: var(--token-fhaz6q6bl-fW);
   padding: var(--token-_c276Gs_1FIE) var(--token-Fv8-L_kN-2Ma);
-}
-.ul__aMwAs {
-  display: flex;
-  flex-direction: column;
-}
-.ul__zs7Mq {
-  display: flex;
-  flex-direction: column;
-  padding-top: 10px;
 }
 .text__eyCn6 {
   position: relative;
