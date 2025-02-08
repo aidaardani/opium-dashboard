@@ -325,8 +325,9 @@ function PlasmicPatientList__RenderFunc(props: {
               ? (() => {
                   const actionArgs = {
                     args: [
-                      undefined,
+                      "POST",
                       "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/allbooks",
+                      undefined,
                       (() => {
                         try {
                           return {
