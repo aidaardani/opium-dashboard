@@ -171,7 +171,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
               return (() => {
                 return $state.costOffice[6].value
                   ? $state.costOffice[6].value
-                  : "150000";
+                  : "1500000";
               })();
             } catch (e) {
               if (
@@ -817,8 +817,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         })()}
         placeholder={(() => {
           try {
-            return $state.costOffice[6].value
-              ? $state.costOffice[6].value
+            return $state.costOffice[6].label
+              ? $state.costOffice[6].label
               : "مبلغ ویزیت";
           } catch (e) {
             if (
@@ -1446,15 +1446,17 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                     item => item.type_id == 1
                                   ).id;
                                 const cost =
-                                  $state.select.value == "custom"
+                                  ($state.select.value === "custom"
                                     ? +$state.input.value
-                                    : $state.select.value;
+                                    : +$state.select.value) * 10;
                                 if ($state.input2.value === "") {
                                   return {
                                     active: 1,
                                     center_id: centerId,
-                                    deposit_amount: Number(cost) * 10,
-                                    deposit_amount: $state.select.value
+                                    deposit_amount:
+                                      ($state.select.value === "custom"
+                                        ? $state.input.value
+                                        : $state.select.value) * 10
                                   };
                                 } else {
                                   return {
@@ -1496,37 +1498,51 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["costApi"] = await $steps["costApi"];
               }
 
-              $steps["setPayment"] =
-                $state.input2.value && $state.input2.value.trim() !== ""
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "GET",
-                          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/set-payment",
-                          (() => {
-                            try {
-                              return $state.centersApi.data.data.find(
+              $steps["setPayment"] = (() => {
+                return (
+                  $state.input2.value &&
+                  $state.input2.value.trim() !== "" &&
+                  ($state.select.value === "custom"
+                    ? $state.input.value !== "0" &&
+                      $state.input.value.trim() !== ""
+                    : true)
+                );
+              })()
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/set-payment",
+                        undefined,
+                        (() => {
+                          try {
+                            return {
+                              amount:
+                                ($state.select.value === "custom"
+                                  ? +$state.input.value
+                                  : $state.select.value) * 10,
+                              centerid: $state.centersApi.data.data.find(
                                 center =>
                                   center.type_id === 1 && center.id !== "5532"
-                              );
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
+                              )
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
                             }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
               if (
                 $steps["setPayment"] != null &&
                 typeof $steps["setPayment"] === "object" &&
