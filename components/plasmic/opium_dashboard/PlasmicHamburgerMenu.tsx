@@ -61,6 +61,8 @@ import {
 
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
+import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -94,7 +96,6 @@ export const PlasmicHamburgerMenu__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicHamburgerMenu__OverridesType = {
   root?: Flex__<"div">;
-  img?: Flex__<typeof PlasmicImg__>;
 };
 
 export interface DefaultHamburgerMenuProps {}
@@ -155,6 +156,10 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
     $refs
   });
 
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantsfobTirRaixGf()
+  });
+
   return (
     <React.Fragment>
       <Head></Head>
@@ -182,30 +187,84 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
           sty.root
         )}
       >
-        <div className={classNames(projectcss.all, sty.freeBox__svjj0)}>
+        <div
+          className={classNames(projectcss.all, sty.freeBox__svjj0)}
+          style={
+            hasVariant(globalVariants, "screen", "mobileOnly")
+              ? (() => {
+                  try {
+                    return undefined;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()
+              : undefined
+          }
+        >
           <div className={classNames(projectcss.all, sty.freeBox__keLl0)}>
             <div
               className={classNames(projectcss.all, sty.freeBox__p96N, ``)}
-              style={(() => {
-                try {
-                  return $state.isOpenSideBar === true
-                    ? { width: "220px" }
-                    : { width: "64px" };
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
+              style={
+                hasVariant(globalVariants, "screen", "mobileOnly")
+                  ? (() => {
+                      try {
+                        return $state.isOpenSideBar === true
+                          ? { width: "220px", position: "absolute", zIndex: 50 }
+                          : {
+                              width: "0px",
+                              opacity: 0,
+                              padding: "0px !important"
+                            };
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  : (() => {
+                      try {
+                        return $state.isOpenSideBar === true
+                          ? { width: "220px" }
+                          : { width: "64px" };
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+              }
             >
               <Stack__
                 as={"div"}
                 hasGap={true}
                 className={classNames(projectcss.all, sty.freeBox__s0AfW)}
+                style={(() => {
+                  try {
+                    return { position: "reletive" };
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
               >
                 <Icons8HomeSvgIcon
                   className={classNames(projectcss.all, sty.svg__gdZly)}
@@ -220,7 +279,19 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                   )}
                   style={(() => {
                     try {
-                      return undefined;
+                      return (() => {
+                        return $state.isOpenSideBar === true
+                          ? {
+                              opacity: 1,
+                              transform: "translateX(0px)",
+                              whiteSpace: "nowrap"
+                            }
+                          : {
+                              opacity: 0,
+                              transform: "translateX(120px)",
+                              whiteSpace: "nowrap"
+                            };
+                      })();
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -247,31 +318,42 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                   role={"img"}
                 />
 
-                {(() => {
-                  try {
-                    return $state.isOpenSideBar === true;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___8VvRr
+                  )}
+                  style={(() => {
+                    try {
+                      return (() => {
+                        return $state.isOpenSideBar === true
+                          ? {
+                              opacity: 1,
+                              transform: "translateX(0px)",
+                              whiteSpace: "nowrap"
+                            }
+                          : {
+                              opacity: 0,
+                              transform: "translateX(120px)",
+                              whiteSpace: "nowrap"
+                            };
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
+                  })()}
+                >
+                  {
+                    "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644"
                   }
-                })() ? (
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text___8VvRr
-                    )}
-                  >
-                    {
-                      "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644"
-                    }
-                  </div>
-                ) : null}
+                </div>
               </Stack__>
               <Stack__
                 as={"div"}
@@ -283,29 +365,40 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                   role={"img"}
                 />
 
-                {(() => {
-                  try {
-                    return $state.isOpenSideBar === true;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__tY9D
+                  )}
+                  style={(() => {
+                    try {
+                      return (() => {
+                        return $state.isOpenSideBar === true
+                          ? {
+                              opacity: 1,
+                              transform: "translateX(0px)",
+                              whiteSpace: "nowrap"
+                            }
+                          : {
+                              opacity: 0,
+                              transform: "translateX(120px)",
+                              whiteSpace: "nowrap"
+                            };
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })() ? (
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__tY9D
-                    )}
-                  >
-                    {"\u0646\u0633\u062e\u0647 \u0646\u0648\u06cc\u0633\u06cc"}
-                  </div>
-                ) : null}
+                  })()}
+                >
+                  {"\u0646\u0633\u062e\u0647 \u0646\u0648\u06cc\u0633\u06cc"}
+                </div>
               </Stack__>
               <Stack__
                 as={"div"}
@@ -317,31 +410,42 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                   role={"img"}
                 />
 
-                {(() => {
-                  try {
-                    return $state.isOpenSideBar === true;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__xUgTf
+                  )}
+                  style={(() => {
+                    try {
+                      return (() => {
+                        return $state.isOpenSideBar === true
+                          ? {
+                              opacity: 1,
+                              transform: "translateX(0px)",
+                              whiteSpace: "nowrap"
+                            }
+                          : {
+                              opacity: 0,
+                              transform: "translateX(120px)",
+                              whiteSpace: "nowrap"
+                            };
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
+                  })()}
+                >
+                  {
+                    "\u0631\u062a\u0628\u0647 \u0645\u0646 \u062f\u0631 \u067e\u0630\u06cc\u0631\u0634 24"
                   }
-                })() ? (
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__xUgTf
-                    )}
-                  >
-                    {
-                      "\u0631\u062a\u0628\u0647 \u0645\u0646 \u062f\u0631 \u067e\u0630\u06cc\u0631\u0634 24"
-                    }
-                  </div>
-                ) : null}
+                </div>
               </Stack__>
               <Stack__
                 as={"div"}
@@ -353,31 +457,42 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                   role={"img"}
                 />
 
-                {(() => {
-                  try {
-                    return $state.isOpenSideBar === true;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__xUJh1
+                  )}
+                  style={(() => {
+                    try {
+                      return (() => {
+                        return $state.isOpenSideBar === true
+                          ? {
+                              opacity: 1,
+                              transform: "translateX(0px)",
+                              whiteSpace: "nowrap"
+                            }
+                          : {
+                              opacity: 0,
+                              transform: "translateX(120px)",
+                              whiteSpace: "nowrap"
+                            };
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
+                  })()}
+                >
+                  {
+                    "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u0646\u0648\u0628\u062a \u062f\u0647\u06cc"
                   }
-                })() ? (
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__xUJh1
-                    )}
-                  >
-                    {
-                      "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u0646\u0648\u0628\u062a \u062f\u0647\u06cc"
-                    }
-                  </div>
-                ) : null}
+                </div>
               </Stack__>
               <Stack__
                 as={"div"}
@@ -389,29 +504,40 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                   role={"img"}
                 />
 
-                {(() => {
-                  try {
-                    return $state.isOpenSideBar === true;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__zrebp
+                  )}
+                  style={(() => {
+                    try {
+                      return (() => {
+                        return $state.isOpenSideBar === true
+                          ? {
+                              opacity: 1,
+                              transform: "translateX(0px)",
+                              whiteSpace: "nowrap"
+                            }
+                          : {
+                              opacity: 0,
+                              transform: "translateX(120px)",
+                              whiteSpace: "nowrap"
+                            };
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })() ? (
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__zrebp
-                    )}
-                  >
-                    {"\u067e\u0631\u062f\u0627\u062e\u062a"}
-                  </div>
-                ) : null}
+                  })()}
+                >
+                  {"\u067e\u0631\u062f\u0627\u062e\u062a"}
+                </div>
               </Stack__>
               <Stack__
                 as={"div"}
@@ -423,31 +549,42 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                   role={"img"}
                 />
 
-                {(() => {
-                  try {
-                    return $state.isOpenSideBar === true;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__bwIin
+                  )}
+                  style={(() => {
+                    try {
+                      return (() => {
+                        return $state.isOpenSideBar === true
+                          ? {
+                              opacity: 1,
+                              transform: "translateX(0px)",
+                              whiteSpace: "nowrap"
+                            }
+                          : {
+                              opacity: 0,
+                              transform: "translateX(120px)",
+                              whiteSpace: "nowrap"
+                            };
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
+                  })()}
+                >
+                  {
+                    "\u0642\u0648\u0627\u0646\u06cc\u0646 \u0645\u0634\u0627\u0648\u0631\u0647"
                   }
-                })() ? (
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__bwIin
-                    )}
-                  >
-                    {
-                      "\u0642\u0648\u0627\u0646\u06cc\u0646 \u0645\u0634\u0627\u0648\u0631\u0647"
-                    }
-                  </div>
-                ) : null}
+                </div>
               </Stack__>
               <Stack__
                 as={"div"}
@@ -459,31 +596,42 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                   role={"img"}
                 />
 
-                {(() => {
-                  try {
-                    return $state.isOpenSideBar === true;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__pblv3
+                  )}
+                  style={(() => {
+                    try {
+                      return (() => {
+                        return $state.isOpenSideBar === true
+                          ? {
+                              opacity: 1,
+                              transform: "translateX(0px)",
+                              whiteSpace: "nowrap"
+                            }
+                          : {
+                              opacity: 0,
+                              transform: "translateX(120px)",
+                              whiteSpace: "nowrap"
+                            };
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
+                  })()}
+                >
+                  {
+                    "\u0646\u0638\u0631\u0627\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646"
                   }
-                })() ? (
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__pblv3
-                    )}
-                  >
-                    {
-                      "\u0646\u0638\u0631\u0627\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646"
-                    }
-                  </div>
-                ) : null}
+                </div>
               </Stack__>
               <Stack__
                 as={"div"}
@@ -495,29 +643,40 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                   role={"img"}
                 />
 
-                {(() => {
-                  try {
-                    return $state.isOpenSideBar === true;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__bsLju
+                  )}
+                  style={(() => {
+                    try {
+                      return (() => {
+                        return $state.isOpenSideBar === true
+                          ? {
+                              opacity: 1,
+                              transform: "translateX(0px)",
+                              whiteSpace: "nowrap"
+                            }
+                          : {
+                              opacity: 0,
+                              transform: "translateX(120px)",
+                              whiteSpace: "nowrap"
+                            };
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })() ? (
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__bsLju
-                    )}
-                  >
-                    {"\u062e\u0631\u0648\u062c"}
-                  </div>
-                ) : null}
+                  })()}
+                >
+                  {"\u062e\u0631\u0648\u062c"}
+                </div>
               </Stack__>
               <Stack__
                 as={"div"}
@@ -529,31 +688,42 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                   role={"img"}
                 />
 
-                {(() => {
-                  try {
-                    return $state.isOpenSideBar === true;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__tSmWv
+                  )}
+                  style={(() => {
+                    try {
+                      return (() => {
+                        return $state.isOpenSideBar === true
+                          ? {
+                              opacity: 1,
+                              transform: "translateX(0px)",
+                              whiteSpace: "nowrap"
+                            }
+                          : {
+                              opacity: 0,
+                              transform: "translateX(120px)",
+                              whiteSpace: "nowrap"
+                            };
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
+                  })()}
+                >
+                  {
+                    "\u0627\u0631\u062a\u0628\u0627\u0637 \u0628\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc"
                   }
-                })() ? (
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__tSmWv
-                    )}
-                  >
-                    {
-                      "\u0627\u0631\u062a\u0628\u0627\u0637 \u0628\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc"
-                    }
-                  </div>
-                ) : null}
+                </div>
               </Stack__>
               <Stack__
                 as={"div"}
@@ -561,10 +731,8 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                 className={classNames(projectcss.all, sty.freeBox__okTde)}
               >
                 <PlasmicImg__
-                  data-plasmic-name={"img"}
-                  data-plasmic-override={overrides.img}
                   alt={""}
-                  className={classNames(sty.img)}
+                  className={classNames(sty.img__n4Rlf)}
                   displayHeight={"40px"}
                   displayMaxHeight={"none"}
                   displayMaxWidth={"100%"}
@@ -580,29 +748,40 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                   }}
                 />
 
-                {(() => {
-                  try {
-                    return $state.isOpenSideBar === true;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__oc3Sm
+                  )}
+                  style={(() => {
+                    try {
+                      return (() => {
+                        return $state.isOpenSideBar === true
+                          ? {
+                              opacity: 1,
+                              transform: "translateX(0px)",
+                              whiteSpace: "nowrap"
+                            }
+                          : {
+                              opacity: 0,
+                              transform: "translateX(120px)",
+                              whiteSpace: "nowrap"
+                            };
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
                     }
-                    throw e;
-                  }
-                })() ? (
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__oc3Sm
-                    )}
-                  >
-                    {"\u067e\u0630\u06cc\u0631\u0634 24"}
-                  </div>
-                ) : null}
+                  })()}
+                >
+                  {"\u067e\u0630\u06cc\u0631\u0634 24"}
+                </div>
               </Stack__>
             </div>
             <Stack__
@@ -610,6 +789,40 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox___0BiG)}
             >
+              {(
+                hasVariant(globalVariants, "screen", "mobileOnly")
+                  ? true
+                  : false
+              ) ? (
+                <PlasmicImg__
+                  alt={""}
+                  className={classNames(sty.img__xm9VE)}
+                  displayHeight={"40px"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"40px"}
+                  loading={"lazy"}
+                  src={{
+                    src: "/plasmic/opium_dashboard/images/image2.png",
+                    fullWidth: 120,
+                    fullHeight: 120,
+                    aspectRatio: undefined
+                  }}
+                />
+              ) : null}
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__nJw9L
+                )}
+              >
+                {
+                  "\u0644\u06cc\u0633\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646"
+                }
+              </div>
               <Icons8HamburgerMenuSvgIcon
                 className={classNames(projectcss.all, sty.svg__ndVnO)}
                 onClick={async event => {
@@ -651,36 +864,40 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                 }}
                 role={"img"}
               />
-
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__nJw9L
-                )}
-              >
-                {
-                  "\u0644\u06cc\u0633\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646"
-                }
-              </div>
             </Stack__>
           </div>
         </div>
+        <div
+          className={classNames(projectcss.all, sty.freeBox__caVcW)}
+          style={(() => {
+            try {
+              return $state.isOpenSideBar === true
+                ? { position: "absolute", zIndex: 20 }
+                : { visibility: "hedden" };
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+        />
       </div>
     </React.Fragment>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "img"],
-  img: ["img"]
+  root: ["root"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  img: typeof PlasmicImg__;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -743,7 +960,6 @@ export const PlasmicHamburgerMenu = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    img: makeNodeComponent("img"),
 
     // Metadata about props expected for PlasmicHamburgerMenu
     internalVariantProps: PlasmicHamburgerMenu__VariantProps,

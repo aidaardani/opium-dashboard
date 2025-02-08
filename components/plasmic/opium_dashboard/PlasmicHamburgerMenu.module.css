@@ -21,6 +21,11 @@
 .root > * {
   grid-column: 4;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .root > * {
+    grid-column: 4;
+  }
+}
 .freeBox__svjj0 {
   display: flex;
   flex-direction: column;
@@ -51,20 +56,27 @@
   display: flex;
   flex-direction: column;
   width: auto;
-  height: 100%;
+  height: 100vh;
   max-width: 100%;
   padding-right: 8px;
   padding-bottom: 8px;
   padding-top: 8px;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-end;
   transition-property: all;
   transition-duration: 300ms;
   transform: none;
-  min-height: 0;
   -webkit-transition-property: all;
   -webkit-transition-duration: 300ms;
   border: 1px solid var(--token-9ml8Bu7TYsyp);
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__p96N {
+    background: none;
+    height: 100vh;
+    align-items: flex-end;
+    justify-content: flex-start;
+  }
 }
 .freeBox__s0AfW {
   display: flex;
@@ -105,9 +117,10 @@
   height: auto;
   max-width: 100%;
   transition-property: all;
-  transition-duration: 600ms;
+  transition-duration: 400ms;
+  transform: translateX(0px) translateY(0px) translateZ(0px);
   -webkit-transition-property: all;
-  -webkit-transition-duration: 600ms;
+  -webkit-transition-duration: 400ms;
 }
 .freeBox__fleUv {
   display: flex;
@@ -525,15 +538,20 @@
   > img {
   margin-left: var(--token-_c276Gs_1FIE);
 }
-.img {
+.img__n4Rlf {
   object-fit: cover;
   max-width: 100%;
   height: 40px;
   width: 40px;
   flex-shrink: 0;
 }
-.img > picture > img {
+.img__n4Rlf > picture > img {
   object-fit: cover;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .img__n4Rlf {
+    display: none !important;
+  }
 }
 .text__oc3Sm {
   position: relative;
@@ -550,6 +568,11 @@
   min-width: 0;
   -webkit-transition-property: all;
   -webkit-transition-duration: 600ms;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__oc3Sm {
+    display: none;
+  }
 }
 .freeBox___0BiG {
   display: flex;
@@ -580,6 +603,63 @@
   > img {
   margin-left: var(--token-Fv8-L_kN-2Ma);
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox___0BiG {
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox___0BiG > :global(.__wab_flex-container) {
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    margin-left: calc(0px - var(--token-Fv8-L_kN-2Ma));
+    width: calc(100% + var(--token-Fv8-L_kN-2Ma));
+    margin-top: calc(0px - 0px);
+    height: calc(100% + 0px);
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox___0BiG > :global(.__wab_flex-container) > *,
+  .freeBox___0BiG > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+  .freeBox___0BiG > :global(.__wab_flex-container) > picture > img,
+  .freeBox___0BiG
+    > :global(.__wab_flex-container)
+    > :global(.__wab_slot)
+    > picture
+    > img {
+    margin-left: var(--token-Fv8-L_kN-2Ma);
+    margin-top: 0px;
+  }
+}
+.img__xm9VE {
+  object-fit: cover;
+  max-width: 100%;
+  height: 40px;
+  width: 40px;
+  flex-shrink: 0;
+}
+.img__xm9VE > picture > img {
+  object-fit: cover;
+}
+.text__nJw9L {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  font-weight: 600;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__nJw9L {
+    position: relative;
+    left: auto;
+    top: auto;
+  }
+}
 .svg__ndVnO {
   object-fit: cover;
   max-width: 100%;
@@ -588,10 +668,27 @@
   cursor: pointer;
   flex-shrink: 0;
 }
-.text__nJw9L {
+@media (min-width: 0px) and (max-width: 768px) {
+  .svg__ndVnO {
+    position: relative;
+    left: auto;
+    top: auto;
+  }
+}
+.freeBox__caVcW {
+  flex-direction: column;
   position: relative;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100vh;
   max-width: 100%;
-  font-weight: 600;
+  justify-content: flex-start;
+  align-items: center;
+  background: linear-gradient(#2f2f2f7a, #2f2f2f7a), #ffffff;
+  display: none;
+  padding: 8px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__caVcW {
+    display: flex;
+  }
 }

@@ -269,8 +269,14 @@
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__obKil {
-    padding-right: 6.25rem;
-    padding-left: 6.25rem;
+    width: 100%;
+    min-width: 0;
+    padding: var(--token-Fv8-L_kN-2Ma);
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__obKil > :global(.__wab_flex-container) {
+    min-width: 0;
   }
 }
 .freeBox___1FXwe {
