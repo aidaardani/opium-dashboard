@@ -215,7 +215,11 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                   ? (() => {
                       try {
                         return $state.isOpenSideBar === true
-                          ? { width: "220px", position: "absolute", zIndex: 50 }
+                          ? {
+                              width: "220px",
+                              position: "absolute",
+                              zIndex: 100
+                            }
                           : {
                               width: "0px",
                               opacity: 0,
@@ -865,26 +869,86 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                 role={"img"}
               />
             </Stack__>
+            {(
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? (() => {
+                    try {
+                      return $state.isOpenSideBar === true;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })()
+                : true
+            ) ? (
+              <div
+                className={classNames(projectcss.all, sty.freeBox__caVcW)}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateIsOpenSideBar"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["isOpenSideBar"]
+                          },
+                          operation: 0,
+                          value: !$state.isOpenSideBar
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateIsOpenSideBar"] != null &&
+                    typeof $steps["updateIsOpenSideBar"] === "object" &&
+                    typeof $steps["updateIsOpenSideBar"].then === "function"
+                  ) {
+                    $steps["updateIsOpenSideBar"] = await $steps[
+                      "updateIsOpenSideBar"
+                    ];
+                  }
+                }}
+                style={(() => {
+                  try {
+                    return (
+                      $state.isOpenSideBar === true && {
+                        position: "absolute",
+                        zIndex: 20
+                      }
+                    );
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+              />
+            ) : null}
           </div>
         </div>
-        <div
-          className={classNames(projectcss.all, sty.freeBox__caVcW)}
-          style={(() => {
-            try {
-              return $state.isOpenSideBar === true
-                ? { position: "absolute", zIndex: 20 }
-                : { visibility: "hedden" };
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()}
-        />
       </div>
     </React.Fragment>
   ) as React.ReactElement | null;

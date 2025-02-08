@@ -590,28 +590,75 @@ function PlasmicActivationFinish__RenderFunc(props: {
                         </React.Fragment>
                       </div>
                     </div>
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__hgw9Z)}
-                    >
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                    {(() => {
+                      try {
+                        return $ctx.query.office != true;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
+                      <div
                         className={classNames(
                           projectcss.all,
-                          sty.freeBox___9MDj
+                          sty.freeBox__hgw9Z
                         )}
                       >
-                        <Icon28Icon
-                          className={classNames(projectcss.all, sty.svg__hG6Mu)}
-                          role={"img"}
-                        />
-
-                        <h6
+                        <Stack__
+                          as={"div"}
+                          hasGap={true}
                           className={classNames(
                             projectcss.all,
-                            projectcss.h6,
+                            sty.freeBox___9MDj
+                          )}
+                        >
+                          <Icon28Icon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__hG6Mu
+                            )}
+                            role={"img"}
+                          />
+
+                          <h6
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.h6,
+                              projectcss.__wab_text,
+                              sty.h6__vl1OK
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return (
+                                    $ctx.query.office != "true" &&
+                                    "از کجا بفهمم که کسی ، نوبت ویزیت آنلاین گرفته؟"
+                                  );
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </h6>
+                        </Stack__>
+                        <div
+                          className={classNames(
+                            projectcss.all,
                             projectcss.__wab_text,
-                            sty.h6__vl1OK
+                            sty.text__gBxSh
                           )}
                         >
                           <React.Fragment>
@@ -619,70 +666,91 @@ function PlasmicActivationFinish__RenderFunc(props: {
                               try {
                                 return (
                                   $ctx.query.office != "true" &&
-                                  "از کجا بفهمم که کسی ، نوبت ویزیت آنلاین گرفته؟"
+                                  "پس از ثبت نوبت، پیامکی شامل اطلاعات بیمار و زمان نوبت برای شما ارسال میگردد."
                                 );
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
                                   e?.plasmicType === "PlasmicUndefinedDataError"
                                 ) {
-                                  return "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646";
+                                  return "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0634\u0645\u0627 \u062b\u0628\u062a \u0634\u062f \u0648 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0634\u0645\u0627 \u062a\u0627 \u0633\u0627\u0639\u0627\u062a\u06cc \u062f\u06cc\u06af\u0631 \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u0646\u062f \u0645\u0633\u062a\u0642\u06cc\u0645\u0627\u064b \u0627\u0632 \u0637\u0631\u06cc\u0642 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u06a9\u0646\u0646\u062f.";
                                 }
                                 throw e;
                               }
                             })()}
                           </React.Fragment>
-                        </h6>
-                      </Stack__>
+                        </div>
+                      </div>
+                    ) : null}
+                    {(() => {
+                      try {
+                        return $ctx.query.office != true;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
                       <div
                         className={classNames(
                           projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__gBxSh
+                          sty.freeBox__lMllX
                         )}
                       >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return (
-                                $ctx.query.office != "true" &&
-                                "پس از ثبت نوبت، پیامکی شامل اطلاعات بیمار و زمان نوبت برای شما ارسال میگردد."
-                              );
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0634\u0645\u0627 \u062b\u0628\u062a \u0634\u062f \u0648 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0634\u0645\u0627 \u062a\u0627 \u0633\u0627\u0639\u0627\u062a\u06cc \u062f\u06cc\u06af\u0631 \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u0646\u062f \u0645\u0633\u062a\u0642\u06cc\u0645\u0627\u064b \u0627\u0632 \u0637\u0631\u06cc\u0642 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u06a9\u0646\u0646\u062f.";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
-                      </div>
-                    </div>
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__lMllX)}
-                    >
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox___915PP
-                        )}
-                      >
-                        <Icon28Icon
-                          className={classNames(projectcss.all, sty.svg__rtEw7)}
-                          role={"img"}
-                        />
-
-                        <h6
+                        <Stack__
+                          as={"div"}
+                          hasGap={true}
                           className={classNames(
                             projectcss.all,
-                            projectcss.h6,
+                            sty.freeBox___915PP
+                          )}
+                        >
+                          <Icon28Icon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__rtEw7
+                            )}
+                            role={"img"}
+                          />
+
+                          <h6
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.h6,
+                              projectcss.__wab_text,
+                              sty.h6___3YYPb
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return (
+                                    $ctx.query.office != "true" &&
+                                    "اگر بیمار در زمان ویزیت آنلاین حاضر نشد، چه کاری انجام دهم؟"
+                                  );
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </h6>
+                        </Stack__>
+                        <div
+                          className={classNames(
+                            projectcss.all,
                             projectcss.__wab_text,
-                            sty.h6___3YYPb
+                            sty.text___8Ycgx
                           )}
                         >
                           <React.Fragment>
@@ -690,48 +758,22 @@ function PlasmicActivationFinish__RenderFunc(props: {
                               try {
                                 return (
                                   $ctx.query.office != "true" &&
-                                  "اگر بیمار در زمان ویزیت آنلاین حاضر نشد، چه کاری انجام دهم؟"
+                                  "شما می توانید از طریق پیام رسان و شماره ی بیمار با او ارتباط بگیرید و ویزیت را آغاز کنید."
                                 );
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
                                   e?.plasmicType === "PlasmicUndefinedDataError"
                                 ) {
-                                  return "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646";
+                                  return "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0634\u0645\u0627 \u062b\u0628\u062a \u0634\u062f \u0648 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0634\u0645\u0627 \u062a\u0627 \u0633\u0627\u0639\u0627\u062a\u06cc \u062f\u06cc\u06af\u0631 \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u0646\u062f \u0645\u0633\u062a\u0642\u06cc\u0645\u0627\u064b \u0627\u0632 \u0637\u0631\u06cc\u0642 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u06a9\u0646\u0646\u062f.";
                                 }
                                 throw e;
                               }
                             })()}
                           </React.Fragment>
-                        </h6>
-                      </Stack__>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text___8Ycgx
-                        )}
-                      >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return (
-                                $ctx.query.office != "true" &&
-                                "شما می توانید از طریق پیام رسان و شماره ی بیمار با او ارتباط بگیرید و ویزیت را آغاز کنید."
-                              );
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0634\u0645\u0627 \u062b\u0628\u062a \u0634\u062f \u0648 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0634\u0645\u0627 \u062a\u0627 \u0633\u0627\u0639\u0627\u062a\u06cc \u062f\u06cc\u06af\u0631 \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u0646\u062f \u0645\u0633\u062a\u0642\u06cc\u0645\u0627\u064b \u0627\u0632 \u0637\u0631\u06cc\u0642 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u06a9\u0646\u0646\u062f.";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
+                        </div>
                       </div>
-                    </div>
+                    ) : null}
                     <div
                       className={classNames(projectcss.all, sty.freeBox__o1S1V)}
                     >
@@ -832,9 +874,24 @@ function PlasmicActivationFinish__RenderFunc(props: {
                                   sty.h6___76K0I
                                 )}
                               >
-                                {
-                                  "\u0627\u06af\u0631 \u062f\u0631 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u0634\u0631\u0627\u06cc\u0637 \u067e\u0627\u0633\u062e\u06af\u0648\u06cc\u06cc \u0628\u0647 \u0628\u06cc\u0645\u0627\u0631 \u0631\u0627 \u0646\u062f\u0627\u0634\u062a\u0645 \u060c \u0686\u0647 \u06a9\u0627\u0631 \u06a9\u0646\u0645\u061f"
-                                }
+                                <React.Fragment>
+                                  {(() => {
+                                    try {
+                                      return $ctx.query.office == true
+                                        ? "اگر در ساعت کاری شرایط نوبت دهی به بیمار را نداشتم ، چه کار کنم؟"
+                                        : "اگر در ساعت کاری شرایط پاسخگویی به بیمار را نداشتم ، چه کار کنم؟";
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return "\u0627\u06af\u0631 \u062f\u0631 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u0634\u0631\u0627\u06cc\u0637 \u067e\u0627\u0633\u062e\u06af\u0648\u06cc\u06cc \u0628\u0647 \u0628\u06cc\u0645\u0627\u0631 \u0631\u0627 \u0646\u062f\u0627\u0634\u062a\u0645 \u060c \u0686\u0647 \u06a9\u0627\u0631 \u06a9\u0646\u0645\u061f";
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                </React.Fragment>
                               </h6>
                             }
                             <React.Fragment>{""}</React.Fragment>
@@ -853,7 +910,9 @@ function PlasmicActivationFinish__RenderFunc(props: {
                           dangerouslySetInnerHTML={{
                             __html: (() => {
                               try {
-                                return "در صورتی که در ساعت کاری تعریف شده ، شرایط پاسخگویی به بیمار را نداشتید ، می توانید از داخل پنل اقدام به غیر فعالسازی نوبت دهی کنید.";
+                                return $ctx.query.office == true
+                                  ? "در صورتی که در ساعت کاری تعریف شده ، شرایط نوبت دهی به بیمار را نداشتید ، می توانید از داخل پنل اقدام به ثبت مرخصی کنید.."
+                                  : "در صورتی که در ساعت کاری تعریف شده ، شرایط پاسخگویی به بیمار را نداشتید ، می توانید از داخل پنل اقدام به غیر فعالسازی نوبت دهی کنید.";
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -868,29 +927,73 @@ function PlasmicActivationFinish__RenderFunc(props: {
                         />
                       </div>
                     </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___5DX5Y
-                      )}
-                    >
+                    {(() => {
+                      try {
+                        return $ctx.query.office != true;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
                       <div
                         className={classNames(
                           projectcss.all,
-                          sty.freeBox__ng7CS
+                          sty.freeBox___5DX5Y
                         )}
                       >
-                        <Icon28Icon
-                          className={classNames(projectcss.all, sty.svg__luZlz)}
-                          role={"img"}
-                        />
-
-                        <h6
+                        <div
                           className={classNames(
                             projectcss.all,
-                            projectcss.h6,
+                            sty.freeBox__ng7CS
+                          )}
+                        >
+                          <Icon28Icon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__luZlz
+                            )}
+                            role={"img"}
+                          />
+
+                          <h6
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.h6,
+                              projectcss.__wab_text,
+                              sty.h6__nGrIt
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return (
+                                    $ctx.query.office != "true" &&
+                                    "درآمد هر ویزیت چه زمانی برای من واریز میشه؟"
+                                  );
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </h6>
+                        </div>
+                        <div
+                          className={classNames(
+                            projectcss.all,
                             projectcss.__wab_text,
-                            sty.h6__nGrIt
+                            sty.text__sO3M
                           )}
                         >
                           <React.Fragment>
@@ -898,48 +1001,22 @@ function PlasmicActivationFinish__RenderFunc(props: {
                               try {
                                 return (
                                   $ctx.query.office != "true" &&
-                                  "درآمد هر ویزیت چه زمانی برای من واریز میشه؟"
+                                  "پس از پایان هر ویزیت، هزینه آن ویزیت در بامداد روز بعد به موجودی حساب کاربری شما اضافه خواهد شد."
                                 );
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
                                   e?.plasmicType === "PlasmicUndefinedDataError"
                                 ) {
-                                  return "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646";
+                                  return "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0634\u0645\u0627 \u062b\u0628\u062a \u0634\u062f \u0648 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0634\u0645\u0627 \u062a\u0627 \u0633\u0627\u0639\u0627\u062a\u06cc \u062f\u06cc\u06af\u0631 \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u0646\u062f \u0645\u0633\u062a\u0642\u06cc\u0645\u0627\u064b \u0627\u0632 \u0637\u0631\u06cc\u0642 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u06a9\u0646\u0646\u062f.";
                                 }
                                 throw e;
                               }
                             })()}
                           </React.Fragment>
-                        </h6>
+                        </div>
                       </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__sO3M
-                        )}
-                      >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return (
-                                $ctx.query.office != "true" &&
-                                "پس از پایان هر ویزیت، هزینه آن ویزیت در بامداد روز بعد به موجودی حساب کاربری شما اضافه خواهد شد."
-                              );
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0634\u0645\u0627 \u062b\u0628\u062a \u0634\u062f \u0648 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0634\u0645\u0627 \u062a\u0627 \u0633\u0627\u0639\u0627\u062a\u06cc \u062f\u06cc\u06af\u0631 \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u0646\u062f \u0645\u0633\u062a\u0642\u06cc\u0645\u0627\u064b \u0627\u0632 \u0637\u0631\u06cc\u0642 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u06a9\u0646\u0646\u062f.";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
-                      </div>
-                    </div>
+                    ) : null}
                     <div
                       className={classNames(projectcss.all, sty.freeBox__fMwvv)}
                     >

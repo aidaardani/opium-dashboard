@@ -72,10 +72,11 @@
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__p96N {
-    background: none;
+    background: #ffffff;
     height: 100vh;
     align-items: flex-end;
     justify-content: flex-start;
+    padding: 0px;
   }
 }
 .freeBox__s0AfW {
@@ -683,8 +684,12 @@
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
-  background: linear-gradient(#2f2f2f7a, #2f2f2f7a), #ffffff;
+  background: #1616160f;
+  backdrop-filter: blur(2px);
+  filter: none;
+  cursor: pointer;
   display: none;
+  -webkit-backdrop-filter: blur(2px);
   padding: 8px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
