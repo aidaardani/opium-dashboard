@@ -1365,68 +1365,62 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 ];
               }
 
-              $steps["costApi"] =
-                ($state.input2.value === "" ||
-                  $state.input2.value.trim().length === 16) &&
-                $state.select.value !== undefined
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "PATCH",
-                          "https://api.paziresh24.com/V1/doctor/payments/settings/",
-                          undefined,
-                          (() => {
-                            try {
-                              return (() => {
-                                const centerId =
-                                  $state.centersApi.data.data.find(
-                                    item => item.type_id == 1
-                                  ).id;
-                                const cost =
-                                  ($state.select.value === "custom"
-                                    ? +$state.input.value
-                                    : +$state.select.value) * 10;
-                                if ($state.input2.value === "") {
-                                  return {
-                                    active: 1,
-                                    center_id: centerId,
-                                    deposit_amount:
-                                      ($state.select.value === "custom"
-                                        ? $state.input.value
-                                        : $state.select.value) * 10
-                                  };
-                                } else {
-                                  return {
-                                    active: 1,
-                                    center_id: centerId,
-                                    deposit_amount: Number(cost) * 10,
-                                    card_number:
-                                      $state.shabaApi.data.card_number,
-                                    IBAN: $state.shabaApi.data.IBAN,
-                                    deposit_owners:
-                                      $state.shabaApi.data.deposit_owners[0],
-                                    bank_name: $state.shabaApi.data.bank_name
-                                  };
-                                }
-                              })();
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+              $steps["costApi"] = false
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "PATCH",
+                        "https://api.paziresh24.com/V1/doctor/payments/settings/",
+                        undefined,
+                        (() => {
+                          try {
+                            return (() => {
+                              const centerId = $state.centersApi.data.data.find(
+                                item => item.type_id == 1
+                              ).id;
+                              const cost =
+                                ($state.select.value === "custom"
+                                  ? +$state.input.value
+                                  : +$state.select.value) * 10;
+                              if ($state.input2.value === "") {
+                                return {
+                                  active: 1,
+                                  center_id: centerId,
+                                  deposit_amount:
+                                    ($state.select.value === "custom"
+                                      ? $state.input.value
+                                      : $state.select.value) * 10
+                                };
+                              } else {
+                                return {
+                                  active: 1,
+                                  center_id: centerId,
+                                  deposit_amount: Number(cost) * 10,
+                                  card_number: $state.shabaApi.data.card_number,
+                                  IBAN: $state.shabaApi.data.IBAN,
+                                  deposit_owners:
+                                    $state.shabaApi.data.deposit_owners[0],
+                                  bank_name: $state.shabaApi.data.bank_name
+                                };
                               }
-                              throw e;
+                            })();
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
                             }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
               if (
                 $steps["costApi"] != null &&
                 typeof $steps["costApi"] === "object" &&
@@ -1914,17 +1908,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                     onClick={async event => {
                       const $steps = {};
 
-                      $steps["costApi"] = (() => {
-                        return (
-                          ($state.input2.value === "" ||
-                            $state.input2.value.trim().length === 16) &&
-                          $state.select.value !== undefined &&
-                          ($state.select.value === "custom"
-                            ? $state.input.value !== "0" &&
-                              $state.input.value.trim() !== ""
-                            : true)
-                        );
-                      })()
+                      $steps["costApi"] = false
                         ? (() => {
                             const actionArgs = {
                               args: [
