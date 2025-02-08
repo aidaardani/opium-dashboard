@@ -1065,9 +1065,24 @@ function PlasmicActivationFinish__RenderFunc(props: {
                           sty.text___84In
                         )}
                       >
-                        {
-                          "\u0627\u0645\u06a9\u0627\u0646\u06cc \u0628\u0631\u0627\u06cc \u0627\u0646\u062c\u0627\u0645 \u062a\u0628\u0644\u06cc\u063a\u0627\u062a \u062f\u0631 \u067e\u0630\u06cc\u0631\u0634\u06f2\u06f4 \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f \u0627\u0645\u0627 \u0645\u0627 \u0628\u0647 \u0634\u0645\u0627 \u06a9\u0645\u06a9 \u0645\u06cc\u06a9\u0646\u06cc\u0645 \u062a\u0627 \u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u0628\u06cc\u0634\u062a\u0631\u06cc \u062f\u0631\u06cc\u0627\u0641\u062a \u06a9\u0646\u06cc\u062f."
-                        }
+                        <div
+                          className={projectcss.__wab_expr_html_text}
+                          dangerouslySetInnerHTML={{
+                            __html: (() => {
+                              try {
+                                return "امکانی برای انجام تبلیغات در پذیرش۲۴ وجود ندارد اما برای افزایش تعداد نوبت می توانید به بخش <b>عملکرد من</b> داخل پنل کاربری خود مراجعه کنید.";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "\u0627\u0645\u06a9\u0627\u0646\u06cc \u0628\u0631\u0627\u06cc \u0627\u0646\u062c\u0627\u0645 \u062a\u0628\u0644\u06cc\u063a\u0627\u062a \u062f\u0631 \u067e\u0630\u06cc\u0631\u0634\u06f2\u06f4 \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f \u0627\u0645\u0627 \u0645\u0627 \u0628\u0647 \u0634\u0645\u0627 \u06a9\u0645\u06a9 \u0645\u06cc\u06a9\u0646\u06cc\u0645 \u062a\u0627 \u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u0628\u06cc\u0634\u062a\u0631\u06cc \u062f\u0631\u06cc\u0627\u0641\u062a \u06a9\u0646\u06cc\u062f.";
+                                }
+                                throw e;
+                              }
+                            })()
+                          }}
+                        />
                       </div>
                     </div>
                     <div
