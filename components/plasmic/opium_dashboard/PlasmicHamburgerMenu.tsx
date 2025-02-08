@@ -929,12 +929,7 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                 }}
                 style={(() => {
                   try {
-                    return (
-                      $state.isOpenSideBar === true && {
-                        position: "absolute",
-                        zIndex: 20
-                      }
-                    );
+                    return { position: "absolute" };
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
