@@ -636,10 +636,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return (
-                                    $ctx.query.office != "true" &&
-                                    "از کجا بفهمم که کسی ، نوبت ویزیت آنلاین گرفته؟"
-                                  );
+                                  return "از کجا بفهمم که کسی ، نوبت ویزیت آنلاین گرفته؟";
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -664,10 +661,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                           <React.Fragment>
                             {(() => {
                               try {
-                                return (
-                                  $ctx.query.office != "true" &&
-                                  "پس از ثبت نوبت، پیامکی شامل اطلاعات بیمار و زمان نوبت برای شما ارسال میگردد."
-                                );
+                                return "پس از ثبت نوبت، پیامکی شامل اطلاعات بیمار و زمان نوبت برای شما ارسال میگردد.";
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -728,10 +722,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return (
-                                    $ctx.query.office != "true" &&
-                                    "اگر بیمار در زمان ویزیت آنلاین حاضر نشد، چه کاری انجام دهم؟"
-                                  );
+                                  return "اگر بیمار در زمان ویزیت آنلاین حاضر نشد، چه کاری انجام دهم؟";
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -756,10 +747,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                           <React.Fragment>
                             {(() => {
                               try {
-                                return (
-                                  $ctx.query.office != "true" &&
-                                  "شما می توانید از طریق پیام رسان و شماره ی بیمار با او ارتباط بگیرید و ویزیت را آغاز کنید."
-                                );
+                                return "شما می توانید از طریق پیام رسان و شماره ی بیمار با او ارتباط بگیرید و ویزیت را آغاز کنید.";
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -971,10 +959,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return (
-                                    $ctx.query.office != "true" &&
-                                    "درآمد هر ویزیت چه زمانی برای من واریز میشه؟"
-                                  );
+                                  return "درآمد هر ویزیت چه زمانی برای من واریز میشه؟";
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -999,10 +984,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                           <React.Fragment>
                             {(() => {
                               try {
-                                return (
-                                  $ctx.query.office != "true" &&
-                                  "پس از پایان هر ویزیت، هزینه آن ویزیت در بامداد روز بعد به موجودی حساب کاربری شما اضافه خواهد شد."
-                                );
+                                return "پس از پایان هر ویزیت، هزینه آن ویزیت در بامداد روز بعد به موجودی حساب کاربری شما اضافه خواهد شد.";
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||

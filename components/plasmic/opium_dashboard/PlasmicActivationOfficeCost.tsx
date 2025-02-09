@@ -1569,7 +1569,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
               }
 
               $steps["showToast"] =
-                !!$steps.costApi.data.message &&
+                !!$steps.setPayment.data.message &&
                 $state.input2.value.trim() !== ""
                   ? (() => {
                       const actionArgs = {
@@ -1686,8 +1686,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
               }
 
               $steps["goToPage"] =
-                $state.input2.value.trim() !== "" &&
-                $steps.costApi.status === 200
+                $state.input2.value.trim() !== "" && $state.input2.value
                   ? (() => {
                       const actionArgs = {
                         destination: (() => {
@@ -1902,7 +1901,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
 
                   <Button
                     children2={
-                      "\u0628\u0639\u062f\u0627 \u062a\u0646\u0638\u06cc\u0645 \u0645\u06cc\u06a9\u0646\u0645"
+                      "\u0628\u0639\u062f\u0627 \u0634\u0645\u0627\u0631\u0647 \u06a9\u0627\u0631\u062a \u0631\u0627 \u062a\u0646\u0638\u06cc\u0645 \u0645\u06cc\u200c\u06a9\u0646\u0645"
                     }
                     className={classNames("__wab_instance", sty.button__o2D)}
                     onClick={async event => {
@@ -2031,7 +2030,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                         $steps["setPayment"] = await $steps["setPayment"];
                       }
 
-                      $steps["showToast"] = !!$steps.costApi.data.message
+                      $steps["showToast"] = !!$steps.setPayment.data.message
                         ? (() => {
                             const actionArgs = {
                               args: [
@@ -2132,45 +2131,42 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                         $steps["sendEvent"] = await $steps["sendEvent"];
                       }
 
-                      $steps["goToPage"] =
-                        ($state.input2.value === "" ||
-                          $state.input2.value.trim().length === 16) &&
-                        $steps.costApi.status === 200
-                          ? (() => {
-                              const actionArgs = {
-                                destination: (() => {
-                                  try {
-                                    return `/activation-page/office/duration?${
-                                      $props.hasOnlineVisit
-                                        ? "onlineVisit=true&"
-                                        : ""
-                                    }userId=${$props.userId}`;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
+                      $steps["goToPage"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              destination: (() => {
+                                try {
+                                  return `/activation-page/office/duration?${
+                                    $props.hasOnlineVisit
+                                      ? "onlineVisit=true&"
+                                      : ""
+                                  }userId=${$props.userId}`;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
                                   }
-                                })()
-                              };
-                              return (({ destination }) => {
-                                if (
-                                  typeof destination === "string" &&
-                                  destination.startsWith("#")
-                                ) {
-                                  document
-                                    .getElementById(destination.substr(1))
-                                    .scrollIntoView({ behavior: "smooth" });
-                                } else {
-                                  __nextRouter?.push(destination);
+                                  throw e;
                                 }
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
+                              })()
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
                       if (
                         $steps["goToPage"] != null &&
                         typeof $steps["goToPage"] === "object" &&
