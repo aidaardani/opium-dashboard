@@ -1574,24 +1574,10 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                   ? (() => {
                       const actionArgs = {
                         args: [
+                          undefined,
                           (() => {
                             try {
-                              return $steps.costApi.status == 200
-                                ? "success"
-                                : "error";
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })(),
-                          (() => {
-                            try {
-                              return $steps.costApi.data.message;
+                              return "پرداخت شما با موفقیت فعال شد.";
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -1603,7 +1589,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                             }
                           })(),
                           undefined,
-                          989999
+                          3000
                         ]
                       };
                       return $globalActions["Fragment.showToast"]?.apply(null, [
@@ -2034,25 +2020,10 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                         ? (() => {
                             const actionArgs = {
                               args: [
+                                undefined,
                                 (() => {
                                   try {
-                                    return $steps.costApi.status == 200
-                                      ? "success"
-                                      : "error";
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })(),
-                                (() => {
-                                  try {
-                                    return $steps.costApi.data.message;
+                                    return "پرداخت با موفقیت فعال شد.";
                                   } catch (e) {
                                     if (
                                       e instanceof TypeError ||

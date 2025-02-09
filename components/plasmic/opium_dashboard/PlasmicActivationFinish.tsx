@@ -592,7 +592,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                     </div>
                     {(() => {
                       try {
-                        return $ctx.query.office != true;
+                        return $ctx.query.office === "false";
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -678,7 +678,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                     ) : null}
                     {(() => {
                       try {
-                        return $ctx.query.office != true;
+                        return $ctx.query.office === "false";
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -865,7 +865,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                                 <React.Fragment>
                                   {(() => {
                                     try {
-                                      return $ctx.query.office == true
+                                      return $ctx.query.office == "true"
                                         ? "اگر در ساعت کاری شرایط نوبت دهی به بیمار را نداشتم ، چه کار کنم؟"
                                         : "اگر در ساعت کاری شرایط پاسخگویی به بیمار را نداشتم ، چه کار کنم؟";
                                     } catch (e) {
@@ -898,7 +898,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                           dangerouslySetInnerHTML={{
                             __html: (() => {
                               try {
-                                return $ctx.query.office == true
+                                return $ctx.query.office == "true"
                                   ? "در صورتی که در ساعت کاری تعریف شده ، شرایط نوبت دهی به بیمار را نداشتید ، می توانید از داخل پنل اقدام به ثبت مرخصی کنید.."
                                   : "در صورتی که در ساعت کاری تعریف شده ، شرایط پاسخگویی به بیمار را نداشتید ، می توانید از داخل پنل اقدام به غیر فعالسازی نوبت دهی کنید.";
                               } catch (e) {
@@ -917,7 +917,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                     </div>
                     {(() => {
                       try {
-                        return $ctx.query.office != true;
+                        return $ctx.query.office === "false";
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
