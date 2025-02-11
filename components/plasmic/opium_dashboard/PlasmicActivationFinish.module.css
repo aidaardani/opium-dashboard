@@ -139,7 +139,7 @@
     margin: 0rem 0px 0px;
   }
 }
-.sideEffect:global(.__wab_instance) {
+.sideEffect__rEyyz:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
 }
@@ -758,4 +758,12 @@
   color: var(--token-u3OudfMChOo3);
   padding-top: 0px;
   min-width: 0;
+}
+.sideEffect__cb7UM:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.embedHtml:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
 }
