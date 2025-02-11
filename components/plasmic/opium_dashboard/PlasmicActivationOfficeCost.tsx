@@ -165,24 +165,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "select.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          (() => {
-            try {
-              return (() => {
-                return $state.costOffice[6].value
-                  ? $state.costOffice[6].value
-                  : "1500000";
-              })();
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
         path: "select.open",
@@ -754,9 +737,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         })()}
         placeholder={(() => {
           try {
-            return $state.costOffice[6].label
-              ? $state.costOffice[6].label
-              : "مبلغ ویزیت";
+            return "مبلغ ویزیت";
           } catch (e) {
             if (
               e instanceof TypeError ||
@@ -1182,7 +1163,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           )}
         >
           {
-            "\u062c\u0632\u0626\u06cc\u0627\u062a \u067e\u0631\u062f\u0627\u062e\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u062f\u0631 \u0645\u0646\u0648\u06cc \u0645\u062f\u06cc\u0631\u06cc\u062a \u0645\u0627\u0644\u06cc \u062f\u0631\u062c \u0645\u06cc\u200c\u0634\u0648\u062f."
+            "\u062f\u0631 \u0635\u0648\u0631\u062a \u0644\u063a\u0648 \u0646\u0648\u0628\u062a \u062a\u0648\u0633\u0637 \u0628\u06cc\u0645\u0627\u0631 \u062a\u0627 \u06f5 \u0633\u0627\u0639\u062a \u067e\u06cc\u0634 \u0627\u0632 \u0632\u0645\u0627\u0646 \u0646\u0648\u0628\u062a \u0628\u06cc\u0645\u0627\u0631\u060c \u0648\u062c\u0647 \u0628\u06cc\u0645\u0627\u0631 \u0645\u0633\u062a\u0631\u062f \u0645\u06cc\u200c\u06af\u0631\u062f\u062f."
           }
         </div>
         <Stack__
@@ -1289,33 +1270,27 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["showToast2"] = await $steps["showToast2"];
               }
 
-              $steps["updateDialogCardNumberOpen"] =
-                !$state.input2.value || $state.input2.value.trim() === ""
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["dialogCardNumber", "open"]
-                        },
-                        operation: 0,
-                        value: true
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
+              $steps["updateDialogCardNumberOpen"] = false
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["dialogCardNumber", "open"]
+                      },
+                      operation: 0,
+                      value: true
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
 
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
               if (
                 $steps["updateDialogCardNumberOpen"] != null &&
                 typeof $steps["updateDialogCardNumberOpen"] === "object" &&
@@ -1365,62 +1340,68 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 ];
               }
 
-              $steps["costApi"] = false
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "PATCH",
-                        "https://api.paziresh24.com/V1/doctor/payments/settings/",
-                        undefined,
-                        (() => {
-                          try {
-                            return (() => {
-                              const centerId = $state.centersApi.data.data.find(
-                                item => item.type_id == 1
-                              ).id;
-                              const cost =
-                                ($state.select.value === "custom"
-                                  ? +$state.input.value
-                                  : +$state.select.value) * 10;
-                              if ($state.input2.value === "") {
-                                return {
-                                  active: 1,
-                                  center_id: centerId,
-                                  deposit_amount:
-                                    ($state.select.value === "custom"
-                                      ? $state.input.value
-                                      : $state.select.value) * 10
-                                };
-                              } else {
-                                return {
-                                  active: 1,
-                                  center_id: centerId,
-                                  deposit_amount: Number(cost) * 10,
-                                  card_number: $state.shabaApi.data.card_number,
-                                  IBAN: $state.shabaApi.data.IBAN,
-                                  deposit_owners:
-                                    $state.shabaApi.data.deposit_owners[0],
-                                  bank_name: $state.shabaApi.data.bank_name
-                                };
+              $steps["costApi"] =
+                ($state.input2.value === "" ||
+                  $state.input2.value.trim().length === 16) &&
+                $state.select.value !== undefined
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "PATCH",
+                          "https://api.paziresh24.com/V1/doctor/payments/settings/",
+                          undefined,
+                          (() => {
+                            try {
+                              return (() => {
+                                const centerId =
+                                  $state.centersApi.data.data.find(
+                                    item => item.type_id == 1
+                                  ).id;
+                                const cost =
+                                  ($state.select.value === "custom"
+                                    ? +$state.input.value
+                                    : +$state.select.value) * 10;
+                                if ($state.input2.value === "") {
+                                  return {
+                                    active: 1,
+                                    center_id: centerId,
+                                    deposit_amount:
+                                      ($state.select.value === "custom"
+                                        ? $state.input.value
+                                        : $state.select.value) * 10
+                                  };
+                                } else {
+                                  return {
+                                    active: 1,
+                                    center_id: centerId,
+                                    deposit_amount: Number(cost) * 10,
+                                    card_number:
+                                      $state.shabaApi.data.card_number,
+                                    IBAN: $state.shabaApi.data.IBAN,
+                                    deposit_owners:
+                                      $state.shabaApi.data.deposit_owners[0],
+                                    bank_name: $state.shabaApi.data.bank_name
+                                  };
+                                }
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
                               }
-                            })();
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
+                              throw e;
                             }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
               if (
                 $steps["costApi"] != null &&
                 typeof $steps["costApi"] === "object" &&
@@ -1429,16 +1410,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["costApi"] = await $steps["costApi"];
               }
 
-              $steps["setPayment"] = (() => {
-                return (
-                  $state.input2.value &&
-                  $state.input2.value.trim() !== "" &&
-                  ($state.select.value === "custom"
-                    ? $state.input.value !== "0" &&
-                      $state.input.value.trim() !== ""
-                    : true)
-                );
-              })()
+              $steps["setPayment"] = false
                 ? (() => {
                     const actionArgs = {
                       args: [
@@ -1482,43 +1454,41 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["setPayment"] = await $steps["setPayment"];
               }
 
-              $steps["apiActiveAutoPayment"] =
-                $state.shabaValue && $state.shabaValue.length > 0
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "POST",
-                          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/active-auto-payment",
-                          undefined,
-                          (() => {
-                            try {
-                              return {
-                                center_id: $state.centersApi.data.data.find(
-                                  item => item.type_id == 1
-                                ).id,
-                                cardid: $state.shabaApi.data.card_number,
-                                iban: $state.shabaApi.data.IBAN,
-                                bank_name: $state.shabaApi.data.bank_name,
-                                owner_name: $state.shabaApi.data.deposit_owners
-                              };
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
+              $steps["apiActiveAutoPayment"] = false
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/active-auto-payment",
+                        undefined,
+                        (() => {
+                          try {
+                            return {
+                              center_id: $state.centersApi.data.data.find(
+                                item => item.type_id == 1
+                              ).id,
+                              cardid: $state.shabaApi.data.card_number,
+                              iban: $state.shabaApi.data.IBAN,
+                              bank_name: $state.shabaApi.data.bank_name,
+                              owner_name: $state.shabaApi.data.deposit_owners
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
                             }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
               if (
                 $steps["apiActiveAutoPayment"] != null &&
                 typeof $steps["apiActiveAutoPayment"] === "object" &&
@@ -1568,35 +1538,49 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 ];
               }
 
-              $steps["showToast"] =
-                !!$steps.setPayment.data.message &&
-                $state.input2.value.trim() !== ""
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          undefined,
-                          (() => {
-                            try {
-                              return "پرداخت شما با موفقیت فعال شد.";
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
+              $steps["showToast"] = !!$steps.costApi.data.message
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return $steps.costApi.data.status.includes(
+                              "SUCCESS"
+                            )
+                              ? "success"
+                              : "error";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
                             }
-                          })(),
-                          undefined,
-                          3000
-                        ]
-                      };
-                      return $globalActions["Fragment.showToast"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
+                            throw e;
+                          }
+                        })(),
+                        (() => {
+                          try {
+                            return $steps.costApi.data.message;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        undefined,
+                        3000
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
               if (
                 $steps["showToast"] != null &&
                 typeof $steps["showToast"] === "object" &&
@@ -1671,40 +1655,39 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["sendEvent"] = await $steps["sendEvent"];
               }
 
-              $steps["goToPage"] =
-                $state.input2.value.trim() !== "" && $state.input2.value
-                  ? (() => {
-                      const actionArgs = {
-                        destination: (() => {
-                          try {
-                            return `/activation-page/office/duration?${
-                              $props.hasOnlineVisit ? "onlineVisit=true&" : ""
-                            }userId=${$props.userId}`;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
+              $steps["goToPage"] = !!$steps.costApi.data.message
+                ? (() => {
+                    const actionArgs = {
+                      destination: (() => {
+                        try {
+                          return `/activation-page/office/duration?${
+                            $props.hasOnlineVisit ? "onlineVisit=true&" : ""
+                          }userId=${$props.userId}`;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
                           }
-                        })()
-                      };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
+                          throw e;
                         }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
+                      })()
+                    };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
               if (
                 $steps["goToPage"] != null &&
                 typeof $steps["goToPage"] === "object" &&

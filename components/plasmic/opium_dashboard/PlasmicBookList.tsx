@@ -1036,6 +1036,7 @@ function PlasmicBookList__RenderFunc(props: {
                 <ApiRequest
                   data-plasmic-name={"apiAllCenters"}
                   data-plasmic-override={overrides.apiAllCenters}
+                  children={null}
                   className={classNames("__wab_instance", sty.apiAllCenters)}
                   errorDisplay={
                     <div
@@ -1259,6 +1260,42 @@ function PlasmicBookList__RenderFunc(props: {
                         typeof $steps["sendLog"].then === "function"
                       ) {
                         $steps["sendLog"] = await $steps["sendLog"];
+                      }
+
+                      $steps["getAccess"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "GET",
+                                "https://apigw.paziresh24.com/moshir/v1/accesses",
+                                (() => {
+                                  try {
+                                    return undefined;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.apiRequest"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["getAccess"] != null &&
+                        typeof $steps["getAccess"] === "object" &&
+                        typeof $steps["getAccess"].then === "function"
+                      ) {
+                        $steps["getAccess"] = await $steps["getAccess"];
                       }
                     }).apply(null, eventArgs);
                   }}
