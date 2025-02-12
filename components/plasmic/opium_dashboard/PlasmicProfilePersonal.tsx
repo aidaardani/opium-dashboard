@@ -1004,10 +1004,10 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 const $steps = {};
 
                 $steps["showToastValidation"] =
-                  $state.profilePersonalName.firstNameValue.trim() === "" ||
-                  $state.profilePersonalName.lastNameValue.trim() === "" ||
-                  $state.medicalCode.value.trim() === "" ||
-                  $state.nationalCode.value.trim() === ""
+                  $state.profilePersonalName.firstNameValue === "" ||
+                  $state.profilePersonalName.lastNameValue === "" ||
+                  $state.medicalCode.value === "" ||
+                  $state.nationalCode.value === ""
                     ? (() => {
                         const actionArgs = {
                           args: [
