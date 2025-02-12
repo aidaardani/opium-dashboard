@@ -110,19 +110,11 @@
 .activationServiceSelection:global(.__wab_instance) {
   max-width: 100%;
 }
-.sideEffect___5Md24:global(.__wab_instance) {
+.sideEffect:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
 }
-.embedHtml__zn4N2:global(.__wab_instance) {
-  max-width: 100%;
-  object-fit: cover;
-}
-.sideEffect__swpN0:global(.__wab_instance) {
-  max-width: 100%;
-  object-fit: cover;
-}
-.embedHtml___1Hzhi:global(.__wab_instance) {
+.embedHtml:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
 }
