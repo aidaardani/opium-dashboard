@@ -61,11 +61,8 @@ import {
 
 import ActivationProcess from "../../ActivationProcess"; // plasmic-import: 1sYr9T24RxmQ/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
-import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
-
-import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -76,10 +73,8 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJ
 import sty from "./PlasmicActivationFinish.module.css"; // plasmic-import: mPvOWIDs-DaE/css
 
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
-import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
-import EitaaIcon from "../fragment_icons/icons/PlasmicIcon__Eitaa"; // plasmic-import: qxWwW7vbw7na/icon
 import TelegramIcon from "../fragment_icons/icons/PlasmicIcon__Telegram"; // plasmic-import: vu4uxcIH4gVk/icon
-import Icon28Icon from "./icons/PlasmicIcon__Icon28"; // plasmic-import: jhZk-kRqJ6_T/icon
+import EitaaIcon from "../fragment_icons/icons/PlasmicIcon__Eitaa"; // plasmic-import: qxWwW7vbw7na/icon
 
 createPlasmicElementProxy;
 
@@ -96,8 +91,8 @@ export const PlasmicActivationFinish__ArgProps = new Array<ArgPropType>();
 export type PlasmicActivationFinish__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<"div">;
+  h6?: Flex__<"h6">;
   img?: Flex__<typeof PlasmicImg__>;
-  dialog?: Flex__<typeof Dialog>;
   embedHtml?: Flex__<typeof Embed>;
 };
 
@@ -142,28 +137,6 @@ function PlasmicActivationFinish__RenderFunc(props: {
   const $refs = refsRef.current;
 
   const $globalActions = useGlobalActions?.();
-
-  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
-    () => [
-      {
-        path: "dialog.open",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      }
-    ],
-    [$props, $ctx, $refs]
-  );
-  const $state = useDollarState(stateSpecs, {
-    $props,
-    $ctx,
-    $queries: {},
-    $refs
-  });
-
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantsfobTirRaixGf()
-  });
 
   return (
     <React.Fragment>
@@ -301,11 +274,13 @@ function PlasmicActivationFinish__RenderFunc(props: {
                     <React.Fragment>{""}</React.Fragment>
                     {
                       <h6
+                        data-plasmic-name={"h6"}
+                        data-plasmic-override={overrides.h6}
                         className={classNames(
                           projectcss.all,
                           projectcss.h6,
                           projectcss.__wab_text,
-                          sty.h6___3QzYh
+                          sty.h6
                         )}
                       >
                         {
@@ -402,12 +377,12 @@ function PlasmicActivationFinish__RenderFunc(props: {
                   data-plasmic-override={overrides.img}
                   alt={""}
                   className={classNames(sty.img)}
-                  displayHeight={"246px"}
+                  displayHeight={"160px"}
                   displayMaxHeight={"none"}
                   displayMaxWidth={"100%"}
                   displayMinHeight={"0"}
                   displayMinWidth={"0"}
-                  displayWidth={"263px"}
+                  displayWidth={"170px"}
                   loading={"lazy"}
                   src={{
                     src: "/plasmic/opium_dashboard/images/image5.png",
@@ -445,971 +420,47 @@ function PlasmicActivationFinish__RenderFunc(props: {
                     }}
                   />
                 </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__mMkGq
-                  )}
-                >
-                  <React.Fragment>
-                    <React.Fragment>
-                      {
-                        "\u0627\u06af\u0631 \u0628\u0631\u0627\u06cc \u0634\u0631\u0648\u0639 \u0646\u06cc\u0627\u0632 \u0628\u0647 \u0631\u0627\u0647\u0646\u0645\u0627\u06cc\u06cc \u062f\u0627\u0631\u06cc\u062f \u060c \u0631\u0648\u06cc \u062f\u06a9\u0645\u0647 "
-                      }
-                    </React.Fragment>
-                    <span
-                      className={"plasmic_default__all plasmic_default__span"}
-                      style={{ fontWeight: 700 }}
-                    >
-                      {
-                        "\u0631\u0627\u0647\u0646\u0645\u0627\u06cc \u06a9\u0627\u0631 \u0628\u0627 \u067e\u0630\u06cc\u0631\u0634 "
-                      }
-                    </span>
-                    <React.Fragment>
-                      {"24 \u06a9\u0644\u06cc\u06a9 \u06a9\u0646\u06cc\u062f. "}
-                    </React.Fragment>
-                  </React.Fragment>
-                </div>
-              </Stack__>
-              <Dialog
-                data-plasmic-name={"dialog"}
-                data-plasmic-override={overrides.dialog}
-                body={
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.freeBox__obKil)}
-                    style={
-                      hasVariant(globalVariants, "screen", "mobileOnly")
-                        ? (() => {
-                            try {
-                              return {
-                                width: "100%",
-                                maxWidth: "384px",
-                                margin: "0px auto"
-                              };
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                        : undefined
-                    }
-                  >
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__zCGx)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__fpPzb
-                        )}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__l886H
-                          )}
-                        >
-                          <React.Fragment>
-                            <React.Fragment>{""}</React.Fragment>
-                            {
-                              <h6
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.h6,
-                                  projectcss.__wab_text,
-                                  sty.h6__mwIqv
-                                )}
-                              >
-                                {
-                                  "\u06af\u0641\u062a\u06af\u0648 \u0628\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646 "
-                                }
-                              </h6>
-                            }
-                            <React.Fragment>{""}</React.Fragment>
-                          </React.Fragment>
-                        </div>
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__vIxez
-                        )}
-                      >
-                        <div
-                          className={projectcss.__wab_expr_html_text}
-                          dangerouslySetInnerHTML={{
-                            __html: (() => {
-                              try {
-                                return "اگر <b>سوالی</b>، <b>ابهامی</b> یا <b>انتقادی</b> داشتید، لطفاً روی دکمه <b>شروع گفتگو</b> کلیک کنید. ما آماده‌ایم تا به شما کمک کنیم!";
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return " \u0628\u0647 \u062f\u0644\u06cc\u0644 \u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0638\u0631\u0641\u06cc\u062a \u0641\u0639\u0644\u06cc\u060c \u0646\u0645\u0627\u06cc\u0647 \u0634\u0645\u0627 \u062f\u0631 \u0627\u0628\u062a\u062f\u0627 \u062f\u0631 \u0644\u06cc\u0633\u062a \u067e\u0632\u0634\u06a9\u0627\u0646 \u0645\u0648\u062c\u0648\u062f \u0628\u0631\u0627\u06cc \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u062f\u0631 \u0631\u062a\u0628\u0647 \u067e\u0627\u06cc\u06cc\u0646\u200c\u062a\u0631\u06cc \u0642\u0631\u0627\u0631 \u0645\u06cc\u200c\u06af\u06cc\u0631\u062f.";
-                                }
-                                throw e;
-                              }
-                            })()
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.freeBox__t7LFe)}
-                    >
-                      <Button
-                        children2={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__wbFgs
-                            )}
-                          >
-                            {
-                              "\u06af\u0641\u062a\u06af\u0648 \u062f\u0631 \u0627\u06cc\u062a\u0627"
-                            }
-                          </div>
-                        }
-                        className={classNames(
-                          "__wab_instance",
-                          sty.button___8Qu9G
-                        )}
-                        endIcon={
-                          <EitaaIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg___82QdX
-                            )}
-                            role={"img"}
-                          />
-                        }
-                        onClick={async event => {
-                          const $steps = {};
-
-                          $steps["sendEvent"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    (() => {
-                                      try {
-                                        return {
-                                          event_group: "activation-page",
-                                          data: {
-                                            userId: $ctx.query.userId,
-                                            pagePath: window.location.href
-                                          },
-                                          event_type: "click-call-support"
-                                        };
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                                  ]
-                                };
-                                return $globalActions["Splunk.sendLog"]?.apply(
-                                  null,
-                                  [...actionArgs.args]
-                                );
-                              })()
-                            : undefined;
-                          if (
-                            $steps["sendEvent"] != null &&
-                            typeof $steps["sendEvent"] === "object" &&
-                            typeof $steps["sendEvent"].then === "function"
-                          ) {
-                            $steps["sendEvent"] = await $steps["sendEvent"];
-                          }
-
-                          $steps["goToPage"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  destination: (() => {
-                                    try {
-                                      return "https://eitaa.com/sybigdeli";
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()
-                                };
-                                return (({ destination }) => {
-                                  if (
-                                    typeof destination === "string" &&
-                                    destination.startsWith("#")
-                                  ) {
-                                    document
-                                      .getElementById(destination.substr(1))
-                                      .scrollIntoView({ behavior: "smooth" });
-                                  } else {
-                                    __nextRouter?.push(destination);
-                                  }
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["goToPage"] != null &&
-                            typeof $steps["goToPage"] === "object" &&
-                            typeof $steps["goToPage"].then === "function"
-                          ) {
-                            $steps["goToPage"] = await $steps["goToPage"];
-                          }
-                        }}
-                        onLoad={async event => {
-                          const $steps = {};
-                        }}
-                        outline={true}
-                        showEndIcon={true}
-                      />
-
-                      <Button
-                        children2={
-                          "\u06af\u0641\u062a\u06af\u0648 \u062f\u0631 \u062a\u0644\u06af\u0631\u0627\u0645"
-                        }
-                        className={classNames(
-                          "__wab_instance",
-                          sty.button__n1GX3
-                        )}
-                        endIcon={
-                          <TelegramIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__lmXhH
-                            )}
-                            role={"img"}
-                          />
-                        }
-                        onClick={async event => {
-                          const $steps = {};
-
-                          $steps["sendEvent"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    (() => {
-                                      try {
-                                        return {
-                                          event_group: "activation-page",
-                                          data: {
-                                            userId: $ctx.query.userId,
-                                            pagePath: window.location.href
-                                          },
-                                          event_type: "click-call-support"
-                                        };
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                                  ]
-                                };
-                                return $globalActions["Splunk.sendLog"]?.apply(
-                                  null,
-                                  [...actionArgs.args]
-                                );
-                              })()
-                            : undefined;
-                          if (
-                            $steps["sendEvent"] != null &&
-                            typeof $steps["sendEvent"] === "object" &&
-                            typeof $steps["sendEvent"].then === "function"
-                          ) {
-                            $steps["sendEvent"] = await $steps["sendEvent"];
-                          }
-
-                          $steps["goToPage"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  destination: (() => {
-                                    try {
-                                      return "https://t.me/sybigdeli";
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()
-                                };
-                                return (({ destination }) => {
-                                  if (
-                                    typeof destination === "string" &&
-                                    destination.startsWith("#")
-                                  ) {
-                                    document
-                                      .getElementById(destination.substr(1))
-                                      .scrollIntoView({ behavior: "smooth" });
-                                  } else {
-                                    __nextRouter?.push(destination);
-                                  }
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["goToPage"] != null &&
-                            typeof $steps["goToPage"] === "object" &&
-                            typeof $steps["goToPage"].then === "function"
-                          ) {
-                            $steps["goToPage"] = await $steps["goToPage"];
-                          }
-                        }}
-                        onLoad={async event => {
-                          const $steps = {};
-                        }}
-                        outline={true}
-                        showEndIcon={true}
-                      />
-                    </Stack__>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___1FXwe
-                      )}
-                    >
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__m5EPg
-                        )}
-                      >
-                        <Icon28Icon
-                          className={classNames(projectcss.all, sty.svg__aHmpq)}
-                          role={"img"}
-                        />
-
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__ciUwk
-                          )}
-                        >
-                          <React.Fragment>
-                            <React.Fragment>{""}</React.Fragment>
-                            {
-                              <h6
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.h6,
-                                  projectcss.__wab_text,
-                                  sty.h6__juQd
-                                )}
-                              >
-                                <React.Fragment>
-                                  {(() => {
-                                    try {
-                                      return $ctx.query.office == "true"
-                                        ? "از چه زمانی مطب من فعال می شود؟ "
-                                        : "از چه زمانی ویزیت آنلاین من فعال می شود؟ ";
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646";
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                </React.Fragment>
-                              </h6>
-                            }
-                            <React.Fragment>{""}</React.Fragment>
-                          </React.Fragment>
-                        </div>
-                      </Stack__>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text___0Up
-                        )}
-                      >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return $ctx.query.office == "true"
-                                ? "اطلاعات شما ثبت شده و مطب شما تا ساعاتی دیگر فعال می‌شود. بیماران می‌توانند مستقیماً از طریق پروفایل شما نوبت رزرو کنند."
-                                : "اطلاعات شما با موفقیت ثبت شده و ویزیت آنلاین شما تا ساعاتی دیگر فعال خواهد شد. از این پس، بیماران می‌توانند مستقیماً از طریق پروفایل شما نوبت ویزیت آنلاین رزرو کنند.";
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0634\u0645\u0627 \u062b\u0628\u062a \u0634\u062f \u0648 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0634\u0645\u0627 \u062a\u0627 \u0633\u0627\u0639\u0627\u062a\u06cc \u062f\u06cc\u06af\u0631 \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u0646\u062f \u0645\u0633\u062a\u0642\u06cc\u0645\u0627\u064b \u0627\u0632 \u0637\u0631\u06cc\u0642 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u06a9\u0646\u0646\u062f.";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
-                      </div>
-                    </div>
-                    {(() => {
-                      try {
-                        return $ctx.query.office === "false";
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
-                        }
-                        throw e;
-                      }
-                    })() ? (
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__hgw9Z
-                        )}
-                      >
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox___9MDj
-                          )}
-                        >
-                          <Icon28Icon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__hG6Mu
-                            )}
-                            role={"img"}
-                          />
-
-                          <h6
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h6,
-                              projectcss.__wab_text,
-                              sty.h6__vl1OK
-                            )}
-                          >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return "از کجا بفهمم که کسی ، نوبت ویزیت آنلاین گرفته؟";
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646";
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </h6>
-                        </Stack__>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__gBxSh
-                          )}
-                        >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return "پس از ثبت نوبت، پیامکی شامل اطلاعات بیمار و زمان نوبت برای شما ارسال میگردد.";
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0634\u0645\u0627 \u062b\u0628\u062a \u0634\u062f \u0648 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0634\u0645\u0627 \u062a\u0627 \u0633\u0627\u0639\u0627\u062a\u06cc \u062f\u06cc\u06af\u0631 \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u0646\u062f \u0645\u0633\u062a\u0642\u06cc\u0645\u0627\u064b \u0627\u0632 \u0637\u0631\u06cc\u0642 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u06a9\u0646\u0646\u062f.";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
-                        </div>
-                      </div>
-                    ) : null}
-                    {(() => {
-                      try {
-                        return $ctx.query.office === "false";
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
-                        }
-                        throw e;
-                      }
-                    })() ? (
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__lMllX
-                        )}
-                      >
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox___915PP
-                          )}
-                        >
-                          <Icon28Icon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__rtEw7
-                            )}
-                            role={"img"}
-                          />
-
-                          <h6
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h6,
-                              projectcss.__wab_text,
-                              sty.h6___3YYPb
-                            )}
-                          >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return "اگر بیمار در زمان ویزیت آنلاین حاضر نشد، چه کاری انجام دهم؟";
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646";
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </h6>
-                        </Stack__>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text___8Ycgx
-                          )}
-                        >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return "شما می توانید از طریق پیام رسان و شماره ی بیمار با او ارتباط بگیرید و ویزیت را آغاز کنید.";
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0634\u0645\u0627 \u062b\u0628\u062a \u0634\u062f \u0648 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0634\u0645\u0627 \u062a\u0627 \u0633\u0627\u0639\u0627\u062a\u06cc \u062f\u06cc\u06af\u0631 \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u0646\u062f \u0645\u0633\u062a\u0642\u06cc\u0645\u0627\u064b \u0627\u0632 \u0637\u0631\u06cc\u0642 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u06a9\u0646\u0646\u062f.";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
-                        </div>
-                      </div>
-                    ) : null}
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__o1S1V)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__s9BTv
-                        )}
-                      >
-                        <Icon28Icon
-                          className={classNames(projectcss.all, sty.svg__vP3Zb)}
-                          role={"img"}
-                        />
-
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__pdxuw
-                          )}
-                        >
-                          <React.Fragment>
-                            <React.Fragment>{""}</React.Fragment>
-                            {
-                              <h6
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.h6,
-                                  projectcss.__wab_text,
-                                  sty.h6__hyqm1
-                                )}
-                              >
-                                {
-                                  "\u0686\u06af\u0648\u0646\u0647 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646 \u0631\u062a\u0628\u0647 \u062e\u0648\u062f \u0631\u0627 \u062f\u0631 \u067e\u0630\u06cc\u0631\u0634 \u06f2\u06f4 \u0627\u0641\u0632\u0627\u06cc\u0634 \u062f\u0627\u062f\u061f"
-                                }
-                              </h6>
-                            }
-                            <React.Fragment>{""}</React.Fragment>
-                          </React.Fragment>
-                        </div>
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__oi49J
-                        )}
-                      >
-                        <div
-                          className={projectcss.__wab_expr_html_text}
-                          dangerouslySetInnerHTML={{
-                            __html: (() => {
-                              try {
-                                return "برای دریافت راهنمایی بیشتر درباره افزایش رتبه، می‌توانید به بخش <b>عملکرد من</b> در پنل کاربری خود مراجعه کنید.";
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return '\u0628\u0631\u0627\u06cc \u062f\u0631\u06cc\u0627\u0641\u062a \u0631\u0627\u0647\u0646\u0645\u0627\u06cc\u06cc \u0628\u06cc\u0634\u062a\u0631 \u062f\u0631\u0628\u0627\u0631\u0647 \u0627\u0641\u0632\u0627\u06cc\u0634 \u0631\u062a\u0628\u0647\u060c \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u0628\u0647 \u0628\u062e\u0634 **"\u0639\u0645\u0644\u06a9\u0631\u062f \u0645\u0646"** \u062f\u0631 \u067e\u0646\u0644 \u06a9\u0627\u0631\u0628\u0631\u06cc \u062e\u0648\u062f \u0645\u0631\u0627\u062c\u0639\u0647 \u06a9\u0646\u06cc\u062f.';
-                                }
-                                throw e;
-                              }
-                            })()
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__njLr)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__dg7Vm
-                        )}
-                      >
-                        <Icon28Icon
-                          className={classNames(projectcss.all, sty.svg__fk9Cd)}
-                          role={"img"}
-                        />
-
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text___3LYcg
-                          )}
-                        >
-                          <React.Fragment>
-                            <React.Fragment>{""}</React.Fragment>
-                            {
-                              <h6
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.h6,
-                                  projectcss.__wab_text,
-                                  sty.h6___76K0I
-                                )}
-                              >
-                                <React.Fragment>
-                                  {(() => {
-                                    try {
-                                      return $ctx.query.office == "true"
-                                        ? "اگر در ساعت کاری شرایط نوبت دهی به بیمار را نداشتم ، چه کار کنم؟"
-                                        : "اگر در ساعت کاری شرایط پاسخگویی به بیمار را نداشتم ، چه کار کنم؟";
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return "\u0627\u06af\u0631 \u062f\u0631 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u0634\u0631\u0627\u06cc\u0637 \u067e\u0627\u0633\u062e\u06af\u0648\u06cc\u06cc \u0628\u0647 \u0628\u06cc\u0645\u0627\u0631 \u0631\u0627 \u0646\u062f\u0627\u0634\u062a\u0645 \u060c \u0686\u0647 \u06a9\u0627\u0631 \u06a9\u0646\u0645\u061f";
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                </React.Fragment>
-                              </h6>
-                            }
-                            <React.Fragment>{""}</React.Fragment>
-                          </React.Fragment>
-                        </div>
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__ax3E0
-                        )}
-                      >
-                        <div
-                          className={projectcss.__wab_expr_html_text}
-                          dangerouslySetInnerHTML={{
-                            __html: (() => {
-                              try {
-                                return $ctx.query.office == "true"
-                                  ? "در صورتی که در ساعت کاری تعریف شده ، شرایط نوبت دهی به بیمار را نداشتید ، می توانید از داخل پنل اقدام به ثبت مرخصی کنید.."
-                                  : "در صورتی که در ساعت کاری تعریف شده ، شرایط پاسخگویی به بیمار را نداشتید ، می توانید از داخل پنل اقدام به غیر فعالسازی نوبت دهی کنید.";
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return '\u0628\u0631\u0627\u06cc \u062f\u0631\u06cc\u0627\u0641\u062a \u0631\u0627\u0647\u0646\u0645\u0627\u06cc\u06cc \u0628\u06cc\u0634\u062a\u0631 \u062f\u0631\u0628\u0627\u0631\u0647 \u0627\u0641\u0632\u0627\u06cc\u0634 \u0631\u062a\u0628\u0647\u060c \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u0628\u0647 \u0628\u062e\u0634 **"\u0639\u0645\u0644\u06a9\u0631\u062f \u0645\u0646"** \u062f\u0631 \u067e\u0646\u0644 \u06a9\u0627\u0631\u0628\u0631\u06cc \u062e\u0648\u062f \u0645\u0631\u0627\u062c\u0639\u0647 \u06a9\u0646\u06cc\u062f.';
-                                }
-                                throw e;
-                              }
-                            })()
-                          }}
-                        />
-                      </div>
-                    </div>
-                    {(() => {
-                      try {
-                        return $ctx.query.office === "false";
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return true;
-                        }
-                        throw e;
-                      }
-                    })() ? (
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox___5DX5Y
-                        )}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__ng7CS
-                          )}
-                        >
-                          <Icon28Icon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__luZlz
-                            )}
-                            role={"img"}
-                          />
-
-                          <h6
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.h6,
-                              projectcss.__wab_text,
-                              sty.h6__nGrIt
-                            )}
-                          >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return "درآمد هر ویزیت چه زمانی برای من واریز میشه؟";
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646";
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </h6>
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__sO3M
-                          )}
-                        >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return "پس از پایان هر ویزیت، هزینه آن ویزیت در بامداد روز بعد به موجودی حساب کاربری شما اضافه خواهد شد.";
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0634\u0645\u0627 \u062b\u0628\u062a \u0634\u062f \u0648 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0634\u0645\u0627 \u062a\u0627 \u0633\u0627\u0639\u0627\u062a\u06cc \u062f\u06cc\u06af\u0631 \u0641\u0639\u0627\u0644 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u0646\u062f \u0645\u0633\u062a\u0642\u06cc\u0645\u0627\u064b \u0627\u0632 \u0637\u0631\u06cc\u0642 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0631\u0632\u0631\u0648 \u06a9\u0646\u0646\u062f.";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
-                        </div>
-                      </div>
-                    ) : null}
-                    <div
-                      className={classNames(projectcss.all, sty.freeBox__fMwvv)}
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__rGtj
-                        )}
-                      >
-                        <Icon28Icon
-                          className={classNames(projectcss.all, sty.svg__y1Xpi)}
-                          role={"img"}
-                        />
-
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__zfOtv
-                          )}
-                        >
-                          <React.Fragment>
-                            <React.Fragment>{""}</React.Fragment>
-                            {
-                              <h6
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.h6,
-                                  projectcss.__wab_text,
-                                  sty.h6___7VfVm
-                                )}
-                              >
-                                {
-                                  "\u0622\u06cc\u0627 \u067e\u0630\u06cc\u0631\u0634 \u06f2\u06f4 \u0627\u0645\u06a9\u0627\u0646 \u062a\u0628\u0644\u06cc\u063a\u0627\u062a \u0631\u0627 \u0641\u0631\u0627\u0647\u0645 \u0645\u06cc\u200c\u06a9\u0646\u062f\u061f"
-                                }
-                              </h6>
-                            }
-                            <React.Fragment>{""}</React.Fragment>
-                          </React.Fragment>
-                        </div>
-                      </div>
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text___84In
-                        )}
-                      >
-                        <div
-                          className={projectcss.__wab_expr_html_text}
-                          dangerouslySetInnerHTML={{
-                            __html: (() => {
-                              try {
-                                return "امکانی برای انجام تبلیغات در پذیرش۲۴ وجود ندارد اما برای افزایش تعداد نوبت می توانید به بخش <b>عملکرد من</b> داخل پنل کاربری خود مراجعه کنید.";
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "\u0627\u0645\u06a9\u0627\u0646\u06cc \u0628\u0631\u0627\u06cc \u0627\u0646\u062c\u0627\u0645 \u062a\u0628\u0644\u06cc\u063a\u0627\u062a \u062f\u0631 \u067e\u0630\u06cc\u0631\u0634\u06f2\u06f4 \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f \u0627\u0645\u0627 \u0645\u0627 \u0628\u0647 \u0634\u0645\u0627 \u06a9\u0645\u06a9 \u0645\u06cc\u06a9\u0646\u06cc\u0645 \u062a\u0627 \u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u0628\u06cc\u0634\u062a\u0631\u06cc \u062f\u0631\u06cc\u0627\u0641\u062a \u06a9\u0646\u06cc\u062f.";
-                                }
-                                throw e;
-                              }
-                            })()
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </Stack__>
-                }
-                className={classNames("__wab_instance", sty.dialog)}
-                onOpenChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, ["dialog", "open"]).apply(
-                    null,
-                    eventArgs
-                  );
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                open={generateStateValueProp($state, ["dialog", "open"])}
-                title={
+                <div className={classNames(projectcss.all, sty.freeBox__ljin6)}>
                   <div
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
-                      sty.text__pieEn
+                      sty.text__f5IbE
                     )}
                   >
-                    {
-                      "\u0631\u0627\u0647\u0646\u0645\u0627\u06cc \u06a9\u0627\u0631 \u0628\u0627 \u067e\u062f\u06cc\u0631\u0634 24"
-                    }
+                    <div
+                      className={projectcss.__wab_expr_html_text}
+                      dangerouslySetInnerHTML={{
+                        __html: (() => {
+                          try {
+                            return "اگر <b>سوالی</b>، <b>ابهامی</b> یا <b>انتقادی</b> داشتید، لطفاً روی دکمه <b>شروع گفتگو</b> کلیک کنید. ما آماده‌ایم تا به شما کمک کنیم!";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return " \u0628\u0647 \u062f\u0644\u06cc\u0644 \u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0638\u0631\u0641\u06cc\u062a \u0641\u0639\u0644\u06cc\u060c \u0646\u0645\u0627\u06cc\u0647 \u0634\u0645\u0627 \u062f\u0631 \u0627\u0628\u062a\u062f\u0627 \u062f\u0631 \u0644\u06cc\u0633\u062a \u067e\u0632\u0634\u06a9\u0627\u0646 \u0645\u0648\u062c\u0648\u062f \u0628\u0631\u0627\u06cc \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u062f\u0631 \u0631\u062a\u0628\u0647 \u067e\u0627\u06cc\u06cc\u0646\u200c\u062a\u0631\u06cc \u0642\u0631\u0627\u0631 \u0645\u06cc\u200c\u06af\u06cc\u0631\u062f.";
+                            }
+                            throw e;
+                          }
+                        })()
+                      }}
+                    />
                   </div>
-                }
-                trigger={
+                </div>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__tYnz9)}
+                >
                   <Button
                     children2={
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__k804G
-                        )}
-                      >
-                        {
-                          "\u0631\u0627\u0647\u0646\u0645\u0627\u06cc \u06a9\u0627\u0631 \u0628\u0627 \u067e\u0630\u06cc\u0631\u0634 24"
-                        }
-                      </div>
+                      "\u06af\u0641\u062a\u06af\u0648 \u062f\u0631 \u062a\u0644\u06af\u0631\u0627\u0645"
                     }
-                    className={classNames("__wab_instance", sty.button__zqRvf)}
+                    className={classNames("__wab_instance", sty.button__tePf)}
                     endIcon={
-                      <ChevronLeftIcon
-                        className={classNames(projectcss.all, sty.svg___8X59)}
+                      <TelegramIcon
+                        className={classNames(projectcss.all, sty.svg__owBMt)}
                         role={"img"}
                       />
                     }
@@ -1428,7 +479,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                                         userId: $ctx.query.userId,
                                         pagePath: window.location.href
                                       },
-                                      event_type: "click-open-call-support"
+                                      event_type: "click-call-support"
                                     };
                                   } catch (e) {
                                     if (
@@ -1456,16 +507,164 @@ function PlasmicActivationFinish__RenderFunc(props: {
                       ) {
                         $steps["sendEvent"] = await $steps["sendEvent"];
                       }
+
+                      $steps["goToPage"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              destination: (() => {
+                                try {
+                                  return "https://t.me/paziresh24sp_bot";
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["goToPage"] != null &&
+                        typeof $steps["goToPage"] === "object" &&
+                        typeof $steps["goToPage"].then === "function"
+                      ) {
+                        $steps["goToPage"] = await $steps["goToPage"];
+                      }
                     }}
-                    startIcon={
-                      <ChevronRightIcon
-                        className={classNames(projectcss.all, sty.svg__epMw0)}
-                        role={"img"}
-                      />
-                    }
+                    onLoad={async event => {
+                      const $steps = {};
+                    }}
+                    outline={true}
+                    showEndIcon={true}
                   />
-                }
-              />
+                </Stack__>
+                <Button
+                  children2={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__ecJaB
+                      )}
+                    >
+                      {
+                        "\u06af\u0641\u062a\u06af\u0648 \u062f\u0631 \u0627\u06cc\u062a\u0627"
+                      }
+                    </div>
+                  }
+                  className={classNames("__wab_instance", sty.button__bhCmv)}
+                  endIcon={
+                    <EitaaIcon
+                      className={classNames(projectcss.all, sty.svg__evacE)}
+                      role={"img"}
+                    />
+                  }
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["sendEvent"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    event_group: "activation-page",
+                                    data: {
+                                      userId: $ctx.query.userId,
+                                      pagePath: window.location.href
+                                    },
+                                    event_type: "click-call-support"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendEvent"] != null &&
+                      typeof $steps["sendEvent"] === "object" &&
+                      typeof $steps["sendEvent"].then === "function"
+                    ) {
+                      $steps["sendEvent"] = await $steps["sendEvent"];
+                    }
+
+                    $steps["goToPage"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: (() => {
+                              try {
+                                return "https://eitaa.com/sybigdeli";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToPage"] != null &&
+                      typeof $steps["goToPage"] === "object" &&
+                      typeof $steps["goToPage"].then === "function"
+                    ) {
+                      $steps["goToPage"] = await $steps["goToPage"];
+                    }
+                  }}
+                  onLoad={async event => {
+                    const $steps = {};
+                  }}
+                  outline={true}
+                  showEndIcon={true}
+                />
+              </Stack__>
             </div>
           </div>
           <SideEffect
@@ -1575,10 +774,10 @@ function PlasmicActivationFinish__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "img", "dialog", "embedHtml"],
+  root: ["root", "header", "h6", "img", "embedHtml"],
   header: ["header"],
+  h6: ["h6"],
   img: ["img"],
-  dialog: ["dialog"],
   embedHtml: ["embedHtml"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -1587,8 +786,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   header: "div";
+  h6: "h6";
   img: typeof PlasmicImg__;
-  dialog: typeof Dialog;
   embedHtml: typeof Embed;
 };
 
@@ -1653,8 +852,8 @@ export const PlasmicActivationFinish = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
+    h6: makeNodeComponent("h6"),
     img: makeNodeComponent("img"),
-    dialog: makeNodeComponent("dialog"),
     embedHtml: makeNodeComponent("embedHtml"),
 
     // Metadata about props expected for PlasmicActivationFinish
