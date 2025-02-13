@@ -1082,7 +1082,7 @@ function PlasmicBookList__RenderFunc(props: {
                     (async data => {
                       const $steps = {};
 
-                      $steps["provider"] = true
+                      $steps["provider"] = false
                         ? (() => {
                             const actionArgs = {
                               args: [
@@ -1120,7 +1120,7 @@ function PlasmicBookList__RenderFunc(props: {
                         $steps["provider"] = await $steps["provider"];
                       }
 
-                      $steps["updateProvider"] = true
+                      $steps["updateProvider"] = false
                         ? (() => {
                             const actionArgs = {
                               variable: {
@@ -1158,51 +1158,26 @@ function PlasmicBookList__RenderFunc(props: {
 
                       $steps[
                         "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
-                      ] =
-                        !$state.apiAllCenters.data.data.some(
-                          center => center.id === "5532"
-                        ) &&
-                        !$state.apiAllCenters.data.data.some(
-                          center =>
-                            center.id !== "5532" &&
-                            center.type_id === 1 &&
-                            center.is_active_booking === true
-                        ) &&
-                        !$state.apiAllCenters.data.data.some(
-                          center =>
-                            center.id !== "5532" &&
-                            center.type_id === 3 &&
-                            center.is_active_booking === true
-                        ) &&
-                        !$state.apiAllCenters.data.data.some(
-                          center =>
-                            center.id !== "5532" &&
-                            center.type_id === 2 &&
-                            center.is_active_booking === true
-                        ) &&
-                        $state.provider.providers.length > 0 &&
-                        $state.provider.providers[0].job_title === "doctor" &&
-                        !$state.provider.providers[0].slug.includes("منشی") &&
-                        $state.provider.providers[0].user_id !== 11868
-                          ? (() => {
-                              const actionArgs = {
-                                destination:
-                                  "https://opium-dashboard.paziresh24.com/activation-page/"
-                              };
-                              return (({ destination }) => {
-                                if (
-                                  typeof destination === "string" &&
-                                  destination.startsWith("#")
-                                ) {
-                                  document
-                                    .getElementById(destination.substr(1))
-                                    .scrollIntoView({ behavior: "smooth" });
-                                } else {
-                                  __nextRouter?.push(destination);
-                                }
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
+                      ] = false
+                        ? (() => {
+                            const actionArgs = {
+                              destination:
+                                "https://opium-dashboard.paziresh24.com/activation-page/"
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
                       if (
                         $steps[
                           "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
