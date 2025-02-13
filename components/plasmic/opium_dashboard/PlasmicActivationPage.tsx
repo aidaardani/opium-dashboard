@@ -359,7 +359,7 @@ function PlasmicActivationPage__RenderFunc(props: {
                                 pagePath: window.location.href,
                                 selectedServices: $state.selectedServices
                               },
-                              event_type: "load-page-step1"
+                              event_type: "load-page-step1-se"
                             };
                           } catch (e) {
                             if (
