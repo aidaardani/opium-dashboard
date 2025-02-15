@@ -4486,6 +4486,45 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                 "updateChangeadreesDialogOpen"
               ];
             }
+
+            $steps["sendEvent"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            event_group: "activation-page",
+                            data: {
+                              userID: $ctx.query.userId,
+                              pagePath: window.location.href
+                            },
+                            event_type: "click-open-address-dialog"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Splunk.sendLog"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["sendEvent"] != null &&
+              typeof $steps["sendEvent"] === "object" &&
+              typeof $steps["sendEvent"].then === "function"
+            ) {
+              $steps["sendEvent"] = await $steps["sendEvent"];
+            }
           }}
         >
           <Icon26Icon
