@@ -916,22 +916,18 @@ function PlasmicPatientList__RenderFunc(props: {
                     ? (() => {
                         const actionArgs = {
                           args: [
-                            undefined,
+                            "POST",
                             "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/allbooks",
+                            undefined,
                             (() => {
                               try {
                                 return {
                                   centers:
                                     $props.selectedCenter == "all"
-                                      ? $props.centers
-                                          .filter(
-                                            center => center.is_active_booking
-                                          )
-                                          .map(center => ({
-                                            id: center.id,
-                                            user_center_id:
-                                              center.user_center_id
-                                          }))
+                                      ? $props.centers.map(center => ({
+                                          id: center.id,
+                                          user_center_id: center.user_center_id
+                                        }))
                                       : [
                                           {
                                             id: $props.selectedCenter,
@@ -949,8 +945,7 @@ function PlasmicPatientList__RenderFunc(props: {
                                 }
                                 throw e;
                               }
-                            })(),
-                            undefined
+                            })()
                           ]
                         };
                         return $globalActions["Fragment.apiRequest"]?.apply(

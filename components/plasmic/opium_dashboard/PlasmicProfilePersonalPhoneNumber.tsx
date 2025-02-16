@@ -94,8 +94,10 @@ export type PlasmicProfilePersonalPhoneNumber__OverridesType = {
   root?: Flex__<"div">;
   input?: Flex__<typeof Input>;
   dialog?: Flex__<typeof Dialog>;
-  newPhoneNumber?: Flex__<typeof Input>;
+  text?: Flex__<"div">;
   otpCode?: Flex__<typeof Input>;
+  input2?: Flex__<typeof Input>;
+  otpInput?: Flex__<typeof Input>;
 };
 
 export interface DefaultProfilePersonalPhoneNumberProps {
@@ -171,12 +173,6 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "newPhoneNumber.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
-      {
         path: "step",
         type: "private",
         variableType: "text",
@@ -189,10 +185,79 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
       },
       {
-        path: "sendCodeApiState",
+        path: "input2.value",
         type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $state.mobile;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "mobile",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $props.phoneNumber;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "otp",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "isSendOtp",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "otpInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $state.otp;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "isLoading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -246,7 +311,9 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
         />
 
         <Button
-          children2={"\u0648\u06cc\u0631\u0627\u06cc\u0634"}
+          children2={
+            "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644"
+          }
           className={classNames("__wab_instance", sty.button__excDn)}
           color={"text"}
           onClick={async event => {
@@ -294,82 +361,6 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox__giATp)}
           >
-            <Input
-              data-plasmic-name={"newPhoneNumber"}
-              data-plasmic-override={overrides.newPhoneNumber}
-              className={classNames("__wab_instance", sty.newPhoneNumber)}
-              disabled={(() => {
-                try {
-                  return $state.step === "OTP_CODE";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-              onChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "newPhoneNumber",
-                  "value"
-                ]).apply(null, eventArgs);
-
-                (async value => {
-                  const $steps = {};
-
-                  $steps["updateNewPhoneNumberValue"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["newPhoneNumber", "value"]
-                          },
-                          operation: 0,
-                          value: (() => {
-                            return value.replace(/[^0-9]/g, "");
-                          })()
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateNewPhoneNumberValue"] != null &&
-                    typeof $steps["updateNewPhoneNumberValue"] === "object" &&
-                    typeof $steps["updateNewPhoneNumberValue"].then ===
-                      "function"
-                  ) {
-                    $steps["updateNewPhoneNumberValue"] = await $steps[
-                      "updateNewPhoneNumberValue"
-                    ];
-                  }
-                }).apply(null, eventArgs);
-              }}
-              placeholder={
-                "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u062c\u062f\u06cc\u062f"
-              }
-              type={"text"}
-              value={generateStateValueProp($state, [
-                "newPhoneNumber",
-                "value"
-              ])}
-            />
-
             {(() => {
               try {
                 return $state.step === "OTP_CODE";
@@ -389,10 +380,12 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                 className={classNames(projectcss.all, sty.freeBox___5FKBx)}
               >
                 <div
+                  data-plasmic-name={"text"}
+                  data-plasmic-override={overrides.text}
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text__muFtv
+                    sty.text
                   )}
                 >
                   {
@@ -457,21 +450,161 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                 />
               </Stack__>
             ) : null}
-            <Button
-              children2={
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___4Fo8M
-                  )}
-                >
+            <Input
+              data-plasmic-name={"input2"}
+              data-plasmic-override={overrides.input2}
+              className={classNames("__wab_instance", sty.input2)}
+              disabled={(() => {
+                try {
+                  return $state.isSendOtp;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })()}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["input2", "value"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                (async value => {
+                  const $steps = {};
+
+                  $steps["updateMobile"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["mobile"]
+                          },
+                          operation: 0,
+                          value: $state.input2.value
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateMobile"] != null &&
+                    typeof $steps["updateMobile"] === "object" &&
+                    typeof $steps["updateMobile"].then === "function"
+                  ) {
+                    $steps["updateMobile"] = await $steps["updateMobile"];
+                  }
+                }).apply(null, eventArgs);
+              }}
+              placeholder={
+                "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u062c\u062f\u06cc\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"
+              }
+              type={"text"}
+              value={generateStateValueProp($state, ["input2", "value"])}
+            />
+
+            {(() => {
+              try {
+                return $state.isSendOtp;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <Input
+                data-plasmic-name={"otpInput"}
+                data-plasmic-override={overrides.otpInput}
+                className={classNames("__wab_instance", sty.otpInput)}
+                onChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "otpInput",
+                    "value"
+                  ]).apply(null, eventArgs);
+
+                  (async value => {
+                    const $steps = {};
+
+                    $steps["updateOtpState"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["otp"]
+                            },
+                            operation: 0,
+                            value: $state.otpInput.value
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateOtpState"] != null &&
+                      typeof $steps["updateOtpState"] === "object" &&
+                      typeof $steps["updateOtpState"].then === "function"
+                    ) {
+                      $steps["updateOtpState"] = await $steps["updateOtpState"];
+                    }
+                  }).apply(null, eventArgs);
+                }}
+                placeholder={
+                  "\u06a9\u062f \u062a\u0627\u06cc\u06cc\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"
+                }
+                type={"text"}
+                value={generateStateValueProp($state, ["otpInput", "value"])}
+              />
+            ) : null}
+            {(() => {
+              try {
+                return $state.isSendOtp === false;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <Button
+                children2={
                   <React.Fragment>
                     {(() => {
                       try {
-                        return $state.step === "PHONE_NUMBER"
-                          ? "ارسال کد تایید"
-                          : "ویرایش شماره موبایل";
+                        return "ارسال کد تایید";
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -483,139 +616,72 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                       }
                     })()}
                   </React.Fragment>
-                </div>
-              }
-              className={classNames("__wab_instance", sty.button__ytoLr)}
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["sendCodeApi"] = (() => {
-                  const regex = /^09\d{9}/;
-                  return (
-                    regex.test($state.newPhoneNumber.value) &&
-                    $state.step === "PHONE_NUMBER"
-                  );
-                })()
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "POST",
-                          "https://api.paziresh24.com/V1/doctor/profile/change-mobile-otp",
-                          undefined,
-                          (() => {
-                            try {
-                              return (() => {
-                                return {
-                                  username: $state.newPhoneNumber.value
-                                };
-                              })();
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
-                if (
-                  $steps["sendCodeApi"] != null &&
-                  typeof $steps["sendCodeApi"] === "object" &&
-                  typeof $steps["sendCodeApi"].then === "function"
-                ) {
-                  $steps["sendCodeApi"] = await $steps["sendCodeApi"];
                 }
+                className={classNames("__wab_instance", sty.button__pvJb)}
+                isDisabled={(() => {
+                  try {
+                    return $state.isLoading;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
+                loading={(() => {
+                  try {
+                    return $state.isLoading;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
+                onClick={async event => {
+                  const $steps = {};
 
-                $steps["updateSendCodeApiState"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["sendCodeApiState"]
-                        },
-                        operation: 0,
-                        value: $steps.sendCodeApi
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
+                  $steps["showValidationToast"] =
+                    $state.mobile.trim().length < 10 ||
+                    $state.mobile.trim().length > 12
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "error",
+                              "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u0645\u0639\u062a\u0628\u0631 \u0646\u0645\u06cc \u0628\u0627\u0634\u062f"
+                            ]
+                          };
+                          return $globalActions["Fragment.showToast"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                  if (
+                    $steps["showValidationToast"] != null &&
+                    typeof $steps["showValidationToast"] === "object" &&
+                    typeof $steps["showValidationToast"].then === "function"
+                  ) {
+                    $steps["showValidationToast"] = await $steps[
+                      "showValidationToast"
+                    ];
+                  }
 
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateSendCodeApiState"] != null &&
-                  typeof $steps["updateSendCodeApiState"] === "object" &&
-                  typeof $steps["updateSendCodeApiState"].then === "function"
-                ) {
-                  $steps["updateSendCodeApiState"] = await $steps[
-                    "updateSendCodeApiState"
-                  ];
-                }
-
-                $steps["updateDialogOpen"] =
-                  $steps.otpCodeApi.status == 200 && $state.step == "OTP_CODE"
+                  $steps["updateIsLoading"] = true
                     ? (() => {
                         const actionArgs = {
                           variable: {
                             objRoot: $state,
-                            variablePath: ["dialog", "open"]
-                          },
-                          operation: 4
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          const oldValue = $stateGet(objRoot, variablePath);
-                          $stateSet(objRoot, variablePath, !oldValue);
-                          return !oldValue;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                if (
-                  $steps["updateDialogOpen"] != null &&
-                  typeof $steps["updateDialogOpen"] === "object" &&
-                  typeof $steps["updateDialogOpen"].then === "function"
-                ) {
-                  $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
-                }
-
-                $steps["updateStep2"] =
-                  $steps.otpCodeApi.status == 200 && $state.step == "OTP_CODE"
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["step"]
+                            variablePath: ["isLoading"]
                           },
                           operation: 0,
-                          value: "PHONE_NUMBER"
+                          value: true
                         };
                         return (({
                           variable,
@@ -633,85 +699,112 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                         })?.apply(null, [actionArgs]);
                       })()
                     : undefined;
-                if (
-                  $steps["updateStep2"] != null &&
-                  typeof $steps["updateStep2"] === "object" &&
-                  typeof $steps["updateStep2"].then === "function"
-                ) {
-                  $steps["updateStep2"] = await $steps["updateStep2"];
-                }
+                  if (
+                    $steps["updateIsLoading"] != null &&
+                    typeof $steps["updateIsLoading"] === "object" &&
+                    typeof $steps["updateIsLoading"].then === "function"
+                  ) {
+                    $steps["updateIsLoading"] = await $steps["updateIsLoading"];
+                  }
 
-                $steps["showToast"] = (() => {
-                  const regex = /^09\d{9}/;
-                  return (
-                    !regex.test($state.newPhoneNumber.value) &&
-                    $state.step == "PHONE_NUMBER"
-                  );
-                })()
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "error",
-                          "\u0634\u0645\u0627\u0631\u0647 \u0648\u0627\u0631\u062f \u0634\u062f\u0647 \u0645\u0639\u062a\u0628\u0631 \u0646\u06cc\u0633\u062a."
-                        ]
-                      };
-                      return $globalActions["Fragment.showToast"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["showToast"] != null &&
-                  typeof $steps["showToast"] === "object" &&
-                  typeof $steps["showToast"].then === "function"
-                ) {
-                  $steps["showToast"] = await $steps["showToast"];
-                }
-
-                $steps["updateStep"] =
-                  $steps.sendCodeApi.status == 200
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["step"]
-                          },
-                          operation: 0,
-                          value: "OTP_CODE"
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                if (
-                  $steps["updateStep"] != null &&
-                  typeof $steps["updateStep"] === "object" &&
-                  typeof $steps["updateStep"].then === "function"
-                ) {
-                  $steps["updateStep"] = await $steps["updateStep"];
-                }
-
-                $steps["showToast2"] =
-                  $steps.sendCodeApi.status !== 200
+                  $steps["mobileApi"] = true
                     ? (() => {
                         const actionArgs = {
                           args: [
-                            "error",
+                            "POST",
+                            "https://api.paziresh24.com/V1/doctor/profile/change-mobile-otp",
+                            undefined,
                             (() => {
                               try {
-                                return $steps.sendCodeApi.message;
+                                return {
+                                  username: $state.mobile
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["mobileApi"] != null &&
+                    typeof $steps["mobileApi"] === "object" &&
+                    typeof $steps["mobileApi"].then === "function"
+                  ) {
+                    $steps["mobileApi"] = await $steps["mobileApi"];
+                  }
+
+                  $steps["updateIsLoading2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["isLoading"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateIsLoading2"] != null &&
+                    typeof $steps["updateIsLoading2"] === "object" &&
+                    typeof $steps["updateIsLoading2"].then === "function"
+                  ) {
+                    $steps["updateIsLoading2"] = await $steps[
+                      "updateIsLoading2"
+                    ];
+                  }
+
+                  $steps["showApiResultToast"] = !!$steps.mobileApi.data.message
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return $steps.mobileApi.data.status.includes(
+                                  "SUCCESS"
+                                )
+                                  ? "success"
+                                  : "error";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            (() => {
+                              try {
+                                return $steps.mobileApi.data.message;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -730,15 +823,310 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                         );
                       })()
                     : undefined;
+                  if (
+                    $steps["showApiResultToast"] != null &&
+                    typeof $steps["showApiResultToast"] === "object" &&
+                    typeof $steps["showApiResultToast"].then === "function"
+                  ) {
+                    $steps["showApiResultToast"] = await $steps[
+                      "showApiResultToast"
+                    ];
+                  }
+
+                  $steps["updateIsSendOtp"] =
+                    $steps.mobileApi.status === 200
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["isSendOtp"]
+                            },
+                            operation: 0,
+                            value: true
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps["updateIsSendOtp"] != null &&
+                    typeof $steps["updateIsSendOtp"] === "object" &&
+                    typeof $steps["updateIsSendOtp"].then === "function"
+                  ) {
+                    $steps["updateIsSendOtp"] = await $steps["updateIsSendOtp"];
+                  }
+                }}
+              />
+            ) : null}
+            {(() => {
+              try {
+                return $state.isSendOtp;
+              } catch (e) {
                 if (
-                  $steps["showToast2"] != null &&
-                  typeof $steps["showToast2"] === "object" &&
-                  typeof $steps["showToast2"].then === "function"
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
                 ) {
-                  $steps["showToast2"] = await $steps["showToast2"];
+                  return true;
                 }
-              }}
-            />
+                throw e;
+              }
+            })() ? (
+              <Button
+                children2={
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return "تایید شماره موبایل";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u0627\u0631\u0633\u0627\u0644 \u06a9\u062f \u062a\u0627\u06cc\u06cc\u062f";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                }
+                className={classNames("__wab_instance", sty.button__t9Aju)}
+                isDisabled={(() => {
+                  try {
+                    return $state.isLoading;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
+                loading={(() => {
+                  try {
+                    return $state.isLoading;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "loading";
+                    }
+                    throw e;
+                  }
+                })()}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateLoading"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["isLoading"]
+                          },
+                          operation: 0,
+                          value: true
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateLoading"] != null &&
+                    typeof $steps["updateLoading"] === "object" &&
+                    typeof $steps["updateLoading"].then === "function"
+                  ) {
+                    $steps["updateLoading"] = await $steps["updateLoading"];
+                  }
+
+                  $steps["otpApi"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "PUT",
+                            "https://api.paziresh24.com/V1/doctor/profile/change-mobile",
+                            undefined,
+                            (() => {
+                              try {
+                                return {
+                                  password: $state.otp,
+                                  username: $state.mobile
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["otpApi"] != null &&
+                    typeof $steps["otpApi"] === "object" &&
+                    typeof $steps["otpApi"].then === "function"
+                  ) {
+                    $steps["otpApi"] = await $steps["otpApi"];
+                  }
+
+                  $steps["showOtpResultToast"] = !!$steps.otpApi.data.message
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return $steps.otpApi.data.status.includes(
+                                  "SUCCESS"
+                                )
+                                  ? "success"
+                                  : "error";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            (() => {
+                              try {
+                                return $steps.otpApi.data.message;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["showOtpResultToast"] != null &&
+                    typeof $steps["showOtpResultToast"] === "object" &&
+                    typeof $steps["showOtpResultToast"].then === "function"
+                  ) {
+                    $steps["showOtpResultToast"] = await $steps[
+                      "showOtpResultToast"
+                    ];
+                  }
+
+                  $steps["closeDialog"] =
+                    $steps.otpApi.status === 200
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["dialog", "open"]
+                            },
+                            operation: 0,
+                            value: false
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps["closeDialog"] != null &&
+                    typeof $steps["closeDialog"] === "object" &&
+                    typeof $steps["closeDialog"].then === "function"
+                  ) {
+                    $steps["closeDialog"] = await $steps["closeDialog"];
+                  }
+
+                  $steps["update"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["isLoading"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["update"] != null &&
+                    typeof $steps["update"] === "object" &&
+                    typeof $steps["update"].then === "function"
+                  ) {
+                    $steps["update"] = await $steps["update"];
+                  }
+                }}
+              />
+            ) : null}
           </Stack__>
         }
         className={classNames("__wab_instance", sty.dialog)}
@@ -768,11 +1156,13 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "input", "dialog", "newPhoneNumber", "otpCode"],
+  root: ["root", "input", "dialog", "text", "otpCode", "input2", "otpInput"],
   input: ["input"],
-  dialog: ["dialog", "newPhoneNumber", "otpCode"],
-  newPhoneNumber: ["newPhoneNumber"],
-  otpCode: ["otpCode"]
+  dialog: ["dialog", "text", "otpCode", "input2", "otpInput"],
+  text: ["text"],
+  otpCode: ["otpCode"],
+  input2: ["input2"],
+  otpInput: ["otpInput"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -781,8 +1171,10 @@ type NodeDefaultElementType = {
   root: "div";
   input: typeof Input;
   dialog: typeof Dialog;
-  newPhoneNumber: typeof Input;
+  text: "div";
   otpCode: typeof Input;
+  input2: typeof Input;
+  otpInput: typeof Input;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -848,8 +1240,10 @@ export const PlasmicProfilePersonalPhoneNumber = Object.assign(
     // Helper components rendering sub-elements
     input: makeNodeComponent("input"),
     dialog: makeNodeComponent("dialog"),
-    newPhoneNumber: makeNodeComponent("newPhoneNumber"),
+    text: makeNodeComponent("text"),
     otpCode: makeNodeComponent("otpCode"),
+    input2: makeNodeComponent("input2"),
+    otpInput: makeNodeComponent("otpInput"),
 
     // Metadata about props expected for PlasmicProfilePersonalPhoneNumber
     internalVariantProps: PlasmicProfilePersonalPhoneNumber__VariantProps,

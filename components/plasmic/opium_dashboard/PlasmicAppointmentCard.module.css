@@ -58,11 +58,11 @@
   width: 52px;
   height: 52px;
   max-width: 100%;
-  background: #27bda00d;
+  background: var(--token-pi_amP1jS-3_);
   flex-shrink: 0;
   border-radius: var(--token-fhaz6q6bl-fW);
   padding: 8px;
-  border: 1px solid #27bda03d;
+  border: 2px solid var(--token-Z5g3UaQUYJKs);
 }
 .freeBoxonlineBorder__oZk8G5Rn5G {
   display: block;
@@ -94,9 +94,11 @@
 }
 .text__d7UBi {
   position: relative;
-  font-weight: 500;
+  font-weight: 600;
   font-size: var(--token-6NbVMeD6zQwn);
   align-self: flex-end;
+  color: var(--token-iWQmILTzm3N0);
+  text-align: center;
 }
 .textonlineBorder__d7UBi5Rn5G {
   position: relative;
@@ -167,7 +169,7 @@
 }
 .text__jdiI {
   font-size: var(--token-6NbVMeD6zQwn);
-  font-weight: 100;
+  font-weight: 400;
 }
 .svg__alC9Q {
   position: relative;
@@ -265,7 +267,7 @@
 }
 .text__uOFD {
   position: relative;
-  font-weight: 100;
+  font-weight: 500;
   width: 70px;
   font-size: 12px;
   color: #16a34a;
@@ -286,10 +288,10 @@
 }
 .text__ttc07 {
   position: relative;
-  font-weight: 100;
+  font-weight: 400;
   width: 160px;
   font-size: 12px;
-  color: #ff7875;
+  color: var(--token-CVFO6fzYsS1_);
 }
 .text__gAZjp {
   position: relative;
@@ -608,7 +610,7 @@
 }
 .text__aGdOv {
   font-size: var(--token-6NbVMeD6zQwn);
-  font-weight: 100;
+  font-weight: 500;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .text__aGdOv {
