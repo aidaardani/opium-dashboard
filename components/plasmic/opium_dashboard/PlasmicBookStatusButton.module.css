@@ -15,8 +15,17 @@
 .button:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
-  width: auto;
+  width: 120px;
   min-width: auto;
+  height: 40px;
+  flex-shrink: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .button:global(.__wab_instance) {
+    width: 120px;
+    height: 40px;
+    flex-shrink: 0;
+  }
 }
 .buttondeleted:global(.__wab_instance) {
   min-width: auto;

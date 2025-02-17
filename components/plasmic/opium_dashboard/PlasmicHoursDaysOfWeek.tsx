@@ -731,6 +731,32 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                   "\u0630\u062e\u06cc\u0631\u0647 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc"
                 }
                 className={classNames("__wab_instance", sty.button___8MTpg)}
+                isDisabled={(() => {
+                  try {
+                    return $state.loading;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
+                loading={(() => {
+                  try {
+                    return $state.loading;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
                 onClick={async event => {
                   const $steps = {};
 
@@ -756,6 +782,40 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     typeof $steps["runCode5"].then === "function"
                   ) {
                     $steps["runCode5"] = await $steps["runCode5"];
+                  }
+
+                  $steps["startLoading"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["loading"]
+                          },
+                          operation: 0,
+                          value: true
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["startLoading"] != null &&
+                    typeof $steps["startLoading"] === "object" &&
+                    typeof $steps["startLoading"].then === "function"
+                  ) {
+                    $steps["startLoading"] = await $steps["startLoading"];
                   }
 
                   $steps["saveWorkhours"] = $state.workhours.every(wh =>
@@ -816,6 +876,40 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     typeof $steps["saveWorkhours"].then === "function"
                   ) {
                     $steps["saveWorkhours"] = await $steps["saveWorkhours"];
+                  }
+
+                  $steps["endLoading"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["loading"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["endLoading"] != null &&
+                    typeof $steps["endLoading"] === "object" &&
+                    typeof $steps["endLoading"].then === "function"
+                  ) {
+                    $steps["endLoading"] = await $steps["endLoading"];
                   }
 
                   $steps["showToastSuccessful"] =

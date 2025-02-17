@@ -465,47 +465,120 @@ function PlasmicActivationOfficeEditCost__RenderFunc(props: {
         sty.root
       )}
     >
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__xlL5Z
-        )}
-      >
-        <React.Fragment>
-          <span
-            className={"plasmic_default__all plasmic_default__span"}
-            style={{ fontWeight: 700 }}
-          >
-            {"\u06a9\u0644"}
-          </span>
+      {(() => {
+        try {
+          return $state.apiGetPrefrence.data[0].status === true;
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return false;
+          }
+          throw e;
+        }
+      })() ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__xlL5Z
+          )}
+        >
           <React.Fragment>
-            {" \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a \u00a0"}
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {"\u06a9\u0644"}
+            </span>
+            <React.Fragment>
+              {" \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a \u00a0"}
+            </React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {
+                "\u0645\u062a\u0639\u0644\u0642 \u0628\u0647 \u067e\u0632\u0634\u06a9"
+              }
+            </span>
+            <React.Fragment>{" \u0627\u0633\u062a \u0648 "}</React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {
+                "\u0631\u0648\u0632\u0627\u0646\u0647 \u0628\u0647 \u0637\u0648\u0631 \u062e\u0648\u062f\u06a9\u0627\u0631"
+              }
+            </span>
+            <React.Fragment>
+              {
+                "\u00a0\u0628\u0647 \u062d\u0633\u0627\u0628 \u067e\u0632\u0634\u06a9 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f."
+              }
+            </React.Fragment>
           </React.Fragment>
-          <span
-            className={"plasmic_default__all plasmic_default__span"}
-            style={{ fontWeight: 700 }}
-          >
-            {
-              "\u0645\u062a\u0639\u0644\u0642 \u0628\u0647 \u067e\u0632\u0634\u06a9"
-            }
-          </span>
-          <React.Fragment>{" \u0627\u0633\u062a \u0648 "}</React.Fragment>
-          <span
-            className={"plasmic_default__all plasmic_default__span"}
-            style={{ fontWeight: 700 }}
-          >
-            {
-              "\u0631\u0648\u0632\u0627\u0646\u0647 \u0628\u0647 \u0637\u0648\u0631 \u062e\u0648\u062f\u06a9\u0627\u0631"
-            }
-          </span>
+        </div>
+      ) : null}
+      {(() => {
+        try {
+          return $state.apiGetPrefrence.data[0].status === false;
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return false;
+          }
+          throw e;
+        }
+      })() ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__tKchV
+          )}
+        >
           <React.Fragment>
-            {
-              "\u00a0\u0628\u0647 \u062d\u0633\u0627\u0628 \u067e\u0632\u0634\u06a9 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f."
-            }
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {"\u06a9\u0644"}
+            </span>
+            <React.Fragment>
+              {" \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a \u00a0"}
+            </React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {
+                "\u0645\u062a\u0639\u0644\u0642 \u0628\u0647 \u067e\u0632\u0634\u06a9"
+              }
+            </span>
+            <React.Fragment>
+              {
+                " \u0627\u0633\u062a \u0648 \u0647\u0631 \u0632\u0645\u0627\u0646 "
+              }
+            </React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {
+                "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062a\u0633\u0648\u06cc\u0647"
+              }
+            </span>
+            <React.Fragment>
+              {
+                " \u062e\u0648\u062f \u0631\u0627 \u062b\u0628\u062a \u06a9\u0646\u06cc\u062f\u060c \u0648\u062c\u0647 \u0628\u0647 \u062d\u0633\u0627\u0628 \u0634\u0645\u0627 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f."
+              }
+            </React.Fragment>
           </React.Fragment>
-        </React.Fragment>
-      </div>
+        </div>
+      ) : null}
       <ApiRequest
         data-plasmic-name={"apiGetPrefrence"}
         data-plasmic-override={overrides.apiGetPrefrence}
@@ -1718,47 +1791,67 @@ function PlasmicActivationOfficeEditCost__RenderFunc(props: {
                 ];
               }
 
-              $steps["goToPage"] = false
+              $steps["apiCancelOnlinePayment"] = true
                 ? (() => {
                     const actionArgs = {
-                      destination: (() => {
-                        try {
-                          return `/activation-page/office/duration?${
-                            $props.hasOnlineVisit ? "onlineVisit=true" : ""
-                          }${$props.hasOnlineVisit ? "&" : ""}userId=${
-                            $props.userId
-                          }`;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
+                      args: [
+                        "POST",
+                        "http://apigw.paziresh24.com/v1/n8n-nelson/webhook/deactive-payment",
+                        undefined,
+                        (() => {
+                          try {
+                            return {
+                              center_id: $state.centersApi.data.data.find(
+                                center =>
+                                  center.id !== "5532" && center.type_id === 1
+                              ).id
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
                           }
-                          throw e;
-                        }
-                      })()
+                        })()
+                      ]
                     };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
                   })()
                 : undefined;
               if (
-                $steps["goToPage"] != null &&
-                typeof $steps["goToPage"] === "object" &&
-                typeof $steps["goToPage"].then === "function"
+                $steps["apiCancelOnlinePayment"] != null &&
+                typeof $steps["apiCancelOnlinePayment"] === "object" &&
+                typeof $steps["apiCancelOnlinePayment"].then === "function"
               ) {
-                $steps["goToPage"] = await $steps["goToPage"];
+                $steps["apiCancelOnlinePayment"] = await $steps[
+                  "apiCancelOnlinePayment"
+                ];
+              }
+
+              $steps["showToast"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        undefined,
+                        "\u067e\u0631\u062f\u0627\u062e\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0628\u0631\u0627\u06cc \u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u0645\u0637\u0628 \u0634\u0645\u0627 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644 \u0634\u062f."
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["showToast"] != null &&
+                typeof $steps["showToast"] === "object" &&
+                typeof $steps["showToast"].then === "function"
+              ) {
+                $steps["showToast"] = await $steps["showToast"];
               }
             }}
           />

@@ -4432,7 +4432,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                           return {
                             event_group: "activation-page",
                             data: {
-                              error: $state.addressApi
+                              api: $state.addressApi,
+                              map: $state.map
                             },
                             event_type: "address-api-event"
                           };

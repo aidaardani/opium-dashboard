@@ -208,7 +208,7 @@ function PlasmicPatientPrivateData__RenderFunc(props: {
         <React.Fragment>
           {(() => {
             try {
-              return $props.label;
+              return $props.label + ":";
             } catch (e) {
               if (
                 e instanceof TypeError ||

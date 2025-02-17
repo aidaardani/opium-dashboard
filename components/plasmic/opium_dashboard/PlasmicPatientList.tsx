@@ -62,6 +62,8 @@ import {
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import AppointmentCard from "../../AppointmentCard"; // plasmic-import: 43GvxJ8wCSXI/component
 
+import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -100,7 +102,6 @@ export type PlasmicPatientList__OverridesType = {
   sideEffect?: Flex__<typeof SideEffect>;
   svg?: Flex__<"svg">;
   appointmentCard?: Flex__<typeof AppointmentCard>;
-  text?: Flex__<"div">;
 };
 
 export interface DefaultPatientListProps {
@@ -208,12 +209,18 @@ function PlasmicPatientList__RenderFunc(props: {
     $refs
   });
 
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantsfobTirRaixGf()
+  });
+
   return (
-    <div
+    <Stack__
+      as={"div"}
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
+      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -226,6 +233,102 @@ function PlasmicPatientList__RenderFunc(props: {
         sty.root
       )}
     >
+      {(
+        hasVariant(globalVariants, "screen", "mobileOnly")
+          ? true
+          : (() => {
+              try {
+                return (
+                  $state.allvisitorsdata.some(
+                    child => Object.keys(child).length > 0
+                  ) && $state.loading === false
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()
+      ) ? (
+        <Stack__
+          as={"div"}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.freeBox__u4Sgf)}
+        >
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__jRVg8
+            )}
+          >
+            {"\u0632\u0645\u0627\u0646 \u0648\u06cc\u0632\u06cc\u062a"}
+          </div>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__jj2IG
+            )}
+          >
+            {"\u0646\u0627\u0645 \u0628\u06cc\u0645\u0627\u0631"}
+          </div>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text___4R8I
+            )}
+          >
+            {"\u06a9\u062f \u0645\u0644\u06cc"}
+          </div>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__c5DTq
+            )}
+          >
+            {
+              "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644"
+            }
+          </div>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__klucH
+            )}
+          >
+            {"\u0646\u0648\u0639 \u0646\u0648\u0628\u062a"}
+          </div>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__xRNo0
+            )}
+          >
+            {"\u067e\u06cc\u0627\u0645 \u0631\u0633\u0627\u0646"}
+          </div>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__zsxrS
+            )}
+          >
+            {
+              "\u0648\u0636\u0639\u06cc\u062a \u067e\u0631\u062f\u0627\u062e\u062a"
+            }
+          </div>
+          <div className={classNames(projectcss.all, sty.freeBox___00Mod)} />
+        </Stack__>
+      ) : null}
       <SideEffect
         data-plasmic-name={"sideEffect"}
         data-plasmic-override={overrides.sideEffect}
@@ -1258,12 +1361,10 @@ function PlasmicPatientList__RenderFunc(props: {
             }
           })() ? (
             <div
-              data-plasmic-name={"text"}
-              data-plasmic-override={overrides.text}
               className={classNames(
                 projectcss.all,
                 projectcss.__wab_text,
-                sty.text
+                sty.text__eNjL3
               )}
             >
               {
@@ -1273,16 +1374,15 @@ function PlasmicPatientList__RenderFunc(props: {
           ) : null}
         </div>
       ) : null}
-    </div>
+    </Stack__>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "sideEffect", "svg", "appointmentCard", "text"],
+  root: ["root", "sideEffect", "svg", "appointmentCard"],
   sideEffect: ["sideEffect"],
   svg: ["svg"],
-  appointmentCard: ["appointmentCard"],
-  text: ["text"]
+  appointmentCard: ["appointmentCard"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1292,7 +1392,6 @@ type NodeDefaultElementType = {
   sideEffect: typeof SideEffect;
   svg: "svg";
   appointmentCard: typeof AppointmentCard;
-  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1358,7 +1457,6 @@ export const PlasmicPatientList = Object.assign(
     sideEffect: makeNodeComponent("sideEffect"),
     svg: makeNodeComponent("svg"),
     appointmentCard: makeNodeComponent("appointmentCard"),
-    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicPatientList
     internalVariantProps: PlasmicPatientList__VariantProps,

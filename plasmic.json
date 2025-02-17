@@ -2391,6 +2391,19 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationOfficeEditCost.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "DwD3jMCwWb7c",
+          "name": "Button",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicButton.tsx",
+          "importSpec": {
+            "modulePath": "Button.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicButton.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -2683,6 +2696,36 @@
           "id": "sZKHYviUIdem",
           "name": "Icons8Support64SvgIcon",
           "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icons8Support64Svg.tsx"
+        },
+        {
+          "id": "Sg5gte9RaiuV",
+          "name": "CircleIcon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Circle.tsx"
+        },
+        {
+          "id": "cEnI6Xs2nrZq",
+          "name": "ChevronDownIcon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__ChevronDown.tsx"
+        },
+        {
+          "id": "34xI-Ic1ILkE",
+          "name": "UserSvgIcon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__UserSvg.tsx"
+        },
+        {
+          "id": "p7f4tc2CRjFy",
+          "name": "TimeSvgIcon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__TimeSvg.tsx"
+        },
+        {
+          "id": "gQQbHyEZZZ3o",
+          "name": "UserInfoSvgIcon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__UserInfoSvg.tsx"
+        },
+        {
+          "id": "0uxseSsmSKEH",
+          "name": "CalenderSvgIcon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__CalenderSvg.tsx"
         }
       ],
       "images": [

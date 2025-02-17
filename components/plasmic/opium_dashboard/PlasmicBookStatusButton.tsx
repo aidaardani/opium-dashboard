@@ -364,9 +364,7 @@ function PlasmicBookStatusButton__RenderFunc(props: {
             ? undefined
             : hasVariant($state, "visited", "visited")
             ? undefined
-            : hasVariant($state, "came", "came")
-            ? true
-            : true
+            : undefined
         }
         size={"compact"}
         startIcon={

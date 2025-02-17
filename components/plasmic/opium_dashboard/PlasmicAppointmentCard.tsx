@@ -64,6 +64,7 @@ import PatientPrivateData from "../../PatientPrivateData"; // plasmic-import: 0z
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
 import SafeCall from "../../SafeCall"; // plasmic-import: m0lwAXhykBZV/component
+import Button2 from "../../Button"; // plasmic-import: DwD3jMCwWb7c/component
 import BookStatusButton from "../../BookStatusButton"; // plasmic-import: aW1julV8kikd/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -77,12 +78,18 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicAppointmentCard.module.css"; // plasmic-import: 43GvxJ8wCSXI/css
 
+import UserSvgIcon from "./icons/PlasmicIcon__UserSvg"; // plasmic-import: 34xI-Ic1ILkE/icon
+import TimeSvgIcon from "./icons/PlasmicIcon__TimeSvg"; // plasmic-import: p7f4tc2CRjFy/icon
 import EitaaIcon from "../fragment_icons/icons/PlasmicIcon__Eitaa"; // plasmic-import: qxWwW7vbw7na/icon
 import WhatsappIcon from "../fragment_icons/icons/PlasmicIcon__Whatsapp"; // plasmic-import: oob3UzcKBsd_/icon
+import UserInfoSvgIcon from "./icons/PlasmicIcon__UserInfoSvg"; // plasmic-import: gQQbHyEZZZ3o/icon
+import CalenderSvgIcon from "./icons/PlasmicIcon__CalenderSvg"; // plasmic-import: 0uxseSsmSKEH/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: euu18ryAtnAt/icon
 import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: BMYyZW6g83gg/icon
+import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: Sg5gte9RaiuV/icon
+import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cEnI6Xs2nrZq/icon
 
 import { v4 as __lib_uuid__v4 } from "uuid";
 
@@ -158,7 +165,6 @@ export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
 export type PlasmicAppointmentCard__OverridesType = {
   root?: Flex__<"div">;
   dialog?: Flex__<typeof Dialog>;
-  ساعتوتاریخ?: Flex__<"div">;
   bime?: Flex__<typeof PatientPrivateData>;
   cost2?: Flex__<typeof PatientPrivateData>;
   deletebookdialog?: Flex__<typeof Dialog>;
@@ -331,11 +337,13 @@ function PlasmicAppointmentCard__RenderFunc(props: {
   });
 
   return (
-    <div
+    <Stack__
+      as={"div"}
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
+      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -356,6 +364,988 @@ function PlasmicAppointmentCard__RenderFunc(props: {
       )}
       dir={"rtl"}
     >
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__e542H,
+          {
+            [sty.textonlineBorder__e542H5Rn5G]: hasVariant(
+              $state,
+              "onlineBorder",
+              "onlineBorder"
+            )
+          }
+        )}
+      >
+        <React.Fragment>
+          {(() => {
+            try {
+              return $props.time;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return "15:35";
+              }
+              throw e;
+            }
+          })()}
+        </React.Fragment>
+      </div>
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__sMwi1,
+          {
+            [sty.textonlineBorder__sMwi15Rn5G]: hasVariant(
+              $state,
+              "onlineBorder",
+              "onlineBorder"
+            )
+          }
+        )}
+      >
+        <React.Fragment>
+          {(() => {
+            try {
+              return $props.name;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+              }
+              throw e;
+            }
+          })()}
+        </React.Fragment>
+      </div>
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__aGdOv
+        )}
+      >
+        <React.Fragment>
+          {(() => {
+            try {
+              return $props.nationalcode;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return "09136020023";
+              }
+              throw e;
+            }
+          })()}
+        </React.Fragment>
+      </div>
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__s6Ouh
+        )}
+      >
+        <React.Fragment>
+          {(() => {
+            try {
+              return $props.cell;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return "09136020023";
+              }
+              throw e;
+            }
+          })()}
+        </React.Fragment>
+      </div>
+      {(
+        hasVariant(globalVariants, "screen", "mobileOnly")
+          ? false
+          : (() => {
+              try {
+                return $props.centerId === "5532";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()
+      ) ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__r7ZrR
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return "ویزیت آنلاین";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "09136020023";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+      ) : null}
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__njky0
+        )}
+      >
+        <React.Fragment>
+          {(() => {
+            try {
+              return (() => {
+                if ($props.onlineChannel === "whatsapp") {
+                  return "واتساپ";
+                } else if ($props.onlineChannel === "eitaa") {
+                  return "ایتا";
+                } else {
+                  return "ویزیت آنلاین";
+                }
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return "09136020023";
+              }
+              throw e;
+            }
+          })()}
+        </React.Fragment>
+      </div>
+      {(
+        hasVariant(globalVariants, "screen", "mobileOnly")
+          ? false
+          : (() => {
+              try {
+                return $props.paymentStatus === "پرداخت شده";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })()
+      ) ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__bh3Py,
+            {
+              [sty.textonlineBorder__bh3Py5Rn5G]: hasVariant(
+                $state,
+                "onlineBorder",
+                "onlineBorder"
+              )
+            }
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.paymentStatus;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+      ) : null}
+      {(
+        hasVariant(globalVariants, "screen", "mobileOnly")
+          ? true
+          : (() => {
+              try {
+                return $props.paymentStatus === "استرداد شده";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })()
+      ) ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__nIqph,
+            {
+              [sty.textonlineBorder__nIqph5Rn5G]: hasVariant(
+                $state,
+                "onlineBorder",
+                "onlineBorder"
+              )
+            }
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.paymentStatus;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+      ) : null}
+      {(
+        hasVariant(globalVariants, "screen", "mobileOnly")
+          ? true
+          : (() => {
+              try {
+                return $props.paymentStatus === "پرداخت نشده";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })()
+      ) ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__q3Vgc,
+            {
+              [sty.textonlineBorder__q3Vgc5Rn5G]: hasVariant(
+                $state,
+                "onlineBorder",
+                "onlineBorder"
+              )
+            }
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.paymentStatus;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+      ) : null}
+      {(
+        hasVariant(globalVariants, "screen", "mobileOnly")
+          ? true
+          : (() => {
+              try {
+                return $props.paymentStatus === "پرداخت برای نوبت غیرفعال است.";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })()
+      ) ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__fI72E,
+            {
+              [sty.textonlineBorder__fI72E5Rn5G]: hasVariant(
+                $state,
+                "onlineBorder",
+                "onlineBorder"
+              )
+            }
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return (
+                  $props.paymentStatus === "پرداخت برای نوبت غیرفعال است." &&
+                  "غیرفعال"
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+      ) : null}
+      {(
+        hasVariant(globalVariants, "screen", "mobileOnly")
+          ? true
+          : (() => {
+              try {
+                return $props.paymentStatus === "نسخه ـ بدون پرداخت";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })()
+      ) ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__z3UR,
+            {
+              [sty.textonlineBorder__z3UR5Rn5G]: hasVariant(
+                $state,
+                "onlineBorder",
+                "onlineBorder"
+              )
+            }
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.paymentStatus;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+      ) : null}
+      <div className={classNames(projectcss.all, sty.freeBox__d5Nij)}>
+        <div className={classNames(projectcss.all, sty.freeBox___7Os85)}>
+          <UserSvgIcon
+            className={classNames(projectcss.all, sty.svg__oEqht)}
+            role={"img"}
+          />
+
+          {(
+            hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
+          ) ? (
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__uypUq,
+                {
+                  [sty.textonlineBorder__uypUq5Rn5G]: hasVariant(
+                    $state,
+                    "onlineBorder",
+                    "onlineBorder"
+                  )
+                }
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return $props.name;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+          ) : null}
+        </div>
+        <Stack__
+          as={"div"}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.freeBox___9MLBi, {
+            [sty.freeBoxonlineBorder___9MLBi5Rn5G]: hasVariant(
+              $state,
+              "onlineBorder",
+              "onlineBorder"
+            )
+          })}
+        >
+          <TimeSvgIcon
+            className={classNames(projectcss.all, sty.svg__kSQH)}
+            role={"img"}
+          />
+
+          {(
+            hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
+          ) ? (
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__spiDa,
+                {
+                  [sty.textonlineBorder__spiDa5Rn5G]: hasVariant(
+                    $state,
+                    "onlineBorder",
+                    "onlineBorder"
+                  )
+                }
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return $props.time;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "15:35";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+          ) : null}
+        </Stack__>
+      </div>
+      <div className={classNames(projectcss.all, sty.freeBox__k1Ytc)}>
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__jeWLc
+          )}
+        >
+          {
+            "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644:"
+          }
+        </div>
+        {(hasVariant(globalVariants, "screen", "mobileOnly") ? true : false) ? (
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__e0SFd
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.cell;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "09136020023";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+        ) : null}
+      </div>
+      {(hasVariant(globalVariants, "screen", "mobileOnly") ? true : false) ? (
+        <div className={classNames(projectcss.all, sty.freeBox__dsw1G)}>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__g1Htr
+            )}
+          >
+            {"\u06a9\u062f \u0645\u0644\u06cc:"}
+          </div>
+          {(
+            hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
+          ) ? (
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__rntl1
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return $props.nationalcode;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "09136020023";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+      {(
+        hasVariant(globalVariants, "screen", "mobileOnly")
+          ? (() => {
+              try {
+                return (
+                  (!$props.onlineChannel ||
+                    $props.onlineChannel === undefined) &&
+                  $props.centerId === "5532"
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()
+          : false
+      ) ? (
+        <div className={classNames(projectcss.all, sty.freeBox___9IE3Z)}>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text___8GskM
+            )}
+          >
+            {"\u0646\u0648\u0639 \u0646\u0648\u0628\u062a:"}
+          </div>
+          {(
+            hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
+          ) ? (
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text___9Tmx7
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return "ویزیت آنلاین";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "09136020023";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+      {(
+        hasVariant(globalVariants, "screen", "mobileOnly")
+          ? (() => {
+              try {
+                return $props.centerId === "5532";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()
+          : false
+      ) ? (
+        <div className={classNames(projectcss.all, sty.freeBox__oaKqB)}>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__eTltx
+            )}
+          >
+            {"\u067e\u06cc\u0627\u0645 \u0631\u0633\u0627\u0646:"}
+          </div>
+          {(
+            hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
+          ) ? (
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__vdzg
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return (() => {
+                      if ($props.onlineChannel === "whatsapp") {
+                        return "واتساپ";
+                      } else if ($props.onlineChannel === "eitaa") {
+                        return "ایتا";
+                      } else {
+                        return "";
+                      }
+                    })();
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "09136020023";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+      {(hasVariant(globalVariants, "screen", "mobileOnly") ? true : false) ? (
+        <div className={classNames(projectcss.all, sty.freeBox__seUTg)}>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__zlJnk
+            )}
+          >
+            {
+              "\u0648\u0636\u0639\u06cc\u062a \u067e\u0631\u062f\u0627\u062e\u062a:"
+            }
+          </div>
+          {(() => {
+            try {
+              return $props.paymentStatus === "پرداخت شده";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })() ? (
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__uOFD,
+                {
+                  [sty.textonlineBorder__uOFD5Rn5G]: hasVariant(
+                    $state,
+                    "onlineBorder",
+                    "onlineBorder"
+                  )
+                }
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return $props.paymentStatus;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+          ) : null}
+          {(() => {
+            try {
+              return $props.paymentStatus === "استرداد شده";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })() ? (
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__uc8T3,
+                {
+                  [sty.textonlineBorder__uc8T35Rn5G]: hasVariant(
+                    $state,
+                    "onlineBorder",
+                    "onlineBorder"
+                  )
+                }
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return $props.paymentStatus;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+          ) : null}
+          {(() => {
+            try {
+              return $props.paymentStatus === "پرداخت نشده";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })() ? (
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text___1QPgH,
+                {
+                  [sty.textonlineBorder___1QPgH5Rn5G]: hasVariant(
+                    $state,
+                    "onlineBorder",
+                    "onlineBorder"
+                  )
+                }
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return $props.paymentStatus;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+          ) : null}
+          {(() => {
+            try {
+              return $props.paymentStatus === "پرداخت برای نوبت غیرفعال است.";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })() ? (
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__ttc07,
+                {
+                  [sty.textonlineBorder__ttc075Rn5G]: hasVariant(
+                    $state,
+                    "onlineBorder",
+                    "onlineBorder"
+                  )
+                }
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return (
+                      $props.paymentStatus ===
+                        "پرداخت برای نوبت غیرفعال است." && "غیرفعال"
+                    );
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+          ) : null}
+          {(() => {
+            try {
+              return $props.paymentStatus === "نسخه ـ بدون پرداخت";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })() ? (
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__gAZjp,
+                {
+                  [sty.textonlineBorder__gAZjp5Rn5G]: hasVariant(
+                    $state,
+                    "onlineBorder",
+                    "onlineBorder"
+                  )
+                }
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return $props.paymentStatus;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+          ) : null}
+          {(
+            hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
+          ) ? (
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__kdznH
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return $props.nationalcode;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "09136020023";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
       <Dialog
         data-plasmic-name={"dialog"}
         data-plasmic-override={overrides.dialog}
@@ -365,44 +1355,22 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox__vEfgU)}
           >
-            <div
-              data-plasmic-name={
-                "\u0633\u0627\u0639\u062a\u0648\u062a\u0627\u0631\u06cc\u062e"
-              }
-              data-plasmic-override={overrides.ساعتوتاریخ}
-              className={classNames(projectcss.all, sty.ساعتوتاریخ)}
-            >
-              <div className={classNames(projectcss.all, sty.freeBox__fagh6)}>
+            <div className={classNames(projectcss.all, sty.freeBox___1W7Ni)}>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__oLwfu)}
+              >
+                <CalenderSvgIcon
+                  className={classNames(projectcss.all, sty.svg__b6Gk2)}
+                  role={"img"}
+                />
+
                 <div
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text__wm7
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return $props.time;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-              </div>
-              <div className={classNames(projectcss.all, sty.freeBox___0EjId)}>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__wrvS
+                    sty.text__smYaA
                   )}
                 >
                   <React.Fragment>
@@ -421,7 +1389,41 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     })()}
                   </React.Fragment>
                 </div>
-              </div>
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__gXOE)}
+              >
+                <TimeSvgIcon
+                  className={classNames(projectcss.all, sty.svg__hcRhi)}
+                  role={"img"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__adUx0
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $props.time;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+              </Stack__>
             </div>
             <div className={classNames(projectcss.all, sty.freeBox__eAwl4)}>
               <PatientPrivateData
@@ -687,358 +1689,46 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                 />
               ) : null}
             </div>
-            {(() => {
-              try {
-                return $props.bookDelete == "0";
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return false;
-                }
-                throw e;
-              }
-            })() ? (
-              <Button
-                children2={"\u0644\u063a\u0648 \u0646\u0648\u0628\u062a"}
-                className={classNames("__wab_instance", sty.button__iLuiz)}
-                color={"red"}
-                endIcon={
-                  <ChevronLeftIcon
-                    className={classNames(projectcss.all, sty.svg__cqwx7)}
-                    role={"img"}
-                  />
-                }
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["updateDeletebookdialogOpen"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["deletebookdialog", "open"]
-                          },
-                          operation: 0,
-                          value: true
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__fEuSf)}
+            >
+              {(() => {
+                try {
+                  return $props.bookDelete == "0";
+                } catch (e) {
                   if (
-                    $steps["updateDeletebookdialogOpen"] != null &&
-                    typeof $steps["updateDeletebookdialogOpen"] === "object" &&
-                    typeof $steps["updateDeletebookdialogOpen"].then ===
-                      "function"
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    $steps["updateDeletebookdialogOpen"] = await $steps[
-                      "updateDeletebookdialogOpen"
-                    ];
+                    return false;
                   }
-
-                  $steps["clickForDeleteBook"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            (() => {
-                              try {
-                                return {
-                                  group: "book-list",
-                                  data: {
-                                    center_id: $props.centerId,
-                                    book_id: $props.bookId,
-                                    ref_id: $props.refId
-                                  },
-                                  type: "click-first-delete-button"
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Splunk.sendLog"]?.apply(null, [
-                          ...actionArgs.args
-                        ]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["clickForDeleteBook"] != null &&
-                    typeof $steps["clickForDeleteBook"] === "object" &&
-                    typeof $steps["clickForDeleteBook"].then === "function"
-                  ) {
-                    $steps["clickForDeleteBook"] = await $steps[
-                      "clickForDeleteBook"
-                    ];
+                  throw e;
+                }
+              })() ? (
+                <Button
+                  children2={"\u0644\u063a\u0648 \u0646\u0648\u0628\u062a"}
+                  className={classNames("__wab_instance", sty.button__iLuiz)}
+                  color={"red"}
+                  endIcon={
+                    <ChevronLeftIcon
+                      className={classNames(projectcss.all, sty.svg__cqwx7)}
+                      role={"img"}
+                    />
                   }
-                }}
-                outline={true}
-                startIcon={
-                  <ChevronRightIcon
-                    className={classNames(projectcss.all, sty.svg__bzhTf)}
-                    role={"img"}
-                  />
-                }
-              />
-            ) : null}
-            {(() => {
-              try {
-                return $props.finalized === true;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return false;
-                }
-                throw e;
-              }
-            })() ? (
-              <Button
-                children2={
-                  "\u0645\u0634\u0627\u0647\u062f\u0647 \u0646\u0633\u062e\u0647"
-                }
-                className={classNames("__wab_instance", sty.button__ltYs2)}
-                color={"softBlue"}
-                endIcon={
-                  <ChevronLeftIcon
-                    className={classNames(projectcss.all, sty.svg__e2Bq9)}
-                    role={"img"}
-                  />
-                }
-                onClick={async event => {
-                  const $steps = {};
+                  onClick={async event => {
+                    const $steps = {};
 
-                  $steps["goToPage"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          destination: (() => {
-                            try {
-                              return `https://dr.paziresh24.com/prescription/patient/${$props.prescriptionId}`;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["goToPage"] != null &&
-                    typeof $steps["goToPage"] === "object" &&
-                    typeof $steps["goToPage"].then === "function"
-                  ) {
-                    $steps["goToPage"] = await $steps["goToPage"];
-                  }
-                }}
-                outline={true}
-                startIcon={
-                  <ChevronRightIcon
-                    className={classNames(projectcss.all, sty.svg__y0Ea2)}
-                    role={"img"}
-                  />
-                }
-              />
-            ) : null}
-            {(() => {
-              try {
-                return $props.insurances === true && $props.finalized === false;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return false;
-                }
-                throw e;
-              }
-            })() ? (
-              <Button
-                children2={
-                  "\u062a\u062c\u0648\u06cc\u0632 \u0646\u0633\u062e\u0647"
-                }
-                className={classNames("__wab_instance", sty.button__czTw6)}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["apiBuildPrescription"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "POST",
-                            "https://apigw.paziresh24.com/prescription/insurance/prescription",
-                            undefined,
-                            (() => {
-                              try {
-                                return {
-                                  baseURL: null,
-                                  patientCell: $props.cell,
-                                  patientNationalCode: $props.nationalcode,
-                                  identifier: $props.bookId
-                                    ? $props.bookId
-                                    : $$.uuid.v4(),
-                                  tags: [
-                                    {
-                                      type: "center_id",
-                                      value: $props.centerId
-                                    }
-                                  ]
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Fragment.apiRequest"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                  if (
-                    $steps["apiBuildPrescription"] != null &&
-                    typeof $steps["apiBuildPrescription"] === "object" &&
-                    typeof $steps["apiBuildPrescription"].then === "function"
-                  ) {
-                    $steps["apiBuildPrescription"] = await $steps[
-                      "apiBuildPrescription"
-                    ];
-                  }
-
-                  $steps["updateNewPrescriptionId"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["newPrescriptionId"]
-                          },
-                          operation: 0,
-                          value: $steps.apiBuildPrescription.data.result.id
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateNewPrescriptionId"] != null &&
-                    typeof $steps["updateNewPrescriptionId"] === "object" &&
-                    typeof $steps["updateNewPrescriptionId"].then === "function"
-                  ) {
-                    $steps["updateNewPrescriptionId"] = await $steps[
-                      "updateNewPrescriptionId"
-                    ];
-                  }
-
-                  $steps["pagePrescription"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          destination: (() => {
-                            try {
-                              return `https://dr.paziresh24.com/prescription/patient/${
-                                $props.prescriptionId ||
-                                $state.newPrescriptionId
-                              }`;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "";
-                              }
-                              throw e;
-                            }
-                          })()
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["pagePrescription"] != null &&
-                    typeof $steps["pagePrescription"] === "object" &&
-                    typeof $steps["pagePrescription"].then === "function"
-                  ) {
-                    $steps["pagePrescription"] = await $steps[
-                      "pagePrescription"
-                    ];
-                  }
-
-                  $steps["updateBookStatusState"] =
-                    $steps.apiBuildPrescription.data.result.id.lenght > 0
+                    $steps["updateDeletebookdialogOpen"] = true
                       ? (() => {
                           const actionArgs = {
                             variable: {
                               objRoot: $state,
-                              variablePath: ["bookStatusState"]
+                              variablePath: ["deletebookdialog", "open"]
                             },
                             operation: 0,
-                            value: came
+                            value: true
                           };
                           return (({
                             variable,
@@ -1056,18 +1746,342 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                           })?.apply(null, [actionArgs]);
                         })()
                       : undefined;
-                  if (
-                    $steps["updateBookStatusState"] != null &&
-                    typeof $steps["updateBookStatusState"] === "object" &&
-                    typeof $steps["updateBookStatusState"].then === "function"
-                  ) {
-                    $steps["updateBookStatusState"] = await $steps[
-                      "updateBookStatusState"
-                    ];
+                    if (
+                      $steps["updateDeletebookdialogOpen"] != null &&
+                      typeof $steps["updateDeletebookdialogOpen"] ===
+                        "object" &&
+                      typeof $steps["updateDeletebookdialogOpen"].then ===
+                        "function"
+                    ) {
+                      $steps["updateDeletebookdialogOpen"] = await $steps[
+                        "updateDeletebookdialogOpen"
+                      ];
+                    }
+
+                    $steps["clickForDeleteBook"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    group: "book-list",
+                                    data: {
+                                      center_id: $props.centerId,
+                                      book_id: $props.bookId,
+                                      ref_id: $props.refId
+                                    },
+                                    type: "click-first-delete-button"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["clickForDeleteBook"] != null &&
+                      typeof $steps["clickForDeleteBook"] === "object" &&
+                      typeof $steps["clickForDeleteBook"].then === "function"
+                    ) {
+                      $steps["clickForDeleteBook"] = await $steps[
+                        "clickForDeleteBook"
+                      ];
+                    }
+                  }}
+                  outline={true}
+                  startIcon={
+                    <ChevronRightIcon
+                      className={classNames(projectcss.all, sty.svg__bzhTf)}
+                      role={"img"}
+                    />
                   }
-                }}
-              />
-            ) : null}
+                />
+              ) : null}
+              {(() => {
+                try {
+                  return $props.finalized === true;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <Button
+                  children2={
+                    "\u0645\u0634\u0627\u0647\u062f\u0647 \u0646\u0633\u062e\u0647"
+                  }
+                  className={classNames("__wab_instance", sty.button__ltYs2)}
+                  color={"softBlue"}
+                  endIcon={
+                    <ChevronLeftIcon
+                      className={classNames(projectcss.all, sty.svg__e2Bq9)}
+                      role={"img"}
+                    />
+                  }
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["goToPage"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: (() => {
+                              try {
+                                return `https://dr.paziresh24.com/prescription/patient/${$props.prescriptionId}`;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToPage"] != null &&
+                      typeof $steps["goToPage"] === "object" &&
+                      typeof $steps["goToPage"].then === "function"
+                    ) {
+                      $steps["goToPage"] = await $steps["goToPage"];
+                    }
+                  }}
+                  outline={true}
+                  startIcon={
+                    <ChevronRightIcon
+                      className={classNames(projectcss.all, sty.svg__y0Ea2)}
+                      role={"img"}
+                    />
+                  }
+                />
+              ) : null}
+              {(() => {
+                try {
+                  return (
+                    $props.insurances === true && $props.finalized === false
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <Button
+                  children2={
+                    "\u062a\u062c\u0648\u06cc\u0632 \u0646\u0633\u062e\u0647"
+                  }
+                  className={classNames("__wab_instance", sty.button__czTw6)}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["apiBuildPrescription"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "POST",
+                              "https://apigw.paziresh24.com/prescription/insurance/prescription",
+                              undefined,
+                              (() => {
+                                try {
+                                  return {
+                                    baseURL: null,
+                                    patientCell: $props.cell,
+                                    patientNationalCode: $props.nationalcode,
+                                    identifier: $props.bookId
+                                      ? $props.bookId
+                                      : $$.uuid.v4(),
+                                    tags: [
+                                      {
+                                        type: "center_id",
+                                        value: $props.centerId
+                                      }
+                                    ]
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["apiBuildPrescription"] != null &&
+                      typeof $steps["apiBuildPrescription"] === "object" &&
+                      typeof $steps["apiBuildPrescription"].then === "function"
+                    ) {
+                      $steps["apiBuildPrescription"] = await $steps[
+                        "apiBuildPrescription"
+                      ];
+                    }
+
+                    $steps["updateNewPrescriptionId"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["newPrescriptionId"]
+                            },
+                            operation: 0,
+                            value: $steps.apiBuildPrescription.data.result.id
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateNewPrescriptionId"] != null &&
+                      typeof $steps["updateNewPrescriptionId"] === "object" &&
+                      typeof $steps["updateNewPrescriptionId"].then ===
+                        "function"
+                    ) {
+                      $steps["updateNewPrescriptionId"] = await $steps[
+                        "updateNewPrescriptionId"
+                      ];
+                    }
+
+                    $steps["pagePrescription"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: (() => {
+                              try {
+                                return `https://dr.paziresh24.com/prescription/patient/${
+                                  $props.prescriptionId ||
+                                  $state.newPrescriptionId
+                                }`;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "";
+                                }
+                                throw e;
+                              }
+                            })()
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["pagePrescription"] != null &&
+                      typeof $steps["pagePrescription"] === "object" &&
+                      typeof $steps["pagePrescription"].then === "function"
+                    ) {
+                      $steps["pagePrescription"] = await $steps[
+                        "pagePrescription"
+                      ];
+                    }
+
+                    $steps["updateBookStatusState"] =
+                      $steps.apiBuildPrescription.data.result.id.lenght > 0
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["bookStatusState"]
+                              },
+                              operation: 0,
+                              value: came
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["updateBookStatusState"] != null &&
+                      typeof $steps["updateBookStatusState"] === "object" &&
+                      typeof $steps["updateBookStatusState"].then === "function"
+                    ) {
+                      $steps["updateBookStatusState"] = await $steps[
+                        "updateBookStatusState"
+                      ];
+                    }
+                  }}
+                />
+              ) : null}
+            </Stack__>
             <Dialog
               data-plasmic-name={"deletebookdialog"}
               data-plasmic-override={overrides.deletebookdialog}
@@ -1643,7 +2657,24 @@ function PlasmicAppointmentCard__RenderFunc(props: {
         }}
         open={generateStateValueProp($state, ["dialog", "open"])}
         title={
-          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u06cc\u0645\u0627\u0631"
+          <div className={classNames(projectcss.all, sty.freeBox__lfaNp)}>
+            <UserInfoSvgIcon
+              className={classNames(projectcss.all, sty.svg__rn5)}
+              role={"img"}
+            />
+
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__wVEp7
+              )}
+            >
+              {
+                "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u06cc\u0645\u0627\u0631"
+              }
+            </div>
+          </div>
         }
         trigger={
           <Stack__
@@ -1937,264 +2968,11 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   className={classNames(projectcss.all, sty.freeBox__zrFqj)}
                 />
               ) : null}
-              {(() => {
-                try {
-                  return $props.paymentStatus === "پرداخت شده";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__uOFD,
-                    {
-                      [sty.textonlineBorder__uOFD5Rn5G]: hasVariant(
-                        $state,
-                        "onlineBorder",
-                        "onlineBorder"
-                      )
-                    }
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return $props.paymentStatus;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-              ) : null}
-              {(() => {
-                try {
-                  return $props.paymentStatus === "استرداد شده";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__uc8T3,
-                    {
-                      [sty.textonlineBorder__uc8T35Rn5G]: hasVariant(
-                        $state,
-                        "onlineBorder",
-                        "onlineBorder"
-                      )
-                    }
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return $props.paymentStatus;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-              ) : null}
-              {(() => {
-                try {
-                  return $props.paymentStatus === "پرداخت نشده";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___1QPgH,
-                    {
-                      [sty.textonlineBorder___1QPgH5Rn5G]: hasVariant(
-                        $state,
-                        "onlineBorder",
-                        "onlineBorder"
-                      )
-                    }
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return $props.paymentStatus;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-              ) : null}
-              {(() => {
-                try {
-                  return (
-                    $props.paymentStatus === "پرداخت برای نوبت غیرفعال است."
-                  );
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__ttc07,
-                    {
-                      [sty.textonlineBorder__ttc075Rn5G]: hasVariant(
-                        $state,
-                        "onlineBorder",
-                        "onlineBorder"
-                      )
-                    }
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return $props.paymentStatus;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-              ) : null}
-              {(() => {
-                try {
-                  return $props.paymentStatus === "نسخه ـ بدون پرداخت";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__gAZjp,
-                    {
-                      [sty.textonlineBorder__gAZjp5Rn5G]: hasVariant(
-                        $state,
-                        "onlineBorder",
-                        "onlineBorder"
-                      )
-                    }
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return $props.paymentStatus;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-              ) : null}
             </Stack__>
           </Stack__>
         }
       />
 
-      <div className={classNames(projectcss.all, sty.freeBox__cuGmL)}>
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__pQoHb)}
-        >
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__aGdOv
-            )}
-          >
-            <React.Fragment>
-              {(() => {
-                try {
-                  return $props.nationalcode;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "09136020023";
-                  }
-                  throw e;
-                }
-              })()}
-            </React.Fragment>
-          </div>
-        </Stack__>
-      </div>
       <Stack__
         as={"div"}
         data-plasmic-name={"bookState"}
@@ -2670,6 +3448,95 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             }}
           />
         ) : null}
+        <Button
+          children2={
+            "\u0645\u0634\u0627\u0647\u062f\u0647 \u062c\u0632\u0626\u06cc\u0627\u062a"
+          }
+          className={classNames("__wab_instance", sty.button__zley0)}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["updateDialogOpen"] = true
+              ? (() => {
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["dialog", "open"]
+                    },
+                    operation: 0,
+                    value: true
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
+                    }
+                    const { objRoot, variablePath } = variable;
+
+                    $stateSet(objRoot, variablePath, value);
+                    return value;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["updateDialogOpen"] != null &&
+              typeof $steps["updateDialogOpen"] === "object" &&
+              typeof $steps["updateDialogOpen"].then === "function"
+            ) {
+              $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
+            }
+          }}
+          outline={true}
+        />
+
+        <Button2
+          className={classNames("__wab_instance", sty.button__fr6Rq)}
+          label={
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__mruBd
+              )}
+            >
+              {
+                "\u0645\u0634\u0627\u0647\u062f\u0647 \u062c\u0632\u0626\u06cc\u0627\u062a"
+              }
+            </div>
+          }
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["updateDialogOpen"] = true
+              ? (() => {
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["dialog", "open"]
+                    },
+                    operation: 0,
+                    value: true
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
+                    }
+                    const { objRoot, variablePath } = variable;
+
+                    $stateSet(objRoot, variablePath, value);
+                    return value;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["updateDialogOpen"] != null &&
+              typeof $steps["updateDialogOpen"] === "object" &&
+              typeof $steps["updateDialogOpen"].then === "function"
+            ) {
+              $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
+            }
+          }}
+        />
+
         <BookStatusButton
           data-plasmic-name={"bookStatusButton"}
           data-plasmic-override={overrides.bookStatusButton}
@@ -2849,37 +3716,33 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               ];
             }
 
-            $steps["redirectWhatsapp"] = false
-              ? (() => {
-                  const actionArgs = {
-                    destination: (() => {
-                      try {
-                        return `https://wa.me/${$props.cell}`;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
+            $steps["redirectWhatsapp"] =
+              $props.centerId === "5532" &&
+              $props.onlineChannel === "whatsapp" &&
+              $state.bookStatusState === "came"
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return `https://wa.me/${$props.cell}`;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Hamdast.openLink"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
             if (
               $steps["redirectWhatsapp"] != null &&
               typeof $steps["redirectWhatsapp"] === "object" &&
@@ -3066,7 +3929,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
           trigger={null}
         />
       </Stack__>
-    </div>
+    </Stack__>
   ) as React.ReactElement | null;
 }
 
@@ -3074,7 +3937,6 @@ const PlasmicDescendants = {
   root: [
     "root",
     "dialog",
-    "\u0633\u0627\u0639\u062a\u0648\u062a\u0627\u0631\u06cc\u062e",
     "bime",
     "cost2",
     "deletebookdialog",
@@ -3085,14 +3947,7 @@ const PlasmicDescendants = {
     "bookStatusButton",
     "dialog3"
   ],
-  dialog: [
-    "dialog",
-    "\u0633\u0627\u0639\u062a\u0648\u062a\u0627\u0631\u06cc\u062e",
-    "bime",
-    "cost2",
-    "deletebookdialog"
-  ],
-  ساعتوتاریخ: ["\u0633\u0627\u0639\u062a\u0648\u062a\u0627\u0631\u06cc\u062e"],
+  dialog: ["dialog", "bime", "cost2", "deletebookdialog"],
   bime: ["bime"],
   cost2: ["cost2"],
   deletebookdialog: ["deletebookdialog"],
@@ -3116,7 +3971,6 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   dialog: typeof Dialog;
-  ساعتوتاریخ: "div";
   bime: typeof PatientPrivateData;
   cost2: typeof PatientPrivateData;
   deletebookdialog: typeof Dialog;
@@ -3189,9 +4043,6 @@ export const PlasmicAppointmentCard = Object.assign(
   {
     // Helper components rendering sub-elements
     dialog: makeNodeComponent("dialog"),
-    ساعتوتاریخ: makeNodeComponent(
-      "\u0633\u0627\u0639\u062a\u0648\u062a\u0627\u0631\u06cc\u062e"
-    ),
     bime: makeNodeComponent("bime"),
     cost2: makeNodeComponent("cost2"),
     deletebookdialog: makeNodeComponent("deletebookdialog"),
