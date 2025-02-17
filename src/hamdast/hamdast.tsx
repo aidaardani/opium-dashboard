@@ -20,7 +20,14 @@ export const Hamdast = ({ children, clientKey }: HamdastProps) => {
     }
   }, [clientKey]);
 
-  const actions = useMemo(() => ({}), []);
+  const actions = useMemo(
+    () => ({
+      openLink: (url: string) => {
+        (window as any).hamdast.openLink({ url });
+      },
+    }),
+    []
+  );
 
   return (
     <GlobalActionsProvider contextName="Hamdast" actions={actions}>
@@ -42,5 +49,19 @@ export const hamdastMeta: GlobalContextMeta<HamdastProps> = {
     },
   },
   providesData: true,
-  globalActions: {},
+  globalActions: {
+    openLink: {
+      displayName: "Open Link",
+      parameters: [
+        {
+          name: "url",
+          type: {
+            type: "string",
+            defaultValueHint: "/",
+            defaultValue: "/",
+          },
+        },
+      ],
+    },
+  },
 };
