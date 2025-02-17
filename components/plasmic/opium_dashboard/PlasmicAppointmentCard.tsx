@@ -64,7 +64,6 @@ import PatientPrivateData from "../../PatientPrivateData"; // plasmic-import: 0z
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
 import SafeCall from "../../SafeCall"; // plasmic-import: m0lwAXhykBZV/component
-import Button2 from "../../Button"; // plasmic-import: DwD3jMCwWb7c/component
 import BookStatusButton from "../../BookStatusButton"; // plasmic-import: aW1julV8kikd/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -88,8 +87,6 @@ import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: euu18ryAtnAt/icon
 import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: BMYyZW6g83gg/icon
-import CircleIcon from "./icons/PlasmicIcon__Circle"; // plasmic-import: Sg5gte9RaiuV/icon
-import ChevronDownIcon from "./icons/PlasmicIcon__ChevronDown"; // plasmic-import: cEnI6Xs2nrZq/icon
 
 import { v4 as __lib_uuid__v4 } from "uuid";
 
@@ -3486,55 +3483,6 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             }
           }}
           outline={true}
-        />
-
-        <Button2
-          className={classNames("__wab_instance", sty.button__fr6Rq)}
-          label={
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__mruBd
-              )}
-            >
-              {
-                "\u0645\u0634\u0627\u0647\u062f\u0647 \u062c\u0632\u0626\u06cc\u0627\u062a"
-              }
-            </div>
-          }
-          onClick={async event => {
-            const $steps = {};
-
-            $steps["updateDialogOpen"] = true
-              ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["dialog", "open"]
-                    },
-                    operation: 0,
-                    value: true
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
-
-                    $stateSet(objRoot, variablePath, value);
-                    return value;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-            if (
-              $steps["updateDialogOpen"] != null &&
-              typeof $steps["updateDialogOpen"] === "object" &&
-              typeof $steps["updateDialogOpen"].then === "function"
-            ) {
-              $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
-            }
-          }}
         />
 
         <BookStatusButton
