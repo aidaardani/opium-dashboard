@@ -2391,19 +2391,6 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationOfficeEditCost.module.css",
           "scheme": "blackbox",
           "componentType": "component"
-        },
-        {
-          "id": "DwD3jMCwWb7c",
-          "name": "Button",
-          "type": "managed",
-          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
-          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicButton.tsx",
-          "importSpec": {
-            "modulePath": "Button.tsx"
-          },
-          "cssFilePath": "plasmic/opium_dashboard/PlasmicButton.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
         }
       ],
       "icons": [

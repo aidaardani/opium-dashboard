@@ -1838,16 +1838,6 @@
           "checksum": "381be4aaa8bf6767db398f6d0cf2b00d"
         },
         {
-          "type": "renderModule",
-          "assetId": "DwD3jMCwWb7c",
-          "checksum": "8c0a142dd44c826849b08e0bdf2ec973"
-        },
-        {
-          "type": "cssRules",
-          "assetId": "DwD3jMCwWb7c",
-          "checksum": "8c0a142dd44c826849b08e0bdf2ec973"
-        },
-        {
           "type": "icon",
           "assetId": "Sg5gte9RaiuV",
           "checksum": "7525442439c3e22488694d2d8e57c969"
