@@ -72,9 +72,10 @@
   color: var(--token-iWQmILTzm3N0);
   text-align: center;
   height: auto;
-  width: auto;
+  width: 79px;
   left: auto;
   top: auto;
+  flex-shrink: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .text__e542H {
@@ -146,6 +147,7 @@
   font-size: var(--token-6NbVMeD6zQwn);
   font-weight: 400;
   width: 80px;
+  text-align: center;
 }
 .text__okPe8 {
   font-size: var(--token-6NbVMeD6zQwn);

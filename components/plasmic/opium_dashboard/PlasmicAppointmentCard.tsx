@@ -523,8 +523,6 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       return "(واتساپ)";
                     } else if ($props.onlineChannel === "eitaa") {
                       return "(ایتا)";
-                    } else {
-                      return "(ویزیت آنلاین)";
                     }
                   })();
                 } catch (e) {
