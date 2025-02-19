@@ -1497,7 +1497,7 @@ function PlasmicActivationOfficeEditCost__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "PUT",
-                        "http://apigw.paziresh24.com/v1/n8n-nelson/webhook/cost/update",
+                        "http://apigw.paziresh24.com/v1/n8n-nelson/webhook/cost/change",
                         undefined,
                         (() => {
                           try {
