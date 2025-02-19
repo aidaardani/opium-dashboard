@@ -291,6 +291,34 @@
   > img {
   margin-left: var(--token-Fv8-L_kN-2Ma);
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__mlGzj {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__mlGzj > :global(.__wab_flex-container) {
+    flex-direction: column;
+    margin-left: calc(0px - 0px);
+    width: calc(100% + 0px);
+    margin-top: calc(0px - var(--token-Fv8-L_kN-2Ma));
+    height: calc(100% + var(--token-Fv8-L_kN-2Ma));
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__mlGzj > :global(.__wab_flex-container) > *,
+  .freeBox__mlGzj > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+  .freeBox__mlGzj > :global(.__wab_flex-container) > picture > img,
+  .freeBox__mlGzj
+    > :global(.__wab_flex-container)
+    > :global(.__wab_slot)
+    > picture
+    > img {
+    margin-left: 0px;
+    margin-top: var(--token-Fv8-L_kN-2Ma);
+  }
+}
 .button__wvE6B:global(.__wab_instance) {
   max-width: 100%;
   width: 100%;
@@ -299,6 +327,8 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .button__wvE6B:global(.__wab_instance) {
     width: auto;
+    height: 50px;
+    flex-shrink: 0;
   }
 }
 .svg__kpkA {
@@ -326,6 +356,8 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .button___77L34:global(.__wab_instance) {
     width: auto;
+    height: 50px;
+    flex-shrink: 0;
   }
 }
 .svg__ueWs5 {

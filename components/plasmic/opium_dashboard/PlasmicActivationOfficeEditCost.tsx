@@ -65,6 +65,8 @@ import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nA
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
+import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -443,6 +445,10 @@ function PlasmicActivationOfficeEditCost__RenderFunc(props: {
     $ctx,
     $queries: {},
     $refs
+  });
+
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantsfobTirRaixGf()
   });
 
   return (
@@ -1496,7 +1502,7 @@ function PlasmicActivationOfficeEditCost__RenderFunc(props: {
                 ? (() => {
                     const actionArgs = {
                       args: [
-                        "PUT",
+                        "PATCH",
                         "http://apigw.paziresh24.com/v1/n8n-nelson/webhook/cost/change",
                         undefined,
                         (() => {
