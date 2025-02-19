@@ -651,7 +651,7 @@ function PlasmicActivationOfficeEditCost__RenderFunc(props: {
           $refs["apiGetPrefrence"] = ref;
         }}
         url={
-          "http://apigw.paziresh24.com/v1/n8n-nelson/webhook/kind-of-prefrence"
+          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/kind-of-prefrence"
         }
       />
 
@@ -1801,7 +1801,7 @@ function PlasmicActivationOfficeEditCost__RenderFunc(props: {
                     const actionArgs = {
                       args: [
                         "POST",
-                        "http://apigw.paziresh24.com/v1/n8n-nelson/webhook/deactive-payment",
+                        "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/deactive-payment",
                         undefined,
                         (() => {
                           try {
