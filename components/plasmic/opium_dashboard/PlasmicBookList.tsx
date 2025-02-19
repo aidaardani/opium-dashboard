@@ -3368,7 +3368,6 @@ function PlasmicBookList__RenderFunc(props: {
                   className={classNames("__wab_instance", sty.dialog, {
                     [sty.dialogactive]: hasVariant($state, "active", "active")
                   })}
-                  noTrigger={true}
                   onOpenChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, ["dialog", "open"]).apply(
                       null,
