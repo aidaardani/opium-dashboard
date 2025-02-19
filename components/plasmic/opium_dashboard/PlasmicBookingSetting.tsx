@@ -2593,11 +2593,13 @@ function PlasmicBookingSetting__RenderFunc(props: {
               ) : null}
               {(() => {
                 try {
-                  return $state.centers.data.data.some(center =>
-                    $state.apiGetmoshir.data.some(
-                      item => item.id === center["center-id"]
+                  return $state.centers.data.data
+                    .map(c =>
+                      $state.apiGetmoshir.data.some(
+                        m => m["center-id"] === c.id
+                      )
                     )
-                  );
+                    .includes(true);
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
