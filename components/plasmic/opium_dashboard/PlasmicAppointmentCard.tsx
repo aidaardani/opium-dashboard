@@ -3387,6 +3387,41 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               $steps["apiCame"] = await $steps["apiCame"];
             }
 
+            $steps["redirectWhatsapp"] =
+              $props.centerId === "5532" &&
+              $props.onlineChannel === "whatsapp" &&
+              $state.bookStatusState === "not_came"
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return `https://wa.me/${$props.cell}`;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Hamdast.openLink"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+            if (
+              $steps["redirectWhatsapp"] != null &&
+              typeof $steps["redirectWhatsapp"] === "object" &&
+              typeof $steps["redirectWhatsapp"].then === "function"
+            ) {
+              $steps["redirectWhatsapp"] = await $steps["redirectWhatsapp"];
+            }
+
             $steps["updateBookStatusState"] =
               ($props.type === "book" &&
                 $steps.apiCame?.data?.status === "SUCCESS") ||
@@ -3419,42 +3454,6 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               $steps["updateBookStatusState"] = await $steps[
                 "updateBookStatusState"
               ];
-            }
-
-            $steps["redirectWhatsapp"] =
-              $props.centerId === "5532" &&
-              $props.onlineChannel === "whatsapp" &&
-              $state.bookStatusState !== "not_visited" &&
-              $state.bookStatusState !== "came"
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return `https://wa.me/${$props.cell}`;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Hamdast.openLink"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-            if (
-              $steps["redirectWhatsapp"] != null &&
-              typeof $steps["redirectWhatsapp"] === "object" &&
-              typeof $steps["redirectWhatsapp"].then === "function"
-            ) {
-              $steps["redirectWhatsapp"] = await $steps["redirectWhatsapp"];
             }
 
             $steps["startVisit"] =

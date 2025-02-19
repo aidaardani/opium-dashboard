@@ -1575,34 +1575,33 @@ function PlasmicActivationOfficeEditCost__RenderFunc(props: {
                 ];
               }
 
-              $steps["showToast"] =
-                $steps.editCost && $steps.editCost.amount
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          undefined,
-                          (() => {
-                            try {
-                              return "مبلغ جدید آپدیت شد.";
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
+              $steps["showToast"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        undefined,
+                        (() => {
+                          try {
+                            return "مبلغ جدید آپدیت شد.";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
                             }
-                          })(),
-                          undefined,
-                          3000
-                        ]
-                      };
-                      return $globalActions["Fragment.showToast"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
+                            throw e;
+                          }
+                        })(),
+                        undefined,
+                        3000
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
               if (
                 $steps["showToast"] != null &&
                 typeof $steps["showToast"] === "object" &&

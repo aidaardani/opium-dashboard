@@ -67,6 +67,7 @@ import { AntdAccordionItem } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import PaymentTotal from "../../PaymentTotal"; // plasmic-import: mbDXrFsrMCB0/component
+import MoshirPaymentSetting from "../../MoshirPaymentSetting"; // plasmic-import: 98l1eMtaNcgi/component
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 
 import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
@@ -2694,7 +2695,14 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                 projectcss.all,
                                 sty.freeBox__dFmSu
                               )}
-                            />
+                            >
+                              <MoshirPaymentSetting
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.moshirPaymentSetting__zoqY
+                                )}
+                              />
+                            </Stack__>
                           </AntdAccordionItem>
                           <AntdAccordionItem
                             className={classNames(
