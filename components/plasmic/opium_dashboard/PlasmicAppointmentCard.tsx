@@ -79,8 +79,6 @@ import sty from "./PlasmicAppointmentCard.module.css"; // plasmic-import: 43GvxJ
 
 import UserSvgIcon from "./icons/PlasmicIcon__UserSvg"; // plasmic-import: 34xI-Ic1ILkE/icon
 import TimeSvgIcon from "./icons/PlasmicIcon__TimeSvg"; // plasmic-import: p7f4tc2CRjFy/icon
-import EitaaIcon from "../fragment_icons/icons/PlasmicIcon__Eitaa"; // plasmic-import: qxWwW7vbw7na/icon
-import WhatsappIcon from "../fragment_icons/icons/PlasmicIcon__Whatsapp"; // plasmic-import: oob3UzcKBsd_/icon
 import UserInfoSvgIcon from "./icons/PlasmicIcon__UserInfoSvg"; // plasmic-import: gQQbHyEZZZ3o/icon
 import CalenderSvgIcon from "./icons/PlasmicIcon__CalenderSvg"; // plasmic-import: 0uxseSsmSKEH/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
@@ -2615,6 +2613,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             "onlineBorder"
           )
         })}
+        noTrigger={true}
         onOpenChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["dialog", "open"]).apply(
             null,
@@ -2693,301 +2692,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             </div>
           </div>
         }
-        trigger={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__w3Skv, {
-              [sty.freeBoxonlineBorder__w3Skv5Rn5G]: hasVariant(
-                $state,
-                "onlineBorder",
-                "onlineBorder"
-              )
-            })}
-          >
-            <div
-              className={classNames(projectcss.all, sty.freeBox__oZk8G, {
-                [sty.freeBoxonlineBorder__oZk8G5Rn5G]: hasVariant(
-                  $state,
-                  "onlineBorder",
-                  "onlineBorder"
-                )
-              })}
-            >
-              <div
-                className={classNames(projectcss.all, sty.freeBox__q4TDk, {
-                  [sty.freeBoxonlineBorder__q4TDk5Rn5G]: hasVariant(
-                    $state,
-                    "onlineBorder",
-                    "onlineBorder"
-                  )
-                })}
-              >
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__d7UBi,
-                    {
-                      [sty.textonlineBorder__d7UBi5Rn5G]: hasVariant(
-                        $state,
-                        "onlineBorder",
-                        "onlineBorder"
-                      )
-                    }
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return $props.time;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "15:35";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-              </div>
-            </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__rHcsh)}
-            >
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__lqNfE,
-                  {
-                    [sty.textonlineBorder__lqNfE5Rn5G]: hasVariant(
-                      $state,
-                      "onlineBorder",
-                      "onlineBorder"
-                    )
-                  }
-                )}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return $props.name;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
-                      }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
-              </div>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__rChaj)}
-              >
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__jdiI
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return $props.cell;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "09136020023";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-                {(() => {
-                  try {
-                    return $props.onlineChannel === "eitaa";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <EitaaIcon
-                    className={classNames(projectcss.all, sty.svg__alC9Q)}
-                    role={"img"}
-                  />
-                ) : null}
-                {(() => {
-                  try {
-                    return $props.onlineChannel === "whatsapp";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <WhatsappIcon
-                    className={classNames(projectcss.all, sty.svg__wSo3B)}
-                    role={"img"}
-                  />
-                ) : null}
-                {(
-                  hasVariant(globalVariants, "screen", "mobileOnly")
-                    ? true
-                    : (() => {
-                        try {
-                          return (
-                            (!$props.onlineChannel ||
-                              $props.onlineChannel === undefined) &&
-                            $props.centerId === "5532"
-                          );
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return false;
-                          }
-                          throw e;
-                        }
-                      })()
-                ) ? (
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__bdRsh
-                    )}
-                  >
-                    {
-                      "(\u0648\u06cc\u0632\u06cc\u062a\u200c \u0622\u0646\u0644\u0627\u06cc\u0646)"
-                    }
-                  </div>
-                ) : null}
-              </Stack__>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__azID
-                )}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return $props.nationalcode;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "09136020023";
-                      }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
-              </div>
-              {(
-                hasVariant(globalVariants, "screen", "mobileOnly")
-                  ? (() => {
-                      try {
-                        return (
-                          (!$props.onlineChannel ||
-                            $props.onlineChannel === undefined) &&
-                          $props.centerId === "5532"
-                        );
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return false;
-                        }
-                        throw e;
-                      }
-                    })()
-                  : false
-              ) ? (
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__fOBj7
-                  )}
-                >
-                  {hasVariant(globalVariants, "screen", "mobileOnly") ? (
-                    <React.Fragment>
-                      {(() => {
-                        try {
-                          return "(ویزیت‌ آنلاین)";
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "09136020023";
-                          }
-                          throw e;
-                        }
-                      })()}
-                    </React.Fragment>
-                  ) : (
-                    <React.Fragment>
-                      {(() => {
-                        try {
-                          return $props.nationalcode;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "09136020023";
-                          }
-                          throw e;
-                        }
-                      })()}
-                    </React.Fragment>
-                  )}
-                </div>
-              ) : null}
-              {(
-                hasVariant(globalVariants, "screen", "mobileOnly")
-                  ? true
-                  : false
-              ) ? (
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__zrFqj)}
-                />
-              ) : null}
-            </Stack__>
-          </Stack__>
-        }
+        trigger={null}
       />
 
       <Dialog
@@ -3272,19 +2977,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
           </Stack__>
         }
         className={classNames("__wab_instance", sty.dialog2)}
-        noTrigger={(() => {
-          try {
-            return undefined;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return [];
-            }
-            throw e;
-          }
-        })()}
+        noTrigger={true}
         onOpenChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["dialog2", "open"]).apply(
             null,
@@ -3325,6 +3018,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
           </div>
         }
         className={classNames("__wab_instance", sty.dialog3)}
+        noTrigger={true}
         onOpenChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["dialog3", "open"]).apply(
             null,
