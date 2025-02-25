@@ -63,6 +63,7 @@ import ActivationProcess from "../../ActivationProcess"; // plasmic-import: 1sYr
 import ActivationOfficeCenter from "../../ActivationOfficeCenter"; // plasmic-import: eC1lHj9ndIjA/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
+import OpenReplay from "../../OpenReplay"; // plasmic-import: jhfamJZQsrq-/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -93,6 +94,7 @@ export type PlasmicActivationOfficeCenter2__OverridesType = {
   activationOfficeCenter?: Flex__<typeof ActivationOfficeCenter>;
   sideEffect?: Flex__<typeof SideEffect>;
   embedHtml?: Flex__<typeof Embed>;
+  openReplay?: Flex__<typeof OpenReplay>;
 };
 
 export interface DefaultActivationOfficeCenter2Props {}
@@ -439,6 +441,12 @@ function PlasmicActivationOfficeCenter2__RenderFunc(props: {
               '\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"\nheight="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->\n\n<!-- Yandex.Metrika counter -->\n<script type="text/javascript" >\n   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n   m[i].l=1*new Date();\n   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})\n   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");\n\n   ym(98277236, "init", {\n        clickmap:true,\n        trackLinks:true,\n        accurateTrackBounce:true,\n        webvisor:true\n   });\n</script>\n<noscript><div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div></noscript>\n<!-- /Yandex.Metrika counter -->'
             }
           />
+
+          <OpenReplay
+            data-plasmic-name={"openReplay"}
+            data-plasmic-override={overrides.openReplay}
+            className={classNames("__wab_instance", sty.openReplay)}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -453,14 +461,16 @@ const PlasmicDescendants = {
     "activationProcess",
     "activationOfficeCenter",
     "sideEffect",
-    "embedHtml"
+    "embedHtml",
+    "openReplay"
   ],
   header: ["header", "text"],
   text: ["text"],
   activationProcess: ["activationProcess"],
   activationOfficeCenter: ["activationOfficeCenter"],
   sideEffect: ["sideEffect"],
-  embedHtml: ["embedHtml"]
+  embedHtml: ["embedHtml"],
+  openReplay: ["openReplay"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -473,6 +483,7 @@ type NodeDefaultElementType = {
   activationOfficeCenter: typeof ActivationOfficeCenter;
   sideEffect: typeof SideEffect;
   embedHtml: typeof Embed;
+  openReplay: typeof OpenReplay;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -541,6 +552,7 @@ export const PlasmicActivationOfficeCenter2 = Object.assign(
     activationOfficeCenter: makeNodeComponent("activationOfficeCenter"),
     sideEffect: makeNodeComponent("sideEffect"),
     embedHtml: makeNodeComponent("embedHtml"),
+    openReplay: makeNodeComponent("openReplay"),
 
     // Metadata about props expected for PlasmicActivationOfficeCenter2
     internalVariantProps: PlasmicActivationOfficeCenter2__VariantProps,

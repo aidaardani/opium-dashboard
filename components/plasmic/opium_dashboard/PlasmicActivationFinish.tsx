@@ -91,7 +91,6 @@ export const PlasmicActivationFinish__ArgProps = new Array<ArgPropType>();
 export type PlasmicActivationFinish__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<"div">;
-  h6?: Flex__<"h6">;
   img?: Flex__<typeof PlasmicImg__>;
   embedHtml?: Flex__<typeof Embed>;
 };
@@ -262,61 +261,6 @@ function PlasmicActivationFinish__RenderFunc(props: {
                   step={7}
                 />
               ) : null}
-              <div className={classNames(projectcss.all, sty.freeBox__z09N)}>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__ckXxY
-                  )}
-                >
-                  <React.Fragment>
-                    <React.Fragment>{""}</React.Fragment>
-                    {
-                      <h6
-                        data-plasmic-name={"h6"}
-                        data-plasmic-override={overrides.h6}
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.h6,
-                          projectcss.__wab_text,
-                          sty.h6
-                        )}
-                      >
-                        {
-                          "\u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0645\u0646 \u067e\u0633 \u0627\u0632 \u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u062f\u0631 \u0686\u0647 \u0648\u0636\u0639\u06cc\u062a\u06cc \u0642\u0631\u0627\u0631 \u062f\u0627\u0631\u062f\u061f"
-                        }
-                      </h6>
-                    }
-                    <React.Fragment>{""}</React.Fragment>
-                  </React.Fragment>
-                </div>
-                {(() => {
-                  try {
-                    return $ctx.query.office != "true";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__y7IX8
-                    )}
-                  >
-                    {
-                      "\u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u067e\u0632\u0634\u06a9 \u0627\u0628\u062a\u062f\u0627 \u062f\u0631 \u0631\u062a\u0628\u0647 \u067e\u0627\u06cc\u06cc\u0646\u200c\u062a\u0631\u06cc \u0642\u0631\u0627\u0631 \u0645\u06cc\u200c\u06af\u06cc\u0631\u062f\u060c \u0627\u0645\u0627 \u0628\u0627 \u062f\u0631\u06cc\u0627\u0641\u062a \u0646\u0648\u0628\u062a\u060c \u062c\u0644\u0628 \u0631\u0636\u0627\u06cc\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0648 \u0627\u0631\u0627\u0626\u0647 \u062e\u062f\u0645\u0627\u062a \u0628\u0627\u06a9\u06cc\u0641\u06cc\u062a \u062f\u0631 \u0632\u0645\u0627\u0646 \u0646\u0648\u0628\u062a\u060c \u0628\u0647 \u0631\u062a\u0628\u0647\u200c\u0647\u0627\u06cc \u0628\u0627\u0644\u0627\u062a\u0631 \u0627\u0631\u062a\u0642\u0627 \u0645\u06cc\u200c\u06cc\u0627\u0628\u06cc\u062f."
-                    }
-                  </div>
-                ) : null}
-              </div>
               {(() => {
                 try {
                   return $ctx.query.office == "true";
@@ -420,6 +364,34 @@ function PlasmicActivationFinish__RenderFunc(props: {
                     }}
                   />
                 </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__i7IDo
+                  )}
+                >
+                  <div
+                    className={projectcss.__wab_expr_html_text}
+                    dangerouslySetInnerHTML={{
+                      __html: (() => {
+                        try {
+                          return $ctx.query.office === true
+                            ? "اطلاعات شما ثبت شده و مطب شما تا ساعاتی دیگر فعال می‌شود. بیماران می‌توانند مستقیماً از طریق پروفایل شما نوبت رزرو کنند. "
+                            : "اطلاعات شما با موفقیت ثبت شده و ویزیت آنلاین شما تا ساعاتی دیگر فعال خواهد شد. از این پس، بیماران می‌توانند مستقیماً از طریق پروفایل شما نوبت ویزیت آنلاین رزرو کنند.";
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return " \u0628\u0647 \u062f\u0644\u06cc\u0644 \u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0638\u0631\u0641\u06cc\u062a \u0641\u0639\u0644\u06cc\u060c \u0646\u0645\u0627\u06cc\u0647 \u0634\u0645\u0627 \u062f\u0631 \u0627\u0628\u062a\u062f\u0627 \u062f\u0631 \u0644\u06cc\u0633\u062a \u067e\u0632\u0634\u06a9\u0627\u0646 \u0645\u0648\u062c\u0648\u062f \u0628\u0631\u0627\u06cc \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u062f\u0631 \u0631\u062a\u0628\u0647 \u067e\u0627\u06cc\u06cc\u0646\u200c\u062a\u0631\u06cc \u0642\u0631\u0627\u0631 \u0645\u06cc\u200c\u06af\u06cc\u0631\u062f.";
+                          }
+                          throw e;
+                        }
+                      })()
+                    }}
+                  />
+                </div>
                 <div className={classNames(projectcss.all, sty.freeBox__ljin6)}>
                   <div
                     className={classNames(
@@ -448,6 +420,10 @@ function PlasmicActivationFinish__RenderFunc(props: {
                     />
                   </div>
                 </div>
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__bnBis)}
+                />
+
                 <Stack__
                   as={"div"}
                   hasGap={true}
@@ -815,9 +791,8 @@ function PlasmicActivationFinish__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "header", "h6", "img", "embedHtml"],
+  root: ["root", "header", "img", "embedHtml"],
   header: ["header"],
-  h6: ["h6"],
   img: ["img"],
   embedHtml: ["embedHtml"]
 } as const;
@@ -827,7 +802,6 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   header: "div";
-  h6: "h6";
   img: typeof PlasmicImg__;
   embedHtml: typeof Embed;
 };
@@ -893,7 +867,6 @@ export const PlasmicActivationFinish = Object.assign(
   {
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
-    h6: makeNodeComponent("h6"),
     img: makeNodeComponent("img"),
     embedHtml: makeNodeComponent("embedHtml"),
 

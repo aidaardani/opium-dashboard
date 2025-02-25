@@ -583,8 +583,7 @@
           "componentImportPath": "@plasmicpkgs/react-aria/skinny/registerDialog"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "jkU633o1Cz7HrJdwdxhVHk",
@@ -2723,6 +2722,19 @@
             "modulePath": "MoshirEditCostOnlineVisit.tsx"
           },
           "cssFilePath": "plasmic/opium_dashboard/PlasmicMoshirEditCostOnlineVisit.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "jhfamJZQsrq-",
+          "name": "OpenReplay",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicOpenReplay.tsx",
+          "importSpec": {
+            "modulePath": "OpenReplay.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicOpenReplay.module.css",
           "scheme": "blackbox",
           "componentType": "component"
         }
