@@ -632,6 +632,19 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                       "noNationalCode"
                     )
                   })}
+                  disabled={(() => {
+                    try {
+                      return $state.nationalCode.value !== "";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
                   name={"nationalCode"}
                   onChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
@@ -680,6 +693,19 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                       "noPhoneNumber"
                     )
                   })}
+                  disabled={(() => {
+                    try {
+                      return $state.medicalCode.value !== "";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
                   name={"nationalCode"}
                   onChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [

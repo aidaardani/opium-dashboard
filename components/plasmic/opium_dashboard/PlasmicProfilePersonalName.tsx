@@ -215,7 +215,19 @@ function PlasmicProfilePersonalName__RenderFunc(props: {
           data-plasmic-name={"firstName"}
           data-plasmic-override={overrides.firstName}
           className={classNames("__wab_instance", sty.firstName)}
-          disabled={false}
+          disabled={(() => {
+            try {
+              return $state.firstName !== "";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()}
           name={"name"}
           onChange={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["firstName", "value"]).apply(
@@ -330,7 +342,19 @@ function PlasmicProfilePersonalName__RenderFunc(props: {
           data-plasmic-name={"lastName"}
           data-plasmic-override={overrides.lastName}
           className={classNames("__wab_instance", sty.lastName)}
-          disabled={false}
+          disabled={(() => {
+            try {
+              return $state.lastName.value !== "";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })()}
           name={"lastname"}
           onChange={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, ["lastName", "value"]).apply(
