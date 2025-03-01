@@ -7,7 +7,6 @@ import {
   GlobalContextMeta,
 } from "@plasmicapp/host";
 import axios from "axios";
-import { SWRConfig } from "swr";
 
 type FragmentProps = React.PropsWithChildren<{
   previewApiConfig: Record<string, any>;
@@ -78,6 +77,9 @@ export const Fragment = ({
           }
         }
       },
+      wait: (duration: number = 1000) => {
+        return new Promise((resolve) => setTimeout(resolve, duration));
+      },
     }),
     []
   );
@@ -94,15 +96,7 @@ export const Fragment = ({
         }}
         hidden
       >
-        <SWRConfig
-          value={{
-            errorRetryCount: 0,
-            revalidateOnFocus: false,
-            keepPreviousData: false,
-          }}
-        >
-          {children}
-        </SWRConfig>
+        {children}
         <Toaster />
       </DataProvider>
     </GlobalActionsProvider>
@@ -182,6 +176,20 @@ export const fragmentMeta: GlobalContextMeta<FragmentProps> = {
           type: {
             type: "number",
             defaultValueHint: 3000,
+          },
+        },
+      ],
+    },
+    wait: {
+      displayName: "Wait",
+      parameters: [
+        {
+          name: "duration",
+          type: {
+            type: "number",
+            defaultValueHint: 1000,
+            defaultValue: 1000,
+            helpText: "executes after a specified delay (in milliseconds).",
           },
         },
       ],
