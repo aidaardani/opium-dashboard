@@ -755,7 +755,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   )}
                   phoneNumber={(() => {
                     try {
-                      return $state.profile.data.data.cell;
+                      return $state.auth.data.data.username;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
