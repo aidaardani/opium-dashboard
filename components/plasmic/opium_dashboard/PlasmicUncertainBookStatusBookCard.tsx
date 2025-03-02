@@ -111,6 +111,7 @@ export type PlasmicUncertainBookStatusBookCard__ArgsType = {
   centerId?: string;
   selectedCenter?: string;
   secureCall?: boolean;
+  onDelete?: () => void;
 };
 type ArgPropType = keyof PlasmicUncertainBookStatusBookCard__ArgsType;
 export const PlasmicUncertainBookStatusBookCard__ArgProps =
@@ -130,7 +131,8 @@ export const PlasmicUncertainBookStatusBookCard__ArgProps =
     "onlineChannel",
     "centerId",
     "selectedCenter",
-    "secureCall"
+    "secureCall",
+    "onDelete"
   );
 
 export type PlasmicUncertainBookStatusBookCard__OverridesType = {
@@ -162,6 +164,7 @@ export interface DefaultUncertainBookStatusBookCardProps {
   centerId?: string;
   selectedCenter?: string;
   secureCall?: boolean;
+  onDelete?: () => void;
   onlineBorder?: SingleBooleanChoiceArg<"onlineBorder">;
   className?: string;
 }
@@ -917,6 +920,24 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                           $steps["updateDialogOpen"] = await $steps[
                             "updateDialogOpen"
                           ];
+                        }
+
+                        $steps["runOndelete"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                eventRef: $props["onDelete"]
+                              };
+                              return (({ eventRef, args }) => {
+                                return eventRef?.(...(args ?? []));
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["runOndelete"] != null &&
+                          typeof $steps["runOndelete"] === "object" &&
+                          typeof $steps["runOndelete"].then === "function"
+                        ) {
+                          $steps["runOndelete"] = await $steps["runOndelete"];
                         }
 
                         $steps["showToast"] = true

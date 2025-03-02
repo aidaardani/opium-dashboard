@@ -2738,6 +2738,46 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicOpenReplay.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "ju7xRY8zsTyP",
+          "name": "HolidaysPageTitle",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicHolidaysPageTitle.tsx",
+          "importSpec": {
+            "modulePath": "HolidaysPageTitle.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicHolidaysPageTitle.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "6Vxcr-z3fC2u",
+          "name": "Holidays",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicHolidays.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/holidays.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicHolidays.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/holidays"
+        },
+        {
+          "id": "NtLART2XhB7g",
+          "name": "HolidaysItem",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicHolidaysItem.tsx",
+          "importSpec": {
+            "modulePath": "HolidaysItem.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicHolidaysItem.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -3060,6 +3100,21 @@
           "id": "0uxseSsmSKEH",
           "name": "CalenderSvgIcon",
           "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__CalenderSvg.tsx"
+        },
+        {
+          "id": "QmNDeHqMGLGU",
+          "name": "FilterSvgIcon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__FilterSvg.tsx"
+        },
+        {
+          "id": "l_HwtYJDNwGg",
+          "name": "FilterSvg2Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__FilterSvg2.tsx"
+        },
+        {
+          "id": "mI_cKYKIhL-Y",
+          "name": "InfiniteSpinner1SvgIcon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__InfiniteSpinner1Svg.tsx"
         }
       ],
       "images": [

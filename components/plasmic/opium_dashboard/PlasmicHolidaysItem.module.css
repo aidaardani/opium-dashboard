@@ -1,0 +1,49 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  justify-content: space-between;
+  align-items: center;
+  transition-property: all;
+  transition-duration: 400ms;
+  min-width: 0;
+  -webkit-transition-property: all;
+  -webkit-transition-duration: 400ms;
+  padding: 16px 8px;
+  border-bottom: 1px solid #dcdcdc;
+}
+.text___0KJ0N {
+  position: relative;
+  width: 140px;
+  height: auto;
+  max-width: 100%;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.text__i0MUc {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  font-weight: 500;
+}
+.button:global(.__wab_instance) {
+  max-width: 100%;
+}
+.svg__vRvDw {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.text__mYud {
+  color: #ededec;
+}
+.svg__yaibi {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}

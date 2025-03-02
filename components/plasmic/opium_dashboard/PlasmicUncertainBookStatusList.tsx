@@ -1122,6 +1122,139 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
                     throw e;
                   }
                 })()}
+                onDelete={async () => {
+                  const $steps = {};
+
+                  $steps["updateLoading"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["loading"]
+                          },
+                          operation: 0,
+                          value: true
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateLoading"] != null &&
+                    typeof $steps["updateLoading"] === "object" &&
+                    typeof $steps["updateLoading"].then === "function"
+                  ) {
+                    $steps["updateLoading"] = await $steps["updateLoading"];
+                  }
+
+                  $steps["api"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "GET",
+                            "https://apigw.paziresh24.com/v1/uncertain-book-status"
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["api"] != null &&
+                    typeof $steps["api"] === "object" &&
+                    typeof $steps["api"].then === "function"
+                  ) {
+                    $steps["api"] = await $steps["api"];
+                  }
+
+                  $steps["updateUncertainBookStatus"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["uncertainBookStatus"]
+                          },
+                          operation: 0,
+                          value: $steps.api.data
+                            .map(item => item.data)
+                            .flat()
+                            .sort((a, b) => new Date(a.from) - new Date(b.from))
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateUncertainBookStatus"] != null &&
+                    typeof $steps["updateUncertainBookStatus"] === "object" &&
+                    typeof $steps["updateUncertainBookStatus"].then ===
+                      "function"
+                  ) {
+                    $steps["updateUncertainBookStatus"] = await $steps[
+                      "updateUncertainBookStatus"
+                    ];
+                  }
+
+                  $steps["updateLoading2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["loading"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateLoading2"] != null &&
+                    typeof $steps["updateLoading2"] === "object" &&
+                    typeof $steps["updateLoading2"].then === "function"
+                  ) {
+                    $steps["updateLoading2"] = await $steps["updateLoading2"];
+                  }
+                }}
                 onlineChannel={(() => {
                   try {
                     return currentItem.params.includes("whatsapp")
