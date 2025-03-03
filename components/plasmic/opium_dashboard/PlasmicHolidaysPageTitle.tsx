@@ -144,6 +144,12 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
+        path: "holidayDate",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
         path: "datePicker.value",
         type: "private",
         variableType: "number",
@@ -154,12 +160,6 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $ctx }) => []
-      },
-      {
-        path: "holidayDate",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -207,18 +207,18 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
           <Stack__
             as={"div"}
             hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__eTsvu)}
+            className={classNames(projectcss.all, sty.freeBox__lnKKa)}
           >
             <Stack__
               as={"div"}
               hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__e64Df)}
+              className={classNames(projectcss.all, sty.freeBox__bfrtp)}
             >
               <div
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__fzV5J
+                  sty.text__dx5U5
                 )}
               >
                 {
@@ -229,7 +229,19 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
                 data-plasmic-name={"datePicker"}
                 data-plasmic-override={overrides.datePicker}
                 className={classNames("__wab_instance", sty.datePicker)}
-                holidays={[]}
+                holidays={(() => {
+                  try {
+                    return [];
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
                 locale={"fa"}
                 onChange={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
@@ -240,19 +252,83 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
                     "datePicker",
                     "values"
                   ]).apply(null, eventArgs);
+                }}
+                value={generateStateValueProp($state, ["datePicker", "value"])}
+                values={generateStateValueProp($state, [
+                  "datePicker",
+                  "values"
+                ])}
+              />
 
-                  (async date => {
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox___5VvrL)}
+              >
+                <Button
+                  children2={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__y03Sb
+                      )}
+                    >
+                      {"\u062d\u0630\u0641 \u0641\u06cc\u0644\u062a\u0631"}
+                    </div>
+                  }
+                  className={classNames("__wab_instance", sty.button___6KqCu)}
+                  onClick={async event => {
                     const $steps = {};
 
-                    $steps["updateHolidayDate"] = true
+                    $steps["goToPage"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: (() => {
+                              try {
+                                return $ctx.pagePath;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToPage"] != null &&
+                      typeof $steps["goToPage"] === "object" &&
+                      typeof $steps["goToPage"].then === "function"
+                    ) {
+                      $steps["goToPage"] = await $steps["goToPage"];
+                    }
+
+                    $steps["updateDialogOpen"] = true
                       ? (() => {
                           const actionArgs = {
                             variable: {
                               objRoot: $state,
-                              variablePath: ["holidayDate"]
+                              variablePath: ["dialog", "open"]
                             },
                             operation: 0,
-                            value: $state.datePicker.value
+                            value: false
                           };
                           return (({
                             variable,
@@ -271,196 +347,67 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["updateHolidayDate"] != null &&
-                      typeof $steps["updateHolidayDate"] === "object" &&
-                      typeof $steps["updateHolidayDate"].then === "function"
+                      $steps["updateDialogOpen"] != null &&
+                      typeof $steps["updateDialogOpen"] === "object" &&
+                      typeof $steps["updateDialogOpen"].then === "function"
                     ) {
-                      $steps["updateHolidayDate"] = await $steps[
-                        "updateHolidayDate"
+                      $steps["updateDialogOpen"] = await $steps[
+                        "updateDialogOpen"
                       ];
                     }
-                  }).apply(null, eventArgs);
-                }}
-                value={generateStateValueProp($state, ["datePicker", "value"])}
-                values={generateStateValueProp($state, [
-                  "datePicker",
-                  "values"
-                ])}
-              />
-            </Stack__>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__c4XTi)}
-            >
-              <Button
-                children2={"\u062d\u0630\u0641 \u0641\u06cc\u0644\u062a\u0631"}
-                className={classNames("__wab_instance", sty.button__d2Yyv)}
-                onClick={async event => {
-                  const $steps = {};
+                  }}
+                  outline={true}
+                />
 
-                  $steps["goToPage"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          destination: (() => {
-                            try {
-                              return $ctx.pagePath;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                <Button
+                  children2={
+                    "\u0627\u0639\u0645\u0627\u0644 \u0641\u06cc\u0644\u062a\u0631"
+                  }
+                  className={classNames("__wab_instance", sty.button__yb6YF)}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["goToPage"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: (() => {
+                              try {
+                                return `$ctx.pagePath?date=${$state.holidayDate}`;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
+                            })()
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
                             }
-                          })()
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["goToPage"] != null &&
-                    typeof $steps["goToPage"] === "object" &&
-                    typeof $steps["goToPage"].then === "function"
-                  ) {
-                    $steps["goToPage"] = await $steps["goToPage"];
-                  }
-
-                  $steps["updateDialogOpen"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["dialog", "open"]
-                          },
-                          operation: 0,
-                          value: false
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateDialogOpen"] != null &&
-                    typeof $steps["updateDialogOpen"] === "object" &&
-                    typeof $steps["updateDialogOpen"].then === "function"
-                  ) {
-                    $steps["updateDialogOpen"] = await $steps[
-                      "updateDialogOpen"
-                    ];
-                  }
-                }}
-                outline={true}
-              />
-
-              <Button
-                children2={
-                  "\u0627\u0639\u0645\u0627\u0644 \u0641\u06cc\u0644\u062a\u0631"
-                }
-                className={classNames("__wab_instance", sty.button__yeSvf)}
-                onClick={async event => {
-                  const $steps = {};
-
-                  $steps["goToPage"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          destination: (() => {
-                            try {
-                              return `${$ctx.pagePath}?date=${$state.holidayDate}`;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
-                          }
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["goToPage"] != null &&
-                    typeof $steps["goToPage"] === "object" &&
-                    typeof $steps["goToPage"].then === "function"
-                  ) {
-                    $steps["goToPage"] = await $steps["goToPage"];
-                  }
-
-                  $steps["updateDialogOpen"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["dialog", "open"]
-                          },
-                          operation: 0,
-                          value: false
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateDialogOpen"] != null &&
-                    typeof $steps["updateDialogOpen"] === "object" &&
-                    typeof $steps["updateDialogOpen"].then === "function"
-                  ) {
-                    $steps["updateDialogOpen"] = await $steps[
-                      "updateDialogOpen"
-                    ];
-                  }
-                }}
-              />
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToPage"] != null &&
+                      typeof $steps["goToPage"] === "object" &&
+                      typeof $steps["goToPage"].then === "function"
+                    ) {
+                      $steps["goToPage"] = await $steps["goToPage"];
+                    }
+                  }}
+                />
+              </Stack__>
             </Stack__>
           </Stack__>
         }

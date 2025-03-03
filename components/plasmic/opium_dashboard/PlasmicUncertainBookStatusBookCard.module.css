@@ -38,6 +38,7 @@
   width: auto;
   height: auto;
   max-width: 100%;
+  cursor: pointer;
   padding: 8px;
 }
 .freeBox__dHtct > :global(.__wab_flex-container) {
