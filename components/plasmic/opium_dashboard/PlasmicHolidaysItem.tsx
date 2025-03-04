@@ -61,6 +61,8 @@ import {
 
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
+import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -82,21 +84,29 @@ export const PlasmicHolidaysItem__VariantProps = new Array<VariantPropType>();
 export type PlasmicHolidaysItem__ArgsType = {
   holidayTitle?: string;
   holidayDate?: string;
+  isHoliday?: string;
+  value?: string;
+  typeId?: string;
 };
 type ArgPropType = keyof PlasmicHolidaysItem__ArgsType;
 export const PlasmicHolidaysItem__ArgProps = new Array<ArgPropType>(
   "holidayTitle",
-  "holidayDate"
+  "holidayDate",
+  "isHoliday",
+  "value",
+  "typeId"
 );
 
 export type PlasmicHolidaysItem__OverridesType = {
   root?: Flex__<"div">;
-  button?: Flex__<typeof Button>;
 };
 
 export interface DefaultHolidaysItemProps {
   holidayTitle?: string;
   holidayDate?: string;
+  isHoliday?: string;
+  value?: string;
+  typeId?: string;
   className?: string;
 }
 
@@ -143,12 +153,20 @@ function PlasmicHolidaysItem__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const $globalActions = useGlobalActions?.();
+
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantsfobTirRaixGf()
+  });
+
   return (
-    <div
+    <Stack__
+      as={"div"}
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
+      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -161,84 +179,237 @@ function PlasmicHolidaysItem__RenderFunc(props: {
         sty.root
       )}
     >
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text___0KJ0N
-        )}
-      >
-        <React.Fragment>
-          {(() => {
-            try {
-              return $props.holidayDate;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return "3 \u0641\u0631\u0648\u0631\u062f\u06cc\u0646 1403";
+      <div className={classNames(projectcss.all, sty.freeBox__ubZya)}>
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__k9JVu
+          )}
+        >
+          {"\u062a\u0627\u0631\u06cc\u062e :"}
+        </div>
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text___0KJ0N
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.holidayDate;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "3 \u0641\u0631\u0648\u0631\u062f\u06cc\u0646 1403";
+                }
+                throw e;
               }
-              throw e;
-            }
-          })()}
-        </React.Fragment>
+            })()}
+          </React.Fragment>
+        </div>
       </div>
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__i0MUc
-        )}
-      >
-        <React.Fragment>
-          {(() => {
-            try {
-              return $props.holidayTitle;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return "\u0639\u06cc\u062f \u0633\u0639\u06cc\u062f \u0646\u0648\u0631\u0648\u0632";
-              }
-              throw e;
-            }
-          })()}
-        </React.Fragment>
-      </div>
-      <Button
-        data-plasmic-name={"button"}
-        data-plasmic-override={overrides.button}
-        children2={
+      <div className={classNames(projectcss.all, sty.freeBox__e3Rcz)}>
+        {(hasVariant(globalVariants, "screen", "mobileOnly") ? true : false) ? (
           <div
             className={classNames(
               projectcss.all,
               projectcss.__wab_text,
-              sty.text__mYud
+              sty.text___5Nj33
             )}
           >
-            {
-              "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc"
-            }
+            {"\u0639\u0646\u0648\u0627\u0646 :"}
           </div>
-        }
-        className={classNames("__wab_instance", sty.button)}
-      />
-    </div>
+        ) : null}
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__i0MUc
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.holidayTitle;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "\u0639\u06cc\u062f \u0633\u0639\u06cc\u062f \u0646\u0648\u0631\u0648\u0632";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+      </div>
+      <Stack__
+        as={"div"}
+        hasGap={true}
+        className={classNames(projectcss.all, sty.freeBox__d3IHe)}
+      >
+        {(() => {
+          try {
+            return $props.isHoliday === 1;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })() ? (
+          <Button
+            children2={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__mYud
+                )}
+              >
+                {
+                  "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc"
+                }
+              </div>
+            }
+            className={classNames("__wab_instance", sty.button__n8RB)}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["holidayRemoveApi"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/remove-holidays",
+                        undefined,
+                        (() => {
+                          try {
+                            return {
+                              value: $props.value,
+                              type_id: $props.typeId,
+                              Desk: $props.holidayTitle
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["holidayRemoveApi"] != null &&
+                typeof $steps["holidayRemoveApi"] === "object" &&
+                typeof $steps["holidayRemoveApi"].then === "function"
+              ) {
+                $steps["holidayRemoveApi"] = await $steps["holidayRemoveApi"];
+              }
+
+              $steps["sendEvent"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "holidays-page",
+                              data: {
+                                pagePath: window.location.href,
+                                selectedServices: $state.selectedServices
+                              },
+                              event_type: "click-remove-holidays"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["sendEvent"] != null &&
+                typeof $steps["sendEvent"] === "object" &&
+                typeof $steps["sendEvent"].then === "function"
+              ) {
+                $steps["sendEvent"] = await $steps["sendEvent"];
+              }
+            }}
+          />
+        ) : null}
+        {(() => {
+          try {
+            return $props.isHoliday === 0;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return true;
+            }
+            throw e;
+          }
+        })() ? (
+          <Button
+            children2={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__oDYmp
+                )}
+              >
+                {
+                  "\u0646\u0648\u0628\u062a \u062f\u0647\u06cc \u0641\u0639\u0627\u0644"
+                }
+              </div>
+            }
+            className={classNames("__wab_instance", sty.button__fvRZi)}
+            isDisabled={true}
+            outline={true}
+          />
+        ) : null}
+      </Stack__>
+    </Stack__>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "button"],
-  button: ["button"]
+  root: ["root"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  button: typeof Button;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -301,7 +472,6 @@ export const PlasmicHolidaysItem = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicHolidaysItem
     internalVariantProps: PlasmicHolidaysItem__VariantProps,

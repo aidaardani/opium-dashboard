@@ -89,11 +89,13 @@ export const PlasmicActivationProcessItem__VariantProps =
 export type PlasmicActivationProcessItem__ArgsType = {
   title?: string;
   subTitle?: string;
+  destinationPath?: string;
 };
 type ArgPropType = keyof PlasmicActivationProcessItem__ArgsType;
 export const PlasmicActivationProcessItem__ArgProps = new Array<ArgPropType>(
   "title",
-  "subTitle"
+  "subTitle",
+  "destinationPath"
 );
 
 export type PlasmicActivationProcessItem__OverridesType = {
@@ -103,6 +105,7 @@ export type PlasmicActivationProcessItem__OverridesType = {
 export interface DefaultActivationProcessItemProps {
   title?: string;
   subTitle?: string;
+  destinationPath?: string;
   isCompleted?: SingleBooleanChoiceArg<"isCompleted">;
   isCurrent?: SingleBooleanChoiceArg<"isCurrent">;
   noBar?: SingleBooleanChoiceArg<"noBar">;

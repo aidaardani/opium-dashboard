@@ -2778,6 +2778,19 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicHolidaysItem.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "JZqu282nNeiz",
+          "name": "ProfileDrNotifyCell",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicProfileDrNotifyCell.tsx",
+          "importSpec": {
+            "modulePath": "ProfileDrNotifyCell.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicProfileDrNotifyCell.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

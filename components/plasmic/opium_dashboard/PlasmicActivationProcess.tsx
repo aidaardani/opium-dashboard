@@ -269,6 +269,7 @@ function PlasmicActivationProcess__RenderFunc(props: {
                 "__wab_instance",
                 sty.activationProcessItem
               )}
+              destinationPath={``}
               isCompleted={(() => {
                 try {
                   return currentItem.step < $props.step;

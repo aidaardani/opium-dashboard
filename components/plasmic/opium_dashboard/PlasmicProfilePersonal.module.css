@@ -146,6 +146,32 @@
 .profilePersonalPhoneNumber:global(.__wab_instance) {
   max-width: 100%;
 }
+.freeBox__gW35F {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
+.text__qRElM {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 4px;
+}
+.drNotifyCell:global(.__wab_instance) {
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  min-width: 0;
+}
 .providerApi:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;

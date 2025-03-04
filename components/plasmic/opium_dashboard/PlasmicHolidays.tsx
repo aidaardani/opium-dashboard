@@ -62,6 +62,7 @@ import {
 import HolidaysPageTitle from "../../HolidaysPageTitle"; // plasmic-import: ju7xRY8zsTyP/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import HolidaysItem from "../../HolidaysItem"; // plasmic-import: NtLART2XhB7g/component
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -90,8 +91,9 @@ export type PlasmicHolidays__OverridesType = {
   apiRequest?: Flex__<typeof ApiRequest>;
   freeBox?: Flex__<"div">;
   svg?: Flex__<"svg">;
-  text?: Flex__<"div">;
   holidaysItem?: Flex__<typeof HolidaysItem>;
+  apiRequest2?: Flex__<typeof ApiRequest>;
+  sideEffect?: Flex__<typeof SideEffect>;
 };
 
 export interface DefaultHolidaysProps {}
@@ -134,6 +136,8 @@ function PlasmicHolidays__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const $globalActions = useGlobalActions?.();
+
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -159,6 +163,30 @@ function PlasmicHolidays__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "apiRequest"
+      },
+      {
+        path: "apiRequest2.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest2"
+      },
+      {
+        path: "apiRequest2.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest2"
+      },
+      {
+        path: "apiRequest2.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest2"
       }
     ],
     [$props, $ctx, $refs]
@@ -202,6 +230,19 @@ function PlasmicHolidays__RenderFunc(props: {
             data-plasmic-name={"holidaysPageTitle"}
             data-plasmic-override={overrides.holidaysPageTitle}
             className={classNames("__wab_instance", sty.holidaysPageTitle)}
+            holidays={(() => {
+              try {
+                return $state.apiRequest2.data;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
           />
 
           <ApiRequest
@@ -210,12 +251,10 @@ function PlasmicHolidays__RenderFunc(props: {
             className={classNames("__wab_instance", sty.apiRequest)}
             errorDisplay={
               <div
-                data-plasmic-name={"text"}
-                data-plasmic-override={overrides.text}
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text
+                  sty.text___0D4N9
                 )}
               >
                 {"Error fetching data"}
@@ -297,7 +336,7 @@ function PlasmicHolidays__RenderFunc(props: {
                   className={classNames("__wab_instance", sty.holidaysItem)}
                   holidayDate={(() => {
                     try {
-                      return currentItem.value;
+                      return currentItem.date;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -321,11 +360,147 @@ function PlasmicHolidays__RenderFunc(props: {
                       throw e;
                     }
                   })()}
+                  isHoliday={(() => {
+                    try {
+                      return currentItem.is_holiday;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
                   key={currentIndex}
+                  typeId={(() => {
+                    try {
+                      return currentItem.type_id;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                  value={(() => {
+                    try {
+                      return currentItem.value;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
                 />
               );
             })}
           </ApiRequest>
+          <ApiRequest
+            data-plasmic-name={"apiRequest2"}
+            data-plasmic-override={overrides.apiRequest2}
+            className={classNames("__wab_instance", sty.apiRequest2)}
+            errorDisplay={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__i2Nmv
+                )}
+              >
+                {"Error fetching data"}
+              </div>
+            }
+            loadingDisplay={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__lLy
+                )}
+              >
+                {"Loading..."}
+              </div>
+            }
+            method={"GET"}
+            onError={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["apiRequest2", "error"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            onLoading={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "apiRequest2",
+                "loading"
+              ]).apply(null, eventArgs);
+            }}
+            onSuccess={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["apiRequest2", "data"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            ref={ref => {
+              $refs["apiRequest2"] = ref;
+            }}
+            url={"https://apigw.paziresh24.com/v1/holidays-next-year"}
+          />
+
+          <SideEffect
+            data-plasmic-name={"sideEffect"}
+            data-plasmic-override={overrides.sideEffect}
+            className={classNames("__wab_instance", sty.sideEffect)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["sendEvent"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "holidays-page",
+                              data: {
+                                pagePath: window.location.href
+                              },
+                              event_type: "load-page-holidays-se"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["sendEvent"] != null &&
+                typeof $steps["sendEvent"] === "object" &&
+                typeof $steps["sendEvent"].then === "function"
+              ) {
+                $steps["sendEvent"] = await $steps["sendEvent"];
+              }
+            }}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -339,15 +514,17 @@ const PlasmicDescendants = {
     "apiRequest",
     "freeBox",
     "svg",
-    "text",
-    "holidaysItem"
+    "holidaysItem",
+    "apiRequest2",
+    "sideEffect"
   ],
   holidaysPageTitle: ["holidaysPageTitle"],
-  apiRequest: ["apiRequest", "freeBox", "svg", "text", "holidaysItem"],
+  apiRequest: ["apiRequest", "freeBox", "svg", "holidaysItem"],
   freeBox: ["freeBox", "svg"],
   svg: ["svg"],
-  text: ["text"],
-  holidaysItem: ["holidaysItem"]
+  holidaysItem: ["holidaysItem"],
+  apiRequest2: ["apiRequest2"],
+  sideEffect: ["sideEffect"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -358,8 +535,9 @@ type NodeDefaultElementType = {
   apiRequest: typeof ApiRequest;
   freeBox: "div";
   svg: "svg";
-  text: "div";
   holidaysItem: typeof HolidaysItem;
+  apiRequest2: typeof ApiRequest;
+  sideEffect: typeof SideEffect;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -426,8 +604,9 @@ export const PlasmicHolidays = Object.assign(
     apiRequest: makeNodeComponent("apiRequest"),
     freeBox: makeNodeComponent("freeBox"),
     svg: makeNodeComponent("svg"),
-    text: makeNodeComponent("text"),
     holidaysItem: makeNodeComponent("holidaysItem"),
+    apiRequest2: makeNodeComponent("apiRequest2"),
+    sideEffect: makeNodeComponent("sideEffect"),
 
     // Metadata about props expected for PlasmicHolidays
     internalVariantProps: PlasmicHolidays__VariantProps,

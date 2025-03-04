@@ -115,6 +115,7 @@ export type PlasmicProfilePersonal__OverridesType = {
   nationalCode?: Flex__<typeof Input>;
   medicalCode?: Flex__<typeof Input>;
   profilePersonalPhoneNumber?: Flex__<typeof ProfilePersonalPhoneNumber>;
+  drNotifyCell?: Flex__<typeof Input>;
   providerApi?: Flex__<typeof ApiRequest>;
   notifyCellApi?: Flex__<typeof ApiRequest>;
   notifyCell?: Flex__<typeof Input>;
@@ -405,6 +406,25 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "drNotifyCell.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $state.profile.data.data.cell;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -768,6 +788,51 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   })()}
                 />
               ) : null}
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox__gW35F)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__qRElM
+                )}
+              >
+                {
+                  "\u0634\u0645\u0627\u0631\u0647 \u067e\u06cc\u0627\u0645\u06a9 \u067e\u0632\u0634\u06a9"
+                }
+              </div>
+              <Input
+                data-plasmic-name={"drNotifyCell"}
+                data-plasmic-override={overrides.drNotifyCell}
+                className={classNames("__wab_instance", sty.drNotifyCell)}
+                disabled={(() => {
+                  try {
+                    return $state.profile.data.data.cell !== "";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return false;
+                    }
+                    throw e;
+                  }
+                })()}
+                onChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "drNotifyCell",
+                    "value"
+                  ]).apply(null, eventArgs);
+                }}
+                placeholder={
+                  "\u0634\u0645\u0627\u0631\u0647 \u067e\u06cc\u0627\u0645\u06a9 \u067e\u0632\u0634\u06a9"
+                }
+                type={"text"}
+                value={generateStateValueProp($state, [
+                  "drNotifyCell",
+                  "value"
+                ])}
+              />
             </div>
             <ApiRequest
               data-plasmic-name={"providerApi"}
@@ -1391,6 +1456,7 @@ const PlasmicDescendants = {
     "nationalCode",
     "medicalCode",
     "profilePersonalPhoneNumber",
+    "drNotifyCell",
     "providerApi",
     "notifyCellApi",
     "notifyCell",
@@ -1404,6 +1470,7 @@ const PlasmicDescendants = {
     "nationalCode",
     "medicalCode",
     "profilePersonalPhoneNumber",
+    "drNotifyCell",
     "providerApi",
     "notifyCellApi",
     "notifyCell",
@@ -1416,6 +1483,7 @@ const PlasmicDescendants = {
     "nationalCode",
     "medicalCode",
     "profilePersonalPhoneNumber",
+    "drNotifyCell",
     "providerApi",
     "notifyCellApi",
     "notifyCell",
@@ -1426,6 +1494,7 @@ const PlasmicDescendants = {
   nationalCode: ["nationalCode"],
   medicalCode: ["medicalCode"],
   profilePersonalPhoneNumber: ["profilePersonalPhoneNumber"],
+  drNotifyCell: ["drNotifyCell"],
   providerApi: ["providerApi", "notifyCellApi", "notifyCell"],
   notifyCellApi: ["notifyCellApi", "notifyCell"],
   notifyCell: ["notifyCell"],
@@ -1443,6 +1512,7 @@ type NodeDefaultElementType = {
   nationalCode: typeof Input;
   medicalCode: typeof Input;
   profilePersonalPhoneNumber: typeof ProfilePersonalPhoneNumber;
+  drNotifyCell: typeof Input;
   providerApi: typeof ApiRequest;
   notifyCellApi: typeof ApiRequest;
   notifyCell: typeof Input;
@@ -1516,6 +1586,7 @@ export const PlasmicProfilePersonal = Object.assign(
     nationalCode: makeNodeComponent("nationalCode"),
     medicalCode: makeNodeComponent("medicalCode"),
     profilePersonalPhoneNumber: makeNodeComponent("profilePersonalPhoneNumber"),
+    drNotifyCell: makeNodeComponent("drNotifyCell"),
     providerApi: makeNodeComponent("providerApi"),
     notifyCellApi: makeNodeComponent("notifyCellApi"),
     notifyCell: makeNodeComponent("notifyCell"),

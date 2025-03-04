@@ -83,9 +83,13 @@ type VariantPropType = keyof PlasmicHolidaysPageTitle__VariantsArgs;
 export const PlasmicHolidaysPageTitle__VariantProps =
   new Array<VariantPropType>();
 
-export type PlasmicHolidaysPageTitle__ArgsType = {};
+export type PlasmicHolidaysPageTitle__ArgsType = {
+  holidays?: string;
+};
 type ArgPropType = keyof PlasmicHolidaysPageTitle__ArgsType;
-export const PlasmicHolidaysPageTitle__ArgProps = new Array<ArgPropType>();
+export const PlasmicHolidaysPageTitle__ArgProps = new Array<ArgPropType>(
+  "holidays"
+);
 
 export type PlasmicHolidaysPageTitle__OverridesType = {
   root?: Flex__<"div">;
@@ -94,6 +98,7 @@ export type PlasmicHolidaysPageTitle__OverridesType = {
 };
 
 export interface DefaultHolidaysPageTitleProps {
+  holidays?: string;
   className?: string;
 }
 
@@ -134,6 +139,8 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
+
+  const $globalActions = useGlobalActions?.();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
@@ -231,7 +238,7 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
                 className={classNames("__wab_instance", sty.datePicker)}
                 holidays={(() => {
                   try {
-                    return [];
+                    return $props.holidays.map(item => item.date);
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -457,25 +464,67 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
             onClick={async event => {
               const $steps = {};
 
-              $steps["updateStateVariable"] = true
+              $steps["invokeGlobalAction"] = true
                 ? (() => {
-                    const actionArgs = {};
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-                      undefined;
-                    })?.apply(null, [actionArgs]);
+                    const actionArgs = {
+                      args: [
+                        undefined,
+                        "https://apigw.paziresh24.com/v1/holidays-next-year"
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
                   })()
                 : undefined;
               if (
-                $steps["updateStateVariable"] != null &&
-                typeof $steps["updateStateVariable"] === "object" &&
-                typeof $steps["updateStateVariable"].then === "function"
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
               ) {
-                $steps["updateStateVariable"] = await $steps[
-                  "updateStateVariable"
+                $steps["invokeGlobalAction"] = await $steps[
+                  "invokeGlobalAction"
+                ];
+              }
+
+              $steps["invokeGlobalAction2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "holidays-page",
+                              data: {
+                                pagePath: window.location.href,
+                                selectedServices: $state.selectedServices
+                              },
+                              event_type: "click-filter-holidays"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction2"] != null &&
+                typeof $steps["invokeGlobalAction2"] === "object" &&
+                typeof $steps["invokeGlobalAction2"].then === "function"
+              ) {
+                $steps["invokeGlobalAction2"] = await $steps[
+                  "invokeGlobalAction2"
                 ];
               }
             }}
