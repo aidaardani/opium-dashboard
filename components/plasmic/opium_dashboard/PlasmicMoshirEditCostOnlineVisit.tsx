@@ -295,13 +295,15 @@ function PlasmicMoshirEditCostOnlineVisit__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return (
-                $state.costOffice.find(
-                  item =>
-                    item.value ===
-                    ($state.apiRequest.data.deposit_amount / 10).toString()
-                )?.value || $state.costOffice[7].value
-              );
+              return (() => {
+                const depositAmount = (
+                  $state.apiRequest.data.deposit_amount / 10
+                ).toString();
+                const foundItem = $state.costOffice.find(
+                  item => item.value === depositAmount
+                );
+                return foundItem ? foundItem.value : "custom";
+              })();
             } catch (e) {
               if (
                 e instanceof TypeError ||
