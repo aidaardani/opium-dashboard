@@ -289,7 +289,8 @@
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .svg___6ZcGt {
-    width: 20px;
+    width: 16px;
+    height: 16px;
     display: block;
   }
 }
@@ -351,6 +352,12 @@
   color: var(--token-CVFO6fzYsS1_);
   width: 30px;
   height: 1em;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .svg__rjZ7V {
+    width: 16px;
+    height: 16px;
+  }
 }
 .svg__h3O9T {
   position: relative;

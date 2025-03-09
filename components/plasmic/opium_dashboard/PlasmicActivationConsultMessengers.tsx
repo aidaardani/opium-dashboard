@@ -225,48 +225,6 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
             plasmic_plasmic_rich_components_css.plasmic_tokens,
             sty.root
           )}
-          onLoad={async event => {
-            const $steps = {};
-
-            $steps["sendEvent"] = true
-              ? (() => {
-                  const actionArgs = {
-                    args: [
-                      (() => {
-                        try {
-                          return {
-                            event_group: "activation-page",
-                            data: {
-                              pagepath: window.location.href,
-                              userid: $ctx.query.userId
-                            },
-                            event_type: "load-messengers-page-in-activation"
-                          };
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()
-                    ]
-                  };
-                  return $globalActions["Splunk.sendLog"]?.apply(null, [
-                    ...actionArgs.args
-                  ]);
-                })()
-              : undefined;
-            if (
-              $steps["sendEvent"] != null &&
-              typeof $steps["sendEvent"] === "object" &&
-              typeof $steps["sendEvent"].then === "function"
-            ) {
-              $steps["sendEvent"] = await $steps["sendEvent"];
-            }
-          }}
         >
           <div
             data-plasmic-name={"header"}
@@ -824,6 +782,45 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
                 typeof $steps["loadMetrika"].then === "function"
               ) {
                 $steps["loadMetrika"] = await $steps["loadMetrika"];
+              }
+
+              $steps["sentEvent"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "activation-page",
+                              data: {
+                                userID: $ctx.query.userId,
+                                pagePath: window.location.href
+                              },
+                              event_type: "load-page-consult-messengers"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["sentEvent"] != null &&
+                typeof $steps["sentEvent"] === "object" &&
+                typeof $steps["sentEvent"].then === "function"
+              ) {
+                $steps["sentEvent"] = await $steps["sentEvent"];
               }
             }}
           />

@@ -1,0 +1,59 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+}
+.apiCenters:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.text__jXrqT {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  display: none;
+}
+.text__haRIs {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  display: none;
+}
+.freeBox {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.text__hFqro {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-weight: 600;
+  font-size: 16px;
+  min-width: 0;
+  padding: 8px;
+}
+.drCenters:global(.__wab_instance) {
+  max-width: 100%;
+}
+.service:global(.__wab_instance) {
+  max-width: 100%;
+}

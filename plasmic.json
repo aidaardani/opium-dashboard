@@ -2791,6 +2791,59 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicProfileDrNotifyCell.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "6umHSxCKrU6f",
+          "name": "DrServices",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicDrServices.tsx",
+          "importSpec": {
+            "modulePath": "DrServices.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicDrServices.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "Gx_K_c32VlEA",
+          "name": "Service",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicService.tsx",
+          "importSpec": {
+            "modulePath": "Service.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicService.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "UneQv74kMpjq",
+          "name": "ActivationOfficeEditCostV2",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicActivationOfficeEditCostV2.tsx",
+          "importSpec": {
+            "modulePath": "ActivationOfficeEditCostV2.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicActivationOfficeEditCostV2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "VCECyw5uzEeg",
+          "name": "NewPage",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicNewPage.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/new-page-4.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicNewPage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/new-page-4"
         }
       ],
       "icons": [

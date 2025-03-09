@@ -959,7 +959,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
                               return {
                                 event_group: "activation-page",
                                 data: {
-                                  userid: $props.userId,
+                                  userID: $ctx.query.userID,
                                   pagepath: window.location.href
                                 },
                                 event_type:

@@ -187,6 +187,12 @@ function PlasmicHolidays__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "apiRequest2"
+      },
+      {
+        path: "isFriday",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -356,6 +362,19 @@ function PlasmicHolidays__RenderFunc(props: {
                         e?.plasmicType === "PlasmicUndefinedDataError"
                       ) {
                         return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                  isFriday={(() => {
+                    try {
+                      return currentItem.isFriday;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return false;
                       }
                       throw e;
                     }

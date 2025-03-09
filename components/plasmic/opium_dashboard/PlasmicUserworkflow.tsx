@@ -605,6 +605,23 @@ function PlasmicUserworkflow__RenderFunc(props: {
                     <Icon26Icon
                       className={classNames(projectcss.all, sty.svg___6ZcGt)}
                       role={"img"}
+                      style={
+                        hasVariant(globalVariants, "screen", "mobileOnly")
+                          ? (() => {
+                              try {
+                                return { minWidth: "16px", maxWidth: "16px" };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          : undefined
+                      }
                     />
                   </React.Fragment>
                 }
@@ -998,6 +1015,23 @@ function PlasmicUserworkflow__RenderFunc(props: {
                   <Icon5Icon
                     className={classNames(projectcss.all, sty.svg__rjZ7V)}
                     role={"img"}
+                    style={
+                      hasVariant(globalVariants, "screen", "mobileOnly")
+                        ? (() => {
+                            try {
+                              return { minWidth: "16px", maxWidth: "16px" };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        : undefined
+                    }
                   />
                 }
                 className={classNames("__wab_instance", sty.deleteWorkflow)}

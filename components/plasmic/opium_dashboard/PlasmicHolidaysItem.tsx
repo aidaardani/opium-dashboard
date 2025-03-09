@@ -60,6 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
+import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 
 import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
 
@@ -87,6 +88,7 @@ export type PlasmicHolidaysItem__ArgsType = {
   isHoliday?: string;
   value?: string;
   typeId?: string;
+  isFriday?: boolean;
 };
 type ArgPropType = keyof PlasmicHolidaysItem__ArgsType;
 export const PlasmicHolidaysItem__ArgProps = new Array<ArgPropType>(
@@ -94,11 +96,13 @@ export const PlasmicHolidaysItem__ArgProps = new Array<ArgPropType>(
   "holidayDate",
   "isHoliday",
   "value",
-  "typeId"
+  "typeId",
+  "isFriday"
 );
 
 export type PlasmicHolidaysItem__OverridesType = {
   root?: Flex__<"div">;
+  dialog?: Flex__<typeof Dialog>;
 };
 
 export interface DefaultHolidaysItemProps {
@@ -107,6 +111,7 @@ export interface DefaultHolidaysItemProps {
   isHoliday?: string;
   value?: string;
   typeId?: string;
+  isFriday?: boolean;
   className?: string;
 }
 
@@ -134,7 +139,8 @@ function PlasmicHolidaysItem__RenderFunc(props: {
           holidayTitle:
             "\u0639\u0646\u0648\u0627\u0646 \u062a\u0639\u0637\u06cc\u0644\u06cc",
           holidayDate:
-            "\u062a\u0627\u0631\u06cc\u062e \u062a\u0639\u0637\u06cc\u0644\u06cc"
+            "\u062a\u0627\u0631\u06cc\u062e \u062a\u0639\u0637\u06cc\u0644\u06cc",
+          isFriday: false
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
@@ -154,6 +160,24 @@ function PlasmicHolidaysItem__RenderFunc(props: {
   const $refs = refsRef.current;
 
   const $globalActions = useGlobalActions?.();
+
+  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
+    () => [
+      {
+        path: "dialog.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      }
+    ],
+    [$props, $ctx, $refs]
+  );
+  const $state = useDollarState(stateSpecs, {
+    $props,
+    $ctx,
+    $queries: {},
+    $refs
+  });
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsfobTirRaixGf()
@@ -178,6 +202,21 @@ function PlasmicHolidaysItem__RenderFunc(props: {
         plasmic_plasmic_rich_components_css.plasmic_tokens,
         sty.root
       )}
+      style={(() => {
+        try {
+          return $props.isFriday
+            ? { backgroundColor: "#f3f3f3" }
+            : { backgroundColor: "#ffffff" };
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return undefined;
+          }
+          throw e;
+        }
+      })()}
     >
       <div className={classNames(projectcss.all, sty.freeBox__ubZya)}>
         <div
@@ -285,43 +324,33 @@ function PlasmicHolidaysItem__RenderFunc(props: {
             onClick={async event => {
               const $steps = {};
 
-              $steps["holidayRemoveApi"] = true
+              $steps["updateDialogOpen"] = true
                 ? (() => {
                     const actionArgs = {
-                      args: [
-                        "POST",
-                        "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/remove-holidays",
-                        undefined,
-                        (() => {
-                          try {
-                            return {
-                              value: $props.value,
-                              type_id: $props.typeId,
-                              Desk: $props.holidayTitle
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["dialog", "open"]
+                      },
+                      operation: 0,
+                      value: true
                     };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
                   })()
                 : undefined;
               if (
-                $steps["holidayRemoveApi"] != null &&
-                typeof $steps["holidayRemoveApi"] === "object" &&
-                typeof $steps["holidayRemoveApi"].then === "function"
+                $steps["updateDialogOpen"] != null &&
+                typeof $steps["updateDialogOpen"] === "object" &&
+                typeof $steps["updateDialogOpen"].then === "function"
               ) {
-                $steps["holidayRemoveApi"] = await $steps["holidayRemoveApi"];
+                $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
               }
 
               $steps["sendEvent"] = true
@@ -397,19 +426,267 @@ function PlasmicHolidaysItem__RenderFunc(props: {
             outline={true}
           />
         ) : null}
+        <Dialog
+          data-plasmic-name={"dialog"}
+          data-plasmic-override={overrides.dialog}
+          body={
+            <React.Fragment>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___5AJnV
+                )}
+              >
+                <React.Fragment>
+                  {(() => {
+                    try {
+                      return undefined;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "\u062f\u0631 \u0635\u0648\u0631\u062a \u0641\u0639\u0627\u0644\u200c\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u062f\u0631 \u0631\u0648\u0632\u0647\u0627\u06cc \u062a\u0639\u0637\u06cc\u0644\u060c \u0627\u0645\u06a9\u0627\u0646 \u0628\u0627\u0632\u06af\u0631\u062f\u0627\u0646\u06cc \u0648\u0636\u0639\u06cc\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0628\u0647 \u0635\u0648\u0631\u062a \u062f\u0633\u062a\u06cc \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f \u0648 \u0628\u0631\u0627\u06cc \u0627\u06cc\u0646 \u06a9\u0627\u0631 \u0628\u0627\u06cc\u062f \u0627\u0632 \u0637\u0631\u06cc\u0642 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u0627\u0631\u062a\u0628\u0627\u0637 \u0628\u0631\u0642\u0631\u0627\u0631 \u06a9\u0646\u06cc\u062f.\n \u0622\u06cc\u0627 \u0627\u0632 \u0641\u0639\u0627\u0644\u200c\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0627\u0637\u0645\u06cc\u0646\u0627\u0646 \u062f\u0627\u0631\u06cc\u062f\u061f";
+                      }
+                      throw e;
+                    }
+                  })()}
+                </React.Fragment>
+              </div>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__iu5V)}
+              >
+                <Button
+                  children2={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__mjGjp
+                      )}
+                    >
+                      {
+                        "\u0635\u0631\u0641 \u0646\u0638\u0631 \u0627\u0632 \u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc"
+                      }
+                    </div>
+                  }
+                  className={classNames("__wab_instance", sty.button__dPwqG)}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateDialogOpen"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["dialog", "open"]
+                            },
+                            operation: 0,
+                            value: false
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateDialogOpen"] != null &&
+                      typeof $steps["updateDialogOpen"] === "object" &&
+                      typeof $steps["updateDialogOpen"].then === "function"
+                    ) {
+                      $steps["updateDialogOpen"] = await $steps[
+                        "updateDialogOpen"
+                      ];
+                    }
+                  }}
+                  outline={true}
+                />
+
+                {(() => {
+                  try {
+                    return $props.isHoliday === 1;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <Button
+                    children2={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__c4Wj
+                        )}
+                      >
+                        {
+                          "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc"
+                        }
+                      </div>
+                    }
+                    className={classNames("__wab_instance", sty.button__e2Ran)}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["holidayRemoveApi"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "POST",
+                                "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/remove-holidays",
+                                undefined,
+                                (() => {
+                                  try {
+                                    return {
+                                      value: $props.value,
+                                      type_id: $props.typeId,
+                                      Desk: $props.holidayTitle
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.apiRequest"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["holidayRemoveApi"] != null &&
+                        typeof $steps["holidayRemoveApi"] === "object" &&
+                        typeof $steps["holidayRemoveApi"].then === "function"
+                      ) {
+                        $steps["holidayRemoveApi"] = await $steps[
+                          "holidayRemoveApi"
+                        ];
+                      }
+
+                      $steps["sendEvent"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return {
+                                      event_group: "holidays-page",
+                                      data: {
+                                        pagePath: window.location.href,
+                                        selectedServices:
+                                          $state.selectedServices
+                                      },
+                                      event_type: "click-remove-holidays"
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendEvent"] != null &&
+                        typeof $steps["sendEvent"] === "object" &&
+                        typeof $steps["sendEvent"].then === "function"
+                      ) {
+                        $steps["sendEvent"] = await $steps["sendEvent"];
+                      }
+                    }}
+                  />
+                ) : null}
+              </Stack__>
+            </React.Fragment>
+          }
+          className={classNames("__wab_instance", sty.dialog)}
+          onOpenChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          open={generateStateValueProp($state, ["dialog", "open"])}
+          title={
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.isFriday ? "توجه" : "فعالسازی نوبت دهی";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          }
+          trigger={null}
+        />
       </Stack__>
     </Stack__>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root"]
+  root: ["root", "dialog"],
+  dialog: ["dialog"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  dialog: typeof Dialog;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -472,6 +749,7 @@ export const PlasmicHolidaysItem = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    dialog: makeNodeComponent("dialog"),
 
     // Metadata about props expected for PlasmicHolidaysItem
     internalVariantProps: PlasmicHolidaysItem__VariantProps,
