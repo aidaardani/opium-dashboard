@@ -442,7 +442,7 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                   {(() => {
                     try {
                       return $props.isFriday
-                        ? `فعالسازی نوبت دهی در روز ${$props.holidayDate} امکان پذیر نمی باشد برای فعال‌سازی نوبت‌دهی در روز جمعه، باید نوبت‌دهی را برای تمام جمعه‌ها فعال کنید. توجه داشته باشید که پس از فعال‌سازی، امکان بازگرداندن وضعیت به حالت قبلی وجود ندارد و برای این کار باید از طریق پشتیبانی ارتباط برقرار کنید.\n آیا می‌خواهید نوبت‌دهی را برای تمام جمعه‌ها فعال کنید؟`
+                        ? `فعالسازی نوبت دهی در روز ${$props.holidayDate} امکان پذیر نمی باشد.\n  برای فعال‌سازی نوبت‌دهی در روز جمعه، باید نوبت‌دهی را برای تمام جمعه‌ها فعال کنید. توجه داشته باشید که پس از فعال‌سازی، امکان بازگرداندن وضعیت به حالت قبلی وجود ندارد و برای این کار باید از طریق پشتیبانی ارتباط برقرار کنید.\n آیا می‌خواهید نوبت‌دهی را برای تمام جمعه‌ها فعال کنید؟`
                         : "در صورت فعال‌سازی نوبت‌دهی در روزهای تعطیل، امکان بازگردانی وضعیت تعطیلی به صورت دستی وجود ندارد و برای این کار باید از طریق پشتیبانی ارتباط برقرار کنید.\n آیا از فعال‌سازی نوبت‌دهی اطمینان دارید؟";
                     } catch (e) {
                       if (
@@ -560,6 +560,19 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                       </div>
                     }
                     className={classNames("__wab_instance", sty.button__e2Ran)}
+                    color={(() => {
+                      try {
+                        return $props.isFriday && "red";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()}
                     onClick={async event => {
                       const $steps = {};
 
@@ -646,6 +659,58 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                         typeof $steps["sendEvent"].then === "function"
                       ) {
                         $steps["sendEvent"] = await $steps["sendEvent"];
+                      }
+
+                      $steps["showToast"] =
+                        $steps.holidayRemoveApi.status === 200
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  (() => {
+                                    try {
+                                      return $steps.holidayRemoveApi.data
+                                        .status === "SUCCESS"
+                                        ? "success"
+                                        : "ereor";
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })(),
+                                  (() => {
+                                    try {
+                                      return $steps.holidayRemoveApi.data
+                                        .message;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions[
+                                "Fragment.showToast"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["showToast"] != null &&
+                        typeof $steps["showToast"] === "object" &&
+                        typeof $steps["showToast"].then === "function"
+                      ) {
+                        $steps["showToast"] = await $steps["showToast"];
                       }
                     }}
                   />

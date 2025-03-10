@@ -537,7 +537,7 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                               return {
                                 event_group: "activation-page",
                                 data: {
-                                  userid: $props.userId,
+                                  userId: $props.userId,
                                   pagepath: window.location.href
                                 },
                                 event_type:
@@ -655,7 +655,7 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                             return {
                               event_group: "activation-page",
                               data: {
-                                userid: $ctx.query.userId,
+                                userId: $ctx.query.userId,
                                 pagepath: window.location.href
                               },
                               event_type:
