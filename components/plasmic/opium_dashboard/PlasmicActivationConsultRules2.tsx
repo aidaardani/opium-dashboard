@@ -179,48 +179,6 @@ function PlasmicActivationConsultRules2__RenderFunc(props: {
             plasmic_plasmic_rich_components_css.plasmic_tokens,
             sty.root
           )}
-          onLoad={async event => {
-            const $steps = {};
-
-            $steps["sendEvent"] = true
-              ? (() => {
-                  const actionArgs = {
-                    args: [
-                      (() => {
-                        try {
-                          return {
-                            event_group: "activation-page",
-                            data: {
-                              userId: $ctx.query.userId,
-                              pagePath: window.location.href
-                            },
-                            event_type: "load-page-consult-rules1"
-                          };
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()
-                    ]
-                  };
-                  return $globalActions["Splunk.sendLog"]?.apply(null, [
-                    ...actionArgs.args
-                  ]);
-                })()
-              : undefined;
-            if (
-              $steps["sendEvent"] != null &&
-              typeof $steps["sendEvent"] === "object" &&
-              typeof $steps["sendEvent"].then === "function"
-            ) {
-              $steps["sendEvent"] = await $steps["sendEvent"];
-            }
-          }}
         >
           <div
             data-plasmic-name={"header"}
@@ -286,14 +244,25 @@ function PlasmicActivationConsultRules2__RenderFunc(props: {
                       args: [
                         (() => {
                           try {
-                            return {
-                              event_group: "activation-page",
-                              data: {
-                                userId: $ctx.query.userId,
-                                pagePath: window.location.href
-                              },
-                              event_type: "load-page-consult-rules2"
-                            };
+                            return (() => {
+                              const userId =
+                                $ctx.query.userId ||
+                                localStorage.getItem("userId");
+                              if ($ctx.query.userId) {
+                                localStorage.setItem(
+                                  "userId",
+                                  $ctx.query.userId
+                                );
+                              }
+                              return {
+                                event_group: "activation-page",
+                                data: {
+                                  userId: userId,
+                                  pagePath: window.location.href
+                                },
+                                event_type: "load-page-consult-rules"
+                              };
+                            })();
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
