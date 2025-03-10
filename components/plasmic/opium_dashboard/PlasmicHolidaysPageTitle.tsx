@@ -71,6 +71,7 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicHolidaysPageTitle.module.css"; // plasmic-import: ju7xRY8zsTyP/css
 
+import Icons8Support64SvgIcon from "./icons/PlasmicIcon__Icons8Support64Svg"; // plasmic-import: sZKHYviUIdem/icon
 import FilterSvg2Icon from "./icons/PlasmicIcon__FilterSvg2"; // plasmic-import: l_HwtYJDNwGg/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
@@ -93,8 +94,8 @@ export const PlasmicHolidaysPageTitle__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicHolidaysPageTitle__OverridesType = {
   root?: Flex__<"div">;
-  dialog?: Flex__<typeof Dialog>;
-  datePicker?: Flex__<typeof DatePicker>;
+  dialog2?: Flex__<typeof Dialog>;
+  datePicker2?: Flex__<typeof DatePicker>;
 };
 
 export interface DefaultHolidaysPageTitleProps {
@@ -145,25 +146,25 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
-        path: "dialog.open",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
         path: "holidayDate",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
       },
       {
-        path: "datePicker.value",
+        path: "dialog2.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "datePicker2.value",
         type: "private",
         variableType: "number",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "datePicker.values",
+        path: "datePicker2.values",
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $ctx }) => []
@@ -207,360 +208,472 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
           "\u0644\u06cc\u0633\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627\u06cc \u0645\u0637\u0628"
         }
       </div>
-      <Dialog
-        data-plasmic-name={"dialog"}
-        data-plasmic-override={overrides.dialog}
-        body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__lnKKa)}
+      <Stack__
+        as={"div"}
+        hasGap={true}
+        className={classNames(projectcss.all, sty.freeBox__cR9Gj)}
+      >
+        <div
+          className={classNames(projectcss.all, sty.freeBox___0IHk)}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["telegramCallSupport"] = true
+              ? (() => {
+                  const actionArgs = {
+                    destination: (() => {
+                      try {
+                        return "https://t.me/sybigdeli";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["telegramCallSupport"] != null &&
+              typeof $steps["telegramCallSupport"] === "object" &&
+              typeof $steps["telegramCallSupport"].then === "function"
+            ) {
+              $steps["telegramCallSupport"] = await $steps[
+                "telegramCallSupport"
+              ];
+            }
+
+            $steps["sendEvent"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            event_group: "holidays-page",
+                            data: {
+                              pagePath: window.location.href,
+                              selectedServices: $state.selectedServices
+                            },
+                            event_type: "click-support"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Splunk.sendLog"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["sendEvent"] != null &&
+              typeof $steps["sendEvent"] === "object" &&
+              typeof $steps["sendEvent"].then === "function"
+            ) {
+              $steps["sendEvent"] = await $steps["sendEvent"];
+            }
+          }}
+        >
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__zlOqM
+            )}
           >
+            {"\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc"}
+          </div>
+          <Icons8Support64SvgIcon
+            className={classNames(projectcss.all, sty.svg__ylrx7)}
+            role={"img"}
+          />
+        </div>
+        <Dialog
+          data-plasmic-name={"dialog2"}
+          data-plasmic-override={overrides.dialog2}
+          body={
             <Stack__
               as={"div"}
               hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__bfrtp)}
+              className={classNames(projectcss.all, sty.freeBox__hO9T7)}
+            >
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__v3WIa)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__uPkh4
+                  )}
+                >
+                  {
+                    "\u0627\u0646\u062a\u062e\u0627\u0628 \u062a\u0627\u0631\u06cc\u062e"
+                  }
+                </div>
+                <DatePicker
+                  data-plasmic-name={"datePicker2"}
+                  data-plasmic-override={overrides.datePicker2}
+                  className={classNames("__wab_instance", sty.datePicker2)}
+                  holidays={(() => {
+                    try {
+                      return $props.holidays.map(item => item.date);
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()}
+                  locale={"fa"}
+                  onChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "datePicker2",
+                      "value"
+                    ]).apply(null, eventArgs);
+                    generateStateOnChangeProp($state, [
+                      "datePicker2",
+                      "values"
+                    ]).apply(null, eventArgs);
+                  }}
+                  value={generateStateValueProp($state, [
+                    "datePicker2",
+                    "value"
+                  ])}
+                  values={generateStateValueProp($state, [
+                    "datePicker2",
+                    "values"
+                  ])}
+                />
+
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__zaHvX)}
+                >
+                  <Button
+                    children2={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__lrCzW
+                        )}
+                      >
+                        {"\u062d\u0630\u0641 \u0641\u06cc\u0644\u062a\u0631"}
+                      </div>
+                    }
+                    className={classNames("__wab_instance", sty.button__tLoq)}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["goToPage"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              destination: (() => {
+                                try {
+                                  return $ctx.pagePath;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["goToPage"] != null &&
+                        typeof $steps["goToPage"] === "object" &&
+                        typeof $steps["goToPage"].then === "function"
+                      ) {
+                        $steps["goToPage"] = await $steps["goToPage"];
+                      }
+
+                      $steps["updateDialogOpen"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["dialog2", "open"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateDialogOpen"] != null &&
+                        typeof $steps["updateDialogOpen"] === "object" &&
+                        typeof $steps["updateDialogOpen"].then === "function"
+                      ) {
+                        $steps["updateDialogOpen"] = await $steps[
+                          "updateDialogOpen"
+                        ];
+                      }
+                    }}
+                    outline={true}
+                  />
+
+                  <Button
+                    children2={
+                      "\u0627\u0639\u0645\u0627\u0644 \u0641\u06cc\u0644\u062a\u0631"
+                    }
+                    className={classNames("__wab_instance", sty.button__legwr)}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["goToPage"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              destination: (() => {
+                                try {
+                                  return `$ctx.pagePath?date=${$state.holidayDate}`;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["goToPage"] != null &&
+                        typeof $steps["goToPage"] === "object" &&
+                        typeof $steps["goToPage"].then === "function"
+                      ) {
+                        $steps["goToPage"] = await $steps["goToPage"];
+                      }
+                    }}
+                  />
+                </Stack__>
+              </Stack__>
+            </Stack__>
+          }
+          className={classNames("__wab_instance", sty.dialog2)}
+          onOpenChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["dialog2", "open"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          open={generateStateValueProp($state, ["dialog2", "open"])}
+          title={
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__d1Eii)}
+            >
+              <FilterSvg2Icon
+                className={classNames(projectcss.all, sty.svg__dPria)}
+                role={"img"}
+              />
+
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___7Lo3
+                )}
+              >
+                {
+                  "\u0641\u06cc\u0644\u062a\u0631 \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627\u06cc \u0645\u0637\u0628"
+                }
+              </div>
+            </Stack__>
+          }
+          trigger={
+            <div
+              className={classNames(projectcss.all, sty.freeBox__bXfXv)}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["invokeGlobalAction"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          undefined,
+                          "https://apigw.paziresh24.com/v1/holidays-next-year"
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction"] != null &&
+                  typeof $steps["invokeGlobalAction"] === "object" &&
+                  typeof $steps["invokeGlobalAction"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction"] = await $steps[
+                    "invokeGlobalAction"
+                  ];
+                }
+
+                $steps["invokeGlobalAction2"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                event_group: "holidays-page",
+                                data: {
+                                  pagePath: window.location.href,
+                                  selectedServices: $state.selectedServices
+                                },
+                                event_type: "click-filter-holidays"
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["invokeGlobalAction2"] != null &&
+                  typeof $steps["invokeGlobalAction2"] === "object" &&
+                  typeof $steps["invokeGlobalAction2"].then === "function"
+                ) {
+                  $steps["invokeGlobalAction2"] = await $steps[
+                    "invokeGlobalAction2"
+                  ];
+                }
+              }}
             >
               <div
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__dx5U5
+                  sty.text__e3BtM
                 )}
               >
-                {
-                  "\u0627\u0646\u062a\u062e\u0627\u0628 \u062a\u0627\u0631\u06cc\u062e"
-                }
+                {"\u0641\u06cc\u0644\u062a\u0631"}
               </div>
-              <DatePicker
-                data-plasmic-name={"datePicker"}
-                data-plasmic-override={overrides.datePicker}
-                className={classNames("__wab_instance", sty.datePicker)}
-                holidays={(() => {
-                  try {
-                    return $props.holidays.map(item => item.date);
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return [];
-                    }
-                    throw e;
-                  }
-                })()}
-                locale={"fa"}
-                onChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "datePicker",
-                    "value"
-                  ]).apply(null, eventArgs);
-                  generateStateOnChangeProp($state, [
-                    "datePicker",
-                    "values"
-                  ]).apply(null, eventArgs);
-                }}
-                value={generateStateValueProp($state, ["datePicker", "value"])}
-                values={generateStateValueProp($state, [
-                  "datePicker",
-                  "values"
-                ])}
+              <FilterSvg2Icon
+                className={classNames(projectcss.all, sty.svg___26YbW)}
+                role={"img"}
               />
-
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox___5VvrL)}
-              >
-                <Button
-                  children2={
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__y03Sb
-                      )}
-                    >
-                      {"\u062d\u0630\u0641 \u0641\u06cc\u0644\u062a\u0631"}
-                    </div>
-                  }
-                  className={classNames("__wab_instance", sty.button___6KqCu)}
-                  onClick={async event => {
-                    const $steps = {};
-
-                    $steps["goToPage"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            destination: (() => {
-                              try {
-                                return $ctx.pagePath;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          };
-                          return (({ destination }) => {
-                            if (
-                              typeof destination === "string" &&
-                              destination.startsWith("#")
-                            ) {
-                              document
-                                .getElementById(destination.substr(1))
-                                .scrollIntoView({ behavior: "smooth" });
-                            } else {
-                              __nextRouter?.push(destination);
-                            }
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["goToPage"] != null &&
-                      typeof $steps["goToPage"] === "object" &&
-                      typeof $steps["goToPage"].then === "function"
-                    ) {
-                      $steps["goToPage"] = await $steps["goToPage"];
-                    }
-
-                    $steps["updateDialogOpen"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["dialog", "open"]
-                            },
-                            operation: 0,
-                            value: false
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateDialogOpen"] != null &&
-                      typeof $steps["updateDialogOpen"] === "object" &&
-                      typeof $steps["updateDialogOpen"].then === "function"
-                    ) {
-                      $steps["updateDialogOpen"] = await $steps[
-                        "updateDialogOpen"
-                      ];
-                    }
-                  }}
-                  outline={true}
-                />
-
-                <Button
-                  children2={
-                    "\u0627\u0639\u0645\u0627\u0644 \u0641\u06cc\u0644\u062a\u0631"
-                  }
-                  className={classNames("__wab_instance", sty.button__yb6YF)}
-                  onClick={async event => {
-                    const $steps = {};
-
-                    $steps["goToPage"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            destination: (() => {
-                              try {
-                                return `$ctx.pagePath?date=${$state.holidayDate}`;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          };
-                          return (({ destination }) => {
-                            if (
-                              typeof destination === "string" &&
-                              destination.startsWith("#")
-                            ) {
-                              document
-                                .getElementById(destination.substr(1))
-                                .scrollIntoView({ behavior: "smooth" });
-                            } else {
-                              __nextRouter?.push(destination);
-                            }
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["goToPage"] != null &&
-                      typeof $steps["goToPage"] === "object" &&
-                      typeof $steps["goToPage"].then === "function"
-                    ) {
-                      $steps["goToPage"] = await $steps["goToPage"];
-                    }
-                  }}
-                />
-              </Stack__>
-            </Stack__>
-          </Stack__>
-        }
-        className={classNames("__wab_instance", sty.dialog)}
-        onOpenChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["dialog", "open"]).apply(
-            null,
-            eventArgs
-          );
-
-          if (
-            eventArgs.length > 1 &&
-            eventArgs[1] &&
-            eventArgs[1]._plasmic_state_init_
-          ) {
-            return;
+            </div>
           }
-        }}
-        open={generateStateValueProp($state, ["dialog", "open"])}
-        title={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__pqk54)}
-          >
-            <FilterSvg2Icon
-              className={classNames(projectcss.all, sty.svg__m2EFv)}
-              role={"img"}
-            />
-
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text___1Cm4W
-              )}
-            >
-              {
-                "\u0641\u06cc\u0644\u062a\u0631 \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627\u06cc \u0645\u0637\u0628"
-              }
-            </div>
-          </Stack__>
-        }
-        trigger={
-          <div
-            className={classNames(projectcss.all, sty.freeBox___0IHk)}
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["invokeGlobalAction"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        undefined,
-                        "https://apigw.paziresh24.com/v1/holidays-next-year"
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
-              ) {
-                $steps["invokeGlobalAction"] = await $steps[
-                  "invokeGlobalAction"
-                ];
-              }
-
-              $steps["invokeGlobalAction2"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return {
-                              event_group: "holidays-page",
-                              data: {
-                                pagePath: window.location.href,
-                                selectedServices: $state.selectedServices
-                              },
-                              event_type: "click-filter-holidays"
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Splunk.sendLog"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["invokeGlobalAction2"] != null &&
-                typeof $steps["invokeGlobalAction2"] === "object" &&
-                typeof $steps["invokeGlobalAction2"].then === "function"
-              ) {
-                $steps["invokeGlobalAction2"] = await $steps[
-                  "invokeGlobalAction2"
-                ];
-              }
-            }}
-          >
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__zlOqM
-              )}
-            >
-              {"\u0641\u06cc\u0644\u062a\u0631"}
-            </div>
-            <FilterSvg2Icon
-              className={classNames(projectcss.all, sty.svg__ylrx7)}
-              role={"img"}
-            />
-          </div>
-        }
-      />
+        />
+      </Stack__>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "dialog", "datePicker"],
-  dialog: ["dialog", "datePicker"],
-  datePicker: ["datePicker"]
+  root: ["root", "dialog2", "datePicker2"],
+  dialog2: ["dialog2", "datePicker2"],
+  datePicker2: ["datePicker2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  dialog: typeof Dialog;
-  datePicker: typeof DatePicker;
+  dialog2: typeof Dialog;
+  datePicker2: typeof DatePicker;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -623,8 +736,8 @@ export const PlasmicHolidaysPageTitle = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    dialog: makeNodeComponent("dialog"),
-    datePicker: makeNodeComponent("datePicker"),
+    dialog2: makeNodeComponent("dialog2"),
+    datePicker2: makeNodeComponent("datePicker2"),
 
     // Metadata about props expected for PlasmicHolidaysPageTitle
     internalVariantProps: PlasmicHolidaysPageTitle__VariantProps,

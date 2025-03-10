@@ -131,18 +131,37 @@
   font-size: 11px;
   min-width: 0;
 }
-.text__zPfT {
+.rules {
+  display: flex;
+  flex-direction: column;
   position: relative;
   width: 100%;
   height: auto;
   max-width: 100%;
-  background: #fffcf5;
-  color: var(--token-u3OudfMChOo3);
-  font-size: var(--token-6NbVMeD6zQwn);
+  justify-content: center;
+  align-items: flex-start;
   min-width: 0;
-  border-radius: var(--token-_c276Gs_1FIE);
-  padding: var(--token-vMUQwr5Jto1d);
-  border: 1px solid #ffecc7;
+  padding: 8px;
+}
+.checkbox:global(.__wab_instance) {
+  max-width: 100%;
+  align-self: auto;
+}
+.text___7Gvwt {
+  font-weight: 400;
+  font-size: 14px;
+  font-family: var(--iran-sans-x);
+  font-style: normal;
+  color: #000000;
+  text-align: right;
+  text-transform: none;
+  line-height: 1.5;
+  letter-spacing: normal;
+  white-space: pre;
+  user-select: text;
+  text-decoration-line: none !important;
+  text-overflow: ellipsis !important;
+  overflow: hidden;
 }
 .freeBox__zaL {
   display: flex;

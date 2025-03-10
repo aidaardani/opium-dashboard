@@ -828,7 +828,7 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                                 return {
                                   event_group: "activation-page",
                                   data: {
-                                    userid: $ctx.query.userId,
+                                    userID: $ctx.query.userId,
                                     pagepath: $ctx.pagePath
                                   },
                                   event_type:

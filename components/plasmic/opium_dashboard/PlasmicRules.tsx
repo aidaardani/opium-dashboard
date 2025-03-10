@@ -604,139 +604,143 @@ function PlasmicRules__RenderFunc(props: {
                 url={
                   "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-payment-rules"
                 }
-              />
-            </div>
-            <Button
-              data-plasmic-name={"button"}
-              data-plasmic-override={overrides.button}
-              children2={"\u0630\u062e\u06cc\u0631\u0647"}
-              className={classNames("__wab_instance", sty.button)}
-              loading={(() => {
-                try {
-                  return $state.loading;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return [];
-                  }
-                  throw e;
-                }
-              })()}
-              onClick={async event => {
-                const $steps = {};
+              >
+                <Button
+                  data-plasmic-name={"button"}
+                  data-plasmic-override={overrides.button}
+                  children2={"\u0630\u062e\u06cc\u0631\u0647"}
+                  className={classNames("__wab_instance", sty.button)}
+                  loading={(() => {
+                    try {
+                      return $state.loading;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()}
+                  onClick={async event => {
+                    const $steps = {};
 
-                $steps["updateLoading"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["loading"]
-                        },
-                        operation: 0,
-                        value: true
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateLoading"] != null &&
-                  typeof $steps["updateLoading"] === "object" &&
-                  typeof $steps["updateLoading"].then === "function"
-                ) {
-                  $steps["updateLoading"] = await $steps["updateLoading"];
-                }
-
-                $steps["apiAcceptPaymentRules"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "POST",
-                          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/accept-payment-rules",
-                          undefined,
-                          (() => {
-                            try {
-                              return {
-                                userid: $ctx.query.user_id,
-                                checkbox: $state.checkbox.isChecked ? "1" : "0"
-                              };
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
+                    $steps["updateLoading"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["loading"]
+                            },
+                            operation: 0,
+                            value: true
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
                             }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
-                if (
-                  $steps["apiAcceptPaymentRules"] != null &&
-                  typeof $steps["apiAcceptPaymentRules"] === "object" &&
-                  typeof $steps["apiAcceptPaymentRules"].then === "function"
-                ) {
-                  $steps["apiAcceptPaymentRules"] = await $steps[
-                    "apiAcceptPaymentRules"
-                  ];
-                }
+                            const { objRoot, variablePath } = variable;
 
-                $steps["updateLoading2"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["loading"]
-                        },
-                        operation: 0,
-                        value: false
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateLoading"] != null &&
+                      typeof $steps["updateLoading"] === "object" &&
+                      typeof $steps["updateLoading"].then === "function"
+                    ) {
+                      $steps["updateLoading"] = await $steps["updateLoading"];
+                    }
 
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateLoading2"] != null &&
-                  typeof $steps["updateLoading2"] === "object" &&
-                  typeof $steps["updateLoading2"].then === "function"
-                ) {
-                  $steps["updateLoading2"] = await $steps["updateLoading2"];
-                }
-              }}
-            />
+                    $steps["apiAcceptPaymentRules"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "POST",
+                              "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/accept-payment-rules",
+                              undefined,
+                              (() => {
+                                try {
+                                  return {
+                                    userid: $ctx.query.user_id,
+                                    checkbox: $state.checkbox.isChecked
+                                      ? "1"
+                                      : "0"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["apiAcceptPaymentRules"] != null &&
+                      typeof $steps["apiAcceptPaymentRules"] === "object" &&
+                      typeof $steps["apiAcceptPaymentRules"].then === "function"
+                    ) {
+                      $steps["apiAcceptPaymentRules"] = await $steps[
+                        "apiAcceptPaymentRules"
+                      ];
+                    }
+
+                    $steps["updateLoading2"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["loading"]
+                            },
+                            operation: 0,
+                            value: false
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateLoading2"] != null &&
+                      typeof $steps["updateLoading2"] === "object" &&
+                      typeof $steps["updateLoading2"].then === "function"
+                    ) {
+                      $steps["updateLoading2"] = await $steps["updateLoading2"];
+                    }
+                  }}
+                />
+              </ApiRequest>
+            </div>
           </Stack__>
         </div>
       </div>
@@ -771,9 +775,9 @@ const PlasmicDescendants = {
   banner: ["banner", "img"],
   img: ["img"],
   textRuls: ["textRuls"],
-  checkbox2: ["checkbox2", "checkbox", "apiRequest"],
+  checkbox2: ["checkbox2", "checkbox", "apiRequest", "button"],
   checkbox: ["checkbox"],
-  apiRequest: ["apiRequest"],
+  apiRequest: ["apiRequest", "button"],
   button: ["button"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;

@@ -63,6 +63,7 @@ import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-impor
 import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZzFQxrO/codeComponent
 import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
+import Checkbox from "../../Checkbox"; // plasmic-import: IDR0sAqN5tth/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
 import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
@@ -107,6 +108,9 @@ export type PlasmicActivationOfficeCost__OverridesType = {
   input2?: Flex__<typeof Input>;
   shabaApi?: Flex__<typeof ApiRequest>;
   درحالدریافتاطلاعات?: Flex__<"div">;
+  rules?: Flex__<"div">;
+  checkbox?: Flex__<typeof Checkbox>;
+  link?: Flex__<"a"> & Partial<LinkProps>;
   centersApi?: Flex__<typeof ApiRequest>;
   dialogCardNumber?: Flex__<typeof Dialog>;
 };
@@ -358,6 +362,12 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
       },
       {
         path: "dialogCardNumber.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "checkbox.isChecked",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -1100,6 +1110,72 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           </div>
         ) : null}
       </div>
+      <div
+        data-plasmic-name={"rules"}
+        data-plasmic-override={overrides.rules}
+        className={classNames(projectcss.all, sty.rules)}
+      >
+        <Checkbox
+          data-plasmic-name={"checkbox"}
+          data-plasmic-override={overrides.checkbox}
+          className={classNames("__wab_instance", sty.checkbox)}
+          isChecked={
+            generateStateValueProp($state, ["checkbox", "isChecked"]) ?? false
+          }
+          onChange={async (...eventArgs: any) => {
+            ((...eventArgs) => {
+              generateStateOnChangeProp($state, ["checkbox", "isChecked"])(
+                eventArgs[0]
+              );
+            }).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+        >
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text___1S2Ez
+            )}
+          >
+            <React.Fragment>
+              <React.Fragment>{""}</React.Fragment>
+              {
+                <PlasmicLink__
+                  data-plasmic-name={"link"}
+                  data-plasmic-override={overrides.link}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.__wab_text,
+                    projectcss.plasmic_default__inline,
+                    sty.link
+                  )}
+                  component={Link}
+                  href={"/rules"}
+                  platform={"nextjs"}
+                >
+                  {
+                    "\u0642\u0648\u0627\u0646\u06cc\u0646 \u0648 \u0645\u0642\u0631\u0631\u0627\u062a"
+                  }
+                </PlasmicLink__>
+              }
+              <React.Fragment>
+                {
+                  " \u0631\u0627 \u0645\u0637\u0627\u0644\u0639\u0647 \u06a9\u0631\u062f\u0647 \u0627\u0645 \u0648 \u0645\u06cc\u200c\u067e\u0630\u06cc\u0631\u0645."
+                }
+              </React.Fragment>
+            </React.Fragment>
+          </div>
+        </Checkbox>
+      </div>
       <ApiRequest
         data-plasmic-name={"centersApi"}
         data-plasmic-override={overrides.centersApi}
@@ -1497,6 +1573,44 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["apiActiveAutoPayment"] = await $steps[
                   "apiActiveAutoPayment"
                 ];
+              }
+
+              $steps["apiAcceptRules"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/accept-payment-rules",
+                        undefined,
+                        (() => {
+                          try {
+                            return {
+                              userid: $props.userId,
+                              checkbox: $state.checkbox.isChecked ? "1" : "0"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["apiAcceptRules"] != null &&
+                typeof $steps["apiAcceptRules"] === "object" &&
+                typeof $steps["apiAcceptRules"].then === "function"
+              ) {
+                $steps["apiAcceptRules"] = await $steps["apiAcceptRules"];
               }
 
               $steps["updateIsLoadingSave2"] =
@@ -2454,6 +2568,9 @@ const PlasmicDescendants = {
     "input2",
     "shabaApi",
     "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a",
+    "rules",
+    "checkbox",
+    "link",
     "centersApi",
     "dialogCardNumber"
   ],
@@ -2469,6 +2586,9 @@ const PlasmicDescendants = {
   درحالدریافتاطلاعات: [
     "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
   ],
+  rules: ["rules", "checkbox", "link"],
+  checkbox: ["checkbox", "link"],
+  link: ["link"],
   centersApi: ["centersApi", "dialogCardNumber"],
   dialogCardNumber: ["dialogCardNumber"]
 } as const;
@@ -2484,6 +2604,9 @@ type NodeDefaultElementType = {
   input2: typeof Input;
   shabaApi: typeof ApiRequest;
   درحالدریافتاطلاعات: "div";
+  rules: "div";
+  checkbox: typeof Checkbox;
+  link: "a";
   centersApi: typeof ApiRequest;
   dialogCardNumber: typeof Dialog;
 };
@@ -2557,6 +2680,9 @@ export const PlasmicActivationOfficeCost = Object.assign(
     درحالدریافتاطلاعات: makeNodeComponent(
       "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
     ),
+    rules: makeNodeComponent("rules"),
+    checkbox: makeNodeComponent("checkbox"),
+    link: makeNodeComponent("link"),
     centersApi: makeNodeComponent("centersApi"),
     dialogCardNumber: makeNodeComponent("dialogCardNumber"),
 

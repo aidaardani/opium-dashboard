@@ -62,6 +62,7 @@ import {
 import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
 import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
+import Checkbox from "../../Checkbox"; // plasmic-import: IDR0sAqN5tth/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -102,6 +103,9 @@ export type PlasmicActivationConsultCost2__OverridesType = {
   input?: Flex__<typeof Input>;
   cardNumberInput?: Flex__<typeof TextInput>;
   shabaApi?: Flex__<typeof ApiRequest>;
+  rules?: Flex__<"div">;
+  checkbox?: Flex__<typeof Checkbox>;
+  link?: Flex__<"a"> & Partial<LinkProps>;
   button?: Flex__<typeof Button>;
 };
 
@@ -237,6 +241,12 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "checkbox.isChecked",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -300,7 +310,7 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
           </span>
           <React.Fragment>
             {
-              " \u0628\u0631\u0627\u06cc \u0634\u0645\u0627 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f."
+              " \u0628\u0631\u0627\u06cc \u0634\u0645\u0627 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f.\n\n\u062f\u0631 \u0635\u0648\u0631\u062a \u0646\u0627\u0631\u0636\u0627\u06cc\u062a\u06cc \u0628\u06cc\u0645\u0627\u0631\u060c \u06f1\u06f0\u06f0 \u062f\u0631\u0635\u062f \u0645\u0628\u0644\u063a \u067e\u0631\u062f\u0627\u062e\u062a\u06cc \u0628\u06cc\u0645\u0627\u0631 \u0627\u0633\u062a\u0631\u062f\u0627\u062f \u062e\u0648\u0627\u0647\u062f \u0634\u062f."
             }
           </React.Fragment>
         </React.Fragment>
@@ -578,15 +588,70 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
         ) : null}
       </div>
       <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__zPfT
-        )}
+        data-plasmic-name={"rules"}
+        data-plasmic-override={overrides.rules}
+        className={classNames(projectcss.all, sty.rules)}
       >
-        {
-          "\u062f\u0631 \u0635\u0648\u0631\u062a \u0646\u0627\u0631\u0636\u0627\u06cc\u062a\u06cc \u0628\u06cc\u0645\u0627\u0631\u060c \u06f1\u06f0\u06f0 \u062f\u0631\u0635\u062f \u0645\u0628\u0644\u063a \u067e\u0631\u062f\u0627\u062e\u062a\u06cc \u0628\u06cc\u0645\u0627\u0631 \u0627\u0633\u062a\u0631\u062f\u0627\u062f \u062e\u0648\u0627\u0647\u062f \u0634\u062f."
-        }
+        <Checkbox
+          data-plasmic-name={"checkbox"}
+          data-plasmic-override={overrides.checkbox}
+          className={classNames("__wab_instance", sty.checkbox)}
+          isChecked={
+            generateStateValueProp($state, ["checkbox", "isChecked"]) ?? false
+          }
+          onChange={async (...eventArgs: any) => {
+            ((...eventArgs) => {
+              generateStateOnChangeProp($state, ["checkbox", "isChecked"])(
+                eventArgs[0]
+              );
+            }).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+        >
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text___7Gvwt
+            )}
+          >
+            <React.Fragment>
+              <React.Fragment>{""}</React.Fragment>
+              {
+                <PlasmicLink__
+                  data-plasmic-name={"link"}
+                  data-plasmic-override={overrides.link}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.__wab_text,
+                    projectcss.plasmic_default__inline,
+                    sty.link
+                  )}
+                  component={Link}
+                  href={"/rules"}
+                  platform={"nextjs"}
+                >
+                  {
+                    "\u0642\u0648\u0627\u0646\u06cc\u0646 \u0648 \u0645\u0642\u0631\u0631\u0627\u062a"
+                  }
+                </PlasmicLink__>
+              }
+              <React.Fragment>
+                {
+                  " \u0631\u0627 \u0645\u0637\u0627\u0644\u0639\u0647 \u06a9\u0631\u062f\u0647 \u0627\u0645 \u0648 \u0645\u06cc\u200c\u067e\u0630\u06cc\u0631\u0645."
+                }
+              </React.Fragment>
+            </React.Fragment>
+          </div>
+        </Checkbox>
       </div>
       <Stack__
         as={"div"}
@@ -646,6 +711,44 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
               typeof $steps["showToast"].then === "function"
             ) {
               $steps["showToast"] = await $steps["showToast"];
+            }
+
+            $steps["acceptRules"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      "POST",
+                      "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/accept-payment-rules",
+                      undefined,
+                      (() => {
+                        try {
+                          return {
+                            userid: $props.userId,
+                            checkbox: $state.checkbox.isChecked ? "1" : "0"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["acceptRules"] != null &&
+              typeof $steps["acceptRules"] === "object" &&
+              typeof $steps["acceptRules"].then === "function"
+            ) {
+              $steps["acceptRules"] = await $steps["acceptRules"];
             }
 
             $steps["sendEvent"] = true
@@ -765,10 +868,22 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "input", "cardNumberInput", "shabaApi", "button"],
+  root: [
+    "root",
+    "input",
+    "cardNumberInput",
+    "shabaApi",
+    "rules",
+    "checkbox",
+    "link",
+    "button"
+  ],
   input: ["input"],
   cardNumberInput: ["cardNumberInput"],
   shabaApi: ["shabaApi"],
+  rules: ["rules", "checkbox", "link"],
+  checkbox: ["checkbox", "link"],
+  link: ["link"],
   button: ["button"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -779,6 +894,9 @@ type NodeDefaultElementType = {
   input: typeof Input;
   cardNumberInput: typeof TextInput;
   shabaApi: typeof ApiRequest;
+  rules: "div";
+  checkbox: typeof Checkbox;
+  link: "a";
   button: typeof Button;
 };
 
@@ -845,6 +963,9 @@ export const PlasmicActivationConsultCost2 = Object.assign(
     input: makeNodeComponent("input"),
     cardNumberInput: makeNodeComponent("cardNumberInput"),
     shabaApi: makeNodeComponent("shabaApi"),
+    rules: makeNodeComponent("rules"),
+    checkbox: makeNodeComponent("checkbox"),
+    link: makeNodeComponent("link"),
     button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicActivationConsultCost2

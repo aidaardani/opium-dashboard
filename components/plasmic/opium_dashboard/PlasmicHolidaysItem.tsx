@@ -205,7 +205,7 @@ function PlasmicHolidaysItem__RenderFunc(props: {
       style={(() => {
         try {
           return $props.isFriday
-            ? { backgroundColor: "#f3f3f3" }
+            ? { backgroundColor: "#f6f9ff" }
             : { backgroundColor: "#ffffff" };
         } catch (e) {
           if (
@@ -441,7 +441,9 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                 <React.Fragment>
                   {(() => {
                     try {
-                      return undefined;
+                      return $props.isFriday
+                        ? `فعالسازی نوبت دهی در روز ${$props.holidayDate} امکان پذیر نمی باشد برای فعال‌سازی نوبت‌دهی در روز جمعه، باید نوبت‌دهی را برای تمام جمعه‌ها فعال کنید. توجه داشته باشید که پس از فعال‌سازی، امکان بازگرداندن وضعیت به حالت قبلی وجود ندارد و برای این کار باید از طریق پشتیبانی ارتباط برقرار کنید.\n آیا می‌خواهید نوبت‌دهی را برای تمام جمعه‌ها فعال کنید؟`
+                        : "در صورت فعال‌سازی نوبت‌دهی در روزهای تعطیل، امکان بازگردانی وضعیت تعطیلی به صورت دستی وجود ندارد و برای این کار باید از طریق پشتیبانی ارتباط برقرار کنید.\n آیا از فعال‌سازی نوبت‌دهی اطمینان دارید؟";
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -538,9 +540,23 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                           sty.text__c4Wj
                         )}
                       >
-                        {
-                          "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc"
-                        }
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return $props.isFriday
+                                ? "فعالسازی نوبت دهی جمعه ها"
+                                : "فعالسازی نوبت دهی";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
                       </div>
                     }
                     className={classNames("__wab_instance", sty.button__e2Ran)}
