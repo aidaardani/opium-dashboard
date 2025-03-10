@@ -191,10 +191,10 @@ function PlasmicActivationConsultRules2__RenderFunc(props: {
                           return {
                             event_group: "activation-page",
                             data: {
-                              userID: $ctx.query.userId,
+                              userId: $ctx.query.userId,
                               pagePath: window.location.href
                             },
-                            event_type: "load-page-consult-rules"
+                            event_type: "load-page-consult-rules1"
                           };
                         } catch (e) {
                           if (
@@ -277,6 +277,48 @@ function PlasmicActivationConsultRules2__RenderFunc(props: {
             data-plasmic-name={"sideEffect"}
             data-plasmic-override={overrides.sideEffect}
             className={classNames("__wab_instance", sty.sideEffect)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["sendEvant"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "activation-page",
+                              data: {
+                                userId: $ctx.query.userId,
+                                pagePath: window.location.href
+                              },
+                              event_type: "load-page-consult-rules2"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["sendEvant"] != null &&
+                typeof $steps["sendEvant"] === "object" &&
+                typeof $steps["sendEvant"].then === "function"
+              ) {
+                $steps["sendEvant"] = await $steps["sendEvant"];
+              }
+            }}
           />
 
           <Embed
