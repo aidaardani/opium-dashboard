@@ -63,6 +63,7 @@ import HolidaysPageTitle from "../../HolidaysPageTitle"; // plasmic-import: ju7x
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import HolidaysItem from "../../HolidaysItem"; // plasmic-import: NtLART2XhB7g/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
+import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -193,6 +194,25 @@ function PlasmicHolidays__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "holidays",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $state.apiRequest.data;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -321,7 +341,7 @@ function PlasmicHolidays__RenderFunc(props: {
             {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
               (() => {
                 try {
-                  return $state.apiRequest.data;
+                  return $state.holidays;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||

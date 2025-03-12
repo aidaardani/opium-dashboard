@@ -63,6 +63,7 @@ import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-impor
 import Avatar from "../../Avatar"; // plasmic-import: 3i84rYjQRrs4/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import ActivationServiceSelectionButton from "../../ActivationServiceSelectionButton"; // plasmic-import: dvxpjd6PRJ15/component
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -97,6 +98,7 @@ export type PlasmicActivationServiceSelection__OverridesType = {
   activationServiceSelectionButton?: Flex__<
     typeof ActivationServiceSelectionButton
   >;
+  sideEffect?: Flex__<typeof SideEffect>;
 };
 
 export interface DefaultActivationServiceSelectionProps {
@@ -552,7 +554,8 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
                                     event_group: "activation-page",
                                     data: {
                                       data: $state.profileApi.data.data,
-                                      selectedServices: $state.selectedServices
+                                      selectedServices: $state.selectedServices,
+                                      userId: $state.profileApi.data.data.id
                                     },
                                     event_type: "click-active-service-button"
                                   };
@@ -714,6 +717,54 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
           />
         </div>
       </ApiRequest>
+      <SideEffect
+        data-plasmic-name={"sideEffect"}
+        data-plasmic-override={overrides.sideEffect}
+        className={classNames("__wab_instance", sty.sideEffect)}
+        onMount={async () => {
+          const $steps = {};
+
+          $steps["sendEvent"] = true
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    (() => {
+                      try {
+                        return {
+                          event_group: "activation-page",
+                          data: {
+                            data: $state.profileApi.data.data,
+                            selectedServices: $state.selectedServices,
+                            userId: $state.profileApi.data.data.id
+                          },
+                          event_type: "load-page-step1"
+                        };
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  ]
+                };
+                return $globalActions["Splunk.sendLog"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["sendEvent"] != null &&
+            typeof $steps["sendEvent"] === "object" &&
+            typeof $steps["sendEvent"].then === "function"
+          ) {
+            $steps["sendEvent"] = await $steps["sendEvent"];
+          }
+        }}
+      />
     </div>
   ) as React.ReactElement | null;
 }
@@ -724,7 +775,8 @@ const PlasmicDescendants = {
     "profileApi",
     "svg",
     "avatar",
-    "activationServiceSelectionButton"
+    "activationServiceSelectionButton",
+    "sideEffect"
   ],
   profileApi: [
     "profileApi",
@@ -734,7 +786,8 @@ const PlasmicDescendants = {
   ],
   svg: ["svg"],
   avatar: ["avatar"],
-  activationServiceSelectionButton: ["activationServiceSelectionButton"]
+  activationServiceSelectionButton: ["activationServiceSelectionButton"],
+  sideEffect: ["sideEffect"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -745,6 +798,7 @@ type NodeDefaultElementType = {
   svg: "svg";
   avatar: typeof Avatar;
   activationServiceSelectionButton: typeof ActivationServiceSelectionButton;
+  sideEffect: typeof SideEffect;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -814,6 +868,7 @@ export const PlasmicActivationServiceSelection = Object.assign(
     activationServiceSelectionButton: makeNodeComponent(
       "activationServiceSelectionButton"
     ),
+    sideEffect: makeNodeComponent("sideEffect"),
 
     // Metadata about props expected for PlasmicActivationServiceSelection
     internalVariantProps: PlasmicActivationServiceSelection__VariantProps,

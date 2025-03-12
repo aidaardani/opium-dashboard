@@ -356,14 +356,25 @@ function PlasmicActivationOfficeCenter2__RenderFunc(props: {
                       args: [
                         (() => {
                           try {
-                            return {
-                              event_group: "activation-page",
-                              data: {
-                                userID: $ctx.query.userId,
-                                pagePath: window.location.href
-                              },
-                              event_type: "load-page-step2"
-                            };
+                            return (() => {
+                              const userId =
+                                $ctx.query.userId ||
+                                localStorage.getItem("userId");
+                              if ($ctx.query.userId) {
+                                localStorage.setItem(
+                                  "userId",
+                                  $ctx.query.userId
+                                );
+                              }
+                              return {
+                                event_group: "activation-page",
+                                data: {
+                                  userId: userId,
+                                  pagePath: window.location.href
+                                },
+                                event_type: "load-page-step2"
+                              };
+                            })();
                           } catch (e) {
                             if (
                               e instanceof TypeError ||

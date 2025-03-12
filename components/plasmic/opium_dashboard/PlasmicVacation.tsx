@@ -804,7 +804,11 @@ function PlasmicVacation__RenderFunc(props: {
         data-plasmic-name={"addVocationDialog"}
         data-plasmic-override={overrides.addVocationDialog}
         body={
-          <div className={classNames(projectcss.all, sty.freeBox__esgU9)}>
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__esgU9)}
+          >
             <DateRangePicker
               data-plasmic-name={"dateRangePicker"}
               data-plasmic-override={overrides.dateRangePicker}
@@ -822,6 +826,34 @@ function PlasmicVacation__RenderFunc(props: {
               ])}
             />
 
+            {(() => {
+              try {
+                return (
+                  !!$state.dateRangePicker.selectedDays.from &&
+                  !$state.dateRangePicker.selectedDays.to
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })() ? (
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__bSk2U
+                )}
+              >
+                {
+                  "\u062f\u0631 \u0635\u0648\u0631\u062a\u06cc \u06a9\u0647 \u062a\u0645\u0627\u06cc\u0644 \u0628\u0647 \u0627\u0639\u0645\u0627\u0644 \u0645\u0631\u062e\u0635\u06cc \u0628\u0631\u0627\u06cc \u0628\u0627\u0632\u0647\u200c\u0627\u06cc \u062e\u0627\u0635 \u0631\u0627 \u062f\u0627\u0631\u06cc\u062f \u0644\u0637\u0641\u0627 \u062a\u0627\u0631\u06cc\u062e \u0627\u0646\u062a\u0647\u0627\u06cc \u0628\u0627\u0632\u0647 \u0631\u0627 \u0646\u06cc\u0632 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f."
+                }
+              </div>
+            ) : null}
             {(() => {
               try {
                 return (
@@ -1103,22 +1135,16 @@ function PlasmicVacation__RenderFunc(props: {
               className={classNames("__wab_instance", sty.button__eKdDh)}
               isDisabled={(() => {
                 try {
-                  return (
-                    !(
-                      $state.dateRangePicker.selectedDays.to &&
-                      $state.dateRangePicker.selectedDays.from
-                    ) ||
-                    !(
-                      ($state.fromTime && $state.toTime) ||
-                      $state.checkbox.isChecked
-                    )
+                  return !(
+                    ($state.fromTime && $state.toTime) ||
+                    $state.checkbox.isChecked
                   );
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
                     e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    return "isDisabled";
+                    return [];
                   }
                   throw e;
                 }
@@ -1234,8 +1260,11 @@ function PlasmicVacation__RenderFunc(props: {
                                 const toTime = $state.checkbox.isChecked
                                   ? "23:59"
                                   : $state.toTime;
+                                const toDateObject =
+                                  $state.dateRangePicker.selectedDays.to ||
+                                  $state.dateRangePicker.selectedDays.from;
                                 const toDate = convertDateAndTimeToTimeStamp(
-                                  $state.dateRangePicker.selectedDays.to,
+                                  toDateObject,
                                   toTime
                                 );
                                 return {
@@ -1603,7 +1632,7 @@ function PlasmicVacation__RenderFunc(props: {
                 }
               }}
             />
-          </div>
+          </Stack__>
         }
         className={classNames("__wab_instance", sty.addVocationDialog)}
         onOpenChange={async (...eventArgs: any) => {

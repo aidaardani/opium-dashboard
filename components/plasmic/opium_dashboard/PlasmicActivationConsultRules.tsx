@@ -765,15 +765,26 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                           args: [
                             (() => {
                               try {
-                                return {
-                                  event_group: "activation-page",
-                                  data: {
-                                    userid: $ctx.query.userId,
-                                    pagepath: $ctx.pagePath
-                                  },
-                                  event_type:
-                                    "click-read-again-rules-button-consult"
-                                };
+                                return (() => {
+                                  const userId =
+                                    $ctx.query.userId ||
+                                    localStorage.getItem("userId");
+                                  if ($ctx.query.userId) {
+                                    localStorage.setItem(
+                                      "userId",
+                                      $ctx.query.userId
+                                    );
+                                  }
+                                  return {
+                                    event_group: "activation-page",
+                                    data: {
+                                      userId: userId,
+                                      pagePath: window.location.href
+                                    },
+                                    event_type:
+                                      "click-read-again-rules-button-consult"
+                                  };
+                                })();
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -825,15 +836,26 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                           args: [
                             (() => {
                               try {
-                                return {
-                                  event_group: "activation-page",
-                                  data: {
-                                    userID: $ctx.query.userId,
-                                    pagepath: $ctx.pagePath
-                                  },
-                                  event_type:
-                                    "click-dont-active-rules-button-consult"
-                                };
+                                return (() => {
+                                  const userId =
+                                    $ctx.query.userId ||
+                                    localStorage.getItem("userId");
+                                  if ($ctx.query.userId) {
+                                    localStorage.setItem(
+                                      "userId",
+                                      $ctx.query.userId
+                                    );
+                                  }
+                                  return {
+                                    event_group: "activation-page",
+                                    data: {
+                                      userId: userId,
+                                      pagePath: window.location.href
+                                    },
+                                    event_type:
+                                      "click-dont-active-rules-button-consult"
+                                  };
+                                })();
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||

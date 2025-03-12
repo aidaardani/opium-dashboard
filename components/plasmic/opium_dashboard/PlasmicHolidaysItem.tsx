@@ -59,15 +59,9 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { usePlasmicDataSourceContext } from "@plasmicapp/data-sources-context";
-import {
-  executePlasmicDataOp,
-  usePlasmicDataOp,
-  usePlasmicInvalidate
-} from "@plasmicapp/react-web/lib/data-sources";
-
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
+import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
 
@@ -174,7 +168,13 @@ function PlasmicHolidaysItem__RenderFunc(props: {
         path: "dialog.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "curentHoliday",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) => []
       }
     ],
     [$props, $ctx, $refs]
@@ -185,8 +185,6 @@ function PlasmicHolidaysItem__RenderFunc(props: {
     $queries: {},
     $refs
   });
-  const dataSourcesCtx = usePlasmicDataSourceContext();
-  const plasmicInvalidate = usePlasmicInvalidate();
 
   const globalVariants = ensureGlobalVariants({
     screen: useScreenVariantsfobTirRaixGf()
@@ -304,7 +302,12 @@ function PlasmicHolidaysItem__RenderFunc(props: {
       >
         {(() => {
           try {
-            return $props.isHoliday === 1;
+            return (
+              $props.isHoliday === 1 &&
+              $state.curentHoliday.isHoliday !== $props.isHoliday &&
+              $state.curentHoliday.typeId !== $props.typeId &&
+              $state.curentHoliday.value !== $props.value
+            );
           } catch (e) {
             if (
               e instanceof TypeError ||
@@ -405,7 +408,12 @@ function PlasmicHolidaysItem__RenderFunc(props: {
         ) : null}
         {(() => {
           try {
-            return $props.isHoliday === 0;
+            return (
+              $props.isHoliday === 0 ||
+              ($state.curentHoliday.isHoliday === $props.isHoliday &&
+                $state.curentHoliday.typeId === $props.typeId &&
+                $state.curentHoliday.value === $props.value)
+            );
           } catch (e) {
             if (
               e instanceof TypeError ||
@@ -722,25 +730,80 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                         $steps["showToast"] = await $steps["showToast"];
                       }
 
-                      $steps["refreshData"] = true
+                      $steps["updateDialogOpen2"] = true
                         ? (() => {
                             const actionArgs = {
-                              queryInvalidation: ["plasmic_refresh_all"]
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["curentHoliday"]
+                              },
+                              operation: 0,
+                              value: {
+                                typeId: $props.typeId,
+                                isHoliday: $props.isHoliday,
+                                value: $props.value
+                              }
                             };
-                            return (async ({ queryInvalidation }) => {
-                              if (!queryInvalidation) {
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
                                 return;
                               }
-                              await plasmicInvalidate(queryInvalidation);
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
                             })?.apply(null, [actionArgs]);
                           })()
                         : undefined;
                       if (
-                        $steps["refreshData"] != null &&
-                        typeof $steps["refreshData"] === "object" &&
-                        typeof $steps["refreshData"].then === "function"
+                        $steps["updateDialogOpen2"] != null &&
+                        typeof $steps["updateDialogOpen2"] === "object" &&
+                        typeof $steps["updateDialogOpen2"].then === "function"
                       ) {
-                        $steps["refreshData"] = await $steps["refreshData"];
+                        $steps["updateDialogOpen2"] = await $steps[
+                          "updateDialogOpen2"
+                        ];
+                      }
+
+                      $steps["updateDialogOpen"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["dialog", "open"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateDialogOpen"] != null &&
+                        typeof $steps["updateDialogOpen"] === "object" &&
+                        typeof $steps["updateDialogOpen"].then === "function"
+                      ) {
+                        $steps["updateDialogOpen"] = await $steps[
+                          "updateDialogOpen"
+                        ];
                       }
                     }}
                   />
@@ -762,6 +825,10 @@ function PlasmicHolidaysItem__RenderFunc(props: {
             ) {
               return;
             }
+
+            (async val => {
+              const $steps = {};
+            }).apply(null, eventArgs);
           }}
           open={generateStateValueProp($state, ["dialog", "open"])}
           title={

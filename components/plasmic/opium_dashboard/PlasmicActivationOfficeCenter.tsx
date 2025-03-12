@@ -4650,7 +4650,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                             apiadress: $state.addressApi.data,
                             notifycell: $state.notifyCell.notifyCellValue,
                             pagepath: $ctx.pagePath,
-                            userid: $ctx.query.user_id
+                            userId: $ctx.query.userId
                           },
                           event_type: "click-done-address-button-office-step2"
                         };
@@ -5175,7 +5175,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                                         $state.notifyCell.notifyCellValue,
                                       center: $state.centersApi.data.data,
                                       pagepath: window.location.href,
-                                      userid: $props.userId,
+                                      userId: $props.userId,
                                       userCell: $state.profileApi.data.data.cell
                                     },
                                     event_type:

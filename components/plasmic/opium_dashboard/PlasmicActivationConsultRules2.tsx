@@ -245,10 +245,15 @@ function PlasmicActivationConsultRules2__RenderFunc(props: {
                         (() => {
                           try {
                             return (() => {
-                              const urlParams = new URLSearchParams(
-                                window.location.search
-                              );
-                              const userId = urlParams.get("userId");
+                              const userId =
+                                $ctx.query.userId ||
+                                localStorage.getItem("userId");
+                              if ($ctx.query.userId) {
+                                localStorage.setItem(
+                                  "userId",
+                                  $ctx.query.userId
+                                );
+                              }
                               return {
                                 event_group: "activation-page",
                                 data: {
