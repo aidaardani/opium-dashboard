@@ -432,6 +432,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                           "hoursDaysOfWeek",
                           "duration"
                         ])}
+                        eventType={"click-save-button-consult-workhoure"}
                         forwardPage={"/activation-page/finish"}
                         onDurationChange={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
@@ -1140,23 +1141,26 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               $steps["toast"] = await $steps["toast"];
                             }
 
-                            $steps["sendLog"] = true
+                            $steps["sendEvent"] = true
                               ? (() => {
                                   const actionArgs = {
                                     args: [
                                       (() => {
                                         try {
-                                          return {
-                                            event_group: "activation-page",
-                                            data: {
-                                              centers:
-                                                $state.centersApi.data.data,
-                                              userid: $ctx.query.user_id,
-                                              pagepath: $ctx.pagePath
-                                            },
-                                            event_type:
-                                              "click-save-button-consult-workhoure"
-                                          };
+                                          return (() => {
+                                            const userId =
+                                              $ctx.query.userId ||
+                                              localStorage.getItem("userId");
+                                            return {
+                                              event_group: "activation-page",
+                                              data: {
+                                                userId: userId,
+                                                pagePath: window.location.href
+                                              },
+                                              event_type:
+                                                "click-save-button-consult-workhoure"
+                                            };
+                                          })();
                                         } catch (e) {
                                           if (
                                             e instanceof TypeError ||
@@ -1176,11 +1180,11 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                 })()
                               : undefined;
                             if (
-                              $steps["sendLog"] != null &&
-                              typeof $steps["sendLog"] === "object" &&
-                              typeof $steps["sendLog"].then === "function"
+                              $steps["sendEvent"] != null &&
+                              typeof $steps["sendEvent"] === "object" &&
+                              typeof $steps["sendEvent"].then === "function"
                             ) {
-                              $steps["sendLog"] = await $steps["sendLog"];
+                              $steps["sendEvent"] = await $steps["sendEvent"];
                             }
 
                             $steps["redirect"] =

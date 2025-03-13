@@ -758,11 +758,13 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
                       (() => {
                         try {
                           return (() => {
+                            const userId =
+                              $props.userId || localStorage.getItem("userId");
                             if ($state.shabaApi.data) {
                               return {
                                 event_group: "activation-page",
                                 data: {
-                                  userId: $props.userId,
+                                  userId: userId,
                                   pagePath: window.location.href,
                                   isActiveCardNumber: true
                                 },
@@ -773,7 +775,7 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
                               return {
                                 event_group: "activation-page",
                                 data: {
-                                  userId: $props.userId,
+                                  userId: userId,
                                   pagePath: window.location.href,
                                   isActiveCardNumber: false
                                 },

@@ -4536,14 +4536,19 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                     args: [
                       (() => {
                         try {
-                          return {
-                            event_group: "activation-page",
-                            data: {
-                              userID: $ctx.query.userId,
-                              pagePath: window.location.href
-                            },
-                            event_type: "click-open-address-dialog"
-                          };
+                          return (() => {
+                            const userId =
+                              $ctx.query.userId ||
+                              localStorage.getItem("userId");
+                            return {
+                              event_group: "activation-page",
+                              data: {
+                                userId: userId,
+                                pagePath: window.location.href
+                              },
+                              event_type: "click-open-address-dialog"
+                            };
+                          })();
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -4643,17 +4648,18 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                   args: [
                     (() => {
                       try {
-                        return {
-                          event_group: "activation-page",
-                          data: {
-                            map: $state.map,
-                            apiadress: $state.addressApi.data,
-                            notifycell: $state.notifyCell.notifyCellValue,
-                            pagepath: $ctx.pagePath,
-                            userId: $ctx.query.userId
-                          },
-                          event_type: "click-done-address-button-office-step2"
-                        };
+                        return (() => {
+                          const userId =
+                            $ctx.query.userId || localStorage.getItem("userId");
+                          return {
+                            event_group: "activation-page",
+                            data: {
+                              userId: userId,
+                              pagePath: window.location.href
+                            },
+                            event_type: "click-done-address-button-office-step2"
+                          };
+                        })();
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -5166,21 +5172,20 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                             args: [
                               (() => {
                                 try {
-                                  return {
-                                    event_group: "activation-page",
-                                    data: {
-                                      map: $state.map,
-                                      apiadress: $state.addressApi.data,
-                                      notifycell:
-                                        $state.notifyCell.notifyCellValue,
-                                      center: $state.centersApi.data.data,
-                                      pagepath: window.location.href,
-                                      userId: $props.userId,
-                                      userCell: $state.profileApi.data.data.cell
-                                    },
-                                    event_type:
-                                      "click-save-button-office-step2-office-tell"
-                                  };
+                                  return (() => {
+                                    const userId =
+                                      $ctx.query.userId ||
+                                      localStorage.getItem("userId");
+                                    return {
+                                      event_group: "activation-page",
+                                      data: {
+                                        userId: userId,
+                                        pagePath: window.location.href
+                                      },
+                                      event_type:
+                                        "click-save-button-office-step2-office-tell"
+                                    };
+                                  })();
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -5566,19 +5571,20 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                           args: [
                             (() => {
                               try {
-                                return {
-                                  event_group: "activation-page",
-                                  data: {
-                                    map: $state.map,
-                                    apiadress: $state.adressTextInput.value,
-                                    notifycell:
-                                      $state.notifyCell.notifyCellValue,
-                                    pagepath: $ctx.pagePath,
-                                    userid: $ctx.query.user_id
-                                  },
-                                  event_type:
-                                    "click-save-change-address-button-office-step2"
-                                };
+                                return (() => {
+                                  const userId =
+                                    $ctx.query.userId ||
+                                    localStorage.getItem("userId");
+                                  return {
+                                    event_group: "activation-page",
+                                    data: {
+                                      userId: userId,
+                                      pagePath: window.location.href
+                                    },
+                                    event_type:
+                                      "click-save-change-address-button-office-step2"
+                                  };
+                                })();
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||

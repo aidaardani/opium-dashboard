@@ -372,7 +372,7 @@ function PlasmicActivationOfficeCenter2__RenderFunc(props: {
                                   userId: userId,
                                   pagePath: window.location.href
                                 },
-                                event_type: "load-page-step2"
+                                event_type: "load-page-address-step2"
                               };
                             })();
                           } catch (e) {

@@ -93,6 +93,7 @@ export type PlasmicHoursDaysOfWeek__ArgsType = {
   forwardPage?: string;
   isLoadingSave?: boolean;
   userId?: string;
+  eventType?: string;
 };
 type ArgPropType = keyof PlasmicHoursDaysOfWeek__ArgsType;
 export const PlasmicHoursDaysOfWeek__ArgProps = new Array<ArgPropType>(
@@ -103,7 +104,8 @@ export const PlasmicHoursDaysOfWeek__ArgProps = new Array<ArgPropType>(
   "customOnSubmit",
   "forwardPage",
   "isLoadingSave",
-  "userId"
+  "userId",
+  "eventType"
 );
 
 export type PlasmicHoursDaysOfWeek__OverridesType = {
@@ -123,6 +125,7 @@ export interface DefaultHoursDaysOfWeekProps {
   forwardPage?: string;
   isLoadingSave?: boolean;
   userId?: string;
+  eventType?: string;
   className?: string;
 }
 
@@ -1078,18 +1081,19 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                           args: [
                             (() => {
                               try {
-                                return {
-                                  event_group: "activation-page",
-                                  data: {
-                                    usercenterid: $props.userCenterId,
-                                    centerid: $props.centerId,
-                                    workhours: $state.workhoursApi.data.data,
-                                    userId: $props.userId,
-                                    pagePath: window.location.href
-                                  },
-                                  event_type:
-                                    "click-save-button-workhoure-step4"
-                                };
+                                return (() => {
+                                  const userId =
+                                    $ctx.query.userId ||
+                                    localStorage.getItem("userId");
+                                  return {
+                                    event_group: "activation-page",
+                                    data: {
+                                      userId: userId,
+                                      pagePath: window.location.href
+                                    },
+                                    event_type: $props.eventType
+                                  };
+                                })();
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||

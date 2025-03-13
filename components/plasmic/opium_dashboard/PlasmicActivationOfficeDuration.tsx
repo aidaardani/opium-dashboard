@@ -370,6 +370,7 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
                       "hoursDaysOfWeek",
                       "duration"
                     ])}
+                    eventType={"click-save-button-office-workhoure"}
                     forwardPage={(() => {
                       try {
                         return $ctx.query.onlineVisit == "true"

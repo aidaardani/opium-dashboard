@@ -960,12 +960,6 @@ function PlasmicProfileChannels__RenderFunc(props: {
                                 const userId =
                                   $ctx.query.userId ||
                                   localStorage.getItem("userId");
-                                if ($ctx.query.userId) {
-                                  localStorage.setItem(
-                                    "userId",
-                                    $ctx.query.userId
-                                  );
-                                }
                                 return {
                                   event_group: "activation-page",
                                   data: {

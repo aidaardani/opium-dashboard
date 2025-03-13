@@ -1712,17 +1712,15 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                           (() => {
                             try {
                               return (() => {
+                                const userId =
+                                  $ctx.query.userId ||
+                                  localStorage.getItem("userId");
                                 if ($state.shabaApi.data) {
                                   return {
                                     event_group: "activation-page",
                                     data: {
-                                      userId: $props.userId,
-                                      pagePath: window.location.href,
-                                      onlinevisit: $props.hasOnlineVisit,
-                                      isActiveCardNumber: true,
-                                      isCustomPrice:
-                                        $state.select.value === "custom",
-                                      price: $state.select.value
+                                      userId: userId,
+                                      pagePath: window.location.href
                                     },
                                     event_type:
                                       "click-add-cost-button-office-step3-set-payment"
@@ -1731,13 +1729,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                   return {
                                     event_group: "activation-page",
                                     data: {
-                                      userId: $props.userId,
-                                      pagePath: window.location.href,
-                                      onlinevisit: $props.hasOnlineVisit,
-                                      isActiveCardNumber: false,
-                                      isCustomPrice:
-                                        $state.select.value === "custom",
-                                      price: $state.select.value
+                                      userId: userId,
+                                      pagePath: window.location.href
                                     },
                                     event_type:
                                       "click-add-cost-button-office-step3-set-payment"
@@ -2472,16 +2465,20 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                       args: [
                         (() => {
                           try {
-                            return {
-                              event_group: "activation-page",
-                              data: {
-                                userId: $props.userId,
-                                pagePath: window.location.href,
-                                onlinevisit: $props.hasOnlineVisit
-                              },
-                              event_type:
-                                "click-cancel-cost-button-office-step3-set-payment"
-                            };
+                            return (() => {
+                              const userId =
+                                $ctx.query.userId ||
+                                localStorage.getItem("userId");
+                              return {
+                                event_group: "activation-page",
+                                data: {
+                                  userId: userId,
+                                  pagePath: window.location.href
+                                },
+                                event_type:
+                                  "click-cancel-cost-button-office-step3-set-payment"
+                              };
+                            })();
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
