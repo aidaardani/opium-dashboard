@@ -5081,20 +5081,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                                   throw e;
                                 }
                               })(),
-                              (() => {
-                                try {
-                                  return $steps.centerMutation.data.message;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })(),
+                              ``,
                               undefined,
                               (() => {
                                 try {
