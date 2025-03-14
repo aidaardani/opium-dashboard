@@ -716,54 +716,54 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
             }}
           />
         </div>
-        <SideEffect
-          data-plasmic-name={"sideEffect"}
-          data-plasmic-override={overrides.sideEffect}
-          className={classNames("__wab_instance", sty.sideEffect)}
-          onMount={async () => {
-            const $steps = {};
-
-            $steps["sendEvent"] = true
-              ? (() => {
-                  const actionArgs = {
-                    args: [
-                      (() => {
-                        try {
-                          return {
-                            event_group: "activation-page",
-                            data: {
-                              userId: $state.profileApi.data.data.id,
-                              pagePath: window.location.href
-                            },
-                            event_type: "load-page-step1"
-                          };
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()
-                    ]
-                  };
-                  return $globalActions["Splunk.sendLog"]?.apply(null, [
-                    ...actionArgs.args
-                  ]);
-                })()
-              : undefined;
-            if (
-              $steps["sendEvent"] != null &&
-              typeof $steps["sendEvent"] === "object" &&
-              typeof $steps["sendEvent"].then === "function"
-            ) {
-              $steps["sendEvent"] = await $steps["sendEvent"];
-            }
-          }}
-        />
       </ApiRequest>
+      <SideEffect
+        data-plasmic-name={"sideEffect"}
+        data-plasmic-override={overrides.sideEffect}
+        className={classNames("__wab_instance", sty.sideEffect)}
+        onMount={async () => {
+          const $steps = {};
+
+          $steps["sendEvent"] = true
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    (() => {
+                      try {
+                        return {
+                          event_group: "activation-page",
+                          data: {
+                            userId: $state.profileApi.data.data.id,
+                            pagePath: window.location.href
+                          },
+                          event_type: "load-page-step1"
+                        };
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  ]
+                };
+                return $globalActions["Splunk.sendLog"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["sendEvent"] != null &&
+            typeof $steps["sendEvent"] === "object" &&
+            typeof $steps["sendEvent"].then === "function"
+          ) {
+            $steps["sendEvent"] = await $steps["sendEvent"];
+          }
+        }}
+      />
     </div>
   ) as React.ReactElement | null;
 }
@@ -781,8 +781,7 @@ const PlasmicDescendants = {
     "profileApi",
     "svg",
     "avatar",
-    "activationServiceSelectionButton",
-    "sideEffect"
+    "activationServiceSelectionButton"
   ],
   svg: ["svg"],
   avatar: ["avatar"],

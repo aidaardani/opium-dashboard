@@ -821,6 +821,50 @@ function PlasmicProfileChannels__RenderFunc(props: {
               onClick={async event => {
                 const $steps = {};
 
+                $steps["sendEvent"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return (() => {
+                                const userId =
+                                  $ctx.query.userId ||
+                                  localStorage.getItem("userId");
+                                return {
+                                  event_group: "activation-page",
+                                  data: {
+                                    userId: userId,
+                                    pagePath: window.location.href
+                                  },
+                                  event_type: $props.eventType
+                                };
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["sendEvent"] != null &&
+                  typeof $steps["sendEvent"] === "object" &&
+                  typeof $steps["sendEvent"].then === "function"
+                ) {
+                  $steps["sendEvent"] = await $steps["sendEvent"];
+                }
+
                 $steps["updateIsLoadingSave"] = true
                   ? (() => {
                       const actionArgs = {
@@ -951,50 +995,6 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   $steps["updateIsLoadingSave2"] = await $steps[
                     "updateIsLoadingSave2"
                   ];
-                }
-
-                $steps["sendEvent"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          (() => {
-                            try {
-                              return (() => {
-                                const userId =
-                                  $ctx.query.userId ||
-                                  localStorage.getItem("userId");
-                                return {
-                                  event_group: "activation-page",
-                                  data: {
-                                    userId: userId,
-                                    pagePath: window.location.href
-                                  },
-                                  event_type: $props.eventType
-                                };
-                              })();
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Splunk.sendLog"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["sendEvent"] != null &&
-                  typeof $steps["sendEvent"] === "object" &&
-                  typeof $steps["sendEvent"].then === "function"
-                ) {
-                  $steps["sendEvent"] = await $steps["sendEvent"];
                 }
 
                 $steps["toast"] = !!$steps.invokeGlobalAction.data.message
