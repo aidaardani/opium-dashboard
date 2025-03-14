@@ -64,6 +64,7 @@ import DrCenters from "../../DrCenters"; // plasmic-import: IkLsGKQP_uPj/compone
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import AvailabilitySuggestionsSpecialities from "../../AvailabilitySuggestionsSpecialities"; // plasmic-import: bBN7I3yc6plC/component
 import HoursDaysOfWeek from "../../HoursDaysOfWeek"; // plasmic-import: lSLy8Nehd6MM/component
+import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -73,6 +74,9 @@ import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css";
 import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicWorkhoursPage.module.css"; // plasmic-import: RPoKJwDI8F3t/css
+
+import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
+import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 
 createPlasmicElementProxy;
 
@@ -94,6 +98,7 @@ export type PlasmicWorkhoursPage__OverridesType = {
     typeof AvailabilitySuggestionsSpecialities
   >;
   hoursDaysOfWeek?: Flex__<typeof HoursDaysOfWeek>;
+  button?: Flex__<typeof Button>;
   runCodeGtmMetrica?: Flex__<typeof SideEffect>;
   gtm?: Flex__<typeof Embed>;
   apiSpeciality?: Flex__<typeof ApiRequest>;
@@ -746,6 +751,102 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                   })()}
                 />
               ) : null}
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox___0YkBo)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__p3Plx
+                  )}
+                >
+                  {
+                    "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627"
+                  }
+                </div>
+              </Stack__>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__kTIe8)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__vKqZd
+                  )}
+                >
+                  <React.Fragment>
+                    <React.Fragment>
+                      {
+                        "\u0646\u0648\u0628\u062a \u0647\u0627\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u062a\u0639\u0637\u06cc\u0644\u06cc \u0646\u062f\u0627\u0631\u062f \u062c\u0647\u062a \u063a\u06cc\u0631 \u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc \u0646\u0648\u0628\u062a \u0647\u0627\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u062f\u0631 \u0631\u0648\u0632 \u0647\u0627\u06cc \u062a\u0639\u0637\u06cc\u0644 \u0645\u06cc \u062a\u0648\u0627\u0646\u06cc\u062f \u0627\u0632 \u0628\u062e\u0634 "
+                      }
+                    </React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 700 }}
+                    >
+                      {"\u0645\u0631\u062e\u0635\u06cc "}
+                    </span>
+                    <React.Fragment>
+                      {
+                        "\u0627\u0642\u062f\u0627\u0645 \u0628\u0647 \u063a\u06cc\u0631 \u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc \u06a9\u0646\u06cc\u062f \u0647\u0645\u0686\u0646\u06cc\u0646 \u062c\u0647\u062a \u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc \u0645\u0637\u0628 \u062f\u0631 \u0631\u0648\u0632 \u0647\u0627\u06cc \u062a\u0639\u0637\u06cc\u0644 \u0628\u0631 \u0631\u0648\u06cc \u062f\u06a9\u0645\u0647"
+                      }
+                    </React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 700 }}
+                    >
+                      {
+                        " \u0645\u062f\u06cc\u0631\u06cc\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627\u06cc \u0645\u0637\u0628"
+                      }
+                    </span>
+                    <React.Fragment>
+                      {" \u06a9\u0644\u06cc\u06a9 \u06a9\u0646\u06cc\u062f."}
+                    </React.Fragment>
+                  </React.Fragment>
+                </div>
+                <Button
+                  data-plasmic-name={"button"}
+                  data-plasmic-override={overrides.button}
+                  children2={
+                    "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627\u06cc \u0645\u0637\u0628"
+                  }
+                  className={classNames("__wab_instance", sty.button)}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["goToHolidays"] = true
+                      ? (() => {
+                          const actionArgs = { destination: `/holidays/index` };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToHolidays"] != null &&
+                      typeof $steps["goToHolidays"] === "object" &&
+                      typeof $steps["goToHolidays"].then === "function"
+                    ) {
+                      $steps["goToHolidays"] = await $steps["goToHolidays"];
+                    }
+                  }}
+                />
+              </Stack__>
             </div>
           </Stack__>
           <SideEffect
@@ -917,6 +1018,7 @@ const PlasmicDescendants = {
     "sideEffect",
     "availabilitySuggestionsSpecialities",
     "hoursDaysOfWeek",
+    "button",
     "runCodeGtmMetrica",
     "gtm",
     "apiSpeciality"
@@ -926,6 +1028,7 @@ const PlasmicDescendants = {
   sideEffect: ["sideEffect"],
   availabilitySuggestionsSpecialities: ["availabilitySuggestionsSpecialities"],
   hoursDaysOfWeek: ["hoursDaysOfWeek"],
+  button: ["button"],
   runCodeGtmMetrica: ["runCodeGtmMetrica"],
   gtm: ["gtm"],
   apiSpeciality: ["apiSpeciality"]
@@ -940,6 +1043,7 @@ type NodeDefaultElementType = {
   sideEffect: typeof SideEffect;
   availabilitySuggestionsSpecialities: typeof AvailabilitySuggestionsSpecialities;
   hoursDaysOfWeek: typeof HoursDaysOfWeek;
+  button: typeof Button;
   runCodeGtmMetrica: typeof SideEffect;
   gtm: typeof Embed;
   apiSpeciality: typeof ApiRequest;
@@ -1012,6 +1116,7 @@ export const PlasmicWorkhoursPage = Object.assign(
       "availabilitySuggestionsSpecialities"
     ),
     hoursDaysOfWeek: makeNodeComponent("hoursDaysOfWeek"),
+    button: makeNodeComponent("button"),
     runCodeGtmMetrica: makeNodeComponent("runCodeGtmMetrica"),
     gtm: makeNodeComponent("gtm"),
     apiSpeciality: makeNodeComponent("apiSpeciality"),

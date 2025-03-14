@@ -93,12 +93,14 @@ export type PlasmicProfileChannels__ArgsType = {
   customOnSubmit?: (channels: any) => void;
   isLoadingSubmit?: boolean;
   userId?: string;
+  eventType?: string;
 };
 type ArgPropType = keyof PlasmicProfileChannels__ArgsType;
 export const PlasmicProfileChannels__ArgProps = new Array<ArgPropType>(
   "customOnSubmit",
   "isLoadingSubmit",
-  "userId"
+  "userId",
+  "eventType"
 );
 
 export type PlasmicProfileChannels__OverridesType = {
@@ -114,6 +116,7 @@ export interface DefaultProfileChannelsProps {
   customOnSubmit?: (channels: any) => void;
   isLoadingSubmit?: boolean;
   userId?: string;
+  eventType?: string;
   className?: string;
 }
 
@@ -966,8 +969,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
                                     userId: userId,
                                     pagePath: window.location.href
                                   },
-                                  event_type:
-                                    "click-save-consult-messenger-button-step3"
+                                  event_type: $props.eventType
                                 };
                               })();
                             } catch (e) {

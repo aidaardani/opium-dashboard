@@ -133,6 +133,8 @@ function PlasmicActivationPage__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const $globalActions = useGlobalActions?.();
+
   return (
     <React.Fragment>
       <Head>
@@ -301,6 +303,45 @@ function PlasmicActivationPage__RenderFunc(props: {
                 typeof $steps["loadMetrica"].then === "function"
               ) {
                 $steps["loadMetrica"] = await $steps["loadMetrica"];
+              }
+
+              $steps["sendEvent"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "activation-page",
+                              data: {
+                                userId: $state.profileApi.data.data.id,
+                                pagePath: window.location.href
+                              },
+                              event_type: "load-page-step1"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["sendEvent"] != null &&
+                typeof $steps["sendEvent"] === "object" &&
+                typeof $steps["sendEvent"].then === "function"
+              ) {
+                $steps["sendEvent"] = await $steps["sendEvent"];
               }
             }}
           />

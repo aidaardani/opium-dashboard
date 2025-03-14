@@ -2759,7 +2759,7 @@
           "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
           "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicHolidays.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/holidays.tsx"
+            "modulePath": "../src/pages/holidays/index/index.tsx"
           },
           "cssFilePath": "plasmic/opium_dashboard/PlasmicHolidays.module.css",
           "scheme": "blackbox",

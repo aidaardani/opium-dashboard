@@ -5115,44 +5115,6 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                       ];
                     }
 
-                    $steps["updateCityDialogOpen"] =
-                      $steps.centerMutation.status == "400" ||
-                      $steps.centerMutation.status == "500"
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["cityDialog", "open"]
-                              },
-                              operation: 4
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              const oldValue = $stateGet(objRoot, variablePath);
-                              $stateSet(objRoot, variablePath, !oldValue);
-                              return !oldValue;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                    if (
-                      $steps["updateCityDialogOpen"] != null &&
-                      typeof $steps["updateCityDialogOpen"] === "object" &&
-                      typeof $steps["updateCityDialogOpen"].then === "function"
-                    ) {
-                      $steps["updateCityDialogOpen"] = await $steps[
-                        "updateCityDialogOpen"
-                      ];
-                    }
-
                     $steps["sendEvent"] = true
                       ? (() => {
                           const actionArgs = {
@@ -5197,6 +5159,44 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                       typeof $steps["sendEvent"].then === "function"
                     ) {
                       $steps["sendEvent"] = await $steps["sendEvent"];
+                    }
+
+                    $steps["updateCityDialogOpen"] =
+                      $steps.centerMutation.status == "400" ||
+                      $steps.centerMutation.status == "500"
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["cityDialog", "open"]
+                              },
+                              operation: 4
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              const oldValue = $stateGet(objRoot, variablePath);
+                              $stateSet(objRoot, variablePath, !oldValue);
+                              return !oldValue;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["updateCityDialogOpen"] != null &&
+                      typeof $steps["updateCityDialogOpen"] === "object" &&
+                      typeof $steps["updateCityDialogOpen"].then === "function"
+                    ) {
+                      $steps["updateCityDialogOpen"] = await $steps[
+                        "updateCityDialogOpen"
+                      ];
                     }
 
                     $steps["goToPage"] =

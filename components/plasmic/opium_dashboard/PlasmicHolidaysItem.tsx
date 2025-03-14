@@ -245,7 +245,9 @@ function PlasmicHolidaysItem__RenderFunc(props: {
           <React.Fragment>
             {(() => {
               try {
-                return $props.holidayDate;
+                return $props.value === "1742589000"
+                  ? "02 فروردین 1404"
+                  : $props.holidayDate;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -458,8 +460,8 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                 <React.Fragment>
                   {(() => {
                     try {
-                      return $props.isFriday
-                        ? `فعالسازی نوبت دهی در روز ${$props.holidayDate} امکان پذیر نمی باشد.\n  برای فعال‌سازی نوبت‌دهی در روز جمعه، باید نوبت‌دهی را برای تمام جمعه‌ها فعال کنید. توجه داشته باشید که پس از فعال‌سازی، امکان بازگرداندن وضعیت به حالت قبلی وجود ندارد و برای این کار باید از طریق پشتیبانی ارتباط برقرار کنید.\n آیا می‌خواهید نوبت‌دهی را برای تمام جمعه‌ها فعال کنید؟`
+                      return $props.isFriday && $props.value !== "1742589000"
+                        ? `فعالسازی نوبت دهی در روز ${$props.holidayDate} امکان پذیر نمی باشد.\n  برای فعال‌سازی نوبت‌دهی در روز جمعه، باید نوبت‌دهی را برای تمام جمعه‌ها فعال کنید.`
                         : "در صورت فعال‌سازی نوبت‌دهی در روزهای تعطیل، امکان بازگردانی وضعیت تعطیلی به صورت دستی وجود ندارد و برای این کار باید از طریق پشتیبانی ارتباط برقرار کنید.\n آیا از فعال‌سازی نوبت‌دهی اطمینان دارید؟";
                     } catch (e) {
                       if (
@@ -537,7 +539,10 @@ function PlasmicHolidaysItem__RenderFunc(props: {
 
                 {(() => {
                   try {
-                    return $props.isHoliday === 1;
+                    return (
+                      ($props.isHoliday === 1 && $props.isFriday === false) ||
+                      $props.value === "1742589000"
+                    );
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -560,9 +565,7 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                         <React.Fragment>
                           {(() => {
                             try {
-                              return $props.isFriday
-                                ? "فعالسازی نوبت دهی جمعه ها"
-                                : "فعالسازی نوبت دهی";
+                              return "فعالسازی نوبت دهی";
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -579,7 +582,7 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                     className={classNames("__wab_instance", sty.button__e2Ran)}
                     color={(() => {
                       try {
-                        return $props.isFriday && "red";
+                        return $props.isFriday;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -808,6 +811,61 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                     }}
                   />
                 ) : null}
+                {(() => {
+                  try {
+                    return (
+                      $props.isFriday === true && $props.value !== "1742589000"
+                    );
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <Button
+                    children2={
+                      "\u0627\u0631\u062a\u0628\u0627\u0637 \u0628\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646"
+                    }
+                    className={classNames("__wab_instance", sty.button___81RUe)}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["goToHttpsTMeSybigdeli"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              destination: '"https://t.me/sybigdeli"'
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["goToHttpsTMeSybigdeli"] != null &&
+                        typeof $steps["goToHttpsTMeSybigdeli"] === "object" &&
+                        typeof $steps["goToHttpsTMeSybigdeli"].then ===
+                          "function"
+                      ) {
+                        $steps["goToHttpsTMeSybigdeli"] = await $steps[
+                          "goToHttpsTMeSybigdeli"
+                        ];
+                      }
+                    }}
+                  />
+                ) : null}
               </Stack__>
             </React.Fragment>
           }
@@ -835,7 +893,9 @@ function PlasmicHolidaysItem__RenderFunc(props: {
             <React.Fragment>
               {(() => {
                 try {
-                  return $props.isFriday ? "توجه" : "فعالسازی نوبت دهی";
+                  return $props.isFriday && $props.value !== "1742589000"
+                    ? "توجه"
+                    : "فعالسازی نوبت دهی";
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
