@@ -444,6 +444,59 @@ function PlasmicActivationFinish__RenderFunc(props: {
                         ];
                       }
 
+                      $steps["sendEvent"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return (() => {
+                                      const userId =
+                                        $ctx.query.userId ||
+                                        localStorage.getItem("userId");
+                                      if ($ctx.query.userId) {
+                                        localStorage.setItem(
+                                          "userId",
+                                          $ctx.query.userId
+                                        );
+                                      }
+                                      return {
+                                        event_group: "activation-page",
+                                        data: {
+                                          userId: userId,
+                                          pagePath: window.location.href
+                                        },
+                                        event_type:
+                                          "click-open-support-bot-activation"
+                                      };
+                                    })();
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendEvent"] != null &&
+                        typeof $steps["sendEvent"] === "object" &&
+                        typeof $steps["sendEvent"].then === "function"
+                      ) {
+                        $steps["sendEvent"] = await $steps["sendEvent"];
+                      }
+
                       $steps["goToPage"] = true
                         ? (() => {
                             const actionArgs = {
@@ -482,58 +535,6 @@ function PlasmicActivationFinish__RenderFunc(props: {
                         typeof $steps["goToPage"].then === "function"
                       ) {
                         $steps["goToPage"] = await $steps["goToPage"];
-                      }
-
-                      $steps["sendEvent"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              args: [
-                                (() => {
-                                  try {
-                                    return (() => {
-                                      const userId =
-                                        $ctx.query.userId ||
-                                        localStorage.getItem("userId");
-                                      if ($ctx.query.userId) {
-                                        localStorage.setItem(
-                                          "userId",
-                                          $ctx.query.userId
-                                        );
-                                      }
-                                      return {
-                                        event_group: "activation-page",
-                                        data: {
-                                          userId: userId,
-                                          pagePath: window.location.href
-                                        },
-                                        event_type: "click-open-support-bot"
-                                      };
-                                    })();
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()
-                              ]
-                            };
-                            return $globalActions["Splunk.sendLog"]?.apply(
-                              null,
-                              [...actionArgs.args]
-                            );
-                          })()
-                        : undefined;
-                      if (
-                        $steps["sendEvent"] != null &&
-                        typeof $steps["sendEvent"] === "object" &&
-                        typeof $steps["sendEvent"].then === "function"
-                      ) {
-                        $steps["sendEvent"] = await $steps["sendEvent"];
                       }
                     }}
                     onLoad={async event => {
