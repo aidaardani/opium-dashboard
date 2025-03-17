@@ -3,16 +3,16 @@
 
 import { CodeComponentMeta, useSelector } from "@plasmicapp/host";
 import {
-  forwardRef,
   ReactNode,
   useEffect,
+  useState,
   useId,
   useImperativeHandle,
+  forwardRef,
   useMemo,
-  useState,
 } from "react";
 import axios from "axios";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 
 type ApiRequestType = {
   method: "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
@@ -64,7 +64,7 @@ export const ApiRequest = forwardRef((props: ApiRequestType, ref) => {
     }),
     [method, url, params, body, config, fragmentConfig, id]
   );
-  const { error, mutate } = useSWR(
+  const { error } = useSWR(
     JSON.stringify(fetchProps),
     () => reuqestFn(fetchProps),
     {
@@ -91,7 +91,9 @@ export const ApiRequest = forwardRef((props: ApiRequestType, ref) => {
     () => {
       return {
         refresh: () => {
-          mutate();
+          mutate(JSON.stringify(fetchProps), () => reuqestFn(fetchProps), {
+            revalidate: true,
+          });
         },
       };
     },
@@ -145,7 +147,6 @@ export const apiRequestMeta: CodeComponentMeta<ApiRequestType> = {
       defaultValueHint: "/api/v1/users",
       required: true,
     },
-
     params: {
       displayName: "Query Params",
       type: "object",
