@@ -92,8 +92,10 @@ export type PlasmicActivationOfficeEditCostV2__ArgsType = {
   hasOnlineVisit?: boolean;
   userCenterId?: string;
   centerId?: string;
-  service?: string;
+  serviceId?: string;
   onchange?: (price: string) => void;
+  serviceAlias?: string;
+  serviceTypeId?: string;
 };
 type ArgPropType = keyof PlasmicActivationOfficeEditCostV2__ArgsType;
 export const PlasmicActivationOfficeEditCostV2__ArgProps =
@@ -101,8 +103,10 @@ export const PlasmicActivationOfficeEditCostV2__ArgProps =
     "hasOnlineVisit",
     "userCenterId",
     "centerId",
-    "service",
-    "onchange"
+    "serviceId",
+    "onchange",
+    "serviceAlias",
+    "serviceTypeId"
   );
 
 export type PlasmicActivationOfficeEditCostV2__OverridesType = {
@@ -122,8 +126,10 @@ export interface DefaultActivationOfficeEditCostV2Props {
   hasOnlineVisit?: boolean;
   userCenterId?: string;
   centerId?: string;
-  service?: string;
+  serviceId?: string;
   onchange?: (price: string) => void;
+  serviceAlias?: string;
+  serviceTypeId?: string;
   className?: string;
 }
 
@@ -1448,9 +1454,9 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                               return {
                                 active: 1,
                                 center_id: centerId,
-                                service_id: $props.service.service_id,
-                                service_alias: $props.service.alias_title,
-                                service_type_id: $props.service.service_type_id,
+                                service_id: $props.serviceId,
+                                service_alias: $props.serviceAlias,
+                                service_type_id: $props.serviceTypeId,
                                 deposit_amount:
                                   ($state.select.value === "custom"
                                     ? $state.input.value

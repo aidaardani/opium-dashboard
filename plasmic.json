@@ -2858,6 +2858,19 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/service-list"
+        },
+        {
+          "id": "yG5R3lBI1HfD",
+          "name": "EachService",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicEachService.tsx",
+          "importSpec": {
+            "modulePath": "EachService.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicEachService.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

@@ -60,9 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
-import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
-import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
-import ActivationOfficeEditCostV2 from "../../ActivationOfficeEditCostV2"; // plasmic-import: UneQv74kMpjq/component
+import EachService from "../../EachService"; // plasmic-import: yG5R3lBI1HfD/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -73,8 +71,6 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJ
 import sty from "./PlasmicService.module.css"; // plasmic-import: Gx_K_c32VlEA/css
 
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
-import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
-import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 
 createPlasmicElementProxy;
 
@@ -87,30 +83,26 @@ export type PlasmicService__ArgsType = {
   centerId?: string;
   userCenterId?: string;
   serviceTypeId?: number;
-  onchangeCost?: (price: string) => void;
 };
 type ArgPropType = keyof PlasmicService__ArgsType;
 export const PlasmicService__ArgProps = new Array<ArgPropType>(
   "centerId",
   "userCenterId",
-  "serviceTypeId",
-  "onchangeCost"
+  "serviceTypeId"
 );
 
 export type PlasmicService__OverridesType = {
   root?: Flex__<"div">;
   apiGetService?: Flex__<typeof ApiRequest>;
   svg?: Flex__<"svg">;
-  dialog?: Flex__<typeof Dialog>;
-  button?: Flex__<typeof Button>;
-  activationOfficeEditCostV2?: Flex__<typeof ActivationOfficeEditCostV2>;
+  text?: Flex__<"div">;
+  eachService?: Flex__<typeof EachService>;
 };
 
 export interface DefaultServiceProps {
   centerId?: string;
   userCenterId?: string;
   serviceTypeId?: number;
-  onchangeCost?: (price: string) => void;
   className?: string;
 }
 
@@ -183,11 +175,6 @@ function PlasmicService__RenderFunc(props: {
         refName: "apiGetService"
       },
       {
-        path: "dialog[].open",
-        type: "private",
-        variableType: "boolean"
-      },
-      {
         path: "costOffice",
         type: "private",
         variableType: "array",
@@ -217,6 +204,11 @@ function PlasmicService__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "eachService[].price",
+        type: "private",
+        variableType: "text"
       }
     ],
     [$props, $ctx, $refs]
@@ -252,10 +244,12 @@ function PlasmicService__RenderFunc(props: {
         className={classNames("__wab_instance", sty.apiGetService)}
         errorDisplay={
           <div
+            data-plasmic-name={"text"}
+            data-plasmic-override={overrides.text}
             className={classNames(
               projectcss.all,
               projectcss.__wab_text,
-              sty.text___1KDa
+              sty.text
             )}
           >
             {"Error fetching data"}
@@ -328,229 +322,143 @@ function PlasmicService__RenderFunc(props: {
       ).map((__plasmic_item_0, __plasmic_idx_0) => {
         const currentItem = __plasmic_item_0;
         const currentIndex = __plasmic_idx_0;
-        return (
-          <div
-            className={classNames(projectcss.all, sty.freeBox__pf2La)}
-            key={currentIndex}
-          >
-            <div className={classNames(projectcss.all, sty.freeBox__b4E8)}>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__hyIx
-                )}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return currentItem.alias_title;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "";
-                      }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
-              </div>
-              {(() => {
-                try {
-                  return currentItem.message != "no-service";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__aW4Sz
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return currentItem.free_price / 10 + " تومان";
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-              ) : null}
-              {(() => {
-                const child$Props = {
-                  body: (
-                    <ActivationOfficeEditCostV2
-                      data-plasmic-name={"activationOfficeEditCostV2"}
-                      data-plasmic-override={
-                        overrides.activationOfficeEditCostV2
-                      }
-                      centerId={(() => {
-                        try {
-                          return $props.centerId;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.activationOfficeEditCostV2
-                      )}
-                      onchange={async price => {
-                        const $steps = {};
-                      }}
-                      service={(() => {
-                        try {
-                          return currentItem;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                      userCenterId={(() => {
-                        try {
-                          return $props.userCenterId;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()}
-                    />
-                  ),
-
-                  className: classNames("__wab_instance", sty.dialog),
-                  onOpenChange: async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
-                      "dialog",
-                      __plasmic_idx_0,
-                      "open"
-                    ]).apply(null, eventArgs);
-
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
-                    }
-                  },
-                  open: generateStateValueProp($state, [
-                    "dialog",
-                    __plasmic_idx_0,
-                    "open"
-                  ]),
-                  title:
-                    "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0645\u0628\u0644\u063a",
-                  trigger: (
-                    <Button
-                      data-plasmic-name={"button"}
-                      data-plasmic-override={overrides.button}
-                      children2={"\u0648\u06cc\u0631\u0627\u06cc\u0634"}
-                      className={classNames("__wab_instance", sty.button)}
-                    />
-                  )
-                };
-
-                initializePlasmicStates(
-                  $state,
-                  [
-                    {
-                      name: "dialog[].open",
-                      initFunc: ({ $props, $state, $queries }) => undefined
-                    }
-                  ],
-                  [__plasmic_idx_0]
-                );
-                return (
-                  <Dialog
-                    data-plasmic-name={"dialog"}
-                    data-plasmic-override={overrides.dialog}
-                    {...child$Props}
-                  />
-                );
-              })()}
-            </div>
-            {(() => {
+        return (() => {
+          const child$Props = {
+            centerId: (() => {
               try {
-                return $state.apiGetService.data.message === "no-service";
+                return $props.centerId;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
                   e?.plasmicType === "PlasmicUndefinedDataError"
                 ) {
-                  return false;
+                  return undefined;
                 }
                 throw e;
               }
-            })() ? (
-              <div className={classNames(projectcss.all, sty.freeBox__sjhjj)}>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__elgbZ
-                  )}
-                >
-                  {
-                    "\u0628\u0631\u0627\u06cc \u0645\u0631\u06a9\u0632 \u0627\u0646\u062a\u062e\u0627\u0628\u06cc \u0634\u0645\u0627 \u062e\u062f\u0645\u062a\u06cc \u06cc\u0627\u0641\u062a \u0646\u0634\u062f."
-                  }
-                </div>
-              </div>
-            ) : null}
-          </div>
-        );
+            })(),
+            className: classNames("__wab_instance", sty.eachService),
+            freePrice: (() => {
+              try {
+                return currentItem.free_price / 10 + " تومان";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })(),
+            key: currentIndex,
+            onPriceChange: async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "eachService",
+                __plasmic_idx_0,
+                "price"
+              ]).apply(null, eventArgs);
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+
+              (async val => {
+                const $steps = {};
+              }).apply(null, eventArgs);
+            },
+            price: generateStateValueProp($state, [
+              "eachService",
+              __plasmic_idx_0,
+              "price"
+            ]),
+            serviceAlias: (() => {
+              try {
+                return currentItem.alias_title;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })(),
+            serviceId: (() => {
+              try {
+                return currentItem.service_id;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })(),
+            serviceTypeId: (() => {
+              try {
+                return currentItem.service_type_id;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })(),
+            userCenterId: (() => {
+              try {
+                return $props.userCenterId;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()
+          };
+
+          initializePlasmicStates(
+            $state,
+            [
+              {
+                name: "eachService[].price",
+                initFunc: ({ $props, $state, $queries }) => ""
+              }
+            ],
+            [__plasmic_idx_0]
+          );
+          return (
+            <EachService
+              data-plasmic-name={"eachService"}
+              data-plasmic-override={overrides.eachService}
+              {...child$Props}
+            />
+          );
+        })();
       })}
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: [
-    "root",
-    "apiGetService",
-    "svg",
-    "dialog",
-    "button",
-    "activationOfficeEditCostV2"
-  ],
-  apiGetService: ["apiGetService", "svg"],
+  root: ["root", "apiGetService", "svg", "text", "eachService"],
+  apiGetService: ["apiGetService", "svg", "text"],
   svg: ["svg"],
-  dialog: ["dialog", "button", "activationOfficeEditCostV2"],
-  button: ["button"],
-  activationOfficeEditCostV2: ["activationOfficeEditCostV2"]
+  text: ["text"],
+  eachService: ["eachService"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -559,9 +467,8 @@ type NodeDefaultElementType = {
   root: "div";
   apiGetService: typeof ApiRequest;
   svg: "svg";
-  dialog: typeof Dialog;
-  button: typeof Button;
-  activationOfficeEditCostV2: typeof ActivationOfficeEditCostV2;
+  text: "div";
+  eachService: typeof EachService;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -626,9 +533,8 @@ export const PlasmicService = Object.assign(
     // Helper components rendering sub-elements
     apiGetService: makeNodeComponent("apiGetService"),
     svg: makeNodeComponent("svg"),
-    dialog: makeNodeComponent("dialog"),
-    button: makeNodeComponent("button"),
-    activationOfficeEditCostV2: makeNodeComponent("activationOfficeEditCostV2"),
+    text: makeNodeComponent("text"),
+    eachService: makeNodeComponent("eachService"),
 
     // Metadata about props expected for PlasmicService
     internalVariantProps: PlasmicService__VariantProps,
