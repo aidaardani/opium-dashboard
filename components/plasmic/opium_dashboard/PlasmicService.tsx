@@ -302,7 +302,9 @@ function PlasmicService__RenderFunc(props: {
         ref={ref => {
           $refs["apiGetService"] = ref;
         }}
-        url={"http://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-dr-service"}
+        url={
+          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-dr-service"
+        }
       />
 
       {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
