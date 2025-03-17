@@ -371,6 +371,27 @@ function PlasmicService__RenderFunc(props: {
 
               (async val => {
                 const $steps = {};
+
+                $steps["runActionOnApiGetService"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        tplRef: "apiGetService",
+                        action: "refresh"
+                      };
+                      return (({ tplRef, action, args }) => {
+                        return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runActionOnApiGetService"] != null &&
+                  typeof $steps["runActionOnApiGetService"] === "object" &&
+                  typeof $steps["runActionOnApiGetService"].then === "function"
+                ) {
+                  $steps["runActionOnApiGetService"] = await $steps[
+                    "runActionOnApiGetService"
+                  ];
+                }
               }).apply(null, eventArgs);
             },
             price: generateStateValueProp($state, [
