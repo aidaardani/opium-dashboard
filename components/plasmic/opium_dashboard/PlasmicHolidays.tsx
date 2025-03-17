@@ -255,7 +255,6 @@ function PlasmicHolidays__RenderFunc(props: {
           <HolidaysPageTitle
             data-plasmic-name={"holidaysPageTitle"}
             data-plasmic-override={overrides.holidaysPageTitle}
-            className={classNames("__wab_instance", sty.holidaysPageTitle)}
             holidays={(() => {
               try {
                 return $state.apiRequest2.data;
@@ -359,7 +358,6 @@ function PlasmicHolidays__RenderFunc(props: {
                 <HolidaysItem
                   data-plasmic-name={"holidaysItem"}
                   data-plasmic-override={overrides.holidaysItem}
-                  className={classNames("__wab_instance", sty.holidaysItem)}
                   holidayDate={(() => {
                     try {
                       return currentItem.date;
