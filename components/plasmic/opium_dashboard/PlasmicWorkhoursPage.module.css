@@ -175,14 +175,14 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  min-width: 0;
+  grid-column-start: 1 !important;
+  grid-column-end: -1 !important;
   padding: 8px;
 }
 .vacation > :global(.__wab_flex-container) {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  min-width: 0;
   margin-top: calc(0px - 10px);
   height: calc(100% + 10px);
 }
