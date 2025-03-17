@@ -2844,6 +2844,20 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/new-page-4"
+        },
+        {
+          "id": "9dDa9fZJkCNM",
+          "name": "ServiceList",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicServiceList.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/service-list.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicServiceList.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/service-list"
         }
       ],
       "icons": [

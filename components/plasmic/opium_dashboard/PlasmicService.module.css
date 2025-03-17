@@ -36,12 +36,13 @@
   align-items: center;
   min-width: 0;
   padding: 8px;
+  border-bottom: 1px solid var(--token-Y3HOiwZmAcAF);
 }
 .freeBox__b4E8 {
   display: flex;
   flex-direction: row;
   position: relative;
-  align-items: stretch;
+  align-items: center;
   justify-content: flex-start;
   width: 100%;
   height: auto;
@@ -62,6 +63,7 @@
   max-width: 100%;
   font-weight: 500;
   font-size: 14px;
+  text-align: right;
   min-width: 0;
 }
 .text__aW4Sz {
