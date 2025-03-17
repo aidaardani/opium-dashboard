@@ -87,12 +87,14 @@ export type PlasmicService__ArgsType = {
   centerId?: string;
   userCenterId?: string;
   serviceTypeId?: number;
+  onchangeCost?: boolean;
 };
 type ArgPropType = keyof PlasmicService__ArgsType;
 export const PlasmicService__ArgProps = new Array<ArgPropType>(
   "centerId",
   "userCenterId",
-  "serviceTypeId"
+  "serviceTypeId",
+  "onchangeCost"
 );
 
 export type PlasmicService__OverridesType = {
@@ -108,6 +110,7 @@ export interface DefaultServiceProps {
   centerId?: string;
   userCenterId?: string;
   serviceTypeId?: number;
+  onchangeCost?: boolean;
   className?: string;
 }
 
@@ -132,9 +135,10 @@ function PlasmicService__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          centerId: "5504",
-          userCenterId: "21773",
-          serviceTypeId: 1
+          centerId: "5a446c87-799a-11ea-8314-005056b09c11",
+          userCenterId: "5cd6fc45-799a-11ea-8314-005056b09c11",
+          serviceTypeId: 1,
+          onchangeCost: false
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
@@ -385,6 +389,19 @@ function PlasmicService__RenderFunc(props: {
                         "__wab_instance",
                         sty.activationOfficeEditCostV2
                       )}
+                      service={(() => {
+                        try {
+                          return currentItem;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
                       userCenterId={(() => {
                         try {
                           return $props.userCenterId;

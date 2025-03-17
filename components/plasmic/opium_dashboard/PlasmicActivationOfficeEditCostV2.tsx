@@ -92,10 +92,16 @@ export type PlasmicActivationOfficeEditCostV2__ArgsType = {
   hasOnlineVisit?: boolean;
   userCenterId?: string;
   centerId?: string;
+  service?: string;
 };
 type ArgPropType = keyof PlasmicActivationOfficeEditCostV2__ArgsType;
 export const PlasmicActivationOfficeEditCostV2__ArgProps =
-  new Array<ArgPropType>("hasOnlineVisit", "userCenterId", "centerId");
+  new Array<ArgPropType>(
+    "hasOnlineVisit",
+    "userCenterId",
+    "centerId",
+    "service"
+  );
 
 export type PlasmicActivationOfficeEditCostV2__OverridesType = {
   root?: Flex__<"div">;
@@ -114,6 +120,7 @@ export interface DefaultActivationOfficeEditCostV2Props {
   hasOnlineVisit?: boolean;
   userCenterId?: string;
   centerId?: string;
+  service?: string;
   className?: string;
 }
 
@@ -465,61 +472,6 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
             projectcss.all,
             projectcss.__wab_text,
             sty.text__mOpf2
-          )}
-        >
-          <React.Fragment>
-            <span
-              className={"plasmic_default__all plasmic_default__span"}
-              style={{ fontWeight: 700 }}
-            >
-              {"\u06a9\u0644"}
-            </span>
-            <React.Fragment>
-              {" \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a \u00a0"}
-            </React.Fragment>
-            <span
-              className={"plasmic_default__all plasmic_default__span"}
-              style={{ fontWeight: 700 }}
-            >
-              {
-                "\u0645\u062a\u0639\u0644\u0642 \u0628\u0647 \u067e\u0632\u0634\u06a9"
-              }
-            </span>
-            <React.Fragment>{" \u0627\u0633\u062a \u0648 "}</React.Fragment>
-            <span
-              className={"plasmic_default__all plasmic_default__span"}
-              style={{ fontWeight: 700 }}
-            >
-              {
-                "\u0631\u0648\u0632\u0627\u0646\u0647 \u0628\u0647 \u0637\u0648\u0631 \u062e\u0648\u062f\u06a9\u0627\u0631"
-              }
-            </span>
-            <React.Fragment>
-              {
-                "\u00a0\u0628\u0647 \u062d\u0633\u0627\u0628 \u067e\u0632\u0634\u06a9 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f."
-              }
-            </React.Fragment>
-          </React.Fragment>
-        </div>
-      ) : null}
-      {(() => {
-        try {
-          return $state.apiGetPrefrence.data[0].status === true;
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return false;
-          }
-          throw e;
-        }
-      })() ? (
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__ti1Fg
           )}
         >
           <React.Fragment>
@@ -1478,8 +1430,8 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               ? (() => {
                   const actionArgs = {
                     args: [
-                      "PATCH",
-                      "https://api.paziresh24.com/V1/doctor/payments/settings/",
+                      "POST",
+                      "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/edit-cost",
                       undefined,
                       (() => {
                         try {
@@ -1493,6 +1445,9 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                               return {
                                 active: 1,
                                 center_id: centerId,
+                                service_id: $props.service.service_id,
+                                service_alias: $props.service.alias_title,
+                                service_type_id: $props.service.service_type_id,
                                 deposit_amount:
                                   ($state.select.value === "custom"
                                     ? $state.input.value
@@ -1803,7 +1758,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                         undefined,
                         (() => {
                           try {
-                            return { center_id: $props.centerId };
+                            return { center_id: $props.centerId, active: 0 };
                           } catch (e) {
                             if (
                               e instanceof TypeError ||

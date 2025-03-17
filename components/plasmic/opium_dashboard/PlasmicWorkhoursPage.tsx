@@ -98,6 +98,7 @@ export type PlasmicWorkhoursPage__OverridesType = {
     typeof AvailabilitySuggestionsSpecialities
   >;
   hoursDaysOfWeek?: Flex__<typeof HoursDaysOfWeek>;
+  vacation?: Flex__<"div">;
   button?: Flex__<typeof Button>;
   runCodeGtmMetrica?: Flex__<typeof SideEffect>;
   gtm?: Flex__<typeof Embed>;
@@ -336,181 +337,6 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
 
                 (async data => {
                   const $steps = {};
-
-                  $steps["provider"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "GET",
-                            (() => {
-                              try {
-                                return (
-                                  "https://apigw.paziresh24.com/v1/providers?user_id=" +
-                                  $ctx.query.user_id
-                                );
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Fragment.apiRequest"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                  if (
-                    $steps["provider"] != null &&
-                    typeof $steps["provider"] === "object" &&
-                    typeof $steps["provider"].then === "function"
-                  ) {
-                    $steps["provider"] = await $steps["provider"];
-                  }
-
-                  $steps["updateStateProvider"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["provider"]
-                          },
-                          operation: 0,
-                          value: $steps.provider.data
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateStateProvider"] != null &&
-                    typeof $steps["updateStateProvider"] === "object" &&
-                    typeof $steps["updateStateProvider"].then === "function"
-                  ) {
-                    $steps["updateStateProvider"] = await $steps[
-                      "updateStateProvider"
-                    ];
-                  }
-
-                  $steps["goToHttpsOpiumDashboardPaziresh24ComActivationPage"] =
-                    !$state.apIworkhours.data.data.some(
-                      center => center.id === "5532"
-                    ) &&
-                    !$state.apIworkhours.data.data.some(
-                      center =>
-                        center.id !== "5532" &&
-                        center.type_id === 1 &&
-                        center.is_active_booking === true
-                    ) &&
-                    !$state.apIworkhours.data.data.some(
-                      center =>
-                        center.id !== "5532" &&
-                        center.type_id === 3 &&
-                        center.is_active_booking === true
-                    ) &&
-                    !$state.apIworkhours.data.data.some(
-                      center =>
-                        center.id !== "5532" &&
-                        center.type_id === 2 &&
-                        center.is_active_booking === true
-                    ) &&
-                    $state.provider.providers.length > 0 &&
-                    $state.provider.providers[0].job_title === "doctor" &&
-                    !$state.provider.providers[0].slug.includes("منشی")
-                      ? (() => {
-                          const actionArgs = {
-                            destination:
-                              "https://opium-dashboard.paziresh24.com/activation-page/"
-                          };
-                          return (({ destination }) => {
-                            if (
-                              typeof destination === "string" &&
-                              destination.startsWith("#")
-                            ) {
-                              document
-                                .getElementById(destination.substr(1))
-                                .scrollIntoView({ behavior: "smooth" });
-                            } else {
-                              __nextRouter?.push(destination);
-                            }
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                  if (
-                    $steps[
-                      "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
-                    ] != null &&
-                    typeof $steps[
-                      "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
-                    ] === "object" &&
-                    typeof $steps[
-                      "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
-                    ].then === "function"
-                  ) {
-                    $steps[
-                      "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
-                    ] = await $steps[
-                      "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
-                    ];
-                  }
-
-                  $steps["sendEvent"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            (() => {
-                              try {
-                                return {
-                                  group: "activation-page",
-                                  data: {
-                                    center: $state.apiAllCenters.data.data,
-                                    userid: $ctx.query.user_id,
-                                    pagepath: $ctx.pagePath
-                                  },
-                                  type: "redirect-to-activation"
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Splunk.sendLog"]?.apply(null, [
-                          ...actionArgs.args
-                        ]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["sendEvent"] != null &&
-                    typeof $steps["sendEvent"] === "object" &&
-                    typeof $steps["sendEvent"].then === "function"
-                  ) {
-                    $steps["sendEvent"] = await $steps["sendEvent"];
-                  }
                 }).apply(null, eventArgs);
               }}
               ref={ref => {
@@ -751,6 +577,35 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                   })()}
                 />
               ) : null}
+            </div>
+          </Stack__>
+          {(() => {
+            try {
+              return (
+                $state.apIworkhours.data.data.find(
+                  item =>
+                    item.user_center_id === $state.selectedCenter &&
+                    item.id !== "5532" &&
+                    item.type_id === 1
+                ) !== undefined
+              );
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })() ? (
+            <Stack__
+              as={"div"}
+              data-plasmic-name={"vacation"}
+              data-plasmic-override={overrides.vacation}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.vacation)}
+            >
               <Stack__
                 as={"div"}
                 hasGap={true}
@@ -768,87 +623,55 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                   }
                 </div>
               </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__kTIe8)}
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__vKqZd
+                )}
               >
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__vKqZd
-                  )}
-                >
-                  <React.Fragment>
-                    <React.Fragment>
-                      {
-                        "\u0646\u0648\u0628\u062a \u0647\u0627\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u062a\u0639\u0637\u06cc\u0644\u06cc \u0646\u062f\u0627\u0631\u062f \u062c\u0647\u062a \u063a\u06cc\u0631 \u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc \u0646\u0648\u0628\u062a \u0647\u0627\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u062f\u0631 \u0631\u0648\u0632 \u0647\u0627\u06cc \u062a\u0639\u0637\u06cc\u0644 \u0645\u06cc \u062a\u0648\u0627\u0646\u06cc\u062f \u0627\u0632 \u0628\u062e\u0634 "
-                      }
-                    </React.Fragment>
-                    <span
-                      className={"plasmic_default__all plasmic_default__span"}
-                      style={{ fontWeight: 700 }}
-                    >
-                      {"\u0645\u0631\u062e\u0635\u06cc "}
-                    </span>
-                    <React.Fragment>
-                      {
-                        "\u0627\u0642\u062f\u0627\u0645 \u0628\u0647 \u063a\u06cc\u0631 \u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc \u06a9\u0646\u06cc\u062f \u0647\u0645\u0686\u0646\u06cc\u0646 \u062c\u0647\u062a \u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc \u0645\u0637\u0628 \u062f\u0631 \u0631\u0648\u0632 \u0647\u0627\u06cc \u062a\u0639\u0637\u06cc\u0644 \u0628\u0631 \u0631\u0648\u06cc \u062f\u06a9\u0645\u0647"
-                      }
-                    </React.Fragment>
-                    <span
-                      className={"plasmic_default__all plasmic_default__span"}
-                      style={{ fontWeight: 700 }}
-                    >
-                      {
-                        " \u0645\u062f\u06cc\u0631\u06cc\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627\u06cc \u0645\u0637\u0628"
-                      }
-                    </span>
-                    <React.Fragment>
-                      {" \u06a9\u0644\u06cc\u06a9 \u06a9\u0646\u06cc\u062f."}
-                    </React.Fragment>
-                  </React.Fragment>
-                </div>
-                <Button
-                  data-plasmic-name={"button"}
-                  data-plasmic-override={overrides.button}
-                  children2={
-                    "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627\u06cc \u0645\u0637\u0628"
-                  }
-                  className={classNames("__wab_instance", sty.button)}
-                  onClick={async event => {
-                    const $steps = {};
+                {
+                  "\u0634\u0645\u0627 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u062f\u0631 \u0631\u0648\u0632\u0647\u0627\u06cc \u062a\u0639\u0637\u06cc\u0644 \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0627\u06cc\u0646\u062a\u0631\u0646\u062a\u06cc \u0645\u0637\u0628 \u062e\u0648\u062f \u0631\u0627 \u0641\u0639\u0627\u0644 \u06a9\u0646\u06cc\u062f \u0648 \u0628\u0647 \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u062f\u0631 \u0631\u0648\u0632\u0647\u0627\u06cc \u062a\u0639\u0637\u06cc\u0644 \u062f\u0631 \u0645\u0637\u0628 \u062e\u0648\u062f \u062e\u062f\u0645\u062a \u0627\u0631\u0627\u0626\u0647 \u062f\u0647\u06cc\u062f."
+                }
+              </div>
+              <Button
+                data-plasmic-name={"button"}
+                data-plasmic-override={overrides.button}
+                children2={
+                  "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627\u06cc \u0645\u0637\u0628"
+                }
+                className={classNames("__wab_instance", sty.button)}
+                onClick={async event => {
+                  const $steps = {};
 
-                    $steps["goToHolidays"] = true
-                      ? (() => {
-                          const actionArgs = { destination: `/holidays/index` };
-                          return (({ destination }) => {
-                            if (
-                              typeof destination === "string" &&
-                              destination.startsWith("#")
-                            ) {
-                              document
-                                .getElementById(destination.substr(1))
-                                .scrollIntoView({ behavior: "smooth" });
-                            } else {
-                              __nextRouter?.push(destination);
-                            }
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["goToHolidays"] != null &&
-                      typeof $steps["goToHolidays"] === "object" &&
-                      typeof $steps["goToHolidays"].then === "function"
-                    ) {
-                      $steps["goToHolidays"] = await $steps["goToHolidays"];
-                    }
-                  }}
-                />
-              </Stack__>
-            </div>
-          </Stack__>
+                  $steps["goToHolidays"] = true
+                    ? (() => {
+                        const actionArgs = { destination: `/holidays/index` };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToHolidays"] != null &&
+                    typeof $steps["goToHolidays"] === "object" &&
+                    typeof $steps["goToHolidays"].then === "function"
+                  ) {
+                    $steps["goToHolidays"] = await $steps["goToHolidays"];
+                  }
+                }}
+              />
+            </Stack__>
+          ) : null}
           <SideEffect
             data-plasmic-name={"runCodeGtmMetrica"}
             data-plasmic-override={overrides.runCodeGtmMetrica}
@@ -1018,6 +841,7 @@ const PlasmicDescendants = {
     "sideEffect",
     "availabilitySuggestionsSpecialities",
     "hoursDaysOfWeek",
+    "vacation",
     "button",
     "runCodeGtmMetrica",
     "gtm",
@@ -1028,6 +852,7 @@ const PlasmicDescendants = {
   sideEffect: ["sideEffect"],
   availabilitySuggestionsSpecialities: ["availabilitySuggestionsSpecialities"],
   hoursDaysOfWeek: ["hoursDaysOfWeek"],
+  vacation: ["vacation", "button"],
   button: ["button"],
   runCodeGtmMetrica: ["runCodeGtmMetrica"],
   gtm: ["gtm"],
@@ -1043,6 +868,7 @@ type NodeDefaultElementType = {
   sideEffect: typeof SideEffect;
   availabilitySuggestionsSpecialities: typeof AvailabilitySuggestionsSpecialities;
   hoursDaysOfWeek: typeof HoursDaysOfWeek;
+  vacation: "div";
   button: typeof Button;
   runCodeGtmMetrica: typeof SideEffect;
   gtm: typeof Embed;
@@ -1116,6 +942,7 @@ export const PlasmicWorkhoursPage = Object.assign(
       "availabilitySuggestionsSpecialities"
     ),
     hoursDaysOfWeek: makeNodeComponent("hoursDaysOfWeek"),
+    vacation: makeNodeComponent("vacation"),
     button: makeNodeComponent("button"),
     runCodeGtmMetrica: makeNodeComponent("runCodeGtmMetrica"),
     gtm: makeNodeComponent("gtm"),

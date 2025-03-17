@@ -59,9 +59,9 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import ActivationProcess from "../../ActivationProcess"; // plasmic-import: 1sYr9T24RxmQ/component
 import ActivationServiceSelection from "../../ActivationServiceSelection"; // plasmic-import: ozcO84WaZS1-/component
-import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -87,9 +87,9 @@ export type PlasmicActivationPage__OverridesType = {
   root?: Flex__<"div">;
   header?: Flex__<"div">;
   text?: Flex__<"div">;
+  sideEffect?: Flex__<typeof SideEffect>;
   activationProcess?: Flex__<typeof ActivationProcess>;
   activationServiceSelection?: Flex__<typeof ActivationServiceSelection>;
-  sideEffect?: Flex__<typeof SideEffect>;
   embedHtml?: Flex__<typeof Embed>;
 };
 
@@ -191,26 +191,6 @@ function PlasmicActivationPage__RenderFunc(props: {
               {"\u0631\u0627\u0647 \u0627\u0646\u062f\u0627\u0632\u06cc"}
             </div>
           </div>
-          <div className={classNames(projectcss.all, sty.freeBox__vzmO)}>
-            <div className={classNames(projectcss.all, sty.freeBox__izoMx)}>
-              <ActivationProcess
-                data-plasmic-name={"activationProcess"}
-                data-plasmic-override={overrides.activationProcess}
-                className={classNames("__wab_instance", sty.activationProcess)}
-                step={1}
-              />
-            </div>
-            <div className={classNames(projectcss.all, sty.freeBox__eEWnP)}>
-              <ActivationServiceSelection
-                data-plasmic-name={"activationServiceSelection"}
-                data-plasmic-override={overrides.activationServiceSelection}
-                className={classNames(
-                  "__wab_instance",
-                  sty.activationServiceSelection
-                )}
-              />
-            </div>
-          </div>
           <SideEffect
             data-plasmic-name={"sideEffect"}
             data-plasmic-override={overrides.sideEffect}
@@ -305,6 +285,26 @@ function PlasmicActivationPage__RenderFunc(props: {
             }}
           />
 
+          <div className={classNames(projectcss.all, sty.freeBox__vzmO)}>
+            <div className={classNames(projectcss.all, sty.freeBox__izoMx)}>
+              <ActivationProcess
+                data-plasmic-name={"activationProcess"}
+                data-plasmic-override={overrides.activationProcess}
+                className={classNames("__wab_instance", sty.activationProcess)}
+                step={1}
+              />
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox__eEWnP)}>
+              <ActivationServiceSelection
+                data-plasmic-name={"activationServiceSelection"}
+                data-plasmic-override={overrides.activationServiceSelection}
+                className={classNames(
+                  "__wab_instance",
+                  sty.activationServiceSelection
+                )}
+              />
+            </div>
+          </div>
           <Embed
             data-plasmic-name={"embedHtml"}
             data-plasmic-override={overrides.embedHtml}
@@ -324,16 +324,16 @@ const PlasmicDescendants = {
     "root",
     "header",
     "text",
+    "sideEffect",
     "activationProcess",
     "activationServiceSelection",
-    "sideEffect",
     "embedHtml"
   ],
   header: ["header", "text"],
   text: ["text"],
+  sideEffect: ["sideEffect"],
   activationProcess: ["activationProcess"],
   activationServiceSelection: ["activationServiceSelection"],
-  sideEffect: ["sideEffect"],
   embedHtml: ["embedHtml"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -343,9 +343,9 @@ type NodeDefaultElementType = {
   root: "div";
   header: "div";
   text: "div";
+  sideEffect: typeof SideEffect;
   activationProcess: typeof ActivationProcess;
   activationServiceSelection: typeof ActivationServiceSelection;
-  sideEffect: typeof SideEffect;
   embedHtml: typeof Embed;
 };
 
@@ -411,9 +411,9 @@ export const PlasmicActivationPage = Object.assign(
     // Helper components rendering sub-elements
     header: makeNodeComponent("header"),
     text: makeNodeComponent("text"),
+    sideEffect: makeNodeComponent("sideEffect"),
     activationProcess: makeNodeComponent("activationProcess"),
     activationServiceSelection: makeNodeComponent("activationServiceSelection"),
-    sideEffect: makeNodeComponent("sideEffect"),
     embedHtml: makeNodeComponent("embedHtml"),
 
     // Metadata about props expected for PlasmicActivationPage

@@ -1075,42 +1075,47 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     ];
                   }
 
-                  $steps["sendEvent"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            (() => {
-                              try {
-                                return (() => {
-                                  const userId =
-                                    $ctx.query.userId ||
-                                    localStorage.getItem("userId");
-                                  return {
-                                    event_group: "activation-page",
-                                    data: {
-                                      userId: userId,
-                                      pagePath: window.location.href
-                                    },
-                                    event_type: $props.eventType
-                                  };
-                                })();
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
+                  $steps["sendEvent"] =
+                    $steps.saveWorkhours.data.status === "SUCCESS" &&
+                    $state.workhours.every(wh =>
+                      wh.checkboxIsChecked ? !wh.warning : true
+                    )
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return (() => {
+                                    const userId =
+                                      $ctx.query.userId ||
+                                      localStorage.getItem("userId");
+                                    return {
+                                      event_group: "activation-page",
+                                      data: {
+                                        userId: userId,
+                                        pagePath: window.location.href
+                                      },
+                                      event_type: $props.eventType
+                                    };
+                                  })();
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
                                 }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Splunk.sendLog"]?.apply(null, [
-                          ...actionArgs.args
-                        ]);
-                      })()
-                    : undefined;
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
                   if (
                     $steps["sendEvent"] != null &&
                     typeof $steps["sendEvent"] === "object" &&

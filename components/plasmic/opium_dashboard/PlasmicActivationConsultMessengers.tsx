@@ -662,7 +662,7 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
                       ];
                     }
                   }}
-                  eventType={"click-save-consult-messenger-button-step3"}
+                  eventType={"click-save-consult-messenger-button"}
                   isLoadingSubmit={(() => {
                     try {
                       return $state.isLoading;

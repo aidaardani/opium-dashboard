@@ -751,7 +751,10 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
               $steps["acceptRules"] = await $steps["acceptRules"];
             }
 
-            $steps["sendEvent"] = true
+            $steps["sendEvent"] = (() => {
+              const regex = /^\d+$/;
+              return regex.test($state.input.value);
+            })()
               ? (() => {
                   const actionArgs = {
                     args: [
