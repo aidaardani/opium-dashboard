@@ -821,6 +821,42 @@ function PlasmicProfileChannels__RenderFunc(props: {
               onClick={async event => {
                 const $steps = {};
 
+                $steps["updateIsLoadingSave"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["isLoadingSave"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateIsLoadingSave"] != null &&
+                  typeof $steps["updateIsLoadingSave"] === "object" &&
+                  typeof $steps["updateIsLoadingSave"].then === "function"
+                ) {
+                  $steps["updateIsLoadingSave"] = await $steps[
+                    "updateIsLoadingSave"
+                  ];
+                }
+
                 $steps["sendEvent"] = true
                   ? (() => {
                       const actionArgs = {
@@ -863,42 +899,6 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   typeof $steps["sendEvent"].then === "function"
                 ) {
                   $steps["sendEvent"] = await $steps["sendEvent"];
-                }
-
-                $steps["updateIsLoadingSave"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["isLoadingSave"]
-                        },
-                        operation: 0,
-                        value: true
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateIsLoadingSave"] != null &&
-                  typeof $steps["updateIsLoadingSave"] === "object" &&
-                  typeof $steps["updateIsLoadingSave"].then === "function"
-                ) {
-                  $steps["updateIsLoadingSave"] = await $steps[
-                    "updateIsLoadingSave"
-                  ];
                 }
 
                 $steps["invokeGlobalAction"] = true

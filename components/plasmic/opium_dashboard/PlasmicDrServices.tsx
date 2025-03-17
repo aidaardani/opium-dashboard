@@ -78,13 +78,9 @@ export type PlasmicDrServices__VariantsArgs = {};
 type VariantPropType = keyof PlasmicDrServices__VariantsArgs;
 export const PlasmicDrServices__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicDrServices__ArgsType = {
-  onchangeCost?: boolean;
-};
+export type PlasmicDrServices__ArgsType = {};
 type ArgPropType = keyof PlasmicDrServices__ArgsType;
-export const PlasmicDrServices__ArgProps = new Array<ArgPropType>(
-  "onchangeCost"
-);
+export const PlasmicDrServices__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicDrServices__OverridesType = {
   root?: Flex__<"div">;
@@ -95,7 +91,6 @@ export type PlasmicDrServices__OverridesType = {
 };
 
 export interface DefaultDrServicesProps {
-  onchangeCost?: boolean;
   className?: string;
 }
 
@@ -119,9 +114,7 @@ function PlasmicDrServices__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {
-          onchangeCost: false
-        },
+        {},
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )

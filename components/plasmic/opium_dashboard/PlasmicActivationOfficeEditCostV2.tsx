@@ -93,6 +93,7 @@ export type PlasmicActivationOfficeEditCostV2__ArgsType = {
   userCenterId?: string;
   centerId?: string;
   service?: string;
+  onchange?: (price: string) => void;
 };
 type ArgPropType = keyof PlasmicActivationOfficeEditCostV2__ArgsType;
 export const PlasmicActivationOfficeEditCostV2__ArgProps =
@@ -100,7 +101,8 @@ export const PlasmicActivationOfficeEditCostV2__ArgProps =
     "hasOnlineVisit",
     "userCenterId",
     "centerId",
-    "service"
+    "service",
+    "onchange"
   );
 
 export type PlasmicActivationOfficeEditCostV2__OverridesType = {
@@ -121,6 +123,7 @@ export interface DefaultActivationOfficeEditCostV2Props {
   userCenterId?: string;
   centerId?: string;
   service?: string;
+  onchange?: (price: string) => void;
   className?: string;
 }
 
@@ -1558,6 +1561,43 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               typeof $steps["showToast"].then === "function"
             ) {
               $steps["showToast"] = await $steps["showToast"];
+            }
+
+            $steps["runOnchange"] = true
+              ? (() => {
+                  const actionArgs = {
+                    eventRef: $props["onchange"],
+                    args: [
+                      (() => {
+                        try {
+                          return (
+                            ($state.select.value === "custom"
+                              ? $state.input.value
+                              : $state.select.value) * 10
+                          );
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return (({ eventRef, args }) => {
+                    return eventRef?.(...(args ?? []));
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runOnchange"] != null &&
+              typeof $steps["runOnchange"] === "object" &&
+              typeof $steps["runOnchange"].then === "function"
+            ) {
+              $steps["runOnchange"] = await $steps["runOnchange"];
             }
 
             $steps["sendEvent"] = true

@@ -1076,10 +1076,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                   }
 
                   $steps["sendEvent"] =
-                    $steps.saveWorkhours.data.status === "SUCCESS" &&
-                    $state.workhours.every(wh =>
-                      wh.checkboxIsChecked ? !wh.warning : true
-                    )
+                    !!$props.forwardPage && $steps.saveWorkhours.status == 200
                       ? (() => {
                           const actionArgs = {
                             args: [

@@ -87,7 +87,7 @@ export type PlasmicService__ArgsType = {
   centerId?: string;
   userCenterId?: string;
   serviceTypeId?: number;
-  onchangeCost?: boolean;
+  onchangeCost?: (price: string) => void;
 };
 type ArgPropType = keyof PlasmicService__ArgsType;
 export const PlasmicService__ArgProps = new Array<ArgPropType>(
@@ -110,7 +110,7 @@ export interface DefaultServiceProps {
   centerId?: string;
   userCenterId?: string;
   serviceTypeId?: number;
-  onchangeCost?: boolean;
+  onchangeCost?: (price: string) => void;
   className?: string;
 }
 
@@ -137,8 +137,7 @@ function PlasmicService__RenderFunc(props: {
         {
           centerId: "5a446c87-799a-11ea-8314-005056b09c11",
           userCenterId: "5cd6fc45-799a-11ea-8314-005056b09c11",
-          serviceTypeId: 1,
-          onchangeCost: false
+          serviceTypeId: 1
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
@@ -187,6 +186,37 @@ function PlasmicService__RenderFunc(props: {
         path: "dialog[].open",
         type: "private",
         variableType: "boolean"
+      },
+      {
+        path: "costOffice",
+        type: "private",
+        variableType: "array",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return [
+                { label: "10,000 تومان", value: "10000" },
+                { label: "20,000 تومان", value: "20000" },
+                { label: "30,000 تومان", value: "30000" },
+                { label: "40,000 تومان", value: "40000" },
+                { label: "50,000 تومان", value: "50000" },
+                { label: "100,000 تومان", value: "100000" },
+                {
+                  label: `${$state.apiGetVezaratCost.data[0].price / 10} تومان`,
+                  value: `${$state.apiGetVezaratCost.data[0].price / 10}`
+                },
+                { label: "قیمت دلخواه", value: "custom" }
+              ];
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -389,6 +419,9 @@ function PlasmicService__RenderFunc(props: {
                         "__wab_instance",
                         sty.activationOfficeEditCostV2
                       )}
+                      onchange={async price => {
+                        const $steps = {};
+                      }}
                       service={(() => {
                         try {
                           return currentItem;
