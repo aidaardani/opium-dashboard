@@ -167,8 +167,7 @@ function PlasmicDrCenters__RenderFunc(props: {
             try {
               return $props.hasAllOption
                 ? "all"
-                : $props.centers.find(center => center.is_active_booking)
-                    .user_center_id;
+                : $props.centers.find(center => center.id).user_center_id;
             } catch (e) {
               if (
                 e instanceof TypeError ||
