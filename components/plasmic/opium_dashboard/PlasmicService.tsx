@@ -372,7 +372,7 @@ function PlasmicService__RenderFunc(props: {
               (async val => {
                 const $steps = {};
 
-                $steps["runActionOnApiGetService"] = false
+                $steps["runActionOnApiGetService"] = true
                   ? (() => {
                       const actionArgs = {
                         tplRef: "apiGetService",
