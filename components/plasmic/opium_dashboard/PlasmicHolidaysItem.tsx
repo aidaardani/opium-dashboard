@@ -191,587 +191,332 @@ function PlasmicHolidaysItem__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
-      data-plasmic-name={"root"}
-      data-plasmic-override={overrides.root}
-      data-plasmic-root={true}
-      data-plasmic-for-node={forNode}
-      hasGap={true}
-      className={classNames(
-        projectcss.all,
-        projectcss.root_reset,
-        projectcss.plasmic_default_styles,
-        projectcss.plasmic_mixins,
-        projectcss.plasmic_tokens,
-        plasmic_fragment_design_system_css.plasmic_tokens,
-        plasmic_antd_5_hostless_css.plasmic_tokens,
-        plasmic_plasmic_rich_components_css.plasmic_tokens,
-        sty.root
-      )}
-      style={(() => {
-        try {
-          return $props.isFriday
-            ? { backgroundColor: "#f6f9ff" }
-            : { backgroundColor: "#ffffff" };
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return undefined;
-          }
-          throw e;
+    (() => {
+      try {
+        return $props.value !== "1743366600";
+      } catch (e) {
+        if (
+          e instanceof TypeError ||
+          e?.plasmicType === "PlasmicUndefinedDataError"
+        ) {
+          return true;
         }
-      })()}
-    >
-      <div className={classNames(projectcss.all, sty.freeBox__ubZya)}>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__k9JVu
-          )}
-        >
-          {"\u062a\u0627\u0631\u06cc\u062e :"}
-        </div>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text___0KJ0N
-          )}
-        >
-          <React.Fragment>
-            {(() => {
-              try {
-                return $props.value === "1742589000"
-                  ? "02 فروردین 1404"
-                  : $props.holidayDate;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "3 \u0641\u0631\u0648\u0631\u062f\u06cc\u0646 1403";
-                }
-                throw e;
-              }
-            })()}
-          </React.Fragment>
-        </div>
-      </div>
-      <div className={classNames(projectcss.all, sty.freeBox__e3Rcz)}>
-        {(hasVariant(globalVariants, "screen", "mobileOnly") ? true : false) ? (
+        throw e;
+      }
+    })() ? (
+      <Stack__
+        as={"div"}
+        data-plasmic-name={"root"}
+        data-plasmic-override={overrides.root}
+        data-plasmic-root={true}
+        data-plasmic-for-node={forNode}
+        hasGap={true}
+        className={classNames(
+          projectcss.all,
+          projectcss.root_reset,
+          projectcss.plasmic_default_styles,
+          projectcss.plasmic_mixins,
+          projectcss.plasmic_tokens,
+          plasmic_fragment_design_system_css.plasmic_tokens,
+          plasmic_antd_5_hostless_css.plasmic_tokens,
+          plasmic_plasmic_rich_components_css.plasmic_tokens,
+          sty.root
+        )}
+        style={(() => {
+          try {
+            return $props.isFriday
+              ? { backgroundColor: "#f6f9ff" }
+              : { backgroundColor: "#ffffff" };
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+      >
+        <div className={classNames(projectcss.all, sty.freeBox__ubZya)}>
           <div
             className={classNames(
               projectcss.all,
               projectcss.__wab_text,
-              sty.text___5Nj33
+              sty.text__k9JVu
             )}
           >
-            {"\u0639\u0646\u0648\u0627\u0646 :"}
+            {"\u062a\u0627\u0631\u06cc\u062e :"}
           </div>
-        ) : null}
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__i0MUc
-          )}
-        >
-          <React.Fragment>
-            {(() => {
-              try {
-                return $props.holidayTitle;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "\u0639\u06cc\u062f \u0633\u0639\u06cc\u062f \u0646\u0648\u0631\u0648\u0632";
-                }
-                throw e;
-              }
-            })()}
-          </React.Fragment>
-        </div>
-      </div>
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__d3IHe)}
-      >
-        {(() => {
-          try {
-            return (
-              $props.isHoliday === 1 &&
-              $state.curentHoliday.isHoliday !== $props.isHoliday &&
-              $state.curentHoliday.typeId !== $props.typeId &&
-              $state.curentHoliday.value !== $props.value
-            );
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return true;
-            }
-            throw e;
-          }
-        })() ? (
-          <Button
-            children2={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__mYud
-                )}
-              >
-                {
-                  "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc"
-                }
-              </div>
-            }
-            className={classNames("__wab_instance", sty.button__n8RB)}
-            onClick={async event => {
-              const $steps = {};
-
-              $steps["updateDialogOpen"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["dialog", "open"]
-                      },
-                      operation: 0,
-                      value: true
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateDialogOpen"] != null &&
-                typeof $steps["updateDialogOpen"] === "object" &&
-                typeof $steps["updateDialogOpen"].then === "function"
-              ) {
-                $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
-              }
-
-              $steps["sendEvent"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return {
-                              event_group: "holidays-page",
-                              data: {
-                                pagePath: window.location.href,
-                                selectedServices: $state.selectedServices
-                              },
-                              event_type: "click-remove-holidays"
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Splunk.sendLog"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["sendEvent"] != null &&
-                typeof $steps["sendEvent"] === "object" &&
-                typeof $steps["sendEvent"].then === "function"
-              ) {
-                $steps["sendEvent"] = await $steps["sendEvent"];
-              }
-            }}
-          />
-        ) : null}
-        {(() => {
-          try {
-            return (
-              $props.isHoliday === 0 ||
-              ($state.curentHoliday.isHoliday === $props.isHoliday &&
-                $state.curentHoliday.typeId === $props.typeId &&
-                $state.curentHoliday.value === $props.value)
-            );
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return true;
-            }
-            throw e;
-          }
-        })() ? (
-          <Button
-            children2={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__oDYmp
-                )}
-              >
-                {
-                  "\u0646\u0648\u0628\u062a \u062f\u0647\u06cc \u0641\u0639\u0627\u0644"
-                }
-              </div>
-            }
-            className={classNames("__wab_instance", sty.button__fvRZi)}
-            isDisabled={true}
-            outline={true}
-          />
-        ) : null}
-        <Dialog
-          data-plasmic-name={"dialog"}
-          data-plasmic-override={overrides.dialog}
-          body={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text___0KJ0N
+            )}
+          >
             <React.Fragment>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text___5AJnV
-                )}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return $props.isFriday && $props.value !== "1742589000"
-                        ? `فعالسازی نوبت دهی در روز ${$props.holidayDate} امکان پذیر نمی باشد.\n  برای فعال‌سازی نوبت‌دهی در روز جمعه، باید نوبت‌دهی را برای تمام جمعه‌ها فعال کنید.`
-                        : "در صورت فعال‌سازی نوبت‌دهی در روزهای تعطیل، امکان بازگردانی وضعیت تعطیلی به صورت دستی وجود ندارد و برای این کار باید از طریق پشتیبانی ارتباط برقرار کنید.\n آیا از فعال‌سازی نوبت‌دهی اطمینان دارید؟";
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "\u062f\u0631 \u0635\u0648\u0631\u062a \u0641\u0639\u0627\u0644\u200c\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u062f\u0631 \u0631\u0648\u0632\u0647\u0627\u06cc \u062a\u0639\u0637\u06cc\u0644\u060c \u0627\u0645\u06a9\u0627\u0646 \u0628\u0627\u0632\u06af\u0631\u062f\u0627\u0646\u06cc \u0648\u0636\u0639\u06cc\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0628\u0647 \u0635\u0648\u0631\u062a \u062f\u0633\u062a\u06cc \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f \u0648 \u0628\u0631\u0627\u06cc \u0627\u06cc\u0646 \u06a9\u0627\u0631 \u0628\u0627\u06cc\u062f \u0627\u0632 \u0637\u0631\u06cc\u0642 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u0627\u0631\u062a\u0628\u0627\u0637 \u0628\u0631\u0642\u0631\u0627\u0631 \u06a9\u0646\u06cc\u062f.\n \u0622\u06cc\u0627 \u0627\u0632 \u0641\u0639\u0627\u0644\u200c\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0627\u0637\u0645\u06cc\u0646\u0627\u0646 \u062f\u0627\u0631\u06cc\u062f\u061f";
-                      }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
-              </div>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__iu5V)}
-              >
-                <Button
-                  children2={
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__mjGjp
-                      )}
-                    >
-                      {
-                        "\u0635\u0631\u0641 \u0646\u0638\u0631 \u0627\u0632 \u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc"
-                      }
-                    </div>
+              {(() => {
+                try {
+                  return $props.value === "1742589000"
+                    ? "02 فروردین 1404"
+                    : $props.holidayDate;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "3 \u0641\u0631\u0648\u0631\u062f\u06cc\u0646 1403";
                   }
-                  className={classNames("__wab_instance", sty.button__dPwqG)}
-                  onClick={async event => {
-                    const $steps = {};
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+        </div>
+        <div className={classNames(projectcss.all, sty.freeBox__e3Rcz)}>
+          {(
+            hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
+          ) ? (
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text___5Nj33
+              )}
+            >
+              {"\u0639\u0646\u0648\u0627\u0646 :"}
+            </div>
+          ) : null}
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__i0MUc
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.holidayTitle;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "\u0639\u06cc\u062f \u0633\u0639\u06cc\u062f \u0646\u0648\u0631\u0648\u0632";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+        </div>
+        <Stack__
+          as={"div"}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.freeBox__d3IHe)}
+        >
+          {(() => {
+            try {
+              return (
+                $props.isHoliday === 1 &&
+                $state.curentHoliday.isHoliday !== $props.isHoliday &&
+                $state.curentHoliday.typeId !== $props.typeId &&
+                $state.curentHoliday.value !== $props.value
+              );
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })() ? (
+            <Button
+              children2={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__mYud
+                  )}
+                >
+                  {
+                    "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc"
+                  }
+                </div>
+              }
+              className={classNames("__wab_instance", sty.button__n8RB)}
+              onClick={async event => {
+                const $steps = {};
 
-                    $steps["updateDialogOpen"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["dialog", "open"]
-                            },
-                            operation: 0,
-                            value: false
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
+                $steps["updateDialogOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["dialog", "open"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateDialogOpen"] != null &&
+                  typeof $steps["updateDialogOpen"] === "object" &&
+                  typeof $steps["updateDialogOpen"].then === "function"
+                ) {
+                  $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
+                }
+
+                $steps["sendEvent"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                event_group: "holidays-page",
+                                data: {
+                                  pagePath: window.location.href,
+                                  selectedServices: $state.selectedServices
+                                },
+                                event_type: "click-remove-holidays"
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
                             }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateDialogOpen"] != null &&
-                      typeof $steps["updateDialogOpen"] === "object" &&
-                      typeof $steps["updateDialogOpen"].then === "function"
-                    ) {
-                      $steps["updateDialogOpen"] = await $steps[
-                        "updateDialogOpen"
-                      ];
-                    }
-                  }}
-                  outline={true}
-                />
-
-                {(() => {
-                  try {
-                    return (
-                      ($props.isHoliday === 1 && $props.isFriday === false) ||
-                      $props.value === "1742589000"
-                    );
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
+                          })()
+                        ]
+                      };
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["sendEvent"] != null &&
+                  typeof $steps["sendEvent"] === "object" &&
+                  typeof $steps["sendEvent"].then === "function"
+                ) {
+                  $steps["sendEvent"] = await $steps["sendEvent"];
+                }
+              }}
+            />
+          ) : null}
+          {(() => {
+            try {
+              return (
+                $props.isHoliday === 0 ||
+                ($state.curentHoliday.isHoliday === $props.isHoliday &&
+                  $state.curentHoliday.typeId === $props.typeId &&
+                  $state.curentHoliday.value === $props.value)
+              );
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return true;
+              }
+              throw e;
+            }
+          })() ? (
+            <Button
+              children2={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__oDYmp
+                  )}
+                >
+                  {
+                    "\u0646\u0648\u0628\u062a \u062f\u0647\u06cc \u0641\u0639\u0627\u0644"
                   }
-                })() ? (
+                </div>
+              }
+              className={classNames("__wab_instance", sty.button__fvRZi)}
+              isDisabled={true}
+              outline={true}
+            />
+          ) : null}
+          <Dialog
+            data-plasmic-name={"dialog"}
+            data-plasmic-override={overrides.dialog}
+            body={
+              <React.Fragment>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___5AJnV
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $props.isFriday && $props.value !== "1742589000"
+                          ? `فعالسازی نوبت دهی در روز ${$props.holidayDate} امکان پذیر نمی باشد.\n  برای فعال‌سازی نوبت‌دهی در روز جمعه، باید نوبت‌دهی را برای تمام جمعه‌ها فعال کنید.`
+                          : "در صورت فعال‌سازی نوبت‌دهی در روزهای تعطیل، امکان بازگردانی وضعیت تعطیلی به صورت دستی وجود ندارد و برای این کار باید از طریق پشتیبانی ارتباط برقرار کنید.\n آیا از فعال‌سازی نوبت‌دهی اطمینان دارید؟";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u062f\u0631 \u0635\u0648\u0631\u062a \u0641\u0639\u0627\u0644\u200c\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u062f\u0631 \u0631\u0648\u0632\u0647\u0627\u06cc \u062a\u0639\u0637\u06cc\u0644\u060c \u0627\u0645\u06a9\u0627\u0646 \u0628\u0627\u0632\u06af\u0631\u062f\u0627\u0646\u06cc \u0648\u0636\u0639\u06cc\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0628\u0647 \u0635\u0648\u0631\u062a \u062f\u0633\u062a\u06cc \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f \u0648 \u0628\u0631\u0627\u06cc \u0627\u06cc\u0646 \u06a9\u0627\u0631 \u0628\u0627\u06cc\u062f \u0627\u0632 \u0637\u0631\u06cc\u0642 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u0627\u0631\u062a\u0628\u0627\u0637 \u0628\u0631\u0642\u0631\u0627\u0631 \u06a9\u0646\u06cc\u062f.\n \u0622\u06cc\u0627 \u0627\u0632 \u0641\u0639\u0627\u0644\u200c\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0627\u0637\u0645\u06cc\u0646\u0627\u0646 \u062f\u0627\u0631\u06cc\u062f\u061f";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__iu5V)}
+                >
                   <Button
                     children2={
                       <div
                         className={classNames(
                           projectcss.all,
                           projectcss.__wab_text,
-                          sty.text__c4Wj
+                          sty.text__mjGjp
                         )}
                       >
-                        <React.Fragment>
-                          {(() => {
-                            try {
-                              return "فعالسازی نوبت دهی";
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc";
-                              }
-                              throw e;
-                            }
-                          })()}
-                        </React.Fragment>
+                        {
+                          "\u0635\u0631\u0641 \u0646\u0638\u0631 \u0627\u0632 \u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc"
+                        }
                       </div>
                     }
-                    className={classNames("__wab_instance", sty.button__e2Ran)}
-                    color={(() => {
-                      try {
-                        return $props.isFriday;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return [];
-                        }
-                        throw e;
-                      }
-                    })()}
+                    className={classNames("__wab_instance", sty.button__dPwqG)}
                     onClick={async event => {
                       const $steps = {};
-
-                      $steps["holidayRemoveApi"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              args: [
-                                "POST",
-                                "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/remove-holidays",
-                                undefined,
-                                (() => {
-                                  try {
-                                    return {
-                                      value: $props.value,
-                                      type_id: $props.typeId,
-                                      Desk: $props.holidayTitle
-                                    };
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()
-                              ]
-                            };
-                            return $globalActions["Fragment.apiRequest"]?.apply(
-                              null,
-                              [...actionArgs.args]
-                            );
-                          })()
-                        : undefined;
-                      if (
-                        $steps["holidayRemoveApi"] != null &&
-                        typeof $steps["holidayRemoveApi"] === "object" &&
-                        typeof $steps["holidayRemoveApi"].then === "function"
-                      ) {
-                        $steps["holidayRemoveApi"] = await $steps[
-                          "holidayRemoveApi"
-                        ];
-                      }
-
-                      $steps["sendEvent"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              args: [
-                                (() => {
-                                  try {
-                                    return {
-                                      event_group: "holidays-page",
-                                      data: {
-                                        pagePath: window.location.href,
-                                        selectedServices:
-                                          $state.selectedServices
-                                      },
-                                      event_type: "click-remove-holidays"
-                                    };
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()
-                              ]
-                            };
-                            return $globalActions["Splunk.sendLog"]?.apply(
-                              null,
-                              [...actionArgs.args]
-                            );
-                          })()
-                        : undefined;
-                      if (
-                        $steps["sendEvent"] != null &&
-                        typeof $steps["sendEvent"] === "object" &&
-                        typeof $steps["sendEvent"].then === "function"
-                      ) {
-                        $steps["sendEvent"] = await $steps["sendEvent"];
-                      }
-
-                      $steps["showToast"] =
-                        $steps.holidayRemoveApi.status === 200
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  (() => {
-                                    try {
-                                      return $steps.holidayRemoveApi.data
-                                        .status === "SUCCESS"
-                                        ? "success"
-                                        : "ereor";
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })(),
-                                  (() => {
-                                    try {
-                                      return $steps.holidayRemoveApi.data
-                                        .message;
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.showToast"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                      if (
-                        $steps["showToast"] != null &&
-                        typeof $steps["showToast"] === "object" &&
-                        typeof $steps["showToast"].then === "function"
-                      ) {
-                        $steps["showToast"] = await $steps["showToast"];
-                      }
-
-                      $steps["updateDialogOpen2"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["curentHoliday"]
-                              },
-                              operation: 0,
-                              value: {
-                                typeId: $props.typeId,
-                                isHoliday: $props.isHoliday,
-                                value: $props.value
-                              }
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateDialogOpen2"] != null &&
-                        typeof $steps["updateDialogOpen2"] === "object" &&
-                        typeof $steps["updateDialogOpen2"].then === "function"
-                      ) {
-                        $steps["updateDialogOpen2"] = await $steps[
-                          "updateDialogOpen2"
-                        ];
-                      }
 
                       $steps["updateDialogOpen"] = true
                         ? (() => {
@@ -809,109 +554,391 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                         ];
                       }
                     }}
+                    outline={true}
                   />
-                ) : null}
+
+                  {(() => {
+                    try {
+                      return (
+                        ($props.isHoliday === 1 && $props.isFriday === false) ||
+                        $props.value === "1742589000"
+                      );
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <Button
+                      children2={
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__c4Wj
+                          )}
+                        >
+                          <React.Fragment>
+                            {(() => {
+                              try {
+                                return "فعالسازی نوبت دهی";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc";
+                                }
+                                throw e;
+                              }
+                            })()}
+                          </React.Fragment>
+                        </div>
+                      }
+                      className={classNames(
+                        "__wab_instance",
+                        sty.button__e2Ran
+                      )}
+                      color={(() => {
+                        try {
+                          return $props.isFriday;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()}
+                      onClick={async event => {
+                        const $steps = {};
+
+                        $steps["holidayRemoveApi"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  "POST",
+                                  "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/remove-holidays",
+                                  undefined,
+                                  (() => {
+                                    try {
+                                      return {
+                                        value: $props.value,
+                                        type_id: $props.typeId,
+                                        Desk: $props.holidayTitle
+                                      };
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions[
+                                "Fragment.apiRequest"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["holidayRemoveApi"] != null &&
+                          typeof $steps["holidayRemoveApi"] === "object" &&
+                          typeof $steps["holidayRemoveApi"].then === "function"
+                        ) {
+                          $steps["holidayRemoveApi"] = await $steps[
+                            "holidayRemoveApi"
+                          ];
+                        }
+
+                        $steps["sendEvent"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  (() => {
+                                    try {
+                                      return {
+                                        event_group: "holidays-page",
+                                        data: {
+                                          pagePath: window.location.href,
+                                          selectedServices:
+                                            $state.selectedServices
+                                        },
+                                        event_type: "click-remove-holidays"
+                                      };
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions["Splunk.sendLog"]?.apply(
+                                null,
+                                [...actionArgs.args]
+                              );
+                            })()
+                          : undefined;
+                        if (
+                          $steps["sendEvent"] != null &&
+                          typeof $steps["sendEvent"] === "object" &&
+                          typeof $steps["sendEvent"].then === "function"
+                        ) {
+                          $steps["sendEvent"] = await $steps["sendEvent"];
+                        }
+
+                        $steps["showToast"] =
+                          $steps.holidayRemoveApi.status === 200
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    (() => {
+                                      try {
+                                        return $steps.holidayRemoveApi.data
+                                          .status === "SUCCESS"
+                                          ? "success"
+                                          : "ereor";
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })(),
+                                    (() => {
+                                      try {
+                                        return $steps.holidayRemoveApi.data
+                                          .message;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Fragment.showToast"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                        if (
+                          $steps["showToast"] != null &&
+                          typeof $steps["showToast"] === "object" &&
+                          typeof $steps["showToast"].then === "function"
+                        ) {
+                          $steps["showToast"] = await $steps["showToast"];
+                        }
+
+                        $steps["updateDialogOpen2"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["curentHoliday"]
+                                },
+                                operation: 0,
+                                value: {
+                                  typeId: $props.typeId,
+                                  isHoliday: $props.isHoliday,
+                                  value: $props.value
+                                }
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateDialogOpen2"] != null &&
+                          typeof $steps["updateDialogOpen2"] === "object" &&
+                          typeof $steps["updateDialogOpen2"].then === "function"
+                        ) {
+                          $steps["updateDialogOpen2"] = await $steps[
+                            "updateDialogOpen2"
+                          ];
+                        }
+
+                        $steps["updateDialogOpen"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["dialog", "open"]
+                                },
+                                operation: 0,
+                                value: false
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateDialogOpen"] != null &&
+                          typeof $steps["updateDialogOpen"] === "object" &&
+                          typeof $steps["updateDialogOpen"].then === "function"
+                        ) {
+                          $steps["updateDialogOpen"] = await $steps[
+                            "updateDialogOpen"
+                          ];
+                        }
+                      }}
+                    />
+                  ) : null}
+                  {(() => {
+                    try {
+                      return (
+                        $props.isFriday === true &&
+                        $props.value !== "1742589000"
+                      );
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <Button
+                      children2={
+                        "\u0627\u0631\u062a\u0628\u0627\u0637 \u0628\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646"
+                      }
+                      className={classNames(
+                        "__wab_instance",
+                        sty.button___81RUe
+                      )}
+                      onClick={async event => {
+                        const $steps = {};
+
+                        $steps["goToHttpsTMeSybigdeli"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                destination: '"https://t.me/sybigdeli"'
+                              };
+                              return (({ destination }) => {
+                                if (
+                                  typeof destination === "string" &&
+                                  destination.startsWith("#")
+                                ) {
+                                  document
+                                    .getElementById(destination.substr(1))
+                                    .scrollIntoView({ behavior: "smooth" });
+                                } else {
+                                  __nextRouter?.push(destination);
+                                }
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["goToHttpsTMeSybigdeli"] != null &&
+                          typeof $steps["goToHttpsTMeSybigdeli"] === "object" &&
+                          typeof $steps["goToHttpsTMeSybigdeli"].then ===
+                            "function"
+                        ) {
+                          $steps["goToHttpsTMeSybigdeli"] = await $steps[
+                            "goToHttpsTMeSybigdeli"
+                          ];
+                        }
+                      }}
+                    />
+                  ) : null}
+                </Stack__>
+              </React.Fragment>
+            }
+            className={classNames("__wab_instance", sty.dialog)}
+            onOpenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+                null,
+                eventArgs
+              );
+
+              if (
+                eventArgs.length > 1 &&
+                eventArgs[1] &&
+                eventArgs[1]._plasmic_state_init_
+              ) {
+                return;
+              }
+
+              (async val => {
+                const $steps = {};
+              }).apply(null, eventArgs);
+            }}
+            open={generateStateValueProp($state, ["dialog", "open"])}
+            title={
+              <React.Fragment>
                 {(() => {
                   try {
-                    return (
-                      $props.isFriday === true && $props.value !== "1742589000"
-                    );
+                    return $props.isFriday && $props.value !== "1742589000"
+                      ? "توجه"
+                      : "فعالسازی نوبت دهی";
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
                       e?.plasmicType === "PlasmicUndefinedDataError"
                     ) {
-                      return true;
+                      return "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc";
                     }
                     throw e;
                   }
-                })() ? (
-                  <Button
-                    children2={
-                      "\u0627\u0631\u062a\u0628\u0627\u0637 \u0628\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646"
-                    }
-                    className={classNames("__wab_instance", sty.button___81RUe)}
-                    onClick={async event => {
-                      const $steps = {};
-
-                      $steps["goToHttpsTMeSybigdeli"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              destination: '"https://t.me/sybigdeli"'
-                            };
-                            return (({ destination }) => {
-                              if (
-                                typeof destination === "string" &&
-                                destination.startsWith("#")
-                              ) {
-                                document
-                                  .getElementById(destination.substr(1))
-                                  .scrollIntoView({ behavior: "smooth" });
-                              } else {
-                                __nextRouter?.push(destination);
-                              }
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["goToHttpsTMeSybigdeli"] != null &&
-                        typeof $steps["goToHttpsTMeSybigdeli"] === "object" &&
-                        typeof $steps["goToHttpsTMeSybigdeli"].then ===
-                          "function"
-                      ) {
-                        $steps["goToHttpsTMeSybigdeli"] = await $steps[
-                          "goToHttpsTMeSybigdeli"
-                        ];
-                      }
-                    }}
-                  />
-                ) : null}
-              </Stack__>
-            </React.Fragment>
-          }
-          className={classNames("__wab_instance", sty.dialog)}
-          onOpenChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["dialog", "open"]).apply(
-              null,
-              eventArgs
-            );
-
-            if (
-              eventArgs.length > 1 &&
-              eventArgs[1] &&
-              eventArgs[1]._plasmic_state_init_
-            ) {
-              return;
+                })()}
+              </React.Fragment>
             }
-
-            (async val => {
-              const $steps = {};
-            }).apply(null, eventArgs);
-          }}
-          open={generateStateValueProp($state, ["dialog", "open"])}
-          title={
-            <React.Fragment>
-              {(() => {
-                try {
-                  return $props.isFriday && $props.value !== "1742589000"
-                    ? "توجه"
-                    : "فعالسازی نوبت دهی";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc";
-                  }
-                  throw e;
-                }
-              })()}
-            </React.Fragment>
-          }
-          trigger={null}
-        />
+            trigger={null}
+          />
+        </Stack__>
       </Stack__>
-    </Stack__>
+    ) : null
   ) as React.ReactElement | null;
 }
 

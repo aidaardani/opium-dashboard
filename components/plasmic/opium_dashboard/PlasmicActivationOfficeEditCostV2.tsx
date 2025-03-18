@@ -1645,6 +1645,67 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
             ) {
               $steps["sendEvent"] = await $steps["sendEvent"];
             }
+
+            $steps["apiActivePayment"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      "PATCH",
+                      "https://api.paziresh24.com/V1/doctor/payments/settings/",
+                      undefined,
+                      (() => {
+                        try {
+                          return (() => {
+                            const cost =
+                              ($state.select.value === "custom"
+                                ? +$state.input.value
+                                : +$state.select.value) * 10;
+                            if ($state.input2.value === "") {
+                              return {
+                                active: 1,
+                                center_id: $props.centerId,
+                                deposit_amount:
+                                  ($state.select.value === "custom"
+                                    ? $state.input.value
+                                    : $state.select.value) * 10
+                              };
+                            } else {
+                              return {
+                                active: 1,
+                                center_id: $props.centerId,
+                                deposit_amount: Number(cost) * 10,
+                                card_number: $state.shabaApi.data.card_number,
+                                IBAN: $state.shabaApi.data.IBAN,
+                                deposit_owners:
+                                  $state.shabaApi.data.deposit_owners[0],
+                                bank_name: $state.shabaApi.data.bank_name
+                              };
+                            }
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["apiActivePayment"] != null &&
+              typeof $steps["apiActivePayment"] === "object" &&
+              typeof $steps["apiActivePayment"].then === "function"
+            ) {
+              $steps["apiActivePayment"] = await $steps["apiActivePayment"];
+            }
           }}
         />
 
