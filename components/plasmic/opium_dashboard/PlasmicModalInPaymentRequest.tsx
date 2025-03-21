@@ -403,11 +403,20 @@ function PlasmicModalInPaymentRequest__RenderFunc(props: {
                 $steps["goToPage"] = true
                   ? (() => {
                       const actionArgs = {
-                        args: ["https://survey.porsline.ir/s/iB3i8Wb"]
+                        destination: "https://survey.porsline.ir/s/iB3i8Wb"
                       };
-                      return $globalActions["Hamdast.openLink"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
+                        }
+                      })?.apply(null, [actionArgs]);
                     })()
                   : undefined;
                 if (
