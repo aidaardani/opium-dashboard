@@ -400,35 +400,22 @@ function PlasmicModalInPaymentRequest__RenderFunc(props: {
                   $steps["sendLog"] = await $steps["sendLog"];
                 }
 
-                $steps["goToHttpsSurveyPorslineIrSIB3I8Wb"] = true
+                $steps["goToPage"] = true
                   ? (() => {
                       const actionArgs = {
-                        destination: "https://survey.porsline.ir/s/iB3i8Wb"
+                        args: ["https://survey.porsline.ir/s/iB3i8Wb"]
                       };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
+                      return $globalActions["Hamdast.openLink"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
                     })()
                   : undefined;
                 if (
-                  $steps["goToHttpsSurveyPorslineIrSIB3I8Wb"] != null &&
-                  typeof $steps["goToHttpsSurveyPorslineIrSIB3I8Wb"] ===
-                    "object" &&
-                  typeof $steps["goToHttpsSurveyPorslineIrSIB3I8Wb"].then ===
-                    "function"
+                  $steps["goToPage"] != null &&
+                  typeof $steps["goToPage"] === "object" &&
+                  typeof $steps["goToPage"].then === "function"
                 ) {
-                  $steps["goToHttpsSurveyPorslineIrSIB3I8Wb"] = await $steps[
-                    "goToHttpsSurveyPorslineIrSIB3I8Wb"
-                  ];
+                  $steps["goToPage"] = await $steps["goToPage"];
                 }
 
                 $steps["updateLoadingOff"] = true
