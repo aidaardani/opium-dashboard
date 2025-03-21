@@ -83,9 +83,7 @@ type VariantPropType = keyof PlasmicConflictWorkhour__VariantsArgs;
 export const PlasmicConflictWorkhour__VariantProps =
   new Array<VariantPropType>();
 
-export type PlasmicConflictWorkhour__ArgsType = {
-  provider?: any;
-};
+export type PlasmicConflictWorkhour__ArgsType = { provider?: any };
 type ArgPropType = keyof PlasmicConflictWorkhour__ArgsType;
 export const PlasmicConflictWorkhour__ArgProps = new Array<ArgPropType>(
   "provider"
@@ -265,15 +263,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicConflictWorkhour__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicConflictWorkhour__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicConflictWorkhour__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicConflictWorkhour__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

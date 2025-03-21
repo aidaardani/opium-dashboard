@@ -84,9 +84,7 @@ type VariantPropType = keyof PlasmicHolidaysPageTitle__VariantsArgs;
 export const PlasmicHolidaysPageTitle__VariantProps =
   new Array<VariantPropType>();
 
-export type PlasmicHolidaysPageTitle__ArgsType = {
-  holidays?: string;
-};
+export type PlasmicHolidaysPageTitle__ArgsType = { holidays?: string };
 type ArgPropType = keyof PlasmicHolidaysPageTitle__ArgsType;
 export const PlasmicHolidaysPageTitle__ArgProps = new Array<ArgPropType>(
   "holidays"
@@ -688,15 +686,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicHolidaysPageTitle__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicHolidaysPageTitle__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicHolidaysPageTitle__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicHolidaysPageTitle__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

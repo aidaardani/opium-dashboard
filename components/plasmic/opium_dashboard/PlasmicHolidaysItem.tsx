@@ -175,6 +175,12 @@ function PlasmicHolidaysItem__RenderFunc(props: {
         type: "private",
         variableType: "array",
         initFunc: ({ $props, $state, $queries, $ctx }) => []
+      },
+      {
+        path: "isLoading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -481,7 +487,7 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                     {(() => {
                       try {
                         return $props.isFriday && $props.value !== "1742589000"
-                          ? `فعالسازی نوبت دهی در روز ${$props.holidayDate} امکان پذیر نمی باشد.\n  برای فعال‌سازی نوبت‌دهی در روز جمعه، باید نوبت‌دهی را برای تمام جمعه‌ها فعال کنید.`
+                          ? `فعالسازی نوبت دهی در روز ${$props.holidayDate} امکان پذیر نمی باشد.\nبرای فعال‌سازی نوبت‌دهی در روز جمعه، باید نوبت‌دهی را برای تمام جمعه‌ها فعال کنید.`
                           : "در صورت فعال‌سازی نوبت‌دهی در روزهای تعطیل، امکان بازگردانی وضعیت تعطیلی به صورت دستی وجود ندارد و برای این کار باید از طریق پشتیبانی ارتباط برقرار کنید.\n آیا از فعال‌سازی نوبت‌دهی اطمینان دارید؟";
                       } catch (e) {
                         if (
@@ -616,8 +622,57 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                           throw e;
                         }
                       })()}
+                      isDisabled={(() => {
+                        try {
+                          return $state.isLoading;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()}
                       onClick={async event => {
                         const $steps = {};
+
+                        $steps["updateDialogOpen3"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["isLoading"]
+                                },
+                                operation: 0,
+                                value: true
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateDialogOpen3"] != null &&
+                          typeof $steps["updateDialogOpen3"] === "object" &&
+                          typeof $steps["updateDialogOpen3"].then === "function"
+                        ) {
+                          $steps["updateDialogOpen3"] = await $steps[
+                            "updateDialogOpen3"
+                          ];
+                        }
 
                         $steps["holidayRemoveApi"] = true
                           ? (() => {
@@ -701,6 +756,40 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                           typeof $steps["sendEvent"].then === "function"
                         ) {
                           $steps["sendEvent"] = await $steps["sendEvent"];
+                        }
+
+                        $steps["endLoading"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["isLoading"]
+                                },
+                                operation: 0,
+                                value: false
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["endLoading"] != null &&
+                          typeof $steps["endLoading"] === "object" &&
+                          typeof $steps["endLoading"].then === "function"
+                        ) {
+                          $steps["endLoading"] = await $steps["endLoading"];
                         }
 
                         $steps["showToast"] =
@@ -966,15 +1055,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicHolidaysItem__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicHolidaysItem__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicHolidaysItem__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicHolidaysItem__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

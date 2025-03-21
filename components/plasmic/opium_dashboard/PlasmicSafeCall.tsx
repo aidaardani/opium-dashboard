@@ -80,9 +80,7 @@ export type PlasmicSafeCall__VariantsArgs = {};
 type VariantPropType = keyof PlasmicSafeCall__VariantsArgs;
 export const PlasmicSafeCall__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicSafeCall__ArgsType = {
-  onclick?: () => void;
-};
+export type PlasmicSafeCall__ArgsType = { onclick?: () => void };
 type ArgPropType = keyof PlasmicSafeCall__ArgsType;
 export const PlasmicSafeCall__ArgProps = new Array<ArgPropType>("onclick");
 
@@ -258,15 +256,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicSafeCall__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicSafeCall__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicSafeCall__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicSafeCall__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

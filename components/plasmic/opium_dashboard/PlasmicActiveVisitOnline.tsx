@@ -83,9 +83,7 @@ type VariantPropType = keyof PlasmicActiveVisitOnline__VariantsArgs;
 export const PlasmicActiveVisitOnline__VariantProps =
   new Array<VariantPropType>("officeBook", "onlineBook", "selected");
 
-export type PlasmicActiveVisitOnline__ArgsType = {
-  onselected?: () => void;
-};
+export type PlasmicActiveVisitOnline__ArgsType = { onselected?: () => void };
 type ArgPropType = keyof PlasmicActiveVisitOnline__ArgsType;
 export const PlasmicActiveVisitOnline__ArgProps = new Array<ArgPropType>(
   "onselected"
@@ -297,15 +295,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicActiveVisitOnline__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicActiveVisitOnline__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicActiveVisitOnline__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicActiveVisitOnline__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

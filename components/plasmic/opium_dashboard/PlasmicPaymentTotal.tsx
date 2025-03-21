@@ -89,9 +89,7 @@ export const PlasmicPaymentTotal__VariantProps = new Array<VariantPropType>(
   "active"
 );
 
-export type PlasmicPaymentTotal__ArgsType = {
-  userId?: any;
-};
+export type PlasmicPaymentTotal__ArgsType = { userId?: any };
 type ArgPropType = keyof PlasmicPaymentTotal__ArgsType;
 export const PlasmicPaymentTotal__ArgProps = new Array<ArgPropType>("userId");
 
@@ -648,15 +646,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicPaymentTotal__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicPaymentTotal__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicPaymentTotal__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicPaymentTotal__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

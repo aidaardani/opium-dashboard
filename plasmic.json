@@ -583,8 +583,7 @@
           "componentImportPath": "@plasmicpkgs/react-aria/skinny/registerDialog"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "jkU633o1Cz7HrJdwdxhVHk",
@@ -1632,7 +1631,7 @@
           "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
           "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicUncertainBookStatusListPage.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/uncertain-book-status-list.tsx"
+            "modulePath": "../src/pages/uncertain-booklist.tsx"
           },
           "cssFilePath": "plasmic/opium_dashboard/PlasmicUncertainBookStatusListPage.module.css",
           "scheme": "blackbox",
@@ -2871,6 +2870,20 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicEachService.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "Gcx1UlkP1W9y",
+          "name": "ModalInPaymentRequest",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicModalInPaymentRequest.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/uncertain-book-status-list.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicModalInPaymentRequest.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/uncertain-book-status-list"
         }
       ],
       "icons": [
@@ -3423,6 +3436,6 @@
   "nextjsConfig": {
     "pagesDir": "../src/pages"
   },
-  "cliVersion": "0.1.335",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.335/dist/plasmic.schema.json"
+  "cliVersion": "0.1.336",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.336/dist/plasmic.schema.json"
 }

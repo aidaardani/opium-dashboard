@@ -81,9 +81,7 @@ export type PlasmicReceipt__VariantsArgs = {};
 type VariantPropType = keyof PlasmicReceipt__VariantsArgs;
 export const PlasmicReceipt__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicReceipt__ArgsType = {
-  event?: string;
-};
+export type PlasmicReceipt__ArgsType = { event?: string };
 type ArgPropType = keyof PlasmicReceipt__ArgsType;
 export const PlasmicReceipt__ArgProps = new Array<ArgPropType>("event");
 
@@ -546,15 +544,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicReceipt__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicReceipt__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicReceipt__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicReceipt__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

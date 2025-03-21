@@ -80,9 +80,7 @@ export type PlasmicGetTransaction__VariantsArgs = {};
 type VariantPropType = keyof PlasmicGetTransaction__VariantsArgs;
 export const PlasmicGetTransaction__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicGetTransaction__ArgsType = {
-  slug?: string;
-};
+export type PlasmicGetTransaction__ArgsType = { slug?: string };
 type ArgPropType = keyof PlasmicGetTransaction__ArgsType;
 export const PlasmicGetTransaction__ArgProps = new Array<ArgPropType>("slug");
 
@@ -269,15 +267,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicGetTransaction__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicGetTransaction__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicGetTransaction__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicGetTransaction__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

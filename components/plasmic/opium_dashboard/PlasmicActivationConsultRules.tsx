@@ -83,9 +83,7 @@ type VariantPropType = keyof PlasmicActivationConsultRules__VariantsArgs;
 export const PlasmicActivationConsultRules__VariantProps =
   new Array<VariantPropType>();
 
-export type PlasmicActivationConsultRules__ArgsType = {
-  userId?: string;
-};
+export type PlasmicActivationConsultRules__ArgsType = { userId?: string };
 type ArgPropType = keyof PlasmicActivationConsultRules__ArgsType;
 export const PlasmicActivationConsultRules__ArgProps = new Array<ArgPropType>(
   "userId"
@@ -967,15 +965,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicActivationConsultRules__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicActivationConsultRules__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicActivationConsultRules__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicActivationConsultRules__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

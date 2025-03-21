@@ -88,9 +88,7 @@ type VariantPropType = keyof PlasmicSpecifyBookStatusButton__VariantsArgs;
 export const PlasmicSpecifyBookStatusButton__VariantProps =
   new Array<VariantPropType>("came", "visited", "deleted");
 
-export type PlasmicSpecifyBookStatusButton__ArgsType = {
-  onclick?: () => void;
-};
+export type PlasmicSpecifyBookStatusButton__ArgsType = { onclick?: () => void };
 type ArgPropType = keyof PlasmicSpecifyBookStatusButton__ArgsType;
 export const PlasmicSpecifyBookStatusButton__ArgProps = new Array<ArgPropType>(
   "onclick"
@@ -403,15 +401,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicSpecifyBookStatusButton__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicSpecifyBookStatusButton__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicSpecifyBookStatusButton__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicSpecifyBookStatusButton__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;
