@@ -323,9 +323,7 @@ function PlasmicHolidays__RenderFunc(props: {
             }}
             url={(() => {
               try {
-                return `https://apigw.paziresh24.com/v1/bigdeli-n8n/webhook/get-holidays${
-                  $ctx.query.date && `?date=${$ctx.query.date}`
-                }`;
+                return `https://apigw.paziresh24.com/v1/bigdeli-n8n/webhook/get-holidays`;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
