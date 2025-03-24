@@ -579,78 +579,117 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
               ) : null}
             </div>
           </Stack__>
-          <Stack__
-            as={"div"}
-            data-plasmic-name={"vacation"}
-            data-plasmic-override={overrides.vacation}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.vacation)}
-          >
+          {(() => {
+            try {
+              return (
+                $state.apIworkhours.data.data.find(
+                  item =>
+                    item.user_center_id === $state.selectedCenter &&
+                    item.id !== "5532" &&
+                    item.type_id === 1
+                ) !== undefined
+              );
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })() ? (
             <Stack__
               as={"div"}
+              data-plasmic-name={"vacation"}
+              data-plasmic-override={overrides.vacation}
               hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox___0YkBo)}
+              className={classNames(projectcss.all, sty.vacation)}
             >
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox___0YkBo)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__p3Plx
+                  )}
+                >
+                  {
+                    "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627"
+                  }
+                </div>
+              </Stack__>
               <div
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__p3Plx
+                  sty.text__vKqZd
                 )}
               >
                 {
-                  "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627"
+                  "\u0634\u0645\u0627 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u062f\u0631 \u0631\u0648\u0632\u0647\u0627\u06cc \u062a\u0639\u0637\u06cc\u0644 \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0627\u06cc\u0646\u062a\u0631\u0646\u062a\u06cc \u0645\u0637\u0628 \u062e\u0648\u062f \u0631\u0627 \u0641\u0639\u0627\u0644 \u06a9\u0646\u06cc\u062f \u0648 \u0628\u0647 \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u062f\u0631 \u0631\u0648\u0632\u0647\u0627\u06cc \u062a\u0639\u0637\u06cc\u0644 \u062f\u0631 \u0645\u0637\u0628 \u062e\u0648\u062f \u062e\u062f\u0645\u062a \u0627\u0631\u0627\u0626\u0647 \u062f\u0647\u06cc\u062f."
                 }
               </div>
-            </Stack__>
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__vKqZd
-              )}
-            >
-              {
-                "\u0634\u0645\u0627 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u062f\u0631 \u0631\u0648\u0632\u0647\u0627\u06cc \u062a\u0639\u0637\u06cc\u0644 \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0627\u06cc\u0646\u062a\u0631\u0646\u062a\u06cc \u0645\u0637\u0628 \u062e\u0648\u062f \u0631\u0627 \u0641\u0639\u0627\u0644 \u06a9\u0646\u06cc\u062f \u0648 \u0628\u0647 \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u062f\u0631 \u0631\u0648\u0632\u0647\u0627\u06cc \u062a\u0639\u0637\u06cc\u0644 \u062f\u0631 \u0645\u0637\u0628 \u062e\u0648\u062f \u062e\u062f\u0645\u062a \u0627\u0631\u0627\u0626\u0647 \u062f\u0647\u06cc\u062f."
-              }
-            </div>
-            <Button
-              data-plasmic-name={"button"}
-              data-plasmic-override={overrides.button}
-              children2={
-                "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627\u06cc \u0645\u0637\u0628"
-              }
-              className={classNames("__wab_instance", sty.button)}
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["goToHolidays"] = true
-                  ? (() => {
-                      const actionArgs = { destination: `/holidays/index` };
-                      return (({ destination }) => {
-                        if (
-                          typeof destination === "string" &&
-                          destination.startsWith("#")
-                        ) {
-                          document
-                            .getElementById(destination.substr(1))
-                            .scrollIntoView({ behavior: "smooth" });
-                        } else {
-                          __nextRouter?.push(destination);
-                        }
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["goToHolidays"] != null &&
-                  typeof $steps["goToHolidays"] === "object" &&
-                  typeof $steps["goToHolidays"].then === "function"
-                ) {
-                  $steps["goToHolidays"] = await $steps["goToHolidays"];
+              <Button
+                data-plasmic-name={"button"}
+                data-plasmic-override={overrides.button}
+                children2={
+                  "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627\u06cc \u0645\u0637\u0628"
                 }
-              }}
-            />
-          </Stack__>
+                className={classNames("__wab_instance", sty.button)}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["goToHolidays"] = true
+                    ? (() => {
+                        const actionArgs = { destination: `/holidays/index` };
+                        return (({ destination }) => {
+                          if (
+                            typeof destination === "string" &&
+                            destination.startsWith("#")
+                          ) {
+                            document
+                              .getElementById(destination.substr(1))
+                              .scrollIntoView({ behavior: "smooth" });
+                          } else {
+                            __nextRouter?.push(destination);
+                          }
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["goToHolidays"] != null &&
+                    typeof $steps["goToHolidays"] === "object" &&
+                    typeof $steps["goToHolidays"].then === "function"
+                  ) {
+                    $steps["goToHolidays"] = await $steps["goToHolidays"];
+                  }
+
+                  $steps["invokeGlobalAction"] = true
+                    ? (() => {
+                        const actionArgs = { args: [] };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["invokeGlobalAction"] != null &&
+                    typeof $steps["invokeGlobalAction"] === "object" &&
+                    typeof $steps["invokeGlobalAction"].then === "function"
+                  ) {
+                    $steps["invokeGlobalAction"] = await $steps[
+                      "invokeGlobalAction"
+                    ];
+                  }
+                }}
+              />
+            </Stack__>
+          ) : null}
           <SideEffect
             data-plasmic-name={"runCodeGtmMetrica"}
             data-plasmic-override={overrides.runCodeGtmMetrica}

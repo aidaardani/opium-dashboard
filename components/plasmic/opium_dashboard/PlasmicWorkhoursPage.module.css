@@ -169,6 +169,7 @@
   max-width: 100%;
 }
 .vacation {
+  display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
@@ -176,7 +177,6 @@
   max-width: 100%;
   grid-column-start: 1 !important;
   grid-column-end: -1 !important;
-  display: none;
   padding: 8px;
 }
 .vacation > :global(.__wab_flex-container) {
