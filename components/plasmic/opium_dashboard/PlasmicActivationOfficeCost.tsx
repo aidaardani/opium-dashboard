@@ -1301,20 +1301,24 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["validationToast"] = await $steps["validationToast"];
               }
 
-              $steps["costValidation"] =
-                $state.select.value === undefined
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "error",
-                          "\u0648\u0627\u0631\u062f \u06a9\u0631\u062f\u0646 \u0645\u0628\u0644\u063a  \u0627\u0644\u0632\u0627\u0645\u06cc \u0627\u0633\u062a"
-                        ]
-                      };
-                      return $globalActions["Fragment.showToast"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
+              $steps["costValidation"] = (() => {
+                return (
+                  $state.input2.value === "" ||
+                  $state.input2.value.trim().length !== 16
+                );
+              })()
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "error",
+                        "\u0648\u0627\u0631\u062f \u06a9\u0631\u062f\u0646 \u0634\u0645\u0627\u0631\u0647 \u06a9\u0627\u0631\u062a  \u0627\u0644\u0632\u0627\u0645\u06cc \u0627\u0633\u062a"
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
               if (
                 $steps["costValidation"] != null &&
                 typeof $steps["costValidation"] === "object" &&
@@ -1703,57 +1707,60 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["showToast"] = await $steps["showToast"];
               }
 
-              $steps["sendEvent"] =
-                $state.input2.value === "" ||
-                $state.input2.value.trim().length === 16
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          (() => {
-                            try {
-                              return (() => {
-                                const userId =
-                                  $ctx.query.userId ||
-                                  localStorage.getItem("userId");
-                                if ($state.shabaApi.data) {
-                                  return {
-                                    event_group: "activation-page",
-                                    data: {
-                                      userId: userId,
-                                      pagePath: window.location.href
-                                    },
-                                    event_type:
-                                      "click-add-cost-button-office-step3-set-payment"
-                                  };
-                                } else {
-                                  return {
-                                    event_group: "activation-page",
-                                    data: {
-                                      userId: userId,
-                                      pagePath: window.location.href
-                                    },
-                                    event_type:
-                                      "click-add-cost-button-office-step3-set-payment"
-                                  };
-                                }
-                              })();
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+              $steps["sendEvent"] = (() => {
+                return (
+                  $state.input2.value !== "" ||
+                  $state.input2.value.trim().length === 16
+                );
+              })()
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return (() => {
+                              const userId =
+                                $ctx.query.userId ||
+                                localStorage.getItem("userId");
+                              if ($state.shabaApi.data) {
+                                return {
+                                  event_group: "activation-page",
+                                  data: {
+                                    userId: userId,
+                                    pagePath: window.location.href
+                                  },
+                                  event_type:
+                                    "click-add-cost-button-office-step3-set-payment"
+                                };
+                              } else {
+                                return {
+                                  event_group: "activation-page",
+                                  data: {
+                                    userId: userId,
+                                    pagePath: window.location.href
+                                  },
+                                  event_type:
+                                    "click-add-cost-button-office-step3-set-payment"
+                                };
                               }
-                              throw e;
+                            })();
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
                             }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Splunk.sendLog"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
               if (
                 $steps["sendEvent"] != null &&
                 typeof $steps["sendEvent"] === "object" &&

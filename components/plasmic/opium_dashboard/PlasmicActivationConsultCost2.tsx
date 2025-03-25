@@ -691,7 +691,8 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
 
             $steps["showToast"] = (() => {
               const regex = /^\d+$/;
-              return !regex.test($state.input.value);
+              const value = $state.input.value;
+              return value === "" || !regex.test(value);
             })()
               ? (() => {
                   const actionArgs = {
@@ -711,6 +712,30 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
               typeof $steps["showToast"].then === "function"
             ) {
               $steps["showToast"] = await $steps["showToast"];
+            }
+
+            $steps["showValidationToast"] =
+              parseInt($state.input.value, 10) > 5000000
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "error",
+                        "\u0645\u0628\u0644\u063a \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0646\u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u062f \u0628\u06cc\u0634\u062a\u0631 \u0627\u0632 \u06f5 \u0645\u06cc\u0644\u06cc\u0648\u0646 \u062a\u0648\u0645\u0627\u0646 \u0628\u0627\u0634\u062f. "
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+            if (
+              $steps["showValidationToast"] != null &&
+              typeof $steps["showValidationToast"] === "object" &&
+              typeof $steps["showValidationToast"].then === "function"
+            ) {
+              $steps["showValidationToast"] = await $steps[
+                "showValidationToast"
+              ];
             }
 
             $steps["acceptRules"] = true
@@ -753,7 +778,12 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
 
             $steps["sendEvent"] = (() => {
               const regex = /^\d+$/;
-              return regex.test($state.input.value);
+              const value = $state.input.value;
+              return (
+                value !== "" ||
+                regex.test(value) ||
+                parseInt(value, 10) <= 5000000
+              );
             })()
               ? (() => {
                   const actionArgs = {
@@ -814,7 +844,12 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
 
             $steps["goToPage"] = (() => {
               const regex = /^\d+$/;
-              return regex.test($state.input.value);
+              const value = $state.input.value;
+              return (
+                value !== "" ||
+                regex.test(value) ||
+                parseInt(value, 10) <= 5000000
+              );
             })()
               ? (() => {
                   const actionArgs = {

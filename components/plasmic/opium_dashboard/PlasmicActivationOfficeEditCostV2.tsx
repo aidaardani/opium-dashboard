@@ -1794,7 +1794,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                             return {
                               event_group: "payment-page",
                               data: {
-                                userId: $props.userCenterId,
+                                user_center_Id: $props.userCenterId,
                                 isCustomPrice: $state.select.value === "custom",
                                 price: $state.select.value
                               },

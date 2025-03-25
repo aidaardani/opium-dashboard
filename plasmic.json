@@ -2865,7 +2865,7 @@
           "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
           "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicModalInPaymentRequest.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/uncertain-book-status-list.tsx"
+            "modulePath": "../src/pages/saman.tsx"
           },
           "cssFilePath": "plasmic/opium_dashboard/PlasmicModalInPaymentRequest.module.css",
           "scheme": "blackbox",
@@ -2879,7 +2879,7 @@
           "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
           "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicUncertainBookStatusListPage.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/uncertain-booklist.tsx"
+            "modulePath": "../src/pages/uncertain-book-status-list.tsx"
           },
           "cssFilePath": "plasmic/opium_dashboard/PlasmicUncertainBookStatusListPage.module.css",
           "scheme": "blackbox",
