@@ -846,8 +846,8 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
               const regex = /^\d+$/;
               const value = $state.input.value;
               return (
-                value !== "" ||
-                regex.test(value) ||
+                value !== "" &&
+                regex.test(value) &&
                 parseInt(value, 10) <= 5000000
               );
             })()
