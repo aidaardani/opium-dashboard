@@ -4,23 +4,23 @@ import * as React from "react";
 import { PageParamsProvider as PageParamsProvider__ } from "@plasmicapp/react-web/lib/host";
 import GlobalContextsProvider from "../../components/plasmic/opium_dashboard/PlasmicGlobalContextsProvider";
 
-import { PlasmicUncertainBookStatusListPage } from "../../components/plasmic/opium_dashboard/PlasmicUncertainBookStatusListPage";
+import { PlasmicModalInPaymentRequest } from "../../components/plasmic/opium_dashboard/PlasmicModalInPaymentRequest";
 import { useRouter } from "next/router";
 
-function UncertainBookStatusListPage() {
-  // Use PlasmicUncertainBookStatusListPage to render this component as it was
+function ModalInPaymentRequest() {
+  // Use PlasmicModalInPaymentRequest to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
   // can also install whatever React hooks you need here to manage state or
   // fetch data.
   //
-  // Props you can pass into PlasmicUncertainBookStatusListPage are:
+  // Props you can pass into PlasmicModalInPaymentRequest are:
   // 1. Variants you want to activate,
   // 2. Contents for slots you want to fill,
   // 3. Overrides for any named node in the component to attach behavior and data,
   // 4. Props to set on the root node.
   //
-  // By default, PlasmicUncertainBookStatusListPage is wrapped by your project's global
+  // By default, PlasmicModalInPaymentRequest is wrapped by your project's global
   // variant context providers. These wrappers may be moved to
   // Next.js Custom App component
   // (https://nextjs.org/docs/advanced-features/custom-app).
@@ -32,10 +32,10 @@ function UncertainBookStatusListPage() {
         params={useRouter()?.query}
         query={useRouter()?.query}
       >
-        <PlasmicUncertainBookStatusListPage />
+        <PlasmicModalInPaymentRequest />
       </PageParamsProvider__>
     </GlobalContextsProvider>
   );
 }
 
-export default UncertainBookStatusListPage;
+export default ModalInPaymentRequest;
