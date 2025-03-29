@@ -111,6 +111,52 @@
   > img {
   margin-top: var(--token-Fv8-L_kN-2Ma);
 }
+.freeBox__afDni {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 5px 12px;
+}
+.text__d5RI1 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-size: 12px;
+  font-weight: 200;
+  min-width: 0;
+}
+.ul___9WvZu {
+  display: flex;
+  flex-direction: column;
+}
+.ul__oaRZu {
+  display: flex;
+  flex-direction: column;
+}
+.ul__a8Z {
+  display: flex;
+  flex-direction: column;
+}
+.ul__w8CJ {
+  display: flex;
+  flex-direction: column;
+}
+.text___97Bgt {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-weight: 200;
+  font-size: 12px;
+  min-width: 0;
+}
 .freeBox__hKrof {
   display: flex;
   flex-direction: column;

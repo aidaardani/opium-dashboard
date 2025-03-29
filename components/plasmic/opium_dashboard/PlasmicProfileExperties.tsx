@@ -1,6 +1,6 @@
-// @ts-nocheck
 /* eslint-disable */
 /* tslint:disable */
+// @ts-nocheck
 /* prettier-ignore-start */
 
 /** @jsxRuntime classic */
@@ -5815,6 +5815,126 @@ function PlasmicProfileExperties__RenderFunc(props: {
                   );
                 })();
               })}
+              <div className={classNames(projectcss.all, sty.freeBox__afDni)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__d5RI1
+                  )}
+                >
+                  <React.Fragment>
+                    <React.Fragment>{""}</React.Fragment>
+                    {
+                      <ul
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.ul,
+                          sty.ul___9WvZu
+                        )}
+                      >
+                        <li
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.li,
+                            projectcss.__wab_text,
+                            sty.li__kaFae
+                          )}
+                        >
+                          <React.Fragment>
+                            <React.Fragment>
+                              {
+                                "\u0639\u0646\u0648\u0627\u0646 \u062a\u062e\u0635\u0635 \u0628\u0627\u06cc\u062f \u0628\u0627 \u0646\u0627\u0645 \u062f\u0642\u06cc\u0642 \u0648 \u0631\u0633\u0645\u06cc \u062a\u062e\u0635\u0635 \u0622\u063a\u0627\u0632 \u0634\u0648\u062f (\u0645\u0627\u0646\u0646\u062f: \u00ab\u06a9\u0627\u0631\u0634\u0646\u0627\u0633 \u0645\u0627\u0645\u0627\u06cc\u06cc\u00bb).\n\n"
+                              }
+                            </React.Fragment>
+                            {
+                              <ul
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.ul,
+                                  sty.ul__oaRZu
+                                )}
+                              >
+                                <li
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.li,
+                                    projectcss.__wab_text,
+                                    sty.li__kchPn
+                                  )}
+                                >
+                                  {
+                                    "\u0628\u0644\u0627\u0641\u0627\u0635\u0644\u0647 \u067e\u0633 \u0627\u0632 \u0622\u0646\u060c \u062a\u0648\u0636\u06cc\u062d\u06cc \u06a9\u0648\u062a\u0627\u0647 \u0648 \u0631\u0648\u0634\u0646 \u062f\u0631\u0628\u0627\u0631\u0647 \u062e\u062f\u0645\u0627\u062a \u0627\u0631\u0627\u0626\u0647 \u06af\u0631\u062f\u062f."
+                                  }
+                                </li>
+                              </ul>
+                            }
+                            <React.Fragment>{""}</React.Fragment>
+                            {
+                              <ul
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.ul,
+                                  sty.ul__a8Z
+                                )}
+                              >
+                                <li
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.li,
+                                    projectcss.__wab_text,
+                                    sty.li__v2LGl
+                                  )}
+                                >
+                                  {
+                                    "\u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0627\u0632 \u062c\u062f\u0627\u06a9\u0646\u0646\u062f\u0647 \u0645\u0646\u0627\u0633\u0628 \u0645\u0627\u0646\u0646\u062f \u0648\u06cc\u0631\u06af\u0648\u0644 \u00ab\u060c\u00bb \u0648 \u0631\u0639\u0627\u06cc\u062a \u0641\u0627\u0635\u0644\u0647\u200c\u06af\u0630\u0627\u0631\u06cc \u0635\u062d\u06cc\u062d\u060c \u062e\u0648\u0627\u0646\u0627\u06cc\u06cc \u0645\u062a\u0646 \u0631\u0627 \u0627\u0641\u0632\u0627\u06cc\u0634 \u0645\u06cc\u200c\u062f\u0647\u062f."
+                                  }
+                                </li>
+                              </ul>
+                            }
+                            <React.Fragment>{""}</React.Fragment>
+                            {
+                              <ul
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.ul,
+                                  sty.ul__w8CJ
+                                )}
+                              >
+                                <li
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.li,
+                                    projectcss.__wab_text,
+                                    sty.li__mCfTp
+                                  )}
+                                >
+                                  {
+                                    "\u0627\u0632 \u0628\u0647\u200c\u06a9\u0627\u0631 \u0628\u0631\u062f\u0646 \u0648\u0627\u0698\u06af\u0627\u0646\u06cc \u06a9\u0647 \u0645\u0648\u062c\u0628 \u062a\u0634\u0627\u0628\u0647 \u0628\u0627 \u0633\u0627\u06cc\u0631 \u062a\u062e\u0635\u0635\u200c\u0647\u0627 \u0645\u06cc\u200c\u0634\u0648\u062f\u060c \u067e\u0631\u0647\u06cc\u0632 \u0634\u0648\u062f."
+                                  }
+                                </li>
+                              </ul>
+                            }
+                            <React.Fragment>{""}</React.Fragment>
+                          </React.Fragment>
+                        </li>
+                      </ul>
+                    }
+                    <React.Fragment>{""}</React.Fragment>
+                  </React.Fragment>
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___97Bgt
+                  )}
+                >
+                  {
+                    "\u0645\u062b\u0627\u0644 \u0645\u0646\u0627\u0633\u0628 : \u06a9\u0627\u0631\u0634\u0646\u0627\u0633 \u0645\u0627\u0645\u0627\u06cc\u06cc\u060c \u0632\u06af\u06cc\u0644 \u062a\u0646\u0627\u0633\u0644\u06cc\u060c \u062a\u0628\u062e\u0627\u0644 \u062a\u0646\u0627\u0633\u0644\u06cc\u060c \u0628\u06a9\u0627\u0631\u062a\u060c \u0639\u0641\u0648\u0646\u062a \u0648\u0627\u0698\u0646"
+                  }
+                </div>
+              </div>
               <Stack__
                 as={"div"}
                 hasGap={true}

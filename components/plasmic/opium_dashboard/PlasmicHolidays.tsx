@@ -1,6 +1,6 @@
-// @ts-nocheck
 /* eslint-disable */
 /* tslint:disable */
+// @ts-nocheck
 /* prettier-ignore-start */
 
 /** @jsxRuntime classic */
@@ -323,7 +323,7 @@ function PlasmicHolidays__RenderFunc(props: {
             }}
             url={(() => {
               try {
-                return `https://apigw.paziresh24.com/v1/bigdeli-n8n/webhook/get-holidays${
+                return `https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-holidays${
                   $ctx.query.date ? `date=${$ctx.query.date}` : ""
                 }`;
               } catch (e) {
