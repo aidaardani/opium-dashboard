@@ -112,7 +112,6 @@
   margin-top: var(--token-Fv8-L_kN-2Ma);
 }
 .freeBox__afDni {
-  display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
@@ -121,6 +120,7 @@
   justify-content: flex-start;
   align-items: center;
   min-width: 0;
+  display: none;
   padding: 5px 12px;
 }
 .text__d5RI1 {
