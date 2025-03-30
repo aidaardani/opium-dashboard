@@ -127,8 +127,6 @@ function PlasmicService__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          centerId: "5a446c87-799a-11ea-8314-005056b09c11",
-          userCenterId: "5cd6fc45-799a-11ea-8314-005056b09c11",
           serviceTypeId: 1
         },
         Object.fromEntries(

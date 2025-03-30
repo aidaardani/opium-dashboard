@@ -502,7 +502,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                             const actionArgs = {
                               destination: (() => {
                                 try {
-                                  return "https://t.me/paziresh24sp_bot";
+                                  return "https://t.me/Aidaardani";
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
