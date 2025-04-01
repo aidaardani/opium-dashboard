@@ -2,9 +2,9 @@ import * as React from "react";
 import {
   PlasmicCanvasHost,
   registerComponent,
-  registerFunction,
   registerGlobalContext,
 } from "@plasmicapp/react-web/lib/host";
+
 import { Fragment, fragmentMeta } from "@/fragment/fragment";
 import { GrowthBook, growthBookMeta } from "@/fragment/growthbook";
 import { DatePicker, datePickerMeta } from "@/fragment/components/date-picker";
@@ -17,22 +17,15 @@ import { Switch, switchMeta } from "@/fragment/components/switch";
 import { ApiRequest, apiRequestMeta } from "@/fragment/components/api-request";
 import { Slider, sliderMeta } from "@/fragment/components/slider";
 import { Chart, chartMeta } from "@/fragment/components/chart";
-import { Hamdast, hamdastMeta } from "@/hamdast/hamdast";
-import { TextEditor, TextEditorMeta } from "@/fragment/components/text-editor";
-import { FileInput, fileInputMeta } from "@/fragment/components/file-input";
-import Map, { mapMeta } from "@/fragment/components/map";
-import moment from "jalali-moment";
-import {
-  dateRangePicker,
-  DateRangePicker,
-} from "@/fragment/components/date-range-picker";
+import { Textarea, textareaMeta } from "@/fragment/components/textarea";
+
 export default function PlasmicHost() {
   return <PlasmicCanvasHost />;
 }
+
 registerGlobalContext(Fragment, fragmentMeta);
 registerGlobalContext(GrowthBook, growthBookMeta);
 registerGlobalContext(Splunk, splunkMeta);
-registerGlobalContext(Hamdast, hamdastMeta);
 registerComponent(DatePicker, datePickerMeta);
 registerComponent(TimePicker, timePickerMeta);
 registerComponent(Popover, popoverMeta);
@@ -42,11 +35,4 @@ registerComponent(Switch, switchMeta);
 registerComponent(Slider, sliderMeta);
 registerComponent(ApiRequest, apiRequestMeta);
 registerComponent(Chart, chartMeta);
-registerComponent(TextEditor, TextEditorMeta);
-registerComponent(FileInput, fileInputMeta);
-registerComponent(Map, mapMeta);
-registerComponent(DateRangePicker, dateRangePicker);
-registerFunction(moment, {
-  name: "moment",
-  importPath: "jalali-moment",
-});
+registerComponent(Textarea, textareaMeta);
