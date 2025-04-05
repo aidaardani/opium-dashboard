@@ -230,7 +230,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                   },
                   {
                     label: "441,000 \u062a\u0648\u0645\u0627\u0646",
-                    value: "189000"
+                    value: "441000"
                   },
                   {
                     label:
