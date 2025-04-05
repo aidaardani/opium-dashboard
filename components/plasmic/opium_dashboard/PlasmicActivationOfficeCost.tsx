@@ -185,12 +185,13 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           (() => {
             try {
               return [
-                { label: "10,000 تومان", value: "10000" },
-                { label: "20,000 تومان", value: "20000" },
-                { label: "30,000 تومان", value: "30000" },
-                { label: "40,000 تومان", value: "40000" },
-                { label: "50,000 تومان", value: "50000" },
-                { label: "100,000 تومان", value: "100000" },
+                { label: "160,000 تومان", value: "160000" },
+                { label: "189,000 تومان", value: "189000" },
+                { label: "230,000 تومان", value: "230000" },
+                { label: "308,000 تومان", value: "308000" },
+                { label: "320,000 تومان", value: "320000" },
+                { label: "385,000 تومان", value: "385000" },
+                { label: "441,000 تومان", value: "441000" },
                 {
                   label: `${$state.apiGetVezaratCost.data[0].price / 10} تومان`,
                   value: `${$state.apiGetVezaratCost.data[0].price / 10}`
@@ -510,19 +511,20 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         )}
       >
         <React.Fragment>
-          {(() => {
-            try {
-              return "میانگین مبلغ بیعانه تعیین‌شده توسط همکاران شما،50,000 تومان است.";
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return "";
-              }
-              throw e;
+          <React.Fragment>{"\u062a\u0648\u062c\u0647: "}</React.Fragment>
+          <span
+            className={"plasmic_default__all plasmic_default__span"}
+            style={{ fontWeight: 700 }}
+          >
+            {
+              "\u0645\u0628\u0644\u063a \u06a9\u0627\u0645\u0644 \u062d\u0642 \u0648\u06cc\u0632\u06cc\u062a\u06cc"
             }
-          })()}
+          </span>
+          <React.Fragment>
+            {
+              " \u06a9\u0647 \u0628\u06cc\u0645\u0627\u0631 \u0628\u0627\u06cc\u062f \u062f\u0631 \u0645\u0637\u0628 \u067e\u0631\u062f\u0627\u062e\u062a \u06a9\u0646\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+            }
+          </React.Fragment>
         </React.Fragment>
       </div>
       <ApiRequest
@@ -770,7 +772,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
             e instanceof TypeError ||
             e?.plasmicType === "PlasmicUndefinedDataError"
           ) {
-            return true;
+            return false;
           }
           throw e;
         }
@@ -1438,17 +1440,17 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                     item => item.type_id == 1
                                   ).id;
                                 const cost =
-                                  ($state.select.value === "custom"
+                                  $state.select.value === "custom"
                                     ? +$state.input.value
-                                    : +$state.select.value) * 10;
+                                    : +$state.select.value;
                                 if ($state.input2.value === "") {
                                   return {
                                     active: 1,
                                     center_id: centerId,
                                     deposit_amount:
-                                      ($state.select.value === "custom"
+                                      $state.select.value === "custom"
                                         ? $state.input.value
-                                        : $state.select.value) * 10
+                                        : $state.select.value
                                   };
                                 } else {
                                   return {
@@ -1490,7 +1492,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["costApi"] = await $steps["costApi"];
               }
 
-              $steps["setPayment"] = false
+              $steps["setPayment"] = true
                 ? (() => {
                     const actionArgs = {
                       args: [
@@ -1500,14 +1502,10 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                         (() => {
                           try {
                             return {
-                              amount:
-                                ($state.select.value === "custom"
-                                  ? +$state.input.value
-                                  : $state.select.value) * 10,
-                              centerid: $state.centersApi.data.data.find(
+                              user_center_id: $state.centersApi.data.data.find(
                                 center =>
                                   center.type_id === 1 && center.id !== "5532"
-                              )
+                              ).user_center_id
                             };
                           } catch (e) {
                             if (
@@ -1534,7 +1532,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["setPayment"] = await $steps["setPayment"];
               }
 
-              $steps["apiActiveAutoPayment"] = false
+              $steps["apiActiveAutoPayment"] = true
                 ? (() => {
                     const actionArgs = {
                       args: [
