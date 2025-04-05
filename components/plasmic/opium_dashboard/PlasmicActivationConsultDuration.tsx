@@ -1051,6 +1051,48 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               ];
                             }
 
+                            $steps["setNewPayment"] = false
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "POST",
+                                      "http://apigw.paziresh24.com/v1/n8n-nelson/webhook/set-payment-online-visit",
+                                      undefined,
+                                      (() => {
+                                        try {
+                                          return {
+                                            centers:
+                                              $state.centersApi.data.data,
+                                            userid: $ctx.query.user_id
+                                          };
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.apiRequest"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["setNewPayment"] != null &&
+                              typeof $steps["setNewPayment"] === "object" &&
+                              typeof $steps["setNewPayment"].then === "function"
+                            ) {
+                              $steps["setNewPayment"] = await $steps[
+                                "setNewPayment"
+                              ];
+                            }
+
                             $steps["updateIsLoadingSave2"] = true
                               ? (() => {
                                   const actionArgs = {
