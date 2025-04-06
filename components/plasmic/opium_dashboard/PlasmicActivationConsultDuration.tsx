@@ -1051,7 +1051,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               ];
                             }
 
-                            $steps["setNewPayment"] = true
+                            $steps["setNewPayment"] = false
                               ? (() => {
                                   const actionArgs = {
                                     args: [
@@ -1061,9 +1061,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                       (() => {
                                         try {
                                           return {
-                                            centers:
-                                              $state.centersApi.data.data,
-                                            userid: $ctx.query.user_id
+                                            centers: $state.centersApi.data.data
                                           };
                                         } catch (e) {
                                           if (
