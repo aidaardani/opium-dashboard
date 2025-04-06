@@ -1051,7 +1051,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               ];
                             }
 
-                            $steps["setNewPayment"] = false
+                            $steps["setNewPayment"] = true
                               ? (() => {
                                   const actionArgs = {
                                     args: [
