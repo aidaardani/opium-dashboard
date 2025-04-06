@@ -1022,6 +1022,10 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                                 $state.centersApi.data.data.find(
                                                   item => item.type_id == 1
                                                 ).id,
+                                              user_id:
+                                                $state.centersApi.data.data.find(
+                                                  item => item.type_id == 1
+                                                ).user_info_id,
                                               cardid: $ctx.query.card_number,
                                               iban: $ctx.query.IBAN,
                                               bank_name: $ctx.query.bank_name,
