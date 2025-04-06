@@ -1006,7 +1006,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               $steps["costApi"] = await $steps["costApi"];
                             }
 
-                            $steps["addToAutoPayment"] =
+                            $steps["addToNewPayment"] =
                               $ctx.query.card_number !== undefined &&
                               $ctx.query.card_number !== ""
                                 ? (() => {
@@ -1018,9 +1018,15 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                         (() => {
                                           try {
                                             return {
-                                              centers:
-                                                $state.centersApi.data.data,
-                                              userid: $ctx.query.user_id
+                                              center_id:
+                                                $state.centersApi.data.data.find(
+                                                  item => item.type_id == 1
+                                                ).id,
+                                              cardid: $ctx.query.card_number,
+                                              iban: $ctx.query.IBAN,
+                                              bank_name: $ctx.query.bank_name,
+                                              owner_name:
+                                                $ctx.query.deposit_owners
                                             };
                                           } catch (e) {
                                             if (
@@ -1041,53 +1047,13 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                   })()
                                 : undefined;
                             if (
-                              $steps["addToAutoPayment"] != null &&
-                              typeof $steps["addToAutoPayment"] === "object" &&
-                              typeof $steps["addToAutoPayment"].then ===
+                              $steps["addToNewPayment"] != null &&
+                              typeof $steps["addToNewPayment"] === "object" &&
+                              typeof $steps["addToNewPayment"].then ===
                                 "function"
                             ) {
-                              $steps["addToAutoPayment"] = await $steps[
-                                "addToAutoPayment"
-                              ];
-                            }
-
-                            $steps["setNewPayment"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      "POST",
-                                      "http://apigw.paziresh24.com/v1/n8n-nelson/webhook/set-payment-online-visit",
-                                      undefined,
-                                      (() => {
-                                        try {
-                                          return {
-                                            centers: $state.centersApi.data.data
-                                          };
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return undefined;
-                                          }
-                                          throw e;
-                                        }
-                                      })()
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "Fragment.apiRequest"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["setNewPayment"] != null &&
-                              typeof $steps["setNewPayment"] === "object" &&
-                              typeof $steps["setNewPayment"].then === "function"
-                            ) {
-                              $steps["setNewPayment"] = await $steps[
-                                "setNewPayment"
+                              $steps["addToNewPayment"] = await $steps[
+                                "addToNewPayment"
                               ];
                             }
 
