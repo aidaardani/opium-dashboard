@@ -1111,7 +1111,7 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
 
             $steps["goToPage"] = (() => {
               const regex = /^\d+$/;
-              const value = $state.input.value;
+              const value = $state.select.value;
               return (
                 value !== "" &&
                 regex.test(value) &&

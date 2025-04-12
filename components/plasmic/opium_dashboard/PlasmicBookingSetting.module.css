@@ -633,6 +633,7 @@
   min-width: 0;
 }
 .moshirPaymentSetting {
+  display: flex;
   flex-direction: column;
   position: relative;
   align-items: center;
@@ -641,7 +642,6 @@
   height: auto;
   max-width: 100%;
   min-width: 0;
-  display: none;
   border-radius: 8px;
   padding: 8px;
   border: 1px solid var(--token-Y3HOiwZmAcAF);
