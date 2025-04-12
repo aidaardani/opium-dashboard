@@ -45,17 +45,33 @@
   border-radius: var(--token-fhaz6q6bl-fW);
   padding: var(--token-_c276Gs_1FIE) var(--token-Fv8-L_kN-2Ma);
 }
-.text__eyCn6 {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  color: var(--token-u3OudfMChOo3);
-  min-width: 0;
-}
 .apiGetVezaratCost:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
+}
+.freeBox__q4E5W {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.text__gYDu {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+.svg__mkjLj {
+  object-fit: cover;
+  max-width: 100%;
+  width: 30px;
+  flex-shrink: 0;
+  height: 1em;
 }
 .text__nmjuh {
   position: relative;
@@ -80,7 +96,6 @@
   max-width: 100%;
   color: var(--token-u3OudfMChOo3);
   min-width: 0;
-  display: none;
 }
 .select:global(.__wab_instance) {
   width: 100%;

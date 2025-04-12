@@ -2591,186 +2591,162 @@ function PlasmicBookingSetting__RenderFunc(props: {
                   })()}
                 </div>
               ) : null}
-              {(() => {
-                try {
-                  return $state.centers.data.data
-                    .map(c =>
-                      $state.apiGetmoshir.data.some(
-                        m => m["center-id"] === c.id
-                      )
-                    )
-                    .includes(true);
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div
-                  data-plasmic-name={"moshirPaymentSetting"}
-                  data-plasmic-override={overrides.moshirPaymentSetting}
-                  className={classNames(
-                    projectcss.all,
-                    sty.moshirPaymentSetting
-                  )}
-                  dir={"rtl"}
-                  onClick={async event => {
-                    const $steps = {};
+              <div
+                data-plasmic-name={"moshirPaymentSetting"}
+                data-plasmic-override={overrides.moshirPaymentSetting}
+                className={classNames(projectcss.all, sty.moshirPaymentSetting)}
+                dir={"rtl"}
+                onClick={async event => {
+                  const $steps = {};
 
-                    $steps["sendEvent"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              (() => {
-                                try {
-                                  return {
-                                    group: "settings",
-                                    userid: $ctx.query.user_id,
-                                    type: "click-accordion-payment-setting"
-                                  };
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
+                  $steps["sendEvent"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  group: "settings",
+                                  userid: $ctx.query.user_id,
+                                  type: "click-accordion-payment-setting"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
                                 }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Splunk.sendLog"]?.apply(null, [
-                            ...actionArgs.args
-                          ]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["sendEvent"] != null &&
-                      typeof $steps["sendEvent"] === "object" &&
-                      typeof $steps["sendEvent"].then === "function"
-                    ) {
-                      $steps["sendEvent"] = await $steps["sendEvent"];
-                    }
-                  }}
-                >
-                  {(() => {
-                    const child$Props = {
-                      activeKey: generateStateValueProp($state, [
-                        "accordion3",
-                        "activePanelId"
-                      ]),
-                      bordered: true,
-                      className: classNames("__wab_instance", sty.accordion3),
-                      items: (
-                        <React.Fragment>
-                          <AntdAccordionItem
-                            className={classNames(
-                              "__wab_instance",
-                              sty.accordionItem___5DY72
-                            )}
-                            id={1}
-                            label2={
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text___8ULfo
-                                )}
-                              >
-                                {
-                                  "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u0645\u0628\u0644\u063a \u062e\u062f\u0645\u0627\u062a"
-                                }
-                              </div>
-                            }
-                            showArrow={true}
-                          >
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__dFmSu
-                              )}
-                            >
-                              <MoshirPaymentSetting
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.moshirPaymentSetting__zoqY
-                                )}
-                              />
-                            </Stack__>
-                          </AntdAccordionItem>
-                          <AntdAccordionItem
-                            className={classNames(
-                              "__wab_instance",
-                              sty.accordionItem__g2MQl
-                            )}
-                            id={2}
-                            label2={
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__janQ9
-                                )}
-                              >
-                                {
-                                  "\u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a \u0622\u06cc\u0646\u062f\u0647"
-                                }
-                              </div>
-                            }
-                            showArrow={true}
-                          >
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
+                  ) {
+                    $steps["sendEvent"] = await $steps["sendEvent"];
+                  }
+                }}
+              >
+                {(() => {
+                  const child$Props = {
+                    activeKey: generateStateValueProp($state, [
+                      "accordion3",
+                      "activePanelId"
+                    ]),
+                    bordered: true,
+                    className: classNames("__wab_instance", sty.accordion3),
+                    items: (
+                      <React.Fragment>
+                        <AntdAccordionItem
+                          className={classNames(
+                            "__wab_instance",
+                            sty.accordionItem___5DY72
+                          )}
+                          id={1}
+                          label2={
                             <div
                               className={classNames(
                                 projectcss.all,
                                 projectcss.__wab_text,
-                                sty.text__vgijj
+                                sty.text___8ULfo
                               )}
                             >
-                              {"Second Children"}
+                              {
+                                "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u0645\u0628\u0644\u063a \u062e\u062f\u0645\u0627\u062a"
+                              }
                             </div>
-                          </AntdAccordionItem>
-                        </React.Fragment>
-                      ),
-                      onChange: async (...eventArgs: any) => {
-                        generateStateOnChangePropForCodeComponents(
-                          $state,
-                          "activePanelId",
-                          ["accordion3", "activePanelId"],
-                          AntdAccordion_Helpers
-                        ).apply(null, eventArgs);
+                          }
+                          showArrow={true}
+                        >
+                          <Stack__
+                            as={"div"}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__dFmSu
+                            )}
+                          >
+                            <MoshirPaymentSetting
+                              className={classNames(
+                                "__wab_instance",
+                                sty.moshirPaymentSetting__zoqY
+                              )}
+                            />
+                          </Stack__>
+                        </AntdAccordionItem>
+                        <AntdAccordionItem
+                          className={classNames(
+                            "__wab_instance",
+                            sty.accordionItem__g2MQl
+                          )}
+                          id={2}
+                          label2={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__janQ9
+                              )}
+                            >
+                              {
+                                "\u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a \u0622\u06cc\u0646\u062f\u0647"
+                              }
+                            </div>
+                          }
+                          showArrow={true}
+                        >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__vgijj
+                            )}
+                          >
+                            {"Second Children"}
+                          </div>
+                        </AntdAccordionItem>
+                      </React.Fragment>
+                    ),
+                    onChange: async (...eventArgs: any) => {
+                      generateStateOnChangePropForCodeComponents(
+                        $state,
+                        "activePanelId",
+                        ["accordion3", "activePanelId"],
+                        AntdAccordion_Helpers
+                      ).apply(null, eventArgs);
+                    }
+                  };
+                  initializeCodeComponentStates(
+                    $state,
+                    [
+                      {
+                        name: "activePanelId",
+                        plasmicStateName: "accordion3.activePanelId"
                       }
-                    };
-                    initializeCodeComponentStates(
-                      $state,
-                      [
-                        {
-                          name: "activePanelId",
-                          plasmicStateName: "accordion3.activePanelId"
-                        }
-                      ],
-                      [],
-                      AntdAccordion_Helpers ?? {},
-                      child$Props
-                    );
+                    ],
+                    [],
+                    AntdAccordion_Helpers ?? {},
+                    child$Props
+                  );
 
-                    return (
-                      <AntdAccordion
-                        data-plasmic-name={"accordion3"}
-                        data-plasmic-override={overrides.accordion3}
-                        {...child$Props}
-                      />
-                    );
-                  })()}
-                </div>
-              ) : null}
+                  return (
+                    <AntdAccordion
+                      data-plasmic-name={"accordion3"}
+                      data-plasmic-override={overrides.accordion3}
+                      {...child$Props}
+                    />
+                  );
+                })()}
+              </div>
             </Stack__>
             <SideEffect
               data-plasmic-name={"runCodeGtmMetrica"}

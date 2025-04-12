@@ -76,8 +76,8 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicActivationOfficeCost.module.css"; // plasmic-import: Uq71V-zgrZxq/css
 
-import Icon15Icon from "./icons/PlasmicIcon__Icon15"; // plasmic-import: dLXaRsSSHo3S/icon
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
+import Icon15Icon from "./icons/PlasmicIcon__Icon15"; // plasmic-import: dLXaRsSSHo3S/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 
@@ -169,7 +169,24 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "select.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                return $state.costOffice[6].value
+                  ? $state.costOffice[6].value
+                  : "1500000";
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "select.open",
@@ -186,15 +203,18 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
             try {
               return [
                 { label: "160,000 تومان", value: "160000" },
-                { label: "189,000 تومان", value: "189000" },
                 { label: "230,000 تومان", value: "230000" },
                 { label: "308,000 تومان", value: "308000" },
                 { label: "320,000 تومان", value: "320000" },
                 { label: "385,000 تومان", value: "385000" },
                 { label: "441,000 تومان", value: "441000" },
                 {
-                  label: `${$state.apiGetVezaratCost.data[0].price / 10} تومان`,
-                  value: `${$state.apiGetVezaratCost.data[0].price / 10}`
+                  label: `${
+                    ($state.apiGetVezaratCost?.data?.[0]?.price || 1890000) / 10
+                  } تومان`,
+                  value: `${
+                    ($state.apiGetVezaratCost?.data?.[0]?.price || 1890000) / 10
+                  }`
                 },
                 { label: "قیمت دلخواه", value: "custom" }
               ];
@@ -207,10 +227,6 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                   {
                     label: "160,000 \u062a\u0648\u0645\u0627\u0646",
                     value: "160000"
-                  },
-                  {
-                    label: "189,000 \u062a\u0648\u0645\u0627\u0646",
-                    value: "189000"
                   },
                   {
                     label: "230,000 \u062a\u0648\u0645\u0627\u0646",
@@ -231,6 +247,11 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                   {
                     label: "441,000 \u062a\u0648\u0645\u0627\u0646",
                     value: "441000"
+                  },
+                  {
+                    label:
+                      "${$state.apiGetVezaratCost.data[0].price / 10 } \u062a\u0648\u0645\u0627\u0646",
+                    value: "${$state.apiGetVezaratCost.data[0].price/10 }"
                   },
                   {
                     label:
@@ -503,30 +524,6 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           </React.Fragment>
         </React.Fragment>
       </div>
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__eyCn6
-        )}
-      >
-        <React.Fragment>
-          <React.Fragment>{"\u062a\u0648\u062c\u0647: "}</React.Fragment>
-          <span
-            className={"plasmic_default__all plasmic_default__span"}
-            style={{ fontWeight: 700 }}
-          >
-            {
-              "\u0645\u0628\u0644\u063a \u06a9\u0627\u0645\u0644 \u062d\u0642 \u0648\u06cc\u0632\u06cc\u062a\u06cc"
-            }
-          </span>
-          <React.Fragment>
-            {
-              " \u06a9\u0647 \u0628\u06cc\u0645\u0627\u0631 \u0628\u0627\u06cc\u062f \u062f\u0631 \u0645\u0637\u0628 \u067e\u0631\u062f\u0627\u062e\u062a \u06a9\u0646\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
-            }
-          </React.Fragment>
-        </React.Fragment>
-      </div>
       <ApiRequest
         data-plasmic-name={"apiGetVezaratCost"}
         data-plasmic-override={overrides.apiGetVezaratCost}
@@ -543,29 +540,48 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           </div>
         }
         loadingDisplay={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__nmjuh
-            )}
-          >
-            <React.Fragment>
-              {(() => {
-                try {
-                  return "کل مبلغ ویزیت که بیمار باید بپردازد را انتخاب کنید. (در حال دریافت مبلغ پیشنهادی به شما هستیم...)";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "Loading...";
-                  }
-                  throw e;
+          <React.Fragment>
+            <div className={classNames(projectcss.all, sty.freeBox__q4E5W)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__gYDu
+                )}
+              >
+                {
+                  "\u0645\u0628\u0644\u063a \u06a9\u0627\u0645\u0644 \u062d\u0642 \u0648\u06cc\u0632\u06cc\u062a\u06cc \u06a9\u0647 \u0628\u06cc\u0645\u0627\u0631 \u0628\u0627\u06cc\u062f \u062f\u0631 \u0645\u0637\u0628 \u067e\u0631\u062f\u0627\u062e\u062a \u06a9\u0646\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f( \u062f\u0631 \u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0645\u0628\u0644\u063a \u067e\u06cc\u0634\u0646\u0647\u0627\u062f\u06cc \u0628\u0647 \u0634\u0645\u0627 \u0647\u0633\u062a\u06cc\u0645\u2026)"
                 }
-              })()}
-            </React.Fragment>
-          </div>
+              </div>
+              <Icon34Icon
+                className={classNames(projectcss.all, sty.svg__mkjLj)}
+                role={"img"}
+              />
+            </div>
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__nmjuh
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return "کل مبلغ ویزیت که بیمار باید بپردازد را انتخاب کنید. (در حال دریافت مبلغ پیشنهادی به شما هستیم...)";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "Loading...";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+          </React.Fragment>
         }
         method={"GET"}
         onError={async (...eventArgs: any) => {
@@ -749,7 +765,9 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         })()}
         placeholder={(() => {
           try {
-            return "مبلغ ویزیت";
+            return $state.costOffice[6].label
+              ? $state.costOffice[6].label
+              : "مبلغ ویزیت";
           } catch (e) {
             if (
               e instanceof TypeError ||
@@ -802,7 +820,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
             e instanceof TypeError ||
             e?.plasmicType === "PlasmicUndefinedDataError"
           ) {
-            return true;
+            return false;
           }
           throw e;
         }
@@ -1303,12 +1321,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["validationToast"] = await $steps["validationToast"];
               }
 
-              $steps["costValidation"] = (() => {
-                return (
-                  $state.input2.value === "" ||
-                  $state.input2.value.trim().length !== 16
-                );
-              })()
+              $steps["costValidation"] = false
                 ? (() => {
                     const actionArgs = {
                       args: [
@@ -1352,27 +1365,34 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["showToast2"] = await $steps["showToast2"];
               }
 
-              $steps["updateDialogCardNumberOpen"] = false
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["dialogCardNumber", "open"]
-                      },
-                      operation: 0,
-                      value: true
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
+              $steps["updateDialogCardNumberOpen"] =
+                (!$state.input2.value || $state.input2.value.trim() === "") &&
+                $state.input.value !== "0"
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["dialogCardNumber", "open"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
 
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
               if (
                 $steps["updateDialogCardNumberOpen"] != null &&
                 typeof $steps["updateDialogCardNumberOpen"] === "object" &&
@@ -1423,7 +1443,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
               }
 
               $steps["costApi"] =
-                ($state.input2.value === "" ||
+                ($state.input2.value !== "" ||
                   $state.input2.value.trim().length === 16) &&
                 $state.select.value !== undefined
                   ? (() => {
@@ -1492,38 +1512,44 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["costApi"] = await $steps["costApi"];
               }
 
-              $steps["setPayment"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "POST",
-                        "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/set-payment",
-                        undefined,
-                        (() => {
-                          try {
-                            return {
-                              user_center_id: $state.centersApi.data.data.find(
-                                center =>
-                                  center.type_id === 1 && center.id !== "5532"
-                              ).user_center_id
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
+              $steps["setPayment"] =
+                ($state.input2.value !== "" ||
+                  $state.input2.value.trim().length === 16) &&
+                $state.select.value !== undefined
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "POST",
+                          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/set-payment",
+                          undefined,
+                          (() => {
+                            try {
+                              return {
+                                user_center_id:
+                                  $state.centersApi.data.data.find(
+                                    center =>
+                                      center.type_id === 1 &&
+                                      center.id !== "5532"
+                                  ).user_center_id
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
                             }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
               if (
                 $steps["setPayment"] != null &&
                 typeof $steps["setPayment"] === "object" &&
@@ -1532,41 +1558,44 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["setPayment"] = await $steps["setPayment"];
               }
 
-              $steps["apiActiveAutoPayment"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "POST",
-                        "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/active-auto-payment-katibe",
-                        undefined,
-                        (() => {
-                          try {
-                            return {
-                              center_id: $state.centersApi.data.data.find(
-                                item => item.type_id == 1
-                              ).id,
-                              cardid: $state.shabaApi.data.card_number,
-                              iban: $state.shabaApi.data.IBAN,
-                              bank_name: $state.shabaApi.data.bank_name,
-                              owner_name: $state.shabaApi.data.deposit_owners
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
+              $steps["apiActiveAutoPayment"] =
+                $state.input2.value !== "" ||
+                $state.input2.value.trim().length === 16
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "POST",
+                          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/active-auto-payment-katibe",
+                          undefined,
+                          (() => {
+                            try {
+                              return {
+                                center_id: $state.centersApi.data.data.find(
+                                  item => item.type_id == 1
+                                ).id,
+                                cardid: $state.shabaApi.data.card_number,
+                                iban: $state.shabaApi.data.IBAN,
+                                bank_name: $state.shabaApi.data.bank_name,
+                                owner_name: $state.shabaApi.data.deposit_owners
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
                             }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
               if (
                 $steps["apiActiveAutoPayment"] != null &&
                 typeof $steps["apiActiveAutoPayment"] === "object" &&
@@ -1654,7 +1683,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 ];
               }
 
-              $steps["showToast"] = !!$steps.costApi.data.message
+              $steps["showToast"] = false
                 ? (() => {
                     const actionArgs = {
                       args: [
@@ -1767,39 +1796,42 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["sendEvent"] = await $steps["sendEvent"];
               }
 
-              $steps["goToPage"] = !!$steps.costApi.data.message
-                ? (() => {
-                    const actionArgs = {
-                      destination: (() => {
-                        try {
-                          return `/activation-page/office/duration?${
-                            $props.hasOnlineVisit ? "onlineVisit=true&" : ""
-                          }userId=${$props.userId}`;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
+              $steps["goToPage"] =
+                !!$steps.costApi.data.message &&
+                $state.input2.value !== "" &&
+                $state.input2.value.trim().length === 16
+                  ? (() => {
+                      const actionArgs = {
+                        destination: (() => {
+                          try {
+                            return `/activation-page/office/duration?${
+                              $props.hasOnlineVisit ? "onlineVisit=true&" : ""
+                            }userId=${$props.userId}`;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
                           }
-                          throw e;
+                        })()
+                      };
+                      return (({ destination }) => {
+                        if (
+                          typeof destination === "string" &&
+                          destination.startsWith("#")
+                        ) {
+                          document
+                            .getElementById(destination.substr(1))
+                            .scrollIntoView({ behavior: "smooth" });
+                        } else {
+                          __nextRouter?.push(destination);
                         }
-                      })()
-                    };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
-                      }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
               if (
                 $steps["goToPage"] != null &&
                 typeof $steps["goToPage"] === "object" &&
@@ -1988,7 +2020,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                     onClick={async event => {
                       const $steps = {};
 
-                      $steps["costApi"] = false
+                      $steps["costApi"] = true
                         ? (() => {
                             const actionArgs = {
                               args: [
@@ -2073,16 +2105,12 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                 (() => {
                                   try {
                                     return {
-                                      amount:
-                                        ($state.select.value === "custom"
-                                          ? +$state.input.value
-                                          : $state.select.value) * 10,
-                                      centerid:
+                                      user_center_id:
                                         $state.centersApi.data.data.find(
                                           center =>
                                             center.type_id === 1 &&
                                             center.id !== "5532"
-                                        )
+                                        ).user_center_id
                                     };
                                   } catch (e) {
                                     if (

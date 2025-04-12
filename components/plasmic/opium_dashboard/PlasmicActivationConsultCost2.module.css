@@ -33,18 +33,66 @@
   padding: var(--token-vMUQwr5Jto1d);
   border: 1px solid #ffecc7;
 }
-.text__cUazr {
+.getAvgCost:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.text__gzXbt {
   position: relative;
   width: 100%;
   height: auto;
   max-width: 100%;
-  color: var(--token-u3OudfMChOo3);
+  min-width: 0;
+  display: none;
+}
+.freeBox___3ZmJr {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.text__yNy47 {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+.svg {
+  object-fit: cover;
+  max-width: 100%;
+  width: 30px;
+  flex-shrink: 0;
+  height: 1em;
+}
+.text__tgUiU {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  display: none;
+}
+.text__u6Wgq {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.select:global(.__wab_instance) {
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
   min-width: 0;
 }
 .input:global(.__wab_instance) {
   width: 100%;
   max-width: 100%;
   object-fit: cover;
+  text-align: right;
   min-width: 0;
 }
 .text__ttxM2 {
