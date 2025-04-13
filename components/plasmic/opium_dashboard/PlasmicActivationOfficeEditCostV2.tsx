@@ -679,15 +679,43 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
         data-plasmic-override={overrides.apiGetVezaratCost}
         className={classNames("__wab_instance", sty.apiGetVezaratCost)}
         errorDisplay={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__hclLi
-            )}
-          >
-            {"Error fetching data"}
-          </div>
+          (() => {
+            try {
+              return $props.centerId !== "5532";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })() ? (
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text___1CjMa
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return "کل مبلغ ویزیت که بیمار باید بپردازد را انتخاب کنید.";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "Loading...";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
+          ) : null
         }
         loadingDisplay={
           (() => {
@@ -1461,7 +1489,9 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
 
             $steps["showToast2"] =
               $state.select.value === "custom" &&
-              ($state.input.value === "" || $state.input.value === "0")
+              ($state.input.value === "" ||
+                $state.input.value === "0" ||
+                $state.input.value === 0)
                 ? (() => {
                     const actionArgs = {
                       args: [
@@ -1518,7 +1548,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
 
             $steps["editCost"] = (
               $state.select.value === "custom"
-                ? $state.input.value !== "0" && $state.input.value.trim() !== ""
+                ? $state.input.value !== 0 && $state.input.value.trim() !== ""
                 : true
             )
               ? (() => {
@@ -1735,7 +1765,11 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               $steps["sendEvent"] = await $steps["sendEvent"];
             }
 
-            $steps["apiActivePayment"] = true
+            $steps["apiActivePayment"] = (
+              $state.select.value === "custom"
+                ? $state.input.value !== 0 && $state.input.value.trim() !== ""
+                : true
+            )
               ? (() => {
                   const actionArgs = {
                     args: [

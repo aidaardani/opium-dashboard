@@ -143,8 +143,8 @@ function PlasmicEachService__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          centerId: "5a446c87-799a-11ea-8314-005056b09c11",
-          userCenterId: "5cd6fc45-799a-11ea-8314-005056b09c11",
+          centerId: "5532",
+          userCenterId: "96292570-aa14-4158-8305-c6e532a485c5",
           freePrice: "2000 \u062a\u0648\u0645\u0627\u0646",
           serviceId: "8dceb633-0172-11f0-a891-005056ad823b",
           serviceAlias:

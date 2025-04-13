@@ -120,10 +120,9 @@
 }
 .text__dUssV {
   position: relative;
-  width: 100%;
+  width: auto;
   height: auto;
   max-width: 100%;
-  min-width: 0;
 }
 .svg__l6U {
   object-fit: cover;
@@ -132,13 +131,11 @@
   flex-shrink: 0;
   height: 1em;
 }
-.text__hclLi {
+.text___1CjMa {
   position: relative;
-  width: 100%;
+  width: auto;
   height: auto;
   max-width: 100%;
-  min-width: 0;
-  display: none;
 }
 .text___0KWcW {
   position: relative;
