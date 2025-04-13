@@ -1014,7 +1014,11 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
       ) : null}
       {(() => {
         try {
-          return $props.centerId === "5532";
+          return (
+            $props.centerId === "5532" &&
+            $state.apiGetCost.data.deposit_amount !== undefined &&
+            $state.apiGetCost.data.deposit_amount !== null
+          );
         } catch (e) {
           if (
             e instanceof TypeError ||
