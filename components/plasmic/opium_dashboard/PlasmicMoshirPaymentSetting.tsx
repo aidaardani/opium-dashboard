@@ -62,7 +62,6 @@ import {
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import DrCenters from "../../DrCenters"; // plasmic-import: IkLsGKQP_uPj/component
 import ActivationOfficeEditCost from "../../ActivationOfficeEditCost"; // plasmic-import: c0SFXe_80OLO/component
-import MoshirEditCostOnlineVisit from "../../MoshirEditCostOnlineVisit"; // plasmic-import: cyLWAChhdsKB/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
@@ -101,7 +100,6 @@ export type PlasmicMoshirPaymentSetting__OverridesType = {
   apiCenters?: Flex__<typeof ApiRequest>;
   drCenters?: Flex__<typeof DrCenters>;
   activationOfficeEditCost?: Flex__<typeof ActivationOfficeEditCost>;
-  moshirEditCostOnlineVisit?: Flex__<typeof MoshirEditCostOnlineVisit>;
   runCodeGtmMetrica?: Flex__<typeof SideEffect>;
   gtm?: Flex__<typeof Embed>;
 };
@@ -369,7 +367,12 @@ function PlasmicMoshirPaymentSetting__RenderFunc(props: {
               data-plasmic-override={overrides.drCenters}
               centers={(() => {
                 try {
-                  return $state.apiCenters.data.data;
+                  return $state.apiCenters.data.data.find(
+                    center =>
+                      center.active_online_payment === true &&
+                      center.type_id === 1 &&
+                      center.id !== "5532"
+                  );
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -474,33 +477,6 @@ function PlasmicMoshirPaymentSetting__RenderFunc(props: {
               className={classNames(
                 "__wab_instance",
                 sty.activationOfficeEditCost
-              )}
-            />
-          ) : null}
-          {(() => {
-            try {
-              return $state.apiCenters.data.data.some(
-                center =>
-                  center.user_center_id === $state.selectedCenter &&
-                  center.type_id === 3 &&
-                  center.id == 5532
-              );
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return false;
-              }
-              throw e;
-            }
-          })() ? (
-            <MoshirEditCostOnlineVisit
-              data-plasmic-name={"moshirEditCostOnlineVisit"}
-              data-plasmic-override={overrides.moshirEditCostOnlineVisit}
-              className={classNames(
-                "__wab_instance",
-                sty.moshirEditCostOnlineVisit
               )}
             />
           ) : null}
@@ -617,21 +593,13 @@ const PlasmicDescendants = {
     "apiCenters",
     "drCenters",
     "activationOfficeEditCost",
-    "moshirEditCostOnlineVisit",
     "runCodeGtmMetrica",
     "gtm"
   ],
-  center: [
-    "center",
-    "apiCenters",
-    "drCenters",
-    "activationOfficeEditCost",
-    "moshirEditCostOnlineVisit"
-  ],
+  center: ["center", "apiCenters", "drCenters", "activationOfficeEditCost"],
   apiCenters: ["apiCenters"],
   drCenters: ["drCenters"],
   activationOfficeEditCost: ["activationOfficeEditCost"],
-  moshirEditCostOnlineVisit: ["moshirEditCostOnlineVisit"],
   runCodeGtmMetrica: ["runCodeGtmMetrica"],
   gtm: ["gtm"]
 } as const;
@@ -644,7 +612,6 @@ type NodeDefaultElementType = {
   apiCenters: typeof ApiRequest;
   drCenters: typeof DrCenters;
   activationOfficeEditCost: typeof ActivationOfficeEditCost;
-  moshirEditCostOnlineVisit: typeof MoshirEditCostOnlineVisit;
   runCodeGtmMetrica: typeof SideEffect;
   gtm: typeof Embed;
 };
@@ -713,7 +680,6 @@ export const PlasmicMoshirPaymentSetting = Object.assign(
     apiCenters: makeNodeComponent("apiCenters"),
     drCenters: makeNodeComponent("drCenters"),
     activationOfficeEditCost: makeNodeComponent("activationOfficeEditCost"),
-    moshirEditCostOnlineVisit: makeNodeComponent("moshirEditCostOnlineVisit"),
     runCodeGtmMetrica: makeNodeComponent("runCodeGtmMetrica"),
     gtm: makeNodeComponent("gtm"),
 

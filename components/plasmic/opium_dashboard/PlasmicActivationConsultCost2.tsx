@@ -62,6 +62,7 @@ import {
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZzFQxrO/codeComponent
 import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
+import { Popover } from "@/fragment/components/popover"; // plasmic-import: umJXC-fyxDQn/codeComponent
 import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
 import Checkbox from "../../Checkbox"; // plasmic-import: IDR0sAqN5tth/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
@@ -75,6 +76,7 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJ
 import sty from "./PlasmicActivationConsultCost2.module.css"; // plasmic-import: nfu3aryCX9a4/css
 
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
+import Icon15Icon from "./icons/PlasmicIcon__Icon15"; // plasmic-import: dLXaRsSSHo3S/icon
 import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: euu18ryAtnAt/icon
 import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: BMYyZW6g83gg/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
@@ -102,10 +104,13 @@ export const PlasmicActivationConsultCost2__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicActivationConsultCost2__OverridesType = {
   root?: Flex__<"div">;
+  info?: Flex__<"div">;
+  cost?: Flex__<"div">;
   getAvgCost?: Flex__<typeof ApiRequest>;
-  svg?: Flex__<"svg">;
   select?: Flex__<typeof Select>;
   input?: Flex__<typeof Input>;
+  popover?: Flex__<typeof Popover>;
+  cardNum?: Flex__<"div">;
   cardNumberInput?: Flex__<typeof TextInput>;
   shabaApi?: Flex__<typeof ApiRequest>;
   rules?: Flex__<"div">;
@@ -352,6 +357,14 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "popover.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+
+        refName: "popover"
       }
     ],
     [$props, $ctx, $refs]
@@ -384,292 +397,439 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
       )}
     >
       <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text___80Vt4
-        )}
+        data-plasmic-name={"info"}
+        data-plasmic-override={overrides.info}
+        className={classNames(projectcss.all, sty.info)}
       >
-        <React.Fragment>
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text___80Vt4
+          )}
+        >
           <React.Fragment>
-            {
-              "\u0644\u0637\u0641\u0627\u064b \u062a\u0648\u062c\u0647 \u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u06cc\u062f \u06a9\u0647 \u00ab"
-            }
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {
+                " \u0644\u0637\u0641\u0627\u064b \u062a\u0639\u0631\u0641\u0647 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u062e\u0648\u062f \u0631\u0627 \u0645\u0634\u062e\u0635 \u06a9\u0646\u06cc\u062f."
+              }
+            </span>
           </React.Fragment>
-          <span
-            className={"plasmic_default__all plasmic_default__span"}
-            style={{ fontWeight: 700 }}
-          >
-            {
-              "\u06f7\u06f0\u066a \u0627\u0632 \u0645\u0628\u0644\u063a \u0647\u0631 \u0648\u06cc\u0632\u06cc\u062a\u00bb"
-            }
-          </span>
-          <React.Fragment>{" \u0628\u0647 "}</React.Fragment>
-          <span
-            className={"plasmic_default__all plasmic_default__span"}
-            style={{ fontWeight: 700 }}
-          >
-            {"\u067e\u0632\u0634\u06a9"}
-          </span>
-          <React.Fragment>{" \u062a\u0639\u0644\u0642 "}</React.Fragment>
-          <span
-            className={"plasmic_default__all plasmic_default__span"}
-            style={{ fontWeight: 700 }}
-          >
-            {"\u0645\u06cc\u200c\u06af\u06cc\u0631\u062f"}
-          </span>
+        </div>
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__yJtin
+          )}
+        >
           <React.Fragment>
-            {
-              " \u0648 \u0631\u0648\u0632\u0627\u0646\u0647\u060c \u0645\u0628\u0627\u0644\u063a \u0628\u0647 \u0635\u0648\u0631\u062a "
-            }
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 400 }}
+            >
+              {"\u062f\u0631\u0622\u0645\u062f "}
+            </span>
+            <React.Fragment>{""}</React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {"\u0631\u0648\u0632\u0627\u0646\u0647"}
+            </span>
+            <React.Fragment>{""}</React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 400 }}
+            >
+              {" \u0634\u0645\u0627 \u0628\u0647 \u0635\u0648\u0631\u062a "}
+            </span>
+            <React.Fragment>{""}</React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {"\u062e\u0648\u062f\u06a9\u0627\u0631"}
+            </span>
+            <React.Fragment>{""}</React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 400 }}
+            >
+              {
+                " \u0648\u0627\u0631\u06cc\u0632 \u062e\u0648\u0627\u0647\u062f \u0634\u062f."
+              }
+            </span>
           </React.Fragment>
-          <span
-            className={"plasmic_default__all plasmic_default__span"}
-            style={{ fontWeight: 700 }}
-          >
-            {"\u062e\u0648\u062f\u06a9\u0627\u0631"}
-          </span>
-          <React.Fragment>
-            {
-              " \u0628\u0631\u0627\u06cc \u0634\u0645\u0627 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f.\n\n\u062f\u0631 \u0635\u0648\u0631\u062a \u0646\u0627\u0631\u0636\u0627\u06cc\u062a\u06cc \u0628\u06cc\u0645\u0627\u0631\u060c \u06f1\u06f0\u06f0 \u062f\u0631\u0635\u062f \u0645\u0628\u0644\u063a \u067e\u0631\u062f\u0627\u062e\u062a\u06cc \u0628\u06cc\u0645\u0627\u0631 \u0627\u0633\u062a\u0631\u062f\u0627\u062f \u062e\u0648\u0627\u0647\u062f \u0634\u062f."
-            }
-          </React.Fragment>
-        </React.Fragment>
+        </div>
       </div>
-      <ApiRequest
-        data-plasmic-name={"getAvgCost"}
-        data-plasmic-override={overrides.getAvgCost}
-        className={classNames("__wab_instance", sty.getAvgCost)}
-        errorDisplay={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__tgUiU
-            )}
-          >
-            {"Error fetching data"}
-          </div>
-        }
-        loadingDisplay={
+      <Stack__
+        as={"div"}
+        data-plasmic-name={"cost"}
+        data-plasmic-override={overrides.cost}
+        hasGap={true}
+        className={classNames(projectcss.all, sty.cost)}
+      >
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__caEOo
+          )}
+        >
           <React.Fragment>
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {
+                "\ud83d\udcb5 \u0645\u0628\u0644\u063a \u0648\u06cc\u0632\u06cc\u062a"
+              }
+            </span>
+          </React.Fragment>
+        </div>
+        <ApiRequest
+          data-plasmic-name={"getAvgCost"}
+          data-plasmic-override={overrides.getAvgCost}
+          className={classNames("__wab_instance", sty.getAvgCost)}
+          errorDisplay={
             <div
               className={classNames(
                 projectcss.all,
                 projectcss.__wab_text,
-                sty.text__gzXbt
+                sty.text__tgUiU
               )}
             >
-              {"Loading..."}
+              {"Error fetching data"}
             </div>
-            <div className={classNames(projectcss.all, sty.freeBox___3ZmJr)}>
+          }
+          loadingDisplay={
+            <React.Fragment>
               <div
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__yNy47
+                  sty.text__gzXbt
                 )}
               >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return "در حال دریافت میانگین مبلغ پرداختی بیماران در تخصص شما هستیم.";
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "";
-                      }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
+                {"Loading..."}
               </div>
-              <Icon34Icon
-                data-plasmic-name={"svg"}
-                data-plasmic-override={overrides.svg}
-                className={classNames(projectcss.all, sty.svg)}
+              <div className={classNames(projectcss.all, sty.freeBox___3ZmJr)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__yNy47
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return "در حال دریافت میانگین مبلغ پرداختی بیماران در تخصص شما هستیم.";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+                <Icon34Icon
+                  className={classNames(projectcss.all, sty.svg__dhYv)}
+                  role={"img"}
+                />
+              </div>
+            </React.Fragment>
+          }
+          method={"GET"}
+          onError={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["getAvgCost", "error"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onLoading={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["getAvgCost", "loading"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onSuccess={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["getAvgCost", "data"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          ref={ref => {
+            $refs["getAvgCost"] = ref;
+          }}
+          url={
+            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-avg-cost-online-visit"
+          }
+        >
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__u6Wgq
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $state.getAvgCost.data.message;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+        </ApiRequest>
+        <Select
+          data-plasmic-name={"select"}
+          data-plasmic-override={overrides.select}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["select", "value"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onOpenChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["select", "open"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          open={generateStateValueProp($state, ["select", "open"])}
+          options={(() => {
+            try {
+              return $state.costOffice;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+          placeholder={(() => {
+            try {
+              return $state.costOffice[6].label
+                ? $state.costOffice[6].label
+                : "مبلغ ویزیت";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+          triggerClassName={classNames("__wab_instance", sty.select)}
+          value={generateStateValueProp($state, ["select", "value"])}
+        />
+
+        {(() => {
+          try {
+            return $state.select.value == "custom";
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return false;
+            }
+            throw e;
+          }
+        })() ? (
+          <Input
+            data-plasmic-name={"input"}
+            data-plasmic-override={overrides.input}
+            className={classNames("__wab_instance", sty.input)}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["input", "value"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            placeholder={
+              "\u0642\u06cc\u0645\u062a \u062f\u0644\u062e\u0648\u0627\u0647 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"
+            }
+            value={generateStateValueProp($state, ["input", "value"])}
+          />
+        ) : null}
+        {(() => {
+          try {
+            return !!$state.input.value;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return false;
+            }
+            throw e;
+          }
+        })() ? (
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__ttxM2
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return `${(+$state.input.value).toLocaleString()} ${
+                    $state.input.value ? "تومان" : ""
+                  }`;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+        ) : null}
+        <Stack__
+          as={"div"}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.freeBox__tX33C)}
+        >
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__xGPgA
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return (
+                    "سهم پذیرش۲۴‌: " +
+                    new Intl.NumberFormat("fa-IR").format(
+                      0.3 *
+                        ($state.select.value === "custom"
+                          ? $state.input.value
+                          : $state.select.value)
+                    ) +
+                    " تومان"
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+          <Popover
+            data-plasmic-name={"popover"}
+            data-plasmic-override={overrides.popover}
+            className={classNames("__wab_instance", sty.popover)}
+            content={
+              <div className={classNames(projectcss.all, sty.freeBox__xAuVt)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__h1CbF
+                  )}
+                >
+                  <React.Fragment>
+                    <React.Fragment>
+                      {
+                        "\u062a\u0648\u062c\u0647 \u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u06cc\u062f \u06a9\u0647 "
+                      }
+                    </React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 700 }}
+                    >
+                      {
+                        "\u00ab\u06f3\u06f0\u066a \u0627\u0632 \u0645\u0628\u0644\u063a \u0647\u0631 \u0648\u06cc\u0632\u06cc\u062a\u00bb"
+                      }
+                    </span>
+                    <React.Fragment>
+                      {
+                        " \u0628\u0647 \u067e\u0630\u06cc\u0631\u0634\u06f2\u06f4 \u062a\u0639\u0644\u0642 \u0645\u06cc\u200c\u06af\u06cc\u0631\u062f."
+                      }
+                    </React.Fragment>
+                  </React.Fragment>
+                </div>
+              </div>
+            }
+            onOpenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["popover", "open"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            open={generateStateValueProp($state, ["popover", "open"])}
+            ref={ref => {
+              $refs["popover"] = ref;
+            }}
+            trigger={
+              <Icon15Icon
+                className={classNames(projectcss.all, sty.svg__jbhRr)}
                 role={"img"}
               />
-            </div>
-          </React.Fragment>
-        }
-        method={"GET"}
-        onError={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["getAvgCost", "error"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        onLoading={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["getAvgCost", "loading"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        onSuccess={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["getAvgCost", "data"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        ref={ref => {
-          $refs["getAvgCost"] = ref;
-        }}
-        url={
-          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-avg-cost-online-visit"
-        }
+            }
+          />
+        </Stack__>
+      </Stack__>
+      <Stack__
+        as={"div"}
+        data-plasmic-name={"cardNum"}
+        data-plasmic-override={overrides.cardNum}
+        hasGap={true}
+        className={classNames(projectcss.all, sty.cardNum)}
       >
         <div
           className={classNames(
             projectcss.all,
             projectcss.__wab_text,
-            sty.text__u6Wgq
+            sty.text__t2Jwi
           )}
         >
           <React.Fragment>
-            {(() => {
-              try {
-                return $state.getAvgCost.data.message;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "";
-                }
-                throw e;
+            <span
+              className={"plasmic_default__all plasmic_default__span"}
+              style={{ fontWeight: 700 }}
+            >
+              {
+                "\ud83d\udcb3 \u0634\u0645\u0627\u0631\u0647 \u06a9\u0627\u0631\u062a"
               }
-            })()}
+            </span>
           </React.Fragment>
-        </div>
-      </ApiRequest>
-      <Select
-        data-plasmic-name={"select"}
-        data-plasmic-override={overrides.select}
-        onChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["select", "value"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        onOpenChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["select", "open"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        open={generateStateValueProp($state, ["select", "open"])}
-        options={(() => {
-          try {
-            return $state.costOffice;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-        placeholder={(() => {
-          try {
-            return $state.costOffice[6].label
-              ? $state.costOffice[6].label
-              : "مبلغ ویزیت";
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-        triggerClassName={classNames("__wab_instance", sty.select)}
-        value={generateStateValueProp($state, ["select", "value"])}
-      />
-
-      {(() => {
-        try {
-          return $state.select.value == "custom";
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return false;
-          }
-          throw e;
-        }
-      })() ? (
-        <Input
-          data-plasmic-name={"input"}
-          data-plasmic-override={overrides.input}
-          className={classNames("__wab_instance", sty.input)}
-          onChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["input", "value"]).apply(
-              null,
-              eventArgs
-            );
-          }}
-          placeholder={
-            "\u0642\u06cc\u0645\u062a \u062f\u0644\u062e\u0648\u0627\u0647 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"
-          }
-          value={generateStateValueProp($state, ["input", "value"])}
-        />
-      ) : null}
-      {(() => {
-        try {
-          return !!$state.input.value;
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return false;
-          }
-          throw e;
-        }
-      })() ? (
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__ttxM2
-          )}
-        >
-          <React.Fragment>
-            {(() => {
-              try {
-                return `${(+$state.input.value).toLocaleString()} ${
-                  $state.input.value ? "تومان" : ""
-                }`;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "";
-                }
-                throw e;
-              }
-            })()}
-          </React.Fragment>
-        </div>
-      ) : null}
-      <div className={classNames(projectcss.all, sty.freeBox__atevk)}>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__aX0S2
-          )}
-        >
-          {"\u0634\u0645\u0627\u0631\u0647 \u06a9\u0627\u0631\u062a"}
         </div>
         <TextInput
           data-plasmic-name={"cardNumberInput"}
@@ -853,7 +1013,7 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
             </ApiRequest>
           </div>
         ) : null}
-      </div>
+      </Stack__>
       <div
         data-plasmic-name={"rules"}
         data-plasmic-override={overrides.rules}
@@ -1180,10 +1340,13 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "info",
+    "cost",
     "getAvgCost",
-    "svg",
     "select",
     "input",
+    "popover",
+    "cardNum",
     "cardNumberInput",
     "shabaApi",
     "rules",
@@ -1191,10 +1354,13 @@ const PlasmicDescendants = {
     "link",
     "button"
   ],
-  getAvgCost: ["getAvgCost", "svg"],
-  svg: ["svg"],
+  info: ["info"],
+  cost: ["cost", "getAvgCost", "select", "input", "popover"],
+  getAvgCost: ["getAvgCost"],
   select: ["select"],
   input: ["input"],
+  popover: ["popover"],
+  cardNum: ["cardNum", "cardNumberInput", "shabaApi"],
   cardNumberInput: ["cardNumberInput"],
   shabaApi: ["shabaApi"],
   rules: ["rules", "checkbox", "link"],
@@ -1207,10 +1373,13 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  info: "div";
+  cost: "div";
   getAvgCost: typeof ApiRequest;
-  svg: "svg";
   select: typeof Select;
   input: typeof Input;
+  popover: typeof Popover;
+  cardNum: "div";
   cardNumberInput: typeof TextInput;
   shabaApi: typeof ApiRequest;
   rules: "div";
@@ -1279,10 +1448,13 @@ export const PlasmicActivationConsultCost2 = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    info: makeNodeComponent("info"),
+    cost: makeNodeComponent("cost"),
     getAvgCost: makeNodeComponent("getAvgCost"),
-    svg: makeNodeComponent("svg"),
     select: makeNodeComponent("select"),
     input: makeNodeComponent("input"),
+    popover: makeNodeComponent("popover"),
+    cardNum: makeNodeComponent("cardNum"),
     cardNumberInput: makeNodeComponent("cardNumberInput"),
     shabaApi: makeNodeComponent("shabaApi"),
     rules: makeNodeComponent("rules"),

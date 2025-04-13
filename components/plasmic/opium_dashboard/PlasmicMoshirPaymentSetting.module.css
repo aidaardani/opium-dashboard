@@ -164,9 +164,6 @@
 .activationOfficeEditCost:global(.__wab_instance) {
   max-width: 100%;
 }
-.moshirEditCostOnlineVisit:global(.__wab_instance) {
-  max-width: 100%;
-}
 .runCodeGtmMetrica:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;

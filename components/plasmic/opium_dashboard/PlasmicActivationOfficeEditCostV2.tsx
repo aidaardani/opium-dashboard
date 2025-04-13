@@ -217,15 +217,19 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
           (() => {
             try {
               return [
-                { label: "10,000 تومان", value: "10000" },
-                { label: "20,000 تومان", value: "20000" },
-                { label: "30,000 تومان", value: "30000" },
-                { label: "40,000 تومان", value: "40000" },
-                { label: "50,000 تومان", value: "50000" },
-                { label: "100,000 تومان", value: "100000" },
+                { label: "160,000 تومان", value: "160000" },
+                { label: "230,000 تومان", value: "230000" },
+                { label: "308,000 تومان", value: "308000" },
+                { label: "320,000 تومان", value: "320000" },
+                { label: "385,000 تومان", value: "385000" },
+                { label: "441,000 تومان", value: "441000" },
                 {
-                  label: `${$state.apiGetVezaratCost.data[0].price / 10} تومان`,
-                  value: `${$state.apiGetVezaratCost.data[0].price / 10}`
+                  label: `${
+                    ($state.getAvgCost?.data?.avg_cost || 1890000) / 10
+                  } تومان`,
+                  value: `${
+                    ($state.getAvgCost?.data?.avg_cost || 1890000) / 10
+                  }`
                 },
                 { label: "قیمت دلخواه", value: "custom" }
               ];
