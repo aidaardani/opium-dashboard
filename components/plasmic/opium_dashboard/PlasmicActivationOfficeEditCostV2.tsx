@@ -62,6 +62,7 @@ import {
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZzFQxrO/codeComponent
 import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
+import { Popover } from "@/fragment/components/popover"; // plasmic-import: umJXC-fyxDQn/codeComponent
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
@@ -111,11 +112,12 @@ export const PlasmicActivationOfficeEditCostV2__ArgProps =
 
 export type PlasmicActivationOfficeEditCostV2__OverridesType = {
   root?: Flex__<"div">;
-  apiGetPrefrence?: Flex__<typeof ApiRequest>;
+  apiGetPreferCost?: Flex__<typeof ApiRequest>;
   apiGetCost?: Flex__<typeof ApiRequest>;
   apiGetVezaratCost?: Flex__<typeof ApiRequest>;
   select?: Flex__<typeof Select>;
   input?: Flex__<typeof Input>;
+  popover?: Flex__<typeof Popover>;
   dialog2?: Flex__<typeof Dialog>;
   input2?: Flex__<typeof Input>;
   shabaApi?: Flex__<typeof ApiRequest>;
@@ -154,8 +156,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          hasOnlineVisit: false,
-          centerId: "5532"
+          hasOnlineVisit: false
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
@@ -410,28 +411,36 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
         refName: "apiGetCost"
       },
       {
-        path: "apiGetPrefrence.data",
+        path: "apiGetPreferCost.data",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
-        refName: "apiGetPrefrence"
+        refName: "apiGetPreferCost"
       },
       {
-        path: "apiGetPrefrence.error",
+        path: "apiGetPreferCost.error",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
-        refName: "apiGetPrefrence"
+        refName: "apiGetPreferCost"
       },
       {
-        path: "apiGetPrefrence.loading",
+        path: "apiGetPreferCost.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
-        refName: "apiGetPrefrence"
+        refName: "apiGetPreferCost"
+      },
+      {
+        path: "popover.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+
+        refName: "popover"
       }
     ],
     [$props, $ctx, $refs]
@@ -467,184 +476,141 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
         sty.root
       )}
     >
-      {(() => {
-        try {
-          return $state.apiGetPrefrence.data[0].status === true;
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return false;
-          }
-          throw e;
-        }
-      })() ? (
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__mOpf2
-          )}
-        >
-          <React.Fragment>
-            <span
-              className={"plasmic_default__all plasmic_default__span"}
-              style={{ fontWeight: 700 }}
-            >
-              {"\u06a9\u0644"}
-            </span>
-            <React.Fragment>
-              {" \u0627\u06cc\u0646 \u0645\u0628\u0644\u063a \u00a0"}
-            </React.Fragment>
-            <span
-              className={"plasmic_default__all plasmic_default__span"}
-              style={{ fontWeight: 700 }}
-            >
-              {
-                "\u0645\u062a\u0639\u0644\u0642 \u0628\u0647 \u067e\u0632\u0634\u06a9"
-              }
-            </span>
-            <React.Fragment>{" \u0627\u0633\u062a \u0648 "}</React.Fragment>
-            <span
-              className={"plasmic_default__all plasmic_default__span"}
-              style={{ fontWeight: 700 }}
-            >
-              {
-                "\u0631\u0648\u0632\u0627\u0646\u0647 \u0628\u0647 \u0637\u0648\u0631 \u062e\u0648\u062f\u06a9\u0627\u0631"
-              }
-            </span>
-            <React.Fragment>
-              {
-                "\u00a0\u0628\u0647 \u062d\u0633\u0627\u0628 \u067e\u0632\u0634\u06a9 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f."
-              }
-            </React.Fragment>
-          </React.Fragment>
-        </div>
-      ) : null}
-      {(() => {
-        try {
-          return $props.centerId === "5532";
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return false;
-          }
-          throw e;
-        }
-      })() ? (
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__sOpNe
-          )}
-        >
-          <React.Fragment>
-            <span
-              className={"plasmic_default__all plasmic_default__span"}
-              style={{ fontWeight: 700 }}
-            >
-              {"70 \u062f\u0631\u0635\u062f"}
-            </span>
-            <React.Fragment>
-              {
-                " \u0645\u0628\u0644\u063a \u0647\u0631 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0628\u0647 \u067e\u0632\u0634\u06a9 \u062a\u0639\u0644\u0642 \u062f\u0627\u0631\u062f \u0648  \u0648 \u0647\u0631 \u0632\u0645\u0627\u0646 "
-              }
-            </React.Fragment>
-            <span
-              className={"plasmic_default__all plasmic_default__span"}
-              style={{ fontWeight: 700 }}
-            >
-              {
-                "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062a\u0633\u0648\u06cc\u0647"
-              }
-            </span>
-            <React.Fragment>
-              {
-                " \u062e\u0648\u062f \u0631\u0627 \u062b\u0628\u062a \u06a9\u0646\u06cc\u062f\u060c \u0648\u062c\u0647 \u0628\u0647 \u062d\u0633\u0627\u0628 \u0634\u0645\u0627 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f."
-              }
-            </React.Fragment>
-          </React.Fragment>
-        </div>
-      ) : null}
       <ApiRequest
-        data-plasmic-name={"apiGetPrefrence"}
-        data-plasmic-override={overrides.apiGetPrefrence}
-        className={classNames("__wab_instance", sty.apiGetPrefrence)}
+        data-plasmic-name={"apiGetPreferCost"}
+        data-plasmic-override={overrides.apiGetPreferCost}
+        className={classNames("__wab_instance", sty.apiGetPreferCost)}
         errorDisplay={
           <div
             className={classNames(
               projectcss.all,
               projectcss.__wab_text,
-              sty.text__ppuzi
+              sty.text__eS4Oh
             )}
           >
             {"Error fetching data"}
           </div>
         }
         loadingDisplay={
-          (() => {
-            try {
-              return $props.centerId !== "5532";
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return false;
+          <React.Fragment>
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__wLYs
+              )}
+            >
+              {"Loading..."}
+            </div>
+            {(() => {
+              try {
+                return $props.centerId === "5532";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
               }
-              throw e;
-            }
-          })() ? (
-            <Icon34Icon
-              className={classNames(projectcss.all, sty.svg__vz3G9)}
-              role={"img"}
-            />
-          ) : null
+            })() ? (
+              <div className={classNames(projectcss.all, sty.freeBox__ful68)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__luzj9
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return "در حال دریافت میانگین مبلغ پرداختی بیماران در تخصص شما هستیم.";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+                <Icon34Icon
+                  className={classNames(projectcss.all, sty.svg__dgT2D)}
+                  role={"img"}
+                />
+              </div>
+            ) : null}
+          </React.Fragment>
         }
         method={"GET"}
         onError={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiGetPrefrence", "error"]).apply(
-            null,
-            eventArgs
-          );
+          generateStateOnChangeProp($state, [
+            "apiGetPreferCost",
+            "error"
+          ]).apply(null, eventArgs);
         }}
         onLoading={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, [
-            "apiGetPrefrence",
+            "apiGetPreferCost",
             "loading"
           ]).apply(null, eventArgs);
         }}
         onSuccess={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["apiGetPrefrence", "data"]).apply(
+          generateStateOnChangeProp($state, ["apiGetPreferCost", "data"]).apply(
             null,
             eventArgs
           );
         }}
-        params={(() => {
+        ref={ref => {
+          $refs["apiGetPreferCost"] = ref;
+        }}
+        url={
+          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-avg-cost-online-visit"
+        }
+      >
+        {(() => {
           try {
-            return { centerid: $props.centerId };
+            return $props.centerId === "5532";
           } catch (e) {
             if (
               e instanceof TypeError ||
               e?.plasmicType === "PlasmicUndefinedDataError"
             ) {
-              return undefined;
+              return false;
             }
             throw e;
           }
-        })()}
-        ref={ref => {
-          $refs["apiGetPrefrence"] = ref;
-        }}
-        url={
-          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/kind-of-prefrence"
-        }
-      />
-
+        })() ? (
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__btR8U
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $state.apiGetPreferCost.data.message;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
+                }
+              })()}
+            </React.Fragment>
+          </div>
+        ) : null}
+      </ApiRequest>
       <ApiRequest
         data-plasmic-name={"apiGetCost"}
         data-plasmic-override={overrides.apiGetCost}
@@ -724,29 +690,43 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
           </div>
         }
         loadingDisplay={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__dUssV
-            )}
-          >
-            <React.Fragment>
-              {(() => {
-                try {
-                  return "کل مبلغ ویزیت که بیمار باید بپردازد را انتخاب کنید. (در حال دریافت مبلغ پیشنهادی به شما هستیم...)";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "Loading...";
+          (() => {
+            try {
+              return $props.centerId !== "5532";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return false;
+              }
+              throw e;
+            }
+          })() ? (
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__dUssV
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return "کل مبلغ ویزیت که بیمار باید بپردازد را انتخاب کنید. (در حال دریافت مبلغ پیشنهادی به شما هستیم...)";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "Loading...";
+                    }
+                    throw e;
                   }
-                  throw e;
-                }
-              })()}
-            </React.Fragment>
-          </div>
+                })()}
+              </React.Fragment>
+            </div>
+          ) : null
         }
         method={"GET"}
         onError={async (...eventArgs: any) => {
@@ -971,7 +951,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
             e instanceof TypeError ||
             e?.plasmicType === "PlasmicUndefinedDataError"
           ) {
-            return true;
+            return false;
           }
           throw e;
         }
@@ -1032,6 +1012,80 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
           </React.Fragment>
         </div>
       ) : null}
+      <Stack__
+        as={"div"}
+        hasGap={true}
+        className={classNames(projectcss.all, sty.freeBox__ctU4T)}
+      >
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__nmCrl
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return (
+                  "سهم پذیرش۲۴‌: " +
+                  new Intl.NumberFormat("fa-IR").format(
+                    0.3 *
+                      ($state.select.value === "custom"
+                        ? $state.input.value
+                        : $state.select.value)
+                  ) +
+                  " تومان"
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+        <Popover
+          data-plasmic-name={"popover"}
+          data-plasmic-override={overrides.popover}
+          className={classNames("__wab_instance", sty.popover)}
+          content={
+            <div className={classNames(projectcss.all, sty.freeBox__wWxJ)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__af2H8
+                )}
+              >
+                {
+                  "\u062a\u0648\u062c\u0647 \u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u06cc\u062f \u06a9\u0647 \u00a0\u00ab\u06f3\u06f0\u066a \u0627\u0632 \u0645\u0628\u0644\u063a \u0647\u0631 \u0648\u06cc\u0632\u06cc\u062a\u00bb\u00a0 \u0628\u0647 \u067e\u0630\u06cc\u0631\u0634\u06f2\u06f4 \u062a\u0639\u0644\u0642 \u0645\u06cc\u200c\u06af\u06cc\u0631\u062f."
+                }
+              </div>
+            </div>
+          }
+          onOpenChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["popover", "open"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          open={generateStateValueProp($state, ["popover", "open"])}
+          ref={ref => {
+            $refs["popover"] = ref;
+          }}
+          trigger={
+            <Icon15Icon
+              className={classNames(projectcss.all, sty.svg__abSgl)}
+              role={"img"}
+            />
+          }
+        />
+      </Stack__>
       <div className={classNames(projectcss.all, sty.freeBox__ppfPw)}>
         <div className={classNames(projectcss.all, sty.freeBox__z9Wr5)}>
           <div
@@ -1311,17 +1365,6 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
           </div>
         ) : null}
       </div>
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__xdse9
-        )}
-      >
-        {
-          "\u062c\u0632\u0626\u06cc\u0627\u062a \u067e\u0631\u062f\u0627\u062e\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u062f\u0631 \u0645\u0646\u0648\u06cc \u0645\u062f\u06cc\u0631\u06cc\u062a \u0645\u0627\u0644\u06cc \u062f\u0631\u062c \u0645\u06cc\u200c\u0634\u0648\u062f."
-        }
-      </div>
       <Stack__
         as={"div"}
         hasGap={true}
@@ -1538,7 +1581,11 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               ];
             }
 
-            $steps["showToast"] = true
+            $steps["showToast"] = (
+              $state.select.value === "custom"
+                ? $state.input.value !== "0" && $state.input.value.trim() !== ""
+                : true
+            )
               ? (() => {
                   const actionArgs = {
                     args: [
@@ -1869,7 +1916,10 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                         undefined,
                         (() => {
                           try {
-                            return { center_id: $props.centerId, active: 0 };
+                            return {
+                              center_id: $props.centerId,
+                              active: 0
+                            };
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1928,21 +1978,23 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "apiGetPrefrence",
+    "apiGetPreferCost",
     "apiGetCost",
     "apiGetVezaratCost",
     "select",
     "input",
+    "popover",
     "dialog2",
     "input2",
     "shabaApi",
     "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
   ],
-  apiGetPrefrence: ["apiGetPrefrence"],
+  apiGetPreferCost: ["apiGetPreferCost"],
   apiGetCost: ["apiGetCost"],
   apiGetVezaratCost: ["apiGetVezaratCost"],
   select: ["select"],
   input: ["input"],
+  popover: ["popover"],
   dialog2: ["dialog2"],
   input2: ["input2"],
   shabaApi: [
@@ -1958,11 +2010,12 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  apiGetPrefrence: typeof ApiRequest;
+  apiGetPreferCost: typeof ApiRequest;
   apiGetCost: typeof ApiRequest;
   apiGetVezaratCost: typeof ApiRequest;
   select: typeof Select;
   input: typeof Input;
+  popover: typeof Popover;
   dialog2: typeof Dialog;
   input2: typeof Input;
   shabaApi: typeof ApiRequest;
@@ -2030,11 +2083,12 @@ export const PlasmicActivationOfficeEditCostV2 = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    apiGetPrefrence: makeNodeComponent("apiGetPrefrence"),
+    apiGetPreferCost: makeNodeComponent("apiGetPreferCost"),
     apiGetCost: makeNodeComponent("apiGetCost"),
     apiGetVezaratCost: makeNodeComponent("apiGetVezaratCost"),
     select: makeNodeComponent("select"),
     input: makeNodeComponent("input"),
+    popover: makeNodeComponent("popover"),
     dialog2: makeNodeComponent("dialog2"),
     input2: makeNodeComponent("input2"),
     shabaApi: makeNodeComponent("shabaApi"),
