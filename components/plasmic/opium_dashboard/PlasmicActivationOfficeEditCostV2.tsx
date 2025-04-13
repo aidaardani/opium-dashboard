@@ -1012,80 +1012,94 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
           </React.Fragment>
         </div>
       ) : null}
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__ctU4T)}
-      >
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__nmCrl
-          )}
+      {(() => {
+        try {
+          return $props.centerId === "5532";
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return false;
+          }
+          throw e;
+        }
+      })() ? (
+        <Stack__
+          as={"div"}
+          hasGap={true}
+          className={classNames(projectcss.all, sty.freeBox__ctU4T)}
         >
-          <React.Fragment>
-            {(() => {
-              try {
-                return (
-                  "سهم پذیرش۲۴‌: " +
-                  new Intl.NumberFormat("fa-IR").format(
-                    0.3 *
-                      ($state.select.value === "custom"
-                        ? $state.input.value
-                        : $state.select.value)
-                  ) +
-                  " تومان"
-                );
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "";
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__nmCrl
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return (
+                    "سهم پذیرش۲۴‌: " +
+                    new Intl.NumberFormat("fa-IR").format(
+                      0.3 *
+                        ($state.select.value === "custom"
+                          ? $state.input.value
+                          : $state.select.value)
+                    ) +
+                    " تومان"
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
                 }
-                throw e;
-              }
-            })()}
-          </React.Fragment>
-        </div>
-        <Popover
-          data-plasmic-name={"popover"}
-          data-plasmic-override={overrides.popover}
-          className={classNames("__wab_instance", sty.popover)}
-          content={
-            <div className={classNames(projectcss.all, sty.freeBox__wWxJ)}>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__af2H8
-                )}
-              >
-                {
-                  "\u062a\u0648\u062c\u0647 \u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u06cc\u062f \u06a9\u0647 \u00a0\u00ab\u06f3\u06f0\u066a \u0627\u0632 \u0645\u0628\u0644\u063a \u0647\u0631 \u0648\u06cc\u0632\u06cc\u062a\u00bb\u00a0 \u0628\u0647 \u067e\u0630\u06cc\u0631\u0634\u06f2\u06f4 \u062a\u0639\u0644\u0642 \u0645\u06cc\u200c\u06af\u06cc\u0631\u062f."
-                }
+              })()}
+            </React.Fragment>
+          </div>
+          <Popover
+            data-plasmic-name={"popover"}
+            data-plasmic-override={overrides.popover}
+            className={classNames("__wab_instance", sty.popover)}
+            content={
+              <div className={classNames(projectcss.all, sty.freeBox__wWxJ)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__af2H8
+                  )}
+                >
+                  {
+                    "\u062a\u0648\u062c\u0647 \u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u06cc\u062f \u06a9\u0647 \u00a0\u00ab\u06f3\u06f0\u066a \u0627\u0632 \u0645\u0628\u0644\u063a \u0647\u0631 \u0648\u06cc\u0632\u06cc\u062a\u00bb\u00a0 \u0628\u0647 \u067e\u0630\u06cc\u0631\u0634\u06f2\u06f4 \u062a\u0639\u0644\u0642 \u0645\u06cc\u200c\u06af\u06cc\u0631\u062f."
+                  }
+                </div>
               </div>
-            </div>
-          }
-          onOpenChange={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["popover", "open"]).apply(
-              null,
-              eventArgs
-            );
-          }}
-          open={generateStateValueProp($state, ["popover", "open"])}
-          ref={ref => {
-            $refs["popover"] = ref;
-          }}
-          trigger={
-            <Icon15Icon
-              className={classNames(projectcss.all, sty.svg__abSgl)}
-              role={"img"}
-            />
-          }
-        />
-      </Stack__>
+            }
+            onOpenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["popover", "open"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            open={generateStateValueProp($state, ["popover", "open"])}
+            ref={ref => {
+              $refs["popover"] = ref;
+            }}
+            trigger={
+              <Icon15Icon
+                className={classNames(projectcss.all, sty.svg__abSgl)}
+                role={"img"}
+              />
+            }
+          />
+        </Stack__>
+      ) : null}
       <div className={classNames(projectcss.all, sty.freeBox__ppfPw)}>
         <div className={classNames(projectcss.all, sty.freeBox__z9Wr5)}>
           <div
