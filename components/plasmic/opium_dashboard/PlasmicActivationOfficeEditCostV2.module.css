@@ -106,12 +106,31 @@
   max-width: 100%;
   object-fit: cover;
 }
+.freeBox__lMlxT {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
 .text__dUssV {
   position: relative;
   width: 100%;
   height: auto;
   max-width: 100%;
   min-width: 0;
+}
+.svg__l6U {
+  object-fit: cover;
+  max-width: 100%;
+  width: 30px;
+  flex-shrink: 0;
+  height: 1em;
 }
 .text__hclLi {
   position: relative;

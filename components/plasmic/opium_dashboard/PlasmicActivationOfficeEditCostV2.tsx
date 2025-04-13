@@ -703,28 +703,48 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               throw e;
             }
           })() ? (
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__dUssV
-              )}
-            >
-              <React.Fragment>
-                {(() => {
-                  try {
-                    return "کل مبلغ ویزیت که بیمار باید بپردازد را انتخاب کنید. (در حال دریافت مبلغ پیشنهادی به شما هستیم...)";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "Loading...";
-                    }
-                    throw e;
+            <div className={classNames(projectcss.all, sty.freeBox__lMlxT)}>
+              {(() => {
+                try {
+                  return $props.centerId !== "5532";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
                   }
-                })()}
-              </React.Fragment>
+                  throw e;
+                }
+              })() ? (
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__dUssV
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return "کل مبلغ ویزیت که بیمار باید بپردازد را انتخاب کنید. (در حال دریافت مبلغ پیشنهادی به شما هستیم...)";
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "Loading...";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+              ) : null}
+              <Icon34Icon
+                className={classNames(projectcss.all, sty.svg__l6U)}
+                role={"img"}
+              />
             </div>
           ) : null
         }
