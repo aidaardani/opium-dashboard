@@ -1548,7 +1548,9 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
 
             $steps["editCost"] = (
               $state.select.value === "custom"
-                ? $state.input.value !== 0 && $state.input.value.trim() !== ""
+                ? $state.input.value !== 0 &&
+                  $state.input.value !== "0" &&
+                  $state.input.value.trim() !== ""
                 : true
             )
               ? (() => {
@@ -1767,7 +1769,9 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
 
             $steps["apiActivePayment"] = (
               $state.select.value === "custom"
-                ? $state.input.value !== 0 && $state.input.value.trim() !== ""
+                ? $state.input.value !== 0 &&
+                  $state.input.value !== "0" &&
+                  $state.input.value.trim() !== ""
                 : true
             )
               ? (() => {
