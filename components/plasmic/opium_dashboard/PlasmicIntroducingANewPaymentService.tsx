@@ -854,19 +854,17 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                                     undefined,
                                     (() => {
                                       try {
-                                        return [
-                                          {
-                                            center_id:
-                                              $state.apiGetCenter.data.data.find(
-                                                center => center.type_id === 1
-                                              ).id,
-                                            user_info_id:
-                                              $state.apiGetCenter.data.data.find(
-                                                center => center.type_id === 1
-                                              ).user_info_id,
-                                            cost: "prepay"
-                                          }
-                                        ];
+                                        return {
+                                          center_id:
+                                            $state.apiGetCenter.data.data.find(
+                                              center => center.type_id === 1
+                                            ).id,
+                                          user_info_id:
+                                            $state.apiGetCenter.data.data.find(
+                                              center => center.type_id === 1
+                                            ).user_info_id,
+                                          cost: "prepay"
+                                        };
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
