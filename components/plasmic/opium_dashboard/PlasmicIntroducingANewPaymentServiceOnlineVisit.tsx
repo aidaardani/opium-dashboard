@@ -578,7 +578,9 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                                           center_id: "5532",
                                           user_info_id:
                                             $state.apiGetCenter.data.data.find(
-                                              center => center.type_id === 3
+                                              center =>
+                                                center.type_id === 3 &&
+                                                center.id === "5532"
                                             ).user_info_id,
                                           cost: "full"
                                         };
@@ -619,13 +621,12 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                                         return {
                                           event_group: "katibe",
                                           data: {
-                                            center_id:
-                                              $state.apiGetCenter.data.data.find(
-                                                center => center.type_id === 1
-                                              ).id,
+                                            center_id: "5532",
                                             user_info_id:
                                               $state.apiGetCenter.data.data.find(
-                                                center => center.type_id === 1
+                                                center =>
+                                                  center.type_id === 3 &&
+                                                  center.id === "5532"
                                               ).user_info_id,
                                             cost: "full"
                                           },
