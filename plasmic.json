@@ -2885,6 +2885,34 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/uncertain-booklist"
+        },
+        {
+          "id": "TeS1u7BPlzok",
+          "name": "IntroducingANewPaymentService",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicIntroducingANewPaymentService.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/introducing-a-new-payment-service.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicIntroducingANewPaymentService.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/introducing-a-new-payment-service"
+        },
+        {
+          "id": "flS7mGC-JAnx",
+          "name": "IntroducingANewPaymentServiceOnlineVisit",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicIntroducingANewPaymentServiceOnlineVisit.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/introducing-a-new-payment-service-2.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicIntroducingANewPaymentServiceOnlineVisit.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/introducing-a-new-payment-service-2"
         }
       ],
       "icons": [
