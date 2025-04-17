@@ -578,7 +578,7 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                                           center_id: "5532",
                                           user_info_id:
                                             $state.apiGetCenter.data.data.find(
-                                              center => center.type_id === 1
+                                              center => center.type_id === 3
                                             ).user_info_id,
                                           cost: "full"
                                         };
