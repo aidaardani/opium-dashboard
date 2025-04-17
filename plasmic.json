@@ -2893,7 +2893,7 @@
           "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
           "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicIntroducingANewPaymentService.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/introducing-a-new-payment-service.tsx"
+            "modulePath": "../src/pages/introducing-a-new-payment-service-office.tsx"
           },
           "cssFilePath": "plasmic/opium_dashboard/PlasmicIntroducingANewPaymentService.module.css",
           "scheme": "blackbox",
@@ -2907,7 +2907,7 @@
           "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
           "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicIntroducingANewPaymentServiceOnlineVisit.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/introducing-a-new-payment-service-2.tsx"
+            "modulePath": "../src/pages/introducing-a-new-payment-service-online-visit.tsx"
           },
           "cssFilePath": "plasmic/opium_dashboard/PlasmicIntroducingANewPaymentServiceOnlineVisit.module.css",
           "scheme": "blackbox",
