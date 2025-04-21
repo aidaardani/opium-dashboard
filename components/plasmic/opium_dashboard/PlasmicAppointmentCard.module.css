@@ -762,9 +762,116 @@
   max-width: 100%;
   position: relative;
 }
+.freeBox__ejL11 {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
 .patientPrivateData__ujSgU:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
+}
+.dialog4:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.svg__vU5GH {
+  object-fit: cover;
+  max-width: 100%;
+  width: 25px;
+  color: var(--token-kpM4b4mG4f2d);
+  height: 1em;
+}
+.svg__nHqX6 {
+  object-fit: cover;
+  max-width: 100%;
+  width: 25px;
+  color: #000000;
+  height: 1em;
+}
+.freeBox__vqd4L {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.freeBox__vqd4L > :global(.__wab_flex-container) {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  margin-top: calc(0px - var(--token-vMUQwr5Jto1d));
+  height: calc(100% + var(--token-vMUQwr5Jto1d));
+}
+.freeBox__vqd4L > :global(.__wab_flex-container) > *,
+.freeBox__vqd4L > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__vqd4L > :global(.__wab_flex-container) > picture > img,
+.freeBox__vqd4L
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-top: var(--token-vMUQwr5Jto1d);
+}
+.freeBox__q9I2G {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 8px;
+}
+.freeBox__q9I2G > :global(.__wab_flex-container) {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: calc(0px - var(--token-W6cMLA0AZVBO));
+  height: calc(100% + var(--token-W6cMLA0AZVBO));
+}
+.freeBox__q9I2G > :global(.__wab_flex-container) > *,
+.freeBox__q9I2G > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__q9I2G > :global(.__wab_flex-container) > picture > img,
+.freeBox__q9I2G
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-top: var(--token-W6cMLA0AZVBO);
+}
+.text__m9Ll4 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.button___04HCn:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.svg__fv8F {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.svg___7CDte {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
 }
 .cost2:global(.__wab_instance) {
   max-width: 100%;
@@ -931,6 +1038,24 @@
   object-fit: cover;
   width: auto;
   height: 1em;
+}
+.apiGetPyamentInfo:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.text___2TvZr {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.text___6LHiM {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
 }
 .dialog2:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;

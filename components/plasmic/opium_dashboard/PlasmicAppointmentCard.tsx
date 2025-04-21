@@ -62,6 +62,7 @@ import {
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import PatientPrivateData from "../../PatientPrivateData"; // plasmic-import: 0zlB7TkmySN6/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
 import SafeCall from "../../SafeCall"; // plasmic-import: m0lwAXhykBZV/component
 import BookStatusButton from "../../BookStatusButton"; // plasmic-import: aW1julV8kikd/component
@@ -81,6 +82,7 @@ import UserSvgIcon from "./icons/PlasmicIcon__UserSvg"; // plasmic-import: 34xI-
 import TimeSvgIcon from "./icons/PlasmicIcon__TimeSvg"; // plasmic-import: p7f4tc2CRjFy/icon
 import UserInfoSvgIcon from "./icons/PlasmicIcon__UserInfoSvg"; // plasmic-import: gQQbHyEZZZ3o/icon
 import CalenderSvgIcon from "./icons/PlasmicIcon__CalenderSvg"; // plasmic-import: 0uxseSsmSKEH/icon
+import Icon15Icon from "./icons/PlasmicIcon__Icon15"; // plasmic-import: dLXaRsSSHo3S/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: euu18ryAtnAt/icon
@@ -127,6 +129,7 @@ export type PlasmicAppointmentCard__ArgsType = {
   cost?: string;
   insurance?: string;
   onDelete?: () => void;
+  centerType?: string;
 };
 type ArgPropType = keyof PlasmicAppointmentCard__ArgsType;
 export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
@@ -154,15 +157,18 @@ export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
   "treatmentCenter",
   "cost",
   "insurance",
-  "onDelete"
+  "onDelete",
+  "centerType"
 );
 
 export type PlasmicAppointmentCard__OverridesType = {
   root?: Flex__<"div">;
   dialog?: Flex__<typeof Dialog>;
   bime?: Flex__<typeof PatientPrivateData>;
+  dialog4?: Flex__<typeof Dialog>;
   cost2?: Flex__<typeof PatientPrivateData>;
   deletebookdialog?: Flex__<typeof Dialog>;
+  apiGetPyamentInfo?: Flex__<typeof ApiRequest>;
   dialog2?: Flex__<typeof Dialog>;
   descriptionInput?: Flex__<typeof TextInput>;
   dialog3?: Flex__<typeof Dialog>;
@@ -197,6 +203,7 @@ export interface DefaultAppointmentCardProps {
   cost?: string;
   insurance?: string;
   onDelete?: () => void;
+  centerType?: string;
   onlineBorder?: SingleBooleanChoiceArg<"onlineBorder">;
   className?: string;
 }
@@ -313,6 +320,36 @@ function PlasmicAppointmentCard__RenderFunc(props: {
       },
       {
         path: "dialog3.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "apiGetPyamentInfo.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiGetPyamentInfo"
+      },
+      {
+        path: "apiGetPyamentInfo.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiGetPyamentInfo"
+      },
+      {
+        path: "apiGetPyamentInfo.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiGetPyamentInfo"
+      },
+      {
+        path: "dialog4.open",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -1581,29 +1618,316 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                 })()}
               />
 
-              <PatientPrivateData
-                className={classNames(
-                  "__wab_instance",
-                  sty.patientPrivateData__ujSgU
-                )}
-                label={
-                  "\u0648\u0636\u0639\u06cc\u062a \u067e\u0631\u062f\u0627\u062e\u062a"
-                }
-                value={(() => {
+              <div className={classNames(projectcss.all, sty.freeBox__ejL11)}>
+                <PatientPrivateData
+                  className={classNames(
+                    "__wab_instance",
+                    sty.patientPrivateData__ujSgU
+                  )}
+                  label={
+                    "\u0648\u0636\u0639\u06cc\u062a \u067e\u0631\u062f\u0627\u062e\u062a"
+                  }
+                  value={(() => {
+                    try {
+                      return $props.paymentStatus;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                />
+
+                {(() => {
                   try {
-                    return $props.paymentStatus;
+                    return (
+                      $props.centerType === 1 ||
+                      ($props.centerType === 3 && $props.centerId === "5532")
+                    );
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
                       e?.plasmicType === "PlasmicUndefinedDataError"
                     ) {
-                      return undefined;
+                      return false;
                     }
                     throw e;
                   }
-                })()}
-              />
+                })() ? (
+                  <Dialog
+                    data-plasmic-name={"dialog4"}
+                    data-plasmic-override={overrides.dialog4}
+                    body={
+                      <Stack__
+                        as={"div"}
+                        hasGap={true}
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__vqd4L
+                        )}
+                      >
+                        <Stack__
+                          as={"div"}
+                          hasGap={true}
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__q9I2G
+                          )}
+                        >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__m9Ll4
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return $state.apiGetPyamentInfo.data[0]
+                                    .bank_id === 36
+                                    ? "این نوبت در سرویس پرداخت جدید، پرداخت شده است. در قسمت مدیریت مالی می‌توانید تراکنش مربوط به این نوبت را مشاهده کنید."
+                                    : $state.apiGetPyamentInfo.data[0]
+                                        .bank_id === 8
+                                    ? "این نوبت در سرویس پرداخت قدیمی، پرداخت شده است و در بامدادِ بعد از زمان نوبت، به حسابِ کاربری قدیمی شما اضافه می‌گردد."
+                                    : "";
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                        </Stack__>
+                        {(() => {
+                          try {
+                            return (
+                              $state.apiGetPyamentInfo.data[0].bank_id === 36
+                            );
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return false;
+                            }
+                            throw e;
+                          }
+                        })() ? (
+                          <Button
+                            children2={
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return "مشاهده مدیریت مالی";
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "Button";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
+                            }
+                            className={classNames(
+                              "__wab_instance",
+                              sty.button___04HCn
+                            )}
+                            onClick={async event => {
+                              const $steps = {};
 
+                              $steps["sendEvent"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      args: [
+                                        (() => {
+                                          try {
+                                            return {
+                                              event_group: "katibe",
+                                              data: {
+                                                center_id: $props.centerId,
+                                                book_id: $props.bookId,
+                                                ref_id: $props.refId,
+                                                dr_name: $props.name
+                                              },
+                                              event_type:
+                                                "click-to-see-bills-in-katibe"
+                                            };
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return undefined;
+                                            }
+                                            throw e;
+                                          }
+                                        })()
+                                      ]
+                                    };
+                                    return $globalActions[
+                                      "Splunk.sendLog"
+                                    ]?.apply(null, [...actionArgs.args]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["sendEvent"] != null &&
+                                typeof $steps["sendEvent"] === "object" &&
+                                typeof $steps["sendEvent"].then === "function"
+                              ) {
+                                $steps["sendEvent"] = await $steps["sendEvent"];
+                              }
+
+                              $steps[
+                                "goToHttpsWwwPaziresh24ComDashboardAppsKatibeBills"
+                              ] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      destination:
+                                        "https://www.paziresh24.com/dashboard/apps/katibe/bills/"
+                                    };
+                                    return (({ destination }) => {
+                                      if (
+                                        typeof destination === "string" &&
+                                        destination.startsWith("#")
+                                      ) {
+                                        document
+                                          .getElementById(destination.substr(1))
+                                          .scrollIntoView({
+                                            behavior: "smooth"
+                                          });
+                                      } else {
+                                        __nextRouter?.push(destination);
+                                      }
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps[
+                                  "goToHttpsWwwPaziresh24ComDashboardAppsKatibeBills"
+                                ] != null &&
+                                typeof $steps[
+                                  "goToHttpsWwwPaziresh24ComDashboardAppsKatibeBills"
+                                ] === "object" &&
+                                typeof $steps[
+                                  "goToHttpsWwwPaziresh24ComDashboardAppsKatibeBills"
+                                ].then === "function"
+                              ) {
+                                $steps[
+                                  "goToHttpsWwwPaziresh24ComDashboardAppsKatibeBills"
+                                ] = await $steps[
+                                  "goToHttpsWwwPaziresh24ComDashboardAppsKatibeBills"
+                                ];
+                              }
+                            }}
+                          />
+                        ) : null}
+                      </Stack__>
+                    }
+                    className={classNames("__wab_instance", sty.dialog4)}
+                    onOpenChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "dialog4",
+                        "open"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    open={generateStateValueProp($state, ["dialog4", "open"])}
+                    title={
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return $state.apiGetPyamentInfo.data[0].bank_id ===
+                              36
+                              ? "سرویس پرداخت جدید"
+                              : "سرویس پرداخت قدیمی";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "Dialog title";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    }
+                    trigger={
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return (
+                              $state.apiGetPyamentInfo.data[0].bank_id === 36
+                            );
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return false;
+                            }
+                            throw e;
+                          }
+                        })() ? (
+                          <Icon15Icon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__vU5GH
+                            )}
+                            role={"img"}
+                          />
+                        ) : null}
+                        {(() => {
+                          try {
+                            return (
+                              $state.apiGetPyamentInfo.data[0].bank_id === 8
+                            );
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return false;
+                            }
+                            throw e;
+                          }
+                        })() ? (
+                          <Icon15Icon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__nHqX6
+                            )}
+                            role={"img"}
+                          />
+                        ) : null}
+                      </React.Fragment>
+                    }
+                  />
+                ) : null}
+              </div>
               {(() => {
                 try {
                   return (
@@ -2602,6 +2926,76 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               }
               trigger={null}
             />
+
+            <ApiRequest
+              data-plasmic-name={"apiGetPyamentInfo"}
+              data-plasmic-override={overrides.apiGetPyamentInfo}
+              className={classNames("__wab_instance", sty.apiGetPyamentInfo)}
+              errorDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___6LHiM
+                  )}
+                >
+                  {"Error fetching data"}
+                </div>
+              }
+              loadingDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___2TvZr
+                  )}
+                >
+                  {"Loading..."}
+                </div>
+              }
+              method={"GET"}
+              onError={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apiGetPyamentInfo",
+                  "error"
+                ]).apply(null, eventArgs);
+              }}
+              onLoading={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apiGetPyamentInfo",
+                  "loading"
+                ]).apply(null, eventArgs);
+              }}
+              onSuccess={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apiGetPyamentInfo",
+                  "data"
+                ]).apply(null, eventArgs);
+              }}
+              params={(() => {
+                try {
+                  return {
+                    book_id: $props.bookId,
+                    ref_id: $props.refId,
+                    center_id: $props.centerId
+                  };
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              ref={ref => {
+                $refs["apiGetPyamentInfo"] = ref;
+              }}
+              url={
+                "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-payment-info"
+              }
+            />
           </Stack__>
         }
         className={classNames("__wab_instance", sty.dialog, {
@@ -3593,8 +3987,10 @@ const PlasmicDescendants = {
     "root",
     "dialog",
     "bime",
+    "dialog4",
     "cost2",
     "deletebookdialog",
+    "apiGetPyamentInfo",
     "dialog2",
     "descriptionInput",
     "dialog3",
@@ -3602,10 +3998,19 @@ const PlasmicDescendants = {
     "safeCall",
     "bookStatusButton"
   ],
-  dialog: ["dialog", "bime", "cost2", "deletebookdialog"],
+  dialog: [
+    "dialog",
+    "bime",
+    "dialog4",
+    "cost2",
+    "deletebookdialog",
+    "apiGetPyamentInfo"
+  ],
   bime: ["bime"],
+  dialog4: ["dialog4"],
   cost2: ["cost2"],
   deletebookdialog: ["deletebookdialog"],
+  apiGetPyamentInfo: ["apiGetPyamentInfo"],
   dialog2: ["dialog2", "descriptionInput"],
   descriptionInput: ["descriptionInput"],
   dialog3: ["dialog3"],
@@ -3620,8 +4025,10 @@ type NodeDefaultElementType = {
   root: "div";
   dialog: typeof Dialog;
   bime: typeof PatientPrivateData;
+  dialog4: typeof Dialog;
   cost2: typeof PatientPrivateData;
   deletebookdialog: typeof Dialog;
+  apiGetPyamentInfo: typeof ApiRequest;
   dialog2: typeof Dialog;
   descriptionInput: typeof TextInput;
   dialog3: typeof Dialog;
@@ -3692,8 +4099,10 @@ export const PlasmicAppointmentCard = Object.assign(
     // Helper components rendering sub-elements
     dialog: makeNodeComponent("dialog"),
     bime: makeNodeComponent("bime"),
+    dialog4: makeNodeComponent("dialog4"),
     cost2: makeNodeComponent("cost2"),
     deletebookdialog: makeNodeComponent("deletebookdialog"),
+    apiGetPyamentInfo: makeNodeComponent("apiGetPyamentInfo"),
     dialog2: makeNodeComponent("dialog2"),
     descriptionInput: makeNodeComponent("descriptionInput"),
     dialog3: makeNodeComponent("dialog3"),

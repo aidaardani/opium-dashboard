@@ -836,6 +836,22 @@ function PlasmicPatientList__RenderFunc(props: {
                     throw e;
                   }
                 })()}
+                centerType={(() => {
+                  try {
+                    return $props.centers.find(
+                      center =>
+                        center.user_center_id === currentItem.user_center_id
+                    ).type_id;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
                 className={classNames("__wab_instance", sty.appointmentCard)}
                 cost={(() => {
                   try {

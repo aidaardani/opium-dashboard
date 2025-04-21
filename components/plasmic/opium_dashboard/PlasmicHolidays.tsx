@@ -324,7 +324,7 @@ function PlasmicHolidays__RenderFunc(props: {
             url={(() => {
               try {
                 return `https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-holidays${
-                  $ctx.query.date ? `date=${$ctx.query.date}` : ""
+                  $ctx.query.date ? `?date=${$ctx.query.date}` : ""
                 }`;
               } catch (e) {
                 if (
