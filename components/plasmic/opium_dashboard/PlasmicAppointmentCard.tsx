@@ -1793,46 +1793,24 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                                 $steps["sendEvent"] = await $steps["sendEvent"];
                               }
 
-                              $steps[
-                                "goToHttpsWwwPaziresh24ComDashboardAppsKatibeBills"
-                              ] = true
+                              $steps["goToPage"] = true
                                 ? (() => {
                                     const actionArgs = {
-                                      destination:
+                                      args: [
                                         "https://www.paziresh24.com/dashboard/apps/katibe/bills/"
+                                      ]
                                     };
-                                    return (({ destination }) => {
-                                      if (
-                                        typeof destination === "string" &&
-                                        destination.startsWith("#")
-                                      ) {
-                                        document
-                                          .getElementById(destination.substr(1))
-                                          .scrollIntoView({
-                                            behavior: "smooth"
-                                          });
-                                      } else {
-                                        __nextRouter?.push(destination);
-                                      }
-                                    })?.apply(null, [actionArgs]);
+                                    return $globalActions[
+                                      "Hamdast.openLink"
+                                    ]?.apply(null, [...actionArgs.args]);
                                   })()
                                 : undefined;
                               if (
-                                $steps[
-                                  "goToHttpsWwwPaziresh24ComDashboardAppsKatibeBills"
-                                ] != null &&
-                                typeof $steps[
-                                  "goToHttpsWwwPaziresh24ComDashboardAppsKatibeBills"
-                                ] === "object" &&
-                                typeof $steps[
-                                  "goToHttpsWwwPaziresh24ComDashboardAppsKatibeBills"
-                                ].then === "function"
+                                $steps["goToPage"] != null &&
+                                typeof $steps["goToPage"] === "object" &&
+                                typeof $steps["goToPage"].then === "function"
                               ) {
-                                $steps[
-                                  "goToHttpsWwwPaziresh24ComDashboardAppsKatibeBills"
-                                ] = await $steps[
-                                  "goToHttpsWwwPaziresh24ComDashboardAppsKatibeBills"
-                                ];
+                                $steps["goToPage"] = await $steps["goToPage"];
                               }
                             }}
                           />
