@@ -1558,44 +1558,41 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 $steps["setPayment"] = await $steps["setPayment"];
               }
 
-              $steps["apiActiveAutoPayment"] =
-                $state.input2.value !== "" ||
-                $state.input2.value.trim().length === 16
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "POST",
-                          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/active-auto-payment-katibe",
-                          undefined,
-                          (() => {
-                            try {
-                              return {
-                                center_id: $state.centersApi.data.data.find(
-                                  item => item.type_id == 1
-                                ).id,
-                                cardid: $state.shabaApi.data.card_number,
-                                iban: $state.shabaApi.data.IBAN,
-                                bank_name: $state.shabaApi.data.bank_name,
-                                owner_name: $state.shabaApi.data.deposit_owners
-                              };
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
+              $steps["apiActiveAutoPayment"] = false
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "POST",
+                        "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/active-auto-payment-katibe",
+                        undefined,
+                        (() => {
+                          try {
+                            return {
+                              center_id: $state.centersApi.data.data.find(
+                                item => item.type_id == 1
+                              ).id,
+                              cardid: $state.shabaApi.data.card_number,
+                              iban: $state.shabaApi.data.IBAN,
+                              bank_name: $state.shabaApi.data.bank_name,
+                              owner_name: $state.shabaApi.data.deposit_owners
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
                             }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
               if (
                 $steps["apiActiveAutoPayment"] != null &&
                 typeof $steps["apiActiveAutoPayment"] === "object" &&
