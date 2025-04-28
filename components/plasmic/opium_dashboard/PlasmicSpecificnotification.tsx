@@ -66,6 +66,7 @@ import { AntdAccordion } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import { accordionHelpers as AntdAccordion_Helpers } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import { AntdAccordionItem } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
+import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -78,6 +79,7 @@ import sty from "./PlasmicSpecificnotification.module.css"; // plasmic-import: k
 import ChevronUpIcon from "../fragment_icons/icons/PlasmicIcon__ChevronUp"; // plasmic-import: YXreB8gS3SjV/icon
 import ChevronDownIcon from "../fragment_icons/icons/PlasmicIcon__ChevronDown"; // plasmic-import: aC_QFogxt1Ko/icon
 import CheckSvgIcon from "../fragment_design_system/icons/PlasmicIcon__CheckSvg"; // plasmic-import: _Qaeb-4Y8N07/icon
+import Icon7Icon from "./icons/PlasmicIcon__Icon7"; // plasmic-import: -MDfk7M6FyZh/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 
@@ -123,7 +125,8 @@ export type PlasmicSpecificnotification__OverridesType = {
   sample3?: Flex__<"div">;
   accordion2?: Flex__<typeof AntdAccordion>;
   sample4?: Flex__<"div">;
-  button?: Flex__<typeof Button>;
+  popover?: Flex__<typeof Popover>;
+  dialog?: Flex__<typeof Dialog>;
 };
 
 export interface DefaultSpecificnotificationProps {
@@ -276,6 +279,20 @@ function PlasmicSpecificnotification__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "popover.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+
+        refName: "popover"
+      },
+      {
+        path: "dialog.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -1232,6 +1249,53 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                             })()}
                           </React.Fragment>
                         </div>
+                        <Popover
+                          data-plasmic-name={"popover"}
+                          data-plasmic-override={overrides.popover}
+                          className={classNames("__wab_instance", sty.popover)}
+                          content={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__qQlbu
+                              )}
+                            >
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text___20LYu
+                                )}
+                              >
+                                {
+                                  "\u0647\u0632\u06cc\u0646\u0647 \u0647\u0631 \u067e\u06cc\u0627\u0645\u06a9 \u0627\u0631\u0633\u0627\u0644\u06cc \u0627\u0632 \u0627\u06cc\u0646 \u0633\u0631\u0648\u06cc\u0633 \u06f7\u06f5\u06f0 \u062a\u0648\u0645\u0627\u0646 \u0627\u0633\u062a \u06a9\u0647 \u062f\u0631 \u067e\u0627\u06cc\u0627\u0646 \u0647\u0631 \u0645\u0627\u0647 \u0628\u0631\u0627\u06cc \u067e\u0632\u0634\u06a9 \u0628\u0647 \u062c\u0647\u062a \u067e\u0631\u062f\u0627\u062e\u062a \u0627\u06cc\u0646 \u0647\u0632\u06cc\u0646\u0647\u060c \u0641\u0627\u06a9\u062a\u0648\u0631 \u0635\u0627\u062f\u0631 \u0645\u06cc\u06af\u0631\u062f\u062f."
+                                }
+                              </div>
+                            </div>
+                          }
+                          onOpenChange={async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "popover",
+                              "open"
+                            ]).apply(null, eventArgs);
+                          }}
+                          open={generateStateValueProp($state, [
+                            "popover",
+                            "open"
+                          ])}
+                          ref={ref => {
+                            $refs["popover"] = ref;
+                          }}
+                          trigger={
+                            <Icon7Icon
+                              className={classNames(
+                                projectcss.all,
+                                sty.svg__hsBjA
+                              )}
+                              role={"img"}
+                            />
+                          }
+                        />
                       </div>
                       <div
                         className={classNames(
@@ -1379,10 +1443,8 @@ function PlasmicSpecificnotification__RenderFunc(props: {
         </Stack__>
       </Stack__>
       <Button
-        data-plasmic-name={"button"}
-        data-plasmic-override={overrides.button}
         children2={"\u0630\u062e\u06cc\u0631\u0647"}
-        className={classNames("__wab_instance", sty.button)}
+        className={classNames("__wab_instance", sty.button___9WY8O)}
         loading={(() => {
           try {
             return $state.loadingDelete;
@@ -1428,84 +1490,36 @@ function PlasmicSpecificnotification__RenderFunc(props: {
             $steps["updateLoading"] = await $steps["updateLoading"];
           }
 
-          $steps["apiSave"] = true
+          $steps["dialog"] = true
             ? (() => {
                 const actionArgs = {
-                  args: [
-                    "GET",
-                    "https://apigw.paziresh24.com/v1/martin/check-kavenegar-apikey",
-                    (() => {
-                      try {
-                        return {
-                          receivers: $props.receivers,
-                          events: $props.events,
-                          user_id: $props.userId,
-                          channels: "sms",
-                          content: $state.multilineTextInput.value,
-                          objectofcontent: JSON.stringify(
-                            $state.changetobooktime ||
-                              $state.changetorefid ||
-                              $state.changetopatientname ||
-                              $state.changetodrname
-                              ? [
-                                  $state.changetodrname ? "drname" : "",
-                                  $state.changetopatientname
-                                    ? "patientname"
-                                    : "",
-                                  $state.changetorefid ? "refid" : "",
-                                  $state.changetobooktime ? "booktime" : ""
-                                ].filter(Boolean)
-                              : $props.objectofcontent
-                          )
-                        };
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()
-                  ]
+                  variable: {
+                    objRoot: $state,
+                    variablePath: ["dialog", "open"]
+                  },
+                  operation: 0,
+                  value: true
                 };
-                return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                  ...actionArgs.args
-                ]);
+                return (({ variable, value, startIndex, deleteCount }) => {
+                  if (!variable) {
+                    return;
+                  }
+                  const { objRoot, variablePath } = variable;
+
+                  $stateSet(objRoot, variablePath, value);
+                  return value;
+                })?.apply(null, [actionArgs]);
               })()
             : undefined;
           if (
-            $steps["apiSave"] != null &&
-            typeof $steps["apiSave"] === "object" &&
-            typeof $steps["apiSave"].then === "function"
+            $steps["dialog"] != null &&
+            typeof $steps["dialog"] === "object" &&
+            typeof $steps["dialog"].then === "function"
           ) {
-            $steps["apiSave"] = await $steps["apiSave"];
+            $steps["dialog"] = await $steps["dialog"];
           }
 
-          $steps["showToast"] =
-            $steps.apiSave.data.message === "successful"
-              ? (() => {
-                  const actionArgs = {
-                    args: [
-                      undefined,
-                      "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f!"
-                    ]
-                  };
-                  return $globalActions["Fragment.showToast"]?.apply(null, [
-                    ...actionArgs.args
-                  ]);
-                })()
-              : undefined;
-          if (
-            $steps["showToast"] != null &&
-            typeof $steps["showToast"] === "object" &&
-            typeof $steps["showToast"].then === "function"
-          ) {
-            $steps["showToast"] = await $steps["showToast"];
-          }
-
-          $steps["sendEvent"] = true
+          $steps["sendEvent"] = false
             ? (() => {
                 const actionArgs = {
                   args: [
@@ -1536,7 +1550,7 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                                 : $props.objectofcontent
                             )
                           },
-                          type: "submit-edit-specific-notification"
+                          type: "submit-request-edit-specific-notification"
                         };
                       } catch (e) {
                         if (
@@ -1563,28 +1577,27 @@ function PlasmicSpecificnotification__RenderFunc(props: {
             $steps["sendEvent"] = await $steps["sendEvent"];
           }
 
-          $steps["finishLoading"] =
-            $steps.apiSave.data.message === "successful"
-              ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["loadingDelete"]
-                    },
-                    operation: 0,
-                    value: false
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
+          $steps["finishLoading"] = true
+            ? (() => {
+                const actionArgs = {
+                  variable: {
+                    objRoot: $state,
+                    variablePath: ["loadingDelete"]
+                  },
+                  operation: 0,
+                  value: false
+                };
+                return (({ variable, value, startIndex, deleteCount }) => {
+                  if (!variable) {
+                    return;
+                  }
+                  const { objRoot, variablePath } = variable;
 
-                    $stateSet(objRoot, variablePath, value);
-                    return value;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
+                  $stateSet(objRoot, variablePath, value);
+                  return value;
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
           if (
             $steps["finishLoading"] != null &&
             typeof $steps["finishLoading"] === "object" &&
@@ -1592,60 +1605,564 @@ function PlasmicSpecificnotification__RenderFunc(props: {
           ) {
             $steps["finishLoading"] = await $steps["finishLoading"];
           }
+        }}
+      />
 
-          $steps["updateFragmentPopoverEditNotification2Open"] =
-            $steps.apiSave.data.message === "successful"
-              ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["fragmentPopoverEditNotification2", "open"]
-                    },
-                    operation: 0,
-                    value: false
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
+      <Dialog
+        data-plasmic-name={"dialog"}
+        data-plasmic-override={overrides.dialog}
+        body={
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__e2XM)}
+          >
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__geBZd)}
+            >
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__mz8Ij
+                )}
+              >
+                {
+                  "\u0647\u0632\u06cc\u0646\u0647 \u0647\u0631 \u067e\u06cc\u0627\u0645\u06a9 \u0627\u0631\u0633\u0627\u0644\u06cc \u0627\u0632 \u0627\u06cc\u0646 \u0633\u0631\u0648\u06cc\u0633 \u00ab\u06f7\u06f5\u06f0 \u062a\u0648\u0645\u0627\u0646\u00bb \u0627\u0633\u062a \u06a9\u0647 \u062f\u0631 \u067e\u0627\u06cc\u0627\u0646 \u0647\u0631 \u0645\u0627\u0647 \u0628\u0631\u0627\u06cc \u067e\u0632\u0634\u06a9 \u0628\u0647 \u062c\u0647\u062a \u067e\u0631\u062f\u0627\u062e\u062a \u0627\u06cc\u0646 \u0647\u0632\u06cc\u0646\u0647\u060c \u0641\u0627\u06a9\u062a\u0648\u0631 \u0635\u0627\u062f\u0631 \u0645\u06cc\u06af\u0631\u062f\u062f."
+                }
+              </div>
+            </Stack__>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__lBblx)}
+            >
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__keurl
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 700 }}
+                  >
+                    {
+                      "\u0622\u06cc\u0627 \u0627\u0632 \u062b\u0628\u062a \u0627\u06cc\u0646 \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc \u0627\u0637\u0645\u06cc\u0646\u0627\u0646 \u062f\u0627\u0631\u06cc\u062f\u061f"
                     }
-                    const { objRoot, variablePath } = variable;
+                  </span>
+                </React.Fragment>
+              </div>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__vnoCe)}
+              >
+                <Button
+                  children2={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__ikPTv
+                      )}
+                    >
+                      {
+                        "\u0628\u0644\u0647\u060c\u200c \u0645\u0634\u06a9\u0644\u06cc \u0628\u0627 \u067e\u0631\u062f\u0627\u062e\u062a \u0647\u0632\u06cc\u0646\u0647 \u0646\u062f\u0627\u0631\u0645."
+                      }
+                    </div>
+                  }
+                  className={classNames("__wab_instance", sty.button__ydh3Q)}
+                  loading={(() => {
+                    try {
+                      return $state.loadingDelete;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()}
+                  onClick={async event => {
+                    const $steps = {};
 
-                    $stateSet(objRoot, variablePath, value);
-                    return value;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-          if (
-            $steps["updateFragmentPopoverEditNotification2Open"] != null &&
-            typeof $steps["updateFragmentPopoverEditNotification2Open"] ===
-              "object" &&
-            typeof $steps["updateFragmentPopoverEditNotification2Open"].then ===
-              "function"
-          ) {
-            $steps["updateFragmentPopoverEditNotification2Open"] = await $steps[
-              "updateFragmentPopoverEditNotification2Open"
-            ];
-          }
+                    $steps["updateLoading"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["loadingDelete"]
+                            },
+                            operation: 0,
+                            value: true
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
 
-          $steps["updateFragmentPopoverEditNotification2Open2"] = true
-            ? (() => {
-                const actionArgs = { eventRef: $props["submit"] };
-                return (({ eventRef, args }) => {
-                  return eventRef?.(...(args ?? []));
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateLoading"] != null &&
+                      typeof $steps["updateLoading"] === "object" &&
+                      typeof $steps["updateLoading"].then === "function"
+                    ) {
+                      $steps["updateLoading"] = await $steps["updateLoading"];
+                    }
+
+                    $steps["apiSave"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "GET",
+                              "https://apigw.paziresh24.com/v1/martin/check-kavenegar-apikey",
+                              (() => {
+                                try {
+                                  return {
+                                    receivers: $props.receivers,
+                                    events: $props.events,
+                                    user_id: $props.userId,
+                                    channels: "sms",
+                                    content: $state.multilineTextInput.value,
+                                    objectofcontent: JSON.stringify(
+                                      $state.changetobooktime ||
+                                        $state.changetorefid ||
+                                        $state.changetopatientname ||
+                                        $state.changetodrname
+                                        ? [
+                                            $state.changetodrname
+                                              ? "drname"
+                                              : "",
+                                            $state.changetopatientname
+                                              ? "patientname"
+                                              : "",
+                                            $state.changetorefid ? "refid" : "",
+                                            $state.changetobooktime
+                                              ? "booktime"
+                                              : ""
+                                          ].filter(Boolean)
+                                        : $props.objectofcontent
+                                    )
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["apiSave"] != null &&
+                      typeof $steps["apiSave"] === "object" &&
+                      typeof $steps["apiSave"].then === "function"
+                    ) {
+                      $steps["apiSave"] = await $steps["apiSave"];
+                    }
+
+                    $steps["showToast"] =
+                      $steps.apiSave.data.message === "successful"
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                undefined,
+                                "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f!"
+                              ]
+                            };
+                            return $globalActions["Fragment.showToast"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["showToast"] != null &&
+                      typeof $steps["showToast"] === "object" &&
+                      typeof $steps["showToast"].then === "function"
+                    ) {
+                      $steps["showToast"] = await $steps["showToast"];
+                    }
+
+                    $steps["sendEvent"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    group: "notificationspanel",
+                                    data: {
+                                      user_id: $ctx.query.user_id,
+                                      receivers: $props.receivers,
+                                      events: $props.events,
+                                      user_id: $props.userId,
+                                      channels: "sms",
+                                      content: $state.multilineTextInput.value,
+                                      objectofcontent: JSON.stringify(
+                                        $state.changetobooktime ||
+                                          $state.changetorefid ||
+                                          $state.changetopatientname ||
+                                          $state.changetodrname
+                                          ? [
+                                              $state.changetodrname
+                                                ? "drname"
+                                                : "",
+                                              $state.changetopatientname
+                                                ? "patientname"
+                                                : "",
+                                              $state.changetorefid
+                                                ? "refid"
+                                                : "",
+                                              $state.changetobooktime
+                                                ? "booktime"
+                                                : ""
+                                            ].filter(Boolean)
+                                          : $props.objectofcontent
+                                      )
+                                    },
+                                    type: "submit-edit-specific-notification"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendEvent"] != null &&
+                      typeof $steps["sendEvent"] === "object" &&
+                      typeof $steps["sendEvent"].then === "function"
+                    ) {
+                      $steps["sendEvent"] = await $steps["sendEvent"];
+                    }
+
+                    $steps["finishLoading"] =
+                      $steps.apiSave.data.message === "successful"
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["loadingDelete"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["finishLoading"] != null &&
+                      typeof $steps["finishLoading"] === "object" &&
+                      typeof $steps["finishLoading"].then === "function"
+                    ) {
+                      $steps["finishLoading"] = await $steps["finishLoading"];
+                    }
+
+                    $steps["updateFragmentPopoverEditNotification2Open"] =
+                      $steps.apiSave.data.message === "successful"
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: [
+                                  "fragmentPopoverEditNotification2",
+                                  "open"
+                                ]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["updateFragmentPopoverEditNotification2Open"] !=
+                        null &&
+                      typeof $steps[
+                        "updateFragmentPopoverEditNotification2Open"
+                      ] === "object" &&
+                      typeof $steps[
+                        "updateFragmentPopoverEditNotification2Open"
+                      ].then === "function"
+                    ) {
+                      $steps["updateFragmentPopoverEditNotification2Open"] =
+                        await $steps[
+                          "updateFragmentPopoverEditNotification2Open"
+                        ];
+                    }
+
+                    $steps["updateFragmentPopoverEditNotification2Open2"] = true
+                      ? (() => {
+                          const actionArgs = { eventRef: $props["submit"] };
+                          return (({ eventRef, args }) => {
+                            return eventRef?.(...(args ?? []));
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateFragmentPopoverEditNotification2Open2"] !=
+                        null &&
+                      typeof $steps[
+                        "updateFragmentPopoverEditNotification2Open2"
+                      ] === "object" &&
+                      typeof $steps[
+                        "updateFragmentPopoverEditNotification2Open2"
+                      ].then === "function"
+                    ) {
+                      $steps["updateFragmentPopoverEditNotification2Open2"] =
+                        await $steps[
+                          "updateFragmentPopoverEditNotification2Open2"
+                        ];
+                    }
+                  }}
+                />
+
+                <Button
+                  children2={
+                    "\u062e\u06cc\u0631\u060c \u0645\u0646\u0635\u0631\u0641 \u0634\u062f\u0645"
+                  }
+                  className={classNames("__wab_instance", sty.button__lnF2Z)}
+                  color={"softSand"}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["sendEvent"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    group: "notificationspanel",
+                                    data: {
+                                      user_id: $ctx.query.user_id,
+                                      receivers: $props.receivers,
+                                      events: $props.events,
+                                      user_id: $props.userId,
+                                      channels: "sms",
+                                      content: $state.multilineTextInput.value,
+                                      objectofcontent: JSON.stringify(
+                                        $state.changetobooktime ||
+                                          $state.changetorefid ||
+                                          $state.changetopatientname ||
+                                          $state.changetodrname
+                                          ? [
+                                              $state.changetodrname
+                                                ? "drname"
+                                                : "",
+                                              $state.changetopatientname
+                                                ? "patientname"
+                                                : "",
+                                              $state.changetorefid
+                                                ? "refid"
+                                                : "",
+                                              $state.changetobooktime
+                                                ? "booktime"
+                                                : ""
+                                            ].filter(Boolean)
+                                          : $props.objectofcontent
+                                      )
+                                    },
+                                    type: "cancel-notification"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendEvent"] != null &&
+                      typeof $steps["sendEvent"] === "object" &&
+                      typeof $steps["sendEvent"].then === "function"
+                    ) {
+                      $steps["sendEvent"] = await $steps["sendEvent"];
+                    }
+
+                    $steps["updateDialogOpen"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["dialog", "open"]
+                            },
+                            operation: 0,
+                            value: false
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateDialogOpen"] != null &&
+                      typeof $steps["updateDialogOpen"] === "object" &&
+                      typeof $steps["updateDialogOpen"].then === "function"
+                    ) {
+                      $steps["updateDialogOpen"] = await $steps[
+                        "updateDialogOpen"
+                      ];
+                    }
+
+                    $steps["updateFragmentPopoverEditNotification2Open"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: [
+                                "fragmentPopoverEditNotification2",
+                                "open"
+                              ]
+                            },
+                            operation: 0,
+                            value: false
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateFragmentPopoverEditNotification2Open"] !=
+                        null &&
+                      typeof $steps[
+                        "updateFragmentPopoverEditNotification2Open"
+                      ] === "object" &&
+                      typeof $steps[
+                        "updateFragmentPopoverEditNotification2Open"
+                      ].then === "function"
+                    ) {
+                      $steps["updateFragmentPopoverEditNotification2Open"] =
+                        await $steps[
+                          "updateFragmentPopoverEditNotification2Open"
+                        ];
+                    }
+                  }}
+                />
+              </Stack__>
+            </Stack__>
+          </Stack__>
+        }
+        className={classNames("__wab_instance", sty.dialog)}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+            null,
+            eventArgs
+          );
+
           if (
-            $steps["updateFragmentPopoverEditNotification2Open2"] != null &&
-            typeof $steps["updateFragmentPopoverEditNotification2Open2"] ===
-              "object" &&
-            typeof $steps["updateFragmentPopoverEditNotification2Open2"]
-              .then === "function"
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
           ) {
-            $steps["updateFragmentPopoverEditNotification2Open2"] =
-              await $steps["updateFragmentPopoverEditNotification2Open2"];
+            return;
           }
         }}
+        open={generateStateValueProp($state, ["dialog", "open"])}
+        title={
+          "\u062b\u0628\u062a \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc"
+        }
+        trigger={null}
       />
     </div>
   ) as React.ReactElement | null;
@@ -1666,7 +2183,8 @@ const PlasmicDescendants = {
     "sample3",
     "accordion2",
     "sample4",
-    "button"
+    "popover",
+    "dialog"
   ],
   sideEffect: ["sideEffect"],
   sendwhom2: ["sendwhom2"],
@@ -1680,7 +2198,8 @@ const PlasmicDescendants = {
     "multilineTextInput",
     "sample3",
     "accordion2",
-    "sample4"
+    "sample4",
+    "popover"
   ],
   fragmentPopoverEditNotification2: [
     "fragmentPopoverEditNotification2",
@@ -1694,10 +2213,11 @@ const PlasmicDescendants = {
   refid2: ["refid2"],
   booktime2: ["booktime2"],
   multilineTextInput: ["multilineTextInput"],
-  sample3: ["sample3", "accordion2", "sample4"],
-  accordion2: ["accordion2", "sample4"],
-  sample4: ["sample4"],
-  button: ["button"]
+  sample3: ["sample3", "accordion2", "sample4", "popover"],
+  accordion2: ["accordion2", "sample4", "popover"],
+  sample4: ["sample4", "popover"],
+  popover: ["popover"],
+  dialog: ["dialog"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1716,7 +2236,8 @@ type NodeDefaultElementType = {
   sample3: "div";
   accordion2: typeof AntdAccordion;
   sample4: "div";
-  button: typeof Button;
+  popover: typeof Popover;
+  dialog: typeof Dialog;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1793,7 +2314,8 @@ export const PlasmicSpecificnotification = Object.assign(
     sample3: makeNodeComponent("sample3"),
     accordion2: makeNodeComponent("accordion2"),
     sample4: makeNodeComponent("sample4"),
-    button: makeNodeComponent("button"),
+    popover: makeNodeComponent("popover"),
+    dialog: makeNodeComponent("dialog"),
 
     // Metadata about props expected for PlasmicSpecificnotification
     internalVariantProps: PlasmicSpecificnotification__VariantProps,

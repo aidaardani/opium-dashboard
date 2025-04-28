@@ -67,7 +67,6 @@ import MultilineTextInput from "../../MultilineTextInput"; // plasmic-import: CZ
 import { AntdAccordion } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import { accordionHelpers as AntdAccordion_Helpers } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import { AntdAccordionItem } from "@plasmicpkgs/antd5/skinny/registerCollapse";
-import Receipt from "../../Receipt"; // plasmic-import: xGsQPPSWr2u9/component
 import Userworkflow from "../../Userworkflow"; // plasmic-import: xcx15_gUi62a/component
 import MetrikaYandex from "../../MetrikaYandex"; // plasmic-import: bwh2kDzd78mD/component
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
@@ -87,6 +86,7 @@ import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; 
 import ChevronUpIcon from "../fragment_icons/icons/PlasmicIcon__ChevronUp"; // plasmic-import: YXreB8gS3SjV/icon
 import ChevronDownIcon from "../fragment_icons/icons/PlasmicIcon__ChevronDown"; // plasmic-import: aC_QFogxt1Ko/icon
 import CheckSvgIcon from "../fragment_design_system/icons/PlasmicIcon__CheckSvg"; // plasmic-import: _Qaeb-4Y8N07/icon
+import Icon15Icon from "./icons/PlasmicIcon__Icon15"; // plasmic-import: dLXaRsSSHo3S/icon
 
 createPlasmicElementProxy;
 
@@ -126,10 +126,12 @@ export type PlasmicListOfNotofications__OverridesType = {
   sample?: Flex__<"div">;
   accordion?: Flex__<typeof AntdAccordion>;
   sample2?: Flex__<"div">;
+  popover?: Flex__<typeof Popover>;
   save?: Flex__<"div">;
   button?: Flex__<typeof Button>;
-  receiptDialog?: Flex__<typeof Dialog>;
-  receipt?: Flex__<typeof Receipt>;
+  dialog?: Flex__<typeof Dialog>;
+  yesSure?: Flex__<typeof Button>;
+  no?: Flex__<typeof Button>;
   listofnotifications?: Flex__<"div">;
   اطلاعرسانیهایموجود?: Flex__<"div">;
   userworkflow?: Flex__<typeof Userworkflow>;
@@ -386,12 +388,6 @@ function PlasmicListOfNotofications__RenderFunc(props: {
           "\u062b\u0628\u062a \u0646\u0648\u0628\u062a"
       },
       {
-        path: "receiptDialog.open",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
         path: "loading",
         type: "private",
         variableType: "boolean",
@@ -408,6 +404,20 @@ function PlasmicListOfNotofications__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "dialog.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "popover.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+
+        refName: "popover"
       }
     ],
     [$props, $ctx, $refs]
@@ -2318,6 +2328,60 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                           })()}
                                         </React.Fragment>
                                       </div>
+                                      <Popover
+                                        data-plasmic-name={"popover"}
+                                        data-plasmic-override={
+                                          overrides.popover
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.popover
+                                        )}
+                                        content={
+                                          <div
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.freeBox__zpByE
+                                            )}
+                                          >
+                                            <div
+                                              className={classNames(
+                                                projectcss.all,
+                                                projectcss.__wab_text,
+                                                sty.text__va0Qq
+                                              )}
+                                            >
+                                              {
+                                                "\u0647\u0632\u06cc\u0646\u0647 \u0647\u0631 \u067e\u06cc\u0627\u0645\u06a9 \u0627\u0631\u0633\u0627\u0644\u06cc \u0627\u0632 \u0627\u06cc\u0646 \u0633\u0631\u0648\u06cc\u0633 \u06f7\u06f5\u06f0 \u062a\u0648\u0645\u0627\u0646 \u0627\u0633\u062a \u06a9\u0647 \u062f\u0631 \u067e\u0627\u06cc\u0627\u0646 \u0647\u0631 \u0645\u0627\u0647 \u0628\u0631\u0627\u06cc \u067e\u0632\u0634\u06a9 \u0628\u0647 \u062c\u0647\u062a \u067e\u0631\u062f\u0627\u062e\u062a \u0627\u06cc\u0646 \u0647\u0632\u06cc\u0646\u0647\u060c \u0641\u0627\u06a9\u062a\u0648\u0631 \u0635\u0627\u062f\u0631 \u0645\u06cc\u06af\u0631\u062f\u062f."
+                                              }
+                                            </div>
+                                          </div>
+                                        }
+                                        onOpenChange={async (
+                                          ...eventArgs: any
+                                        ) => {
+                                          generateStateOnChangeProp($state, [
+                                            "popover",
+                                            "open"
+                                          ]).apply(null, eventArgs);
+                                        }}
+                                        open={generateStateValueProp($state, [
+                                          "popover",
+                                          "open"
+                                        ])}
+                                        ref={ref => {
+                                          $refs["popover"] = ref;
+                                        }}
+                                        trigger={
+                                          <Icon15Icon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg___4Y1Zr
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                      />
                                     </div>
                                     <div
                                       className={classNames(
@@ -2497,147 +2561,12 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                             ];
                           }
 
-                          $steps["apiCheckKavenegarApiKey"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    "GET",
-                                    "https://apigw.paziresh24.com/v1/martin/check-kavenegar-apikey",
-                                    (() => {
-                                      try {
-                                        return {
-                                          receivers:
-                                            $state.notoficationsRecivers.find(
-                                              event =>
-                                                event.Title ===
-                                                $state.selectedrecieverinnewworkflow
-                                            ).name,
-                                          events:
-                                            $state.notificationsevents.find(
-                                              event =>
-                                                event.Title ===
-                                                $state.selectedeventinworkflow
-                                            ).name,
-                                          channels: "sms",
-                                          user_id: $ctx.query.user_id,
-                                          content:
-                                            $state.multilineTextInput.value,
-                                          objectofcontent: JSON.stringify(
-                                            [
-                                              $state.selecteddrnameinnewworkflowscontent
-                                                ? "drname"
-                                                : "",
-                                              $state.selecteddrpatientinnewworkflowscontent
-                                                ? "patientname"
-                                                : "",
-                                              $state.selectedrefidinnewworkflowscontent
-                                                ? "refid"
-                                                : "",
-                                              $state.selectedbooktimeinnewworkflowscontent
-                                                ? "booktime"
-                                                : ""
-                                            ].filter(Boolean)
-                                          )
-                                        };
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                                  ]
-                                };
-                                return $globalActions[
-                                  "Fragment.apiRequest"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["apiCheckKavenegarApiKey"] != null &&
-                            typeof $steps["apiCheckKavenegarApiKey"] ===
-                              "object" &&
-                            typeof $steps["apiCheckKavenegarApiKey"].then ===
-                              "function"
-                          ) {
-                            $steps["apiCheckKavenegarApiKey"] = await $steps[
-                              "apiCheckKavenegarApiKey"
-                            ];
-                          }
-
-                          $steps["finishLoading"] =
-                            $steps.apiCheckKavenegarApiKey.data.message ===
-                            "successful"
-                              ? (() => {
-                                  const actionArgs = {
-                                    variable: {
-                                      objRoot: $state,
-                                      variablePath: [
-                                        "stateLoadingAddNewWorkflow"
-                                      ]
-                                    },
-                                    operation: 0,
-                                    value: false
-                                  };
-                                  return (({
-                                    variable,
-                                    value,
-                                    startIndex,
-                                    deleteCount
-                                  }) => {
-                                    if (!variable) {
-                                      return;
-                                    }
-                                    const { objRoot, variablePath } = variable;
-
-                                    $stateSet(objRoot, variablePath, value);
-                                    return value;
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                          if (
-                            $steps["finishLoading"] != null &&
-                            typeof $steps["finishLoading"] === "object" &&
-                            typeof $steps["finishLoading"].then === "function"
-                          ) {
-                            $steps["finishLoading"] = await $steps[
-                              "finishLoading"
-                            ];
-                          }
-
-                          $steps["showToast"] =
-                            $steps.apiCheckKavenegarApiKey.data.message ===
-                            "successful"
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      undefined,
-                                      "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0646\u062c\u0627\u0645 \u0634\u062f."
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "Fragment.showToast"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
-                          if (
-                            $steps["showToast"] != null &&
-                            typeof $steps["showToast"] === "object" &&
-                            typeof $steps["showToast"].then === "function"
-                          ) {
-                            $steps["showToast"] = await $steps["showToast"];
-                          }
-
-                          $steps["updateReceiptDialogOpen"] = false
+                          $steps["updateDialogOpen"] = true
                             ? (() => {
                                 const actionArgs = {
                                   variable: {
                                     objRoot: $state,
-                                    variablePath: ["receiptDialog", "open"]
+                                    variablePath: ["dialog", "open"]
                                   },
                                   operation: 0,
                                   value: true
@@ -2659,26 +2588,22 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                               })()
                             : undefined;
                           if (
-                            $steps["updateReceiptDialogOpen"] != null &&
-                            typeof $steps["updateReceiptDialogOpen"] ===
-                              "object" &&
-                            typeof $steps["updateReceiptDialogOpen"].then ===
+                            $steps["updateDialogOpen"] != null &&
+                            typeof $steps["updateDialogOpen"] === "object" &&
+                            typeof $steps["updateDialogOpen"].then ===
                               "function"
                           ) {
-                            $steps["updateReceiptDialogOpen"] = await $steps[
-                              "updateReceiptDialogOpen"
+                            $steps["updateDialogOpen"] = await $steps[
+                              "updateDialogOpen"
                             ];
                           }
 
-                          $steps["updateDialogaddnewworkflowOpen"] = true
+                          $steps["finishLoading"] = true
                             ? (() => {
                                 const actionArgs = {
                                   variable: {
                                     objRoot: $state,
-                                    variablePath: [
-                                      "dialogaddnewworkflow",
-                                      "open"
-                                    ]
+                                    variablePath: ["stateLoadingAddNewWorkflow"]
                                   },
                                   operation: 0,
                                   value: false
@@ -2700,102 +2625,13 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                               })()
                             : undefined;
                           if (
-                            $steps["updateDialogaddnewworkflowOpen"] != null &&
-                            typeof $steps["updateDialogaddnewworkflowOpen"] ===
-                              "object" &&
-                            typeof $steps["updateDialogaddnewworkflowOpen"]
-                              .then === "function"
+                            $steps["finishLoading"] != null &&
+                            typeof $steps["finishLoading"] === "object" &&
+                            typeof $steps["finishLoading"].then === "function"
                           ) {
-                            $steps["updateDialogaddnewworkflowOpen"] =
-                              await $steps["updateDialogaddnewworkflowOpen"];
-                          }
-
-                          $steps["apiGetNoticationSettingForThisUser"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    undefined,
-                                    "https://apigw.paziresh24.com/v1/get-notification-setting",
-                                    (() => {
-                                      try {
-                                        return { user_id: $ctx.query.user_id };
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                                  ]
-                                };
-                                return $globalActions[
-                                  "Fragment.apiRequest"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["apiGetNoticationSettingForThisUser"] !=
-                              null &&
-                            typeof $steps[
-                              "apiGetNoticationSettingForThisUser"
-                            ] === "object" &&
-                            typeof $steps["apiGetNoticationSettingForThisUser"]
-                              .then === "function"
-                          ) {
-                            $steps["apiGetNoticationSettingForThisUser"] =
-                              await $steps[
-                                "apiGetNoticationSettingForThisUser"
-                              ];
-                          }
-
-                          $steps["updateNotificationSettingForThisUser"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: [
-                                      "notificationSettingForThisUser"
-                                    ]
-                                  },
-                                  operation: 0,
-                                  value:
-                                    $steps.apiGetNoticationSettingForThisUser
-                                      .data
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["updateNotificationSettingForThisUser"] !=
-                              null &&
-                            typeof $steps[
-                              "updateNotificationSettingForThisUser"
-                            ] === "object" &&
-                            typeof $steps[
-                              "updateNotificationSettingForThisUser"
-                            ].then === "function"
-                          ) {
-                            $steps["updateNotificationSettingForThisUser"] =
-                              await $steps[
-                                "updateNotificationSettingForThisUser"
-                              ];
+                            $steps["finishLoading"] = await $steps[
+                              "finishLoading"
+                            ];
                           }
 
                           $steps["sendLog"] = true
@@ -2840,7 +2676,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                               ].filter(Boolean)
                                             )
                                           },
-                                          type: "add-specific-notification"
+                                          type: "request-to-add-specific-notification"
                                         };
                                       } catch (e) {
                                         if (
@@ -2872,38 +2708,718 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                       />
 
                       <Dialog
-                        data-plasmic-name={"receiptDialog"}
-                        data-plasmic-override={overrides.receiptDialog}
+                        data-plasmic-name={"dialog"}
+                        data-plasmic-override={overrides.dialog}
                         body={
-                          <Receipt
-                            data-plasmic-name={"receipt"}
-                            data-plasmic-override={overrides.receipt}
+                          <Stack__
+                            as={"div"}
+                            hasGap={true}
                             className={classNames(
-                              "__wab_instance",
-                              sty.receipt
+                              projectcss.all,
+                              sty.freeBox__uWcSu
                             )}
-                            event={(() => {
-                              try {
-                                return $state.selectedeventinworkflow;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
+                          >
+                            <Stack__
+                              as={"div"}
+                              hasGap={true}
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox___4LeRq
+                              )}
+                            >
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__nK4F7
+                                )}
+                              >
+                                {
+                                  "\u0647\u0632\u06cc\u0646\u0647 \u0647\u0631 \u067e\u06cc\u0627\u0645\u06a9 \u0627\u0631\u0633\u0627\u0644\u06cc \u0627\u0632 \u0627\u06cc\u0646 \u0633\u0631\u0648\u06cc\u0633 \u00ab\u06f7\u06f5\u06f0 \u062a\u0648\u0645\u0627\u0646\u00bb \u0627\u0633\u062a \u06a9\u0647 \u062f\u0631 \u067e\u0627\u06cc\u0627\u0646 \u0647\u0631 \u0645\u0627\u0647 \u0628\u0631\u0627\u06cc \u067e\u0632\u0634\u06a9 \u0628\u0647 \u062c\u0647\u062a \u067e\u0631\u062f\u0627\u062e\u062a \u0627\u06cc\u0646 \u0647\u0632\u06cc\u0646\u0647\u060c \u0641\u0627\u06a9\u062a\u0648\u0631 \u0635\u0627\u062f\u0631 \u0645\u06cc\u06af\u0631\u062f\u062f."
                                 }
-                                throw e;
-                              }
-                            })()}
-                          />
+                              </div>
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__cTmTe
+                                )}
+                              >
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text___1VvYg
+                                  )}
+                                >
+                                  <React.Fragment>
+                                    <span
+                                      className={
+                                        "plasmic_default__all plasmic_default__span"
+                                      }
+                                      style={{ fontWeight: 700 }}
+                                    >
+                                      {
+                                        "\u0622\u06cc\u0627 \u0627\u0632 \u062b\u0628\u062a \u0627\u06cc\u0646 \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc \u0627\u0637\u0645\u06cc\u0646\u0627\u0646 \u062f\u0627\u0631\u06cc\u062f\u061f "
+                                      }
+                                    </span>
+                                  </React.Fragment>
+                                </div>
+                                <Stack__
+                                  as={"div"}
+                                  hasGap={true}
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.freeBox__ukQrX
+                                  )}
+                                >
+                                  <Button
+                                    data-plasmic-name={"yesSure"}
+                                    data-plasmic-override={overrides.yesSure}
+                                    children2={
+                                      "\u0628\u0644\u0647\u060c \u0627\u0637\u0645\u06cc\u0646\u0627\u0646 \u062f\u0627\u0631\u0645 \u0648 \u0647\u0632\u06cc\u0646\u0647 \u0631\u0627 \u0645\u06cc\u200c\u067e\u0631\u062f\u0627\u0632\u0645"
+                                    }
+                                    className={classNames(
+                                      "__wab_instance",
+                                      sty.yesSure
+                                    )}
+                                    loading={(() => {
+                                      try {
+                                        return $state.stateLoadingAddNewWorkflow;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return [];
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                    onClick={async event => {
+                                      const $steps = {};
+
+                                      $steps["startLoading"] = true
+                                        ? (() => {
+                                            const actionArgs = {
+                                              variable: {
+                                                objRoot: $state,
+                                                variablePath: [
+                                                  "stateLoadingAddNewWorkflow"
+                                                ]
+                                              },
+                                              operation: 0,
+                                              value: true
+                                            };
+                                            return (({
+                                              variable,
+                                              value,
+                                              startIndex,
+                                              deleteCount
+                                            }) => {
+                                              if (!variable) {
+                                                return;
+                                              }
+                                              const { objRoot, variablePath } =
+                                                variable;
+
+                                              $stateSet(
+                                                objRoot,
+                                                variablePath,
+                                                value
+                                              );
+                                              return value;
+                                            })?.apply(null, [actionArgs]);
+                                          })()
+                                        : undefined;
+                                      if (
+                                        $steps["startLoading"] != null &&
+                                        typeof $steps["startLoading"] ===
+                                          "object" &&
+                                        typeof $steps["startLoading"].then ===
+                                          "function"
+                                      ) {
+                                        $steps["startLoading"] = await $steps[
+                                          "startLoading"
+                                        ];
+                                      }
+
+                                      $steps["apiCheckKavenegarApiKey"] = true
+                                        ? (() => {
+                                            const actionArgs = {
+                                              args: [
+                                                "GET",
+                                                "https://apigw.paziresh24.com/v1/martin/check-kavenegar-apikey",
+                                                (() => {
+                                                  try {
+                                                    return {
+                                                      receivers:
+                                                        $state.notoficationsRecivers.find(
+                                                          event =>
+                                                            event.Title ===
+                                                            $state.selectedrecieverinnewworkflow
+                                                        ).name,
+                                                      events:
+                                                        $state.notificationsevents.find(
+                                                          event =>
+                                                            event.Title ===
+                                                            $state.selectedeventinworkflow
+                                                        ).name,
+                                                      channels: "sms",
+                                                      user_id:
+                                                        $ctx.query.user_id,
+                                                      content:
+                                                        $state
+                                                          .multilineTextInput
+                                                          .value,
+                                                      objectofcontent:
+                                                        JSON.stringify(
+                                                          [
+                                                            $state.selecteddrnameinnewworkflowscontent
+                                                              ? "drname"
+                                                              : "",
+                                                            $state.selecteddrpatientinnewworkflowscontent
+                                                              ? "patientname"
+                                                              : "",
+                                                            $state.selectedrefidinnewworkflowscontent
+                                                              ? "refid"
+                                                              : "",
+                                                            $state.selectedbooktimeinnewworkflowscontent
+                                                              ? "booktime"
+                                                              : ""
+                                                          ].filter(Boolean)
+                                                        )
+                                                    };
+                                                  } catch (e) {
+                                                    if (
+                                                      e instanceof TypeError ||
+                                                      e?.plasmicType ===
+                                                        "PlasmicUndefinedDataError"
+                                                    ) {
+                                                      return undefined;
+                                                    }
+                                                    throw e;
+                                                  }
+                                                })()
+                                              ]
+                                            };
+                                            return $globalActions[
+                                              "Fragment.apiRequest"
+                                            ]?.apply(null, [
+                                              ...actionArgs.args
+                                            ]);
+                                          })()
+                                        : undefined;
+                                      if (
+                                        $steps["apiCheckKavenegarApiKey"] !=
+                                          null &&
+                                        typeof $steps[
+                                          "apiCheckKavenegarApiKey"
+                                        ] === "object" &&
+                                        typeof $steps["apiCheckKavenegarApiKey"]
+                                          .then === "function"
+                                      ) {
+                                        $steps["apiCheckKavenegarApiKey"] =
+                                          await $steps[
+                                            "apiCheckKavenegarApiKey"
+                                          ];
+                                      }
+
+                                      $steps["finishLoading"] =
+                                        $steps.apiCheckKavenegarApiKey.data
+                                          .message === "successful"
+                                          ? (() => {
+                                              const actionArgs = {
+                                                variable: {
+                                                  objRoot: $state,
+                                                  variablePath: [
+                                                    "stateLoadingAddNewWorkflow"
+                                                  ]
+                                                },
+                                                operation: 0,
+                                                value: false
+                                              };
+                                              return (({
+                                                variable,
+                                                value,
+                                                startIndex,
+                                                deleteCount
+                                              }) => {
+                                                if (!variable) {
+                                                  return;
+                                                }
+                                                const {
+                                                  objRoot,
+                                                  variablePath
+                                                } = variable;
+
+                                                $stateSet(
+                                                  objRoot,
+                                                  variablePath,
+                                                  value
+                                                );
+                                                return value;
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps["finishLoading"] != null &&
+                                        typeof $steps["finishLoading"] ===
+                                          "object" &&
+                                        typeof $steps["finishLoading"].then ===
+                                          "function"
+                                      ) {
+                                        $steps["finishLoading"] = await $steps[
+                                          "finishLoading"
+                                        ];
+                                      }
+
+                                      $steps["showToast"] =
+                                        $steps.apiCheckKavenegarApiKey.data
+                                          .message === "successful"
+                                          ? (() => {
+                                              const actionArgs = {
+                                                args: [
+                                                  undefined,
+                                                  "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0646\u062c\u0627\u0645 \u0634\u062f."
+                                                ]
+                                              };
+                                              return $globalActions[
+                                                "Fragment.showToast"
+                                              ]?.apply(null, [
+                                                ...actionArgs.args
+                                              ]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps["showToast"] != null &&
+                                        typeof $steps["showToast"] ===
+                                          "object" &&
+                                        typeof $steps["showToast"].then ===
+                                          "function"
+                                      ) {
+                                        $steps["showToast"] = await $steps[
+                                          "showToast"
+                                        ];
+                                      }
+
+                                      $steps[
+                                        "updateNotificationSettingForThisUser2"
+                                      ] = true
+                                        ? (() => {
+                                            const actionArgs = {
+                                              variable: {
+                                                objRoot: $state,
+                                                variablePath: ["dialog", "open"]
+                                              },
+                                              operation: 0,
+                                              value: false
+                                            };
+                                            return (({
+                                              variable,
+                                              value,
+                                              startIndex,
+                                              deleteCount
+                                            }) => {
+                                              if (!variable) {
+                                                return;
+                                              }
+                                              const { objRoot, variablePath } =
+                                                variable;
+
+                                              $stateSet(
+                                                objRoot,
+                                                variablePath,
+                                                value
+                                              );
+                                              return value;
+                                            })?.apply(null, [actionArgs]);
+                                          })()
+                                        : undefined;
+                                      if (
+                                        $steps[
+                                          "updateNotificationSettingForThisUser2"
+                                        ] != null &&
+                                        typeof $steps[
+                                          "updateNotificationSettingForThisUser2"
+                                        ] === "object" &&
+                                        typeof $steps[
+                                          "updateNotificationSettingForThisUser2"
+                                        ].then === "function"
+                                      ) {
+                                        $steps[
+                                          "updateNotificationSettingForThisUser2"
+                                        ] = await $steps[
+                                          "updateNotificationSettingForThisUser2"
+                                        ];
+                                      }
+
+                                      $steps["updateDialogaddnewworkflowOpen"] =
+                                        true
+                                          ? (() => {
+                                              const actionArgs = {
+                                                variable: {
+                                                  objRoot: $state,
+                                                  variablePath: [
+                                                    "dialogaddnewworkflow",
+                                                    "open"
+                                                  ]
+                                                },
+                                                operation: 0,
+                                                value: false
+                                              };
+                                              return (({
+                                                variable,
+                                                value,
+                                                startIndex,
+                                                deleteCount
+                                              }) => {
+                                                if (!variable) {
+                                                  return;
+                                                }
+                                                const {
+                                                  objRoot,
+                                                  variablePath
+                                                } = variable;
+
+                                                $stateSet(
+                                                  objRoot,
+                                                  variablePath,
+                                                  value
+                                                );
+                                                return value;
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps[
+                                          "updateDialogaddnewworkflowOpen"
+                                        ] != null &&
+                                        typeof $steps[
+                                          "updateDialogaddnewworkflowOpen"
+                                        ] === "object" &&
+                                        typeof $steps[
+                                          "updateDialogaddnewworkflowOpen"
+                                        ].then === "function"
+                                      ) {
+                                        $steps[
+                                          "updateDialogaddnewworkflowOpen"
+                                        ] = await $steps[
+                                          "updateDialogaddnewworkflowOpen"
+                                        ];
+                                      }
+
+                                      $steps[
+                                        "apiGetNoticationSettingForThisUser"
+                                      ] = true
+                                        ? (() => {
+                                            const actionArgs = {
+                                              args: [
+                                                undefined,
+                                                "https://apigw.paziresh24.com/v1/get-notification-setting",
+                                                (() => {
+                                                  try {
+                                                    return {
+                                                      user_id:
+                                                        $ctx.query.user_id
+                                                    };
+                                                  } catch (e) {
+                                                    if (
+                                                      e instanceof TypeError ||
+                                                      e?.plasmicType ===
+                                                        "PlasmicUndefinedDataError"
+                                                    ) {
+                                                      return undefined;
+                                                    }
+                                                    throw e;
+                                                  }
+                                                })()
+                                              ]
+                                            };
+                                            return $globalActions[
+                                              "Fragment.apiRequest"
+                                            ]?.apply(null, [
+                                              ...actionArgs.args
+                                            ]);
+                                          })()
+                                        : undefined;
+                                      if (
+                                        $steps[
+                                          "apiGetNoticationSettingForThisUser"
+                                        ] != null &&
+                                        typeof $steps[
+                                          "apiGetNoticationSettingForThisUser"
+                                        ] === "object" &&
+                                        typeof $steps[
+                                          "apiGetNoticationSettingForThisUser"
+                                        ].then === "function"
+                                      ) {
+                                        $steps[
+                                          "apiGetNoticationSettingForThisUser"
+                                        ] = await $steps[
+                                          "apiGetNoticationSettingForThisUser"
+                                        ];
+                                      }
+
+                                      $steps[
+                                        "updateNotificationSettingForThisUser"
+                                      ] = true
+                                        ? (() => {
+                                            const actionArgs = {
+                                              variable: {
+                                                objRoot: $state,
+                                                variablePath: [
+                                                  "notificationSettingForThisUser"
+                                                ]
+                                              },
+                                              operation: 0,
+                                              value:
+                                                $steps
+                                                  .apiGetNoticationSettingForThisUser
+                                                  .data
+                                            };
+                                            return (({
+                                              variable,
+                                              value,
+                                              startIndex,
+                                              deleteCount
+                                            }) => {
+                                              if (!variable) {
+                                                return;
+                                              }
+                                              const { objRoot, variablePath } =
+                                                variable;
+
+                                              $stateSet(
+                                                objRoot,
+                                                variablePath,
+                                                value
+                                              );
+                                              return value;
+                                            })?.apply(null, [actionArgs]);
+                                          })()
+                                        : undefined;
+                                      if (
+                                        $steps[
+                                          "updateNotificationSettingForThisUser"
+                                        ] != null &&
+                                        typeof $steps[
+                                          "updateNotificationSettingForThisUser"
+                                        ] === "object" &&
+                                        typeof $steps[
+                                          "updateNotificationSettingForThisUser"
+                                        ].then === "function"
+                                      ) {
+                                        $steps[
+                                          "updateNotificationSettingForThisUser"
+                                        ] = await $steps[
+                                          "updateNotificationSettingForThisUser"
+                                        ];
+                                      }
+
+                                      $steps["sendLog"] = true
+                                        ? (() => {
+                                            const actionArgs = {
+                                              args: [
+                                                (() => {
+                                                  try {
+                                                    return {
+                                                      group:
+                                                        "notificationspanel",
+                                                      data: {
+                                                        receivers:
+                                                          $state.notoficationsRecivers.find(
+                                                            event =>
+                                                              event.Title ===
+                                                              $state.selectedrecieverinnewworkflow
+                                                          ).name,
+                                                        events:
+                                                          $state.notificationsevents.find(
+                                                            event =>
+                                                              event.Title ===
+                                                              $state.selectedeventinworkflow
+                                                          ).name,
+                                                        channels: "sms",
+                                                        user_id:
+                                                          $ctx.query.user_id,
+                                                        content:
+                                                          $state
+                                                            .multilineTextInput
+                                                            .value,
+                                                        objectofcontent:
+                                                          JSON.stringify(
+                                                            [
+                                                              $state.selecteddrnameinnewworkflowscontent
+                                                                ? "drname"
+                                                                : "",
+                                                              $state.selecteddrpatientinnewworkflowscontent
+                                                                ? "patientname"
+                                                                : "",
+                                                              $state.selectedrefidinnewworkflowscontent
+                                                                ? "refid"
+                                                                : "",
+                                                              $state.selectedbooktimeinnewworkflowscontent
+                                                                ? "booktime"
+                                                                : ""
+                                                            ].filter(Boolean)
+                                                          )
+                                                      },
+                                                      type: "add-specific-notification"
+                                                    };
+                                                  } catch (e) {
+                                                    if (
+                                                      e instanceof TypeError ||
+                                                      e?.plasmicType ===
+                                                        "PlasmicUndefinedDataError"
+                                                    ) {
+                                                      return undefined;
+                                                    }
+                                                    throw e;
+                                                  }
+                                                })()
+                                              ]
+                                            };
+                                            return $globalActions[
+                                              "Splunk.sendLog"
+                                            ]?.apply(null, [
+                                              ...actionArgs.args
+                                            ]);
+                                          })()
+                                        : undefined;
+                                      if (
+                                        $steps["sendLog"] != null &&
+                                        typeof $steps["sendLog"] === "object" &&
+                                        typeof $steps["sendLog"].then ===
+                                          "function"
+                                      ) {
+                                        $steps["sendLog"] = await $steps[
+                                          "sendLog"
+                                        ];
+                                      }
+                                    }}
+                                  />
+
+                                  <Button
+                                    data-plasmic-name={"no"}
+                                    data-plasmic-override={overrides.no}
+                                    children2={
+                                      "\u062e\u06cc\u0631\u060c \u0645\u0646\u0635\u0631\u0641 \u0634\u062f\u0645."
+                                    }
+                                    className={classNames(
+                                      "__wab_instance",
+                                      sty.no
+                                    )}
+                                    color={"softSand"}
+                                    onClick={async event => {
+                                      const $steps = {};
+
+                                      $steps["updateDialogOpen"] = true
+                                        ? (() => {
+                                            const actionArgs = {
+                                              variable: {
+                                                objRoot: $state,
+                                                variablePath: ["dialog", "open"]
+                                              },
+                                              operation: 0,
+                                              value: false
+                                            };
+                                            return (({
+                                              variable,
+                                              value,
+                                              startIndex,
+                                              deleteCount
+                                            }) => {
+                                              if (!variable) {
+                                                return;
+                                              }
+                                              const { objRoot, variablePath } =
+                                                variable;
+
+                                              $stateSet(
+                                                objRoot,
+                                                variablePath,
+                                                value
+                                              );
+                                              return value;
+                                            })?.apply(null, [actionArgs]);
+                                          })()
+                                        : undefined;
+                                      if (
+                                        $steps["updateDialogOpen"] != null &&
+                                        typeof $steps["updateDialogOpen"] ===
+                                          "object" &&
+                                        typeof $steps["updateDialogOpen"]
+                                          .then === "function"
+                                      ) {
+                                        $steps["updateDialogOpen"] =
+                                          await $steps["updateDialogOpen"];
+                                      }
+
+                                      $steps["updateDialogaddnewworkflowOpen"] =
+                                        true
+                                          ? (() => {
+                                              const actionArgs = {
+                                                variable: {
+                                                  objRoot: $state,
+                                                  variablePath: [
+                                                    "dialogaddnewworkflow",
+                                                    "open"
+                                                  ]
+                                                },
+                                                operation: 0,
+                                                value: false
+                                              };
+                                              return (({
+                                                variable,
+                                                value,
+                                                startIndex,
+                                                deleteCount
+                                              }) => {
+                                                if (!variable) {
+                                                  return;
+                                                }
+                                                const {
+                                                  objRoot,
+                                                  variablePath
+                                                } = variable;
+
+                                                $stateSet(
+                                                  objRoot,
+                                                  variablePath,
+                                                  value
+                                                );
+                                                return value;
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                      if (
+                                        $steps[
+                                          "updateDialogaddnewworkflowOpen"
+                                        ] != null &&
+                                        typeof $steps[
+                                          "updateDialogaddnewworkflowOpen"
+                                        ] === "object" &&
+                                        typeof $steps[
+                                          "updateDialogaddnewworkflowOpen"
+                                        ].then === "function"
+                                      ) {
+                                        $steps[
+                                          "updateDialogaddnewworkflowOpen"
+                                        ] = await $steps[
+                                          "updateDialogaddnewworkflowOpen"
+                                        ];
+                                      }
+                                    }}
+                                  />
+                                </Stack__>
+                              </div>
+                            </Stack__>
+                          </Stack__>
                         }
-                        className={classNames(
-                          "__wab_instance",
-                          sty.receiptDialog
-                        )}
+                        className={classNames("__wab_instance", sty.dialog)}
                         onOpenChange={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
-                            "receiptDialog",
+                            "dialog",
                             "open"
                           ]).apply(null, eventArgs);
 
@@ -2916,19 +3432,11 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                           }
                         }}
                         open={generateStateValueProp($state, [
-                          "receiptDialog",
+                          "dialog",
                           "open"
                         ])}
                         title={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__cHtCm
-                            )}
-                          >
-                            {"Dialog title"}
-                          </div>
+                          "\u062b\u0628\u062a \u062f\u0631\u062e\u0648\u0627\u0633\u062a \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc"
                         }
                         trigger={null}
                       />
@@ -3337,10 +3845,12 @@ const PlasmicDescendants = {
     "sample",
     "accordion",
     "sample2",
+    "popover",
     "save",
     "button",
-    "receiptDialog",
-    "receipt",
+    "dialog",
+    "yesSure",
+    "no",
     "listofnotifications",
     "\u0627\u0637\u0644\u0627\u0639\u0631\u0633\u0627\u0646\u06cc\u0647\u0627\u06cc\u0645\u0648\u062c\u0648\u062f",
     "userworkflow",
@@ -3373,10 +3883,12 @@ const PlasmicDescendants = {
     "sample",
     "accordion",
     "sample2",
+    "popover",
     "save",
     "button",
-    "receiptDialog",
-    "receipt"
+    "dialog",
+    "yesSure",
+    "no"
   ],
   dialogaddnewworkflow: [
     "dialogaddnewworkflow",
@@ -3399,10 +3911,12 @@ const PlasmicDescendants = {
     "sample",
     "accordion",
     "sample2",
+    "popover",
     "save",
     "button",
-    "receiptDialog",
-    "receipt"
+    "dialog",
+    "yesSure",
+    "no"
   ],
   addnewworkflowbutton: ["addnewworkflowbutton"],
   sendnotifications: [
@@ -3441,7 +3955,8 @@ const PlasmicDescendants = {
     "multilineTextInput",
     "sample",
     "accordion",
-    "sample2"
+    "sample2",
+    "popover"
   ],
   fragmentPopoverSendWhat: [
     "fragmentPopoverSendWhat",
@@ -3455,13 +3970,15 @@ const PlasmicDescendants = {
   refid: ["refid"],
   booktime: ["booktime"],
   multilineTextInput: ["multilineTextInput"],
-  sample: ["sample", "accordion", "sample2"],
-  accordion: ["accordion", "sample2"],
-  sample2: ["sample2"],
-  save: ["save", "button", "receiptDialog", "receipt"],
+  sample: ["sample", "accordion", "sample2", "popover"],
+  accordion: ["accordion", "sample2", "popover"],
+  sample2: ["sample2", "popover"],
+  popover: ["popover"],
+  save: ["save", "button", "dialog", "yesSure", "no"],
   button: ["button"],
-  receiptDialog: ["receiptDialog", "receipt"],
-  receipt: ["receipt"],
+  dialog: ["dialog", "yesSure", "no"],
+  yesSure: ["yesSure"],
+  no: ["no"],
   listofnotifications: [
     "listofnotifications",
     "\u0627\u0637\u0644\u0627\u0639\u0631\u0633\u0627\u0646\u06cc\u0647\u0627\u06cc\u0645\u0648\u062c\u0648\u062f",
@@ -3504,10 +4021,12 @@ type NodeDefaultElementType = {
   sample: "div";
   accordion: typeof AntdAccordion;
   sample2: "div";
+  popover: typeof Popover;
   save: "div";
   button: typeof Button;
-  receiptDialog: typeof Dialog;
-  receipt: typeof Receipt;
+  dialog: typeof Dialog;
+  yesSure: typeof Button;
+  no: typeof Button;
   listofnotifications: "div";
   اطلاعرسانیهایموجود: "div";
   userworkflow: typeof Userworkflow;
@@ -3600,10 +4119,12 @@ export const PlasmicListOfNotofications = Object.assign(
     sample: makeNodeComponent("sample"),
     accordion: makeNodeComponent("accordion"),
     sample2: makeNodeComponent("sample2"),
+    popover: makeNodeComponent("popover"),
     save: makeNodeComponent("save"),
     button: makeNodeComponent("button"),
-    receiptDialog: makeNodeComponent("receiptDialog"),
-    receipt: makeNodeComponent("receipt"),
+    dialog: makeNodeComponent("dialog"),
+    yesSure: makeNodeComponent("yesSure"),
+    no: makeNodeComponent("no"),
     listofnotifications: makeNodeComponent("listofnotifications"),
     اطلاعرسانیهایموجود: makeNodeComponent(
       "\u0627\u0637\u0644\u0627\u0639\u0631\u0633\u0627\u0646\u06cc\u0647\u0627\u06cc\u0645\u0648\u062c\u0648\u062f"
