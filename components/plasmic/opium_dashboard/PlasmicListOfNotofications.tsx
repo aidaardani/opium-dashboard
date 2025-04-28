@@ -2378,6 +2378,100 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                               projectcss.all,
                                               sty.svg___4Y1Zr
                                             )}
+                                            onClick={async event => {
+                                              const $steps = {};
+
+                                              $steps["invokeGlobalAction"] =
+                                                true
+                                                  ? (() => {
+                                                      const actionArgs = {
+                                                        args: [
+                                                          (() => {
+                                                            try {
+                                                              return {
+                                                                group:
+                                                                  "notificationspanel",
+                                                                data: {
+                                                                  receivers:
+                                                                    $state.notoficationsRecivers.find(
+                                                                      event =>
+                                                                        event.Title ===
+                                                                        $state.selectedrecieverinnewworkflow
+                                                                    ).name,
+                                                                  events:
+                                                                    $state.notificationsevents.find(
+                                                                      event =>
+                                                                        event.Title ===
+                                                                        $state.selectedeventinworkflow
+                                                                    ).name,
+                                                                  channels:
+                                                                    "sms",
+                                                                  user_id:
+                                                                    $ctx.query
+                                                                      .user_id,
+                                                                  content:
+                                                                    $state
+                                                                      .multilineTextInput
+                                                                      .value,
+                                                                  objectofcontent:
+                                                                    JSON.stringify(
+                                                                      [
+                                                                        $state.selecteddrnameinnewworkflowscontent
+                                                                          ? "drname"
+                                                                          : "",
+                                                                        $state.selecteddrpatientinnewworkflowscontent
+                                                                          ? "patientname"
+                                                                          : "",
+                                                                        $state.selectedrefidinnewworkflowscontent
+                                                                          ? "refid"
+                                                                          : "",
+                                                                        $state.selectedbooktimeinnewworkflowscontent
+                                                                          ? "booktime"
+                                                                          : ""
+                                                                      ].filter(
+                                                                        Boolean
+                                                                      )
+                                                                    )
+                                                                },
+                                                                type: "click-info-notification"
+                                                              };
+                                                            } catch (e) {
+                                                              if (
+                                                                e instanceof
+                                                                  TypeError ||
+                                                                e?.plasmicType ===
+                                                                  "PlasmicUndefinedDataError"
+                                                              ) {
+                                                                return undefined;
+                                                              }
+                                                              throw e;
+                                                            }
+                                                          })()
+                                                        ]
+                                                      };
+                                                      return $globalActions[
+                                                        "Splunk.sendLog"
+                                                      ]?.apply(null, [
+                                                        ...actionArgs.args
+                                                      ]);
+                                                    })()
+                                                  : undefined;
+                                              if (
+                                                $steps["invokeGlobalAction"] !=
+                                                  null &&
+                                                typeof $steps[
+                                                  "invokeGlobalAction"
+                                                ] === "object" &&
+                                                typeof $steps[
+                                                  "invokeGlobalAction"
+                                                ].then === "function"
+                                              ) {
+                                                $steps["invokeGlobalAction"] =
+                                                  await $steps[
+                                                    "invokeGlobalAction"
+                                                  ];
+                                              }
+                                            }}
                                             role={"img"}
                                           />
                                         }
@@ -3438,7 +3532,24 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                           "open"
                         ])}
                         title={
-                          "\u062b\u0628\u062a \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc"
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__uR367
+                            )}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__rbtzj
+                              )}
+                            >
+                              {
+                                "\u062b\u0628\u062a \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc"
+                              }
+                            </div>
+                          </div>
                         }
                         trigger={null}
                       />
