@@ -1044,9 +1044,20 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
           <React.Fragment>
             {(() => {
               try {
-                return `${(+$state.input.value).toLocaleString()} ${
-                  $state.input.value ? "تومان" : ""
-                }`;
+                return (() => {
+                  {
+                    const persianToEnglish = str => {
+                      const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+                      return str.replace(/[۰-۹]/g, d =>
+                        persianDigits.indexOf(d)
+                      );
+                    };
+                    const englishValue = persianToEnglish($state.input.value);
+                    return `${(+englishValue).toLocaleString()} ${
+                      englishValue ? "تومان" : ""
+                    }`;
+                  }
+                })();
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -1092,16 +1103,59 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
             <React.Fragment>
               {(() => {
                 try {
-                  return (
-                    "سهم پذیرش۲۴‌: " +
-                    new Intl.NumberFormat("fa-IR").format(
-                      0.3 *
-                        ($state.select.value === "custom"
-                          ? $state.input.value
-                          : $state.select.value)
-                    ) +
-                    " تومان"
-                  );
+                  return (() => {
+                    {
+                      const persianToEnglish = number => {
+                        const persianNumbers = [
+                          "۰",
+                          "۱",
+                          "۲",
+                          "۳",
+                          "۴",
+                          "۵",
+                          "۶",
+                          "۷",
+                          "۸",
+                          "۹"
+                        ];
+
+                        const englishNumbers = [
+                          "0",
+                          "1",
+                          "2",
+                          "3",
+                          "4",
+                          "5",
+                          "6",
+                          "7",
+                          "8",
+                          "9"
+                        ];
+
+                        const numberString = number.toString();
+                        let result = "";
+                        for (let i = 0; i < numberString.length; i++) {
+                          const index = persianNumbers.indexOf(numberString[i]);
+                          result +=
+                            index !== -1
+                              ? englishNumbers[index]
+                              : numberString[i];
+                        }
+                        return parseInt(result);
+                      };
+                      const number = persianToEnglish($state.input.value);
+                      return (
+                        "سهم پذیرش۲۴‌: " +
+                        new Intl.NumberFormat("fa-IR").format(
+                          0.3 *
+                            ($state.select.value === "custom"
+                              ? number
+                              : $state.select.value)
+                        ) +
+                        " تومان"
+                      );
+                    }
+                  })();
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -1562,11 +1616,27 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                       (() => {
                         try {
                           return (() => {
+                            const persianToEnglish = persianNumber => {
+                              const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+                              return parseInt(
+                                persianNumber.replace(/[۰-۹]/g, d =>
+                                  persianDigits.indexOf(d)
+                                )
+                              );
+                            };
                             const centerId = $props.centerId;
                             const cost =
                               ($state.select.value === "custom"
                                 ? +$state.input.value
                                 : +$state.select.value) * 10;
+                            const depositAmount =
+                              persianToEnglish(
+                                $state.input2.value === ""
+                                  ? $state.select.value === "custom"
+                                    ? $state.input.value
+                                    : $state.select.value
+                                  : cost
+                              ) * 10;
                             if ($state.input2.value === "") {
                               return {
                                 active: 1,
@@ -1574,10 +1644,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                                 service_id: $props.serviceId,
                                 service_alias: $props.serviceAlias,
                                 service_type_id: $props.serviceTypeId,
-                                deposit_amount:
-                                  ($state.select.value === "custom"
-                                    ? $state.input.value
-                                    : $state.select.value) * 10
+                                deposit_amount: depositAmount
                               };
                             } else {
                               return {

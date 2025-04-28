@@ -144,12 +144,12 @@ function PlasmicEachService__RenderFunc(props: {
       Object.assign(
         {
           centerId: "5532",
-          userCenterId: "96292570-aa14-4158-8305-c6e532a485c5",
+          userCenterId: "330b9419-15c6-11eb-9a32-005056b09c11",
           freePrice: "2000 \u062a\u0648\u0645\u0627\u0646",
-          serviceId: "8dceb633-0172-11f0-a891-005056ad823b",
+          serviceId: "96fc784d-4271-48ec-8ce5-81e4432e9289",
           serviceAlias:
             "\u06af\u0641\u062a\u06af\u0648\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646",
-          serviceTypeId: "1"
+          serviceTypeId: "8"
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
