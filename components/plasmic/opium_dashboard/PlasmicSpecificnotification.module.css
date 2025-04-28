@@ -675,6 +675,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
+  background: #f1f5f9;
   min-width: 0;
   padding: 8px;
 }
@@ -740,8 +741,9 @@
   width: 100%;
   height: auto;
   max-width: 100%;
+  background: #ffffff;
   min-width: 0;
-  padding: 8px;
+  padding: 12px 8px 8px;
 }
 .freeBox__lBblx > :global(.__wab_flex-container) {
   flex-direction: column;
@@ -806,6 +808,7 @@
 }
 .text__ikPTv {
   color: #ededec;
+  padding-bottom: 0px;
 }
 .svg__cuSn2 {
   position: relative;

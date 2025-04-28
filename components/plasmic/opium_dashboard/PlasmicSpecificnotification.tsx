@@ -1672,7 +1672,7 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                       )}
                     >
                       {
-                        "\u0628\u0644\u0647\u060c\u200c \u0645\u0634\u06a9\u0644\u06cc \u0628\u0627 \u067e\u0631\u062f\u0627\u062e\u062a \u0647\u0632\u06cc\u0646\u0647 \u0646\u062f\u0627\u0631\u0645."
+                        "\u0628\u0644\u0647\u060c \u0627\u0637\u0645\u06cc\u0646\u0627\u0646 \u062f\u0627\u0631\u0645 \u0648 \u0647\u0632\u06cc\u0646\u0647 \u0631\u0627 \u0645\u06cc\u200c\u067e\u0631\u062f\u0627\u0632\u0645"
                       }
                     </div>
                   }
