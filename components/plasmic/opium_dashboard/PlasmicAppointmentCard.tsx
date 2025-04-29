@@ -657,9 +657,22 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             ref={ref => {
               $refs["apiGetPyamentInfo2"] = ref;
             }}
-            url={
-              "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-payment-info"
-            }
+            url={(() => {
+              try {
+                return $ctx.GrowthBook.features["hamdast::katibe"] &&
+                  $ctx.GrowthBook.features["hamdast::katibe"].hide === false
+                  ? "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-payment-info"
+                  : "";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
           />
 
           {(() => {
@@ -871,7 +884,11 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       : (() => {
                           try {
                             return (
-                              $state.apiGetPyamentInfo2.data[0].bank_id === 36
+                              $state.apiGetPyamentInfo2.data[0].bank_id ===
+                                36 &&
+                              $ctx.GrowthBook.features["hamdast::katibe"] &&
+                              $ctx.GrowthBook.features["hamdast::katibe"]
+                                .hide === false
                             );
                           } catch (e) {
                             if (
@@ -941,7 +958,10 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       : (() => {
                           try {
                             return (
-                              $state.apiGetPyamentInfo2.data[0].bank_id === 8
+                              $state.apiGetPyamentInfo2.data[0].bank_id === 8 &&
+                              $ctx.GrowthBook.features["hamdast::katibe"] &&
+                              $ctx.GrowthBook.features["hamdast::katibe"]
+                                .hide === false
                             );
                           } catch (e) {
                             if (
