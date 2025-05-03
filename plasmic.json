@@ -3287,6 +3287,11 @@
           "id": "ffHucjQ48uj4",
           "name": "ChevronRightIcon",
           "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__ChevronRight.tsx"
+        },
+        {
+          "id": "ziFCFCfg_B-t",
+          "name": "Icon46Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon46.tsx"
         }
       ],
       "images": [

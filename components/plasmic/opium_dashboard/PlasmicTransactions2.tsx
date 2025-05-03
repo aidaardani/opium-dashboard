@@ -78,6 +78,7 @@ import sty from "./PlasmicTransactions2.module.css"; // plasmic-import: YknOC-p8
 import Icon45Icon from "./icons/PlasmicIcon__Icon45"; // plasmic-import: YyulLjs7e3e8/icon
 import Icon16Icon from "./icons/PlasmicIcon__Icon16"; // plasmic-import: 8j1U_g9afFrU/icon
 import Icon7Icon from "./icons/PlasmicIcon__Icon7"; // plasmic-import: -MDfk7M6FyZh/icon
+import Icon46Icon from "./icons/PlasmicIcon__Icon46"; // plasmic-import: ziFCFCfg_B-t/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import Icon24Icon from "./icons/PlasmicIcon__Icon24"; // plasmic-import: WiLor5jWTYZW/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
@@ -421,6 +422,53 @@ function PlasmicTransactions2__RenderFunc(props: {
                             {
                               "\u0627\u06cc\u0646 \u0645\u0648\u0636\u0648\u0639 \u0628\u0627\u0639\u062b \u0627\u06cc\u062c\u0627\u062f \u0645\u0634\u06a9\u0644 \u062f\u0631 \u062b\u0628\u062a \u062a\u0631\u0627\u06a9\u0646\u0634\u200c\u0647\u0627\u06cc \u067e\u0631\u062f\u0627\u062e\u062a \u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u0634\u0645\u0627 \u0645\u06cc\u200c\u0634\u0648\u062f. \u0644\u0637\u0641\u0627\u064b \u06cc\u06a9\u06cc \u0627\u0632 \u0627\u06cc\u0646 \u0634\u0645\u0627\u0631\u0647\u200c\u0647\u0627 \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f \u0648 \u0628\u0647 \u0645\u0627 \u0627\u0637\u0644\u0627\u0639 \u062f\u0647\u06cc\u062f \u062a\u0627 \u062d\u0633\u0627\u0628 \u0634\u0645\u0627\u0631\u0647 \u062f\u06cc\u06af\u0631 \u062d\u0630\u0641 \u0634\u0648\u062f."
                             }
+                          </div>
+                        </Stack__>
+                        <Stack__
+                          as={"div"}
+                          hasGap={true}
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__b4Ccw
+                          )}
+                        >
+                          <Icon46Icon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__nhR0H
+                            )}
+                            role={"img"}
+                          />
+
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__alKiC
+                            )}
+                          >
+                            <React.Fragment>
+                              <React.Fragment>
+                                {
+                                  "\u0647\u0645\u0686\u0646\u06cc\u0646\u060c \u062f\u0631 \u062d\u0633\u0627\u0628 \u062f\u06cc\u06af\u0631 \u0634\u0645\u0627 "
+                                }
+                              </React.Fragment>
+                              <span
+                                className={
+                                  "plasmic_default__all plasmic_default__span"
+                                }
+                                style={{ fontWeight: 700 }}
+                              >
+                                {
+                                  "\u0645\u0648\u062c\u0648\u062f\u06cc \u062a\u0633\u0648\u06cc\u0647 \u0646\u0634\u062f\u0647\u200c\u0627\u06cc"
+                                }
+                              </span>
+                              <React.Fragment>
+                                {
+                                  " \u0648\u062c\u0648\u062f \u062f\u0627\u0631\u062f. \u0644\u0637\u0641\u0627\u064b \u0628\u0631\u0627\u06cc \u062a\u0633\u0648\u06cc\u0647 \u0622\u0646 \u0627\u0642\u062f\u0627\u0645 \u0641\u0631\u0645\u0627\u06cc\u06cc\u062f."
+                                }
+                              </React.Fragment>
+                            </React.Fragment>
                           </div>
                         </Stack__>
                       </div>
