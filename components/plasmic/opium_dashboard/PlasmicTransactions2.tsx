@@ -424,9 +424,7 @@ function PlasmicTransactions2__RenderFunc(props: {
                             }
                           </div>
                         </Stack__>
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
+                        <div
                           className={classNames(
                             projectcss.all,
                             sty.freeBox__b4Ccw
@@ -470,7 +468,7 @@ function PlasmicTransactions2__RenderFunc(props: {
                               </React.Fragment>
                             </React.Fragment>
                           </div>
-                        </Stack__>
+                        </div>
                       </div>
                       <Button
                         data-plasmic-name={"button"}

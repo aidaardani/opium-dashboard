@@ -251,9 +251,9 @@
 .svg__plq58 {
   object-fit: cover;
   max-width: 100%;
-  width: 25px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
-  height: 1em;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .svg__plq58 {
@@ -308,9 +308,9 @@
 .svg__qFRit {
   object-fit: cover;
   max-width: 100%;
-  width: 25px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
-  height: 1em;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .svg__qFRit {
@@ -329,35 +329,19 @@
   display: flex;
   flex-direction: row;
   position: relative;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
   height: auto;
   max-width: 100%;
   min-width: 0;
   padding: 0px 8px 8px;
 }
-.freeBox__b4Ccw > :global(.__wab_flex-container) {
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  min-width: 0;
-  margin-left: calc(0px - var(--token-_c276Gs_1FIE));
-  width: calc(100% + var(--token-_c276Gs_1FIE));
-}
-.freeBox__b4Ccw > :global(.__wab_flex-container) > *,
-.freeBox__b4Ccw > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.freeBox__b4Ccw > :global(.__wab_flex-container) > picture > img,
-.freeBox__b4Ccw
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-left: var(--token-_c276Gs_1FIE);
-}
 .svg__nhR0H {
   object-fit: cover;
   max-width: 100%;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
 }
 .text__alKiC {
