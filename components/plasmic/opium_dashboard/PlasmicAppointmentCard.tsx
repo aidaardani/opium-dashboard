@@ -659,7 +659,9 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             }}
             url={(() => {
               try {
-                return "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-payment-info";
+                return $props.centerType === 3 || $props.centerType === 1
+                  ? "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-payment-info"
+                  : "";
               } catch (e) {
                 if (
                   e instanceof TypeError ||
