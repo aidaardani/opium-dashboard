@@ -2913,6 +2913,33 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/introducing-a-new-payment-service-2"
+        },
+        {
+          "id": "AX3NRxuB0gnB",
+          "name": "Transactions",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicTransactions.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/transactions.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicTransactions.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/transactions"
+        },
+        {
+          "id": "YknOC-p8akkE",
+          "name": "Transactions2",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicTransactions2.tsx",
+          "importSpec": {
+            "modulePath": "Transactions2.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicTransactions2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -3250,6 +3277,16 @@
           "id": "mI_cKYKIhL-Y",
           "name": "InfiniteSpinner1SvgIcon",
           "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__InfiniteSpinner1Svg.tsx"
+        },
+        {
+          "id": "YyulLjs7e3e8",
+          "name": "Icon45Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon45.tsx"
+        },
+        {
+          "id": "ffHucjQ48uj4",
+          "name": "ChevronRightIcon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__ChevronRight.tsx"
         }
       ],
       "images": [

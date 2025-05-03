@@ -884,11 +884,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       : (() => {
                           try {
                             return (
-                              $state.apiGetPyamentInfo2.data[0].bank_id ===
-                                36 &&
-                              $ctx.GrowthBook.features["hamdast::katibe"] &&
-                              $ctx.GrowthBook.features["hamdast::katibe"]
-                                .hide === false
+                              $state.apiGetPyamentInfo2.data[0].bank_id === 36
                             );
                           } catch (e) {
                             if (
@@ -958,10 +954,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       : (() => {
                           try {
                             return (
-                              $state.apiGetPyamentInfo2.data[0].bank_id === 8 &&
-                              $ctx.GrowthBook.features["hamdast::katibe"] &&
-                              $ctx.GrowthBook.features["hamdast::katibe"]
-                                .hide === false
+                              $state.apiGetPyamentInfo2.data[0].bank_id === 8
                             );
                           } catch (e) {
                             if (

@@ -578,7 +578,7 @@ function PlasmicQuickAccessInAppNotifications__RenderFunc(props: {
                     displayMaxWidth={"100%"}
                     displayMinHeight={"0"}
                     displayMinWidth={"0"}
-                    displayWidth={"10px"}
+                    displayWidth={"12px"}
                     loading={"lazy"}
                     src={{
                       src: "/plasmic/opium_dashboard/images/image3.svg",

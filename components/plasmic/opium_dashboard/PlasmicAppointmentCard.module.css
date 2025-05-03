@@ -211,6 +211,7 @@
   max-width: 100%;
   width: 25px;
   color: var(--token-kpM4b4mG4f2d);
+  margin-top: 0px;
   height: 1em;
 }
 @media (min-width: 0px) and (max-width: 768px) {

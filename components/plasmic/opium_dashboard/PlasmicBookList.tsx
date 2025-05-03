@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import Transactions2 from "../../Transactions2"; // plasmic-import: YknOC-p8akkE/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import QuickAccessInAppNotifications from "../../QuickAccessInAppNotifications"; // plasmic-import: thJf7wC4giTS/component
 import QuickAccessWallet from "../../QuickAccessWallet"; // plasmic-import: GvtgrqQf9C66/component
@@ -109,6 +110,7 @@ export const PlasmicBookList__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicBookList__OverridesType = {
   bookList?: Flex__<"div">;
+  transactions2?: Flex__<typeof Transactions2>;
   quickAccess?: Flex__<"div">;
   quickAccessInAppNotifications?: Flex__<typeof QuickAccessInAppNotifications>;
   quickAccessWallet?: Flex__<typeof QuickAccessWallet>;
@@ -471,11 +473,17 @@ function PlasmicBookList__RenderFunc(props: {
             )}
             dir={"rtl"}
           >
+            <Transactions2
+              data-plasmic-name={"transactions2"}
+              data-plasmic-override={overrides.transactions2}
+              className={classNames("__wab_instance", sty.transactions2)}
+            />
+
             <SideEffect
               className={classNames("__wab_instance", sty.sideEffect__d8T7G)}
               deps={(() => {
                 try {
-                  return [$ctx.GrowthBook.isReady];
+                  return [$ctx.GrowthBook.isReady, $ctx.query.user_id];
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -524,96 +532,77 @@ function PlasmicBookList__RenderFunc(props: {
               }}
             />
 
-            {(() => {
-              try {
-                return (
-                  $state.apiAllCenters.data.data.some(
-                    center => center.id === "5532"
-                  ) || $state.apiPayment.data[0].value === "1"
-                );
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return false;
-                }
-                throw e;
-              }
-            })() ? (
-              <div
-                data-plasmic-name={"quickAccess"}
-                data-plasmic-override={overrides.quickAccess}
-                className={classNames(projectcss.all, sty.quickAccess)}
+            <div
+              data-plasmic-name={"quickAccess"}
+              data-plasmic-override={overrides.quickAccess}
+              className={classNames(projectcss.all, sty.quickAccess)}
+            >
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox___5X51W)}
               >
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox___5X51W)}
-                >
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__fnKuE)}
-                    onClick={async event => {
-                      const $steps = {};
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__fnKuE)}
+                  onClick={async event => {
+                    const $steps = {};
 
-                      $steps["sendLog"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              args: [
-                                (() => {
-                                  try {
-                                    return {
-                                      group: "quick access",
-                                      type: "in-app-notification",
-                                      center: $state.centers
-                                    };
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
+                    $steps["sendLog"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    group: "quick access",
+                                    type: "in-app-notification",
+                                    center: $state.centers
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
                                   }
-                                })()
-                              ]
-                            };
-                            return $globalActions["Splunk.sendLog"]?.apply(
-                              null,
-                              [...actionArgs.args]
-                            );
-                          })()
-                        : undefined;
-                      if (
-                        $steps["sendLog"] != null &&
-                        typeof $steps["sendLog"] === "object" &&
-                        typeof $steps["sendLog"].then === "function"
-                      ) {
-                        $steps["sendLog"] = await $steps["sendLog"];
-                      }
-                    }}
-                  >
-                    <QuickAccessInAppNotifications
-                      data-plasmic-name={"quickAccessInAppNotifications"}
-                      data-plasmic-override={
-                        overrides.quickAccessInAppNotifications
-                      }
-                      className={classNames(
-                        "__wab_instance",
-                        sty.quickAccessInAppNotifications
-                      )}
-                    />
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__neu9)}
-                    onClick={async event => {
-                      const $steps = {};
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendLog"] != null &&
+                      typeof $steps["sendLog"] === "object" &&
+                      typeof $steps["sendLog"].then === "function"
+                    ) {
+                      $steps["sendLog"] = await $steps["sendLog"];
+                    }
+                  }}
+                >
+                  <QuickAccessInAppNotifications
+                    data-plasmic-name={"quickAccessInAppNotifications"}
+                    data-plasmic-override={
+                      overrides.quickAccessInAppNotifications
+                    }
+                    className={classNames(
+                      "__wab_instance",
+                      sty.quickAccessInAppNotifications
+                    )}
+                  />
+                </div>
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__neu9)}
+                  onClick={async event => {
+                    const $steps = {};
 
-                      $steps[
-                        "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
-                      ] = true
+                    $steps["goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"] =
+                      true
                         ? (() => {
                             const actionArgs = {
                               destination:
@@ -633,75 +622,73 @@ function PlasmicBookList__RenderFunc(props: {
                             })?.apply(null, [actionArgs]);
                           })()
                         : undefined;
-                      if (
-                        $steps[
-                          "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
-                        ] != null &&
-                        typeof $steps[
-                          "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
-                        ] === "object" &&
-                        typeof $steps[
-                          "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
-                        ].then === "function"
-                      ) {
-                        $steps[
-                          "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
-                        ] = await $steps[
-                          "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
-                        ];
-                      }
+                    if (
+                      $steps[
+                        "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
+                      ] != null &&
+                      typeof $steps[
+                        "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
+                      ] === "object" &&
+                      typeof $steps[
+                        "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
+                      ].then === "function"
+                    ) {
+                      $steps[
+                        "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
+                      ] = await $steps[
+                        "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
+                      ];
+                    }
 
-                      $steps["sendLog"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              args: [
-                                (() => {
-                                  try {
-                                    return {
-                                      group: "quick access",
-                                      type: "wallet",
-                                      center: $state.centers
-                                    };
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
+                    $steps["sendLog"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    group: "quick access",
+                                    type: "wallet",
+                                    center: $state.centers
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
                                   }
-                                })()
-                              ]
-                            };
-                            return $globalActions["Splunk.sendLog"]?.apply(
-                              null,
-                              [...actionArgs.args]
-                            );
-                          })()
-                        : undefined;
-                      if (
-                        $steps["sendLog"] != null &&
-                        typeof $steps["sendLog"] === "object" &&
-                        typeof $steps["sendLog"].then === "function"
-                      ) {
-                        $steps["sendLog"] = await $steps["sendLog"];
-                      }
-                    }}
-                  >
-                    <QuickAccessWallet
-                      data-plasmic-name={"quickAccessWallet"}
-                      data-plasmic-override={overrides.quickAccessWallet}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.quickAccessWallet
-                      )}
-                    />
-                  </div>
-                </Stack__>
-              </div>
-            ) : null}
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendLog"] != null &&
+                      typeof $steps["sendLog"] === "object" &&
+                      typeof $steps["sendLog"].then === "function"
+                    ) {
+                      $steps["sendLog"] = await $steps["sendLog"];
+                    }
+                  }}
+                >
+                  <QuickAccessWallet
+                    data-plasmic-name={"quickAccessWallet"}
+                    data-plasmic-override={overrides.quickAccessWallet}
+                    className={classNames(
+                      "__wab_instance",
+                      sty.quickAccessWallet
+                    )}
+                  />
+                </div>
+              </Stack__>
+            </div>
             <div
               data-plasmic-name={"date"}
               data-plasmic-override={overrides.date}
@@ -3514,20 +3501,21 @@ function PlasmicBookList__RenderFunc(props: {
                         customFunction: async () => {
                           return (() => {
                             function loadGTM() {
-                              var gtmScript = document.createElement("script");
+                              var gtmScript =
+                                globalThis.document.createElement("script");
                               gtmScript.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-P5RPLDP');`;
-                              document.head.appendChild(gtmScript);
+                              globalThis.document.head.appendChild(gtmScript);
                               var gtmNoScript =
-                                document.createElement("noscript");
+                                globalThis.document.createElement("noscript");
                               gtmNoScript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"
     height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
-                              document.body.insertBefore(
+                              globalThis.document.body.insertBefore(
                                 gtmNoScript,
-                                document.body.firstChild
+                                globalThis.document.body.firstChild
                               );
                             }
                             return loadGTM();
@@ -3554,7 +3542,7 @@ function PlasmicBookList__RenderFunc(props: {
                           return (() => {
                             function loadMetrika() {
                               var metrikaScript =
-                                document.createElement("script");
+                                globalThis.document.createElement("script");
                               metrikaScript.innerHTML = `(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
     m[i].l=1*new Date();
     for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
@@ -3567,13 +3555,15 @@ function PlasmicBookList__RenderFunc(props: {
         accurateTrackBounce:true,
         webvisor:true
     });`;
-                              document.head.appendChild(metrikaScript);
+                              globalThis.document.head.appendChild(
+                                metrikaScript
+                              );
                               var metrikaNoScript =
-                                document.createElement("noscript");
+                                globalThis.document.createElement("noscript");
                               metrikaNoScript.innerHTML = `<div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div>`;
-                              document.body.insertBefore(
+                              globalThis.document.body.insertBefore(
                                 metrikaNoScript,
-                                document.body.firstChild
+                                globalThis.document.body.firstChild
                               );
                             }
                             return loadMetrika();
@@ -3912,6 +3902,7 @@ function PlasmicBookList__RenderFunc(props: {
 const PlasmicDescendants = {
   bookList: [
     "bookList",
+    "transactions2",
     "quickAccess",
     "quickAccessInAppNotifications",
     "quickAccessWallet",
@@ -3937,6 +3928,7 @@ const PlasmicDescendants = {
     "apiPayment",
     "apiHoliday"
   ],
+  transactions2: ["transactions2"],
   quickAccess: [
     "quickAccess",
     "quickAccessInAppNotifications",
@@ -4015,6 +4007,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   bookList: "div";
+  transactions2: typeof Transactions2;
   quickAccess: "div";
   quickAccessInAppNotifications: typeof QuickAccessInAppNotifications;
   quickAccessWallet: typeof QuickAccessWallet;
@@ -4101,6 +4094,7 @@ export const PlasmicBookList = Object.assign(
   makeNodeComponent("bookList"),
   {
     // Helper components rendering sub-elements
+    transactions2: makeNodeComponent("transactions2"),
     quickAccess: makeNodeComponent("quickAccess"),
     quickAccessInAppNotifications: makeNodeComponent(
       "quickAccessInAppNotifications"
