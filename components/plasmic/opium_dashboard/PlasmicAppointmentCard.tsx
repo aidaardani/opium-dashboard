@@ -659,10 +659,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             }}
             url={(() => {
               try {
-                return $ctx.GrowthBook.features["hamdast::katibe"] &&
-                  $ctx.GrowthBook.features["hamdast::katibe"].hide === false
-                  ? "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-payment-info"
-                  : "";
+                return "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-payment-info";
               } catch (e) {
                 if (
                   e instanceof TypeError ||
