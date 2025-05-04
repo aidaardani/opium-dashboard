@@ -298,17 +298,31 @@ function PlasmicTransactions2__RenderFunc(props: {
                     )}
                     id={1}
                     label2={
-                      <div
+                      <Stack__
+                        as={"div"}
+                        hasGap={true}
                         className={classNames(
                           projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__lLNpJ
+                          sty.freeBox__ayAgO
                         )}
                       >
-                        {
-                          "\u0627\u0637\u0644\u0627\u0639\u06cc\u0647 \u062f\u0631\u0628\u0627\u0631\u0647 \u062d\u0633\u0627\u0628\u200c\u0647\u0627\u06cc \u06a9\u0627\u0631\u0628\u0631\u06cc"
-                        }
-                      </div>
+                        <Icon45Icon
+                          className={classNames(projectcss.all, sty.svg__hIotg)}
+                          role={"img"}
+                        />
+
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__oxxd
+                          )}
+                        >
+                          {
+                            "\u0628\u0631\u0627\u06cc \u0634\u0645\u0627 \u0686\u0646\u062f \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc \u0648\u062c\u0648\u062f \u062f\u0627\u0631\u062f!"
+                          }
+                        </div>
+                      </Stack__>
                     }
                     showArrow={true}
                   >
@@ -317,31 +331,6 @@ function PlasmicTransactions2__RenderFunc(props: {
                       hasGap={true}
                       className={classNames(projectcss.all, sty.freeBox__kl09A)}
                     >
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__awe2N
-                        )}
-                      >
-                        <Icon45Icon
-                          className={classNames(projectcss.all, sty.svg__fz8Wa)}
-                          role={"img"}
-                        />
-
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__ytIBo
-                          )}
-                        >
-                          {
-                            "\u0628\u0631\u0627\u06cc \u0634\u0645\u0627 \u0686\u0646\u062f \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc \u0648\u062c\u0648\u062f \u062f\u0627\u0631\u062f!"
-                          }
-                        </div>
-                      </Stack__>
                       <div
                         className={classNames(
                           projectcss.all,
@@ -446,26 +435,23 @@ function PlasmicTransactions2__RenderFunc(props: {
                             )}
                           >
                             <React.Fragment>
-                              <React.Fragment>
-                                {
-                                  "\u0647\u0645\u0686\u0646\u06cc\u0646\u060c \u062f\u0631 \u062d\u0633\u0627\u0628 \u062f\u06cc\u06af\u0631 \u0634\u0645\u0627 "
+                              {(() => {
+                                try {
+                                  return $state.apiGetDrAcoounts.data.status ===
+                                    "true"
+                                    ? `همچنین در حساب کاربری شما به شماره ${$state.apiGetDrAcoounts.data.cell} مبلغ ${$state.apiGetDrAcoounts.data.cost} ریال موجودی تسویه نشده وجود دارد، لطفا جهت تسویه اقدام کنید.`
+                                    : "";
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "";
+                                  }
+                                  throw e;
                                 }
-                              </React.Fragment>
-                              <span
-                                className={
-                                  "plasmic_default__all plasmic_default__span"
-                                }
-                                style={{ fontWeight: 700 }}
-                              >
-                                {
-                                  "\u0645\u0648\u062c\u0648\u062f\u06cc \u062a\u0633\u0648\u06cc\u0647 \u0646\u0634\u062f\u0647\u200c\u0627\u06cc"
-                                }
-                              </span>
-                              <React.Fragment>
-                                {
-                                  " \u0648\u062c\u0648\u062f \u062f\u0627\u0631\u062f. \u0644\u0637\u0641\u0627\u064b \u0628\u0631\u0627\u06cc \u062a\u0633\u0648\u06cc\u0647 \u0622\u0646 \u0627\u0642\u062f\u0627\u0645 \u0641\u0631\u0645\u0627\u06cc\u06cc\u062f."
-                                }
-                              </React.Fragment>
+                              })()}
                             </React.Fragment>
                           </div>
                         </div>
