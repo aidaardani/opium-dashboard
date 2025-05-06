@@ -94,7 +94,6 @@ export type PlasmicQuickAccessInAppNotifications__OverridesType = {
   popover?: Flex__<typeof Popover>;
   svg?: Flex__<"svg">;
   img?: Flex__<typeof PlasmicImg__>;
-  text?: Flex__<"div">;
   button?: Flex__<typeof Button>;
 };
 
@@ -422,12 +421,10 @@ function PlasmicQuickAccessInAppNotifications__RenderFunc(props: {
                           )}
                         >
                           <div
-                            data-plasmic-name={"text"}
-                            data-plasmic-override={overrides.text}
                             className={classNames(
                               projectcss.all,
                               projectcss.__wab_text,
-                              sty.text
+                              sty.text__lkYl8
                             )}
                           >
                             <React.Fragment>
@@ -568,45 +565,97 @@ function PlasmicQuickAccessInAppNotifications__RenderFunc(props: {
             }}
             trigger={
               <div className={classNames(projectcss.all, sty.freeBox__sKMne)}>
-                <Icon23Icon
-                  data-plasmic-name={"svg"}
-                  data-plasmic-override={overrides.svg}
-                  className={classNames(projectcss.all, sty.svg)}
-                  role={"img"}
-                />
-
                 {(() => {
                   try {
-                    return true;
+                    return $state.checkNotification.length > 0;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
                       e?.plasmicType === "PlasmicUndefinedDataError"
                     ) {
-                      return true;
+                      return false;
                     }
                     throw e;
                   }
                 })() ? (
-                  <PlasmicImg__
-                    data-plasmic-name={"img"}
-                    data-plasmic-override={overrides.img}
-                    alt={""}
-                    className={classNames(sty.img)}
-                    displayHeight={"auto"}
-                    displayMaxHeight={"none"}
-                    displayMaxWidth={"100%"}
-                    displayMinHeight={"0"}
-                    displayMinWidth={"0"}
-                    displayWidth={"12px"}
-                    loading={"lazy"}
-                    src={{
-                      src: "/plasmic/opium_dashboard/images/image3.svg",
-                      fullWidth: 169,
-                      fullHeight: 150,
-                      aspectRatio: 1.125
-                    }}
+                  <Icon23Icon
+                    data-plasmic-name={"svg"}
+                    data-plasmic-override={overrides.svg}
+                    className={classNames(projectcss.all, sty.svg)}
+                    role={"img"}
                   />
+                ) : null}
+                <PlasmicImg__
+                  data-plasmic-name={"img"}
+                  data-plasmic-override={overrides.img}
+                  alt={""}
+                  className={classNames(sty.img)}
+                  displayHeight={"auto"}
+                  displayMaxHeight={"none"}
+                  displayMaxWidth={"100%"}
+                  displayMinHeight={"0"}
+                  displayMinWidth={"0"}
+                  displayWidth={"12px"}
+                  loading={"lazy"}
+                  src={{
+                    src: "/plasmic/opium_dashboard/images/image3.svg",
+                    fullWidth: 169,
+                    fullHeight: 150,
+                    aspectRatio: 1.125
+                  }}
+                />
+
+                {(() => {
+                  try {
+                    return $state.checkNotification.length > 0;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return false;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__tmfwU)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__pe1Av
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return $state.checkNotification.length
+                              .toString()
+                              .replace(/0/g, "۰")
+                              .replace(/1/g, "۱")
+                              .replace(/2/g, "۲")
+                              .replace(/3/g, "۳")
+                              .replace(/4/g, "۴")
+                              .replace(/5/g, "۵")
+                              .replace(/6/g, "۶")
+                              .replace(/7/g, "۷")
+                              .replace(/8/g, "۸")
+                              .replace(/9/g, "۹");
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                  </div>
                 ) : null}
               </div>
             }
@@ -618,12 +667,11 @@ function PlasmicQuickAccessInAppNotifications__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "sideEffect", "popover", "svg", "img", "text", "button"],
+  root: ["root", "sideEffect", "popover", "svg", "img", "button"],
   sideEffect: ["sideEffect"],
-  popover: ["popover", "svg", "img", "text", "button"],
+  popover: ["popover", "svg", "img", "button"],
   svg: ["svg"],
   img: ["img"],
-  text: ["text"],
   button: ["button"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -635,7 +683,6 @@ type NodeDefaultElementType = {
   popover: typeof Popover;
   svg: "svg";
   img: typeof PlasmicImg__;
-  text: "div";
   button: typeof Button;
 };
 
@@ -707,7 +754,6 @@ export const PlasmicQuickAccessInAppNotifications = Object.assign(
     popover: makeNodeComponent("popover"),
     svg: makeNodeComponent("svg"),
     img: makeNodeComponent("img"),
-    text: makeNodeComponent("text"),
     button: makeNodeComponent("button"),
 
     // Metadata about props expected for PlasmicQuickAccessInAppNotifications
