@@ -173,6 +173,7 @@ function PlasmicBookList__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
+
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
@@ -532,77 +533,96 @@ function PlasmicBookList__RenderFunc(props: {
               }}
             />
 
-            <div
-              data-plasmic-name={"quickAccess"}
-              data-plasmic-override={overrides.quickAccess}
-              className={classNames(projectcss.all, sty.quickAccess)}
-            >
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox___5X51W)}
+            {(() => {
+              try {
+                return (
+                  $state.apiAllCenters.data.data.some(
+                    center => center.id === "5532"
+                  ) || $state.apiPayment.data[0].value === "1"
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })() ? (
+              <div
+                data-plasmic-name={"quickAccess"}
+                data-plasmic-override={overrides.quickAccess}
+                className={classNames(projectcss.all, sty.quickAccess)}
               >
-                <div
-                  className={classNames(projectcss.all, sty.freeBox__fnKuE)}
-                  onClick={async event => {
-                    const $steps = {};
-
-                    $steps["sendLog"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              (() => {
-                                try {
-                                  return {
-                                    group: "quick access",
-                                    type: "in-app-notification",
-                                    center: $state.centers
-                                  };
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Splunk.sendLog"]?.apply(null, [
-                            ...actionArgs.args
-                          ]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["sendLog"] != null &&
-                      typeof $steps["sendLog"] === "object" &&
-                      typeof $steps["sendLog"].then === "function"
-                    ) {
-                      $steps["sendLog"] = await $steps["sendLog"];
-                    }
-                  }}
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox___5X51W)}
                 >
-                  <QuickAccessInAppNotifications
-                    data-plasmic-name={"quickAccessInAppNotifications"}
-                    data-plasmic-override={
-                      overrides.quickAccessInAppNotifications
-                    }
-                    className={classNames(
-                      "__wab_instance",
-                      sty.quickAccessInAppNotifications
-                    )}
-                  />
-                </div>
-                <div
-                  className={classNames(projectcss.all, sty.freeBox__neu9)}
-                  onClick={async event => {
-                    const $steps = {};
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__fnKuE)}
+                    onClick={async event => {
+                      const $steps = {};
 
-                    $steps["goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"] =
-                      true
+                      $steps["sendLog"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return {
+                                      group: "quick access",
+                                      type: "in-app-notification",
+                                      center: $state.centers
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendLog"] != null &&
+                        typeof $steps["sendLog"] === "object" &&
+                        typeof $steps["sendLog"].then === "function"
+                      ) {
+                        $steps["sendLog"] = await $steps["sendLog"];
+                      }
+                    }}
+                  >
+                    <QuickAccessInAppNotifications
+                      data-plasmic-name={"quickAccessInAppNotifications"}
+                      data-plasmic-override={
+                        overrides.quickAccessInAppNotifications
+                      }
+                      className={classNames(
+                        "__wab_instance",
+                        sty.quickAccessInAppNotifications
+                      )}
+                    />
+                  </div>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__neu9)}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps[
+                        "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
+                      ] = true
                         ? (() => {
                             const actionArgs = {
                               destination:
@@ -622,73 +642,75 @@ function PlasmicBookList__RenderFunc(props: {
                             })?.apply(null, [actionArgs]);
                           })()
                         : undefined;
-                    if (
-                      $steps[
-                        "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
-                      ] != null &&
-                      typeof $steps[
-                        "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
-                      ] === "object" &&
-                      typeof $steps[
-                        "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
-                      ].then === "function"
-                    ) {
-                      $steps[
-                        "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
-                      ] = await $steps[
-                        "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
-                      ];
-                    }
+                      if (
+                        $steps[
+                          "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
+                        ] != null &&
+                        typeof $steps[
+                          "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
+                        ] === "object" &&
+                        typeof $steps[
+                          "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
+                        ].then === "function"
+                      ) {
+                        $steps[
+                          "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
+                        ] = await $steps[
+                          "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
+                        ];
+                      }
 
-                    $steps["sendLog"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              (() => {
-                                try {
-                                  return {
-                                    group: "quick access",
-                                    type: "wallet",
-                                    center: $state.centers
-                                  };
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
+                      $steps["sendLog"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return {
+                                      group: "quick access",
+                                      type: "wallet",
+                                      center: $state.centers
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
                                   }
-                                  throw e;
-                                }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Splunk.sendLog"]?.apply(null, [
-                            ...actionArgs.args
-                          ]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["sendLog"] != null &&
-                      typeof $steps["sendLog"] === "object" &&
-                      typeof $steps["sendLog"].then === "function"
-                    ) {
-                      $steps["sendLog"] = await $steps["sendLog"];
-                    }
-                  }}
-                >
-                  <QuickAccessWallet
-                    data-plasmic-name={"quickAccessWallet"}
-                    data-plasmic-override={overrides.quickAccessWallet}
-                    className={classNames(
-                      "__wab_instance",
-                      sty.quickAccessWallet
-                    )}
-                  />
-                </div>
-              </Stack__>
-            </div>
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendLog"] != null &&
+                        typeof $steps["sendLog"] === "object" &&
+                        typeof $steps["sendLog"].then === "function"
+                      ) {
+                        $steps["sendLog"] = await $steps["sendLog"];
+                      }
+                    }}
+                  >
+                    <QuickAccessWallet
+                      data-plasmic-name={"quickAccessWallet"}
+                      data-plasmic-override={overrides.quickAccessWallet}
+                      className={classNames(
+                        "__wab_instance",
+                        sty.quickAccessWallet
+                      )}
+                    />
+                  </div>
+                </Stack__>
+              </div>
+            ) : null}
             <div
               data-plasmic-name={"date"}
               data-plasmic-override={overrides.date}

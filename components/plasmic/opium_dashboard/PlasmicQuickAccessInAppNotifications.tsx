@@ -136,6 +136,7 @@ function PlasmicQuickAccessInAppNotifications__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
+
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
@@ -368,173 +369,192 @@ function PlasmicQuickAccessInAppNotifications__RenderFunc(props: {
             data-plasmic-override={overrides.popover}
             className={classNames("__wab_instance", sty.popover)}
             content={
-              <div className={classNames(projectcss.all, sty.freeBox__w2KpE)}>
-                {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                  (() => {
-                    try {
-                      return $state.checkNotification;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return [];
-                      }
-                      throw e;
-                    }
-                  })()
-                ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                  const currentItem = __plasmic_item_0;
-                  const currentIndex = __plasmic_idx_0;
+              (() => {
+                try {
                   return (
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.freeBox__vQiU)}
-                      key={currentIndex}
-                    >
+                    $state.checkNotification[0] !== undefined &&
+                    $state.checkNotification[0] !== null
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div className={classNames(projectcss.all, sty.freeBox__w2KpE)}>
+                  {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                    (() => {
+                      try {
+                        return $state.checkNotification;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()
+                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                    const currentItem = __plasmic_item_0;
+                    const currentIndex = __plasmic_idx_0;
+                    return (
                       <Stack__
                         as={"div"}
                         hasGap={true}
                         className={classNames(
                           projectcss.all,
-                          sty.freeBox__uBwji
+                          sty.freeBox__vQiU
                         )}
+                        key={currentIndex}
                       >
-                        <div
-                          data-plasmic-name={"text"}
-                          data-plasmic-override={overrides.text}
+                        <Stack__
+                          as={"div"}
+                          hasGap={true}
                           className={classNames(
                             projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text
+                            sty.freeBox__uBwji
                           )}
                         >
-                          <React.Fragment>
-                            {(() => {
-                              try {
-                                return currentItem.message;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "";
-                                }
-                                throw e;
-                              }
-                            })()}
-                          </React.Fragment>
-                        </div>
-                        <Button
-                          data-plasmic-name={"button"}
-                          data-plasmic-override={overrides.button}
-                          children2={
+                          <div
+                            data-plasmic-name={"text"}
+                            data-plasmic-override={overrides.text}
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text
+                            )}
+                          >
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return currentItem.trigger_content;
+                                  return currentItem.message;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
                                     e?.plasmicType ===
                                       "PlasmicUndefinedDataError"
                                   ) {
-                                    return "Button";
+                                    return "";
                                   }
                                   throw e;
                                 }
                               })()}
                             </React.Fragment>
-                          }
-                          className={classNames("__wab_instance", sty.button)}
-                          onClick={async event => {
-                            const $steps = {};
-
-                            $steps["goToPage"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    destination: (() => {
-                                      try {
-                                        return currentItem.link;
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                                  };
-                                  return (({ destination }) => {
+                          </div>
+                          <Button
+                            data-plasmic-name={"button"}
+                            data-plasmic-override={overrides.button}
+                            children2={
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return currentItem.trigger_content;
+                                  } catch (e) {
                                     if (
-                                      typeof destination === "string" &&
-                                      destination.startsWith("#")
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
                                     ) {
-                                      document
-                                        .getElementById(destination.substr(1))
-                                        .scrollIntoView({ behavior: "smooth" });
-                                    } else {
-                                      __nextRouter?.push(destination);
+                                      return "Button";
                                     }
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["goToPage"] != null &&
-                              typeof $steps["goToPage"] === "object" &&
-                              typeof $steps["goToPage"].then === "function"
-                            ) {
-                              $steps["goToPage"] = await $steps["goToPage"];
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
                             }
+                            className={classNames("__wab_instance", sty.button)}
+                            onClick={async event => {
+                              const $steps = {};
 
-                            $steps["sendLog"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      (() => {
-                                        try {
-                                          return {
-                                            group: "notification-in-app",
-                                            data: { user: $state.me.data },
-                                            button: currentItem.trigger_content,
-                                            type: "click-button"
-                                          };
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return undefined;
+                              $steps["sendLog"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      args: [
+                                        (() => {
+                                          try {
+                                            return {
+                                              group: "notification-in-app",
+                                              data: {
+                                                user: $state.me.data,
+                                                button:
+                                                  currentItem.trigger_content,
+                                                message: currentItem.message,
+                                                link: currentItem.link
+                                              },
+                                              type: "click-button"
+                                            };
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return undefined;
+                                            }
+                                            throw e;
                                           }
-                                          throw e;
-                                        }
-                                      })()
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "Splunk.sendLog"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["sendLog"] != null &&
-                              typeof $steps["sendLog"] === "object" &&
-                              typeof $steps["sendLog"].then === "function"
-                            ) {
-                              $steps["sendLog"] = await $steps["sendLog"];
-                            }
-                          }}
-                        />
+                                        })()
+                                      ]
+                                    };
+                                    return $globalActions[
+                                      "Splunk.sendLog"
+                                    ]?.apply(null, [...actionArgs.args]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["sendLog"] != null &&
+                                typeof $steps["sendLog"] === "object" &&
+                                typeof $steps["sendLog"].then === "function"
+                              ) {
+                                $steps["sendLog"] = await $steps["sendLog"];
+                              }
+
+                              $steps["goToPage"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      args: [
+                                        (() => {
+                                          try {
+                                            return currentItem.link;
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return undefined;
+                                            }
+                                            throw e;
+                                          }
+                                        })()
+                                      ]
+                                    };
+                                    return $globalActions[
+                                      "Hamdast.openLink"
+                                    ]?.apply(null, [...actionArgs.args]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["goToPage"] != null &&
+                                typeof $steps["goToPage"] === "object" &&
+                                typeof $steps["goToPage"].then === "function"
+                              ) {
+                                $steps["goToPage"] = await $steps["goToPage"];
+                              }
+                            }}
+                          />
+                        </Stack__>
                       </Stack__>
-                    </Stack__>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              ) : null
             }
             onOpenChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["popover", "open"]).apply(
