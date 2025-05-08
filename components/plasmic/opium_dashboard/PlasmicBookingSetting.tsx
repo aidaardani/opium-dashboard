@@ -96,8 +96,8 @@ export const PlasmicBookingSetting__ArgProps = new Array<ArgPropType>();
 export type PlasmicBookingSetting__OverridesType = {
   root?: Flex__<"div">;
   growthbook?: Flex__<typeof SideEffect>;
-  sideEffect?: Flex__<typeof SideEffect>;
   centers?: Flex__<typeof ApiRequest>;
+  sideEffect?: Flex__<typeof SideEffect>;
   h4?: Flex__<"h4">;
   rangOfBooking?: Flex__<"div">;
   accordion?: Flex__<typeof AntdAccordion>;
@@ -465,6 +465,59 @@ function PlasmicBookingSetting__RenderFunc(props: {
               }}
             />
 
+            <ApiRequest
+              data-plasmic-name={"centers"}
+              data-plasmic-override={overrides.centers}
+              className={classNames("__wab_instance", sty.centers)}
+              errorDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__agfLp
+                  )}
+                >
+                  {"Error fetching data"}
+                </div>
+              }
+              loadingDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__bXek
+                  )}
+                >
+                  {"Loading..."}
+                </div>
+              }
+              method={"GET"}
+              onError={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["centers", "error"]).apply(
+                  null,
+                  eventArgs
+                );
+              }}
+              onLoading={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["centers", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+              }}
+              onSuccess={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["centers", "data"]).apply(
+                  null,
+                  eventArgs
+                );
+              }}
+              ref={ref => {
+                $refs["centers"] = ref;
+              }}
+              url={
+                "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/allcenters"
+              }
+            />
+
             <SideEffect
               data-plasmic-name={"sideEffect"}
               data-plasmic-override={overrides.sideEffect}
@@ -483,7 +536,13 @@ function PlasmicBookingSetting__RenderFunc(props: {
                             try {
                               return {
                                 key: "booking:booking_date_range",
-                                userid: $ctx.query.user_id
+                                userid: $ctx.query.user_id,
+                                centerid: $state.centers.data.data.find(
+                                  center =>
+                                    center.id !== "5532" &&
+                                    center.type_id === 1 &&
+                                    center.is_active_booking
+                                ).id
                               };
                             } catch (e) {
                               if (
@@ -737,59 +796,6 @@ function PlasmicBookingSetting__RenderFunc(props: {
                   $steps["sendEventLoad"] = await $steps["sendEventLoad"];
                 }
               }}
-            />
-
-            <ApiRequest
-              data-plasmic-name={"centers"}
-              data-plasmic-override={overrides.centers}
-              className={classNames("__wab_instance", sty.centers)}
-              errorDisplay={
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__agfLp
-                  )}
-                >
-                  {"Error fetching data"}
-                </div>
-              }
-              loadingDisplay={
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__bXek
-                  )}
-                >
-                  {"Loading..."}
-                </div>
-              }
-              method={"GET"}
-              onError={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["centers", "error"]).apply(
-                  null,
-                  eventArgs
-                );
-              }}
-              onLoading={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["centers", "loading"]).apply(
-                  null,
-                  eventArgs
-                );
-              }}
-              onSuccess={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["centers", "data"]).apply(
-                  null,
-                  eventArgs
-                );
-              }}
-              ref={ref => {
-                $refs["centers"] = ref;
-              }}
-              url={
-                "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/allcenters"
-              }
             />
 
             <Stack__
@@ -2778,8 +2784,8 @@ const PlasmicDescendants = {
   root: [
     "root",
     "growthbook",
-    "sideEffect",
     "centers",
+    "sideEffect",
     "h4",
     "rangOfBooking",
     "accordion",
@@ -2796,8 +2802,8 @@ const PlasmicDescendants = {
     "apiGetmoshir"
   ],
   growthbook: ["growthbook"],
-  sideEffect: ["sideEffect"],
   centers: ["centers"],
+  sideEffect: ["sideEffect"],
   h4: ["h4"],
   rangOfBooking: ["rangOfBooking", "accordion", "from", "to"],
   accordion: ["accordion", "from", "to"],
@@ -2823,8 +2829,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   growthbook: typeof SideEffect;
-  sideEffect: typeof SideEffect;
   centers: typeof ApiRequest;
+  sideEffect: typeof SideEffect;
   h4: "h4";
   rangOfBooking: "div";
   accordion: typeof AntdAccordion;
@@ -2902,8 +2908,8 @@ export const PlasmicBookingSetting = Object.assign(
   {
     // Helper components rendering sub-elements
     growthbook: makeNodeComponent("growthbook"),
-    sideEffect: makeNodeComponent("sideEffect"),
     centers: makeNodeComponent("centers"),
+    sideEffect: makeNodeComponent("sideEffect"),
     h4: makeNodeComponent("h4"),
     rangOfBooking: makeNodeComponent("rangOfBooking"),
     accordion: makeNodeComponent("accordion"),
