@@ -1531,7 +1531,12 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                                     center =>
                                       center.type_id === 1 &&
                                       center.id !== "5532"
-                                  ).user_center_id
+                                  ).user_center_id,
+                                card_num: $state.input2.value,
+                                center_id: $state.centersApi.data.data.find(
+                                  center =>
+                                    center.type_id === 1 && center.id !== "5532"
+                                ).id
                               };
                             } catch (e) {
                               if (
