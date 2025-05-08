@@ -525,7 +525,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
             (async data => {
               const $steps = {};
 
-              $steps["updateBiography"] = true
+              $steps["updateBiography"] = false
                 ? (() => {
                     const actionArgs = {
                       variable: {
@@ -869,6 +869,45 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   "providerApi",
                   "data"
                 ]).apply(null, eventArgs);
+
+                (async data => {
+                  const $steps = {};
+
+                  $steps["updateBiography"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["biography"]
+                          },
+                          operation: 0,
+                          value:
+                            $state.providerApi?.data?.providers?.[0]?.biography
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateBiography"] != null &&
+                    typeof $steps["updateBiography"] === "object" &&
+                    typeof $steps["updateBiography"].then === "function"
+                  ) {
+                    $steps["updateBiography"] = await $steps["updateBiography"];
+                  }
+                }).apply(null, eventArgs);
               }}
               ref={ref => {
                 $refs["providerApi"] = ref;
