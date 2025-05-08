@@ -616,7 +616,13 @@ function PlasmicBookingSetting__RenderFunc(props: {
                             try {
                               return {
                                 key: "booking:delay_to_delete_book_refund",
-                                userid: $ctx.query.user_id
+                                userid: $ctx.query.user_id,
+                                centerid: $state.centers.data.data.find(
+                                  center =>
+                                    center.id !== "5532" &&
+                                    center.type_id === 1 &&
+                                    center.is_active_booking
+                                ).id
                               };
                             } catch (e) {
                               if (
@@ -692,7 +698,13 @@ function PlasmicBookingSetting__RenderFunc(props: {
                             try {
                               return {
                                 key: "booking:activate_online_payment",
-                                userid: $ctx.query.user_id
+                                userid: $ctx.query.user_id,
+                                centerid: $state.centers.data.data.find(
+                                  center =>
+                                    center.id !== "5532" &&
+                                    center.type_id === 1 &&
+                                    center.is_active_booking
+                                ).id
                               };
                             } catch (e) {
                               if (
@@ -769,6 +781,12 @@ function PlasmicBookingSetting__RenderFunc(props: {
                               return {
                                 group: "settings",
                                 userid: $ctx.query.user_id,
+                                centerid: $state.centers.data.data.find(
+                                  center =>
+                                    center.id !== "5532" &&
+                                    center.type_id === 1 &&
+                                    center.is_active_booking
+                                ).id,
                                 type: "load-page"
                               };
                             } catch (e) {
