@@ -64,6 +64,8 @@ import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
 
+import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -95,7 +97,6 @@ export const PlasmicIntroducingANewPaymentServiceOnlineVisit__ArgProps =
 export type PlasmicIntroducingANewPaymentServiceOnlineVisit__OverridesType = {
   root?: Flex__<"div">;
   apiGetCenter?: Flex__<typeof ApiRequest>;
-  svg?: Flex__<"svg">;
   title?: Flex__<"div">;
   description?: Flex__<"div">;
   newFeature?: Flex__<"div">;
@@ -104,6 +105,10 @@ export type PlasmicIntroducingANewPaymentServiceOnlineVisit__OverridesType = {
   button?: Flex__<"div">;
   dialog?: Flex__<typeof Dialog>;
   full?: Flex__<typeof Button>;
+  apiFinancials?: Flex__<typeof ApiRequest>;
+  button2?: Flex__<"div">;
+  getNow?: Flex__<typeof Button>;
+  getLater?: Flex__<typeof Button>;
   dialog3?: Flex__<typeof Dialog>;
   input?: Flex__<typeof Input>;
 };
@@ -194,6 +199,30 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "apiFinancials.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiFinancials"
+      },
+      {
+        path: "apiFinancials.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiFinancials"
+      },
+      {
+        path: "apiFinancials.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiFinancials"
       }
     ],
     [$props, $ctx, $refs]
@@ -203,6 +232,10 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
     $ctx,
     $queries: {},
     $refs
+  });
+
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantsfobTirRaixGf()
   });
 
   return (
@@ -274,9 +307,7 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                   </React.Fragment>
                 </div>
                 <Icon34Icon
-                  data-plasmic-name={"svg"}
-                  data-plasmic-override={overrides.svg}
-                  className={classNames(projectcss.all, sty.svg)}
+                  className={classNames(projectcss.all, sty.svg__s8W2X)}
                   role={"img"}
                 />
               </div>
@@ -425,7 +456,7 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                   </span>
                   <React.Fragment>
                     {
-                      "\n\u062f\u0631\u0622\u0645\u062f \u0634\u0645\u0627 \u0628\u062f\u0648\u0646 \u0646\u06cc\u0627\u0632 \u0628\u0647 \u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062f\u0633\u062a\u06cc\u060c \u062f\u0631 \u0645\u0648\u0639\u062f \u0645\u0642\u0631\u0631 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u0634\u0648\u062f.\n\n"
+                      "\n\u062f\u0631\u0622\u0645\u062f \u0634\u0645\u0627 \u0628\u062f\u0648\u0646 \u0646\u06cc\u0627\u0632 \u0628\u0647 \u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062f\u0633\u062a\u06cc\u060c \u0631\u0648\u0632\u0627\u0646\u0647 \u062f\u0631 \u0645\u0648\u0639\u062f \u0645\u0642\u0631\u0631 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u0634\u0648\u062f.\n\n"
                     }
                   </React.Fragment>
                   <span
@@ -450,24 +481,6 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
               className={classNames(projectcss.all, sty.notice)}
             >
               <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__bzCfP
-                )}
-              >
-                <React.Fragment>
-                  <span
-                    className={"plasmic_default__all plasmic_default__span"}
-                    style={{ fontWeight: 700 }}
-                  >
-                    {
-                      "\ud83d\udca1 \u062f\u0631 \u0635\u0648\u0631\u062a \u062a\u0645\u0627\u06cc\u0644\u060c \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u0647\u0645\u0686\u0646\u0627\u0646 \u0627\u0632 \u0628\u06cc\u0639\u0627\u0646\u0647 \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u06a9\u0631\u062f\u0647 \u0648 \u0641\u0642\u0637 \u0627\u0632 \u0627\u0645\u06a9\u0627\u0646\u0627\u062a \u062c\u062f\u06cc\u062f \u0628\u0647\u0631\u0647\u200c\u0645\u0646\u062f \u0634\u0648\u06cc\u062f."
-                    }
-                  </span>
-                </React.Fragment>
-              </div>
-              <div
                 data-plasmic-name={"buttons"}
                 data-plasmic-override={overrides.buttons}
                 className={classNames(projectcss.all, sty.buttons)}
@@ -483,51 +496,577 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                     data-plasmic-name={"dialog"}
                     data-plasmic-override={overrides.dialog}
                     body={
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox__f2NOu
-                        )}
-                      >
+                      <React.Fragment>
                         <div
                           className={classNames(
                             projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__rlnin
+                            sty.freeBox__f2NOu
                           )}
                         >
-                          {"\ud83c\udf1f"}
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__rlnin
+                            )}
+                          >
+                            {"\ud83c\udf1f"}
+                          </div>
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text___7NmMy
+                            )}
+                          >
+                            <React.Fragment>
+                              <span
+                                className={
+                                  "plasmic_default__all plasmic_default__span"
+                                }
+                                style={{ fontWeight: 700 }}
+                              >
+                                {
+                                  "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062b\u0628\u062a \u0634\u062f!"
+                                }
+                              </span>
+                            </React.Fragment>
+                          </div>
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__qqBr
+                            )}
+                          >
+                            {"\ud83c\udf1f"}
+                          </div>
                         </div>
-                        <div
+                        <ApiRequest
+                          data-plasmic-name={"apiFinancials"}
+                          data-plasmic-override={overrides.apiFinancials}
                           className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text___7NmMy
+                            "__wab_instance",
+                            sty.apiFinancials
                           )}
-                        >
-                          <React.Fragment>
-                            <span
-                              className={
-                                "plasmic_default__all plasmic_default__span"
-                              }
-                              style={{ fontWeight: 700 }}
+                          errorDisplay={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__hOjsX
+                              )}
                             >
-                              {
-                                "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062b\u0628\u062a \u0634\u062f!"
+                              {"Error fetching data"}
+                            </div>
+                          }
+                          loadingDisplay={
+                            <Icon34Icon
+                              className={classNames(
+                                projectcss.all,
+                                sty.svg__iB7C6
+                              )}
+                              role={"img"}
+                            />
+                          }
+                          method={"GET"}
+                          onError={async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "apiFinancials",
+                              "error"
+                            ]).apply(null, eventArgs);
+                          }}
+                          onLoading={async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "apiFinancials",
+                              "loading"
+                            ]).apply(null, eventArgs);
+                          }}
+                          onSuccess={async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "apiFinancials",
+                              "data"
+                            ]).apply(null, eventArgs);
+                          }}
+                          params={(() => {
+                            try {
+                              return {
+                                center_id: "5532"
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
                               }
-                            </span>
-                          </React.Fragment>
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            projectcss.__wab_text,
-                            sty.text__qqBr
-                          )}
+                              throw e;
+                            }
+                          })()}
+                          ref={ref => {
+                            $refs["apiFinancials"] = ref;
+                          }}
+                          url={
+                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-financials"
+                          }
                         >
-                          {"\ud83c\udf1f"}
-                        </div>
-                      </div>
+                          {(() => {
+                            try {
+                              return (
+                                $state.apiFinancials.data["Unpaid Amount"] > 0
+                              );
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return false;
+                              }
+                              throw e;
+                            }
+                          })() ? (
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__wnusd
+                              )}
+                            >
+                              {(() => {
+                                try {
+                                  return (
+                                    $state.apiFinancials.data["Unpaid Amount"] >
+                                    0
+                                  );
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return false;
+                                  }
+                                  throw e;
+                                }
+                              })() ? (
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__aPV4
+                                  )}
+                                >
+                                  <React.Fragment>
+                                    {(() => {
+                                      try {
+                                        return (
+                                          "مبلغ " +
+                                          $state.apiFinancials.data[
+                                            "Unpaid Amount"
+                                          ] /
+                                            10 +
+                                          " تومان در سرویس پرداخت فعلی شما باقی مانده است که تسویه نکرده اید."
+                                        );
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return "";
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                  </React.Fragment>
+                                </div>
+                              ) : null}
+                            </div>
+                          ) : null}
+                          {(() => {
+                            try {
+                              return (
+                                $state.apiFinancials.data["Unpaid Amount"] > 0
+                              );
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return false;
+                              }
+                              throw e;
+                            }
+                          })() ? (
+                            <Stack__
+                              as={"div"}
+                              data-plasmic-name={"button2"}
+                              data-plasmic-override={overrides.button2}
+                              hasGap={true}
+                              className={classNames(
+                                projectcss.all,
+                                sty.button2
+                              )}
+                            >
+                              <Button
+                                data-plasmic-name={"getNow"}
+                                data-plasmic-override={overrides.getNow}
+                                children2={
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.__wab_text,
+                                      sty.text__bvd98
+                                    )}
+                                  >
+                                    {
+                                      "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062a\u0633\u0648\u06cc\u0647 \u0645\u0628\u0627\u0644\u063a \u0628\u0627\u0642\u06cc \u0645\u0627\u0646\u062f\u0647 \u0631\u0627 \u062f\u0627\u0631\u0645"
+                                    }
+                                  </div>
+                                }
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.getNow
+                                )}
+                                onClick={async event => {
+                                  const $steps = {};
+
+                                  $steps["apiGetIncome"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          args: [
+                                            "POST",
+                                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-income",
+                                            undefined,
+                                            (() => {
+                                              try {
+                                                return {
+                                                  center_id: "5532",
+                                                  user_center_id:
+                                                    $state.apiGetCenter.data.data.find(
+                                                      center =>
+                                                        center.type_id === 3 &&
+                                                        center.id === "5532"
+                                                    ).user_center_id
+                                                };
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return undefined;
+                                                }
+                                                throw e;
+                                              }
+                                            })()
+                                          ]
+                                        };
+                                        return $globalActions[
+                                          "Fragment.apiRequest"
+                                        ]?.apply(null, [...actionArgs.args]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["apiGetIncome"] != null &&
+                                    typeof $steps["apiGetIncome"] ===
+                                      "object" &&
+                                    typeof $steps["apiGetIncome"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["apiGetIncome"] = await $steps[
+                                      "apiGetIncome"
+                                    ];
+                                  }
+
+                                  $steps["showToast"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          args: [
+                                            undefined,
+                                            "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062b\u0628\u062a \u0634\u062f!"
+                                          ]
+                                        };
+                                        return $globalActions[
+                                          "Fragment.showToast"
+                                        ]?.apply(null, [...actionArgs.args]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["showToast"] != null &&
+                                    typeof $steps["showToast"] === "object" &&
+                                    typeof $steps["showToast"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["showToast"] = await $steps[
+                                      "showToast"
+                                    ];
+                                  }
+
+                                  $steps["sendLog"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          args: [
+                                            (() => {
+                                              try {
+                                                return {
+                                                  event_group: "katibe",
+                                                  data: {
+                                                    center_id: "5532",
+                                                    user_info_id:
+                                                      $state.apiGetCenter.data.data.find(
+                                                        center =>
+                                                          center.type_id ===
+                                                            3 &&
+                                                          center.id === "5532"
+                                                      ).user_info_id,
+                                                    cost: "full",
+                                                    user_center_id:
+                                                      $state.apiGetCenter.data.data.find(
+                                                        center =>
+                                                          center.type_id ===
+                                                            3 &&
+                                                          center.id === "5532"
+                                                      ).user_center_id
+                                                  },
+                                                  event_type:
+                                                    "want-to-join-katibe-get-all-income"
+                                                };
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return undefined;
+                                                }
+                                                throw e;
+                                              }
+                                            })()
+                                          ]
+                                        };
+                                        return $globalActions[
+                                          "Splunk.sendLog"
+                                        ]?.apply(null, [...actionArgs.args]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["sendLog"] != null &&
+                                    typeof $steps["sendLog"] === "object" &&
+                                    typeof $steps["sendLog"].then === "function"
+                                  ) {
+                                    $steps["sendLog"] = await $steps["sendLog"];
+                                  }
+
+                                  $steps["openLink"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          args: [
+                                            "https://www.paziresh24.com/dashboard/apps/drapp/appointments/"
+                                          ]
+                                        };
+                                        return $globalActions[
+                                          "Hamdast.openLink"
+                                        ]?.apply(null, [...actionArgs.args]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["openLink"] != null &&
+                                    typeof $steps["openLink"] === "object" &&
+                                    typeof $steps["openLink"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["openLink"] = await $steps[
+                                      "openLink"
+                                    ];
+                                  }
+                                }}
+                              />
+
+                              <Button
+                                data-plasmic-name={"getLater"}
+                                data-plasmic-override={overrides.getLater}
+                                children2={
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      projectcss.__wab_text,
+                                      sty.text__bQZk3
+                                    )}
+                                  >
+                                    {
+                                      "\u0628\u0639\u062f\u0627 \u062a\u0633\u0648\u06cc\u0647 \u0645\u06cc\u06a9\u0646\u0645"
+                                    }
+                                  </div>
+                                }
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.getLater
+                                )}
+                                color={"softSand"}
+                                onClick={async event => {
+                                  const $steps = {};
+
+                                  $steps["sendLog"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          args: [
+                                            (() => {
+                                              try {
+                                                return {
+                                                  event_group: "katibe",
+                                                  data: {
+                                                    center_id: "5532",
+                                                    user_info_id:
+                                                      $state.apiGetCenter.data.data.find(
+                                                        center =>
+                                                          center.type_id ===
+                                                            3 &&
+                                                          center.id === "5532"
+                                                      ).user_info_id,
+                                                    cost: "full",
+                                                    user_center_id:
+                                                      $state.apiGetCenter.data.data.find(
+                                                        center =>
+                                                          center.type_id ===
+                                                            3 &&
+                                                          center.id === "5532"
+                                                      ).user_center_id
+                                                  },
+                                                  event_type:
+                                                    "want-to-join-katibe-later-get-all-income"
+                                                };
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return undefined;
+                                                }
+                                                throw e;
+                                              }
+                                            })()
+                                          ]
+                                        };
+                                        return $globalActions[
+                                          "Splunk.sendLog"
+                                        ]?.apply(null, [...actionArgs.args]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["sendLog"] != null &&
+                                    typeof $steps["sendLog"] === "object" &&
+                                    typeof $steps["sendLog"].then === "function"
+                                  ) {
+                                    $steps["sendLog"] = await $steps["sendLog"];
+                                  }
+
+                                  $steps["openLink"] = true
+                                    ? (() => {
+                                        const actionArgs = {
+                                          args: [
+                                            "https://www.paziresh24.com/dashboard/apps/drapp/appointments/"
+                                          ]
+                                        };
+                                        return $globalActions[
+                                          "Hamdast.openLink"
+                                        ]?.apply(null, [...actionArgs.args]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["openLink"] != null &&
+                                    typeof $steps["openLink"] === "object" &&
+                                    typeof $steps["openLink"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["openLink"] = await $steps[
+                                      "openLink"
+                                    ];
+                                  }
+                                }}
+                              />
+                            </Stack__>
+                          ) : null}
+                          {(() => {
+                            try {
+                              return (
+                                $state.apiFinancials.data["Unpaid Amount"] ==
+                                "0"
+                              );
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return false;
+                              }
+                              throw e;
+                            }
+                          })() ? (
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__etFxi
+                              )}
+                            >
+                              {(() => {
+                                try {
+                                  return (
+                                    $state.apiFinancials.data[
+                                      "Unpaid Amount"
+                                    ] == "0"
+                                  );
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return false;
+                                  }
+                                  throw e;
+                                }
+                              })() ? (
+                                <Button
+                                  children2={
+                                    "\u0628\u0627\u0632\u06af\u0634\u062a \u0628\u0647 \u0644\u06cc\u0633\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646"
+                                  }
+                                  className={classNames(
+                                    "__wab_instance",
+                                    sty.button__pUs9T
+                                  )}
+                                  onClick={async event => {
+                                    const $steps = {};
+
+                                    $steps["openLink"] = true
+                                      ? (() => {
+                                          const actionArgs = {
+                                            args: [
+                                              "https://www.paziresh24.com/dashboard/apps/drapp/appointments/"
+                                            ]
+                                          };
+                                          return $globalActions[
+                                            "Hamdast.openLink"
+                                          ]?.apply(null, [...actionArgs.args]);
+                                        })()
+                                      : undefined;
+                                    if (
+                                      $steps["openLink"] != null &&
+                                      typeof $steps["openLink"] === "object" &&
+                                      typeof $steps["openLink"].then ===
+                                        "function"
+                                    ) {
+                                      $steps["openLink"] = await $steps[
+                                        "openLink"
+                                      ];
+                                    }
+                                  }}
+                                />
+                              ) : null}
+                            </div>
+                          ) : null}
+                        </ApiRequest>
+                      </React.Fragment>
                     }
                     className={classNames("__wab_instance", sty.dialog)}
                     onOpenChange={async (...eventArgs: any) => {
@@ -681,7 +1220,7 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                             $steps["showToast"] = await $steps["showToast"];
                           }
 
-                          $steps["goToPage"] = true
+                          $steps["goToPage"] = false
                             ? (() => {
                                 const actionArgs = {
                                   args: ["https://dr.paziresh24.com/"]
@@ -995,7 +1534,6 @@ const PlasmicDescendants = {
   root: [
     "root",
     "apiGetCenter",
-    "svg",
     "title",
     "description",
     "newFeature",
@@ -1004,19 +1542,59 @@ const PlasmicDescendants = {
     "button",
     "dialog",
     "full",
+    "apiFinancials",
+    "button2",
+    "getNow",
+    "getLater",
     "dialog3",
     "input"
   ],
-  apiGetCenter: ["apiGetCenter", "svg"],
-  svg: ["svg"],
+  apiGetCenter: ["apiGetCenter"],
   title: ["title"],
   description: ["description"],
   newFeature: ["newFeature"],
-  notice: ["notice", "buttons", "button", "dialog", "full", "dialog3", "input"],
-  buttons: ["buttons", "button", "dialog", "full", "dialog3", "input"],
-  button: ["button", "dialog", "full", "dialog3", "input"],
-  dialog: ["dialog", "full"],
+  notice: [
+    "notice",
+    "buttons",
+    "button",
+    "dialog",
+    "full",
+    "apiFinancials",
+    "button2",
+    "getNow",
+    "getLater",
+    "dialog3",
+    "input"
+  ],
+  buttons: [
+    "buttons",
+    "button",
+    "dialog",
+    "full",
+    "apiFinancials",
+    "button2",
+    "getNow",
+    "getLater",
+    "dialog3",
+    "input"
+  ],
+  button: [
+    "button",
+    "dialog",
+    "full",
+    "apiFinancials",
+    "button2",
+    "getNow",
+    "getLater",
+    "dialog3",
+    "input"
+  ],
+  dialog: ["dialog", "full", "apiFinancials", "button2", "getNow", "getLater"],
   full: ["full"],
+  apiFinancials: ["apiFinancials", "button2", "getNow", "getLater"],
+  button2: ["button2", "getNow", "getLater"],
+  getNow: ["getNow"],
+  getLater: ["getLater"],
   dialog3: ["dialog3", "input"],
   input: ["input"]
 } as const;
@@ -1026,7 +1604,6 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   apiGetCenter: typeof ApiRequest;
-  svg: "svg";
   title: "div";
   description: "div";
   newFeature: "div";
@@ -1035,6 +1612,10 @@ type NodeDefaultElementType = {
   button: "div";
   dialog: typeof Dialog;
   full: typeof Button;
+  apiFinancials: typeof ApiRequest;
+  button2: "div";
+  getNow: typeof Button;
+  getLater: typeof Button;
   dialog3: typeof Dialog;
   input: typeof Input;
 };
@@ -1108,7 +1689,6 @@ export const PlasmicIntroducingANewPaymentServiceOnlineVisit = Object.assign(
   {
     // Helper components rendering sub-elements
     apiGetCenter: makeNodeComponent("apiGetCenter"),
-    svg: makeNodeComponent("svg"),
     title: makeNodeComponent("title"),
     description: makeNodeComponent("description"),
     newFeature: makeNodeComponent("newFeature"),
@@ -1117,6 +1697,10 @@ export const PlasmicIntroducingANewPaymentServiceOnlineVisit = Object.assign(
     button: makeNodeComponent("button"),
     dialog: makeNodeComponent("dialog"),
     full: makeNodeComponent("full"),
+    apiFinancials: makeNodeComponent("apiFinancials"),
+    button2: makeNodeComponent("button2"),
+    getNow: makeNodeComponent("getNow"),
+    getLater: makeNodeComponent("getLater"),
     dialog3: makeNodeComponent("dialog3"),
     input: makeNodeComponent("input"),
 
