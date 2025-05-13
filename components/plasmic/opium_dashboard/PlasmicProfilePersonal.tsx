@@ -653,19 +653,6 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                       "noNationalCode"
                     )
                   })}
-                  disabled={(() => {
-                    try {
-                      return $state.nationalCode.value !== "";
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
-                    }
-                  })()}
                   name={"nationalCode"}
                   onChange={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
@@ -774,6 +761,19 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                       )
                     }
                   )}
+                  nationalCode={(() => {
+                    try {
+                      return $state.profile.data.data.national_code;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
                   phoneNumber={(() => {
                     try {
                       return $state.auth.data.data.username;
@@ -1198,7 +1198,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   ];
                 }
 
-                $steps["invokeGlobalAction"] = true
+                $steps["apiProviderUserId"] = true
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -1243,16 +1243,64 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                     })()
                   : undefined;
                 if (
-                  $steps["invokeGlobalAction"] != null &&
-                  typeof $steps["invokeGlobalAction"] === "object" &&
-                  typeof $steps["invokeGlobalAction"].then === "function"
+                  $steps["apiProviderUserId"] != null &&
+                  typeof $steps["apiProviderUserId"] === "object" &&
+                  typeof $steps["apiProviderUserId"].then === "function"
                 ) {
-                  $steps["invokeGlobalAction"] = await $steps[
-                    "invokeGlobalAction"
+                  $steps["apiProviderUserId"] = await $steps[
+                    "apiProviderUserId"
                   ];
                 }
 
-                $steps["invokeGlobalAction2"] = true
+                $steps["apix"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "POST",
+                          "https://apigw.paziresh24.com/v1/gozargah/doctor-verify",
+                          undefined,
+                          (() => {
+                            try {
+                              return {
+                                nationalcode: $state.nationalCode.value.replace(
+                                  /[۰-۹]/g,
+                                  function (d) {
+                                    return String.fromCharCode(
+                                      d.charCodeAt(0) - 1728
+                                    );
+                                  }
+                                ),
+                                client_id: "katibe",
+                                client_secret: "KHjk2638@hdk_mowscak9",
+                                mobile: "0" + $state.auth.data.data.username
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["apix"] != null &&
+                  typeof $steps["apix"] === "object" &&
+                  typeof $steps["apix"].then === "function"
+                ) {
+                  $steps["apix"] = await $steps["apix"];
+                }
+
+                $steps["apiUsers"] = false
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -1327,13 +1375,11 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                     })()
                   : undefined;
                 if (
-                  $steps["invokeGlobalAction2"] != null &&
-                  typeof $steps["invokeGlobalAction2"] === "object" &&
-                  typeof $steps["invokeGlobalAction2"].then === "function"
+                  $steps["apiUsers"] != null &&
+                  typeof $steps["apiUsers"] === "object" &&
+                  typeof $steps["apiUsers"].then === "function"
                 ) {
-                  $steps["invokeGlobalAction2"] = await $steps[
-                    "invokeGlobalAction2"
-                  ];
+                  $steps["apiUsers"] = await $steps["apiUsers"];
                 }
 
                 $steps["updateIsLoadingSave2"] = true
@@ -1369,6 +1415,145 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 ) {
                   $steps["updateIsLoadingSave2"] = await $steps[
                     "updateIsLoadingSave2"
+                  ];
+                }
+
+                $steps["showToast"] = !!$steps.apiProviderUserId.data.message
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return $steps.apix.data.success == "false"
+                                ? "error"
+                                : "success";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          (() => {
+                            try {
+                              return $steps.apix.data.message;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["showToast"] != null &&
+                  typeof $steps["showToast"] === "object" &&
+                  typeof $steps["showToast"].then === "function"
+                ) {
+                  $steps["showToast"] = await $steps["showToast"];
+                }
+
+                $steps["apichangenationalcode"] =
+                  $steps.apix.data.success === "true"
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "POST",
+                            "https://apigw.paziresh24.com/v1/gozargah/patch-doctor-info",
+                            undefined,
+                            (() => {
+                              try {
+                                return {
+                                  national_code: $state.nationalCode.value
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                if (
+                  $steps["apichangenationalcode"] != null &&
+                  typeof $steps["apichangenationalcode"] === "object" &&
+                  typeof $steps["apichangenationalcode"].then === "function"
+                ) {
+                  $steps["apichangenationalcode"] = await $steps[
+                    "apichangenationalcode"
+                  ];
+                }
+
+                $steps["updateNationalCodeValues"] = !!$steps
+                  .apichangenationalcode.data.message
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return $steps.apichangenationalcode.data
+                                .success == "false"
+                                ? "error"
+                                : "success";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          (() => {
+                            try {
+                              return $steps.apichangenationalcode.data.message;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateNationalCodeValues"] != null &&
+                  typeof $steps["updateNationalCodeValues"] === "object" &&
+                  typeof $steps["updateNationalCodeValues"].then === "function"
+                ) {
+                  $steps["updateNationalCodeValues"] = await $steps[
+                    "updateNationalCodeValues"
                   ];
                 }
 
@@ -1408,56 +1593,6 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   $steps["sendEvent"] = await $steps["sendEvent"];
                 }
 
-                $steps["invokeGlobalAction3"] = !!$steps.invokeGlobalAction.data
-                  .message
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          (() => {
-                            try {
-                              return $steps.invokeGlobalAction.status == 200
-                                ? "success"
-                                : "error";
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })(),
-                          (() => {
-                            try {
-                              return $steps.invokeGlobalAction.data.message;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Fragment.showToast"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["invokeGlobalAction3"] != null &&
-                  typeof $steps["invokeGlobalAction3"] === "object" &&
-                  typeof $steps["invokeGlobalAction3"].then === "function"
-                ) {
-                  $steps["invokeGlobalAction3"] = await $steps[
-                    "invokeGlobalAction3"
-                  ];
-                }
-
                 $steps["runActionOnProfile"] = true
                   ? (() => {
                       const actionArgs = {
@@ -1477,6 +1612,22 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   $steps["runActionOnProfile"] = await $steps[
                     "runActionOnProfile"
                   ];
+                }
+
+                $steps["runActionOnAuth"] = true
+                  ? (() => {
+                      const actionArgs = { tplRef: "auth", action: "refresh" };
+                      return (({ tplRef, action, args }) => {
+                        return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runActionOnAuth"] != null &&
+                  typeof $steps["runActionOnAuth"] === "object" &&
+                  typeof $steps["runActionOnAuth"].then === "function"
+                ) {
+                  $steps["runActionOnAuth"] = await $steps["runActionOnAuth"];
                 }
               }}
             />

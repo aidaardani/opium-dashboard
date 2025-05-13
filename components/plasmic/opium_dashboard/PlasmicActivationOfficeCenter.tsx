@@ -5061,8 +5061,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                       ];
                     }
 
-                    $steps["invokeGlobalAction2"] = $steps.centerMutation.data
-                      .message
+                    $steps["showToast"] = $steps.centerMutation.data.message
                       ? (() => {
                           const actionArgs = {
                             args: [
@@ -5107,13 +5106,11 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                         })()
                       : undefined;
                     if (
-                      $steps["invokeGlobalAction2"] != null &&
-                      typeof $steps["invokeGlobalAction2"] === "object" &&
-                      typeof $steps["invokeGlobalAction2"].then === "function"
+                      $steps["showToast"] != null &&
+                      typeof $steps["showToast"] === "object" &&
+                      typeof $steps["showToast"].then === "function"
                     ) {
-                      $steps["invokeGlobalAction2"] = await $steps[
-                        "invokeGlobalAction2"
-                      ];
+                      $steps["showToast"] = await $steps["showToast"];
                     }
 
                     $steps["sendEvent"] = true

@@ -85,10 +85,11 @@ export const PlasmicProfilePersonalPhoneNumber__VariantProps =
 
 export type PlasmicProfilePersonalPhoneNumber__ArgsType = {
   phoneNumber?: string;
+  nationalCode?: string;
 };
 type ArgPropType = keyof PlasmicProfilePersonalPhoneNumber__ArgsType;
 export const PlasmicProfilePersonalPhoneNumber__ArgProps =
-  new Array<ArgPropType>("phoneNumber");
+  new Array<ArgPropType>("phoneNumber", "nationalCode");
 
 export type PlasmicProfilePersonalPhoneNumber__OverridesType = {
   root?: Flex__<"div">;
@@ -102,6 +103,7 @@ export type PlasmicProfilePersonalPhoneNumber__OverridesType = {
 
 export interface DefaultProfilePersonalPhoneNumberProps {
   phoneNumber?: string;
+  nationalCode?: string;
   className?: string;
 }
 
@@ -348,6 +350,45 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
             ) {
               $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
             }
+
+            $steps["sendEvent"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            event_group: "Edit-Profile",
+                            data: {
+                              nationalCode: $props.nationalCode,
+                              cell: $props.phoneNumber
+                            },
+                            event_type: "change-username"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Splunk.sendLog"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["sendEvent"] != null &&
+              typeof $steps["sendEvent"] === "object" &&
+              typeof $steps["sendEvent"].then === "function"
+            ) {
+              $steps["sendEvent"] = await $steps["sendEvent"];
+            }
           }}
           outline={true}
           size={"compact"}
@@ -527,7 +568,7 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                   e instanceof TypeError ||
                   e?.plasmicType === "PlasmicUndefinedDataError"
                 ) {
-                  return true;
+                  return false;
                 }
                 throw e;
               }
@@ -708,7 +749,222 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                     $steps["updateIsLoading"] = await $steps["updateIsLoading"];
                   }
 
-                  $steps["mobileApi"] = true
+                  $steps["apix"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "POST",
+                            "https://apigw.paziresh24.com/v1/gozargah/doctor-verify",
+                            undefined,
+                            (() => {
+                              try {
+                                return {
+                                  nationalcode: $props.nationalCode.replace(
+                                    /[۰-۹]/g,
+                                    function (d) {
+                                      return String.fromCharCode(
+                                        d.charCodeAt(0) - 1728
+                                      );
+                                    }
+                                  ),
+                                  client_id: "katibe",
+                                  client_secret: "KHjk2638@hdk_mowscak9",
+                                  mobile: (() => {
+                                    let mobile = $state.input2.value.replace(
+                                      /[۰-۹]/g,
+                                      function (d) {
+                                        return String.fromCharCode(
+                                          d.charCodeAt(0) - 1728
+                                        );
+                                      }
+                                    );
+                                    if (mobile.charAt(0) !== "0") {
+                                      mobile = "0" + mobile;
+                                    }
+                                    return mobile;
+                                  })()
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["apix"] != null &&
+                    typeof $steps["apix"] === "object" &&
+                    typeof $steps["apix"].then === "function"
+                  ) {
+                    $steps["apix"] = await $steps["apix"];
+                  }
+
+                  $steps["apiotp"] =
+                    $steps.apix.data.success == "true"
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "POST",
+                              "https://apigw.paziresh24.com/v1/gozargah/change-number-first",
+                              undefined,
+                              (() => {
+                                try {
+                                  return {
+                                    phone: (() => {
+                                      let phone = $state.input2.value.replace(
+                                        /[۰-۹]/g,
+                                        function (d) {
+                                          return String.fromCharCode(
+                                            d.charCodeAt(0) - 1728
+                                          );
+                                        }
+                                      );
+                                      // اگر phone با 0 شروع نمی‌شود، 0 را به ابتدای آن اضافه می‌کنیم
+                                      if (phone.charAt(0) !== "0") {
+                                        phone = "0" + phone;
+                                      }
+                                      return phone;
+                                    })()
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                  if (
+                    $steps["apiotp"] != null &&
+                    typeof $steps["apiotp"] === "object" &&
+                    typeof $steps["apiotp"].then === "function"
+                  ) {
+                    $steps["apiotp"] = await $steps["apiotp"];
+                  }
+
+                  $steps["showApixToast"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return $steps.apix.data.success
+                                  ? "success"
+                                  : "error";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            (() => {
+                              try {
+                                return $steps.apix.data.message;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["showApixToast"] != null &&
+                    typeof $steps["showApixToast"] === "object" &&
+                    typeof $steps["showApixToast"].then === "function"
+                  ) {
+                    $steps["showApixToast"] = await $steps["showApixToast"];
+                  }
+
+                  $steps["showApiResultToast"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return $steps.apiotp.data.success
+                                  ? "success"
+                                  : "error";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            (() => {
+                              try {
+                                return $steps.apiotp.data.message;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            undefined,
+                            20000
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["showApiResultToast"] != null &&
+                    typeof $steps["showApiResultToast"] === "object" &&
+                    typeof $steps["showApiResultToast"].then === "function"
+                  ) {
+                    $steps["showApiResultToast"] = await $steps[
+                      "showApiResultToast"
+                    ];
+                  }
+
+                  $steps["mobileApi"] = false
                     ? (() => {
                         const actionArgs = {
                           args: [
@@ -782,60 +1038,8 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                     ];
                   }
 
-                  $steps["showApiResultToast"] = !!$steps.mobileApi.data.message
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            (() => {
-                              try {
-                                return $steps.mobileApi.data.status.includes(
-                                  "SUCCESS"
-                                )
-                                  ? "success"
-                                  : "error";
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })(),
-                            (() => {
-                              try {
-                                return $steps.mobileApi.data.message;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Fragment.showToast"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                  if (
-                    $steps["showApiResultToast"] != null &&
-                    typeof $steps["showApiResultToast"] === "object" &&
-                    typeof $steps["showApiResultToast"].then === "function"
-                  ) {
-                    $steps["showApiResultToast"] = await $steps[
-                      "showApiResultToast"
-                    ];
-                  }
-
                   $steps["updateIsSendOtp"] =
-                    $steps.mobileApi.status === 200
+                    $steps.apiotp.status === 200
                       ? (() => {
                           const actionArgs = {
                             variable: {
@@ -970,14 +1174,34 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                     ? (() => {
                         const actionArgs = {
                           args: [
-                            "PUT",
-                            "https://api.paziresh24.com/V1/doctor/profile/change-mobile",
+                            "POST",
+                            "https://apigw.paziresh24.com/v1/gozargah/change-number-secend",
                             undefined,
                             (() => {
                               try {
                                 return {
-                                  password: $state.otp,
-                                  username: $state.mobile
+                                  code: $state.otp.replace(
+                                    /[۰-۹]/g,
+                                    function (d) {
+                                      return String.fromCharCode(
+                                        d.charCodeAt(0) - 1728
+                                      );
+                                    }
+                                  ),
+                                  phone: (() => {
+                                    let phone = $state.mobile.replace(
+                                      /[۰-۹]/g,
+                                      function (d) {
+                                        return String.fromCharCode(
+                                          d.charCodeAt(0) - 1728
+                                        );
+                                      }
+                                    );
+                                    if (phone.charAt(0) !== "0") {
+                                      phone = "0" + phone;
+                                    }
+                                    return phone;
+                                  })()
                                 };
                               } catch (e) {
                                 if (
