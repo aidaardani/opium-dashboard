@@ -787,6 +787,30 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                       throw e;
                     }
                   })()}
+                  refresh={async () => {
+                    const $steps = {};
+
+                    $steps["runActionOnAuth"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            tplRef: "auth",
+                            action: "refresh"
+                          };
+                          return (({ tplRef, action, args }) => {
+                            return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runActionOnAuth"] != null &&
+                      typeof $steps["runActionOnAuth"] === "object" &&
+                      typeof $steps["runActionOnAuth"].then === "function"
+                    ) {
+                      $steps["runActionOnAuth"] = await $steps[
+                        "runActionOnAuth"
+                      ];
+                    }
+                  }}
                 />
               ) : null}
             </div>

@@ -86,10 +86,11 @@ export const PlasmicProfilePersonalPhoneNumber__VariantProps =
 export type PlasmicProfilePersonalPhoneNumber__ArgsType = {
   phoneNumber?: string;
   nationalCode?: string;
+  refresh?: () => void;
 };
 type ArgPropType = keyof PlasmicProfilePersonalPhoneNumber__ArgsType;
 export const PlasmicProfilePersonalPhoneNumber__ArgProps =
-  new Array<ArgPropType>("phoneNumber", "nationalCode");
+  new Array<ArgPropType>("phoneNumber", "nationalCode", "refresh");
 
 export type PlasmicProfilePersonalPhoneNumber__OverridesType = {
   root?: Flex__<"div">;
@@ -104,6 +105,7 @@ export type PlasmicProfilePersonalPhoneNumber__OverridesType = {
 export interface DefaultProfilePersonalPhoneNumberProps {
   phoneNumber?: string;
   nationalCode?: string;
+  refresh?: () => void;
   className?: string;
 }
 
@@ -1348,6 +1350,22 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                     typeof $steps["update"].then === "function"
                   ) {
                     $steps["update"] = await $steps["update"];
+                  }
+
+                  $steps["runRefresh"] = true
+                    ? (() => {
+                        const actionArgs = { eventRef: $props["refresh"] };
+                        return (({ eventRef, args }) => {
+                          return eventRef?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runRefresh"] != null &&
+                    typeof $steps["runRefresh"] === "object" &&
+                    typeof $steps["runRefresh"].then === "function"
+                  ) {
+                    $steps["runRefresh"] = await $steps["runRefresh"];
                   }
                 }}
               />
