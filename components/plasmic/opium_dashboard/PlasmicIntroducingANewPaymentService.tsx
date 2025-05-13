@@ -452,7 +452,20 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                   </span>
                   <React.Fragment>
                     {
-                      "\n\u0648\u0627\u0631\u06cc\u0632 \u062e\u0648\u062f\u06a9\u0627\u0631 \u0631\u0648\u0632\u0627\u0646\u0647 \u062f\u0631\u0627\u0645\u062f\n\n\n"
+                      "\n\u0648\u0627\u0631\u06cc\u0632 \u062e\u0648\u062f\u06a9\u0627\u0631 \u0631\u0648\u0632\u0627\u0646\u0647 \u062f\u0631\u0627\u0645\u062f\n\n"
+                    }
+                  </React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 700 }}
+                  >
+                    {
+                      "\u00a0\ud83d\udcf2 \u062a\u0633\u0648\u06cc\u0647\u200c\u062d\u0633\u0627\u0628 \u062f\u0633\u062a\u06cc\u00a0\u00a0"
+                    }
+                  </span>
+                  <React.Fragment>
+                    {
+                      "\n\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062a\u0633\u0648\u06cc\u0647 \u062d\u0633\u0627\u0628 \u062f\u0631 \u0647\u0631 \u0632\u0645\u0627\u0646\n\n"
                     }
                   </React.Fragment>
                   <span
@@ -465,7 +478,7 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                   </span>
                   <React.Fragment>
                     {
-                      "\n\u0645\u0634\u0627\u0647\u062f\u0647\u200c\u06cc \u062f\u0642\u06cc\u0642 \u0647\u0645\u0647 \u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u060c \u062a\u0631\u0627\u06a9\u0646\u0634\u200c\u0647\u0627 \u0648 \u0627\u0633\u062a\u0631\u062f\u0627\u062f\u0647\u0627\n\n\n"
+                      "\n\u0645\u0634\u0627\u0647\u062f\u0647\u200c\u06cc \u062f\u0642\u06cc\u0642 \u0647\u0645\u0647 \u067e\u0631\u062f\u0627\u062e\u062a\u200c\u0647\u0627\u060c \u062a\u0631\u0627\u06a9\u0646\u0634\u200c\u0647\u0627 \u0648 \u0627\u0633\u062a\u0631\u062f\u0627\u062f\u0647\u0627\n\n"
                     }
                   </React.Fragment>
                   <span
