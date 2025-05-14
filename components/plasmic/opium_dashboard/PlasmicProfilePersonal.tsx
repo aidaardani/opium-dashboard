@@ -1276,28 +1276,29 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   ];
                 }
 
-                $steps["apix"] = true
+                $steps["showToast2"] = !!$steps.apiProviderUserId.data.message
                   ? (() => {
                       const actionArgs = {
                         args: [
-                          "POST",
-                          "https://apigw.paziresh24.com/v1/gozargah/doctor-verify",
-                          undefined,
                           (() => {
                             try {
-                              return {
-                                nationalcode: $state.nationalCode.value.replace(
-                                  /[۰-۹]/g,
-                                  function (d) {
-                                    return String.fromCharCode(
-                                      d.charCodeAt(0) - 1728
-                                    );
-                                  }
-                                ),
-                                client_id: "katibe",
-                                client_secret: "KHjk2638@hdk_mowscak9",
-                                mobile: "0" + $state.auth.data.data.username
-                              };
+                              return $steps.apiProviderUserId.data.status ===
+                                "SUCCESS"
+                                ? "success"
+                                : "error";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          (() => {
+                            try {
+                              return $steps.apiProviderUserId.data.message;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -1310,12 +1311,62 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                           })()
                         ]
                       };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
                     })()
                   : undefined;
+                if (
+                  $steps["showToast2"] != null &&
+                  typeof $steps["showToast2"] === "object" &&
+                  typeof $steps["showToast2"].then === "function"
+                ) {
+                  $steps["showToast2"] = await $steps["showToast2"];
+                }
+
+                $steps["apix"] =
+                  $state.profile.data.data.national_code !==
+                  $state.nationalCode.value
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "POST",
+                            "https://apigw.paziresh24.com/v1/gozargah/doctor-verify",
+                            undefined,
+                            (() => {
+                              try {
+                                return {
+                                  nationalcode:
+                                    $state.nationalCode.value.replace(
+                                      /[۰-۹]/g,
+                                      function (d) {
+                                        return String.fromCharCode(
+                                          d.charCodeAt(0) - 1728
+                                        );
+                                      }
+                                    ),
+                                  client_id: "katibe",
+                                  client_secret: "KHjk2638@hdk_mowscak9",
+                                  mobile: "0" + $state.auth.data.data.username
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
                 if (
                   $steps["apix"] != null &&
                   typeof $steps["apix"] === "object" &&
@@ -1442,7 +1493,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   ];
                 }
 
-                $steps["showToast"] = !!$steps.apiProviderUserId.data.message
+                $steps["showToast"] = !!$steps.apix.data.message
                   ? (() => {
                       const actionArgs = {
                         args: [
