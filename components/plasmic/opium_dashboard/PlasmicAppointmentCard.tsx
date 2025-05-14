@@ -3871,7 +3871,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                 }
               }}
               placeholder={
-                "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u062e\u0648\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+                "\u06a9\u062f \u067e\u06cc\u06af\u06cc\u0631\u06cc \u0646\u0633\u062e\u0647\u060c \u062f\u0633\u062a\u0648\u0631\u0627\u0644\u0639\u0645\u0644\u200c\u0647\u0627\u06cc \u062f\u0627\u0631\u0648\u06cc\u06cc\u060c \u067e\u06cc\u0634\u0646\u0647\u0627\u062f\u0627\u062a \u062f\u0631\u0645\u0627\u0646 \u0648 ...."
               }
               value={
                 generateStateValueProp($state, ["descriptionInput", "value"]) ??
@@ -3914,7 +3914,10 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                             (() => {
                               try {
                                 return {
-                                  description: $state.descriptionInput.value
+                                  description:
+                                    $state.descriptionInput.value.trim()
+                                      ? $state.descriptionInput.value
+                                      : "ویزیت شما انجام شد. امیدوارم سلامت باشید"
                                 };
                               } catch (e) {
                                 if (
