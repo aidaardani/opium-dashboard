@@ -144,12 +144,7 @@ function PlasmicEachService__RenderFunc(props: {
       Object.assign(
         {
           centerId: "5532",
-          userCenterId: "330b9419-15c6-11eb-9a32-005056b09c11",
-          freePrice: "2000 \u062a\u0648\u0645\u0627\u0646",
-          serviceId: "96fc784d-4271-48ec-8ce5-81e4432e9289",
-          serviceAlias:
-            "\u06af\u0641\u062a\u06af\u0648\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646",
-          serviceTypeId: "8"
+          serviceId: "073bb0de-4225-11ed-9f4a-005056ad7555"
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
@@ -237,29 +232,43 @@ function PlasmicEachService__RenderFunc(props: {
             })()}
           </React.Fragment>
         </div>
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__pBVsF
-          )}
-        >
-          <React.Fragment>
-            {(() => {
-              try {
-                return $props.freePrice;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "";
+        {(() => {
+          try {
+            return $props.freePrice !== "" && $props.freePrice !== " ";
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return false;
+            }
+            throw e;
+          }
+        })() ? (
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__pBVsF
+            )}
+          >
+            <React.Fragment>
+              {(() => {
+                try {
+                  return $props.freePrice;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "";
+                  }
+                  throw e;
                 }
-                throw e;
-              }
-            })()}
-          </React.Fragment>
-        </div>
+              })()}
+            </React.Fragment>
+          </div>
+        ) : null}
         <Dialog
           data-plasmic-name={"dialog"}
           data-plasmic-override={overrides.dialog}

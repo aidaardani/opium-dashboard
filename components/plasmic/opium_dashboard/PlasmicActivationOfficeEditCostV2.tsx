@@ -1601,11 +1601,36 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               ];
             }
 
+            $steps["showToastForLowCost"] =
+              $state.input.value < 10000
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "error",
+                        "\u0645\u0628\u0644\u063a \u0646\u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u062f \u06a9\u0645\u062a\u0631 \u0627\u0632 10000 \u062a\u0648\u0645\u0627\u0646 \u0628\u0627\u0634\u062f."
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+            if (
+              $steps["showToastForLowCost"] != null &&
+              typeof $steps["showToastForLowCost"] === "object" &&
+              typeof $steps["showToastForLowCost"].then === "function"
+            ) {
+              $steps["showToastForLowCost"] = await $steps[
+                "showToastForLowCost"
+              ];
+            }
+
             $steps["editCost"] = (
               $state.select.value === "custom"
                 ? $state.input.value !== 0 &&
                   $state.input.value !== "0" &&
-                  $state.input.value.trim() !== ""
+                  $state.input.value.trim() !== "" &&
+                  $state.input.value > 10000
                 : true
             )
               ? (() => {
@@ -1685,43 +1710,11 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               $steps["editCost"] = await $steps["editCost"];
             }
 
-            $steps["updateIsLoadingSave2"] =
-              ($state.input2.value === "" ||
-                $state.input2.value.trim().length === 16) &&
-              $state.select.value !== undefined
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["isLoadingSave"]
-                      },
-                      operation: 0,
-                      value: false
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      $stateSet(objRoot, variablePath, value);
-                      return value;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-            if (
-              $steps["updateIsLoadingSave2"] != null &&
-              typeof $steps["updateIsLoadingSave2"] === "object" &&
-              typeof $steps["updateIsLoadingSave2"].then === "function"
-            ) {
-              $steps["updateIsLoadingSave2"] = await $steps[
-                "updateIsLoadingSave2"
-              ];
-            }
-
             $steps["showToast"] = (
               $state.select.value === "custom"
-                ? $state.input.value !== "0" && $state.input.value.trim() !== ""
+                ? $state.input.value !== "0" &&
+                  $state.input.value.trim() !== "" &&
+                  $state.input.value > 1000
                 : true
             )
               ? (() => {
@@ -1756,6 +1749,40 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               typeof $steps["showToast"].then === "function"
             ) {
               $steps["showToast"] = await $steps["showToast"];
+            }
+
+            $steps["updateIsLoadingSave2"] =
+              ($state.input2.value === "" ||
+                $state.input2.value.trim().length === 16) &&
+              $state.select.value !== undefined
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["isLoadingSave"]
+                      },
+                      operation: 0,
+                      value: false
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+            if (
+              $steps["updateIsLoadingSave2"] != null &&
+              typeof $steps["updateIsLoadingSave2"] === "object" &&
+              typeof $steps["updateIsLoadingSave2"].then === "function"
+            ) {
+              $steps["updateIsLoadingSave2"] = await $steps[
+                "updateIsLoadingSave2"
+              ];
             }
 
             $steps["runOnchange"] = true
