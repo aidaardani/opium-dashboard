@@ -382,7 +382,7 @@ function PlasmicService__RenderFunc(props: {
                   (async val => {
                     const $steps = {};
 
-                    $steps["runActionOnApiGetService"] = false
+                    $steps["runActionOnApiGetService"] = true
                       ? (() => {
                           const actionArgs = {
                             tplRef: "apiGetService",
@@ -510,7 +510,7 @@ function PlasmicService__RenderFunc(props: {
             )}
           >
             {
-              "\u0628\u0631\u0627\u06cc \u0645\u0631\u06a9\u0632 \u0627\u0646\u062a\u062e\u0627\u0628 \u0634\u0645\u0627 \u0647\u06cc\u0686 \u062e\u062f\u0645\u062a\u06cc \u06cc\u0627\u0641\u062a \u0646\u0634\u062f."
+              "\u0628\u0631\u0627\u06cc \u0645\u0631\u06a9\u0632 \u0627\u0646\u062a\u062e\u0627\u0628\u06cc \u0634\u0645\u0627 \u0647\u06cc\u0686 \u062e\u062f\u0645\u062a\u06cc \u06cc\u0627\u0641\u062a \u0646\u0634\u062f."
             }
           </div>
         </div>
