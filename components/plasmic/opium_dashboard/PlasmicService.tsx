@@ -95,8 +95,8 @@ export type PlasmicService__OverridesType = {
   root?: Flex__<"div">;
   apiGetService?: Flex__<typeof ApiRequest>;
   svg?: Flex__<"svg">;
-  text?: Flex__<"div">;
   eachService?: Flex__<typeof EachService>;
+  freeBox?: Flex__<"div">;
 };
 
 export interface DefaultServiceProps {
@@ -243,12 +243,10 @@ function PlasmicService__RenderFunc(props: {
         className={classNames("__wab_instance", sty.apiGetService)}
         errorDisplay={
           <div
-            data-plasmic-name={"text"}
-            data-plasmic-override={overrides.text}
             className={classNames(
               projectcss.all,
               projectcss.__wab_text,
-              sty.text
+              sty.text___1KDa
             )}
           >
             {"Error fetching data"}
@@ -306,181 +304,227 @@ function PlasmicService__RenderFunc(props: {
         }
       />
 
-      {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-        (() => {
-          try {
-            return $state.apiGetService.data;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return [];
-            }
-            throw e;
+      {(() => {
+        try {
+          return $state.apiGetService.data.message != "no-service";
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return false;
           }
-        })()
-      ).map((__plasmic_item_0, __plasmic_idx_0) => {
-        const currentItem = __plasmic_item_0;
-        const currentIndex = __plasmic_idx_0;
-        return (() => {
-          const child$Props = {
-            centerId: (() => {
+          throw e;
+        }
+      })()
+        ? (_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+            (() => {
               try {
-                return $props.centerId;
+                return $state.apiGetService.data;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
                   e?.plasmicType === "PlasmicUndefinedDataError"
                 ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })(),
-            className: classNames("__wab_instance", sty.eachService),
-            freePrice: (() => {
-              try {
-                return currentItem.free_price / 10 + " تومان";
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })(),
-            key: currentIndex,
-            onPriceChange: async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "eachService",
-                __plasmic_idx_0,
-                "price"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-
-              (async val => {
-                const $steps = {};
-
-                $steps["runActionOnApiGetService"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        tplRef: "apiGetService",
-                        action: "refresh"
-                      };
-                      return (({ tplRef, action, args }) => {
-                        return $refs?.[tplRef]?.[action]?.(...(args ?? []));
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["runActionOnApiGetService"] != null &&
-                  typeof $steps["runActionOnApiGetService"] === "object" &&
-                  typeof $steps["runActionOnApiGetService"].then === "function"
-                ) {
-                  $steps["runActionOnApiGetService"] = await $steps[
-                    "runActionOnApiGetService"
-                  ];
-                }
-              }).apply(null, eventArgs);
-            },
-            price: generateStateValueProp($state, [
-              "eachService",
-              __plasmic_idx_0,
-              "price"
-            ]),
-            serviceAlias: (() => {
-              try {
-                return currentItem.alias_title;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })(),
-            serviceId: (() => {
-              try {
-                return currentItem.service_id;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })(),
-            serviceTypeId: (() => {
-              try {
-                return currentItem.service_type_id;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })(),
-            userCenterId: (() => {
-              try {
-                return $props.userCenterId;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
+                  return [];
                 }
                 throw e;
               }
             })()
-          };
+          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+            const currentItem = __plasmic_item_0;
+            const currentIndex = __plasmic_idx_0;
+            return (() => {
+              const child$Props = {
+                centerId: (() => {
+                  try {
+                    return $props.centerId;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })(),
+                className: classNames("__wab_instance", sty.eachService),
+                freePrice: (() => {
+                  try {
+                    return currentItem.free_price / 10 + " تومان";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })(),
+                key: currentIndex,
+                onPriceChange: async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "eachService",
+                    __plasmic_idx_0,
+                    "price"
+                  ]).apply(null, eventArgs);
 
-          initializePlasmicStates(
-            $state,
-            [
-              {
-                name: "eachService[].price",
-                initFunc: ({ $props, $state, $queries }) => ""
-              }
-            ],
-            [__plasmic_idx_0]
-          );
-          return (
-            <EachService
-              data-plasmic-name={"eachService"}
-              data-plasmic-override={overrides.eachService}
-              {...child$Props}
-            />
-          );
-        })();
-      })}
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+
+                  (async val => {
+                    const $steps = {};
+
+                    $steps["runActionOnApiGetService"] = false
+                      ? (() => {
+                          const actionArgs = {
+                            tplRef: "apiGetService",
+                            action: "refresh"
+                          };
+                          return (({ tplRef, action, args }) => {
+                            return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runActionOnApiGetService"] != null &&
+                      typeof $steps["runActionOnApiGetService"] === "object" &&
+                      typeof $steps["runActionOnApiGetService"].then ===
+                        "function"
+                    ) {
+                      $steps["runActionOnApiGetService"] = await $steps[
+                        "runActionOnApiGetService"
+                      ];
+                    }
+                  }).apply(null, eventArgs);
+                },
+                price: generateStateValueProp($state, [
+                  "eachService",
+                  __plasmic_idx_0,
+                  "price"
+                ]),
+                serviceAlias: (() => {
+                  try {
+                    return currentItem.alias_title;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })(),
+                serviceId: (() => {
+                  try {
+                    return currentItem.service_id;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })(),
+                serviceTypeId: (() => {
+                  try {
+                    return currentItem.service_type_id;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })(),
+                userCenterId: (() => {
+                  try {
+                    return $props.userCenterId;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()
+              };
+
+              initializePlasmicStates(
+                $state,
+                [
+                  {
+                    name: "eachService[].price",
+                    initFunc: ({ $props, $state, $queries }) => ""
+                  }
+                ],
+                [__plasmic_idx_0]
+              );
+              return (
+                <EachService
+                  data-plasmic-name={"eachService"}
+                  data-plasmic-override={overrides.eachService}
+                  {...child$Props}
+                />
+              );
+            })();
+          })
+        : null}
+      {(() => {
+        try {
+          return $state.apiGetService.data.message === "no-service";
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return false;
+          }
+          throw e;
+        }
+      })() ? (
+        <div
+          data-plasmic-name={"freeBox"}
+          data-plasmic-override={overrides.freeBox}
+          className={classNames(projectcss.all, sty.freeBox)}
+        >
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__aqwdS
+            )}
+          >
+            {
+              "\u0628\u0631\u0627\u06cc \u0645\u0631\u06a9\u0632 \u0627\u0646\u062a\u062e\u0627\u0628 \u0634\u0645\u0627 \u0647\u06cc\u0686 \u062e\u062f\u0645\u062a\u06cc \u06cc\u0627\u0641\u062a \u0646\u0634\u062f."
+            }
+          </div>
+        </div>
+      ) : null}
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "apiGetService", "svg", "text", "eachService"],
-  apiGetService: ["apiGetService", "svg", "text"],
+  root: ["root", "apiGetService", "svg", "eachService", "freeBox"],
+  apiGetService: ["apiGetService", "svg"],
   svg: ["svg"],
-  text: ["text"],
-  eachService: ["eachService"]
+  eachService: ["eachService"],
+  freeBox: ["freeBox"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -489,8 +533,8 @@ type NodeDefaultElementType = {
   root: "div";
   apiGetService: typeof ApiRequest;
   svg: "svg";
-  text: "div";
   eachService: typeof EachService;
+  freeBox: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -555,8 +599,8 @@ export const PlasmicService = Object.assign(
     // Helper components rendering sub-elements
     apiGetService: makeNodeComponent("apiGetService"),
     svg: makeNodeComponent("svg"),
-    text: makeNodeComponent("text"),
     eachService: makeNodeComponent("eachService"),
+    freeBox: makeNodeComponent("freeBox"),
 
     // Metadata about props expected for PlasmicService
     internalVariantProps: PlasmicService__VariantProps,

@@ -17,7 +17,7 @@
   max-width: 100%;
   height: 1em;
 }
-.text {
+.text___1KDa {
   position: relative;
   width: 100%;
   height: auto;
@@ -27,4 +27,25 @@
 }
 .eachService:global(.__wab_instance) {
   position: relative;
+}
+.freeBox {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: var(--token-BU1JCAY6hntB);
+  min-width: 0;
+  padding: 8px;
+}
+.text__aqwdS {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: center;
+  min-width: 0;
 }
