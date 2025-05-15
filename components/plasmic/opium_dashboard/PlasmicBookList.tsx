@@ -1234,10 +1234,7 @@ function PlasmicBookList__RenderFunc(props: {
                     className={classNames("__wab_instance", sty.drCenters)}
                     hasAllOption={(() => {
                       try {
-                        return (
-                          $state.apiAllCenters.data.data?.length > 1 &&
-                          $state.apiAllCenters.data.data?.length <= 50
-                        );
+                        return $state.apiAllCenters.data.data?.length > 1;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -3230,10 +3227,7 @@ function PlasmicBookList__RenderFunc(props: {
                     return (
                       $state.apiAllCenters.data.data.find(
                         center => center.user_center_id == $state.selectedCenter
-                      )?.id ||
-                      ($state.apiAllCenters.data.data.length > 50
-                        ? $state.apiAllCenters.data.data[0].user_center_id
-                        : "all")
+                      )?.id || "all"
                     );
                   } catch (e) {
                     if (
