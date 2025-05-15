@@ -832,7 +832,6 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                                           );
                                         }
                                       );
-                                      // اگر phone با 0 شروع نمی‌شود، 0 را به ابتدای آن اضافه می‌کنیم
                                       if (phone.charAt(0) !== "0") {
                                         phone = "0" + phone;
                                       }
@@ -1073,6 +1072,38 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                     typeof $steps["updateIsSendOtp"].then === "function"
                   ) {
                     $steps["updateIsSendOtp"] = await $steps["updateIsSendOtp"];
+                  }
+
+                  $steps["sendEvent"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return undefined;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
+                  ) {
+                    $steps["sendEvent"] = await $steps["sendEvent"];
                   }
                 }}
               />
@@ -1350,6 +1381,46 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                     typeof $steps["update"].then === "function"
                   ) {
                     $steps["update"] = await $steps["update"];
+                  }
+
+                  $steps["sendEvent"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  event_group: "Edit-Profile",
+                                  data: {
+                                    Mobile: $state.mobile,
+                                    NationalCode: $props.nationalCode,
+                                    TheOtherMobile: $state.input2.value
+                                  },
+                                  event_type: "Change-Username"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
+                  ) {
+                    $steps["sendEvent"] = await $steps["sendEvent"];
                   }
 
                   $steps["runRefresh"] = true

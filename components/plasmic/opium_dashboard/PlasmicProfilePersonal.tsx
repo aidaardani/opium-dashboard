@@ -1632,40 +1632,45 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   ];
                 }
 
-                $steps["sendEvent"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          (() => {
-                            try {
-                              return {
-                                event_group: "edit-profile",
-                                data: { pagePath: window.location.href },
-                                event_type: "save-changes-personal-info"
-                              };
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                $steps["sendEvent2"] =
+                  $steps.apichangenationalcode.data.success == "true"
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  event_group: "Edit-Profile",
+                                  data: {
+                                    NationalCode: $state.nationalCode.value,
+                                    UserId: $state.auth.data.data.id,
+                                    UserName: $state.auth.data.data.username
+                                  },
+                                  event_type: "Change-National-Code"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Splunk.sendLog"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
                 if (
-                  $steps["sendEvent"] != null &&
-                  typeof $steps["sendEvent"] === "object" &&
-                  typeof $steps["sendEvent"].then === "function"
+                  $steps["sendEvent2"] != null &&
+                  typeof $steps["sendEvent2"] === "object" &&
+                  typeof $steps["sendEvent2"].then === "function"
                 ) {
-                  $steps["sendEvent"] = await $steps["sendEvent"];
+                  $steps["sendEvent2"] = await $steps["sendEvent2"];
                 }
 
                 $steps["runActionOnProfile"] = true
@@ -1703,6 +1708,42 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   typeof $steps["runActionOnAuth"].then === "function"
                 ) {
                   $steps["runActionOnAuth"] = await $steps["runActionOnAuth"];
+                }
+
+                $steps["sendEvent"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                event_group: "edit-profile",
+                                data: { pagePath: window.location.href },
+                                event_type: "save-changes-personal-info"
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["sendEvent"] != null &&
+                  typeof $steps["sendEvent"] === "object" &&
+                  typeof $steps["sendEvent"].then === "function"
+                ) {
+                  $steps["sendEvent"] = await $steps["sendEvent"];
                 }
               }}
             />
