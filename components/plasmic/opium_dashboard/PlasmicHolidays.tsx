@@ -63,6 +63,7 @@ import HolidaysPageTitle from "../../HolidaysPageTitle"; // plasmic-import: ju7x
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import HolidaysItem from "../../HolidaysItem"; // plasmic-import: NtLART2XhB7g/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
+import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -95,6 +96,8 @@ export type PlasmicHolidays__OverridesType = {
   holidaysItem?: Flex__<typeof HolidaysItem>;
   apiRequest2?: Flex__<typeof ApiRequest>;
   sideEffect?: Flex__<typeof SideEffect>;
+  runCodeGtmMetrica?: Flex__<typeof SideEffect>;
+  gtm?: Flex__<typeof Embed>;
 };
 
 export interface DefaultHolidaysProps {}
@@ -554,6 +557,110 @@ function PlasmicHolidays__RenderFunc(props: {
               }
             }}
           />
+
+          <SideEffect
+            data-plasmic-name={"runCodeGtmMetrica"}
+            data-plasmic-override={overrides.runCodeGtmMetrica}
+            className={classNames("__wab_instance", sty.runCodeGtmMetrica)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          function loadGTM() {
+                            var gtmScript =
+                              globalThis.document.createElement("script");
+                            gtmScript.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P5RPLDP');`;
+                            globalThis.document.head.appendChild(gtmScript);
+                            var gtmNoScript =
+                              globalThis.document.createElement("noscript");
+                            gtmNoScript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
+                            globalThis.document.body.insertBefore(
+                              gtmNoScript,
+                              globalThis.document.body.firstChild
+                            );
+                          }
+                          return loadGTM();
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["loadMetrica"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          function loadMetrika() {
+                            var metrikaScript =
+                              globalThis.document.createElement("script");
+                            metrikaScript.innerHTML = `(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(98277236, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+    });`;
+                            globalThis.document.head.appendChild(metrikaScript);
+                            var metrikaNoScript =
+                              globalThis.document.createElement("noscript");
+                            metrikaNoScript.innerHTML = `<div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div>`;
+                            globalThis.document.body.insertBefore(
+                              metrikaNoScript,
+                              globalThis.document.body.firstChild
+                            );
+                          }
+                          return loadMetrika();
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["loadMetrica"] != null &&
+                typeof $steps["loadMetrica"] === "object" &&
+                typeof $steps["loadMetrica"].then === "function"
+              ) {
+                $steps["loadMetrica"] = await $steps["loadMetrica"];
+              }
+            }}
+          />
+
+          <Embed
+            data-plasmic-name={"gtm"}
+            data-plasmic-override={overrides.gtm}
+            className={classNames("__wab_instance", sty.gtm)}
+            code={
+              '\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"\nheight="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->\n\n<!-- Yandex.Metrika counter -->\n<script type="text/javascript" >\n   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n   m[i].l=1*new Date();\n   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})\n   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");\n\n   ym(98277236, "init", {\n        clickmap:true,\n        trackLinks:true,\n        accurateTrackBounce:true,\n        webvisor:true\n   });\n</script>\n<noscript><div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div></noscript>\n<!-- /Yandex.Metrika counter -->'
+            }
+          />
         </div>
       </div>
     </React.Fragment>
@@ -569,7 +676,9 @@ const PlasmicDescendants = {
     "svg",
     "holidaysItem",
     "apiRequest2",
-    "sideEffect"
+    "sideEffect",
+    "runCodeGtmMetrica",
+    "gtm"
   ],
   holidaysPageTitle: ["holidaysPageTitle"],
   apiRequest: ["apiRequest", "freeBox", "svg", "holidaysItem"],
@@ -577,7 +686,9 @@ const PlasmicDescendants = {
   svg: ["svg"],
   holidaysItem: ["holidaysItem"],
   apiRequest2: ["apiRequest2"],
-  sideEffect: ["sideEffect"]
+  sideEffect: ["sideEffect"],
+  runCodeGtmMetrica: ["runCodeGtmMetrica"],
+  gtm: ["gtm"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -591,6 +702,8 @@ type NodeDefaultElementType = {
   holidaysItem: typeof HolidaysItem;
   apiRequest2: typeof ApiRequest;
   sideEffect: typeof SideEffect;
+  runCodeGtmMetrica: typeof SideEffect;
+  gtm: typeof Embed;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -660,6 +773,8 @@ export const PlasmicHolidays = Object.assign(
     holidaysItem: makeNodeComponent("holidaysItem"),
     apiRequest2: makeNodeComponent("apiRequest2"),
     sideEffect: makeNodeComponent("sideEffect"),
+    runCodeGtmMetrica: makeNodeComponent("runCodeGtmMetrica"),
+    gtm: makeNodeComponent("gtm"),
 
     // Metadata about props expected for PlasmicHolidays
     internalVariantProps: PlasmicHolidays__VariantProps,

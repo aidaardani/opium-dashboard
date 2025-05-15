@@ -335,7 +335,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                     dangerouslySetInnerHTML={{
                       __html: (() => {
                         try {
-                          return $ctx.query.office === true
+                          return $ctx.query.office == "true"
                             ? "اطلاعات شما ثبت شده و مطب شما تا ساعاتی دیگر فعال می‌شود. بیماران می‌توانند مستقیماً از طریق پروفایل شما نوبت رزرو کنند. "
                             : "اطلاعات شما با موفقیت ثبت شده و ویزیت آنلاین شما تا ساعاتی دیگر فعال خواهد شد. از این پس، بیماران می‌توانند مستقیماً از طریق پروفایل شما نوبت ویزیت آنلاین رزرو کنند.";
                         } catch (e) {
