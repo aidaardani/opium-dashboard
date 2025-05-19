@@ -1331,7 +1331,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://apigw.paziresh24.com/v1/gozargah/doctor-verify",
+                            "http://apigw.paziresh24.com/v1/n8n-nelson/webhook/doctor-verify",
                             undefined,
                             (() => {
                               try {
@@ -1345,8 +1345,6 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                                         );
                                       }
                                     ),
-                                  client_id: "katibe",
-                                  client_secret: "KHjk2638@hdk_mowscak9",
                                   mobile: "0" + $state.auth.data.data.username
                                 };
                               } catch (e) {
@@ -1630,49 +1628,6 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   $steps["updateNationalCodeValues"] = await $steps[
                     "updateNationalCodeValues"
                   ];
-                }
-
-                $steps["sendEvent2"] =
-                  $steps.apichangenationalcode.data.success == "true"
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            (() => {
-                              try {
-                                return {
-                                  event_group: "Edit-Profile",
-                                  data: {
-                                    NationalCode: $state.nationalCode.value,
-                                    UserId: $state.auth.data.data.id,
-                                    UserName: $state.auth.data.data.username,
-                                    Toast:
-                                      $steps.apichangenationalcode.data.message
-                                  },
-                                  event_type: "Change-National-Code"
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Splunk.sendLog"]?.apply(null, [
-                          ...actionArgs.args
-                        ]);
-                      })()
-                    : undefined;
-                if (
-                  $steps["sendEvent2"] != null &&
-                  typeof $steps["sendEvent2"] === "object" &&
-                  typeof $steps["sendEvent2"].then === "function"
-                ) {
-                  $steps["sendEvent2"] = await $steps["sendEvent2"];
                 }
 
                 $steps["runActionOnProfile"] = true

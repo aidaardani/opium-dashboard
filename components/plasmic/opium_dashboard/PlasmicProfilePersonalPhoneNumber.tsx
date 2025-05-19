@@ -756,7 +756,7 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://apigw.paziresh24.com/v1/gozargah/doctor-verify",
+                            "http://apigw.paziresh24.com/v1/n8n-nelson/webhook/doctor-verify",
                             undefined,
                             (() => {
                               try {
@@ -769,8 +769,6 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                                       );
                                     }
                                   ),
-                                  client_id: "katibe",
-                                  client_secret: "KHjk2638@hdk_mowscak9",
                                   mobile: (() => {
                                     let mobile = $state.input2.value.replace(
                                       /[۰-۹]/g,
@@ -911,46 +909,6 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                     typeof $steps["showApixToast"].then === "function"
                   ) {
                     $steps["showApixToast"] = await $steps["showApixToast"];
-                  }
-
-                  $steps["sendEvent2"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            (() => {
-                              try {
-                                return {
-                                  event_group: "Edit-Profile",
-                                  data: {
-                                    Mobile: $state.mobile,
-                                    NationalCode: $props.nationalCode,
-                                    TheOtherMobile: $state.input2.value
-                                  },
-                                  event_type: "Send-Verify"
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Splunk.sendLog"]?.apply(null, [
-                          ...actionArgs.args
-                        ]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["sendEvent2"] != null &&
-                    typeof $steps["sendEvent2"] === "object" &&
-                    typeof $steps["sendEvent2"].then === "function"
-                  ) {
-                    $steps["sendEvent2"] = await $steps["sendEvent2"];
                   }
 
                   $steps["showApiResultToast"] = true
