@@ -366,6 +366,14 @@
   height: 15%;
   flex-shrink: 0;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .svg__cBvHc {
+    color: var(--token-U2IgSncNyCpY);
+    width: 17px;
+    height: 17%;
+    flex-shrink: 0;
+  }
+}
 .svgcheck__cBvHcRijdN {
   display: block;
 }

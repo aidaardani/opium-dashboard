@@ -1644,7 +1644,9 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                                   data: {
                                     NationalCode: $state.nationalCode.value,
                                     UserId: $state.auth.data.data.id,
-                                    UserName: $state.auth.data.data.username
+                                    UserName: $state.auth.data.data.username,
+                                    Toast:
+                                      $steps.apichangenationalcode.data.message
                                   },
                                   event_type: "Change-National-Code"
                                 };

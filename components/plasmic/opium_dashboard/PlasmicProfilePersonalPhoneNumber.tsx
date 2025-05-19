@@ -913,6 +913,49 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                     $steps["showApixToast"] = await $steps["showApixToast"];
                   }
 
+                  $steps["sendEvent2"] =
+                    $steps.apix.data.message !== undefined
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    event_group: "Edit-Profile",
+                                    data: {
+                                      Mobile: $state.mobile,
+                                      NationalCode: $props.nationalCode,
+                                      TheOtherMobile: $state.input2.value,
+                                      ToastVerify: $steps.apix.data.message
+                                    },
+                                    event_type: "Send-verify"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps["sendEvent2"] != null &&
+                    typeof $steps["sendEvent2"] === "object" &&
+                    typeof $steps["sendEvent2"].then === "function"
+                  ) {
+                    $steps["sendEvent2"] = await $steps["sendEvent2"];
+                  }
+
                   $steps["showApiResultToast"] = true
                     ? (() => {
                         const actionArgs = {
@@ -1080,7 +1123,17 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                           args: [
                             (() => {
                               try {
-                                return undefined;
+                                return {
+                                  event_group: "Edit-Profile",
+                                  data: {
+                                    Mobile: $state.mobile,
+                                    NationalCode: $props.nationalCode,
+                                    TheOtherMobile: $state.input2.value,
+                                    ToastOtp: $steps.apiotp.data.message,
+                                    ToastVerify: $steps.apix.data.message
+                                  },
+                                  event_type: "Send-Otp"
+                                };
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1394,7 +1447,8 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                                   data: {
                                     Mobile: $state.mobile,
                                     NationalCode: $props.nationalCode,
-                                    TheOtherMobile: $state.input2.value
+                                    TheOtherMobile: $state.input2.value,
+                                    Toast: $steps.otpApi.data.message
                                   },
                                   event_type: "Change-Username"
                                 };
