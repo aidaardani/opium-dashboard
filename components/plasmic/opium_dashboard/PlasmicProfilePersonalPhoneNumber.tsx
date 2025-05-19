@@ -913,41 +913,38 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                     $steps["showApixToast"] = await $steps["showApixToast"];
                   }
 
-                  $steps["sendEvent2"] =
-                    $steps.apix.data.message !== undefined
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              (() => {
-                                try {
-                                  return {
-                                    event_group: "Edit-Profile",
-                                    data: {
-                                      Mobile: $state.mobile,
-                                      NationalCode: $props.nationalCode,
-                                      TheOtherMobile: $state.input2.value,
-                                      ToastVerify: $steps.apix.data.message
-                                    },
-                                    event_type: "Send-verify"
-                                  };
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
+                  $steps["sendEvent2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  event_group: "Edit-Profile",
+                                  data: {
+                                    Mobile: $state.mobile,
+                                    NationalCode: $props.nationalCode,
+                                    TheOtherMobile: $state.input2.value
+                                  },
+                                  event_type: "Send-verify"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
                                 }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Splunk.sendLog"]?.apply(null, [
-                            ...actionArgs.args
-                          ]);
-                        })()
-                      : undefined;
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
                   if (
                     $steps["sendEvent2"] != null &&
                     typeof $steps["sendEvent2"] === "object" &&
@@ -1128,9 +1125,7 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                                   data: {
                                     Mobile: $state.mobile,
                                     NationalCode: $props.nationalCode,
-                                    TheOtherMobile: $state.input2.value,
-                                    ToastOtp: $steps.apiotp.data.message,
-                                    ToastVerify: $steps.apix.data.message
+                                    TheOtherMobile: $state.input2.value
                                   },
                                   event_type: "Send-Otp"
                                 };
