@@ -816,7 +816,7 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                           const actionArgs = {
                             args: [
                               "POST",
-                              "https://apigw.paziresh24.com/v1/gozargah/change-number-first",
+                              "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/change-username",
                               undefined,
                               (() => {
                                 try {
@@ -869,9 +869,9 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                           args: [
                             (() => {
                               try {
-                                return $steps.apix.data.success
-                                  ? "success"
-                                  : "error";
+                                return $steps.apix.data.success == "false"
+                                  ? "error"
+                                  : "success";
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -917,9 +917,9 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                           args: [
                             (() => {
                               try {
-                                return $steps.apiotp.data.success
-                                  ? "success"
-                                  : "error";
+                                return $steps.apiotp.data.success == "false"
+                                  ? "error"
+                                  : "success";
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1389,47 +1389,6 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                     typeof $steps["update"].then === "function"
                   ) {
                     $steps["update"] = await $steps["update"];
-                  }
-
-                  $steps["sendEvent"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            (() => {
-                              try {
-                                return {
-                                  event_group: "Edit-Profile",
-                                  data: {
-                                    Mobile: $state.mobile,
-                                    NationalCode: $props.nationalCode,
-                                    TheOtherMobile: $state.input2.value,
-                                    Toast: $steps.otpApi.data.message
-                                  },
-                                  event_type: "Change-Username"
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Splunk.sendLog"]?.apply(null, [
-                          ...actionArgs.args
-                        ]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["sendEvent"] != null &&
-                    typeof $steps["sendEvent"] === "object" &&
-                    typeof $steps["sendEvent"].then === "function"
-                  ) {
-                    $steps["sendEvent"] = await $steps["sendEvent"];
                   }
 
                   $steps["runRefresh"] = true

@@ -1296,19 +1296,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                               throw e;
                             }
                           })(),
-                          (() => {
-                            try {
-                              return $steps.apiProviderUserId.data.message;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
+                          "\u0634\u0645\u0627\u0631\u0647 \u0645\u0646\u0634\u06cc \u0622\u067e\u062f\u06cc\u062a \u0634\u062f."
                         ]
                       };
                       return $globalActions["Fragment.showToast"]?.apply(null, [
@@ -1544,7 +1532,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                         const actionArgs = {
                           args: [
                             "POST",
-                            "https://apigw.paziresh24.com/v1/gozargah/patch-doctor-info",
+                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/change-national-code",
                             undefined,
                             (() => {
                               try {
