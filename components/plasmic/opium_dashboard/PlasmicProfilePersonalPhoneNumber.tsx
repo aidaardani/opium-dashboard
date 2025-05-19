@@ -365,7 +365,7 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                               nationalCode: $props.nationalCode,
                               cell: $props.phoneNumber
                             },
-                            event_type: "change-username"
+                            event_type: "change-username-button"
                           };
                         } catch (e) {
                           if (
@@ -926,7 +926,7 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                                     NationalCode: $props.nationalCode,
                                     TheOtherMobile: $state.input2.value
                                   },
-                                  event_type: "Send-verify"
+                                  event_type: "Send-Verify"
                                 };
                               } catch (e) {
                                 if (
@@ -1114,38 +1114,40 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                     $steps["updateIsSendOtp"] = await $steps["updateIsSendOtp"];
                   }
 
-                  $steps["sendEvent"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            (() => {
-                              try {
-                                return {
-                                  event_group: "Edit-Profile",
-                                  data: {
-                                    Mobile: $state.mobile,
-                                    NationalCode: $props.nationalCode,
-                                    TheOtherMobile: $state.input2.value
-                                  },
-                                  event_type: "Send-Otp"
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
+                  $steps["sendEvent"] =
+                    $steps.apix.data.success == "true"
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    event_group: "Edit-Profile",
+                                    data: {
+                                      Mobile: $state.mobile,
+                                      NationalCode: $props.nationalCode,
+                                      TheOtherMobile: $state.input2.value
+                                    },
+                                    event_type: "Send-Otp"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
                                 }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Splunk.sendLog"]?.apply(null, [
-                          ...actionArgs.args
-                        ]);
-                      })()
-                    : undefined;
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
                   if (
                     $steps["sendEvent"] != null &&
                     typeof $steps["sendEvent"] === "object" &&
