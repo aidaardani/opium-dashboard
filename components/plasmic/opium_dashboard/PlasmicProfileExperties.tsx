@@ -6554,41 +6554,6 @@ function PlasmicProfileExperties__RenderFunc(props: {
                       "runActionOnProviderApi"
                     ];
                   }
-
-                  $steps["updateExpertiseArray"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["expertiseArray"]
-                          },
-                          operation: 1
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, undefined);
-                          return undefined;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateExpertiseArray"] != null &&
-                    typeof $steps["updateExpertiseArray"] === "object" &&
-                    typeof $steps["updateExpertiseArray"].then === "function"
-                  ) {
-                    $steps["updateExpertiseArray"] = await $steps[
-                      "updateExpertiseArray"
-                    ];
-                  }
                 }}
               />
 
