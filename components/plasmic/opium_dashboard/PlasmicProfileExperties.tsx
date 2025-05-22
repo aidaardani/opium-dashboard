@@ -103,6 +103,7 @@ export type PlasmicProfileExperties__OverridesType = {
   authApi?: Flex__<typeof ApiRequest>;
   providerApi?: Flex__<typeof ApiRequest>;
   profileExpertiseItem?: Flex__<typeof ProfileExpertiseItem>;
+  h6?: Flex__<"h6">;
   profileExpertiseItem2?: Flex__<typeof ProfileExpertiseItem>;
   spetialitiesApi?: Flex__<typeof ApiRequest>;
   dialog?: Flex__<typeof Dialog>;
@@ -5253,6 +5254,52 @@ function PlasmicProfileExperties__RenderFunc(props: {
               null,
               eventArgs
             );
+
+            (async data => {
+              const $steps = {};
+
+              $steps["sendLog"] =
+                !$state.providerApi.data.data ||
+                !$state.providerApi.data.data.length
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                event_group: "edit-profile",
+                                data: {
+                                  username: $state.authApi.data.data.username,
+                                  userid: $state.authApi.data.data.id,
+                                  userinfoid: $state.authApi.data.data.user_id
+                                },
+                                event_type: "no-expertise"
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+              if (
+                $steps["sendLog"] != null &&
+                typeof $steps["sendLog"] === "object" &&
+                typeof $steps["sendLog"].then === "function"
+              ) {
+                $steps["sendLog"] = await $steps["sendLog"];
+              }
+            }).apply(null, eventArgs);
           }}
           ref={ref => {
             $refs["providerApi"] = ref;
@@ -5740,6 +5787,107 @@ function PlasmicProfileExperties__RenderFunc(props: {
             hasGap={true}
             className={classNames(projectcss.all, sty.freeBox__deNqh)}
           >
+            {(() => {
+              try {
+                return (
+                  !$state.providerApi.data.data ||
+                  !$state.providerApi.data.data.length
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })() ? (
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox___3PSHh)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__f7WFc
+                  )}
+                >
+                  <React.Fragment>
+                    <React.Fragment>{""}</React.Fragment>
+                    {
+                      <h6
+                        data-plasmic-name={"h6"}
+                        data-plasmic-override={overrides.h6}
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.h6,
+                          projectcss.__wab_text,
+                          sty.h6
+                        )}
+                      >
+                        <React.Fragment>
+                          <React.Fragment>
+                            {"\u26a0\ufe0f \u062a\u0648\u062c\u0647: "}
+                          </React.Fragment>
+                          <span
+                            className={
+                              "plasmic_default__all plasmic_default__span"
+                            }
+                            style={{ fontWeight: 700 }}
+                          >
+                            {"\u0647\u06cc\u0686"}
+                          </span>
+                          <React.Fragment> </React.Fragment>
+                          <span
+                            className={
+                              "plasmic_default__all plasmic_default__span"
+                            }
+                            style={{ fontWeight: 700 }}
+                          >
+                            {"\u062a\u062e\u0635\u0635\u06cc"}
+                          </span>
+                          <React.Fragment>
+                            {
+                              " \u0628\u0631\u0627\u06cc \u0634\u0645\u0627 \u062b\u0628\u062a "
+                            }
+                          </React.Fragment>
+                          <span
+                            className={
+                              "plasmic_default__all plasmic_default__span"
+                            }
+                            style={{ fontWeight: 700 }}
+                          >
+                            {"\u0646\u0634\u062f\u0647"}
+                          </span>
+                          <React.Fragment>
+                            {" \u0627\u0633\u062a."}
+                          </React.Fragment>
+                        </React.Fragment>
+                      </h6>
+                    }
+                    <React.Fragment>
+                      {
+                        "\u0628\u0631\u0627\u06cc \u0646\u0645\u0627\u06cc\u0634 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0628\u0647 \u0628\u06cc\u0645\u0627\u0631\u0627\u0646\u060c \u062b\u0628\u062a \u062d\u062f\u0627\u0642\u0644 \u06cc\u06a9 \u062a\u062e\u0635\u0635 "
+                      }
+                    </React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 700 }}
+                    >
+                      {"\u0636\u0631\u0648\u0631\u06cc"}
+                    </span>
+                    <React.Fragment>
+                      {
+                        " \u0627\u0633\u062a.\n\ud83d\udccb \u0644\u0637\u0641\u0627\u064b \u0628\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06af\u0632\u06cc\u0646\u0647 + \u062a\u062e\u0635\u0635 \u062e\u0648\u062f \u0631\u0627 \u0627\u0636\u0627\u0641\u0647 \u0648 \u062b\u0628\u062a \u06a9\u0646\u06cc\u062f."
+                      }
+                    </React.Fragment>
+                  </React.Fragment>
+                </div>
+              </Stack__>
+            ) : null}
             <div className={classNames(projectcss.all, sty.freeBox__afDni)}>
               <div
                 className={classNames(
@@ -7034,6 +7182,7 @@ const PlasmicDescendants = {
     "authApi",
     "providerApi",
     "profileExpertiseItem",
+    "h6",
     "profileExpertiseItem2",
     "spetialitiesApi",
     "dialog"
@@ -7042,16 +7191,19 @@ const PlasmicDescendants = {
     "authApi",
     "providerApi",
     "profileExpertiseItem",
+    "h6",
     "profileExpertiseItem2",
     "spetialitiesApi"
   ],
   providerApi: [
     "providerApi",
     "profileExpertiseItem",
+    "h6",
     "profileExpertiseItem2",
     "spetialitiesApi"
   ],
   profileExpertiseItem: ["profileExpertiseItem"],
+  h6: ["h6"],
   profileExpertiseItem2: ["profileExpertiseItem2"],
   spetialitiesApi: ["spetialitiesApi"],
   dialog: ["dialog"]
@@ -7064,6 +7216,7 @@ type NodeDefaultElementType = {
   authApi: typeof ApiRequest;
   providerApi: typeof ApiRequest;
   profileExpertiseItem: typeof ProfileExpertiseItem;
+  h6: "h6";
   profileExpertiseItem2: typeof ProfileExpertiseItem;
   spetialitiesApi: typeof ApiRequest;
   dialog: typeof Dialog;
@@ -7132,6 +7285,7 @@ export const PlasmicProfileExperties = Object.assign(
     authApi: makeNodeComponent("authApi"),
     providerApi: makeNodeComponent("providerApi"),
     profileExpertiseItem: makeNodeComponent("profileExpertiseItem"),
+    h6: makeNodeComponent("h6"),
     profileExpertiseItem2: makeNodeComponent("profileExpertiseItem2"),
     spetialitiesApi: makeNodeComponent("spetialitiesApi"),
     dialog: makeNodeComponent("dialog"),
