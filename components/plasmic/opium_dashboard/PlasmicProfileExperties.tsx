@@ -102,9 +102,9 @@ export type PlasmicProfileExperties__OverridesType = {
   root?: Flex__<"div">;
   authApi?: Flex__<typeof ApiRequest>;
   providerApi?: Flex__<typeof ApiRequest>;
-  spetialitiesApi?: Flex__<typeof ApiRequest>;
   profileExpertiseItem?: Flex__<typeof ProfileExpertiseItem>;
   profileExpertiseItem2?: Flex__<typeof ProfileExpertiseItem>;
+  spetialitiesApi?: Flex__<typeof ApiRequest>;
   dialog?: Flex__<typeof Dialog>;
 };
 
@@ -5259,7 +5259,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
           }}
           url={(() => {
             try {
-              return `https://apigw.paziresh24.com/v1/providers?user_id=${$state.authApi.data.data.id}`;
+              return `https://api.paziresh24.com/V1/doctor/expertises`;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -5271,21 +5271,1283 @@ function PlasmicProfileExperties__RenderFunc(props: {
             }
           })()}
         >
-          <ApiRequest
-            data-plasmic-name={"spetialitiesApi"}
-            data-plasmic-override={overrides.spetialitiesApi}
-            className={classNames("__wab_instance", sty.spetialitiesApi)}
-            errorDisplay={
+          {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+            (() => {
+              try {
+                return $state.providerApi.data.data;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [];
+                }
+                throw e;
+              }
+            })()
+          ).map((__plasmic_item_0, __plasmic_idx_0) => {
+            const currentItem = __plasmic_item_0;
+            const currentIndex = __plasmic_idx_0;
+            return (() => {
+              const child$Props = {
+                className: classNames(
+                  "__wab_instance",
+                  sty.profileExpertiseItem
+                ),
+                degree: (() => {
+                  try {
+                    return $props.degree;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })(),
+                degreeValue: generateStateValueProp($state, [
+                  "profileExpertiseItem",
+                  __plasmic_idx_0,
+                  "degreeValue"
+                ]),
+                expertise: (() => {
+                  try {
+                    return $props.expertise;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })(),
+                expertiseTitle: generateStateValueProp($state, [
+                  "profileExpertiseItem",
+                  __plasmic_idx_0,
+                  "expertiseTitle"
+                ]),
+                expertiseValue: generateStateValueProp($state, [
+                  "profileExpertiseItem",
+                  __plasmic_idx_0,
+                  "expertiseValue"
+                ]),
+                id: (() => {
+                  try {
+                    return currentItem.id;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })(),
+                key: currentIndex,
+                onDegreeValueChange: async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "profileExpertiseItem",
+                    __plasmic_idx_0,
+                    "degreeValue"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+
+                  (async val => {
+                    const $steps = {};
+
+                    $steps["updateChangedExperies"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["changedExperies"]
+                            },
+                            operation: 0,
+                            value: (() => {
+                              const itemExists = $state.changedExperies.some(
+                                item => item.id === currentItem.id
+                              );
+                              if (itemExists) {
+                                return $state.changedExperies.map(item =>
+                                  item.id == currentItem.id
+                                    ? {
+                                        id: currentItem.id,
+                                        degree_id: val,
+                                        alias_title: currentItem.alias_title,
+                                        expertise_id: currentItem.expertise.id
+                                      }
+                                    : item
+                                );
+                              } else {
+                                return [
+                                  ...$state.changedExperies,
+                                  {
+                                    id: currentItem.id,
+                                    degree_id: val,
+                                    alias_title: currentItem.alias_title,
+                                    expertise_id: currentItem.expertise.id
+                                  }
+                                ];
+                              }
+                            })()
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateChangedExperies"] != null &&
+                      typeof $steps["updateChangedExperies"] === "object" &&
+                      typeof $steps["updateChangedExperies"].then === "function"
+                    ) {
+                      $steps["updateChangedExperies"] = await $steps[
+                        "updateChangedExperies"
+                      ];
+                    }
+                  }).apply(null, eventArgs);
+                },
+                onDeleteClick: async id => {
+                  const $steps = {};
+
+                  $steps["updateDialogOpen"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["dialog", "open"]
+                          },
+                          operation: 4
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const oldValue = $stateGet(objRoot, variablePath);
+                          $stateSet(objRoot, variablePath, !oldValue);
+                          return !oldValue;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateDialogOpen"] != null &&
+                    typeof $steps["updateDialogOpen"] === "object" &&
+                    typeof $steps["updateDialogOpen"].then === "function"
+                  ) {
+                    $steps["updateDialogOpen"] = await $steps[
+                      "updateDialogOpen"
+                    ];
+                  }
+
+                  $steps["updateSelectedId"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["selectedId"]
+                          },
+                          operation: 0,
+                          value: id
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateSelectedId"] != null &&
+                    typeof $steps["updateSelectedId"] === "object" &&
+                    typeof $steps["updateSelectedId"].then === "function"
+                  ) {
+                    $steps["updateSelectedId"] = await $steps[
+                      "updateSelectedId"
+                    ];
+                  }
+                },
+                onExpertiseTitleChange: async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "profileExpertiseItem",
+                    __plasmic_idx_0,
+                    "expertiseTitle"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+
+                  (async val => {
+                    const $steps = {};
+
+                    $steps["updateChangedExperies"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["changedExperies"]
+                            },
+                            operation: 0,
+                            value: (() => {
+                              const itemExists = $state.changedExperies.some(
+                                item => item.id === currentItem.id
+                              );
+                              if (itemExists) {
+                                return $state.changedExperies.map(item =>
+                                  item.id == currentItem.id
+                                    ? {
+                                        id: currentItem.id,
+                                        degree_id: currentItem.degree.id,
+                                        alias_title: val,
+                                        expertise_id: currentItem.expertise.id
+                                      }
+                                    : item
+                                );
+                              } else {
+                                return [
+                                  ...$state.changedExperies,
+                                  {
+                                    id: currentItem.id,
+                                    degree_id: currentItem.degree.id,
+                                    alias_title: val,
+                                    expertise_id: currentItem.expertise.id
+                                  }
+                                ];
+                              }
+                            })()
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateChangedExperies"] != null &&
+                      typeof $steps["updateChangedExperies"] === "object" &&
+                      typeof $steps["updateChangedExperies"].then === "function"
+                    ) {
+                      $steps["updateChangedExperies"] = await $steps[
+                        "updateChangedExperies"
+                      ];
+                    }
+                  }).apply(null, eventArgs);
+                },
+                onExpertiseValueChange: async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "profileExpertiseItem",
+                    __plasmic_idx_0,
+                    "expertiseValue"
+                  ]).apply(null, eventArgs);
+
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+
+                  (async val => {
+                    const $steps = {};
+
+                    $steps["updateChangedExperies"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["changedExperies"]
+                            },
+                            operation: 0,
+                            value: (() => {
+                              const itemExists = $state.changedExperies.some(
+                                item => item.id === currentItem.id
+                              );
+                              if (itemExists) {
+                                return $state.changedExperies.map(item =>
+                                  item.id == currentItem.id
+                                    ? {
+                                        id: currentItem.id,
+                                        degree_id: currentItem.degree.id,
+                                        alias_title: currentItem.alias_title,
+                                        expertise_id: val
+                                      }
+                                    : item
+                                );
+                              } else {
+                                return [
+                                  ...$state.changedExperies,
+                                  {
+                                    id: currentItem.id,
+                                    degree_id: currentItem.degree.id,
+                                    alias_title: currentItem.alias_title,
+                                    expertise_id: val
+                                  }
+                                ];
+                              }
+                            })()
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateChangedExperies"] != null &&
+                      typeof $steps["updateChangedExperies"] === "object" &&
+                      typeof $steps["updateChangedExperies"].then === "function"
+                    ) {
+                      $steps["updateChangedExperies"] = await $steps[
+                        "updateChangedExperies"
+                      ];
+                    }
+                  }).apply(null, eventArgs);
+                }
+              };
+
+              initializePlasmicStates(
+                $state,
+                [
+                  {
+                    name: "profileExpertiseItem[].degreeValue",
+                    initFunc: ({ $props, $state, $queries }) =>
+                      (() => {
+                        try {
+                          return currentItem.degree.id;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                  },
+                  {
+                    name: "profileExpertiseItem[].expertiseValue",
+                    initFunc: ({ $props, $state, $queries }) =>
+                      (() => {
+                        try {
+                          return currentItem.expertise.id;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                  },
+                  {
+                    name: "profileExpertiseItem[].expertiseTitle",
+                    initFunc: ({ $props, $state, $queries }) =>
+                      (() => {
+                        try {
+                          return currentItem.alias_title;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                  }
+                ],
+                [__plasmic_idx_0]
+              );
+              return (
+                <ProfileExpertiseItem
+                  data-plasmic-name={"profileExpertiseItem"}
+                  data-plasmic-override={overrides.profileExpertiseItem}
+                  {...child$Props}
+                />
+              );
+            })();
+          })}
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__deNqh)}
+          >
+            <div className={classNames(projectcss.all, sty.freeBox__afDni)}>
               <div
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__szQgw
+                  sty.text__gaqai
                 )}
               >
-                {""}
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ color: "#000000" }}
+                  >
+                    {
+                      "\u0639\u0646\u0648\u0627\u0646 \u062a\u062e\u0635\u0635 \u0628\u0627\u06cc\u062f \u0628\u0627 \u0646\u0627\u0645 \u062f\u0642\u06cc\u0642 \u0648 \u0631\u0633\u0645\u06cc \u062a\u062e\u0635\u0635 \u0622\u063a\u0627\u0632 \u0634\u0648\u062f (\u0645\u0627\u0646\u0646\u062f: \u00ab\u06a9\u0627\u0631\u0634\u0646\u0627\u0633 \u0645\u0627\u0645\u0627\u06cc\u06cc\u00bb).\n\u0628\u0644\u0627\u0641\u0627\u0635\u0644\u0647 \u067e\u0633 \u0627\u0632 \u0622\u0646\u060c \u062a\u0648\u0636\u06cc\u062d\u06cc \u06a9\u0648\u062a\u0627\u0647 \u0648 \u0631\u0648\u0634\u0646 \u062f\u0631\u0628\u0627\u0631\u0647 \u062e\u062f\u0645\u0627\u062a \u0627\u0631\u0627\u0626\u0647 \u06af\u0631\u062f\u062f.\n\u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0627\u0632 \u062c\u062f\u0627\u06a9\u0646\u0646\u062f\u0647 \u0645\u0646\u0627\u0633\u0628 \u0645\u0627\u0646\u0646\u062f \u0648\u06cc\u0631\u06af\u0648\u0644 \u00ab\u060c\u00bb \u0648 \u0631\u0639\u0627\u06cc\u062a \u0641\u0627\u0635\u0644\u0647\u200c\u06af\u0630\u0627\u0631\u06cc \u0635\u062d\u06cc\u062d\u060c \u062e\u0648\u0627\u0646\u0627\u06cc\u06cc \u0645\u062a\u0646 \u0631\u0627 \u0627\u0641\u0632\u0627\u06cc\u0634 \u0645\u06cc\u200c\u062f\u0647\u062f.\n\u0627\u0632 \u0628\u0647\u200c\u06a9\u0627\u0631 \u0628\u0631\u062f\u0646 \u0648\u0627\u0698\u06af\u0627\u0646\u06cc \u06a9\u0647 \u0645\u0648\u062c\u0628 \u062a\u0634\u0627\u0628\u0647 \u0628\u0627 \u0633\u0627\u06cc\u0631 \u062a\u062e\u0635\u0635\u200c\u0647\u0627 \u0645\u06cc\u200c\u0634\u0648\u062f\u060c \u067e\u0631\u0647\u06cc\u0632 \u0634\u0648\u062f."
+                    }
+                  </span>
+                </React.Fragment>
               </div>
-            }
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___97Bgt
+                )}
+              >
+                {
+                  "\u0645\u062b\u0627\u0644  : \u06a9\u0627\u0631\u0634\u0646\u0627\u0633 \u0645\u0627\u0645\u0627\u06cc\u06cc\u060c \u0632\u06af\u06cc\u0644 \u062a\u0646\u0627\u0633\u0644\u06cc\u060c \u062a\u0628\u062e\u0627\u0644 \u062a\u0646\u0627\u0633\u0644\u06cc\u060c \u0628\u06a9\u0627\u0631\u062a\u060c \u0639\u0641\u0648\u0646\u062a \u0648\u0627\u0698\u0646"
+                }
+              </div>
+            </div>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__hKrof)}
+            >
+              {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                (() => {
+                  try {
+                    return $state.expertiseArray;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()
+              ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                const currentItem = __plasmic_item_0;
+                const currentIndex = __plasmic_idx_0;
+                return (() => {
+                  const child$Props = {
+                    className: classNames(
+                      "__wab_instance",
+                      sty.profileExpertiseItem2
+                    ),
+                    degree: (() => {
+                      try {
+                        return $props.degree;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })(),
+                    degreeValue: generateStateValueProp($state, [
+                      "profileExpertiseItem2",
+                      __plasmic_idx_0,
+                      "degreeValue"
+                    ]),
+                    expertise: (() => {
+                      try {
+                        return $props.expertise;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })(),
+                    expertiseTitle: generateStateValueProp($state, [
+                      "profileExpertiseItem2",
+                      __plasmic_idx_0,
+                      "expertiseTitle"
+                    ]),
+                    expertiseValue: generateStateValueProp($state, [
+                      "profileExpertiseItem2",
+                      __plasmic_idx_0,
+                      "expertiseValue"
+                    ]),
+                    key: currentIndex,
+                    onDegreeValueChange: async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "profileExpertiseItem2",
+                        __plasmic_idx_0,
+                        "degreeValue"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+
+                      (async val => {
+                        const $steps = {};
+
+                        $steps["updateExpertiseArray"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["expertiseArray"]
+                                },
+                                operation: 0,
+                                value: $state.expertiseArray.map(item =>
+                                  item.id == currentItem.id
+                                    ? {
+                                        id: currentItem.id,
+                                        degree_id: val,
+                                        alias_title: currentItem.alias_title,
+                                        expertise_id: currentItem.expertise_id
+                                      }
+                                    : item
+                                )
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateExpertiseArray"] != null &&
+                          typeof $steps["updateExpertiseArray"] === "object" &&
+                          typeof $steps["updateExpertiseArray"].then ===
+                            "function"
+                        ) {
+                          $steps["updateExpertiseArray"] = await $steps[
+                            "updateExpertiseArray"
+                          ];
+                        }
+                      }).apply(null, eventArgs);
+                    },
+                    onDeleteClick: async id => {
+                      const $steps = {};
+
+                      $steps["updateExpertiseArray"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["expertiseArray"]
+                              },
+                              operation: 0,
+                              value: $state.expertiseArray.filter(
+                                item => item.id !== currentItem.id
+                              )
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateExpertiseArray"] != null &&
+                        typeof $steps["updateExpertiseArray"] === "object" &&
+                        typeof $steps["updateExpertiseArray"].then ===
+                          "function"
+                      ) {
+                        $steps["updateExpertiseArray"] = await $steps[
+                          "updateExpertiseArray"
+                        ];
+                      }
+                    },
+                    onExpertiseTitleChange: async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "profileExpertiseItem2",
+                        __plasmic_idx_0,
+                        "expertiseTitle"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+
+                      (async val => {
+                        const $steps = {};
+
+                        $steps["updateExpertiseArray"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["expertiseArray"]
+                                },
+                                operation: 0,
+                                value: $state.expertiseArray.map(item =>
+                                  item.id == currentItem.id
+                                    ? {
+                                        id: currentItem.id,
+                                        degree_id: currentItem.degree_id,
+                                        alias_title: val,
+                                        expertise_id: currentItem.expertise_id
+                                      }
+                                    : item
+                                )
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateExpertiseArray"] != null &&
+                          typeof $steps["updateExpertiseArray"] === "object" &&
+                          typeof $steps["updateExpertiseArray"].then ===
+                            "function"
+                        ) {
+                          $steps["updateExpertiseArray"] = await $steps[
+                            "updateExpertiseArray"
+                          ];
+                        }
+                      }).apply(null, eventArgs);
+                    },
+                    onExpertiseValueChange: async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "profileExpertiseItem2",
+                        __plasmic_idx_0,
+                        "expertiseValue"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+
+                      (async val => {
+                        const $steps = {};
+
+                        $steps["updateExpertiseArray"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["expertiseArray"]
+                                },
+                                operation: 0,
+                                value: $state.expertiseArray.map(item =>
+                                  item.id == currentItem.id
+                                    ? {
+                                        id: currentItem.id,
+                                        degree_id: currentItem.degree_id,
+                                        alias_title: currentItem.alias_title,
+                                        expertise_id: val
+                                      }
+                                    : item
+                                )
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateExpertiseArray"] != null &&
+                          typeof $steps["updateExpertiseArray"] === "object" &&
+                          typeof $steps["updateExpertiseArray"].then ===
+                            "function"
+                        ) {
+                          $steps["updateExpertiseArray"] = await $steps[
+                            "updateExpertiseArray"
+                          ];
+                        }
+                      }).apply(null, eventArgs);
+                    }
+                  };
+
+                  initializePlasmicStates(
+                    $state,
+                    [
+                      {
+                        name: "profileExpertiseItem2[].degreeValue",
+                        initFunc: ({ $props, $state, $queries }) =>
+                          currentItem.academic_degree_id
+                      },
+                      {
+                        name: "profileExpertiseItem2[].expertiseValue",
+                        initFunc: ({ $props, $state, $queries }) =>
+                          (() => {
+                            try {
+                              return currentItem.speciality_id;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                      },
+                      {
+                        name: "profileExpertiseItem2[].expertiseTitle",
+                        initFunc: ({ $props, $state, $queries }) =>
+                          (() => {
+                            try {
+                              return currentItem.alias;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                      }
+                    ],
+                    [__plasmic_idx_0]
+                  );
+                  return (
+                    <ProfileExpertiseItem
+                      data-plasmic-name={"profileExpertiseItem2"}
+                      data-plasmic-override={overrides.profileExpertiseItem2}
+                      {...child$Props}
+                    />
+                  );
+                })();
+              })}
+            </Stack__>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox___3Ija4)}
+            >
+              <Button
+                children2={
+                  "\u0630\u062e\u06cc\u0631\u0647 \u06a9\u0631\u062f\u0646 \u062a\u063a\u06cc\u06cc\u0631\u0627\u062a"
+                }
+                className={classNames("__wab_instance", sty.button__wTEc8)}
+                loading={(() => {
+                  try {
+                    return $state.isLoadingSave;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return [];
+                    }
+                    throw e;
+                  }
+                })()}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateIsLoadingSave"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["isLoadingSave"]
+                          },
+                          operation: 0,
+                          value: true
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateIsLoadingSave"] != null &&
+                    typeof $steps["updateIsLoadingSave"] === "object" &&
+                    typeof $steps["updateIsLoadingSave"].then === "function"
+                  ) {
+                    $steps["updateIsLoadingSave"] = await $steps[
+                      "updateIsLoadingSave"
+                    ];
+                  }
+
+                  $steps["runCode"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return (async () => {
+                              const newExperties = $state.expertiseArray || [];
+                              const oldExperties = $state.changedExperies || [];
+                              async function postItems() {
+                                try {
+                                  const newRequests = newExperties.map(
+                                    ({ id, ...data }) =>
+                                      $$.axios.post(
+                                        "https://api.paziresh24.com/V1/doctor/expertises",
+                                        data,
+                                        {
+                                          ...$ctx.Fragment.apiConfig,
+                                          ...$ctx.Fragment.previewApiConfig
+                                        }
+                                      )
+                                  );
+                                  const oldRequests = oldExperties.map(
+                                    ({ id, ...data }) =>
+                                      $$.axios.put(
+                                        `https://api.paziresh24.com/V1/doctor/expertises/${id}`,
+                                        data,
+                                        {
+                                          ...$ctx.Fragment.apiConfig,
+                                          ...$ctx.Fragment.previewApiConfig
+                                        }
+                                      )
+                                  );
+                                  const responses = await Promise.all([
+                                    ...newRequests,
+                                    ...oldRequests
+                                  ]);
+                                  console.log(
+                                    "All items posted successfully:",
+                                    responses
+                                  );
+                                  if (responses?.length > 0) {
+                                    return true;
+                                  }
+                                } catch (error) {
+                                  console.error("Error posting items:", error);
+                                  return false;
+                                }
+                              }
+                              return postItems();
+                            })();
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode"] != null &&
+                    typeof $steps["runCode"] === "object" &&
+                    typeof $steps["runCode"].then === "function"
+                  ) {
+                    $steps["runCode"] = await $steps["runCode"];
+                  }
+
+                  $steps["updateIsLoadingSave2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["isLoadingSave"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateIsLoadingSave2"] != null &&
+                    typeof $steps["updateIsLoadingSave2"] === "object" &&
+                    typeof $steps["updateIsLoadingSave2"].then === "function"
+                  ) {
+                    $steps["updateIsLoadingSave2"] = await $steps[
+                      "updateIsLoadingSave2"
+                    ];
+                  }
+
+                  $steps["showToast"] = (() => {
+                    return $steps.runCode === true;
+                  })()
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            undefined,
+                            "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u067e\u0631\u062f\u0627\u0632\u0634 \u0634\u062f"
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["showToast"] != null &&
+                    typeof $steps["showToast"] === "object" &&
+                    typeof $steps["showToast"].then === "function"
+                  ) {
+                    $steps["showToast"] = await $steps["showToast"];
+                  }
+
+                  $steps["showToastError"] = (() => {
+                    return $steps.runCode === false;
+                  })()
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u062e\u0637\u0627\u06cc\u06cc \u0631\u062e \u062f\u0627\u062f"
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["showToastError"] != null &&
+                    typeof $steps["showToastError"] === "object" &&
+                    typeof $steps["showToastError"].then === "function"
+                  ) {
+                    $steps["showToastError"] = await $steps["showToastError"];
+                  }
+
+                  $steps["sendEvent"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  event_group: "edit-profile",
+                                  data: {
+                                    pagePath: window.location.href,
+                                    username: $state.authApi.data.data.username,
+                                    userid: $state.authApi.data.data.id,
+                                    userinfoid: $state.authApi.data.data.user_id
+                                  },
+                                  event_type: "save-changes-expertise"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
+                  ) {
+                    $steps["sendEvent"] = await $steps["sendEvent"];
+                  }
+
+                  $steps["runActionOnProviderApi"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          tplRef: "providerApi",
+                          action: "refresh"
+                        };
+                        return (({ tplRef, action, args }) => {
+                          return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runActionOnProviderApi"] != null &&
+                    typeof $steps["runActionOnProviderApi"] === "object" &&
+                    typeof $steps["runActionOnProviderApi"].then === "function"
+                  ) {
+                    $steps["runActionOnProviderApi"] = await $steps[
+                      "runActionOnProviderApi"
+                    ];
+                  }
+
+                  $steps["updateExpertiseArray"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["expertiseArray"]
+                          },
+                          operation: 1
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, undefined);
+                          return undefined;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateExpertiseArray"] != null &&
+                    typeof $steps["updateExpertiseArray"] === "object" &&
+                    typeof $steps["updateExpertiseArray"].then === "function"
+                  ) {
+                    $steps["updateExpertiseArray"] = await $steps[
+                      "updateExpertiseArray"
+                    ];
+                  }
+                }}
+              />
+
+              <Button
+                children2={
+                  <Icon2Icon
+                    className={classNames(projectcss.all, sty.svg__fAu9)}
+                    role={"img"}
+                  />
+                }
+                className={classNames("__wab_instance", sty.button__k32Sc)}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateExpertiseArray"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["expertiseArray"]
+                          },
+                          operation: 5,
+                          value: {
+                            id: $$.uuid.v4(),
+                            academic_degree_id: undefined,
+                            alias: "",
+                            speciality_id: undefined
+                          }
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          const arr = $stateGet(objRoot, variablePath);
+                          arr.push(value);
+                          return arr;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateExpertiseArray"] != null &&
+                    typeof $steps["updateExpertiseArray"] === "object" &&
+                    typeof $steps["updateExpertiseArray"].then === "function"
+                  ) {
+                    $steps["updateExpertiseArray"] = await $steps[
+                      "updateExpertiseArray"
+                    ];
+                  }
+
+                  $steps["sendEvent"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  event_group: "edit-profile",
+                                  data: {
+                                    pagePath: window.location.href,
+                                    username: $state.authApi.data.data.username,
+                                    userid: $state.authApi.data.data.id,
+                                    userinfoid: $state.authApi.data.data.user_id
+                                  },
+                                  event_type: "add-expertise"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
+                  ) {
+                    $steps["sendEvent"] = await $steps["sendEvent"];
+                  }
+                }}
+                outline={true}
+              />
+            </Stack__>
+          </Stack__>
+          <ApiRequest
+            data-plasmic-name={"spetialitiesApi"}
+            data-plasmic-override={overrides.spetialitiesApi}
+            children={null}
+            className={classNames("__wab_instance", sty.spetialitiesApi)}
+            errorDisplay={null}
             loadingDisplay={
               <div className={classNames(projectcss.all, sty.freeBox___1LOpQ)}>
                 <Icon34Icon
@@ -5334,1204 +6596,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
                 throw e;
               }
             })()}
-          >
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__deNqh)}
-            >
-              {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                (() => {
-                  try {
-                    return $state.spetialitiesApi.data.providers_specialities;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return [];
-                    }
-                    throw e;
-                  }
-                })()
-              ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                const currentItem = __plasmic_item_0;
-                const currentIndex = __plasmic_idx_0;
-                return (() => {
-                  const child$Props = {
-                    className: classNames(
-                      "__wab_instance",
-                      sty.profileExpertiseItem
-                    ),
-                    degree: (() => {
-                      try {
-                        return $props.degree;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })(),
-                    degreeValue: generateStateValueProp($state, [
-                      "profileExpertiseItem",
-                      __plasmic_idx_0,
-                      "degreeValue"
-                    ]),
-                    expertise: (() => {
-                      try {
-                        return $props.expertise;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })(),
-                    expertiseTitle: generateStateValueProp($state, [
-                      "profileExpertiseItem",
-                      __plasmic_idx_0,
-                      "expertiseTitle"
-                    ]),
-                    expertiseValue: generateStateValueProp($state, [
-                      "profileExpertiseItem",
-                      __plasmic_idx_0,
-                      "expertiseValue"
-                    ]),
-                    id: (() => {
-                      try {
-                        return currentItem.id;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })(),
-                    key: currentIndex,
-                    onDegreeValueChange: async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "profileExpertiseItem",
-                        __plasmic_idx_0,
-                        "degreeValue"
-                      ]).apply(null, eventArgs);
-
-                      if (
-                        eventArgs.length > 1 &&
-                        eventArgs[1] &&
-                        eventArgs[1]._plasmic_state_init_
-                      ) {
-                        return;
-                      }
-
-                      (async val => {
-                        const $steps = {};
-
-                        $steps["updateChangedExperies"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["changedExperies"]
-                                },
-                                operation: 0,
-                                value: (() => {
-                                  const itemExists =
-                                    $state.changedExperies.some(
-                                      item => item.id === currentItem.id
-                                    );
-                                  if (itemExists) {
-                                    return $state.changedExperies.map(item =>
-                                      item.id == currentItem.id
-                                        ? {
-                                            id: currentItem.id,
-                                            academic_degree_id: val,
-                                            alias: currentItem.alias,
-                                            speciality_id:
-                                              currentItem.speciality.id
-                                          }
-                                        : item
-                                    );
-                                  } else {
-                                    return [
-                                      ...$state.changedExperies,
-                                      {
-                                        id: currentItem.id,
-                                        academic_degree_id: val,
-                                        alias: currentItem.alias,
-                                        speciality_id: currentItem.speciality.id
-                                      }
-                                    ];
-                                  }
-                                })()
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateChangedExperies"] != null &&
-                          typeof $steps["updateChangedExperies"] === "object" &&
-                          typeof $steps["updateChangedExperies"].then ===
-                            "function"
-                        ) {
-                          $steps["updateChangedExperies"] = await $steps[
-                            "updateChangedExperies"
-                          ];
-                        }
-                      }).apply(null, eventArgs);
-                    },
-                    onDeleteClick: async id => {
-                      const $steps = {};
-
-                      $steps["updateDialogOpen"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["dialog", "open"]
-                              },
-                              operation: 4
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              const oldValue = $stateGet(objRoot, variablePath);
-                              $stateSet(objRoot, variablePath, !oldValue);
-                              return !oldValue;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateDialogOpen"] != null &&
-                        typeof $steps["updateDialogOpen"] === "object" &&
-                        typeof $steps["updateDialogOpen"].then === "function"
-                      ) {
-                        $steps["updateDialogOpen"] = await $steps[
-                          "updateDialogOpen"
-                        ];
-                      }
-
-                      $steps["updateSelectedId"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              variable: {
-                                objRoot: $state,
-                                variablePath: ["selectedId"]
-                              },
-                              operation: 0,
-                              value: id
-                            };
-                            return (({
-                              variable,
-                              value,
-                              startIndex,
-                              deleteCount
-                            }) => {
-                              if (!variable) {
-                                return;
-                              }
-                              const { objRoot, variablePath } = variable;
-
-                              $stateSet(objRoot, variablePath, value);
-                              return value;
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["updateSelectedId"] != null &&
-                        typeof $steps["updateSelectedId"] === "object" &&
-                        typeof $steps["updateSelectedId"].then === "function"
-                      ) {
-                        $steps["updateSelectedId"] = await $steps[
-                          "updateSelectedId"
-                        ];
-                      }
-                    },
-                    onExpertiseTitleChange: async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "profileExpertiseItem",
-                        __plasmic_idx_0,
-                        "expertiseTitle"
-                      ]).apply(null, eventArgs);
-
-                      if (
-                        eventArgs.length > 1 &&
-                        eventArgs[1] &&
-                        eventArgs[1]._plasmic_state_init_
-                      ) {
-                        return;
-                      }
-
-                      (async val => {
-                        const $steps = {};
-
-                        $steps["updateChangedExperies"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["changedExperies"]
-                                },
-                                operation: 0,
-                                value: (() => {
-                                  const itemExists =
-                                    $state.changedExperies.some(
-                                      item => item.id === currentItem.id
-                                    );
-                                  if (itemExists) {
-                                    return $state.changedExperies.map(item =>
-                                      item.id == currentItem.id
-                                        ? {
-                                            id: currentItem.id,
-                                            academic_degree_id:
-                                              currentItem.academic_degree.id,
-                                            alias: val,
-                                            speciality_id:
-                                              currentItem.speciality.id
-                                          }
-                                        : item
-                                    );
-                                  } else {
-                                    return [
-                                      ...$state.changedExperies,
-                                      {
-                                        id: currentItem.id,
-                                        academic_degree_id:
-                                          currentItem.academic_degree.id,
-                                        alias: val,
-                                        speciality_id: currentItem.speciality.id
-                                      }
-                                    ];
-                                  }
-                                })()
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateChangedExperies"] != null &&
-                          typeof $steps["updateChangedExperies"] === "object" &&
-                          typeof $steps["updateChangedExperies"].then ===
-                            "function"
-                        ) {
-                          $steps["updateChangedExperies"] = await $steps[
-                            "updateChangedExperies"
-                          ];
-                        }
-                      }).apply(null, eventArgs);
-                    },
-                    onExpertiseValueChange: async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "profileExpertiseItem",
-                        __plasmic_idx_0,
-                        "expertiseValue"
-                      ]).apply(null, eventArgs);
-
-                      if (
-                        eventArgs.length > 1 &&
-                        eventArgs[1] &&
-                        eventArgs[1]._plasmic_state_init_
-                      ) {
-                        return;
-                      }
-
-                      (async val => {
-                        const $steps = {};
-
-                        $steps["updateChangedExperies"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["changedExperies"]
-                                },
-                                operation: 0,
-                                value: (() => {
-                                  const itemExists =
-                                    $state.changedExperies.some(
-                                      item => item.id === currentItem.id
-                                    );
-                                  if (itemExists) {
-                                    return $state.changedExperies.map(item =>
-                                      item.id == currentItem.id
-                                        ? {
-                                            id: currentItem.id,
-                                            academic_degree_id:
-                                              currentItem.academic_degree.id,
-                                            alias: currentItem.alias,
-                                            speciality_id: val
-                                          }
-                                        : item
-                                    );
-                                  } else {
-                                    return [
-                                      ...$state.changedExperies,
-                                      {
-                                        id: currentItem.id,
-                                        academic_degree_id:
-                                          currentItem.academic_degree.id,
-                                        alias: currentItem.alias,
-                                        speciality_id: val
-                                      }
-                                    ];
-                                  }
-                                })()
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateChangedExperies"] != null &&
-                          typeof $steps["updateChangedExperies"] === "object" &&
-                          typeof $steps["updateChangedExperies"].then ===
-                            "function"
-                        ) {
-                          $steps["updateChangedExperies"] = await $steps[
-                            "updateChangedExperies"
-                          ];
-                        }
-                      }).apply(null, eventArgs);
-                    }
-                  };
-
-                  initializePlasmicStates(
-                    $state,
-                    [
-                      {
-                        name: "profileExpertiseItem[].degreeValue",
-                        initFunc: ({ $props, $state, $queries }) =>
-                          (() => {
-                            try {
-                              return currentItem.academic_degree.id;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                      },
-                      {
-                        name: "profileExpertiseItem[].expertiseValue",
-                        initFunc: ({ $props, $state, $queries }) =>
-                          (() => {
-                            try {
-                              return currentItem.speciality.id;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                      },
-                      {
-                        name: "profileExpertiseItem[].expertiseTitle",
-                        initFunc: ({ $props, $state, $queries }) =>
-                          (() => {
-                            try {
-                              return currentItem.alias;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                      }
-                    ],
-                    [__plasmic_idx_0]
-                  );
-                  return (
-                    <ProfileExpertiseItem
-                      data-plasmic-name={"profileExpertiseItem"}
-                      data-plasmic-override={overrides.profileExpertiseItem}
-                      {...child$Props}
-                    />
-                  );
-                })();
-              })}
-              <div className={classNames(projectcss.all, sty.freeBox__afDni)}>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__gaqai
-                  )}
-                >
-                  <React.Fragment>
-                    <span
-                      className={"plasmic_default__all plasmic_default__span"}
-                      style={{ color: "#000000" }}
-                    >
-                      {
-                        "\u0639\u0646\u0648\u0627\u0646 \u062a\u062e\u0635\u0635 \u0628\u0627\u06cc\u062f \u0628\u0627 \u0646\u0627\u0645 \u062f\u0642\u06cc\u0642 \u0648 \u0631\u0633\u0645\u06cc \u062a\u062e\u0635\u0635 \u0622\u063a\u0627\u0632 \u0634\u0648\u062f (\u0645\u0627\u0646\u0646\u062f: \u00ab\u06a9\u0627\u0631\u0634\u0646\u0627\u0633 \u0645\u0627\u0645\u0627\u06cc\u06cc\u00bb).\n\u0628\u0644\u0627\u0641\u0627\u0635\u0644\u0647 \u067e\u0633 \u0627\u0632 \u0622\u0646\u060c \u062a\u0648\u0636\u06cc\u062d\u06cc \u06a9\u0648\u062a\u0627\u0647 \u0648 \u0631\u0648\u0634\u0646 \u062f\u0631\u0628\u0627\u0631\u0647 \u062e\u062f\u0645\u0627\u062a \u0627\u0631\u0627\u0626\u0647 \u06af\u0631\u062f\u062f.\n\u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0627\u0632 \u062c\u062f\u0627\u06a9\u0646\u0646\u062f\u0647 \u0645\u0646\u0627\u0633\u0628 \u0645\u0627\u0646\u0646\u062f \u0648\u06cc\u0631\u06af\u0648\u0644 \u00ab\u060c\u00bb \u0648 \u0631\u0639\u0627\u06cc\u062a \u0641\u0627\u0635\u0644\u0647\u200c\u06af\u0630\u0627\u0631\u06cc \u0635\u062d\u06cc\u062d\u060c \u062e\u0648\u0627\u0646\u0627\u06cc\u06cc \u0645\u062a\u0646 \u0631\u0627 \u0627\u0641\u0632\u0627\u06cc\u0634 \u0645\u06cc\u200c\u062f\u0647\u062f.\n\u0627\u0632 \u0628\u0647\u200c\u06a9\u0627\u0631 \u0628\u0631\u062f\u0646 \u0648\u0627\u0698\u06af\u0627\u0646\u06cc \u06a9\u0647 \u0645\u0648\u062c\u0628 \u062a\u0634\u0627\u0628\u0647 \u0628\u0627 \u0633\u0627\u06cc\u0631 \u062a\u062e\u0635\u0635\u200c\u0647\u0627 \u0645\u06cc\u200c\u0634\u0648\u062f\u060c \u067e\u0631\u0647\u06cc\u0632 \u0634\u0648\u062f."
-                      }
-                    </span>
-                  </React.Fragment>
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___97Bgt
-                  )}
-                >
-                  {
-                    "\u0645\u062b\u0627\u0644  : \u06a9\u0627\u0631\u0634\u0646\u0627\u0633 \u0645\u0627\u0645\u0627\u06cc\u06cc\u060c \u0632\u06af\u06cc\u0644 \u062a\u0646\u0627\u0633\u0644\u06cc\u060c \u062a\u0628\u062e\u0627\u0644 \u062a\u0646\u0627\u0633\u0644\u06cc\u060c \u0628\u06a9\u0627\u0631\u062a\u060c \u0639\u0641\u0648\u0646\u062a \u0648\u0627\u0698\u0646"
-                  }
-                </div>
-              </div>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__hKrof)}
-              >
-                {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-                  (() => {
-                    try {
-                      return $state.expertiseArray;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return [];
-                      }
-                      throw e;
-                    }
-                  })()
-                ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                  const currentItem = __plasmic_item_0;
-                  const currentIndex = __plasmic_idx_0;
-                  return (() => {
-                    const child$Props = {
-                      className: classNames(
-                        "__wab_instance",
-                        sty.profileExpertiseItem2
-                      ),
-                      degree: (() => {
-                        try {
-                          return $props.degree;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })(),
-                      degreeValue: generateStateValueProp($state, [
-                        "profileExpertiseItem2",
-                        __plasmic_idx_0,
-                        "degreeValue"
-                      ]),
-                      expertise: (() => {
-                        try {
-                          return $props.expertise;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })(),
-                      expertiseTitle: generateStateValueProp($state, [
-                        "profileExpertiseItem2",
-                        __plasmic_idx_0,
-                        "expertiseTitle"
-                      ]),
-                      expertiseValue: generateStateValueProp($state, [
-                        "profileExpertiseItem2",
-                        __plasmic_idx_0,
-                        "expertiseValue"
-                      ]),
-                      key: currentIndex,
-                      onDegreeValueChange: async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "profileExpertiseItem2",
-                          __plasmic_idx_0,
-                          "degreeValue"
-                        ]).apply(null, eventArgs);
-
-                        if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
-                        ) {
-                          return;
-                        }
-
-                        (async val => {
-                          const $steps = {};
-
-                          $steps["updateExpertiseArray"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["expertiseArray"]
-                                  },
-                                  operation: 0,
-                                  value: $state.expertiseArray.map(item =>
-                                    item.id == currentItem.id
-                                      ? {
-                                          id: item.id,
-                                          academic_degree_id: val,
-                                          alias: item.alias,
-                                          speciality_id: item.speciality_id
-                                        }
-                                      : item
-                                  )
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["updateExpertiseArray"] != null &&
-                            typeof $steps["updateExpertiseArray"] ===
-                              "object" &&
-                            typeof $steps["updateExpertiseArray"].then ===
-                              "function"
-                          ) {
-                            $steps["updateExpertiseArray"] = await $steps[
-                              "updateExpertiseArray"
-                            ];
-                          }
-                        }).apply(null, eventArgs);
-                      },
-                      onDeleteClick: async id => {
-                        const $steps = {};
-
-                        $steps["updateExpertiseArray"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["expertiseArray"]
-                                },
-                                operation: 0,
-                                value: $state.expertiseArray.filter(
-                                  item => item.id !== currentItem.id
-                                )
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateExpertiseArray"] != null &&
-                          typeof $steps["updateExpertiseArray"] === "object" &&
-                          typeof $steps["updateExpertiseArray"].then ===
-                            "function"
-                        ) {
-                          $steps["updateExpertiseArray"] = await $steps[
-                            "updateExpertiseArray"
-                          ];
-                        }
-                      },
-                      onExpertiseTitleChange: async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "profileExpertiseItem2",
-                          __plasmic_idx_0,
-                          "expertiseTitle"
-                        ]).apply(null, eventArgs);
-
-                        if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
-                        ) {
-                          return;
-                        }
-
-                        (async val => {
-                          const $steps = {};
-
-                          $steps["updateExpertiseArray"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["expertiseArray"]
-                                  },
-                                  operation: 0,
-                                  value: $state.expertiseArray.map(item =>
-                                    item.id == currentItem.id
-                                      ? {
-                                          id: item.id,
-                                          academic_degree_id:
-                                            item.academic_degree_id,
-                                          alias: val,
-                                          speciality_id: item.speciality_id
-                                        }
-                                      : item
-                                  )
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["updateExpertiseArray"] != null &&
-                            typeof $steps["updateExpertiseArray"] ===
-                              "object" &&
-                            typeof $steps["updateExpertiseArray"].then ===
-                              "function"
-                          ) {
-                            $steps["updateExpertiseArray"] = await $steps[
-                              "updateExpertiseArray"
-                            ];
-                          }
-                        }).apply(null, eventArgs);
-                      },
-                      onExpertiseValueChange: async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
-                          "profileExpertiseItem2",
-                          __plasmic_idx_0,
-                          "expertiseValue"
-                        ]).apply(null, eventArgs);
-
-                        if (
-                          eventArgs.length > 1 &&
-                          eventArgs[1] &&
-                          eventArgs[1]._plasmic_state_init_
-                        ) {
-                          return;
-                        }
-
-                        (async val => {
-                          const $steps = {};
-
-                          $steps["updateExpertiseArray"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["expertiseArray"]
-                                  },
-                                  operation: 0,
-                                  value: $state.expertiseArray.map(item =>
-                                    item.id == currentItem.id
-                                      ? {
-                                          id: item.id,
-                                          academic_degree_id:
-                                            item.academic_degree_id,
-                                          alias: item.alias,
-                                          speciality_id: val
-                                        }
-                                      : item
-                                  )
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["updateExpertiseArray"] != null &&
-                            typeof $steps["updateExpertiseArray"] ===
-                              "object" &&
-                            typeof $steps["updateExpertiseArray"].then ===
-                              "function"
-                          ) {
-                            $steps["updateExpertiseArray"] = await $steps[
-                              "updateExpertiseArray"
-                            ];
-                          }
-                        }).apply(null, eventArgs);
-                      }
-                    };
-
-                    initializePlasmicStates(
-                      $state,
-                      [
-                        {
-                          name: "profileExpertiseItem2[].degreeValue",
-                          initFunc: ({ $props, $state, $queries }) =>
-                            currentItem.academic_degree_id
-                        },
-                        {
-                          name: "profileExpertiseItem2[].expertiseValue",
-                          initFunc: ({ $props, $state, $queries }) =>
-                            (() => {
-                              try {
-                                return currentItem.speciality_id;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                        },
-                        {
-                          name: "profileExpertiseItem2[].expertiseTitle",
-                          initFunc: ({ $props, $state, $queries }) =>
-                            (() => {
-                              try {
-                                return currentItem.alias;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                        }
-                      ],
-                      [__plasmic_idx_0]
-                    );
-                    return (
-                      <ProfileExpertiseItem
-                        data-plasmic-name={"profileExpertiseItem2"}
-                        data-plasmic-override={overrides.profileExpertiseItem2}
-                        {...child$Props}
-                      />
-                    );
-                  })();
-                })}
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox___3Ija4)}
-              >
-                <Button
-                  children2={
-                    "\u0630\u062e\u06cc\u0631\u0647 \u06a9\u0631\u062f\u0646 \u062a\u063a\u06cc\u06cc\u0631\u0627\u062a"
-                  }
-                  className={classNames("__wab_instance", sty.button__wTEc8)}
-                  loading={(() => {
-                    try {
-                      return $state.isLoadingSave;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return [];
-                      }
-                      throw e;
-                    }
-                  })()}
-                  onClick={async event => {
-                    const $steps = {};
-
-                    $steps["updateIsLoadingSave"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["isLoadingSave"]
-                            },
-                            operation: 0,
-                            value: true
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateIsLoadingSave"] != null &&
-                      typeof $steps["updateIsLoadingSave"] === "object" &&
-                      typeof $steps["updateIsLoadingSave"].then === "function"
-                    ) {
-                      $steps["updateIsLoadingSave"] = await $steps[
-                        "updateIsLoadingSave"
-                      ];
-                    }
-
-                    $steps["runCode"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            customFunction: async () => {
-                              return (async () => {
-                                const newExperties =
-                                  $state.expertiseArray || [];
-                                const oldExperties =
-                                  $state.changedExperies || [];
-                                async function postItems() {
-                                  try {
-                                    const newRequests = newExperties.map(
-                                      ({ id, ...data }) =>
-                                        $$.axios.post(
-                                          "https://apigw.paziresh24.com/v1/providers-specialities",
-                                          data,
-                                          {
-                                            ...$ctx.Fragment.apiConfig,
-                                            ...$ctx.Fragment.previewApiConfig
-                                          }
-                                        )
-                                    );
-                                    const oldRequests = oldExperties.map(
-                                      ({ id, ...data }) =>
-                                        $$.axios.patch(
-                                          `https://apigw.paziresh24.com/v1/providers-specialities/${id}`,
-                                          data,
-                                          {
-                                            ...$ctx.Fragment.apiConfig,
-                                            ...$ctx.Fragment.previewApiConfig
-                                          }
-                                        )
-                                    );
-                                    const responses = await Promise.all([
-                                      ...newRequests,
-                                      ...oldRequests
-                                    ]);
-                                    console.log(
-                                      "All items posted successfully:",
-                                      responses
-                                    );
-                                    if (responses?.length > 0) {
-                                      return true;
-                                    }
-                                  } catch (error) {
-                                    console.error(
-                                      "Error posting items:",
-                                      error
-                                    );
-                                    return false;
-                                  }
-                                }
-                                return postItems();
-                              })();
-                            }
-                          };
-                          return (({ customFunction }) => {
-                            return customFunction();
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["runCode"] != null &&
-                      typeof $steps["runCode"] === "object" &&
-                      typeof $steps["runCode"].then === "function"
-                    ) {
-                      $steps["runCode"] = await $steps["runCode"];
-                    }
-
-                    $steps["updateIsLoadingSave2"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["isLoadingSave"]
-                            },
-                            operation: 0,
-                            value: false
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateIsLoadingSave2"] != null &&
-                      typeof $steps["updateIsLoadingSave2"] === "object" &&
-                      typeof $steps["updateIsLoadingSave2"].then === "function"
-                    ) {
-                      $steps["updateIsLoadingSave2"] = await $steps[
-                        "updateIsLoadingSave2"
-                      ];
-                    }
-
-                    $steps["invokeGlobalAction"] = (() => {
-                      return $steps.runCode === true;
-                    })()
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              undefined,
-                              "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u067e\u0631\u062f\u0627\u0632\u0634 \u0634\u062f"
-                            ]
-                          };
-                          return $globalActions["Fragment.showToast"]?.apply(
-                            null,
-                            [...actionArgs.args]
-                          );
-                        })()
-                      : undefined;
-                    if (
-                      $steps["invokeGlobalAction"] != null &&
-                      typeof $steps["invokeGlobalAction"] === "object" &&
-                      typeof $steps["invokeGlobalAction"].then === "function"
-                    ) {
-                      $steps["invokeGlobalAction"] = await $steps[
-                        "invokeGlobalAction"
-                      ];
-                    }
-
-                    $steps["invokeGlobalAction2"] = (() => {
-                      return $steps.runCode === false;
-                    })()
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              "error",
-                              "\u062e\u0637\u0627\u06cc\u06cc \u0631\u062e \u062f\u0627\u062f"
-                            ]
-                          };
-                          return $globalActions["Fragment.showToast"]?.apply(
-                            null,
-                            [...actionArgs.args]
-                          );
-                        })()
-                      : undefined;
-                    if (
-                      $steps["invokeGlobalAction2"] != null &&
-                      typeof $steps["invokeGlobalAction2"] === "object" &&
-                      typeof $steps["invokeGlobalAction2"].then === "function"
-                    ) {
-                      $steps["invokeGlobalAction2"] = await $steps[
-                        "invokeGlobalAction2"
-                      ];
-                    }
-
-                    $steps["sendEvent"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              (() => {
-                                try {
-                                  return {
-                                    event_group: "edit-profile",
-                                    data: { pagePath: window.location.href },
-                                    event_type: "save-changes-expertise"
-                                  };
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Splunk.sendLog"]?.apply(null, [
-                            ...actionArgs.args
-                          ]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["sendEvent"] != null &&
-                      typeof $steps["sendEvent"] === "object" &&
-                      typeof $steps["sendEvent"].then === "function"
-                    ) {
-                      $steps["sendEvent"] = await $steps["sendEvent"];
-                    }
-                  }}
-                />
-
-                <Button
-                  children2={
-                    <Icon2Icon
-                      className={classNames(projectcss.all, sty.svg__fAu9)}
-                      role={"img"}
-                    />
-                  }
-                  className={classNames("__wab_instance", sty.button__k32Sc)}
-                  onClick={async event => {
-                    const $steps = {};
-
-                    $steps["updateExpertiseArray"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["expertiseArray"]
-                            },
-                            operation: 5,
-                            value: {
-                              id: $$.uuid.v4(),
-                              academic_degree_id: undefined,
-                              alias: "",
-                              speciality_id: undefined
-                            }
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            const arr = $stateGet(objRoot, variablePath);
-                            arr.push(value);
-                            return arr;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateExpertiseArray"] != null &&
-                      typeof $steps["updateExpertiseArray"] === "object" &&
-                      typeof $steps["updateExpertiseArray"].then === "function"
-                    ) {
-                      $steps["updateExpertiseArray"] = await $steps[
-                        "updateExpertiseArray"
-                      ];
-                    }
-                  }}
-                  outline={true}
-                />
-              </Stack__>
-            </Stack__>
-          </ApiRequest>
+          />
         </ApiRequest>
       </ApiRequest>
       <Dialog
@@ -6616,7 +6681,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
                           "DELETE",
                           (() => {
                             try {
-                              return `https://apigw.paziresh24.com/v1/providers-specialities/${$state.selectedId}`;
+                              return `https://api.paziresh24.com/V1/doctor/expertises/${$state.selectedId}`;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -6795,10 +6860,10 @@ function PlasmicProfileExperties__RenderFunc(props: {
                   $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
                 }
 
-                $steps["runActionOnSpetialitiesApi"] = true
+                $steps["runActionOnProviderApi"] = true
                   ? (() => {
                       const actionArgs = {
-                        tplRef: "spetialitiesApi",
+                        tplRef: "providerApi",
                         action: "refresh"
                       };
                       return (({ tplRef, action, args }) => {
@@ -6807,13 +6872,12 @@ function PlasmicProfileExperties__RenderFunc(props: {
                     })()
                   : undefined;
                 if (
-                  $steps["runActionOnSpetialitiesApi"] != null &&
-                  typeof $steps["runActionOnSpetialitiesApi"] === "object" &&
-                  typeof $steps["runActionOnSpetialitiesApi"].then ===
-                    "function"
+                  $steps["runActionOnProviderApi"] != null &&
+                  typeof $steps["runActionOnProviderApi"] === "object" &&
+                  typeof $steps["runActionOnProviderApi"].then === "function"
                 ) {
-                  $steps["runActionOnSpetialitiesApi"] = await $steps[
-                    "runActionOnSpetialitiesApi"
+                  $steps["runActionOnProviderApi"] = await $steps[
+                    "runActionOnProviderApi"
                   ];
                 }
               }}
@@ -6969,31 +7033,27 @@ const PlasmicDescendants = {
     "root",
     "authApi",
     "providerApi",
-    "spetialitiesApi",
     "profileExpertiseItem",
     "profileExpertiseItem2",
+    "spetialitiesApi",
     "dialog"
   ],
   authApi: [
     "authApi",
     "providerApi",
-    "spetialitiesApi",
     "profileExpertiseItem",
-    "profileExpertiseItem2"
+    "profileExpertiseItem2",
+    "spetialitiesApi"
   ],
   providerApi: [
     "providerApi",
-    "spetialitiesApi",
     "profileExpertiseItem",
-    "profileExpertiseItem2"
-  ],
-  spetialitiesApi: [
-    "spetialitiesApi",
-    "profileExpertiseItem",
-    "profileExpertiseItem2"
+    "profileExpertiseItem2",
+    "spetialitiesApi"
   ],
   profileExpertiseItem: ["profileExpertiseItem"],
   profileExpertiseItem2: ["profileExpertiseItem2"],
+  spetialitiesApi: ["spetialitiesApi"],
   dialog: ["dialog"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -7003,9 +7063,9 @@ type NodeDefaultElementType = {
   root: "div";
   authApi: typeof ApiRequest;
   providerApi: typeof ApiRequest;
-  spetialitiesApi: typeof ApiRequest;
   profileExpertiseItem: typeof ProfileExpertiseItem;
   profileExpertiseItem2: typeof ProfileExpertiseItem;
+  spetialitiesApi: typeof ApiRequest;
   dialog: typeof Dialog;
 };
 
@@ -7071,9 +7131,9 @@ export const PlasmicProfileExperties = Object.assign(
     // Helper components rendering sub-elements
     authApi: makeNodeComponent("authApi"),
     providerApi: makeNodeComponent("providerApi"),
-    spetialitiesApi: makeNodeComponent("spetialitiesApi"),
     profileExpertiseItem: makeNodeComponent("profileExpertiseItem"),
     profileExpertiseItem2: makeNodeComponent("profileExpertiseItem2"),
+    spetialitiesApi: makeNodeComponent("spetialitiesApi"),
     dialog: makeNodeComponent("dialog"),
 
     // Metadata about props expected for PlasmicProfileExperties

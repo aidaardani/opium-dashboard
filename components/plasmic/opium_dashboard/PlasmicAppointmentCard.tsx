@@ -517,13 +517,28 @@ function PlasmicAppointmentCard__RenderFunc(props: {
           })()}
         </React.Fragment>
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__kYxN2)}>
+      <div
+        className={classNames(projectcss.all, sty.freeBox__kYxN2, {
+          [sty.freeBoxonlineBorder__kYxN25Rn5G]: hasVariant(
+            $state,
+            "onlineBorder",
+            "onlineBorder"
+          )
+        })}
+      >
         {(hasVariant(globalVariants, "screen", "mobileOnly") ? false : true) ? (
           <div
             className={classNames(
               projectcss.all,
               projectcss.__wab_text,
-              sty.text__r7ZrR
+              sty.text__r7ZrR,
+              {
+                [sty.textonlineBorder__r7ZrR5Rn5G]: hasVariant(
+                  $state,
+                  "onlineBorder",
+                  "onlineBorder"
+                )
+              }
             )}
           >
             <React.Fragment>
@@ -591,8 +606,24 @@ function PlasmicAppointmentCard__RenderFunc(props: {
           </div>
         ) : null}
       </div>
-      <div className={classNames(projectcss.all, sty.freeBox__zo2Zh)}>
-        <div className={classNames(projectcss.all, sty.freeBox__z6Rot)}>
+      <div
+        className={classNames(projectcss.all, sty.freeBox__zo2Zh, {
+          [sty.freeBoxonlineBorder__zo2Zh5Rn5G]: hasVariant(
+            $state,
+            "onlineBorder",
+            "onlineBorder"
+          )
+        })}
+      >
+        <div
+          className={classNames(projectcss.all, sty.freeBox__z6Rot, {
+            [sty.freeBoxonlineBorder__z6Rot5Rn5G]: hasVariant(
+              $state,
+              "onlineBorder",
+              "onlineBorder"
+            )
+          })}
+        >
           <ApiRequest
             data-plasmic-name={"apiGetPyamentInfo2"}
             data-plasmic-override={overrides.apiGetPyamentInfo2}

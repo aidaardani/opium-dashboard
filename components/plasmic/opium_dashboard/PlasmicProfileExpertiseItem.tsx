@@ -175,6 +175,8 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const $globalActions = useGlobalActions?.();
+
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -428,6 +430,49 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
             typeof $steps["runOnDeleteClick"].then === "function"
           ) {
             $steps["runOnDeleteClick"] = await $steps["runOnDeleteClick"];
+          }
+
+          $steps["sendLog"] = true
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    (() => {
+                      try {
+                        return {
+                          event_group: "edit-profile",
+                          data: {
+                            pagePath: window.location.href,
+                            username: $state.authApi.data.data.username,
+                            userid: $state.authApi.data.data.id,
+                            userinfoid: $state.authApi.data.data.user_id,
+                            expertise: $state.selectExpertise,
+                            degree: $state.selectDegree
+                          },
+                          event_type: "delete-expertise"
+                        };
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  ]
+                };
+                return $globalActions["Splunk.sendLog"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["sendLog"] != null &&
+            typeof $steps["sendLog"] === "object" &&
+            typeof $steps["sendLog"].then === "function"
+          ) {
+            $steps["sendLog"] = await $steps["sendLog"];
           }
         }}
         size={"compact"}

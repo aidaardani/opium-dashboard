@@ -1057,7 +1057,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
               className={classNames("__wab_instance", sty.fragmentTextEditor)}
               data={(() => {
                 try {
-                  return $state.biography;
+                  return $state.biography || " ";
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
