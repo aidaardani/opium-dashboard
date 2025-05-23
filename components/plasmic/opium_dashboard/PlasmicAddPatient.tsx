@@ -681,7 +681,7 @@ function PlasmicAddPatient__RenderFunc(props: {
                 const actionArgs = {
                   args: [
                     "GET",
-                    "https://apigw.paziresh24.com/v1/patientdata",
+                    "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/v2/patientdata",
                     (() => {
                       try {
                         return { "national-code": $state.nationalCode.value };
