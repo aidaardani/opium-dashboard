@@ -533,77 +533,72 @@ function PlasmicBookList__RenderFunc(props: {
               }}
             />
 
-            {(() => {
-              try {
-                return (
-                  $state.apiAllCenters.data.data.some(
-                    center => center.id === "5532"
-                  ) || $state.apiPayment.data[0].value === "1"
-                );
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return false;
-                }
-                throw e;
-              }
-            })() ? (
-              <div
-                data-plasmic-name={"quickAccess"}
-                data-plasmic-override={overrides.quickAccess}
-                className={classNames(projectcss.all, sty.quickAccess)}
+            <div
+              data-plasmic-name={"quickAccess"}
+              data-plasmic-override={overrides.quickAccess}
+              className={classNames(projectcss.all, sty.quickAccess)}
+            >
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox___5X51W)}
               >
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox___5X51W)}
-                >
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__fnKuE)}
-                    onClick={async event => {
-                      const $steps = {};
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__fnKuE)}
+                  onClick={async event => {
+                    const $steps = {};
 
-                      $steps["sendLog"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              args: [
-                                (() => {
-                                  try {
-                                    return {
-                                      group: "quick access",
-                                      type: "in-app-notification",
-                                      center: $state.centers
-                                    };
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
+                    $steps["sendLog"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    group: "quick access",
+                                    type: "in-app-notification",
+                                    center: $state.centers
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
                                   }
-                                })()
-                              ]
-                            };
-                            return $globalActions["Splunk.sendLog"]?.apply(
-                              null,
-                              [...actionArgs.args]
-                            );
-                          })()
-                        : undefined;
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendLog"] != null &&
+                      typeof $steps["sendLog"] === "object" &&
+                      typeof $steps["sendLog"].then === "function"
+                    ) {
+                      $steps["sendLog"] = await $steps["sendLog"];
+                    }
+                  }}
+                >
+                  {(() => {
+                    try {
+                      return true;
+                    } catch (e) {
                       if (
-                        $steps["sendLog"] != null &&
-                        typeof $steps["sendLog"] === "object" &&
-                        typeof $steps["sendLog"].then === "function"
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
                       ) {
-                        $steps["sendLog"] = await $steps["sendLog"];
+                        return true;
                       }
-                    }}
-                  >
+                      throw e;
+                    }
+                  })() ? (
                     <QuickAccessInAppNotifications
                       data-plasmic-name={"quickAccessInAppNotifications"}
                       data-plasmic-override={
@@ -614,7 +609,25 @@ function PlasmicBookList__RenderFunc(props: {
                         sty.quickAccessInAppNotifications
                       )}
                     />
-                  </div>
+                  ) : null}
+                </div>
+                {(() => {
+                  try {
+                    return (
+                      $state.apiAllCenters.data.data.some(
+                        center => center.id === "5532"
+                      ) || $state.apiPayment.data[0].value === "1"
+                    );
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return false;
+                    }
+                    throw e;
+                  }
+                })() ? (
                   <div
                     className={classNames(projectcss.all, sty.freeBox__neu9)}
                     onClick={async event => {
@@ -708,9 +721,9 @@ function PlasmicBookList__RenderFunc(props: {
                       )}
                     />
                   </div>
-                </Stack__>
-              </div>
-            ) : null}
+                ) : null}
+              </Stack__>
+            </div>
             <div
               data-plasmic-name={"date"}
               data-plasmic-override={overrides.date}
