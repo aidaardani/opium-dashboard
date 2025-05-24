@@ -8,8 +8,8 @@
   justify-items: center;
   justify-content: flex-start;
   align-items: center;
-  padding-right: 5px;
-  padding-left: 5px;
+  padding-right: 50px;
+  padding-left: 50px;
   padding-top: 0px;
   min-width: 0;
   min-height: 0;
@@ -23,6 +23,17 @@
 }
 .root > * {
   grid-column: 4;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .root {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .root > * {
+    grid-column: 4;
+  }
 }
 .drServices:global(.__wab_instance) {
   max-width: 100%;
