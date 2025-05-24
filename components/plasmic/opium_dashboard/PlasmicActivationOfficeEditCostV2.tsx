@@ -1625,14 +1625,22 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               ];
             }
 
-            $steps["editCost"] = (
-              $state.select.value === "custom"
-                ? $state.input.value !== 0 &&
-                  $state.input.value !== "0" &&
-                  $state.input.value.trim() !== "" &&
-                  $state.input.value > 10000
-                : true
-            )
+            $steps["editCost"] = (() => {
+              function toEnglishDigits(str) {
+                return str.replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
+              }
+              const inputValue = toEnglishDigits(
+                String($state.input.value).trim()
+              );
+              const numericValue = Number(inputValue);
+              const isValid =
+                $state.select.value === "custom"
+                  ? numericValue !== 0 &&
+                    inputValue !== "" &&
+                    numericValue > 10000
+                  : true;
+              return isValid;
+            })()
               ? (() => {
                   const actionArgs = {
                     args: [
@@ -1642,28 +1650,36 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                       (() => {
                         try {
                           return (() => {
-                            const persianToEnglish = persianNumber => {
+                            const persianToEnglish = input => {
                               const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
-                              return parseInt(
-                                persianNumber.replace(/[۰-۹]/g, d =>
-                                  persianDigits.indexOf(d)
-                                )
+                              if (input === null || input === undefined)
+                                return 0;
+                              const stringInput = String(input);
+                              const englishNumber = stringInput.replace(
+                                /[۰-۹]/g,
+                                d => persianDigits.indexOf(d)
                               );
+                              return englishNumber === ""
+                                ? 0
+                                : Number(englishNumber);
                             };
                             const centerId = $props.centerId;
+                            const selectedValue = $state.select.value;
+                            const inputValue = $state.input.value;
+                            const isCustom = selectedValue === "custom";
                             const cost =
-                              ($state.select.value === "custom"
-                                ? +$state.input.value
-                                : +$state.select.value) * 10;
-                            const depositAmount =
-                              persianToEnglish(
-                                $state.input2.value === ""
-                                  ? $state.select.value === "custom"
-                                    ? $state.input.value
-                                    : $state.select.value
-                                  : cost
-                              ) * 10;
-                            if ($state.input2.value === "") {
+                              (isCustom ? +inputValue : +selectedValue) * 10;
+                            let depositInput = $state.input2.value;
+                            let depositAmount = 0;
+                            if (depositInput === "") {
+                              const baseValue = isCustom
+                                ? inputValue
+                                : selectedValue;
+                              depositAmount = persianToEnglish(baseValue) * 10;
+                            } else {
+                              depositAmount = Number(cost) * 10;
+                            }
+                            if (depositInput === "") {
                               return {
                                 active: 1,
                                 center_id: centerId,
@@ -1676,7 +1692,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                               return {
                                 active: 1,
                                 center_id: centerId,
-                                deposit_amount: Number(cost) * 10,
+                                deposit_amount: depositAmount,
                                 card_number: $state.shabaApi.data.card_number,
                                 IBAN: $state.shabaApi.data.IBAN,
                                 deposit_owners:
@@ -1862,13 +1878,19 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               $steps["sendEvent"] = await $steps["sendEvent"];
             }
 
-            $steps["apiActivePayment"] = (
-              $state.select.value === "custom"
-                ? $state.input.value !== 0 &&
-                  $state.input.value !== "0" &&
-                  $state.input.value.trim() !== ""
-                : true
-            )
+            $steps["apiActivePayment"] = (() => {
+              function toEnglishDigits(str) {
+                return str.replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
+              }
+              const inputValue = toEnglishDigits(
+                String($state.input.value).trim()
+              );
+              return $state.select.value === "custom"
+                ? inputValue !== "0" &&
+                    inputValue !== "" &&
+                    Number(inputValue) !== 0
+                : true;
+            })()
               ? (() => {
                   const actionArgs = {
                     args: [
@@ -1878,24 +1900,32 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                       (() => {
                         try {
                           return (() => {
+                            function toEnglishDigits(str) {
+                              return str.replace(/[۰-۹]/g, d =>
+                                "۰۱۲۳۴۵۶۷۸۹".indexOf(d)
+                              );
+                            }
+                            const inputValue = toEnglishDigits(
+                              String($state.input.value).trim()
+                            );
+                            const selectValue = toEnglishDigits(
+                              String($state.select.value).trim()
+                            );
                             const cost =
                               ($state.select.value === "custom"
-                                ? +$state.input.value
-                                : +$state.select.value) * 10;
+                                ? Number(inputValue)
+                                : Number(selectValue)) * 10;
                             if ($state.input2.value === "") {
                               return {
                                 active: 1,
                                 center_id: $props.centerId,
-                                deposit_amount:
-                                  ($state.select.value === "custom"
-                                    ? $state.input.value
-                                    : $state.select.value) * 10
+                                deposit_amount: cost
                               };
                             } else {
                               return {
                                 active: 1,
                                 center_id: $props.centerId,
-                                deposit_amount: Number(cost) * 10,
+                                deposit_amount: cost * 10,
                                 card_number: $state.shabaApi.data.card_number,
                                 IBAN: $state.shabaApi.data.IBAN,
                                 deposit_owners:
