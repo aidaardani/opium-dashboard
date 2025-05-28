@@ -105,6 +105,7 @@ export type PlasmicDrCenters__OverridesType = {
   textInput?: Flex__<typeof TextInput>;
   apiRequest?: Flex__<typeof ApiRequest>;
   activeVisitOnline?: Flex__<typeof ActiveVisitOnline>;
+  apiCheckActivation?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultDrCentersProps {
@@ -225,6 +226,30 @@ function PlasmicDrCenters__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "apiRequest"
+      },
+      {
+        path: "apiCheckActivation.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiCheckActivation"
+      },
+      {
+        path: "apiCheckActivation.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiCheckActivation"
+      },
+      {
+        path: "apiCheckActivation.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiCheckActivation"
       }
     ],
     [$props, $ctx, $refs]
@@ -857,9 +882,11 @@ function PlasmicDrCenters__RenderFunc(props: {
             ) : null}
             {(() => {
               try {
-                return $props.centers.some(
+                return $state.apiCheckActivation.data.some(
                   center =>
-                    center.type_id === 1 && center.is_active_booking === false
+                    center.type_id === 1 &&
+                    (!center.has_working_hours ||
+                      center.can_booking.every(canBooking => !canBooking))
                 );
               } catch (e) {
                 if (
@@ -960,6 +987,58 @@ function PlasmicDrCenters__RenderFunc(props: {
                 }}
               />
             ) : null}
+            <ApiRequest
+              data-plasmic-name={"apiCheckActivation"}
+              data-plasmic-override={overrides.apiCheckActivation}
+              className={classNames("__wab_instance", sty.apiCheckActivation)}
+              errorDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__qRmfL
+                  )}
+                >
+                  {"Error fetching data"}
+                </div>
+              }
+              loadingDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__uPuzs
+                  )}
+                >
+                  {"Loading..."}
+                </div>
+              }
+              method={"GET"}
+              onError={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apiCheckActivation",
+                  "error"
+                ]).apply(null, eventArgs);
+              }}
+              onLoading={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apiCheckActivation",
+                  "loading"
+                ]).apply(null, eventArgs);
+              }}
+              onSuccess={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apiCheckActivation",
+                  "data"
+                ]).apply(null, eventArgs);
+              }}
+              ref={ref => {
+                $refs["apiCheckActivation"] = ref;
+              }}
+              url={
+                "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/check-booking"
+              }
+            />
           </Stack__>
         }
         onOpenChange={async (...eventArgs: any) => {
@@ -1068,17 +1147,20 @@ const PlasmicDescendants = {
     "fragmentPopover",
     "textInput",
     "apiRequest",
-    "activeVisitOnline"
+    "activeVisitOnline",
+    "apiCheckActivation"
   ],
   fragmentPopover: [
     "fragmentPopover",
     "textInput",
     "apiRequest",
-    "activeVisitOnline"
+    "activeVisitOnline",
+    "apiCheckActivation"
   ],
   textInput: ["textInput"],
   apiRequest: ["apiRequest"],
-  activeVisitOnline: ["activeVisitOnline"]
+  activeVisitOnline: ["activeVisitOnline"],
+  apiCheckActivation: ["apiCheckActivation"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1089,6 +1171,7 @@ type NodeDefaultElementType = {
   textInput: typeof TextInput;
   apiRequest: typeof ApiRequest;
   activeVisitOnline: typeof ActiveVisitOnline;
+  apiCheckActivation: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1155,6 +1238,7 @@ export const PlasmicDrCenters = Object.assign(
     textInput: makeNodeComponent("textInput"),
     apiRequest: makeNodeComponent("apiRequest"),
     activeVisitOnline: makeNodeComponent("activeVisitOnline"),
+    apiCheckActivation: makeNodeComponent("apiCheckActivation"),
 
     // Metadata about props expected for PlasmicDrCenters
     internalVariantProps: PlasmicDrCenters__VariantProps,

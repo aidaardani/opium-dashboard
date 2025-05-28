@@ -135,6 +135,7 @@ export type PlasmicBookList__OverridesType = {
   gtm?: Flex__<typeof Embed>;
   apiPayment?: Flex__<typeof ApiRequest>;
   apiHoliday?: Flex__<typeof ApiRequest>;
+  apiRequest?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultBookListProps {}
@@ -416,6 +417,30 @@ function PlasmicBookList__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "apiRequest.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest"
+      },
+      {
+        path: "apiRequest.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest"
+      },
+      {
+        path: "apiRequest.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiRequest"
       }
     ],
     [$props, $ctx, $refs]
@@ -594,7 +619,7 @@ function PlasmicBookList__RenderFunc(props: {
                         e instanceof TypeError ||
                         e?.plasmicType === "PlasmicUndefinedDataError"
                       ) {
-                        return true;
+                        return false;
                       }
                       throw e;
                     }
@@ -1186,19 +1211,7 @@ function PlasmicBookList__RenderFunc(props: {
                       }
                     }).apply(null, eventArgs);
                   }}
-                  params={(() => {
-                    try {
-                      return { user_id: $ctx.query.user_id };
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
-                    }
-                  })()}
+                  params={undefined}
                   ref={ref => {
                     $refs["apiAllCenters"] = ref;
                   }}
@@ -3921,6 +3934,59 @@ function PlasmicBookList__RenderFunc(props: {
               }}
               url={"https://apigw.paziresh24.com/v1/holidays-next-year"}
             />
+
+            <ApiRequest
+              data-plasmic-name={"apiRequest"}
+              data-plasmic-override={overrides.apiRequest}
+              className={classNames("__wab_instance", sty.apiRequest)}
+              errorDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__mn0Y
+                  )}
+                >
+                  {"Error fetching data"}
+                </div>
+              }
+              loadingDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___5TbYo
+                  )}
+                >
+                  {"Loading..."}
+                </div>
+              }
+              method={"GET"}
+              onError={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apiRequest",
+                  "error"
+                ]).apply(null, eventArgs);
+              }}
+              onLoading={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apiRequest",
+                  "loading"
+                ]).apply(null, eventArgs);
+              }}
+              onSuccess={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["apiRequest", "data"]).apply(
+                  null,
+                  eventArgs
+                );
+              }}
+              ref={ref => {
+                $refs["apiRequest"] = ref;
+              }}
+              url={
+                "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/check-booking"
+              }
+            />
           </div>
         ) : null}
       </div>
@@ -3955,7 +4021,8 @@ const PlasmicDescendants = {
     "runCodeGtmMetrica",
     "gtm",
     "apiPayment",
-    "apiHoliday"
+    "apiHoliday",
+    "apiRequest"
   ],
   transactions2: ["transactions2"],
   quickAccess: [
@@ -4029,7 +4096,8 @@ const PlasmicDescendants = {
   runCodeGtmMetrica: ["runCodeGtmMetrica"],
   gtm: ["gtm"],
   apiPayment: ["apiPayment"],
-  apiHoliday: ["apiHoliday"]
+  apiHoliday: ["apiHoliday"],
+  apiRequest: ["apiRequest"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -4061,6 +4129,7 @@ type NodeDefaultElementType = {
   gtm: typeof Embed;
   apiPayment: typeof ApiRequest;
   apiHoliday: typeof ApiRequest;
+  apiRequest: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -4154,6 +4223,7 @@ export const PlasmicBookList = Object.assign(
     gtm: makeNodeComponent("gtm"),
     apiPayment: makeNodeComponent("apiPayment"),
     apiHoliday: makeNodeComponent("apiHoliday"),
+    apiRequest: makeNodeComponent("apiRequest"),
 
     // Metadata about props expected for PlasmicBookList
     internalVariantProps: PlasmicBookList__VariantProps,
