@@ -90,6 +90,7 @@ import Icon37Icon from "./icons/PlasmicIcon__Icon37"; // plasmic-import: Cp6R_3Z
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import Icon13Icon from "./icons/PlasmicIcon__Icon13"; // plasmic-import: HIVxXykiyWcr/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
+import Icon2Icon from "./icons/PlasmicIcon__Icon2"; // plasmic-import: q8mRvXMvOrv9/icon
 
 createPlasmicElementProxy;
 
@@ -129,8 +130,8 @@ export type PlasmicBookList__OverridesType = {
   switch2?: Flex__<"div">;
   _switch?: Flex__<typeof Switch>;
   patientList?: Flex__<typeof PatientList>;
-  addPatient?: Flex__<"div">;
   dialog?: Flex__<typeof Dialog>;
+  addPatient?: Flex__<typeof AddPatient>;
   runCodeGtmMetrica?: Flex__<typeof SideEffect>;
   gtm?: Flex__<typeof Embed>;
   apiPayment?: Flex__<typeof ApiRequest>;
@@ -639,7 +640,7 @@ function PlasmicBookList__RenderFunc(props: {
                 {(() => {
                   try {
                     return (
-                      $state.apiAllCenters.data.data.some(
+                      $state.apiAllCenters.data.items.some(
                         center => center.id === "5532"
                       ) || $state.apiPayment.data[0].value === "1"
                     );
@@ -1129,46 +1130,6 @@ function PlasmicBookList__RenderFunc(props: {
                     (async data => {
                       const $steps = {};
 
-                      $steps[
-                        "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
-                      ] = false
-                        ? (() => {
-                            const actionArgs = {
-                              destination:
-                                "https://opium-dashboard.paziresh24.com/activation-page/"
-                            };
-                            return (({ destination }) => {
-                              if (
-                                typeof destination === "string" &&
-                                destination.startsWith("#")
-                              ) {
-                                document
-                                  .getElementById(destination.substr(1))
-                                  .scrollIntoView({ behavior: "smooth" });
-                              } else {
-                                __nextRouter?.push(destination);
-                              }
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps[
-                          "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
-                        ] != null &&
-                        typeof $steps[
-                          "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
-                        ] === "object" &&
-                        typeof $steps[
-                          "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
-                        ].then === "function"
-                      ) {
-                        $steps[
-                          "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
-                        ] = await $steps[
-                          "goToHttpsOpiumDashboardPaziresh24ComActivationPage"
-                        ];
-                      }
-
                       $steps["sendLog"] = true
                         ? (() => {
                             const actionArgs = {
@@ -1215,9 +1176,21 @@ function PlasmicBookList__RenderFunc(props: {
                   ref={ref => {
                     $refs["apiAllCenters"] = ref;
                   }}
-                  url={
-                    "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/allcenters"
-                  }
+                  url={(() => {
+                    try {
+                      return $ctx.query.user_id !== "18459299"
+                        ? `https://apigw.paziresh24.com/v1/doctor/${$ctx.query.user_id}/centers`
+                        : `https://apigw.paziresh24.com/v1/n8n-nelson/webhook/godarz`;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
                 />
 
                 <div
@@ -1246,7 +1219,7 @@ function PlasmicBookList__RenderFunc(props: {
                     data-plasmic-override={overrides.drCenters}
                     centers={(() => {
                       try {
-                        return $state.apiAllCenters.data.data;
+                        return $state.apiAllCenters.data.items;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -1260,7 +1233,7 @@ function PlasmicBookList__RenderFunc(props: {
                     className={classNames("__wab_instance", sty.drCenters)}
                     hasAllOption={(() => {
                       try {
-                        return $state.apiAllCenters.data.data?.length > 1;
+                        return $state.apiAllCenters.data.items?.length > 1;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -1332,7 +1305,7 @@ function PlasmicBookList__RenderFunc(props: {
               {(() => {
                 try {
                   return (
-                    $state.apiAllCenters.data.data.find(
+                    $state.apiAllCenters.data.items.find(
                       center => center.user_center_id === $state.selectedCenter
                     ).id === "5532" &&
                     $state.drCenters.selectedCenter.length > 0
@@ -1443,7 +1416,7 @@ function PlasmicBookList__RenderFunc(props: {
                     params={(() => {
                       try {
                         return {
-                          user_center_id: $state.apiAllCenters.data.data.find(
+                          user_center_id: $state.apiAllCenters.data.items.find(
                             center => center.id === "5532"
                           ).user_center_id,
                           server_id: 1
@@ -1549,7 +1522,7 @@ function PlasmicBookList__RenderFunc(props: {
                                     try {
                                       return {
                                         user_center_id:
-                                          $state.apiAllCenters.data.data.find(
+                                          $state.apiAllCenters.data.items.find(
                                             center => center.id === "5532"
                                           ).user_center_id
                                       };
@@ -1678,7 +1651,7 @@ function PlasmicBookList__RenderFunc(props: {
                                         can_booking:
                                           $state.apiUserCenterService.data.data[0].can_booking.toString(),
                                         user_center_id:
-                                          $state.apiAllCenters.data.data.find(
+                                          $state.apiAllCenters.data.items.find(
                                             center => center.id === "5532"
                                           ).user_center_id
                                       };
@@ -3213,7 +3186,7 @@ function PlasmicBookList__RenderFunc(props: {
                 data-plasmic-override={overrides.patientList}
                 centers={(() => {
                   try {
-                    return $state.apiAllCenters.data.data;
+                    return $state.apiAllCenters.data.items;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -3251,7 +3224,7 @@ function PlasmicBookList__RenderFunc(props: {
                 selectedCenter={(() => {
                   try {
                     return (
-                      $state.apiAllCenters.data.data.find(
+                      $state.apiAllCenters.data.items.find(
                         center => center.user_center_id == $state.selectedCenter
                       )?.id || "all"
                     );
@@ -3278,258 +3251,262 @@ function PlasmicBookList__RenderFunc(props: {
                     throw e;
                   }
                 })()}
-              />
-            </div>
-            {(
-              hasVariant(globalVariants, "screen", "mobileOnly")
-                ? true
-                : (() => {
-                    try {
-                      return $state.apiAllCenters.data.data.some(
-                        center => center.id !== "5532"
-                      );
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return false;
-                      }
-                      throw e;
-                    }
-                  })()
-            ) ? (
-              <div
-                data-plasmic-name={"addPatient"}
-                data-plasmic-override={overrides.addPatient}
-                className={classNames(projectcss.all, sty.addPatient)}
               >
-                <Dialog
-                  data-plasmic-name={"dialog"}
-                  data-plasmic-override={overrides.dialog}
-                  body={
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___8Ydnx
-                      )}
-                    >
-                      <AddPatient
-                        booked={async () => {
-                          const $steps = {};
-
-                          $steps["updateDialogOpen"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["dialog", "open"]
-                                  },
-                                  operation: 0,
-                                  value: false
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["updateDialogOpen"] != null &&
-                            typeof $steps["updateDialogOpen"] === "object" &&
-                            typeof $steps["updateDialogOpen"].then ===
-                              "function"
-                          ) {
-                            $steps["updateDialogOpen"] = await $steps[
-                              "updateDialogOpen"
-                            ];
-                          }
-                        }}
-                        centerId={(() => {
-                          try {
-                            return (
-                              $state.apiAllCenters.data.data.find(
-                                center =>
-                                  center.user_center_id == $state.selectedCenter
-                              )?.id ?? "all"
-                            );
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}
-                        className={classNames(
-                          "__wab_instance",
-                          sty.addPatient___4S6X
-                        )}
-                        type={"web"}
-                        userCenterId={(() => {
-                          try {
-                            return $state.selectedCenter;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()}
-                      />
-                    </div>
-                  }
-                  className={classNames("__wab_instance", sty.dialog, {
-                    [sty.dialogactive]: hasVariant($state, "active", "active")
-                  })}
-                  onOpenChange={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, ["dialog", "open"]).apply(
-                      null,
-                      eventArgs
+                {(() => {
+                  try {
+                    return (
+                      $state.selectedCenter != "5532" &&
+                      $state.apiAllCenters.data.items.find(
+                        item => item.user_center_id === $state.selectedCenter
+                      ).center_type === 1
                     );
-
+                  } catch (e) {
                     if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
                     ) {
-                      return;
+                      return false;
                     }
-                  }}
-                  open={generateStateValueProp($state, ["dialog", "open"])}
-                  title={null}
-                  trigger={
-                    (() => {
+                    throw e;
+                  }
+                })() ? (
+                  <Button
+                    children2={
+                      "\u062b\u0628\u062a \u0646\u0648\u0628\u062a \u062c\u062f\u06cc\u062f"
+                    }
+                    className={classNames("__wab_instance", sty.button__io19E)}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["updateDialogOpen"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["dialog", "open"]
+                              },
+                              operation: 4
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              const oldValue = $stateGet(objRoot, variablePath);
+                              $stateSet(objRoot, variablePath, !oldValue);
+                              return !oldValue;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateDialogOpen"] != null &&
+                        typeof $steps["updateDialogOpen"] === "object" &&
+                        typeof $steps["updateDialogOpen"].then === "function"
+                      ) {
+                        $steps["updateDialogOpen"] = await $steps[
+                          "updateDialogOpen"
+                        ];
+                      }
+                    }}
+                    outline={true}
+                    showStartIcon={true}
+                    startIcon={
+                      <Icon2Icon
+                        className={classNames(projectcss.all, sty.svg___61Oxg)}
+                        role={"img"}
+                      />
+                    }
+                  />
+                ) : null}
+              </PatientList>
+            </div>
+            <Dialog
+              data-plasmic-name={"dialog"}
+              data-plasmic-override={overrides.dialog}
+              body={
+                <div
+                  className={classNames(projectcss.all, sty.freeBox___8Ydnx)}
+                >
+                  <AddPatient
+                    data-plasmic-name={"addPatient"}
+                    data-plasmic-override={overrides.addPatient}
+                    booked={async () => {
+                      const $steps = {};
+
+                      $steps["updateDialogOpen"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["dialog", "open"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateDialogOpen"] != null &&
+                        typeof $steps["updateDialogOpen"] === "object" &&
+                        typeof $steps["updateDialogOpen"].then === "function"
+                      ) {
+                        $steps["updateDialogOpen"] = await $steps[
+                          "updateDialogOpen"
+                        ];
+                      }
+                    }}
+                    centerId={(() => {
                       try {
                         return (
-                          $state.apiAllCenters.data.data.find(
-                            item => item.user_center_id == $state.selectedCenter
-                          ).type_id == 1
+                          $state.apiAllCenters.data.items.find(
+                            center =>
+                              center.user_center_id == $state.selectedCenter
+                          )?.id ?? "all"
                         );
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
                           e?.plasmicType === "PlasmicUndefinedDataError"
                         ) {
-                          return false;
+                          return undefined;
                         }
                         throw e;
                       }
-                    })() ? (
-                      <Button
-                        children2={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__hPsEz
-                            )}
-                          >
-                            {
-                              "\u062b\u0628\u062a \u0646\u0648\u0628\u062a \u062c\u062f\u06cc\u062f"
-                            }
-                          </div>
+                    })()}
+                    className={classNames("__wab_instance", sty.addPatient)}
+                    type={"web"}
+                    userCenterId={(() => {
+                      try {
+                        return $state.selectedCenter;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
                         }
-                        className={classNames(
-                          "__wab_instance",
-                          sty.button__i3Jch,
-                          {
-                            [sty.buttonactive__i3Jchw7TP]: hasVariant(
-                              $state,
-                              "active",
-                              "active"
-                            )
-                          }
-                        )}
-                        endIcon={
-                          <ChevronLeftIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__yU2QN
-                            )}
-                            role={"img"}
-                          />
-                        }
-                        onClick={async event => {
-                          const $steps = {};
+                        throw e;
+                      }
+                    })()}
+                  />
+                </div>
+              }
+              className={classNames("__wab_instance", sty.dialog, {
+                [sty.dialogactive]: hasVariant($state, "active", "active")
+              })}
+              onOpenChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+                  null,
+                  eventArgs
+                );
 
-                          $steps["sendEvent"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    (() => {
-                                      try {
-                                        return {
-                                          group: "add-book",
-                                          data: {
-                                            center_id:
-                                              $state.apiAllCenters.data.data
-                                                .filter(
-                                                  center => center.id !== "5532"
-                                                )
-                                                .map(center => center.id)
-                                          },
-                                          type: "click-add-book-button"
-                                        };
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                                  ]
-                                };
-                                return $globalActions["Splunk.sendLog"]?.apply(
-                                  null,
-                                  [...actionArgs.args]
-                                );
-                              })()
-                            : undefined;
-                          if (
-                            $steps["sendEvent"] != null &&
-                            typeof $steps["sendEvent"] === "object" &&
-                            typeof $steps["sendEvent"].then === "function"
-                          ) {
-                            $steps["sendEvent"] = await $steps["sendEvent"];
-                          }
-                        }}
-                        showStartIcon={undefined}
-                        space={undefined}
-                        startIcon={
-                          <ChevronRightIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__oaC4E
-                            )}
-                            role={"img"}
-                          />
-                        }
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              open={generateStateValueProp($state, ["dialog", "open"])}
+              title={null}
+              trigger={
+                (
+                  hasVariant(globalVariants, "screen", "mobileOnly")
+                    ? true
+                    : false
+                ) ? (
+                  <Button
+                    children2={
+                      <Icon2Icon
+                        className={classNames(projectcss.all, sty.svg__iykM8)}
+                        role={"img"}
                       />
-                    ) : null
-                  }
-                />
-              </div>
-            ) : null}
+                    }
+                    className={classNames("__wab_instance", sty.button__i3Jch, {
+                      [sty.buttonactive__i3Jchw7TP]: hasVariant(
+                        $state,
+                        "active",
+                        "active"
+                      )
+                    })}
+                    endIcon={null}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["sendEvent"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return {
+                                      group: "add-book",
+                                      data: {
+                                        center_id:
+                                          $state.apiAllCenters.data.data
+                                            .filter(
+                                              center => center.id !== "5532"
+                                            )
+                                            .map(center => center.id)
+                                      },
+                                      type: "click-add-book-button"
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendEvent"] != null &&
+                        typeof $steps["sendEvent"] === "object" &&
+                        typeof $steps["sendEvent"].then === "function"
+                      ) {
+                        $steps["sendEvent"] = await $steps["sendEvent"];
+                      }
+                    }}
+                    shape={"round"}
+                    space={undefined}
+                    startIcon={null}
+                  />
+                ) : null
+              }
+            />
+
             <SideEffect
               data-plasmic-name={"runCodeGtmMetrica"}
               data-plasmic-override={overrides.runCodeGtmMetrica}
@@ -3636,183 +3613,6 @@ function PlasmicBookList__RenderFunc(props: {
               }
             />
 
-            {false ? (
-              <SideEffect
-                className={classNames("__wab_instance", sty.sideEffect__kteKf)}
-                onMount={async () => {
-                  const $steps = {};
-
-                  $steps["apiHoliday"] = false
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "GET",
-                            "https://apigw.paziresh24.com/v1/holidays-next-year"
-                          ]
-                        };
-                        return $globalActions["Fragment.apiRequest"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                  if (
-                    $steps["apiHoliday"] != null &&
-                    typeof $steps["apiHoliday"] === "object" &&
-                    typeof $steps["apiHoliday"].then === "function"
-                  ) {
-                    $steps["apiHoliday"] = await $steps["apiHoliday"];
-                  }
-
-                  $steps["updateHoliday"] = false
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["holiday"]
-                          },
-                          operation: 0,
-                          value: $steps.apiHoliday.data
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateHoliday"] != null &&
-                    typeof $steps["updateHoliday"] === "object" &&
-                    typeof $steps["updateHoliday"].then === "function"
-                  ) {
-                    $steps["updateHoliday"] = await $steps["updateHoliday"];
-                  }
-
-                  $steps["sendEvent"] = false
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            (() => {
-                              try {
-                                return {
-                                  group: "load-page",
-                                  data: { center_id: $state.centers },
-                                  type: "book_list",
-                                  user_id: $ctx.query.user_id
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Splunk.sendLog"]?.apply(null, [
-                          ...actionArgs.args
-                        ]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["sendEvent"] != null &&
-                    typeof $steps["sendEvent"] === "object" &&
-                    typeof $steps["sendEvent"].then === "function"
-                  ) {
-                    $steps["sendEvent"] = await $steps["sendEvent"];
-                  }
-
-                  $steps["apiGetPaymentSetting"] = false
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            undefined,
-                            "https://apigw.paziresh24.com/nelson/v1/setting",
-                            (() => {
-                              try {
-                                return {
-                                  key: "booking:activate_online_payment"
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Fragment.apiRequest"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                  if (
-                    $steps["apiGetPaymentSetting"] != null &&
-                    typeof $steps["apiGetPaymentSetting"] === "object" &&
-                    typeof $steps["apiGetPaymentSetting"].then === "function"
-                  ) {
-                    $steps["apiGetPaymentSetting"] = await $steps[
-                      "apiGetPaymentSetting"
-                    ];
-                  }
-
-                  $steps["updateSettingBookingPayment"] = false
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["settingBookingPayment"]
-                          },
-                          operation: 0,
-                          value: $steps.apiGetPaymentSetting.data
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateSettingBookingPayment"] != null &&
-                    typeof $steps["updateSettingBookingPayment"] === "object" &&
-                    typeof $steps["updateSettingBookingPayment"].then ===
-                      "function"
-                  ) {
-                    $steps["updateSettingBookingPayment"] = await $steps[
-                      "updateSettingBookingPayment"
-                    ];
-                  }
-                }}
-              />
-            ) : null}
             <ApiRequest
               data-plasmic-name={"apiPayment"}
               data-plasmic-override={overrides.apiPayment}
@@ -4016,8 +3816,8 @@ const PlasmicDescendants = {
     "switch2",
     "_switch",
     "patientList",
-    "addPatient",
     "dialog",
+    "addPatient",
     "runCodeGtmMetrica",
     "gtm",
     "apiPayment",
@@ -4091,8 +3891,8 @@ const PlasmicDescendants = {
   switch2: ["switch2", "_switch"],
   _switch: ["_switch"],
   patientList: ["patientList"],
-  addPatient: ["addPatient", "dialog"],
-  dialog: ["dialog"],
+  dialog: ["dialog", "addPatient"],
+  addPatient: ["addPatient"],
   runCodeGtmMetrica: ["runCodeGtmMetrica"],
   gtm: ["gtm"],
   apiPayment: ["apiPayment"],
@@ -4123,8 +3923,8 @@ type NodeDefaultElementType = {
   switch2: "div";
   _switch: typeof Switch;
   patientList: typeof PatientList;
-  addPatient: "div";
   dialog: typeof Dialog;
+  addPatient: typeof AddPatient;
   runCodeGtmMetrica: typeof SideEffect;
   gtm: typeof Embed;
   apiPayment: typeof ApiRequest;
@@ -4217,8 +4017,8 @@ export const PlasmicBookList = Object.assign(
     switch2: makeNodeComponent("switch2"),
     _switch: makeNodeComponent("_switch"),
     patientList: makeNodeComponent("patientList"),
-    addPatient: makeNodeComponent("addPatient"),
     dialog: makeNodeComponent("dialog"),
+    addPatient: makeNodeComponent("addPatient"),
     runCodeGtmMetrica: makeNodeComponent("runCodeGtmMetrica"),
     gtm: makeNodeComponent("gtm"),
     apiPayment: makeNodeComponent("apiPayment"),

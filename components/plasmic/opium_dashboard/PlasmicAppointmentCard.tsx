@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import LineClamp from "../../LineClamp"; // plasmic-import: fa_t7ELXcm5k/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
@@ -163,6 +164,7 @@ export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicAppointmentCard__OverridesType = {
   root?: Flex__<"div">;
+  lineClamp?: Flex__<typeof LineClamp>;
   apiGetPyamentInfo2?: Flex__<typeof ApiRequest>;
   dialog5?: Flex__<typeof Dialog>;
   dialog6?: Flex__<typeof Dialog>;
@@ -441,36 +443,42 @@ function PlasmicAppointmentCard__RenderFunc(props: {
           })()}
         </React.Fragment>
       </div>
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__sMwi1,
-          {
-            [sty.textonlineBorder__sMwi15Rn5G]: hasVariant(
-              $state,
-              "onlineBorder",
-              "onlineBorder"
-            )
-          }
-        )}
+      <LineClamp
+        data-plasmic-name={"lineClamp"}
+        data-plasmic-override={overrides.lineClamp}
+        className={classNames("__wab_instance", sty.lineClamp)}
       >
-        <React.Fragment>
-          {(() => {
-            try {
-              return $props.name;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
-              }
-              throw e;
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__sMwi1,
+            {
+              [sty.textonlineBorder__sMwi15Rn5G]: hasVariant(
+                $state,
+                "onlineBorder",
+                "onlineBorder"
+              )
             }
-          })()}
-        </React.Fragment>
-      </div>
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.name;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "-";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+      </LineClamp>
       <div
         className={classNames(
           projectcss.all,
@@ -4719,6 +4727,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "lineClamp",
     "apiGetPyamentInfo2",
     "dialog5",
     "dialog6",
@@ -4734,6 +4743,7 @@ const PlasmicDescendants = {
     "safeCall",
     "bookStatusButton"
   ],
+  lineClamp: ["lineClamp"],
   apiGetPyamentInfo2: ["apiGetPyamentInfo2"],
   dialog5: ["dialog5"],
   dialog6: ["dialog6"],
@@ -4754,6 +4764,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  lineClamp: typeof LineClamp;
   apiGetPyamentInfo2: typeof ApiRequest;
   dialog5: typeof Dialog;
   dialog6: typeof Dialog;
@@ -4830,6 +4841,7 @@ export const PlasmicAppointmentCard = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    lineClamp: makeNodeComponent("lineClamp"),
     apiGetPyamentInfo2: makeNodeComponent("apiGetPyamentInfo2"),
     dialog5: makeNodeComponent("dialog5"),
     dialog6: makeNodeComponent("dialog6"),

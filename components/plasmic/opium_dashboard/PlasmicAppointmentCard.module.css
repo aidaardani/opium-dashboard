@@ -86,13 +86,18 @@
   align-self: center;
   flex-shrink: 0;
 }
+.lineClamp:global(.__wab_instance) {
+  max-width: 100%;
+  width: 140px;
+  flex-shrink: 0;
+}
 .text__sMwi1 {
   position: relative;
   font-weight: 600;
-  width: 155px;
+  width: 100%;
   text-align: center;
   font-size: 14px;
-  flex-shrink: 0;
+  min-width: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .text__sMwi1 {
@@ -104,6 +109,7 @@
   font-weight: 500;
   text-align: center;
   width: 100px;
+  max-width: 100px;
   flex-shrink: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -121,6 +127,7 @@
   font-weight: 400;
   width: 100px;
   text-align: center;
+  max-width: 100px;
   flex-shrink: 0;
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -160,24 +167,35 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  width: auto;
+  width: 200px;
   height: auto;
   max-width: 100%;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
+  flex-shrink: 0;
   padding: 8px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__zo2Zh {
+    padding: 0px;
+  }
 }
 .freeBox__z6Rot {
   display: flex;
   flex-direction: row;
   position: relative;
-  align-items: stretch;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: auto;
   max-width: 100%;
   min-width: 0;
   padding: 8px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__z6Rot {
+    padding: 0px;
+  }
 }
 .apiGetPyamentInfo2:global(.__wab_instance) {
   max-width: 100%;

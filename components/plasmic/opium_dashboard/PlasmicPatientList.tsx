@@ -60,6 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import AppointmentCard from "../../AppointmentCard"; // plasmic-import: 43GvxJ8wCSXI/component
 
 import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
@@ -72,7 +73,7 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicPatientList.module.css"; // plasmic-import: uw2UKvNlq2Yr/css
 
-import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: BN2FHeznHhq_/icon
+import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
 
 createPlasmicElementProxy;
 
@@ -87,6 +88,7 @@ export type PlasmicPatientList__ArgsType = {
   selectedCenter?: string;
   centers?: any;
   userCenterId?: string;
+  children?: React.ReactNode;
 };
 type ArgPropType = keyof PlasmicPatientList__ArgsType;
 export const PlasmicPatientList__ArgProps = new Array<ArgPropType>(
@@ -94,12 +96,15 @@ export const PlasmicPatientList__ArgProps = new Array<ArgPropType>(
   "date",
   "selectedCenter",
   "centers",
-  "userCenterId"
+  "userCenterId",
+  "children"
 );
 
 export type PlasmicPatientList__OverridesType = {
   root?: Flex__<"div">;
   sideEffect?: Flex__<typeof SideEffect>;
+  apiInsurance?: Flex__<typeof ApiRequest>;
+  apiAllBooks?: Flex__<typeof ApiRequest>;
   svg?: Flex__<"svg">;
   appointmentCard?: Flex__<typeof AppointmentCard>;
 };
@@ -110,6 +115,7 @@ export interface DefaultPatientListProps {
   selectedCenter?: string;
   centers?: any;
   userCenterId?: string;
+  children?: React.ReactNode;
   className?: string;
 }
 
@@ -133,9 +139,7 @@ function PlasmicPatientList__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {
-          selectedCenter: "all"
-        },
+        {},
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -199,6 +203,54 @@ function PlasmicPatientList__RenderFunc(props: {
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+      },
+      {
+        path: "apiAllBooks.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiAllBooks"
+      },
+      {
+        path: "apiAllBooks.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiAllBooks"
+      },
+      {
+        path: "apiAllBooks.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiAllBooks"
+      },
+      {
+        path: "apiInsurance.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiInsurance"
+      },
+      {
+        path: "apiInsurance.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiInsurance"
+      },
+      {
+        path: "apiInsurance.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiInsurance"
       }
     ],
     [$props, $ctx, $refs]
@@ -234,32 +286,211 @@ function PlasmicPatientList__RenderFunc(props: {
         sty.root
       )}
     >
-      {(
-        hasVariant(globalVariants, "screen", "mobileOnly")
-          ? true
-          : (() => {
-              try {
-                return (
-                  $state.allvisitorsdata.some(
-                    child => Object.keys(child).length > 0
-                  ) && $state.loading === false
-                );
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
-                }
-                throw e;
-              }
-            })()
-      ) ? (
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__u4Sgf)}
-        >
+      <SideEffect
+        data-plasmic-name={"sideEffect"}
+        data-plasmic-override={overrides.sideEffect}
+        className={classNames("__wab_instance", sty.sideEffect)}
+        deps={undefined}
+        onMount={async () => {
+          const $steps = {};
+
+          $steps["apiOnlineVisitChannels"] = $props.centers.some(
+            center => center.id === "5532"
+          )
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    undefined,
+                    "https://apigw.paziresh24.com/v1/visit-channels"
+                  ]
+                };
+                return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["apiOnlineVisitChannels"] != null &&
+            typeof $steps["apiOnlineVisitChannels"] === "object" &&
+            typeof $steps["apiOnlineVisitChannels"].then === "function"
+          ) {
+            $steps["apiOnlineVisitChannels"] = await $steps[
+              "apiOnlineVisitChannels"
+            ];
+          }
+
+          $steps["updateVisitChannel"] = $props.centers.some(
+            center => center.id === "5532"
+          )
+            ? (() => {
+                const actionArgs = {
+                  variable: {
+                    objRoot: $state,
+                    variablePath: ["visitChannel"]
+                  },
+                  operation: 0,
+                  value: $steps.apiOnlineVisitChannels.data
+                };
+                return (({ variable, value, startIndex, deleteCount }) => {
+                  if (!variable) {
+                    return;
+                  }
+                  const { objRoot, variablePath } = variable;
+
+                  $stateSet(objRoot, variablePath, value);
+                  return value;
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["updateVisitChannel"] != null &&
+            typeof $steps["updateVisitChannel"] === "object" &&
+            typeof $steps["updateVisitChannel"].then === "function"
+          ) {
+            $steps["updateVisitChannel"] = await $steps["updateVisitChannel"];
+          }
+        }}
+      />
+
+      <ApiRequest
+        data-plasmic-name={"apiInsurance"}
+        data-plasmic-override={overrides.apiInsurance}
+        children={null}
+        className={classNames("__wab_instance", sty.apiInsurance)}
+        errorDisplay={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__l36A6
+            )}
+          >
+            {"Error fetching data"}
+          </div>
+        }
+        loadingDisplay={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__mhsAj
+            )}
+          >
+            {"Loading..."}
+          </div>
+        }
+        method={"GET"}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiInsurance", "error"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiInsurance", "loading"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiInsurance", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          (async data => {
+            const $steps = {};
+          }).apply(null, eventArgs);
+        }}
+        ref={ref => {
+          $refs["apiInsurance"] = ref;
+        }}
+        url={"https://apigw.paziresh24.com/prescription/v1/insurances"}
+      />
+
+      <ApiRequest
+        data-plasmic-name={"apiAllBooks"}
+        data-plasmic-override={overrides.apiAllBooks}
+        body={(() => {
+          try {
+            return {
+              centers:
+                $props.selectedCenter == "all"
+                  ? $props.centers.map(center => ({
+                      id: center.id,
+                      user_center_id: center.user_center_id
+                    }))
+                  : [
+                      {
+                        id: $props.selectedCenter,
+                        user_center_id: $props.userCenterId
+                      }
+                    ],
+              date: $props.date
+            };
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+        className={classNames("__wab_instance", sty.apiAllBooks)}
+        errorDisplay={null}
+        loadingDisplay={
+          <Icon34Icon
+            data-plasmic-name={"svg"}
+            data-plasmic-override={overrides.svg}
+            className={classNames(projectcss.all, sty.svg)}
+            role={"img"}
+          />
+        }
+        method={"POST"}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiAllBooks", "error"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiAllBooks", "loading"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiAllBooks", "data"]).apply(
+            null,
+            eventArgs
+          );
+
+          (async data => {
+            const $steps = {};
+          }).apply(null, eventArgs);
+        }}
+        ref={ref => {
+          $refs["apiAllBooks"] = ref;
+        }}
+        url={(() => {
+          try {
+            return $props.centers.length > 0
+              ? "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/v3-allbooks"
+              : "";
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+      >
+        <div className={classNames(projectcss.all, sty.freeBox__u4Sgf)}>
           <div
             className={classNames(
               projectcss.all,
@@ -318,1028 +549,640 @@ function PlasmicPatientList__RenderFunc(props: {
               "\u0648\u0636\u0639\u06cc\u062a \u067e\u0631\u062f\u0627\u062e\u062a"
             }
           </div>
-          <div className={classNames(projectcss.all, sty.freeBox___00Mod)} />
-        </Stack__>
-      ) : null}
-      <SideEffect
-        data-plasmic-name={"sideEffect"}
-        data-plasmic-override={overrides.sideEffect}
-        className={classNames("__wab_instance", sty.sideEffect)}
-        deps={(() => {
-          try {
-            return [
-              $props.selectedCenter,
-              $props.centers,
-              $props.date,
-              $props.userCenterId
-            ];
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-        onMount={async () => {
-          const $steps = {};
-
-          $steps["updateLoading"] = true
-            ? (() => {
-                const actionArgs = {
-                  variable: {
-                    objRoot: $state,
-                    variablePath: ["loading"]
-                  },
-                  operation: 0,
-                  value: true
-                };
-                return (({ variable, value, startIndex, deleteCount }) => {
-                  if (!variable) {
-                    return;
-                  }
-                  const { objRoot, variablePath } = variable;
-
-                  $stateSet(objRoot, variablePath, value);
-                  return value;
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
-          if (
-            $steps["updateLoading"] != null &&
-            typeof $steps["updateLoading"] === "object" &&
-            typeof $steps["updateLoading"].then === "function"
-          ) {
-            $steps["updateLoading"] = await $steps["updateLoading"];
-          }
-
-          $steps["apiAllVisitorsData"] = false
-            ? (() => {
-                const actionArgs = {
-                  args: [
-                    "GET",
-                    "https://apigw.paziresh24.com/v1/allvisitorsdata",
-                    (() => {
-                      try {
-                        return {
-                          centers:
-                            $props.selectedCenter == "all"
-                              ? $props.centers.map(center => center.id)
-                              : $props.selectedCenter,
-                          date: $props.date
-                        };
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()
-                  ]
-                };
-                return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                  ...actionArgs.args
-                ]);
-              })()
-            : undefined;
-          if (
-            $steps["apiAllVisitorsData"] != null &&
-            typeof $steps["apiAllVisitorsData"] === "object" &&
-            typeof $steps["apiAllVisitorsData"].then === "function"
-          ) {
-            $steps["apiAllVisitorsData"] = await $steps["apiAllVisitorsData"];
-          }
-
-          $steps["apiAllbooks"] =
-            $props.centers.length > 0
-              ? (() => {
-                  const actionArgs = {
-                    args: [
-                      "POST",
-                      "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/allbooks",
-                      undefined,
-                      (() => {
-                        try {
-                          return {
-                            centers:
-                              $props.selectedCenter == "all"
-                                ? $props.centers.map(center => ({
-                                    id: center.id,
-                                    user_center_id: center.user_center_id
-                                  }))
-                                : [
-                                    {
-                                      id: $props.selectedCenter,
-                                      user_center_id: $props.userCenterId
-                                    }
-                                  ],
-                            date: $props.date
-                          };
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()
-                    ]
-                  };
-                  return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                    ...actionArgs.args
-                  ]);
-                })()
-              : undefined;
-          if (
-            $steps["apiAllbooks"] != null &&
-            typeof $steps["apiAllbooks"] === "object" &&
-            typeof $steps["apiAllbooks"].then === "function"
-          ) {
-            $steps["apiAllbooks"] = await $steps["apiAllbooks"];
-          }
-
-          $steps["updateAllvisitorsdata"] =
-            $props.centers.length > 0 && $steps.apiAllbooks.data
-              ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["allvisitorsdata"]
-                    },
-                    operation: 0,
-                    value: $steps.apiAllbooks.data
-                      .map(item => item.data)
-                      .flat()
-                      .sort((a, b) => new Date(a.from) - new Date(b.from))
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
-
-                    $stateSet(objRoot, variablePath, value);
-                    return value;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-          if (
-            $steps["updateAllvisitorsdata"] != null &&
-            typeof $steps["updateAllvisitorsdata"] === "object" &&
-            typeof $steps["updateAllvisitorsdata"].then === "function"
-          ) {
-            $steps["updateAllvisitorsdata"] = await $steps[
-              "updateAllvisitorsdata"
-            ];
-          }
-
-          $steps["updateAllvisitorsdata2"] = false
-            ? (() => {
-                const actionArgs = {
-                  variable: {
-                    objRoot: $state,
-                    variablePath: ["allvisitorsdata"]
-                  },
-                  operation: 0,
-                  value: $steps.apiAllVisitorsData.data
-                    .map(item => item.data)
-                    .flat()
-                    .sort((a, b) => new Date(a.from) - new Date(b.from))
-                };
-                return (({ variable, value, startIndex, deleteCount }) => {
-                  if (!variable) {
-                    return;
-                  }
-                  const { objRoot, variablePath } = variable;
-
-                  $stateSet(objRoot, variablePath, value);
-                  return value;
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
-          if (
-            $steps["updateAllvisitorsdata2"] != null &&
-            typeof $steps["updateAllvisitorsdata2"] === "object" &&
-            typeof $steps["updateAllvisitorsdata2"].then === "function"
-          ) {
-            $steps["updateAllvisitorsdata2"] = await $steps[
-              "updateAllvisitorsdata2"
-            ];
-          }
-
-          $steps["updateLoading2"] =
-            $props.centers.length > 0
-              ? (() => {
-                  const actionArgs = {
-                    variable: {
-                      objRoot: $state,
-                      variablePath: ["loading"]
-                    },
-                    operation: 0,
-                    value: false
-                  };
-                  return (({ variable, value, startIndex, deleteCount }) => {
-                    if (!variable) {
-                      return;
-                    }
-                    const { objRoot, variablePath } = variable;
-
-                    $stateSet(objRoot, variablePath, value);
-                    return value;
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
-          if (
-            $steps["updateLoading2"] != null &&
-            typeof $steps["updateLoading2"] === "object" &&
-            typeof $steps["updateLoading2"].then === "function"
-          ) {
-            $steps["updateLoading2"] = await $steps["updateLoading2"];
-          }
-
-          $steps["apiOnlineVisitChannels"] = $props.centers.some(
-            center => center.id === "5532"
-          )
-            ? (() => {
-                const actionArgs = {
-                  args: [
-                    undefined,
-                    "https://apigw.paziresh24.com/v1/visit-channels"
-                  ]
-                };
-                return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                  ...actionArgs.args
-                ]);
-              })()
-            : undefined;
-          if (
-            $steps["apiOnlineVisitChannels"] != null &&
-            typeof $steps["apiOnlineVisitChannels"] === "object" &&
-            typeof $steps["apiOnlineVisitChannels"].then === "function"
-          ) {
-            $steps["apiOnlineVisitChannels"] = await $steps[
-              "apiOnlineVisitChannels"
-            ];
-          }
-
-          $steps["updateVisitChannel"] = $props.centers.some(
-            center => center.id === "5532"
-          )
-            ? (() => {
-                const actionArgs = {
-                  variable: {
-                    objRoot: $state,
-                    variablePath: ["visitChannel"]
-                  },
-                  operation: 0,
-                  value: $steps.apiOnlineVisitChannels.data
-                };
-                return (({ variable, value, startIndex, deleteCount }) => {
-                  if (!variable) {
-                    return;
-                  }
-                  const { objRoot, variablePath } = variable;
-
-                  $stateSet(objRoot, variablePath, value);
-                  return value;
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
-          if (
-            $steps["updateVisitChannel"] != null &&
-            typeof $steps["updateVisitChannel"] === "object" &&
-            typeof $steps["updateVisitChannel"].then === "function"
-          ) {
-            $steps["updateVisitChannel"] = await $steps["updateVisitChannel"];
-          }
-
-          $steps["apiInsurances"] = true
-            ? (() => {
-                const actionArgs = {
-                  args: [
-                    "GET",
-                    "https://apigw.paziresh24.com/prescription/v1/insurances/"
-                  ]
-                };
-                return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                  ...actionArgs.args
-                ]);
-              })()
-            : undefined;
-          if (
-            $steps["apiInsurances"] != null &&
-            typeof $steps["apiInsurances"] === "object" &&
-            typeof $steps["apiInsurances"].then === "function"
-          ) {
-            $steps["apiInsurances"] = await $steps["apiInsurances"];
-          }
-
-          $steps["updateInsurances"] = true
-            ? (() => {
-                const actionArgs = {
-                  variable: {
-                    objRoot: $state,
-                    variablePath: ["insurances"]
-                  },
-                  operation: 0,
-                  value: $steps.apiInsurances.data
-                };
-                return (({ variable, value, startIndex, deleteCount }) => {
-                  if (!variable) {
-                    return;
-                  }
-                  const { objRoot, variablePath } = variable;
-
-                  $stateSet(objRoot, variablePath, value);
-                  return value;
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
-          if (
-            $steps["updateInsurances"] != null &&
-            typeof $steps["updateInsurances"] === "object" &&
-            typeof $steps["updateInsurances"].then === "function"
-          ) {
-            $steps["updateInsurances"] = await $steps["updateInsurances"];
-          }
-        }}
-      />
-
-      {(() => {
-        try {
-          return $state.loading;
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return false;
-          }
-          throw e;
-        }
-      })() ? (
-        <div className={classNames(projectcss.all, sty.freeBox___2MnkV)}>
-          <Icon10Icon
-            data-plasmic-name={"svg"}
-            data-plasmic-override={overrides.svg}
-            className={classNames(projectcss.all, sty.svg)}
-            role={"img"}
-          />
+          <div className={classNames(projectcss.all, sty.freeBox__cdcYo)}>
+            {renderPlasmicSlot({
+              defaultContents: " ",
+              value: args.children,
+              className: classNames(sty.slotTargetChildren)
+            })}
+          </div>
         </div>
-      ) : null}
-      {(() => {
-        try {
-          return (
-            $state.loading === false &&
-            $state.allvisitorsdata.some(child => Object.keys(child).length > 0)
-          );
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return false;
-          }
-          throw e;
-        }
-      })()
-        ? (_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
-            (() => {
-              try {
-                return $state.allvisitorsdata;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return [];
-                }
-                throw e;
+        {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+          (() => {
+            try {
+              return $state.apiAllBooks.data
+                ?.map(item => ({
+                  ...item,
+                  from:
+                    item?.from ?? new Date(item?.created_at).getTime() / 1000
+                }))
+                .sort((a, b) => new Date(a.from) - new Date(b.from));
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
               }
-            })()
-          ).map((__plasmic_item_0, __plasmic_idx_0) => {
-            const currentItem = __plasmic_item_0;
-            const currentIndex = __plasmic_idx_0;
-            return (
-              <AppointmentCard
-                data-plasmic-name={"appointmentCard"}
-                data-plasmic-override={overrides.appointmentCard}
-                bookDelete={(() => {
-                  try {
-                    return currentItem.book_delete;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
+              throw e;
+            }
+          })()
+        ).map((__plasmic_item_0, __plasmic_idx_0) => {
+          const currentItem = __plasmic_item_0;
+          const currentIndex = __plasmic_idx_0;
+          return (
+            <AppointmentCard
+              data-plasmic-name={"appointmentCard"}
+              data-plasmic-override={overrides.appointmentCard}
+              bookDelete={(() => {
+                try {
+                  return currentItem.book_delete;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
                   }
-                })()}
-                bookId={(() => {
-                  try {
-                    return currentItem.type === "prescription"
-                      ? ""
-                      : currentItem.id;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "undefined";
-                    }
-                    throw e;
+                  throw e;
+                }
+              })()}
+              bookId={(() => {
+                try {
+                  return currentItem.type !== "book" ? "" : currentItem.id;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "undefined";
                   }
-                })()}
-                bookStatus={(() => {
-                  try {
-                    return currentItem.book_status;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
+                  throw e;
+                }
+              })()}
+              bookStatus={(() => {
+                try {
+                  return currentItem.book_status;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
                   }
-                })()}
-                bookType={(() => {
-                  try {
-                    return $props.centers.some(
+                  throw e;
+                }
+              })()}
+              bookType={(() => {
+                try {
+                  return $props.centers.some(
+                    item =>
+                      item.user_center_id == currentItem.user_center_id &&
+                      item.id == "5532"
+                  )
+                    ? "آنلاین"
+                    : "حضوری";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              cell={(() => {
+                try {
+                  return currentItem.cell || currentItem.patientCell;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              centerId={(() => {
+                try {
+                  return $props.centers.find(
+                    item => item.user_center_id === currentItem.user_center_id
+                  ).id;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              centerName={(() => {
+                try {
+                  return currentItem.type !== "book"
+                    ? `نسخه نویسی مطب دکتر ${currentItem.doctor_additional_data.fullName}`
+                    : $props.centers.find(
+                        item =>
+                          item.user_center_id === currentItem.user_center_id
+                      ).name;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              centerType={(() => {
+                try {
+                  return $props.centers.find(
+                    center =>
+                      center.user_center_id === currentItem.user_center_id
+                  ).type_id;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              className={classNames("__wab_instance", sty.appointmentCard)}
+              cost={(() => {
+                try {
+                  return currentItem.cost
+                    ? (currentItem.cost / 10).toLocaleString() + " تومان"
+                    : (currentItem.user_payment / 10).toLocaleString() +
+                        " تومان";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              date={(() => {
+                try {
+                  return currentItem.type !== "book"
+                    ? new Date(currentItem.created_at)
+                        .toLocaleDateString("fa-IR", {
+                          weekday: "long",
+                          month: "long",
+                          day: "numeric"
+                        })
+                        .replace(/،/g, "")
+                        .replace(/سال/g, "")
+                    : new Date(currentItem.from_date)
+                        .toLocaleDateString("fa-IR", {
+                          weekday: "long",
+                          month: "long",
+                          day: "numeric"
+                        })
+                        .replace(/،/g, "")
+                        .replace(/سال/g, "");
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              finalized={(() => {
+                try {
+                  return $state.apiInsurance.data &&
+                    $state.apiInsurance.data !== "" &&
+                    currentItem.finalized
+                    ? currentItem.finalized
+                    : false;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              insurance={(() => {
+                try {
+                  return currentItem.insurance;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              insurances={(() => {
+                try {
+                  return (
+                    ($state.apiInsurance.data.tamin?.id &&
+                      $state.apiInsurance.data.tamin?.id !== "") ||
+                    $state.apiInsurance.data.salamat.some(
+                      insurance => Object.keys(insurance).length !== 0
+                    )
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              key={currentIndex}
+              name={(() => {
+                try {
+                  return currentItem.type !== "book"
+                    ? `${currentItem.patientAdditionalData.name} ${currentItem.patientAdditionalData.lastName}`.replace(
+                        /\s+/g,
+                        " "
+                      )
+                    : currentItem.display_name.trim() === ""
+                    ? "بدون نام"
+                    : currentItem.display_name;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              nationalcode={(() => {
+                try {
+                  return currentItem.type !== "book"
+                    ? currentItem.patientNationalCode
+                    : currentItem.national_code;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              onDelete={async () => {
+                const $steps = {};
+
+                $steps["updateLoading"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["loading"]
+                        },
+                        operation: 4
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateLoading"] != null &&
+                  typeof $steps["updateLoading"] === "object" &&
+                  typeof $steps["updateLoading"].then === "function"
+                ) {
+                  $steps["updateLoading"] = await $steps["updateLoading"];
+                }
+
+                $steps["apiAllbooks"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "POST",
+                          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/allbooks",
+                          undefined,
+                          (() => {
+                            try {
+                              return {
+                                centers:
+                                  $props.selectedCenter == "all"
+                                    ? $props.centers.map(center => ({
+                                        id: center.id,
+                                        user_center_id: center.user_center_id
+                                      }))
+                                    : [
+                                        {
+                                          id: $props.selectedCenter,
+                                          user_center_id: $props.userCenterId
+                                        }
+                                      ],
+                                date: $props.date
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["apiAllbooks"] != null &&
+                  typeof $steps["apiAllbooks"] === "object" &&
+                  typeof $steps["apiAllbooks"].then === "function"
+                ) {
+                  $steps["apiAllbooks"] = await $steps["apiAllbooks"];
+                }
+
+                $steps["updateAllvisitorsdata"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["allvisitorsdata"]
+                        },
+                        operation: 0,
+                        value: $steps.apiAllbooks.data
+                          .map(item => item.data)
+                          .flat()
+                          .sort((a, b) => new Date(a.from) - new Date(b.from))
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateAllvisitorsdata"] != null &&
+                  typeof $steps["updateAllvisitorsdata"] === "object" &&
+                  typeof $steps["updateAllvisitorsdata"].then === "function"
+                ) {
+                  $steps["updateAllvisitorsdata"] = await $steps[
+                    "updateAllvisitorsdata"
+                  ];
+                }
+
+                $steps["updateLoading2"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["loading"]
+                        },
+                        operation: 4
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        const oldValue = $stateGet(objRoot, variablePath);
+                        $stateSet(objRoot, variablePath, !oldValue);
+                        return !oldValue;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateLoading2"] != null &&
+                  typeof $steps["updateLoading2"] === "object" &&
+                  typeof $steps["updateLoading2"].then === "function"
+                ) {
+                  $steps["updateLoading2"] = await $steps["updateLoading2"];
+                }
+              }}
+              onlineBorder={(() => {
+                try {
+                  return (
+                    currentItem.from < Date.now() / 1000 &&
+                    currentItem.to > Date.now() / 1000
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()}
+              onlineChannel={(() => {
+                try {
+                  return currentItem.online_channel;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              paymentStatus={(() => {
+                try {
+                  return currentItem.type !== "book"
+                    ? "نسخه ـ بدون پرداخت"
+                    : (() => {
+                        const paymentStatusMapping = {
+                          paid: "پرداخت شده",
+                          not_paid: "پرداخت نشده",
+                          refunded: "استرداد شده",
+                          refund_request: "استرداد شده",
+                          "not-need-to-pay": "پرداخت برای نوبت غیرفعال است."
+                        };
+                        return paymentStatusMapping[currentItem.payment_status];
+                      })();
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              prescriptionId={(() => {
+                try {
+                  return currentItem.type !== "book"
+                    ? currentItem.id
+                    : currentItem.insuranceType === "tamin"
+                    ? currentItem.tamin_prescription[0].prescription
+                    : currentItem.insuranceType === "salamat"
+                    ? currentItem.salamat_prescription.trackingCode
+                    : null;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              refId={(() => {
+                try {
+                  return currentItem.type !== "book" && currentItem.finalized
+                    ? currentItem.salamat_prescription.trackingCode ||
+                        currentItem.tamin_prescription[0].trackingCode ||
+                        ""
+                    : currentItem.type !== "book" && !currentItem.finalized
+                    ? "نسخه ای ثبت نشده است"
+                    : currentItem.ref_id;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              secureCall={(() => {
+                try {
+                  return (
+                    $props.centers.some(
                       item =>
                         item.user_center_id == currentItem.user_center_id &&
                         item.id == "5532"
+                    ) &&
+                    $state.visitChannel[0].data.some(
+                      channel => channel.type === "secure_call"
                     )
-                      ? "آنلاین"
-                      : "حضوری";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
                   }
-                })()}
-                cell={(() => {
-                  try {
-                    return currentItem.cell;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                centerId={(() => {
-                  try {
-                    return $props.centers.find(
-                      item => item.user_center_id === currentItem.user_center_id
-                    ).id;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                centerName={(() => {
-                  try {
-                    return currentItem.type === "prescription"
-                      ? `نسخه نویسی مطب دکتر ${currentItem.doctor_additional_data.fullName}`
-                      : $props.centers.find(
-                          item =>
-                            item.user_center_id === currentItem.user_center_id
-                        ).name;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                centerType={(() => {
-                  try {
-                    return $props.centers.find(
-                      center =>
-                        center.user_center_id === currentItem.user_center_id
-                    ).type_id;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                className={classNames("__wab_instance", sty.appointmentCard)}
-                cost={(() => {
-                  try {
-                    return currentItem.cost
-                      ? (currentItem.cost / 10).toLocaleString() + " تومان"
-                      : (currentItem.user_payment / 10).toLocaleString() +
-                          " تومان";
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                date={(() => {
-                  try {
-                    return currentItem.type === "prescription"
-                      ? new Date(currentItem.created_at)
-                          .toLocaleDateString("fa-IR", {
-                            weekday: "long",
-                            month: "long",
-                            day: "numeric"
-                          })
-                          .replace(/،/g, "")
-                          .replace(/سال/g, "")
-                      : new Date(currentItem.from_date)
-                          .toLocaleDateString("fa-IR", {
-                            weekday: "long",
-                            month: "long",
-                            day: "numeric"
-                          })
-                          .replace(/،/g, "")
-                          .replace(/سال/g, "");
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                finalized={(() => {
-                  try {
-                    return (
-                      (currentItem.type === "book" &&
-                        currentItem.prescription.finalized) ||
-                      (currentItem.type === "prescription" &&
-                        currentItem.finalized) ||
-                      false
-                    );
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                insurance={(() => {
-                  try {
-                    return currentItem.insurance;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                insurances={(() => {
-                  try {
-                    return (
-                      ($state.insurances.tamin?.id &&
-                        $state.insurances.tamin?.id !== "") ||
-                      $state.insurances.salamat.some(
-                        insurance => Object.keys(insurance).length !== 0
+                  throw e;
+                }
+              })()}
+              time={(() => {
+                try {
+                  return currentItem.type !== "book"
+                    ? new Date(currentItem.created_at).toLocaleTimeString(
+                        "fa-IR",
+                        { hour: "2-digit", minute: "2-digit" }
                       )
-                    );
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                key={currentIndex}
-                name={(() => {
-                  try {
-                    return currentItem.type === "prescription"
-                      ? `${currentItem.patientAdditionalData.name} ${currentItem.patientAdditionalData.lastName}`.replace(
-                          /\s+/g,
-                          " "
-                        )
-                      : currentItem.display_name.trim() === ""
-                      ? "بدون نام"
-                      : currentItem.display_name;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                nationalcode={(() => {
-                  try {
-                    return currentItem.type === "prescription"
-                      ? currentItem.patientNationalCode
-                      : currentItem.national_code;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                onDelete={async () => {
-                  const $steps = {};
-
-                  $steps["updateLoading"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["loading"]
-                          },
-                          operation: 4
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          const oldValue = $stateGet(objRoot, variablePath);
-                          $stateSet(objRoot, variablePath, !oldValue);
-                          return !oldValue;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
+                    : new Date(currentItem.from * 1000).toLocaleTimeString(
+                        "fa-IR",
+                        { hour: "2-digit", minute: "2-digit", hour12: false }
+                      );
+                } catch (e) {
                   if (
-                    $steps["updateLoading"] != null &&
-                    typeof $steps["updateLoading"] === "object" &&
-                    typeof $steps["updateLoading"].then === "function"
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    $steps["updateLoading"] = await $steps["updateLoading"];
+                    return undefined;
                   }
-
-                  $steps["apiAllbooks"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "POST",
-                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/allbooks",
-                            undefined,
-                            (() => {
-                              try {
-                                return {
-                                  centers:
-                                    $props.selectedCenter == "all"
-                                      ? $props.centers.map(center => ({
-                                          id: center.id,
-                                          user_center_id: center.user_center_id
-                                        }))
-                                      : [
-                                          {
-                                            id: $props.selectedCenter,
-                                            user_center_id: $props.userCenterId
-                                          }
-                                        ],
-                                  date: $props.date
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Fragment.apiRequest"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
+                  throw e;
+                }
+              })()}
+              treatmentCenter={(() => {
+                try {
+                  return $props.centers.find(
+                    center =>
+                      center.user_center_id === currentItem.user_center_id &&
+                      center.type_id !== 1 &&
+                      center.id !== "5532"
+                  )
+                    ? true
+                    : false;
+                } catch (e) {
                   if (
-                    $steps["apiAllbooks"] != null &&
-                    typeof $steps["apiAllbooks"] === "object" &&
-                    typeof $steps["apiAllbooks"].then === "function"
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    $steps["apiAllbooks"] = await $steps["apiAllbooks"];
+                    return undefined;
                   }
-
-                  $steps["updateAllvisitorsdata"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["allvisitorsdata"]
-                          },
-                          operation: 0,
-                          value: $steps.apiAllbooks.data
-                            .map(item => item.data)
-                            .flat()
-                            .sort((a, b) => new Date(a.from) - new Date(b.from))
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
+                  throw e;
+                }
+              })()}
+              type={(() => {
+                try {
+                  return currentItem.type;
+                } catch (e) {
                   if (
-                    $steps["updateAllvisitorsdata"] != null &&
-                    typeof $steps["updateAllvisitorsdata"] === "object" &&
-                    typeof $steps["updateAllvisitorsdata"].then === "function"
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    $steps["updateAllvisitorsdata"] = await $steps[
-                      "updateAllvisitorsdata"
-                    ];
+                    return undefined;
                   }
-
-                  $steps["updateLoading2"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["loading"]
-                          },
-                          operation: 4
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          const oldValue = $stateGet(objRoot, variablePath);
-                          $stateSet(objRoot, variablePath, !oldValue);
-                          return !oldValue;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
+                  throw e;
+                }
+              })()}
+              userCenterId={(() => {
+                try {
+                  return currentItem.user_center_id;
+                } catch (e) {
                   if (
-                    $steps["updateLoading2"] != null &&
-                    typeof $steps["updateLoading2"] === "object" &&
-                    typeof $steps["updateLoading2"].then === "function"
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    $steps["updateLoading2"] = await $steps["updateLoading2"];
+                    return undefined;
                   }
-                }}
-                onlineBorder={(() => {
-                  try {
-                    return (
-                      currentItem.from < Date.now() / 1000 &&
-                      currentItem.to > Date.now() / 1000
-                    );
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return [];
-                    }
-                    throw e;
-                  }
-                })()}
-                onlineChannel={(() => {
-                  try {
-                    return currentItem.online_channel;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                paymentStatus={(() => {
-                  try {
-                    return currentItem.type === "prescription"
-                      ? "نسخه ـ بدون پرداخت"
-                      : (() => {
-                          const paymentStatusMapping = {
-                            paid: "پرداخت شده",
-                            not_paid: "پرداخت نشده",
-                            refunded: "استرداد شده",
-                            refund_request: "استرداد شده",
-                            "not-need-to-pay": "پرداخت برای نوبت غیرفعال است."
-                          };
-                          return paymentStatusMapping[
-                            currentItem.payment_status
-                          ];
-                        })();
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                prescriptionId={(() => {
-                  try {
-                    return (
-                      (currentItem.type === "book" &&
-                        currentItem.prescription &&
-                        currentItem.prescription.id) ||
-                      (currentItem.type === "prescription" && currentItem.id) ||
-                      null
-                    );
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                refId={(() => {
-                  try {
-                    return currentItem.type === "prescription" &&
-                      currentItem.finalized
-                      ? currentItem.salamat_prescription.trackingCode ||
-                          currentItem.tamin_prescription[0].trackingCode ||
-                          ""
-                      : currentItem.type === "prescription" &&
-                        !currentItem.finalized
-                      ? "نسخه ای ثبت نشده است"
-                      : currentItem.ref_id;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                secureCall={(() => {
-                  try {
-                    return (
-                      $props.centers.some(
-                        item =>
-                          item.user_center_id == currentItem.user_center_id &&
-                          item.id == "5532"
-                      ) &&
-                      $state.visitChannel[0].data.some(
-                        channel => channel.type === "secure_call"
-                      )
-                    );
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return false;
-                    }
-                    throw e;
-                  }
-                })()}
-                time={(() => {
-                  try {
-                    return currentItem.type === "prescription"
-                      ? new Date(currentItem.created_at).toLocaleTimeString(
-                          "fa-IR",
-                          { hour: "2-digit", minute: "2-digit" }
-                        )
-                      : new Date(currentItem.from * 1000).toLocaleTimeString(
-                          "fa-IR",
-                          { hour: "2-digit", minute: "2-digit", hour12: false }
-                        );
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                treatmentCenter={(() => {
-                  try {
-                    return $props.centers.find(
-                      center =>
-                        center.user_center_id === currentItem.user_center_id &&
-                        center.type_id !== 1 &&
-                        center.id !== "5532"
-                    )
-                      ? true
-                      : false;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                type={(() => {
-                  try {
-                    return currentItem.type;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                userCenterId={(() => {
-                  try {
-                    return currentItem.user_center_id;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-              />
-            );
-          })
-        : null}
+                  throw e;
+                }
+              })()}
+            />
+          );
+        })}
+      </ApiRequest>
       {(() => {
         try {
           return (
-            !$state.allvisitorsdata.some(
-              child => Object.keys(child).length > 0
-            ) && $state.loading === false
+            !$state.apiAllBooks.data.length > 0 && !$state.apiAllBooks.loading
           );
         } catch (e) {
           if (
@@ -1355,9 +1198,8 @@ function PlasmicPatientList__RenderFunc(props: {
           {(() => {
             try {
               return (
-                !$state.allvisitorsdata.some(
-                  child => Object.keys(child).length > 0
-                ) && $state.loading === false
+                !$state.apiAllBooks.data.length > 0 &&
+                !$state.apiAllBooks.loading
               );
             } catch (e) {
               if (
@@ -1383,13 +1225,117 @@ function PlasmicPatientList__RenderFunc(props: {
           ) : null}
         </div>
       ) : null}
+      {false ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__rb3J1
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.userCenterId;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+      ) : null}
+      {false ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text___514Rt
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return ($state.apiInsurance.data &&
+                  $state.apiInsurance.data !== "") ||
+                  $props.centers[0].id ===
+                    "659e013f-9d73-11ee-be72-c64efc4b57b8"
+                  ? "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/v3-allbooks"
+                  : "";
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+      ) : null}
+      {false ? (
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__h58W
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return JSON.stringify({
+                  centers:
+                    $props.selectedCenter == "all"
+                      ? $props.centers.map(center => ({
+                          id: center.id,
+                          user_center_id: center.user_center_id
+                        }))
+                      : [
+                          {
+                            id: $props.selectedCenter,
+                            user_center_id: $props.userCenterId
+                          }
+                        ],
+                  date: $props.date,
+                  insurance: $state.apiInsurance.data || null
+                });
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
+      ) : null}
     </Stack__>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "sideEffect", "svg", "appointmentCard"],
+  root: [
+    "root",
+    "sideEffect",
+    "apiInsurance",
+    "apiAllBooks",
+    "svg",
+    "appointmentCard"
+  ],
   sideEffect: ["sideEffect"],
+  apiInsurance: ["apiInsurance"],
+  apiAllBooks: ["apiAllBooks", "svg", "appointmentCard"],
   svg: ["svg"],
   appointmentCard: ["appointmentCard"]
 } as const;
@@ -1399,6 +1345,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   sideEffect: typeof SideEffect;
+  apiInsurance: typeof ApiRequest;
+  apiAllBooks: typeof ApiRequest;
   svg: "svg";
   appointmentCard: typeof AppointmentCard;
 };
@@ -1464,6 +1412,8 @@ export const PlasmicPatientList = Object.assign(
   {
     // Helper components rendering sub-elements
     sideEffect: makeNodeComponent("sideEffect"),
+    apiInsurance: makeNodeComponent("apiInsurance"),
+    apiAllBooks: makeNodeComponent("apiAllBooks"),
     svg: makeNodeComponent("svg"),
     appointmentCard: makeNodeComponent("appointmentCard"),
 
