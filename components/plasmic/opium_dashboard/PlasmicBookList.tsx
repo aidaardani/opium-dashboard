@@ -758,11 +758,9 @@ function PlasmicBookList__RenderFunc(props: {
               data-plasmic-override={overrides.date}
               className={classNames(projectcss.all, sty.date)}
             >
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"date2"}
                 data-plasmic-override={overrides.date2}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.date2)}
               >
                 <Icon36Icon
@@ -1076,7 +1074,7 @@ function PlasmicBookList__RenderFunc(props: {
                   }}
                   role={"img"}
                 />
-              </Stack__>
+              </div>
             </div>
             <div
               data-plasmic-name={"center"}
