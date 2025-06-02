@@ -110,7 +110,7 @@ type ArgPropType = keyof PlasmicBookList__ArgsType;
 export const PlasmicBookList__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicBookList__OverridesType = {
-  bookList?: Flex__<"div">;
+  root?: Flex__<"div">;
   transactions2?: Flex__<typeof Transactions2>;
   quickAccess?: Flex__<"div">;
   quickAccessInAppNotifications?: Flex__<typeof QuickAccessInAppNotifications>;
@@ -476,14 +476,14 @@ function PlasmicBookList__RenderFunc(props: {
               e instanceof TypeError ||
               e?.plasmicType === "PlasmicUndefinedDataError"
             ) {
-              return false;
+              return true;
             }
             throw e;
           }
         })() ? (
           <div
-            data-plasmic-name={"bookList"}
-            data-plasmic-override={overrides.bookList}
+            data-plasmic-name={"root"}
+            data-plasmic-override={overrides.root}
             data-plasmic-root={true}
             data-plasmic-for-node={forNode}
             className={classNames(
@@ -495,10 +495,9 @@ function PlasmicBookList__RenderFunc(props: {
               plasmic_fragment_design_system_css.plasmic_tokens,
               plasmic_antd_5_hostless_css.plasmic_tokens,
               plasmic_plasmic_rich_components_css.plasmic_tokens,
-              sty.bookList,
-              { [sty.bookListactive]: hasVariant($state, "active", "active") }
+              sty.root,
+              { [sty.rootactive]: hasVariant($state, "active", "active") }
             )}
-            dir={"rtl"}
           >
             <Transactions2
               data-plasmic-name={"transactions2"}
@@ -637,23 +636,27 @@ function PlasmicBookList__RenderFunc(props: {
                     />
                   ) : null}
                 </div>
-                {(() => {
-                  try {
-                    return (
-                      $state.apiAllCenters.data.items.some(
-                        center => center.id === "5532"
-                      ) || $state.apiPayment.data[0].value === "1"
-                    );
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return false;
-                    }
-                    throw e;
-                  }
-                })() ? (
+                {(
+                  hasVariant(globalVariants, "screen", "mobileOnly")
+                    ? false
+                    : (() => {
+                        try {
+                          return (
+                            $state.apiAllCenters.data.items.some(
+                              center => center.id === "5532"
+                            ) || $state.apiPayment.data[0].value === "1"
+                          );
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return false;
+                          }
+                          throw e;
+                        }
+                      })()
+                ) ? (
                   <div
                     className={classNames(projectcss.all, sty.freeBox__neu9)}
                     onClick={async event => {
@@ -3795,8 +3798,8 @@ function PlasmicBookList__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  bookList: [
-    "bookList",
+  root: [
+    "root",
     "transactions2",
     "quickAccess",
     "quickAccessInAppNotifications",
@@ -3903,7 +3906,7 @@ type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
-  bookList: "div";
+  root: "div";
   transactions2: typeof Transactions2;
   quickAccess: "div";
   quickAccessInAppNotifications: typeof QuickAccessInAppNotifications;
@@ -3979,7 +3982,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
       forNode: nodeName
     });
   };
-  if (nodeName === "bookList") {
+  if (nodeName === "root") {
     func.displayName = "PlasmicBookList";
   } else {
     func.displayName = `PlasmicBookList.${nodeName}`;
@@ -3989,7 +3992,7 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
 
 export const PlasmicBookList = Object.assign(
   // Top-level PlasmicBookList renders the root element
-  makeNodeComponent("bookList"),
+  makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
     transactions2: makeNodeComponent("transactions2"),

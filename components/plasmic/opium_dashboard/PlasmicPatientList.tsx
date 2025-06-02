@@ -441,12 +441,14 @@ function PlasmicPatientList__RenderFunc(props: {
         className={classNames("__wab_instance", sty.apiAllBooks)}
         errorDisplay={null}
         loadingDisplay={
-          <Icon34Icon
-            data-plasmic-name={"svg"}
-            data-plasmic-override={overrides.svg}
-            className={classNames(projectcss.all, sty.svg)}
-            role={"img"}
-          />
+          <div className={classNames(projectcss.all, sty.freeBox__q7E2)}>
+            <Icon34Icon
+              data-plasmic-name={"svg"}
+              data-plasmic-override={overrides.svg}
+              className={classNames(projectcss.all, sty.svg)}
+              role={"img"}
+            />
+          </div>
         }
         method={"POST"}
         onError={async (...eventArgs: any) => {
