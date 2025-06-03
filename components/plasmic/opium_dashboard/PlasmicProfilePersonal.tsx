@@ -182,7 +182,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.profile.data.data.national_code;
+              return $state.auth.data.data.national_code;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -1296,7 +1296,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                               throw e;
                             }
                           })(),
-                          "\u0634\u0645\u0627\u0631\u0647 \u0645\u0646\u0634\u06cc \u0622\u067e\u062f\u06cc\u062a \u0634\u062f."
+                          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u067e\u0632\u0634\u06a9 \u0628\u0647 \u0631\u0648\u0632 \u0631\u0633\u0627\u0646\u06cc \u0634\u062f."
                         ]
                       };
                       return $globalActions["Fragment.showToast"]?.apply(null, [
@@ -1313,7 +1313,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 }
 
                 $steps["apix"] =
-                  $state.profile.data.data.national_code !==
+                  $state.auth.data.data.national_code !==
                   $state.nationalCode.value
                     ? (() => {
                         const actionArgs = {

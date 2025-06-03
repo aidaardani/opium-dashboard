@@ -1199,8 +1199,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
           {
             id: "282",
             name: "\u0627\u0646\u062f\u06cc\u0634\u0647",
-            province: "\u0627\u0644\u0628\u0631\u0632",
-            province_id: "5",
+            province: "\u062a\u0647\u0631\u0627\u0646",
+            province_id: "8",
             lat: null,
             lon: null
           },
@@ -5450,19 +5450,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
                       const actionArgs = {
                         args: [
                           undefined,
-                          (() => {
-                            try {
-                              return $steps.saveChangesApi.data.message;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
+                          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0645\u0637\u0628 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0628\u0647 \u0631\u0648\u0632 \u0631\u0633\u0627\u0646\u06cc \u0634\u062f."
                         ]
                       };
                       return $globalActions["Fragment.showToast"]?.apply(null, [
@@ -5484,19 +5472,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
                       const actionArgs = {
                         args: [
                           undefined,
-                          (() => {
-                            try {
-                              return $steps.saveChangesApi.data.message;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
+                          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0645\u0637\u0628 \u0628\u0647 \u0631\u0648\u0632 \u0631\u0633\u0627\u0646\u06cc \u0646\u0634\u062f."
                         ]
                       };
                       return $globalActions["Fragment.showToast"]?.apply(null, [
