@@ -924,10 +924,10 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                     onClick={async event => {
                       const $steps = {};
 
-                      $steps["goToHttpsTMeSybigdeli"] = true
+                      $steps["goToHttpsTMeAidaardani"] = true
                         ? (() => {
                             const actionArgs = {
-                              destination: '"https://t.me/sybigdeli"'
+                              destination: '"https://t.me/Aidaardani"'
                             };
                             return (({ destination }) => {
                               if (
@@ -944,13 +944,13 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["goToHttpsTMeSybigdeli"] != null &&
-                        typeof $steps["goToHttpsTMeSybigdeli"] === "object" &&
-                        typeof $steps["goToHttpsTMeSybigdeli"].then ===
+                        $steps["goToHttpsTMeAidaardani"] != null &&
+                        typeof $steps["goToHttpsTMeAidaardani"] === "object" &&
+                        typeof $steps["goToHttpsTMeAidaardani"].then ===
                           "function"
                       ) {
-                        $steps["goToHttpsTMeSybigdeli"] = await $steps[
-                          "goToHttpsTMeSybigdeli"
+                        $steps["goToHttpsTMeAidaardani"] = await $steps[
+                          "goToHttpsTMeAidaardani"
                         ];
                       }
                     }}

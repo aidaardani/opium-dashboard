@@ -74,7 +74,7 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicHolidays.module.css"; // plasmic-import: 6Vxcr-z3fC2u/css
 
-import InfiniteSpinner1SvgIcon from "./icons/PlasmicIcon__InfiniteSpinner1Svg"; // plasmic-import: mI_cKYKIhL-Y/icon
+import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
 
 createPlasmicElementProxy;
 
@@ -295,7 +295,7 @@ function PlasmicHolidays__RenderFunc(props: {
                 data-plasmic-override={overrides.freeBox}
                 className={classNames(projectcss.all, sty.freeBox)}
               >
-                <InfiniteSpinner1SvgIcon
+                <Icon34Icon
                   data-plasmic-name={"svg"}
                   data-plasmic-override={overrides.svg}
                   className={classNames(projectcss.all, sty.svg)}
