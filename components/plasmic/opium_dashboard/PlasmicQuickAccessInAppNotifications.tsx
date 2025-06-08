@@ -347,6 +347,7 @@ function PlasmicQuickAccessInAppNotifications__RenderFunc(props: {
             $state.checkNotification !== null &&
             $state.checkNotification !== undefined &&
             $state.checkNotification !== "" &&
+            !$state.checkNotification.includes("504") &&
             JSON.stringify($state.checkNotification) !== JSON.stringify([{}])
           );
         } catch (e) {
