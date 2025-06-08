@@ -695,7 +695,7 @@ function PlasmicPatientList__RenderFunc(props: {
                   return $props.centers.find(
                     center =>
                       center.user_center_id === currentItem.user_center_id
-                  ).type_id;
+                  ).center_type;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
