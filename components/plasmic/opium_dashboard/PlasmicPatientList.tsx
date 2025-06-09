@@ -59,7 +59,6 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import AppointmentCard from "../../AppointmentCard"; // plasmic-import: 43GvxJ8wCSXI/component
 
@@ -102,11 +101,11 @@ export const PlasmicPatientList__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicPatientList__OverridesType = {
   root?: Flex__<"div">;
-  sideEffect?: Flex__<typeof SideEffect>;
   apiInsurance?: Flex__<typeof ApiRequest>;
   apiAllBooks?: Flex__<typeof ApiRequest>;
   svg?: Flex__<"svg">;
   appointmentCard?: Flex__<typeof AppointmentCard>;
+  apiOnlineVisitChannel?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultPatientListProps {
@@ -251,6 +250,30 @@ function PlasmicPatientList__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "apiInsurance"
+      },
+      {
+        path: "apiOnlineVisitChannel.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiOnlineVisitChannel"
+      },
+      {
+        path: "apiOnlineVisitChannel.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiOnlineVisitChannel"
+      },
+      {
+        path: "apiOnlineVisitChannel.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiOnlineVisitChannel"
       }
     ],
     [$props, $ctx, $refs]
@@ -286,72 +309,6 @@ function PlasmicPatientList__RenderFunc(props: {
         sty.root
       )}
     >
-      <SideEffect
-        data-plasmic-name={"sideEffect"}
-        data-plasmic-override={overrides.sideEffect}
-        className={classNames("__wab_instance", sty.sideEffect)}
-        deps={undefined}
-        onMount={async () => {
-          const $steps = {};
-
-          $steps["apiOnlineVisitChannels"] = $props.centers.some(
-            center => center.id === "5532"
-          )
-            ? (() => {
-                const actionArgs = {
-                  args: [
-                    undefined,
-                    "https://apigw.paziresh24.com/v1/visit-channels"
-                  ]
-                };
-                return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                  ...actionArgs.args
-                ]);
-              })()
-            : undefined;
-          if (
-            $steps["apiOnlineVisitChannels"] != null &&
-            typeof $steps["apiOnlineVisitChannels"] === "object" &&
-            typeof $steps["apiOnlineVisitChannels"].then === "function"
-          ) {
-            $steps["apiOnlineVisitChannels"] = await $steps[
-              "apiOnlineVisitChannels"
-            ];
-          }
-
-          $steps["updateVisitChannel"] = $props.centers.some(
-            center => center.id === "5532"
-          )
-            ? (() => {
-                const actionArgs = {
-                  variable: {
-                    objRoot: $state,
-                    variablePath: ["visitChannel"]
-                  },
-                  operation: 0,
-                  value: $steps.apiOnlineVisitChannels.data
-                };
-                return (({ variable, value, startIndex, deleteCount }) => {
-                  if (!variable) {
-                    return;
-                  }
-                  const { objRoot, variablePath } = variable;
-
-                  $stateSet(objRoot, variablePath, value);
-                  return value;
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
-          if (
-            $steps["updateVisitChannel"] != null &&
-            typeof $steps["updateVisitChannel"] === "object" &&
-            typeof $steps["updateVisitChannel"].then === "function"
-          ) {
-            $steps["updateVisitChannel"] = await $steps["updateVisitChannel"];
-          }
-        }}
-      />
-
       <ApiRequest
         data-plasmic-name={"apiInsurance"}
         data-plasmic-override={overrides.apiInsurance}
@@ -1091,14 +1048,9 @@ function PlasmicPatientList__RenderFunc(props: {
               secureCall={(() => {
                 try {
                   return (
-                    $props.centers.some(
-                      item =>
-                        item.user_center_id == currentItem.user_center_id &&
-                        item.id == "5532"
-                    ) &&
-                    $state.visitChannel[0].data.some(
-                      channel => channel.type === "secure_call"
-                    )
+                    $state.apiOnlineVisitChannel.data[0].data.some(
+                      item => item.type === "secure_call"
+                    ) && $props.centers.some(center => center.id === "5532")
                   );
                 } catch (e) {
                   if (
@@ -1181,6 +1133,71 @@ function PlasmicPatientList__RenderFunc(props: {
           );
         })}
       </ApiRequest>
+      <ApiRequest
+        data-plasmic-name={"apiOnlineVisitChannel"}
+        data-plasmic-override={overrides.apiOnlineVisitChannel}
+        className={classNames("__wab_instance", sty.apiOnlineVisitChannel)}
+        errorDisplay={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text___3Jd5I
+            )}
+          >
+            {"Error fetching data"}
+          </div>
+        }
+        loadingDisplay={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__iurM4
+            )}
+          >
+            {"Loading..."}
+          </div>
+        }
+        method={"GET"}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "apiOnlineVisitChannel",
+            "error"
+          ]).apply(null, eventArgs);
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "apiOnlineVisitChannel",
+            "loading"
+          ]).apply(null, eventArgs);
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "apiOnlineVisitChannel",
+            "data"
+          ]).apply(null, eventArgs);
+        }}
+        ref={ref => {
+          $refs["apiOnlineVisitChannel"] = ref;
+        }}
+        url={(() => {
+          try {
+            return $props.centers.some(center => center.id === "5532")
+              ? "https://apigw.paziresh24.com/v1/visit-channels"
+              : "";
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+      />
+
       {(() => {
         try {
           return (
@@ -1329,28 +1346,28 @@ function PlasmicPatientList__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "sideEffect",
     "apiInsurance",
     "apiAllBooks",
     "svg",
-    "appointmentCard"
+    "appointmentCard",
+    "apiOnlineVisitChannel"
   ],
-  sideEffect: ["sideEffect"],
   apiInsurance: ["apiInsurance"],
   apiAllBooks: ["apiAllBooks", "svg", "appointmentCard"],
   svg: ["svg"],
-  appointmentCard: ["appointmentCard"]
+  appointmentCard: ["appointmentCard"],
+  apiOnlineVisitChannel: ["apiOnlineVisitChannel"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  sideEffect: typeof SideEffect;
   apiInsurance: typeof ApiRequest;
   apiAllBooks: typeof ApiRequest;
   svg: "svg";
   appointmentCard: typeof AppointmentCard;
+  apiOnlineVisitChannel: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1413,11 +1430,11 @@ export const PlasmicPatientList = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    sideEffect: makeNodeComponent("sideEffect"),
     apiInsurance: makeNodeComponent("apiInsurance"),
     apiAllBooks: makeNodeComponent("apiAllBooks"),
     svg: makeNodeComponent("svg"),
     appointmentCard: makeNodeComponent("appointmentCard"),
+    apiOnlineVisitChannel: makeNodeComponent("apiOnlineVisitChannel"),
 
     // Metadata about props expected for PlasmicPatientList
     internalVariantProps: PlasmicPatientList__VariantProps,

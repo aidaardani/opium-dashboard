@@ -40,11 +40,6 @@
     margin-top: 8px;
   }
 }
-.sideEffect:global(.__wab_instance) {
-  max-width: 100%;
-  object-fit: cover;
-  position: relative;
-}
 .apiInsurance:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
@@ -179,6 +174,26 @@
 .appointmentCard:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
+}
+.apiOnlineVisitChannel:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.text__iurM4 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  display: none;
+}
+.text___3Jd5I {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  display: none;
 }
 .freeBox__nG3PE {
   display: flex;
