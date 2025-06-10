@@ -61,7 +61,6 @@ import {
 
 import Transactions2 from "../../Transactions2"; // plasmic-import: YknOC-p8akkE/component
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
-import QuickAccessInAppNotifications from "../../QuickAccessInAppNotifications"; // plasmic-import: thJf7wC4giTS/component
 import QuickAccessWallet from "../../QuickAccessWallet"; // plasmic-import: GvtgrqQf9C66/component
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import { DatePicker } from "@/fragment/components/date-picker"; // plasmic-import: b38lDo6Nm8Rh/codeComponent
@@ -113,7 +112,6 @@ export type PlasmicBookList__OverridesType = {
   root?: Flex__<"div">;
   transactions2?: Flex__<typeof Transactions2>;
   quickAccess?: Flex__<"div">;
-  quickAccessInAppNotifications?: Flex__<typeof QuickAccessInAppNotifications>;
   quickAccessWallet?: Flex__<typeof QuickAccessWallet>;
   date?: Flex__<"div">;
   date2?: Flex__<"div">;
@@ -610,32 +608,8 @@ function PlasmicBookList__RenderFunc(props: {
                       $steps["sendLog"] = await $steps["sendLog"];
                     }
                   }}
-                >
-                  {(() => {
-                    try {
-                      return true;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return false;
-                      }
-                      throw e;
-                    }
-                  })() ? (
-                    <QuickAccessInAppNotifications
-                      data-plasmic-name={"quickAccessInAppNotifications"}
-                      data-plasmic-override={
-                        overrides.quickAccessInAppNotifications
-                      }
-                      className={classNames(
-                        "__wab_instance",
-                        sty.quickAccessInAppNotifications
-                      )}
-                    />
-                  ) : null}
-                </div>
+                />
+
                 {(
                   hasVariant(globalVariants, "screen", "mobileOnly")
                     ? false
@@ -2609,7 +2583,7 @@ function PlasmicBookList__RenderFunc(props: {
                                         try {
                                           return {
                                             user_center_id:
-                                              $state.apiAllCenters.data.data.find(
+                                              $state.apiAllCenters.data.items.find(
                                                 center => center.id === "5532"
                                               ).user_center_id
                                           };
@@ -2741,7 +2715,7 @@ function PlasmicBookList__RenderFunc(props: {
                                             can_booking:
                                               $state.apiUserCenterService.data.data[0].can_booking.toString(),
                                             user_center_id:
-                                              $state.apiAllCenters.data.data.find(
+                                              $state.apiAllCenters.data.items.find(
                                                 center => center.id === "5532"
                                               ).user_center_id
                                           };
@@ -3800,7 +3774,6 @@ const PlasmicDescendants = {
     "root",
     "transactions2",
     "quickAccess",
-    "quickAccessInAppNotifications",
     "quickAccessWallet",
     "date",
     "date2",
@@ -3826,12 +3799,7 @@ const PlasmicDescendants = {
     "apiRequest"
   ],
   transactions2: ["transactions2"],
-  quickAccess: [
-    "quickAccess",
-    "quickAccessInAppNotifications",
-    "quickAccessWallet"
-  ],
-  quickAccessInAppNotifications: ["quickAccessInAppNotifications"],
+  quickAccess: ["quickAccess", "quickAccessWallet"],
   quickAccessWallet: ["quickAccessWallet"],
   date: [
     "date",
@@ -3907,7 +3875,6 @@ type NodeDefaultElementType = {
   root: "div";
   transactions2: typeof Transactions2;
   quickAccess: "div";
-  quickAccessInAppNotifications: typeof QuickAccessInAppNotifications;
   quickAccessWallet: typeof QuickAccessWallet;
   date: "div";
   date2: "div";
@@ -3995,9 +3962,6 @@ export const PlasmicBookList = Object.assign(
     // Helper components rendering sub-elements
     transactions2: makeNodeComponent("transactions2"),
     quickAccess: makeNodeComponent("quickAccess"),
-    quickAccessInAppNotifications: makeNodeComponent(
-      "quickAccessInAppNotifications"
-    ),
     quickAccessWallet: makeNodeComponent("quickAccessWallet"),
     date: makeNodeComponent("date"),
     date2: makeNodeComponent("date2"),

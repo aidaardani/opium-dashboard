@@ -1186,6 +1186,88 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   ];
                 }
 
+                $steps["showToastForNotifyCell"] =
+                  $state.notifyCellApi.data.providers[0].notify_cell &&
+                  $state.notifyCellApi.data.providers[0].notify_cell !== "" &&
+                  !$state.notifyCell.value.trim()
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u0634\u0645\u0627\u0631\u0647 \u0645\u0646\u0634\u06cc \u0646\u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u062f \u062e\u0627\u0644\u06cc \u0628\u0627\u0634\u062f. "
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                if (
+                  $steps["showToastForNotifyCell"] != null &&
+                  typeof $steps["showToastForNotifyCell"] === "object" &&
+                  typeof $steps["showToastForNotifyCell"].then === "function"
+                ) {
+                  $steps["showToastForNotifyCell"] = await $steps[
+                    "showToastForNotifyCell"
+                  ];
+                }
+
+                $steps["showToastForBio"] =
+                  $state.profile.data.data.biography &&
+                  $state.profile.data.data.biography !== "" &&
+                  !$state.biography.trim()
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u0628\u06cc\u0648\u06af\u0631\u0627\u0641\u06cc \u0646\u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u062f \u062e\u0627\u0644\u06cc \u0628\u0627\u0634\u062f."
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                if (
+                  $steps["showToastForBio"] != null &&
+                  typeof $steps["showToastForBio"] === "object" &&
+                  typeof $steps["showToastForBio"].then === "function"
+                ) {
+                  $steps["showToastForBio"] = await $steps["showToastForBio"];
+                }
+
+                $steps["showToastForDoNothing"] = !(
+                  $state.profile.data.data.biography.trim() !==
+                    $state.biography.trim() ||
+                  $state.notifyCellApi.data.providers[0].notify_cell.trim() !==
+                    $state.notifyCell.value.trim() ||
+                  $state.auth.data.data.national_code !==
+                    $state.nationalCode.value
+                )
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "error",
+                          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a\u06cc \u0628\u0631\u0627\u06cc \u0648\u06cc\u0631\u0627\u06cc\u0634 \u0648\u0627\u0631\u062f \u0646\u0634\u062f\u0647 \u0627\u0633\u062a. "
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["showToastForDoNothing"] != null &&
+                  typeof $steps["showToastForDoNothing"] === "object" &&
+                  typeof $steps["showToastForDoNothing"].then === "function"
+                ) {
+                  $steps["showToastForDoNothing"] = await $steps[
+                    "showToastForDoNothing"
+                  ];
+                }
+
                 $steps["updateIsLoadingSave"] = true
                   ? (() => {
                       const actionArgs = {
@@ -1222,98 +1304,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   ];
                 }
 
-                $steps["apiProviderUserId"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "PATCH",
-                          (() => {
-                            try {
-                              return `https://apigw.paziresh24.com/v1/providers?user_id=${$state.auth.data.data.id}`;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })(),
-                          undefined,
-                          (() => {
-                            try {
-                              return {
-                                biography: $state.biography,
-                                employee_id: $state.medicalCode.value,
-                                notify_cell: $state.notifyCell.value
-                              };
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
-                if (
-                  $steps["apiProviderUserId"] != null &&
-                  typeof $steps["apiProviderUserId"] === "object" &&
-                  typeof $steps["apiProviderUserId"].then === "function"
-                ) {
-                  $steps["apiProviderUserId"] = await $steps[
-                    "apiProviderUserId"
-                  ];
-                }
-
-                $steps["showToast2"] = !!$steps.apiProviderUserId.data.message
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          (() => {
-                            try {
-                              return $steps.apiProviderUserId.data.status ===
-                                "SUCCESS"
-                                ? "success"
-                                : "error";
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })(),
-                          "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u067e\u0632\u0634\u06a9 \u0628\u0647 \u0631\u0648\u0632 \u0631\u0633\u0627\u0646\u06cc \u0634\u062f."
-                        ]
-                      };
-                      return $globalActions["Fragment.showToast"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["showToast2"] != null &&
-                  typeof $steps["showToast2"] === "object" &&
-                  typeof $steps["showToast2"].then === "function"
-                ) {
-                  $steps["showToast2"] = await $steps["showToast2"];
-                }
-
                 $steps["apix"] =
-                  $state.auth.data.data.national_code !==
+                  $state.auth?.data?.data?.national_code !==
                   $state.nationalCode.value
                     ? (() => {
                         const actionArgs = {
@@ -1361,125 +1353,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   $steps["apix"] = await $steps["apix"];
                 }
 
-                $steps["apiUsers"] = false
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "PATCH",
-                          (() => {
-                            try {
-                              return `https://apigw.paziresh24.com/v1/users/${$state.auth.data.data.id}`;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })(),
-                          undefined,
-                          (() => {
-                            try {
-                              return (() => {
-                                const pattern =
-                                  /(?:کاردان|کارشناس|کارشناس ارشد|دانشجوی دکترای|دکترای|دانشجوی تخصص|متخصص|دانشجوی دکترای تخصصی|دکترای تخصصی|دانشجوی فوق تخصص|فوق تخصص|دانشجوی فلوشیپ|فلوشیپ|نامشخص|مشاور|دکتر)/;
-                                function containsKeyword(inputText) {
-                                  return pattern.test(inputText);
-                                }
-                                const isHaveKeywordFirstName = containsKeyword(
-                                  $state.profilePersonalName.firstNameValue
-                                );
-                                const isHaveKeywordLastName = containsKeyword(
-                                  $state.profilePersonalName.lastNameValue
-                                );
-                                if (
-                                  $state.profilePersonalName.firstNameValue.trim()
-                                    .length < 15 &&
-                                  $state.profilePersonalName.lastNameValue.trim()
-                                    .length < 20 &&
-                                  isHaveKeywordFirstName === false &&
-                                  isHaveKeywordLastName === false &&
-                                  $state.profilePersonalName.firstNameValue.trim() !==
-                                    "" &&
-                                  $state.profilePersonalName.lastNameValue.trim() !==
-                                    "" &&
-                                  $state.medicalCode.value.trim() !== "" &&
-                                  $state.nationalCode.value.trim() !== ""
-                                ) {
-                                  return {
-                                    name: $state.profilePersonalName
-                                      .firstNameValue,
-                                    family:
-                                      $state.profilePersonalName.lastNameValue,
-                                    national_code: $state.nationalCode.value
-                                  };
-                                }
-                              })();
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
-                if (
-                  $steps["apiUsers"] != null &&
-                  typeof $steps["apiUsers"] === "object" &&
-                  typeof $steps["apiUsers"].then === "function"
-                ) {
-                  $steps["apiUsers"] = await $steps["apiUsers"];
-                }
-
-                $steps["updateIsLoadingSave2"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["isLoadingSave"]
-                        },
-                        operation: 0,
-                        value: false
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateIsLoadingSave2"] != null &&
-                  typeof $steps["updateIsLoadingSave2"] === "object" &&
-                  typeof $steps["updateIsLoadingSave2"].then === "function"
-                ) {
-                  $steps["updateIsLoadingSave2"] = await $steps[
-                    "updateIsLoadingSave2"
-                  ];
-                }
-
-                $steps["showToast"] = !!$steps.apix.data.message
+                $steps["showToastApix"] = !!$steps.apix?.data?.message
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -1500,7 +1374,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                           })(),
                           (() => {
                             try {
-                              return $steps.apix.data.message;
+                              return $steps.apix?.data?.message;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -1519,15 +1393,15 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                     })()
                   : undefined;
                 if (
-                  $steps["showToast"] != null &&
-                  typeof $steps["showToast"] === "object" &&
-                  typeof $steps["showToast"].then === "function"
+                  $steps["showToastApix"] != null &&
+                  typeof $steps["showToastApix"] === "object" &&
+                  typeof $steps["showToastApix"].then === "function"
                 ) {
-                  $steps["showToast"] = await $steps["showToast"];
+                  $steps["showToastApix"] = await $steps["showToastApix"];
                 }
 
                 $steps["apichangenationalcode"] =
-                  $steps.apix.data.success === "true"
+                  $steps.apix?.data?.success === "true"
                     ? (() => {
                         const actionArgs = {
                           args: [
@@ -1567,15 +1441,15 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   ];
                 }
 
-                $steps["updateNationalCodeValues"] = !!$steps
-                  .apichangenationalcode.data.message
+                $steps["showToastChangeNationalCode"] = !!$steps
+                  .apichangenationalcode?.data?.message
                   ? (() => {
                       const actionArgs = {
                         args: [
                           (() => {
                             try {
-                              return $steps.apichangenationalcode.data
-                                .success == "false"
+                              return $steps.apichangenationalcode?.data
+                                ?.success == "false"
                                 ? "error"
                                 : "success";
                             } catch (e) {
@@ -1590,7 +1464,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                           })(),
                           (() => {
                             try {
-                              return $steps.apichangenationalcode.data.message;
+                              return $steps.apichangenationalcode?.data
+                                ?.message;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -1609,12 +1484,149 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                     })()
                   : undefined;
                 if (
-                  $steps["updateNationalCodeValues"] != null &&
-                  typeof $steps["updateNationalCodeValues"] === "object" &&
-                  typeof $steps["updateNationalCodeValues"].then === "function"
+                  $steps["showToastChangeNationalCode"] != null &&
+                  typeof $steps["showToastChangeNationalCode"] === "object" &&
+                  typeof $steps["showToastChangeNationalCode"].then ===
+                    "function"
                 ) {
-                  $steps["updateNationalCodeValues"] = await $steps[
-                    "updateNationalCodeValues"
+                  $steps["showToastChangeNationalCode"] = await $steps[
+                    "showToastChangeNationalCode"
+                  ];
+                }
+
+                $steps["apiProviderUserId"] =
+                  ($state.profile?.data?.data?.biography.trim() !==
+                    $state.biography?.trim() &&
+                    $state.biography !== "") ||
+                  ($state.notifyCellApi?.data?.providers[0].notify_cell.trim() !==
+                    $state.notifyCell?.value?.trim() &&
+                    $state.notifyCell?.value !== "")
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "PATCH",
+                            (() => {
+                              try {
+                                return `https://apigw.paziresh24.com/v1/providers?user_id=${$state.auth.data.data.id}`;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            undefined,
+                            (() => {
+                              try {
+                                return {
+                                  biography: $state.biography,
+                                  employee_id: $state.medicalCode.value,
+                                  notify_cell: $state.notifyCell.value
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                if (
+                  $steps["apiProviderUserId"] != null &&
+                  typeof $steps["apiProviderUserId"] === "object" &&
+                  typeof $steps["apiProviderUserId"].then === "function"
+                ) {
+                  $steps["apiProviderUserId"] = await $steps[
+                    "apiProviderUserId"
+                  ];
+                }
+
+                $steps["showToastProvider"] =
+                  $steps.apiProviderUserId?.data?.status === "SUCCESS"
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return $steps.apiProviderUserId?.data
+                                  ?.status === "SUCCESS"
+                                  ? "success"
+                                  : "error";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u067e\u0632\u0634\u06a9 \u0628\u0647 \u0631\u0648\u0632 \u0631\u0633\u0627\u0646\u06cc \u0634\u062f."
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                if (
+                  $steps["showToastProvider"] != null &&
+                  typeof $steps["showToastProvider"] === "object" &&
+                  typeof $steps["showToastProvider"].then === "function"
+                ) {
+                  $steps["showToastProvider"] = await $steps[
+                    "showToastProvider"
+                  ];
+                }
+
+                $steps["updateIsLoadingSave2"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["isLoadingSave"]
+                        },
+                        operation: 0,
+                        value: false
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateIsLoadingSave2"] != null &&
+                  typeof $steps["updateIsLoadingSave2"] === "object" &&
+                  typeof $steps["updateIsLoadingSave2"].then === "function"
+                ) {
+                  $steps["updateIsLoadingSave2"] = await $steps[
+                    "updateIsLoadingSave2"
                   ];
                 }
 
