@@ -1575,7 +1575,27 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                                 throw e;
                               }
                             })(),
-                            "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u067e\u0632\u0634\u06a9 \u0628\u0647 \u0631\u0648\u0632 \u0631\u0633\u0627\u0646\u06cc \u0634\u062f."
+                            (() => {
+                              try {
+                                return $state.profile?.data?.data?.biography.trim() !==
+                                  $state.biography?.trim() &&
+                                  $state.biography !== ""
+                                  ? "بیوگرافی با موفقیت ویرایش شد."
+                                  : $state.notifyCellApi?.data?.providers[0].notify_cell.trim() !==
+                                      $state.notifyCell?.value?.trim() &&
+                                    $state.notifyCell?.value !== ""
+                                  ? "شماره منشی با موفقیت ویرایش شد."
+                                  : "اطلاعات پزشک با موفقیت ویرایش شد.";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
                           ]
                         };
                         return $globalActions["Fragment.showToast"]?.apply(
@@ -1630,17 +1650,23 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   ];
                 }
 
-                $steps["runActionOnProfile"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        tplRef: "profile",
-                        action: "refresh"
-                      };
-                      return (({ tplRef, action, args }) => {
-                        return $refs?.[tplRef]?.[action]?.(...(args ?? []));
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
+                $steps["runActionOnProfile"] =
+                  ($state.profile?.data?.data?.biography.trim() !==
+                    $state.biography?.trim() &&
+                    $state.biography !== "") ||
+                  ($state.notifyCellApi?.data?.providers[0].notify_cell.trim() !==
+                    $state.notifyCell?.value?.trim() &&
+                    $state.notifyCell?.value !== "")
+                    ? (() => {
+                        const actionArgs = {
+                          tplRef: "profile",
+                          action: "refresh"
+                        };
+                        return (({ tplRef, action, args }) => {
+                          return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
                 if (
                   $steps["runActionOnProfile"] != null &&
                   typeof $steps["runActionOnProfile"] === "object" &&
@@ -1651,14 +1677,19 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   ];
                 }
 
-                $steps["runActionOnAuth"] = true
-                  ? (() => {
-                      const actionArgs = { tplRef: "auth", action: "refresh" };
-                      return (({ tplRef, action, args }) => {
-                        return $refs?.[tplRef]?.[action]?.(...(args ?? []));
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
+                $steps["runActionOnAuth"] =
+                  $state.auth?.data?.data?.national_code !==
+                  $state.nationalCode.value
+                    ? (() => {
+                        const actionArgs = {
+                          tplRef: "auth",
+                          action: "refresh"
+                        };
+                        return (({ tplRef, action, args }) => {
+                          return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
                 if (
                   $steps["runActionOnAuth"] != null &&
                   typeof $steps["runActionOnAuth"] === "object" &&
