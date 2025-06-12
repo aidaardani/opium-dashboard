@@ -526,7 +526,9 @@ function PlasmicBookingSetting__RenderFunc(props: {
               onMount={async () => {
                 const $steps = {};
 
-                $steps["apiGetSettingBooking"] = true
+                $steps["apiGetSettingBooking"] = (
+                  $ctx.query.user_id ? true : false
+                )
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -536,8 +538,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                             try {
                               return {
                                 key: "booking:booking_date_range",
-                                userid: $ctx.query.user_id,
-                                centerid: $state.centers.data.data.find(
+                                userid: $ctx.query?.user_id,
+                                centerid: $state.centers?.data?.data?.find(
                                   center =>
                                     center.id !== "5532" &&
                                     center.type_id === 1 &&
@@ -606,7 +608,9 @@ function PlasmicBookingSetting__RenderFunc(props: {
                   $steps["updateSettings"] = await $steps["updateSettings"];
                 }
 
-                $steps["apiGetRefundSetting"] = true
+                $steps["apiGetRefundSetting"] = (
+                  $ctx.query.user_id ? true : false
+                )
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -616,7 +620,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                             try {
                               return {
                                 key: "booking:delay_to_delete_book_refund",
-                                userid: $ctx.query.user_id,
+                                userid: $ctx.query?.user_id,
                                 centerid: $state.centers.data.data.find(
                                   center =>
                                     center.id !== "5532" &&
@@ -688,7 +692,9 @@ function PlasmicBookingSetting__RenderFunc(props: {
                   ];
                 }
 
-                $steps["apiGetPaymentSetting"] = true
+                $steps["apiGetPaymentSetting"] = (
+                  $ctx.query.user_id ? true : false
+                )
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -698,7 +704,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                             try {
                               return {
                                 key: "booking:activate_online_payment",
-                                userid: $ctx.query.user_id,
+                                userid: $ctx.query?.user_id,
                                 centerid: $state.centers.data.data.find(
                                   center =>
                                     center.id !== "5532" &&
