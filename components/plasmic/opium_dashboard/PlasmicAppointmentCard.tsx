@@ -4195,7 +4195,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   style={{ fontWeight: 700 }}
                 >
                   {
-                    "\u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u062f\u0631\u0645\u0627\u0646"
+                    " \u062f\u0633\u062a\u0648\u0631\u0627\u0644\u0639\u0645\u0644\u200c\u0647\u0627\u06cc \u062f\u0627\u0631\u0648\u06cc\u06cc\u060c \u067e\u06cc\u0634\u0646\u0647\u0627\u062f\u0627\u062a \u062f\u0631\u0645\u0627\u0646 \u0648 ...."
                   }
                 </span>
                 <React.Fragment>
@@ -4239,7 +4239,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                 }
               }}
               placeholder={
-                "\u06a9\u062f \u067e\u06cc\u06af\u06cc\u0631\u06cc \u0646\u0633\u062e\u0647\u060c \u062f\u0633\u062a\u0648\u0631\u0627\u0644\u0639\u0645\u0644\u200c\u0647\u0627\u06cc \u062f\u0627\u0631\u0648\u06cc\u06cc\u060c \u067e\u06cc\u0634\u0646\u0647\u0627\u062f\u0627\u062a \u062f\u0631\u0645\u0627\u0646 \u0648 ...."
+                "(\u062a\u06a9\u0645\u06cc\u0644 \u0627\u06cc\u0646 \u0628\u062e\u0634 \u0627\u062e\u062a\u06cc\u0627\u0631\u06cc \u0627\u0633\u062a.)"
               }
               value={
                 generateStateValueProp($state, ["descriptionInput", "value"]) ??
@@ -4713,9 +4713,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
           came={(() => {
             try {
               return (
-                ($state.bookStatusState == "came" ||
-                  $state.bookStatusState == "not_visited") &&
-                $props.bookDelete == "0"
+                $state.bookStatusState == "came" ||
+                $state.bookStatusState == "not_visited"
               );
             } catch (e) {
               if (
@@ -4745,9 +4744,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             const $steps = {};
 
             $steps["updateDialog2Open"] =
-              ($state.bookStatusState == "came" ||
-                $state.bookStatusState == "not_visited") &&
-              $props.bookDelete == "0"
+              $state.bookStatusState == "came" ||
+              $state.bookStatusState == "not_visited"
                 ? (() => {
                     const actionArgs = {
                       variable: {
@@ -4811,12 +4809,10 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             $steps["apiCame"] =
               ($props.type === "book" &&
                 !$props.insurances &&
-                $state.bookStatusState === "not_came" &&
-                $props.bookDelete === "0") ||
+                $state.bookStatusState === "not_came") ||
               ($props.type === "book" &&
                 $props.insurances &&
-                $state.bookStatusState === "not_came" &&
-                $props.bookDelete === "") ||
+                $state.bookStatusState === "not_came") ||
               $props.type !== "prescription"
                 ? (() => {
                     const actionArgs = {
@@ -4888,9 +4884,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             }
 
             $steps["updateBookStatusState"] =
-              ($props.type === "book" &&
-                $steps.apiCame?.data?.status === "SUCCESS") ||
-              $props.type === "prescription"
+              $props.type === "book" &&
+              $steps.apiCame?.data?.status === "SUCCESS"
                 ? (() => {
                     const actionArgs = {
                       variable: {
@@ -5036,7 +5031,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
           }}
           visited={(() => {
             try {
-              return $state.bookStatusState == "visited" || $props.finalized;
+              return $state.bookStatusState == "visited";
             } catch (e) {
               if (
                 e instanceof TypeError ||

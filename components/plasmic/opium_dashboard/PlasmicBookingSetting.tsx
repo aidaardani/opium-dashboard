@@ -582,7 +582,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                           variablePath: ["settingBookingDateRange"]
                         },
                         operation: 0,
-                        value: $steps.apiGetSettingBooking.data
+                        value: $steps.apiGetSettingBooking?.data
                       };
                       return (({
                         variable,
@@ -664,7 +664,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                           variablePath: ["settingBookingRefundValue"]
                         },
                         operation: 0,
-                        value: $steps.apiGetRefundSetting.data
+                        value: $steps.apiGetRefundSetting?.data
                       };
                       return (({
                         variable,
@@ -748,7 +748,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                           variablePath: ["settingBookingPaymentStatus"]
                         },
                         operation: 0,
-                        value: $steps.apiGetPaymentSetting.data
+                        value: $steps.apiGetPaymentSetting?.data
                       };
                       return (({
                         variable,
@@ -786,7 +786,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                             try {
                               return {
                                 group: "settings",
-                                userid: $ctx.query.user_id,
+                                userid: $ctx.query?.user_id,
                                 centerid: $state.centers.data.data.find(
                                   center =>
                                     center.id !== "5532" &&
