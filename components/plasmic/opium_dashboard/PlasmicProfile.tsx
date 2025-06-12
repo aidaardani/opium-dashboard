@@ -67,8 +67,11 @@ import ProfilePersonal from "../../ProfilePersonal"; // plasmic-import: _Rp6tLXx
 import ProfileExperties from "../../ProfileExperties"; // plasmic-import: E1ah_bVnKUPF/component
 import ProfileChannels from "../../ProfileChannels"; // plasmic-import: o4nq-6V2-plH/component
 import ProfileAddress from "../../ProfileAddress"; // plasmic-import: x5b7hK4cfrsH/component
+import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import ProfilePassword from "../../ProfilePassword"; // plasmic-import: i6SPs9Tk2LaM/component
 import ProfilePrescriptionSettings from "../../ProfilePrescriptionSettings"; // plasmic-import: 2QrXQ3Lsq6zG/component
+
+import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -82,6 +85,9 @@ import Icon29Icon from "./icons/PlasmicIcon__Icon29"; // plasmic-import: 4BN4Jr3
 import Icon30Icon from "./icons/PlasmicIcon__Icon30"; // plasmic-import: kLd3FZ1H9HBS/icon
 import Icon31Icon from "./icons/PlasmicIcon__Icon31"; // plasmic-import: WipT2Hen4ot8/icon
 import Icon35Icon from "./icons/PlasmicIcon__Icon35"; // plasmic-import: JFE5vLu_22XX/icon
+import Icon47Icon from "./icons/PlasmicIcon__Icon47"; // plasmic-import: 2KgDNPohYEOx/icon
+import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
+import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 import Icon32Icon from "./icons/PlasmicIcon__Icon32"; // plasmic-import: z4LkEdXxME3x/icon
 import Icon33Icon from "./icons/PlasmicIcon__Icon33"; // plasmic-import: 01c_66jVlqBW/icon
 
@@ -104,6 +110,8 @@ export type PlasmicProfile__OverridesType = {
   experties?: Flex__<typeof ProfileExperties>;
   profileChannels?: Flex__<typeof ProfileChannels>;
   profileAddress?: Flex__<typeof ProfileAddress>;
+  img?: Flex__<typeof PlasmicImg__>;
+  button?: Flex__<typeof Button>;
   profilePassword?: Flex__<typeof ProfilePassword>;
   profilePrescriptionSettings?: Flex__<typeof ProfilePrescriptionSettings>;
 };
@@ -174,6 +182,10 @@ function PlasmicProfile__RenderFunc(props: {
     $ctx,
     $queries: {},
     $refs
+  });
+
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantsfobTirRaixGf()
   });
 
   return (
@@ -363,6 +375,127 @@ function PlasmicProfile__RenderFunc(props: {
                   data-plasmic-override={overrides.profileAddress}
                   className={classNames("__wab_instance", sty.profileAddress)}
                 />
+              </AntdAccordionItem>
+              <AntdAccordionItem
+                className={classNames(
+                  "__wab_instance",
+                  sty.accordionItem__ajgb1
+                )}
+                id={"88"}
+                label2={
+                  <Stack__
+                    as={"div"}
+                    hasGap={true}
+                    className={classNames(projectcss.all, sty.freeBox__eWEpn)}
+                  >
+                    <PlasmicIcon__
+                      PlasmicIconType={
+                        hasVariant(globalVariants, "screen", "mobileOnly")
+                          ? Icon47Icon
+                          : Icon47Icon
+                      }
+                      className={classNames(projectcss.all, sty.svg__tq8I1)}
+                      role={"img"}
+                    />
+
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__rzBYo
+                      )}
+                    >
+                      {
+                        "\u0628\u06cc\u0645\u0647 \u0647\u0627\u06cc \u0637\u0631\u0641 \u0642\u0631\u0627\u0631\u062f\u0627\u062f"
+                      }
+                    </div>
+                  </Stack__>
+                }
+                showArrow={false}
+              >
+                <div className={classNames(projectcss.all, sty.freeBox__d2BxF)}>
+                  <PlasmicImg__
+                    data-plasmic-name={"img"}
+                    data-plasmic-override={overrides.img}
+                    alt={""}
+                    className={classNames(sty.img)}
+                    displayHeight={"auto"}
+                    displayMaxHeight={"none"}
+                    displayMaxWidth={"100%"}
+                    displayMinHeight={"0"}
+                    displayMinWidth={"0"}
+                    displayWidth={"470px"}
+                    loading={"lazy"}
+                    src={{
+                      src: "/plasmic/opium_dashboard/images/image6.png",
+                      fullWidth: 446,
+                      fullHeight: 252,
+                      aspectRatio: undefined
+                    }}
+                  />
+
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox___6Rmp0)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__wd6Y3
+                      )}
+                    >
+                      {
+                        "\u0627\u0641\u0632\u0648\u062f\u0646 \u0628\u06cc\u0645\u0647 \u0647\u0627\u06cc \u067e\u0627\u06cc\u0647 \u0648 \u062a\u06a9\u0645\u06cc\u0644\u06cc \u0628\u0647 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644"
+                      }
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__rA7D
+                      )}
+                    >
+                      {
+                        "\u0628\u0627 \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0627\u0632 \u0627\u0628\u0632\u0627\u0631\u06a9 \u0628\u06cc\u0645\u0647 \u0646\u0645\u0627\u060c \u0628\u06cc\u0645\u0647 \u0647\u0627\u06cc \u067e\u0627\u06cc\u0647 \u0645\u062b\u0644 \u062a\u0627\u0645\u06cc\u0646 \u0627\u062c\u062a\u0645\u0627\u0639\u06cc \u0648 \u0628\u06cc\u0645\u0647 \u0633\u0644\u0627\u0645\u062a \u0648... \u0648 \u0628\u06cc\u0645\u0647 \u0647\u0627\u06cc \u062a\u06a9\u0645\u06cc\u0644\u06cc \u0631\u0627 \u062f\u0631 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u062e\u0648\u062f \u062f\u0631\u062c \u06a9\u0646\u06cc\u062f."
+                      }
+                    </div>
+                    <Button
+                      data-plasmic-name={"button"}
+                      data-plasmic-override={overrides.button}
+                      children2={
+                        "\u0648\u0631\u0648\u062f \u0628\u0647 \u0627\u0628\u0632\u0627\u0631\u06a9 \u0628\u06cc\u0645\u0647 \u0646\u0645\u0627"
+                      }
+                      className={classNames("__wab_instance", sty.button)}
+                      onClick={async event => {
+                        const $steps = {};
+
+                        $steps["invokeGlobalAction"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  "https://www.paziresh24.com/_/bimehnama/setting/?origin=Nelson"
+                                ]
+                              };
+                              return $globalActions["Hamdast.openLink"]?.apply(
+                                null,
+                                [...actionArgs.args]
+                              );
+                            })()
+                          : undefined;
+                        if (
+                          $steps["invokeGlobalAction"] != null &&
+                          typeof $steps["invokeGlobalAction"] === "object" &&
+                          typeof $steps["invokeGlobalAction"].then ===
+                            "function"
+                        ) {
+                          $steps["invokeGlobalAction"] = await $steps[
+                            "invokeGlobalAction"
+                          ];
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
               </AntdAccordionItem>
               <AntdAccordionItem
                 className={classNames(
@@ -562,6 +695,8 @@ const PlasmicDescendants = {
     "experties",
     "profileChannels",
     "profileAddress",
+    "img",
+    "button",
     "profilePassword",
     "profilePrescriptionSettings"
   ],
@@ -572,6 +707,8 @@ const PlasmicDescendants = {
     "experties",
     "profileChannels",
     "profileAddress",
+    "img",
+    "button",
     "profilePassword",
     "profilePrescriptionSettings"
   ],
@@ -579,6 +716,8 @@ const PlasmicDescendants = {
   experties: ["experties"],
   profileChannels: ["profileChannels"],
   profileAddress: ["profileAddress"],
+  img: ["img"],
+  button: ["button"],
   profilePassword: ["profilePassword"],
   profilePrescriptionSettings: ["profilePrescriptionSettings"]
 } as const;
@@ -593,6 +732,8 @@ type NodeDefaultElementType = {
   experties: typeof ProfileExperties;
   profileChannels: typeof ProfileChannels;
   profileAddress: typeof ProfileAddress;
+  img: typeof PlasmicImg__;
+  button: typeof Button;
   profilePassword: typeof ProfilePassword;
   profilePrescriptionSettings: typeof ProfilePrescriptionSettings;
 };
@@ -663,6 +804,8 @@ export const PlasmicProfile = Object.assign(
     experties: makeNodeComponent("experties"),
     profileChannels: makeNodeComponent("profileChannels"),
     profileAddress: makeNodeComponent("profileAddress"),
+    img: makeNodeComponent("img"),
+    button: makeNodeComponent("button"),
     profilePassword: makeNodeComponent("profilePassword"),
     profilePrescriptionSettings: makeNodeComponent(
       "profilePrescriptionSettings"

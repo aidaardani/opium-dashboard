@@ -157,8 +157,6 @@ function PlasmicPatientList__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const $globalActions = useGlobalActions?.();
-
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -436,7 +434,7 @@ function PlasmicPatientList__RenderFunc(props: {
         url={(() => {
           try {
             return $props.centers.length > 0
-              ? "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/v3-allbooks"
+              ? "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/v4/allbooks"
               : "";
           } catch (e) {
             if (
@@ -558,7 +556,7 @@ function PlasmicPatientList__RenderFunc(props: {
               })()}
               bookId={(() => {
                 try {
-                  return currentItem.type !== "book" ? "" : currentItem.id;
+                  return currentItem.id;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -603,7 +601,7 @@ function PlasmicPatientList__RenderFunc(props: {
               })()}
               cell={(() => {
                 try {
-                  return currentItem.cell || currentItem.patientCell;
+                  return currentItem.cell;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -631,12 +629,9 @@ function PlasmicPatientList__RenderFunc(props: {
               })()}
               centerName={(() => {
                 try {
-                  return currentItem.type !== "book"
-                    ? `نسخه نویسی مطب دکتر ${currentItem.doctor_additional_data.fullName}`
-                    : $props.centers.find(
-                        item =>
-                          item.user_center_id === currentItem.user_center_id
-                      ).name;
+                  return $props.centers.find(
+                    item => item.user_center_id === currentItem.user_center_id
+                  ).name;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -682,40 +677,14 @@ function PlasmicPatientList__RenderFunc(props: {
               })()}
               date={(() => {
                 try {
-                  return currentItem.type !== "book"
-                    ? new Date(currentItem.created_at)
-                        .toLocaleDateString("fa-IR", {
-                          weekday: "long",
-                          month: "long",
-                          day: "numeric"
-                        })
-                        .replace(/،/g, "")
-                        .replace(/سال/g, "")
-                    : new Date(currentItem.from_date)
-                        .toLocaleDateString("fa-IR", {
-                          weekday: "long",
-                          month: "long",
-                          day: "numeric"
-                        })
-                        .replace(/،/g, "")
-                        .replace(/سال/g, "");
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-              finalized={(() => {
-                try {
-                  return $state.apiInsurance.data &&
-                    $state.apiInsurance.data !== "" &&
-                    currentItem.finalized
-                    ? currentItem.finalized
-                    : false;
+                  return new Date(currentItem.from_date)
+                    .toLocaleDateString("fa-IR", {
+                      weekday: "long",
+                      month: "long",
+                      day: "numeric"
+                    })
+                    .replace(/،/g, "")
+                    .replace(/سال/g, "");
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -761,14 +730,7 @@ function PlasmicPatientList__RenderFunc(props: {
               key={currentIndex}
               name={(() => {
                 try {
-                  return currentItem.type !== "book"
-                    ? `${currentItem.patientAdditionalData.name} ${currentItem.patientAdditionalData.lastName}`.replace(
-                        /\s+/g,
-                        " "
-                      )
-                    : currentItem.display_name.trim() === ""
-                    ? "بدون نام"
-                    : currentItem.display_name;
+                  return currentItem.display_name;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -781,9 +743,7 @@ function PlasmicPatientList__RenderFunc(props: {
               })()}
               nationalcode={(() => {
                 try {
-                  return currentItem.type !== "book"
-                    ? currentItem.patientNationalCode
-                    : currentItem.national_code;
+                  return currentItem.national_code;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -831,92 +791,24 @@ function PlasmicPatientList__RenderFunc(props: {
                   $steps["updateLoading"] = await $steps["updateLoading"];
                 }
 
-                $steps["apiAllbooks"] = true
+                $steps["runActionOnApiAllBooks"] = true
                   ? (() => {
                       const actionArgs = {
-                        args: [
-                          "POST",
-                          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/allbooks",
-                          undefined,
-                          (() => {
-                            try {
-                              return {
-                                centers:
-                                  $props.selectedCenter == "all"
-                                    ? $props.centers.map(center => ({
-                                        id: center.id,
-                                        user_center_id: center.user_center_id
-                                      }))
-                                    : [
-                                        {
-                                          id: $props.selectedCenter,
-                                          user_center_id: $props.userCenterId
-                                        }
-                                      ],
-                                date: $props.date
-                              };
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                        ]
+                        tplRef: "apiAllBooks",
+                        action: "refresh"
                       };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
-                if (
-                  $steps["apiAllbooks"] != null &&
-                  typeof $steps["apiAllbooks"] === "object" &&
-                  typeof $steps["apiAllbooks"].then === "function"
-                ) {
-                  $steps["apiAllbooks"] = await $steps["apiAllbooks"];
-                }
-
-                $steps["updateAllvisitorsdata"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["allvisitorsdata"]
-                        },
-                        operation: 0,
-                        value: $steps.apiAllbooks.data
-                          .map(item => item.data)
-                          .flat()
-                          .sort((a, b) => new Date(a.from) - new Date(b.from))
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
+                      return (({ tplRef, action, args }) => {
+                        return $refs?.[tplRef]?.[action]?.(...(args ?? []));
                       })?.apply(null, [actionArgs]);
                     })()
                   : undefined;
                 if (
-                  $steps["updateAllvisitorsdata"] != null &&
-                  typeof $steps["updateAllvisitorsdata"] === "object" &&
-                  typeof $steps["updateAllvisitorsdata"].then === "function"
+                  $steps["runActionOnApiAllBooks"] != null &&
+                  typeof $steps["runActionOnApiAllBooks"] === "object" &&
+                  typeof $steps["runActionOnApiAllBooks"].then === "function"
                 ) {
-                  $steps["updateAllvisitorsdata"] = await $steps[
-                    "updateAllvisitorsdata"
+                  $steps["runActionOnApiAllBooks"] = await $steps[
+                    "runActionOnApiAllBooks"
                   ];
                 }
 
@@ -985,18 +877,16 @@ function PlasmicPatientList__RenderFunc(props: {
               })()}
               paymentStatus={(() => {
                 try {
-                  return currentItem.type !== "book"
-                    ? "نسخه ـ بدون پرداخت"
-                    : (() => {
-                        const paymentStatusMapping = {
-                          paid: "پرداخت شده",
-                          not_paid: "پرداخت نشده",
-                          refunded: "استرداد شده",
-                          refund_request: "استرداد شده",
-                          "not-need-to-pay": "پرداخت برای نوبت غیرفعال است."
-                        };
-                        return paymentStatusMapping[currentItem.payment_status];
-                      })();
+                  return (() => {
+                    const paymentStatusMapping = {
+                      paid: "پرداخت شده",
+                      not_paid: "پرداخت نشده",
+                      refunded: "استرداد شده",
+                      refund_request: "استرداد شده",
+                      "not-need-to-pay": "پرداخت برای نوبت غیرفعال است."
+                    };
+                    return paymentStatusMapping[currentItem.payment_status];
+                  })();
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -1007,15 +897,9 @@ function PlasmicPatientList__RenderFunc(props: {
                   throw e;
                 }
               })()}
-              prescriptionId={(() => {
+              prescriptionDate={(() => {
                 try {
-                  return currentItem.type !== "book"
-                    ? currentItem.id
-                    : currentItem.insuranceType === "tamin"
-                    ? currentItem.tamin_prescription[0].prescription
-                    : currentItem.insuranceType === "salamat"
-                    ? currentItem.salamat_prescription.trackingCode
-                    : null;
+                  return $props.date;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -1028,13 +912,7 @@ function PlasmicPatientList__RenderFunc(props: {
               })()}
               refId={(() => {
                 try {
-                  return currentItem.type !== "book" && currentItem.finalized
-                    ? currentItem.salamat_prescription.trackingCode ||
-                        currentItem.tamin_prescription[0].trackingCode ||
-                        ""
-                    : currentItem.type !== "book" && !currentItem.finalized
-                    ? "نسخه ای ثبت نشده است"
-                    : currentItem.ref_id;
+                  return currentItem.ref_id;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -1064,15 +942,10 @@ function PlasmicPatientList__RenderFunc(props: {
               })()}
               time={(() => {
                 try {
-                  return currentItem.type !== "book"
-                    ? new Date(currentItem.created_at).toLocaleTimeString(
-                        "fa-IR",
-                        { hour: "2-digit", minute: "2-digit" }
-                      )
-                    : new Date(currentItem.from * 1000).toLocaleTimeString(
-                        "fa-IR",
-                        { hour: "2-digit", minute: "2-digit", hour12: false }
-                      );
+                  return new Date(currentItem.from * 1000).toLocaleTimeString(
+                    "fa-IR",
+                    { hour: "2-digit", minute: "2-digit", hour12: false }
+                  );
                 } catch (e) {
                   if (
                     e instanceof TypeError ||

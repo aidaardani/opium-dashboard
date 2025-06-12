@@ -4376,6 +4376,57 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 "updateProfileTellsOldTells"
               ];
             }
+
+            $steps["sendEvent"] =
+              $state.profileTells.oldTells.some(tellObj =>
+                tellObj.tell.match(/^09\d{9}$/)
+              ) === true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              event_group: "EditProfile",
+                              data: {
+                                MobileForOfficeTell:
+                                  $state.profileTells.oldTells.some(tellObj =>
+                                    tellObj.tell.match(/^09\d{9}$/)
+                                  ),
+                                CenterId: $state.centersApi.data.data.find(
+                                  center => center.type_id === 1
+                                ).id,
+                                CenterName: $state.centersApi.data.data.find(
+                                  center => center.type_id === 1
+                                ).name,
+                                CenterTell: $state.profileTells.oldTells
+                              },
+                              event_type: "MobileForOfficeTell"
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Splunk.sendLog"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+            if (
+              $steps["sendEvent"] != null &&
+              typeof $steps["sendEvent"] === "object" &&
+              typeof $steps["sendEvent"].then === "function"
+            ) {
+              $steps["sendEvent"] = await $steps["sendEvent"];
+            }
           }).apply(null, eventArgs);
         }}
         ref={ref => {
@@ -5471,7 +5522,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   ? (() => {
                       const actionArgs = {
                         args: [
-                          undefined,
+                          "error",
                           "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0645\u0637\u0628 \u0628\u0647 \u0631\u0648\u0632 \u0631\u0633\u0627\u0646\u06cc \u0646\u0634\u062f."
                         ]
                       };
@@ -5488,7 +5539,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 $steps["errorToast"] = await $steps["errorToast"];
               }
 
-              $steps["invokeGlobalAction"] = true
+              $steps["sendEvent"] = true
                 ? (() => {
                     const actionArgs = {
                       args: [
@@ -5517,13 +5568,64 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
+                $steps["sendEvent"] != null &&
+                typeof $steps["sendEvent"] === "object" &&
+                typeof $steps["sendEvent"].then === "function"
               ) {
-                $steps["invokeGlobalAction"] = await $steps[
-                  "invokeGlobalAction"
-                ];
+                $steps["sendEvent"] = await $steps["sendEvent"];
+              }
+
+              $steps["sendEvent2"] =
+                $state.profileTells.newTells
+                  .concat($state.profileTells.oldTells)
+                  .some(tellObj => tellObj.tell.match(/^09\d{9}$/)) === true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                event_group: "EditProfile",
+                                data: {
+                                  MobileForOfficeTell:
+                                    $state.profileTells.newTells
+                                      .concat($state.oldTells)
+                                      .some(tellObj =>
+                                        tellObj.tell.match(/^09\d{9}$/)
+                                      ),
+                                  CenterId: $state.centersApi.data.data.find(
+                                    center => center.type_id === 1
+                                  ).id,
+                                  CenterName: $state.centersApi.data.data.find(
+                                    center => center.type_id === 1
+                                  ).name,
+                                  CenterTell: $state.profileTells
+                                },
+                                event_type: "MobileForOfficeTell"
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+              if (
+                $steps["sendEvent2"] != null &&
+                typeof $steps["sendEvent2"] === "object" &&
+                typeof $steps["sendEvent2"].then === "function"
+              ) {
+                $steps["sendEvent2"] = await $steps["sendEvent2"];
               }
             }}
           />

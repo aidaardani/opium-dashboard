@@ -103,7 +103,6 @@ export type PlasmicProfileTells__OverridesType = {
   tells?: Flex__<"div">;
   input2?: Flex__<typeof Input>;
   input4?: Flex__<typeof Input>;
-  text?: Flex__<"div">;
 };
 
 export interface DefaultProfileTellsProps {
@@ -543,12 +542,10 @@ function PlasmicProfileTells__RenderFunc(props: {
       <Button
         children2={
           <div
-            data-plasmic-name={"text"}
-            data-plasmic-override={overrides.text}
             className={classNames(
               projectcss.all,
               projectcss.__wab_text,
-              sty.text
+              sty.text__xcabH
             )}
           >
             {
@@ -606,15 +603,112 @@ function PlasmicProfileTells__RenderFunc(props: {
           />
         }
       />
+
+      {(() => {
+        try {
+          return $state.newTells
+            .concat($state.oldTells)
+            .some(tellObj => tellObj.tell.match(/^09\d{9}$/));
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return false;
+          }
+          throw e;
+        }
+      })() ? (
+        <div className={classNames(projectcss.all, sty.freeBox__hBkNl)}>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__ojYy
+            )}
+          >
+            <React.Fragment>
+              <React.Fragment>
+                {
+                  "\u0627\u06cc\u0646 \u0634\u0645\u0627\u0631\u0647 \u062f\u0631 "
+                }
+              </React.Fragment>
+              <span
+                className={"plasmic_default__all plasmic_default__span"}
+                style={{ fontWeight: 700 }}
+              >
+                {"\u067e\u0631\u0648\u0641\u0627\u06cc\u0644"}
+              </span>
+              <React.Fragment>
+                {
+                  " \u0634\u0645\u0627 \u0646\u0645\u0627\u06cc\u0634 \u062f\u0627\u062f\u0647 \u062e\u0648\u0627\u0647\u062f \u0634\u062f.\n\u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0627\u0632 \u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u0634\u062e\u0635\u06cc \u0645\u0645\u06a9\u0646 \u0627\u0633\u062a \u0634\u0645\u0627 \u0631\u0627 \u062f\u0631 \u0645\u0639\u0631\u0636 "
+                }
+              </React.Fragment>
+              <span
+                className={"plasmic_default__all plasmic_default__span"}
+                style={{ fontWeight: 700 }}
+              >
+                {"\u062e\u0637\u0631"}
+              </span>
+              <React.Fragment>
+                {
+                  " \u0633\u0648\u0621\u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0642\u0631\u0627\u0631 \u062f\u0647\u062f. \u062a\u0648\u0635\u06cc\u0647 \u0645\u06cc\u200c\u0634\u0648\u062f \u0627\u0632 \u0634\u0645\u0627\u0631\u0647 \u0645\u0637\u0628 \u06cc\u0627 \u062b\u0627\u0628\u062a \u0628\u0631\u0627\u06cc \u062a\u0645\u0627\u0633\u200c\u0647\u0627 \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u06a9\u0646\u06cc\u062f.\n\n"
+                }
+              </React.Fragment>
+              <span
+                className={"plasmic_default__all plasmic_default__span"}
+                style={{ fontWeight: 700 }}
+              >
+                {"\u26a0\ufe0f \u062a\u0648\u062c\u0647:"}
+              </span>
+              <React.Fragment>
+                {" \u0647\u06cc\u0686\u200c\u06af\u0627\u0647 "}
+              </React.Fragment>
+              <span
+                className={"plasmic_default__all plasmic_default__span"}
+                style={{ fontWeight: 700, textDecorationLine: "underline" }}
+              >
+                {
+                  "\u0627\u0632 \u0637\u0631\u0641 \u067e\u0630\u06cc\u0631\u0634\u06f2\u06f4"
+                }
+              </span>
+              <React.Fragment>
+                {
+                  " \u0628\u0631\u0627\u06cc \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627\u0646\u06a9\u06cc \u06cc\u0627 \u062f\u0631\u06cc\u0627\u0641\u062a \u06a9\u062f\u060c \u0631\u0645\u0632 \u0648 ... \u062a\u0645\u0627\u0633 \u06af\u0631\u0641\u062a\u0647"
+                }
+              </React.Fragment>
+              <span
+                className={"plasmic_default__all plasmic_default__span"}
+                style={{ fontWeight: 700, textDecorationLine: "underline" }}
+              >
+                {" \u0646\u062e\u0648\u0627\u0647\u062f \u0634\u062f"}
+              </span>
+              <React.Fragment>
+                {
+                  ". \u062f\u0631 \u0635\u0648\u0631\u062a \u062a\u0645\u0627\u0633 \u0627\u0632 \u0627\u06cc\u0646 \u062f\u0633\u062a\u060c "
+                }
+              </React.Fragment>
+              <span
+                className={"plasmic_default__all plasmic_default__span"}
+                style={{ textDecorationLine: "underline", fontWeight: 700 }}
+              >
+                {
+                  "\u0627\u062d\u062a\u06cc\u0627\u0637 \u06a9\u0646\u06cc\u062f."
+                }
+              </span>
+              <React.Fragment>{"\n"}</React.Fragment>
+            </React.Fragment>
+          </div>
+        </div>
+      ) : null}
     </Stack__>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  tells: ["tells", "input2", "input4", "text"],
+  tells: ["tells", "input2", "input4"],
   input2: ["input2"],
-  input4: ["input4"],
-  text: ["text"]
+  input4: ["input4"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -623,7 +717,6 @@ type NodeDefaultElementType = {
   tells: "div";
   input2: typeof Input;
   input4: typeof Input;
-  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -688,7 +781,6 @@ export const PlasmicProfileTells = Object.assign(
     // Helper components rendering sub-elements
     input2: makeNodeComponent("input2"),
     input4: makeNodeComponent("input4"),
-    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicProfileTells
     internalVariantProps: PlasmicProfileTells__VariantProps,

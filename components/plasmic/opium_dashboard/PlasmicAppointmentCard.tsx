@@ -86,10 +86,9 @@ import UserSvgIcon from "./icons/PlasmicIcon__UserSvg"; // plasmic-import: 34xI-
 import TimeSvgIcon from "./icons/PlasmicIcon__TimeSvg"; // plasmic-import: p7f4tc2CRjFy/icon
 import UserInfoSvgIcon from "./icons/PlasmicIcon__UserInfoSvg"; // plasmic-import: gQQbHyEZZZ3o/icon
 import CalenderSvgIcon from "./icons/PlasmicIcon__CalenderSvg"; // plasmic-import: 0uxseSsmSKEH/icon
+import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
 import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: euu18ryAtnAt/icon
 import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: BMYyZW6g83gg/icon
-
-import { v4 as __lib_uuid__v4 } from "uuid";
 
 createPlasmicElementProxy;
 
@@ -131,6 +130,7 @@ export type PlasmicAppointmentCard__ArgsType = {
   insurance?: string;
   onDelete?: () => void;
   centerType?: string;
+  prescriptionDate?: string;
 };
 type ArgPropType = keyof PlasmicAppointmentCard__ArgsType;
 export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
@@ -159,7 +159,8 @@ export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
   "cost",
   "insurance",
   "onDelete",
-  "centerType"
+  "centerType",
+  "prescriptionDate"
 );
 
 export type PlasmicAppointmentCard__OverridesType = {
@@ -172,6 +173,7 @@ export type PlasmicAppointmentCard__OverridesType = {
   bime?: Flex__<typeof PatientPrivateData>;
   dialog4?: Flex__<typeof Dialog>;
   cost2?: Flex__<typeof PatientPrivateData>;
+  apiPres?: Flex__<typeof ApiRequest>;
   deletebookdialog?: Flex__<typeof Dialog>;
   dialog2?: Flex__<typeof Dialog>;
   descriptionInput?: Flex__<typeof TextInput>;
@@ -209,15 +211,12 @@ export interface DefaultAppointmentCardProps {
   insurance?: string;
   onDelete?: () => void;
   centerType?: string;
+  prescriptionDate?: string;
   onlineBorder?: SingleBooleanChoiceArg<"onlineBorder">;
   className?: string;
 }
 
-const $$ = {
-  uuid: {
-    v4: __lib_uuid__v4
-  }
-};
+const $$ = {};
 
 function useNextRouter() {
   try {
@@ -395,6 +394,36 @@ function PlasmicAppointmentCard__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "apiselcetedonlinevisitchannels"
+      },
+      {
+        path: "apiPres.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiPres"
+      },
+      {
+        path: "apiPres.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiPres"
+      },
+      {
+        path: "apiPres.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiPres"
+      },
+      {
+        path: "loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -1043,7 +1072,13 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         })()
                   ) ? (
                     <Icon15Icon
-                      className={classNames(projectcss.all, sty.svg__ocx61)}
+                      className={classNames(projectcss.all, sty.svg__ocx61, {
+                        [sty.svgonlineBorder__ocx615Rn5G]: hasVariant(
+                          $state,
+                          "onlineBorder",
+                          "onlineBorder"
+                        )
+                      })}
                       onClick={async event => {
                         const $steps = {};
 
@@ -2904,125 +2939,110 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               hasGap={true}
               className={classNames(projectcss.all, sty.freeBox__fEuSf)}
             >
-              {(() => {
-                try {
-                  return $props.bookDelete == "0";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
+              <Button
+                children2={"\u0644\u063a\u0648 \u0646\u0648\u0628\u062a"}
+                className={classNames("__wab_instance", sty.button__iLuiz)}
+                color={"red"}
+                endIcon={
+                  <ChevronLeftIcon
+                    className={classNames(projectcss.all, sty.svg__cqwx7)}
+                    role={"img"}
+                  />
                 }
-              })() ? (
-                <Button
-                  children2={"\u0644\u063a\u0648 \u0646\u0648\u0628\u062a"}
-                  className={classNames("__wab_instance", sty.button__iLuiz)}
-                  color={"red"}
-                  endIcon={
-                    <ChevronLeftIcon
-                      className={classNames(projectcss.all, sty.svg__cqwx7)}
-                      role={"img"}
-                    />
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateDeletebookdialogOpen"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["deletebookdialog", "open"]
+                          },
+                          operation: 0,
+                          value: true
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateDeletebookdialogOpen"] != null &&
+                    typeof $steps["updateDeletebookdialogOpen"] === "object" &&
+                    typeof $steps["updateDeletebookdialogOpen"].then ===
+                      "function"
+                  ) {
+                    $steps["updateDeletebookdialogOpen"] = await $steps[
+                      "updateDeletebookdialogOpen"
+                    ];
                   }
-                  onClick={async event => {
-                    const $steps = {};
 
-                    $steps["updateDeletebookdialogOpen"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["deletebookdialog", "open"]
-                            },
-                            operation: 0,
-                            value: true
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateDeletebookdialogOpen"] != null &&
-                      typeof $steps["updateDeletebookdialogOpen"] ===
-                        "object" &&
-                      typeof $steps["updateDeletebookdialogOpen"].then ===
-                        "function"
-                    ) {
-                      $steps["updateDeletebookdialogOpen"] = await $steps[
-                        "updateDeletebookdialogOpen"
-                      ];
-                    }
-
-                    $steps["clickForDeleteBook"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              (() => {
-                                try {
-                                  return {
-                                    group: "book-list",
-                                    data: {
-                                      center_id: $props.centerId,
-                                      book_id: $props.bookId,
-                                      ref_id: $props.refId
-                                    },
-                                    type: "click-first-delete-button"
-                                  };
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
+                  $steps["clickForDeleteBook"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  group: "book-list",
+                                  data: {
+                                    center_id: $props.centerId,
+                                    book_id: $props.bookId,
+                                    ref_id: $props.refId
+                                  },
+                                  type: "click-first-delete-button"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
                                 }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Splunk.sendLog"]?.apply(null, [
-                            ...actionArgs.args
-                          ]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["clickForDeleteBook"] != null &&
-                      typeof $steps["clickForDeleteBook"] === "object" &&
-                      typeof $steps["clickForDeleteBook"].then === "function"
-                    ) {
-                      $steps["clickForDeleteBook"] = await $steps[
-                        "clickForDeleteBook"
-                      ];
-                    }
-                  }}
-                  outline={true}
-                  startIcon={
-                    <ChevronRightIcon
-                      className={classNames(projectcss.all, sty.svg__bzhTf)}
-                      role={"img"}
-                    />
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["clickForDeleteBook"] != null &&
+                    typeof $steps["clickForDeleteBook"] === "object" &&
+                    typeof $steps["clickForDeleteBook"].then === "function"
+                  ) {
+                    $steps["clickForDeleteBook"] = await $steps[
+                      "clickForDeleteBook"
+                    ];
                   }
-                />
-              ) : null}
+                }}
+                outline={true}
+                startIcon={
+                  <ChevronRightIcon
+                    className={classNames(projectcss.all, sty.svg__bzhTf)}
+                    role={"img"}
+                  />
+                }
+              />
+
               {(() => {
                 try {
-                  return $props.finalized === true;
+                  return $state.apiPres.data[0].finalized === true;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -3053,7 +3073,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                           const actionArgs = {
                             destination: (() => {
                               try {
-                                return `https://dr.paziresh24.com/prescription/patient/${$props.prescriptionId}`;
+                                return `https://dr.paziresh24.com/prescription/patient/${$state.apiPres.data[0].id}`;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -3099,7 +3119,9 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               {(() => {
                 try {
                   return (
-                    $props.insurances === true && $props.finalized === false
+                    $props.insurances === true &&
+                    ($state.apiPres?.data[0]?.finalized === false ||
+                      $state.apiPres.data.length == 0)
                   );
                 } catch (e) {
                   if (
@@ -3116,8 +3138,55 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     "\u062a\u062c\u0648\u06cc\u0632 \u0646\u0633\u062e\u0647"
                   }
                   className={classNames("__wab_instance", sty.button__czTw6)}
+                  loading={(() => {
+                    try {
+                      return $state.loading;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()}
                   onClick={async event => {
                     const $steps = {};
+
+                    $steps["updateLoading"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["loading"]
+                            },
+                            operation: 0,
+                            value: true
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateLoading"] != null &&
+                      typeof $steps["updateLoading"] === "object" &&
+                      typeof $steps["updateLoading"].then === "function"
+                    ) {
+                      $steps["updateLoading"] = await $steps["updateLoading"];
+                    }
 
                     $steps["apiBuildPrescription"] = true
                       ? (() => {
@@ -3132,9 +3201,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                                     baseURL: null,
                                     patientCell: $props.cell,
                                     patientNationalCode: $props.nationalcode,
-                                    identifier: $props.bookId
-                                      ? $props.bookId
-                                      : $$.uuid.v4(),
+                                    identifier: $props.bookId,
                                     tags: [
                                       {
                                         type: "center_id",
@@ -3169,6 +3236,94 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       $steps["apiBuildPrescription"] = await $steps[
                         "apiBuildPrescription"
                       ];
+                    }
+
+                    $steps["showToast"] =
+                      $steps.apiBuildPrescription?.data &&
+                      $steps.apiBuildPrescription.data.statusCode !== 208
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return $steps.apiBuildPrescription.data
+                                      .statusCode === 200
+                                      ? "success"
+                                      : "error";
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })(),
+                                (() => {
+                                  try {
+                                    return $steps.apiBuildPrescription.data
+                                      .message;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.showToast"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["showToast"] != null &&
+                      typeof $steps["showToast"] === "object" &&
+                      typeof $steps["showToast"].then === "function"
+                    ) {
+                      $steps["showToast"] = await $steps["showToast"];
+                    }
+
+                    $steps["loadingFinish"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["loading"]
+                            },
+                            operation: 0,
+                            value: false
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["loadingFinish"] != null &&
+                      typeof $steps["loadingFinish"] === "object" &&
+                      typeof $steps["loadingFinish"].then === "function"
+                    ) {
+                      $steps["loadingFinish"] = await $steps["loadingFinish"];
                     }
 
                     $steps["updateNewPrescriptionId"] = true
@@ -3213,10 +3368,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                           const actionArgs = {
                             destination: (() => {
                               try {
-                                return `https://dr.paziresh24.com/prescription/patient/${
-                                  $props.prescriptionId ||
-                                  $state.newPrescriptionId
-                                }`;
+                                return `https://dr.paziresh24.com/prescription/patient/${$state.newPrescriptionId}`;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -3291,6 +3443,90 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   }}
                 />
               ) : null}
+              <ApiRequest
+                data-plasmic-name={"apiPres"}
+                data-plasmic-override={overrides.apiPres}
+                className={classNames("__wab_instance", sty.apiPres)}
+                errorDisplay={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__amyOh
+                    )}
+                  >
+                    {"Error fetching data"}
+                  </div>
+                }
+                loadingDisplay={
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__v98ZX)}
+                  >
+                    <Icon34Icon
+                      className={classNames(projectcss.all, sty.svg__sa19X)}
+                      role={"img"}
+                    />
+                  </div>
+                }
+                method={"GET"}
+                onError={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["apiPres", "error"]).apply(
+                    null,
+                    eventArgs
+                  );
+                }}
+                onLoading={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiPres",
+                    "loading"
+                  ]).apply(null, eventArgs);
+                }}
+                onSuccess={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["apiPres", "data"]).apply(
+                    null,
+                    eventArgs
+                  );
+                }}
+                params={(() => {
+                  try {
+                    return {
+                      created_at_gte: new Date(
+                        $props.prescriptionDate
+                      ).toISOString(),
+                      created_at_lte: new Date(
+                        `${$props.prescriptionDate}T23:59:59.000Z`
+                      ).toISOString(),
+                      identifier: $props.bookId
+                    };
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                ref={ref => {
+                  $refs["apiPres"] = ref;
+                }}
+                url={(() => {
+                  try {
+                    return $props.insurances === true
+                      ? "https://apigw.paziresh24.com/prescription/prescriptions"
+                      : "";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+              />
             </Stack__>
             <Dialog
               data-plasmic-name={"deletebookdialog"}
@@ -3630,12 +3866,41 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         ];
                       }
 
-                      $steps["showToast"] = true
+                      $steps["showToast"] = $steps.apiDeleteBook.data
                         ? (() => {
                             const actionArgs = {
                               args: [
-                                undefined,
-                                "\u0646\u0648\u0628\u062a \u0645\u0648\u0631\u062f\u0646\u0638\u0631 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0644\u063a\u0648 \u0634\u062f."
+                                (() => {
+                                  try {
+                                    return $steps.apiDeleteBook.data.status ===
+                                      "success"
+                                      ? "success"
+                                      : "error";
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })(),
+                                (() => {
+                                  try {
+                                    return $steps.apiDeleteBook.data.message;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
                               ]
                             };
                             return $globalActions["Fragment.showToast"]?.apply(
@@ -4879,6 +5144,7 @@ const PlasmicDescendants = {
     "bime",
     "dialog4",
     "cost2",
+    "apiPres",
     "deletebookdialog",
     "dialog2",
     "descriptionInput",
@@ -4892,10 +5158,11 @@ const PlasmicDescendants = {
   apiGetPyamentInfo2: ["apiGetPyamentInfo2"],
   dialog5: ["dialog5"],
   dialog6: ["dialog6"],
-  dialog: ["dialog", "bime", "dialog4", "cost2", "deletebookdialog"],
+  dialog: ["dialog", "bime", "dialog4", "cost2", "apiPres", "deletebookdialog"],
   bime: ["bime"],
   dialog4: ["dialog4"],
   cost2: ["cost2"],
+  apiPres: ["apiPres"],
   deletebookdialog: ["deletebookdialog"],
   dialog2: ["dialog2", "descriptionInput"],
   descriptionInput: ["descriptionInput"],
@@ -4918,6 +5185,7 @@ type NodeDefaultElementType = {
   bime: typeof PatientPrivateData;
   dialog4: typeof Dialog;
   cost2: typeof PatientPrivateData;
+  apiPres: typeof ApiRequest;
   deletebookdialog: typeof Dialog;
   dialog2: typeof Dialog;
   descriptionInput: typeof TextInput;
@@ -4996,6 +5264,7 @@ export const PlasmicAppointmentCard = Object.assign(
     bime: makeNodeComponent("bime"),
     dialog4: makeNodeComponent("dialog4"),
     cost2: makeNodeComponent("cost2"),
+    apiPres: makeNodeComponent("apiPres"),
     deletebookdialog: makeNodeComponent("deletebookdialog"),
     dialog2: makeNodeComponent("dialog2"),
     descriptionInput: makeNodeComponent("descriptionInput"),

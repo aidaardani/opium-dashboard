@@ -57,8 +57,7 @@
           "componentImportPath": "@plasmicpkgs/plasmic-embed-css"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "caTPwKxj5ZrD9LQ7DMdK4Z",
@@ -116,8 +115,7 @@
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "oBJtsp5RgVpcN6KCrDTuQT",
@@ -358,8 +356,7 @@
           "componentImportPath": "@plasmicpkgs/radix-ui"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "kpio2pzukKRJkKg6SSrKTe",
@@ -583,8 +580,7 @@
           "componentImportPath": "@plasmicpkgs/react-aria/skinny/registerDialog"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "jkU633o1Cz7HrJdwdxhVHk",
@@ -638,8 +634,7 @@
           }
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "k6BnBuAUepzRX8Qs2WvkKs",
@@ -681,8 +676,7 @@
           }
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "ohDidvG9XsCeFumugENU3J",
@@ -1082,8 +1076,7 @@
           "componentImportPath": "@plasmicpkgs/antd5/skinny/registerBreadcrumb"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "a3pmZtcpA5asHkNtN3SGoF",
@@ -1127,8 +1120,7 @@
           "componentImportPath": "@plasmicpkgs/plasmic-query"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "h9Dbk9ygddw7UVEq1NNhKi",
@@ -2940,6 +2932,20 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicTransactions2.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "CQ0vRoErhReQ",
+          "name": "PrescriptionList",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicPrescriptionList.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/book-list-2.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicPrescriptionList.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/book-list-2"
         }
       ],
       "icons": [
@@ -3292,6 +3298,11 @@
           "id": "ziFCFCfg_B-t",
           "name": "Icon46Icon",
           "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon46.tsx"
+        },
+        {
+          "id": "2KgDNPohYEOx",
+          "name": "Icon47Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon47.tsx"
         }
       ],
       "images": [
@@ -3349,6 +3360,11 @@
           "id": "awYMe7tblYWB",
           "name": "image 5",
           "filePath": "../public/plasmic/opium_dashboard/images/image5.png"
+        },
+        {
+          "id": "D8p7fdFkJgkd",
+          "name": "image 6",
+          "filePath": "../public/plasmic/opium_dashboard/images/image6.png"
         }
       ],
       "indirect": false,
