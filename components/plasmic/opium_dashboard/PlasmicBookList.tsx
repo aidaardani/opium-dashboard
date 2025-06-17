@@ -3089,6 +3089,51 @@ function PlasmicBookList__RenderFunc(props: {
                           "updateDialogOpen"
                         ];
                       }
+
+                      $steps["sendLog"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return {
+                                      group: "add-book",
+                                      data: {
+                                        center_id:
+                                          $state.apiAllCenters.data.items
+                                            .filter(
+                                              center => center.id !== "5532"
+                                            )
+                                            .map(center => center.id)
+                                      },
+                                      type: "click-add-book-button"
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendLog"] != null &&
+                        typeof $steps["sendLog"] === "object" &&
+                        typeof $steps["sendLog"].then === "function"
+                      ) {
+                        $steps["sendLog"] = await $steps["sendLog"];
+                      }
                     }}
                     outline={true}
                     showStartIcon={true}
@@ -3240,7 +3285,7 @@ function PlasmicBookList__RenderFunc(props: {
                                       group: "add-book",
                                       data: {
                                         center_id:
-                                          $state.apiAllCenters.data.data
+                                          $state.apiAllCenters.data.items
                                             .filter(
                                               center => center.id !== "5532"
                                             )
