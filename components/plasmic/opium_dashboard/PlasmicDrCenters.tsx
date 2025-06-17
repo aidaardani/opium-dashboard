@@ -60,6 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { Popover } from "@/fragment/components/popover"; // plasmic-import: umJXC-fyxDQn/codeComponent
+import LineClamp from "../../LineClamp"; // plasmic-import: fa_t7ELXcm5k/component
 import DrCenter from "../../DrCenter"; // plasmic-import: Y5f_I7uzx8ZQ/component
 import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
@@ -102,6 +103,7 @@ export const PlasmicDrCenters__ArgProps = new Array<ArgPropType>(
 export type PlasmicDrCenters__OverridesType = {
   root?: Flex__<"div">;
   fragmentPopover?: Flex__<typeof Popover>;
+  lineClamp?: Flex__<typeof LineClamp>;
   textInput?: Flex__<typeof TextInput>;
   apiRequest?: Flex__<typeof ApiRequest>;
   activeVisitOnline?: Flex__<typeof ActiveVisitOnline>;
@@ -1057,46 +1059,53 @@ function PlasmicDrCenters__RenderFunc(props: {
               className={classNames(projectcss.all, sty.freeBox__zu23P)}
               dr={"rtl"}
             >
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__bVBru
-                )}
+              <LineClamp
+                data-plasmic-name={"lineClamp"}
+                data-plasmic-override={overrides.lineClamp}
+                className={classNames("__wab_instance", sty.lineClamp)}
               >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return (() => {
-                        const selectedCenter = $props.centers.find(
-                          center =>
-                            center.user_center_id == $state.selectedCenter
-                        );
-                        if ($state.selectedCenter == "all") return "کل نوبت‌ها";
-                        if (selectedCenter.id == "5532")
-                          return "نوبت‌های آنلاین";
-                        if (selectedCenter.id !== "5532") {
-                          if (
-                            $state.selectedCenter &&
-                            selectedCenter.type_id !== 1
-                          ) {
-                            return selectedCenter.name;
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__bVBru
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return (() => {
+                          const selectedCenter = $props.centers.find(
+                            center =>
+                              center.user_center_id == $state.selectedCenter
+                          );
+                          if ($state.selectedCenter == "all")
+                            return "کل نوبت‌ها";
+                          if (selectedCenter.id == "5532")
+                            return "نوبت‌های آنلاین";
+                          if (selectedCenter.id !== "5532") {
+                            if (
+                              $state.selectedCenter &&
+                              selectedCenter.type_id !== 1
+                            ) {
+                              return selectedCenter.name;
+                            }
                           }
+                          return "نوبت‌های مطب";
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u06a9\u0644 \u0646\u0648\u0628\u062a\u200c\u0647\u0627";
                         }
-                        return "نوبت‌های مطب";
-                      })();
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "\u06a9\u0644 \u0646\u0648\u0628\u062a\u200c\u0647\u0627";
+                        throw e;
                       }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
-              </div>
+                    })()}
+                  </React.Fragment>
+                </div>
+              </LineClamp>
               {(() => {
                 try {
                   return $state.fragmentPopover.open === false;
@@ -1145,6 +1154,7 @@ const PlasmicDescendants = {
   root: [
     "root",
     "fragmentPopover",
+    "lineClamp",
     "textInput",
     "apiRequest",
     "activeVisitOnline",
@@ -1152,11 +1162,13 @@ const PlasmicDescendants = {
   ],
   fragmentPopover: [
     "fragmentPopover",
+    "lineClamp",
     "textInput",
     "apiRequest",
     "activeVisitOnline",
     "apiCheckActivation"
   ],
+  lineClamp: ["lineClamp"],
   textInput: ["textInput"],
   apiRequest: ["apiRequest"],
   activeVisitOnline: ["activeVisitOnline"],
@@ -1168,6 +1180,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   fragmentPopover: typeof Popover;
+  lineClamp: typeof LineClamp;
   textInput: typeof TextInput;
   apiRequest: typeof ApiRequest;
   activeVisitOnline: typeof ActiveVisitOnline;
@@ -1235,6 +1248,7 @@ export const PlasmicDrCenters = Object.assign(
   {
     // Helper components rendering sub-elements
     fragmentPopover: makeNodeComponent("fragmentPopover"),
+    lineClamp: makeNodeComponent("lineClamp"),
     textInput: makeNodeComponent("textInput"),
     apiRequest: makeNodeComponent("apiRequest"),
     activeVisitOnline: makeNodeComponent("activeVisitOnline"),

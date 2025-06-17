@@ -79,6 +79,7 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicAppointmentCard.module.css"; // plasmic-import: 43GvxJ8wCSXI/css
 
+import Icon48Icon from "./icons/PlasmicIcon__Icon48"; // plasmic-import: IBpo2F3LWTf-/icon
 import Icon15Icon from "./icons/PlasmicIcon__Icon15"; // plasmic-import: dLXaRsSSHo3S/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
@@ -89,6 +90,8 @@ import CalenderSvgIcon from "./icons/PlasmicIcon__CalenderSvg"; // plasmic-impor
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
 import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: euu18ryAtnAt/icon
 import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: BMYyZW6g83gg/icon
+
+import __lib_copyToClipboard from "copy-to-clipboard";
 
 createPlasmicElementProxy;
 
@@ -216,7 +219,9 @@ export interface DefaultAppointmentCardProps {
   className?: string;
 }
 
-const $$ = {};
+const $$ = {
+  copyToClipboard: __lib_copyToClipboard
+};
 
 function useNextRouter() {
   try {
@@ -533,28 +538,98 @@ function PlasmicAppointmentCard__RenderFunc(props: {
           </React.Fragment>
         </div>
       </LineClamp>
-      <div
-        className={classNames(
-          projectcss.all,
-          projectcss.__wab_text,
-          sty.text__aGdOv
-        )}
-      >
-        <React.Fragment>
-          {(() => {
-            try {
-              return $props.nationalcode;
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return "09136020023";
-              }
-              throw e;
+      <div className={classNames(projectcss.all, sty.freeBox__e2FJr)}>
+        <Icon48Icon
+          className={classNames(projectcss.all, sty.svg__ffjgv)}
+          onClick={async event => {
+            const $steps = {};
+
+            $steps["runCode"] = true
+              ? (() => {
+                  const actionArgs = {
+                    customFunction: async () => {
+                      return $$.copyToClipboard($props.nationalcode);
+                    }
+                  };
+                  return (({ customFunction }) => {
+                    return customFunction();
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["runCode"] != null &&
+              typeof $steps["runCode"] === "object" &&
+              typeof $steps["runCode"].then === "function"
+            ) {
+              $steps["runCode"] = await $steps["runCode"];
             }
-          })()}
-        </React.Fragment>
+
+            $steps["sendLog"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            event_group: "BookList",
+                            data: {
+                              CenterName: $props?.centerName,
+                              SelectedCenter: $props?.selectedCenter,
+                              BookId: $props?.bookId
+                            },
+                            event_type: "CopyIcon"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Splunk.sendLog"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["sendLog"] != null &&
+              typeof $steps["sendLog"] === "object" &&
+              typeof $steps["sendLog"].then === "function"
+            ) {
+              $steps["sendLog"] = await $steps["sendLog"];
+            }
+          }}
+          role={"img"}
+        />
+
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__aGdOv
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return $props.nationalcode;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "09136020023";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
       </div>
       <div
         className={classNames(
@@ -1546,33 +1621,109 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             >
               {"\u06a9\u062f \u0645\u0644\u06cc:"}
             </div>
-            {(
-              hasVariant(globalVariants, "screen", "mobileOnly") ? true : false
-            ) ? (
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__rntl1
-                )}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return $props.nationalcode;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "09136020023";
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox___1DinK)}
+            >
+              <Icon48Icon
+                className={classNames(projectcss.all, sty.svg__fjX81)}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["runCode"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return $$.copyToClipboard($props.nationalcode);
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode"] != null &&
+                    typeof $steps["runCode"] === "object" &&
+                    typeof $steps["runCode"].then === "function"
+                  ) {
+                    $steps["runCode"] = await $steps["runCode"];
+                  }
+
+                  $steps["sendLog"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  event_group: "BookList",
+                                  data: {
+                                    CenterName: $props?.centerName,
+                                    SelectedCenter: $props?.selectedCenter,
+                                    BookId: $props?.bookId
+                                  },
+                                  event_type: "CopyIcon"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendLog"] != null &&
+                    typeof $steps["sendLog"] === "object" &&
+                    typeof $steps["sendLog"].then === "function"
+                  ) {
+                    $steps["sendLog"] = await $steps["sendLog"];
+                  }
+                }}
+                role={"img"}
+              />
+
+              {(
+                hasVariant(globalVariants, "screen", "mobileOnly")
+                  ? true
+                  : false
+              ) ? (
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__rntl1
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $props.nationalcode;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "09136020023";
+                        }
+                        throw e;
                       }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
-              </div>
-            ) : null}
+                    })()}
+                  </React.Fragment>
+                </div>
+              ) : null}
+            </Stack__>
           </div>
         ) : null}
         {(
@@ -1719,6 +1870,260 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               }
             </div>
             <div className={classNames(projectcss.all, sty.freeBox___6QbZ)}>
+              {(() => {
+                try {
+                  return $props.paymentStatus === "پرداخت شده";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__uOFD,
+                    {
+                      [sty.textonlineBorder__uOFD5Rn5G]: hasVariant(
+                        $state,
+                        "onlineBorder",
+                        "onlineBorder"
+                      )
+                    }
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $props.paymentStatus;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+              ) : null}
+              {(() => {
+                try {
+                  return $props.paymentStatus === "استرداد شده";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__uc8T3,
+                    {
+                      [sty.textonlineBorder__uc8T35Rn5G]: hasVariant(
+                        $state,
+                        "onlineBorder",
+                        "onlineBorder"
+                      )
+                    }
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $props.paymentStatus;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+              ) : null}
+              {(() => {
+                try {
+                  return $props.paymentStatus === "پرداخت نشده";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___1QPgH,
+                    {
+                      [sty.textonlineBorder___1QPgH5Rn5G]: hasVariant(
+                        $state,
+                        "onlineBorder",
+                        "onlineBorder"
+                      )
+                    }
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $props.paymentStatus;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+              ) : null}
+              {(() => {
+                try {
+                  return (
+                    $props.paymentStatus === "پرداخت برای نوبت غیرفعال است."
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__ttc07,
+                    {
+                      [sty.textonlineBorder__ttc075Rn5G]: hasVariant(
+                        $state,
+                        "onlineBorder",
+                        "onlineBorder"
+                      )
+                    }
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return (
+                          $props.paymentStatus ===
+                            "پرداخت برای نوبت غیرفعال است." && "غیرفعال"
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+              ) : null}
+              {(() => {
+                try {
+                  return $props.paymentStatus === "نسخه ـ بدون پرداخت";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__gAZjp,
+                    {
+                      [sty.textonlineBorder__gAZjp5Rn5G]: hasVariant(
+                        $state,
+                        "onlineBorder",
+                        "onlineBorder"
+                      )
+                    }
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $props.paymentStatus;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+              ) : null}
+              {(
+                hasVariant(globalVariants, "screen", "mobileOnly")
+                  ? true
+                  : false
+              ) ? (
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__kdznH
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $props.nationalcode;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "09136020023";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+              ) : null}
               {(() => {
                 try {
                   return (
@@ -1974,260 +2379,6 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     </React.Fragment>
                   }
                 />
-              ) : null}
-              {(() => {
-                try {
-                  return $props.paymentStatus === "پرداخت شده";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__uOFD,
-                    {
-                      [sty.textonlineBorder__uOFD5Rn5G]: hasVariant(
-                        $state,
-                        "onlineBorder",
-                        "onlineBorder"
-                      )
-                    }
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return $props.paymentStatus;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-              ) : null}
-              {(() => {
-                try {
-                  return $props.paymentStatus === "استرداد شده";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__uc8T3,
-                    {
-                      [sty.textonlineBorder__uc8T35Rn5G]: hasVariant(
-                        $state,
-                        "onlineBorder",
-                        "onlineBorder"
-                      )
-                    }
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return $props.paymentStatus;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-              ) : null}
-              {(() => {
-                try {
-                  return $props.paymentStatus === "پرداخت نشده";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___1QPgH,
-                    {
-                      [sty.textonlineBorder___1QPgH5Rn5G]: hasVariant(
-                        $state,
-                        "onlineBorder",
-                        "onlineBorder"
-                      )
-                    }
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return $props.paymentStatus;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-              ) : null}
-              {(() => {
-                try {
-                  return (
-                    $props.paymentStatus === "پرداخت برای نوبت غیرفعال است."
-                  );
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__ttc07,
-                    {
-                      [sty.textonlineBorder__ttc075Rn5G]: hasVariant(
-                        $state,
-                        "onlineBorder",
-                        "onlineBorder"
-                      )
-                    }
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return (
-                          $props.paymentStatus ===
-                            "پرداخت برای نوبت غیرفعال است." && "غیرفعال"
-                        );
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-              ) : null}
-              {(() => {
-                try {
-                  return $props.paymentStatus === "نسخه ـ بدون پرداخت";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__gAZjp,
-                    {
-                      [sty.textonlineBorder__gAZjp5Rn5G]: hasVariant(
-                        $state,
-                        "onlineBorder",
-                        "onlineBorder"
-                      )
-                    }
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return $props.paymentStatus;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "\u0639\u0627\u0637\u0641\u0647 \u0645\u0647\u062f\u06cc\u0627\u0646 \u067e\u0648\u0631";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-              ) : null}
-              {(
-                hasVariant(globalVariants, "screen", "mobileOnly")
-                  ? true
-                  : false
-              ) ? (
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__kdznH
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return $props.nationalcode;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "09136020023";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
               ) : null}
             </div>
           </div>

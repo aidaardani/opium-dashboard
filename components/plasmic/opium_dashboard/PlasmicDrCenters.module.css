@@ -57,6 +57,11 @@
   min-width: 0;
   min-height: 0;
 }
+.lineClamp:global(.__wab_instance) {
+  max-width: 100%;
+  width: 140px;
+  flex-shrink: 0;
+}
 .text__bVBru {
   position: relative;
   width: 100%;
@@ -64,14 +69,23 @@
   max-width: 100%;
   font-weight: 600;
   font-size: var(--token-6NbVMeD6zQwn);
-  text-align: justify;
+  text-align: right;
   align-self: flex-start;
-  text-decoration-line: none;
+  text-decoration-line: none !important;
   user-select: text;
   left: auto;
   top: auto;
   z-index: 1;
   min-width: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__bVBru {
+    width: 100%;
+    text-align: right;
+    left: auto;
+    top: auto;
+    min-width: 0;
+  }
 }
 .svg__cx4Z5 {
   position: relative;

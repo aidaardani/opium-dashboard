@@ -728,19 +728,41 @@ function PlasmicPatientList__RenderFunc(props: {
                 }
               })()}
               key={currentIndex}
-              name={(() => {
-                try {
-                  return currentItem.display_name;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
+              name={
+                hasVariant(globalVariants, "screen", "mobileOnly")
+                  ? (() => {
+                      try {
+                        return currentItem.display_name.trim() === "" ||
+                          currentItem.display_name.trim() === "  "
+                          ? "بدون نام"
+                          : currentItem.display_name;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  : (() => {
+                      try {
+                        return currentItem.display_name.trim() === "" ||
+                          currentItem.display_name.trim() === "  "
+                          ? "بدون نام"
+                          : currentItem.display_name;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+              }
               nationalcode={(() => {
                 try {
                   return currentItem.national_code;

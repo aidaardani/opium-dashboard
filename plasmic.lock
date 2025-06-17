@@ -474,7 +474,8 @@
         "jkU633o1Cz7HrJdwdxhVHk": "16.15.0",
         "gmeH6XgPaBtkt51HunAo4g": "18.19.0",
         "kpio2pzukKRJkKg6SSrKTe": "0.2.0",
-        "9UibdRruyX43DxnB8Q1QXF": "0.4.0"
+        "9UibdRruyX43DxnB8Q1QXF": "0.4.0",
+        "aEHVN5v6mfM4eovDsL8Z7d": "0.4.0"
       },
       "lang": "ts",
       "fileLocks": [
@@ -521,22 +522,22 @@
         {
           "type": "renderModule",
           "assetId": "uw2UKvNlq2Yr",
-          "checksum": "403d5ac5c8a442338cdf941dd547b6cf"
+          "checksum": "af6a9cfd6fd31ff8be128232357feddd"
         },
         {
           "type": "cssRules",
           "assetId": "uw2UKvNlq2Yr",
-          "checksum": "403d5ac5c8a442338cdf941dd547b6cf"
+          "checksum": "af6a9cfd6fd31ff8be128232357feddd"
         },
         {
           "type": "renderModule",
           "assetId": "43GvxJ8wCSXI",
-          "checksum": "c867d9fbd2a7ae48cc2881520b767f9c"
+          "checksum": "7a919a020aa398371dbe3dd5a89294c4"
         },
         {
           "type": "cssRules",
           "assetId": "43GvxJ8wCSXI",
-          "checksum": "c867d9fbd2a7ae48cc2881520b767f9c"
+          "checksum": "7a919a020aa398371dbe3dd5a89294c4"
         },
         {
           "type": "renderModule",
@@ -561,12 +562,12 @@
         {
           "type": "renderModule",
           "assetId": "IkLsGKQP_uPj",
-          "checksum": "10bc2fff7b4fda7f2b09e410ce53e5ed"
+          "checksum": "68a92a83c4d4f763c9f7ff2236623eb8"
         },
         {
           "type": "cssRules",
           "assetId": "IkLsGKQP_uPj",
-          "checksum": "10bc2fff7b4fda7f2b09e410ce53e5ed"
+          "checksum": "68a92a83c4d4f763c9f7ff2236623eb8"
         },
         {
           "type": "renderModule",
@@ -2167,6 +2168,25 @@
           "assetId": "9g1e5LLLDS4TGJiaFCSEyH",
           "type": "projectCss",
           "checksum": "4a0d1d39bfb166929004b385cc2756ac"
+        },
+        {
+          "type": "icon",
+          "assetId": "IBpo2F3LWTf-",
+          "checksum": "27bdf5a2aae7b14494ec485770df136e"
+        }
+      ],
+      "codegenVersion": "0.0.1"
+    },
+    {
+      "projectId": "aEHVN5v6mfM4eovDsL8Z7d",
+      "version": "0.4.0",
+      "dependencies": {},
+      "lang": "ts",
+      "fileLocks": [
+        {
+          "assetId": "aEHVN5v6mfM4eovDsL8Z7d",
+          "type": "projectCss",
+          "checksum": "1c02168c6b23256606111fdfdbb63549"
         }
       ],
       "codegenVersion": "0.0.1"
