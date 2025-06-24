@@ -1132,8 +1132,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                             selectedItem.to === apiItem.to
                         );
                       });
-                      return ($state.hasMissingWorkhours =
-                        missingWorkhours.length > 0);
+                      return missingWorkhours.length > 0;
                     })()
                       ? (() => {
                           const actionArgs = {
@@ -1181,8 +1180,8 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                   }
 
                   $steps["updateDialogOpen"] =
-                    $state.checkingTheNumberOfBookForChangeWorkhoure?.some(
-                      item => item.date !== undefined
+                    $state.checkingTheNumberOfBookForChangeWorkhoure?.some?.(
+                      item => item?.date !== undefined
                     )
                       ? (() => {
                           const actionArgs = {
