@@ -1181,10 +1181,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                   }
 
                   $steps["updateDialogOpen"] =
-                    $state.checkingTheNumberOfBookForChangeWorkhoure != "" &&
-                    !$state.checkingTheNumberOfBookForChangeWorkhoure.includes(
-                      504
-                    )
+                    $steps.checkingTheNumberOfBookForChangeWorkhoure != ""
                       ? (() => {
                           const actionArgs = {
                             variable: {
