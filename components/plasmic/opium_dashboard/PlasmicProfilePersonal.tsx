@@ -1159,10 +1159,10 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 const $steps = {};
 
                 $steps["showToastValidation"] =
-                  $state.profilePersonalName.firstNameValue === "" ||
-                  $state.profilePersonalName.lastNameValue === "" ||
-                  $state.medicalCode.value === "" ||
-                  $state.nationalCode.value === ""
+                  $state.profilePersonalName?.firstNameValue === "" ||
+                  $state.profilePersonalName?.lastNameValue === "" ||
+                  $state.medicalCode?.value === "" ||
+                  $state.nationalCode?.value === ""
                     ? (() => {
                         const actionArgs = {
                           args: [
@@ -1213,23 +1213,24 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   ];
                 }
 
-                $steps["showToastForBio"] =
-                  $state.profile.data.data.biography &&
-                  $state.profile.data.data.biography !== "" &&
-                  !$state.biography.trim()
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "error",
-                            "\u0628\u06cc\u0648\u06af\u0631\u0627\u0641\u06cc \u0646\u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u062f \u062e\u0627\u0644\u06cc \u0628\u0627\u0634\u062f."
-                          ]
-                        };
-                        return $globalActions["Fragment.showToast"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
+                $steps["showToastForBio"] = (
+                  $state.profile?.data?.data?.biography
+                    ? $state.profile.data.data.biography !== "" &&
+                      !$state.biography.trim()
+                    : false
+                )
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "error",
+                          "\u0628\u06cc\u0648\u06af\u0631\u0627\u0641\u06cc \u0646\u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u062f \u062e\u0627\u0644\u06cc \u0628\u0627\u0634\u062f."
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
                 if (
                   $steps["showToastForBio"] != null &&
                   typeof $steps["showToastForBio"] === "object" &&
@@ -1239,9 +1240,9 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 }
 
                 $steps["showToastForDoNothing"] = !(
-                  $state.profile.data.data.biography.trim() !==
+                  $state.profile?.data?.data?.biography?.trim() !==
                     $state.biography.trim() ||
-                  $state.notifyCellApi.data.providers[0].notify_cell.trim() !==
+                  $state.notifyCellApi.data.providers?.[0]?.notify_cell?.trim() !==
                     $state.notifyCell.value.trim() ||
                   $state.auth.data.data.national_code !==
                     $state.nationalCode.value
@@ -1495,11 +1496,11 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 }
 
                 $steps["apiProviderUserId"] =
-                  ($state.profile?.data?.data?.biography.trim() !==
-                    $state.biography?.trim() &&
+                  (($state.profile?.data?.data?.biography?.trim() || "") !==
+                    ($state.biography?.trim() || "") &&
                     $state.biography !== "") ||
-                  ($state.notifyCellApi?.data?.providers[0].notify_cell.trim() !==
-                    $state.notifyCell?.value?.trim() &&
+                  (($state.notifyCellApi?.data?.providers[0].notify_cell?.trim() ||
+                    "") !== ($state.notifyCell?.value?.trim() || "") &&
                     $state.notifyCell?.value !== "")
                     ? (() => {
                         const actionArgs = {
@@ -1577,7 +1578,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                             })(),
                             (() => {
                               try {
-                                return $state.profile?.data?.data?.biography.trim() !==
+                                return $state.profile?.data?.data?.biography?.trim() !==
                                   $state.biography?.trim() &&
                                   $state.biography !== ""
                                   ? "بیوگرافی با موفقیت ویرایش شد."

@@ -983,7 +983,7 @@ function PlasmicPatientList__RenderFunc(props: {
                   return $props.centers.find(
                     center =>
                       center.user_center_id === currentItem.user_center_id &&
-                      center.type_id !== 1 &&
+                      center.center_type !== 1 &&
                       center.id !== "5532"
                   )
                     ? true

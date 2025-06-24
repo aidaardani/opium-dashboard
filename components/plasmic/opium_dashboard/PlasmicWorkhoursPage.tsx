@@ -516,7 +516,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
             <div className={classNames(projectcss.all, sty.freeBox__lw8Cb)}>
               {(() => {
                 try {
-                  return $state.apIworkhours.data.data.some(
+                  return $state.apIworkhours?.data?.data?.some(
                     center =>
                       center.user_center_id === $state.drCenters.selectedCenter
                   );
