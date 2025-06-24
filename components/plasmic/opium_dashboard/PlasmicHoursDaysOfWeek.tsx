@@ -775,6 +775,51 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                 onClick={async event => {
                   const $steps = {};
 
+                  $steps["clearCheckingTheNumberOfBookForChangeWorkhoure"] =
+                    true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: [
+                                "checkingTheNumberOfBookForChangeWorkhoure"
+                              ]
+                            },
+                            operation: 0,
+                            value: {}
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps["clearCheckingTheNumberOfBookForChangeWorkhoure"] !=
+                      null &&
+                    typeof $steps[
+                      "clearCheckingTheNumberOfBookForChangeWorkhoure"
+                    ] === "object" &&
+                    typeof $steps[
+                      "clearCheckingTheNumberOfBookForChangeWorkhoure"
+                    ].then === "function"
+                  ) {
+                    $steps["clearCheckingTheNumberOfBookForChangeWorkhoure"] =
+                      await $steps[
+                        "clearCheckingTheNumberOfBookForChangeWorkhoure"
+                      ];
+                  }
+
                   $steps["runCode5"] = $state.workhours.some(
                     wh => wh.checkboxIsChecked && wh.warning
                   )
@@ -982,8 +1027,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                           selectedItem.to === apiItem.to
                       );
                     });
-                    return ($state.hasMissingWorkhours =
-                      missingWorkhours.length > 0);
+                    return missingWorkhours.length > 0;
                   })()
                     ? (() => {
                         const actionArgs = {
@@ -1982,6 +2026,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                                               )
                                           );
                                         return {
+                                          center_id: $props.centerId,
                                           checking,
                                           missingWorkhours
                                         };
