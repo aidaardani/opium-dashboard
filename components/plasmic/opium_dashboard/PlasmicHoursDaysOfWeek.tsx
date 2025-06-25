@@ -64,6 +64,7 @@ import Duration from "../../Duration"; // plasmic-import: hYLHU_pJKp9-/component
 import Workhours from "../../Workhours"; // plasmic-import: AuSNwEdbo4sV/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
+import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -938,6 +939,138 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     $steps["saveWorkhours"] = await $steps["saveWorkhours"];
                   }
 
+                  $steps["showToastSuccessful"] =
+                    $steps.saveWorkhours.data.status === "SUCCESS" &&
+                    $state.workhours.every(wh =>
+                      wh.checkboxIsChecked ? !wh.warning : true
+                    )
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              undefined,
+                              "\u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062b\u0628\u062a \u0634\u062f."
+                            ]
+                          };
+                          return $globalActions["Fragment.showToast"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                  if (
+                    $steps["showToastSuccessful"] != null &&
+                    typeof $steps["showToastSuccessful"] === "object" &&
+                    typeof $steps["showToastSuccessful"].then === "function"
+                  ) {
+                    $steps["showToastSuccessful"] = await $steps[
+                      "showToastSuccessful"
+                    ];
+                  }
+
+                  $steps["compareWorkhoure"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "POST",
+                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/CompareWorkhoure",
+                            undefined,
+                            (() => {
+                              try {
+                                return {
+                                  CenterId: $props.centerId,
+                                  OldWorkHoure:
+                                    $state.workhoursApi.data.data.workhours,
+                                  NewWorkHours: $state.workhours
+                                    .map((day, index) =>
+                                      day.checkboxIsChecked === true
+                                        ? day.listOfWorkhoureCopy.map(
+                                            workhour => {
+                                              return {
+                                                day: $state.days[index].id,
+                                                from: workhour.from,
+                                                to: workhour.to
+                                              };
+                                            }
+                                          )
+                                        : false
+                                    )
+                                    .flat()
+                                    .filter(item => item != false)
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["compareWorkhoure"] != null &&
+                    typeof $steps["compareWorkhoure"] === "object" &&
+                    typeof $steps["compareWorkhoure"].then === "function"
+                  ) {
+                    $steps["compareWorkhoure"] = await $steps[
+                      "compareWorkhoure"
+                    ];
+                  }
+
+                  $steps["updateCheckingTheNumberOfBookForChangeWorkhoure2"] =
+                    true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: [
+                                "checkingTheNumberOfBookForChangeWorkhoure"
+                              ]
+                            },
+                            operation: 0,
+                            value: $steps.compareWorkhoure.data
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                  if (
+                    $steps[
+                      "updateCheckingTheNumberOfBookForChangeWorkhoure2"
+                    ] != null &&
+                    typeof $steps[
+                      "updateCheckingTheNumberOfBookForChangeWorkhoure2"
+                    ] === "object" &&
+                    typeof $steps[
+                      "updateCheckingTheNumberOfBookForChangeWorkhoure2"
+                    ].then === "function"
+                  ) {
+                    $steps["updateCheckingTheNumberOfBookForChangeWorkhoure2"] =
+                      await $steps[
+                        "updateCheckingTheNumberOfBookForChangeWorkhoure2"
+                      ];
+                  }
+
                   $steps["endLoading"] = true
                     ? (() => {
                         const actionArgs = {
@@ -970,213 +1103,6 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     typeof $steps["endLoading"].then === "function"
                   ) {
                     $steps["endLoading"] = await $steps["endLoading"];
-                  }
-
-                  $steps["showToastSuccessful"] =
-                    $steps.saveWorkhours.data.status === "SUCCESS" &&
-                    $state.workhours.every(wh =>
-                      wh.checkboxIsChecked ? !wh.warning : true
-                    )
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              undefined,
-                              "\u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062b\u0628\u062a \u0634\u062f."
-                            ]
-                          };
-                          return $globalActions["Fragment.showToast"]?.apply(
-                            null,
-                            [...actionArgs.args]
-                          );
-                        })()
-                      : undefined;
-                  if (
-                    $steps["showToastSuccessful"] != null &&
-                    typeof $steps["showToastSuccessful"] === "object" &&
-                    typeof $steps["showToastSuccessful"].then === "function"
-                  ) {
-                    $steps["showToastSuccessful"] = await $steps[
-                      "showToastSuccessful"
-                    ];
-                  }
-
-                  $steps["checkingTheNumberOfBookForChangeWorkhoure"] = (() => {
-                    const apiWorkhours =
-                      $state.workhoursApi?.data?.data?.workhours || [];
-                    const selectedWorkhours = $state.workhours?.flatMap(
-                      (day, index) => {
-                        if (
-                          day.checkboxIsChecked &&
-                          Array.isArray(day.listOfWorkhoureCopy)
-                        ) {
-                          const dayId = Number($state.days?.[index]?.id);
-                          return day.listOfWorkhoureCopy.map(workhour => ({
-                            day: dayId,
-                            from: workhour.from,
-                            to: workhour.to
-                          }));
-                        }
-                        return [];
-                      }
-                    );
-                    const missingWorkhours = apiWorkhours?.filter(apiItem => {
-                      return !selectedWorkhours.some(
-                        selectedItem =>
-                          Number(selectedItem.day) === Number(apiItem.day) &&
-                          selectedItem.from === apiItem.from &&
-                          selectedItem.to === apiItem.to
-                      );
-                    });
-                    return missingWorkhours.length > 0;
-                  })()
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "POST",
-                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/CheckingTheNumberOfBookForChangeWorkhoure",
-                            undefined,
-                            (() => {
-                              try {
-                                return (() => {
-                                  const apiWorkhours =
-                                    $state.workhoursApi?.data?.data
-                                      ?.workhours || [];
-                                  const selectedWorkhours =
-                                    $state.workhours?.flatMap((day, index) => {
-                                      if (
-                                        day.checkboxIsChecked &&
-                                        Array.isArray(day.listOfWorkhoureCopy)
-                                      ) {
-                                        const dayId = Number(
-                                          $state.days?.[index]?.id
-                                        );
-                                        return day.listOfWorkhoureCopy.map(
-                                          workhour => ({
-                                            day: dayId,
-                                            from: workhour.from,
-                                            to: workhour.to
-                                          })
-                                        );
-                                      }
-                                      return [];
-                                    });
-                                  const missingWorkhours = apiWorkhours?.filter(
-                                    apiItem => {
-                                      return !selectedWorkhours.some(
-                                        selectedItem =>
-                                          Number(selectedItem.day) ===
-                                            Number(apiItem.day) &&
-                                          selectedItem.from === apiItem.from &&
-                                          selectedItem.to === apiItem.to
-                                      );
-                                    }
-                                  );
-                                  return { missingWorkhours };
-                                })();
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Fragment.apiRequest"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                  if (
-                    $steps["checkingTheNumberOfBookForChangeWorkhoure"] !=
-                      null &&
-                    typeof $steps[
-                      "checkingTheNumberOfBookForChangeWorkhoure"
-                    ] === "object" &&
-                    typeof $steps["checkingTheNumberOfBookForChangeWorkhoure"]
-                      .then === "function"
-                  ) {
-                    $steps["checkingTheNumberOfBookForChangeWorkhoure"] =
-                      await $steps["checkingTheNumberOfBookForChangeWorkhoure"];
-                  }
-
-                  $steps["updateCheckingTheNumberOfBookForChangeWorkhoure"] =
-                    (() => {
-                      const apiWorkhours =
-                        $state.workhoursApi?.data?.data?.workhours || [];
-                      const selectedWorkhours = $state.workhours?.flatMap(
-                        (day, index) => {
-                          if (
-                            day.checkboxIsChecked &&
-                            Array.isArray(day.listOfWorkhoureCopy)
-                          ) {
-                            const dayId = Number($state.days?.[index]?.id);
-                            return day.listOfWorkhoureCopy.map(workhour => ({
-                              day: dayId,
-                              from: workhour.from,
-                              to: workhour.to
-                            }));
-                          }
-                          return [];
-                        }
-                      );
-                      const missingWorkhours = apiWorkhours?.filter(apiItem => {
-                        return !selectedWorkhours.some(
-                          selectedItem =>
-                            Number(selectedItem.day) === Number(apiItem.day) &&
-                            selectedItem.from === apiItem.from &&
-                            selectedItem.to === apiItem.to
-                        );
-                      });
-                      return missingWorkhours.length > 0;
-                    })()
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: [
-                                "checkingTheNumberOfBookForChangeWorkhoure"
-                              ]
-                            },
-                            operation: 0,
-                            value:
-                              $steps.checkingTheNumberOfBookForChangeWorkhoure
-                                .data
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                  if (
-                    $steps["updateCheckingTheNumberOfBookForChangeWorkhoure"] !=
-                      null &&
-                    typeof $steps[
-                      "updateCheckingTheNumberOfBookForChangeWorkhoure"
-                    ] === "object" &&
-                    typeof $steps[
-                      "updateCheckingTheNumberOfBookForChangeWorkhoure"
-                    ].then === "function"
-                  ) {
-                    $steps["updateCheckingTheNumberOfBookForChangeWorkhoure"] =
-                      await $steps[
-                        "updateCheckingTheNumberOfBookForChangeWorkhoure"
-                      ];
                   }
 
                   $steps["updateDialogOpen"] =
