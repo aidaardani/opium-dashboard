@@ -683,8 +683,8 @@ function PlasmicDrCenters__RenderFunc(props: {
               try {
                 return (
                   !$props.centers.some(
-                    center => center.type_id === 3 && center.id === "5532"
-                  ) && $props.centers.some(center => center.type_id === 1)
+                    center => center.center_type === 3 && center.id === "5532"
+                  ) && $props.centers.some(center => center.center_type === 1)
                 );
               } catch (e) {
                 if (
@@ -787,9 +787,9 @@ function PlasmicDrCenters__RenderFunc(props: {
             {(() => {
               try {
                 return (
-                  !$props.centers.some(center => center.type_id == 1) &&
+                  !$props.centers.some(center => center.center_type == 1) &&
                   !$props.centers.every(
-                    center => center.id !== "5532" || center.type_id !== 1
+                    center => center.id !== "5532" || center.center_type !== 1
                   )
                 );
               } catch (e) {
@@ -886,7 +886,7 @@ function PlasmicDrCenters__RenderFunc(props: {
               try {
                 return $state.apiCheckActivation.data.some(
                   center =>
-                    center.type_id === 1 &&
+                    center.center_type === 1 &&
                     (!center.has_working_hours ||
                       center.can_booking.every(canBooking => !canBooking))
                 );

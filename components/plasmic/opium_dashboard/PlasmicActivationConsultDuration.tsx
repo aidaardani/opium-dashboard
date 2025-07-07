@@ -1100,6 +1100,48 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               ];
                             }
 
+                            $steps["apiCleanUp"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "POST",
+                                      "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/Cleanup",
+                                      undefined,
+                                      (() => {
+                                        try {
+                                          return {
+                                            doctor_id:
+                                              $state.centersApi.data.data.find(
+                                                item => item.type_id == 1
+                                              ).user_info_id,
+                                            server_id: 1
+                                          };
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.apiRequest"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["apiCleanUp"] != null &&
+                              typeof $steps["apiCleanUp"] === "object" &&
+                              typeof $steps["apiCleanUp"].then === "function"
+                            ) {
+                              $steps["apiCleanUp"] = await $steps["apiCleanUp"];
+                            }
+
                             $steps["toast"] = !!$steps.activeConsultMutation
                               .data.message
                               ? (() => {
