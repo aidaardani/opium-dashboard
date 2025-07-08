@@ -1144,6 +1144,45 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     ];
                   }
 
+                  $steps["cleanUp"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "POST",
+                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/Cleanup",
+                            undefined,
+                            (() => {
+                              try {
+                                return {
+                                  doctor_id: $props.userId,
+                                  server_id: 1
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["cleanUp"] != null &&
+                    typeof $steps["cleanUp"] === "object" &&
+                    typeof $steps["cleanUp"].then === "function"
+                  ) {
+                    $steps["cleanUp"] = await $steps["cleanUp"];
+                  }
+
                   $steps["showToast"] =
                     $steps.saveWorkhours.data.status != "SUCCESS"
                       ? (() => {

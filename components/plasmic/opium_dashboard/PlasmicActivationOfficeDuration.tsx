@@ -418,7 +418,9 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
                     })()}
                     userId={(() => {
                       try {
-                        return $ctx.query.userId;
+                        return $state.centersApi.data.data.find(
+                          item => item.type_id == 1
+                        ).user_info_id;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
