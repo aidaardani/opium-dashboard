@@ -536,7 +536,9 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                               return {
                                 event_group: "activation-page",
                                 data: {
-                                  userId: $props.userId,
+                                  userId:
+                                    $props.userId ||
+                                    $state.profileApi?.data?.data?.id,
                                   pagepath: window.location.href
                                 },
                                 event_type:

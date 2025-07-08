@@ -1154,7 +1154,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                             (() => {
                               try {
                                 return {
-                                  doctor_id: $props.userId,
+                                  doctor_id: $props?.userId,
                                   server_id: 1
                                 };
                               } catch (e) {

@@ -1111,7 +1111,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                         try {
                                           return {
                                             doctor_id:
-                                              $state.centersApi.data.data.find(
+                                              $state.centersApi?.data?.data?.find(
                                                 item => item.type_id == 1
                                               ).user_info_id,
                                             server_id: 1
