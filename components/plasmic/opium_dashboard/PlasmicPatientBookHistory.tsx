@@ -482,7 +482,10 @@ function PlasmicPatientBookHistory__RenderFunc(props: {
             <React.Fragment>
               {(() => {
                 try {
-                  return `توصیه درمان : ${$props.showComment}`;
+                  return $props.showComment === "uncertain-book-status" ||
+                    !$props.showComment
+                    ? "توصیه ای ارائه نشده است."
+                    : `توصیه درمان : ${$props.showComment}`;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
