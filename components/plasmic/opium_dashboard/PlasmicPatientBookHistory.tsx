@@ -193,6 +193,81 @@ function PlasmicPatientBookHistory__RenderFunc(props: {
         as={"div"}
         hasGap={true}
         className={classNames(projectcss.all, sty.freeBox__fRnft)}
+        onClick={async event => {
+          const $steps = {};
+
+          $steps["sendLog"] = true
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    (() => {
+                      try {
+                        return {
+                          event_group: "PatientInfo",
+                          data: {
+                            UserCenterId: $props.userCenterId,
+                            CenterId: $props.centerId,
+                            CenterName: $props.centerName,
+                            RefId: $props.refId
+                          },
+                          event_type: $state.isOpen
+                            ? "ClosePatientComment"
+                            : "OpenPatientComment"
+                        };
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  ]
+                };
+                return $globalActions["Splunk.sendLog"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["sendLog"] != null &&
+            typeof $steps["sendLog"] === "object" &&
+            typeof $steps["sendLog"].then === "function"
+          ) {
+            $steps["sendLog"] = await $steps["sendLog"];
+          }
+
+          $steps["updateIsOpen"] = true
+            ? (() => {
+                const actionArgs = {
+                  variable: {
+                    objRoot: $state,
+                    variablePath: ["isOpen"]
+                  },
+                  operation: 4
+                };
+                return (({ variable, value, startIndex, deleteCount }) => {
+                  if (!variable) {
+                    return;
+                  }
+                  const { objRoot, variablePath } = variable;
+
+                  const oldValue = $stateGet(objRoot, variablePath);
+                  $stateSet(objRoot, variablePath, !oldValue);
+                  return !oldValue;
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["updateIsOpen"] != null &&
+            typeof $steps["updateIsOpen"] === "object" &&
+            typeof $steps["updateIsOpen"].then === "function"
+          ) {
+            $steps["updateIsOpen"] = await $steps["updateIsOpen"];
+          }
+        }}
       >
         <div
           className={classNames(
@@ -292,76 +367,6 @@ function PlasmicPatientBookHistory__RenderFunc(props: {
             className={classNames(projectcss.all, sty.svg___31RtK)}
             onClick={async event => {
               const $steps = {};
-
-              $steps["updateIsOpen"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["isOpen"]
-                      },
-                      operation: 4
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      const oldValue = $stateGet(objRoot, variablePath);
-                      $stateSet(objRoot, variablePath, !oldValue);
-                      return !oldValue;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateIsOpen"] != null &&
-                typeof $steps["updateIsOpen"] === "object" &&
-                typeof $steps["updateIsOpen"].then === "function"
-              ) {
-                $steps["updateIsOpen"] = await $steps["updateIsOpen"];
-              }
-
-              $steps["sendLog"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return {
-                              event_group: "PatientInfo",
-                              data: {
-                                UserCenterId: $props.userCenterId,
-                                CenterId: $props.centerId,
-                                CenterName: $props.centerName,
-                                RefId: $props.refId
-                              },
-                              event_type: "OpenPatientComment"
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Splunk.sendLog"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["sendLog"] != null &&
-                typeof $steps["sendLog"] === "object" &&
-                typeof $steps["sendLog"].then === "function"
-              ) {
-                $steps["sendLog"] = await $steps["sendLog"];
-              }
             }}
             role={"img"}
           />
@@ -383,76 +388,6 @@ function PlasmicPatientBookHistory__RenderFunc(props: {
             className={classNames(projectcss.all, sty.svg__xLisO)}
             onClick={async event => {
               const $steps = {};
-
-              $steps["updateIsOpen"] = true
-                ? (() => {
-                    const actionArgs = {
-                      variable: {
-                        objRoot: $state,
-                        variablePath: ["isOpen"]
-                      },
-                      operation: 4
-                    };
-                    return (({ variable, value, startIndex, deleteCount }) => {
-                      if (!variable) {
-                        return;
-                      }
-                      const { objRoot, variablePath } = variable;
-
-                      const oldValue = $stateGet(objRoot, variablePath);
-                      $stateSet(objRoot, variablePath, !oldValue);
-                      return !oldValue;
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["updateIsOpen"] != null &&
-                typeof $steps["updateIsOpen"] === "object" &&
-                typeof $steps["updateIsOpen"].then === "function"
-              ) {
-                $steps["updateIsOpen"] = await $steps["updateIsOpen"];
-              }
-
-              $steps["sendLog"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return {
-                              event_group: "PatientInfo",
-                              data: {
-                                UserCenterId: $props.userCenterId,
-                                CenterId: $props.centerId,
-                                CenterName: $props.centerName,
-                                RefId: $props.refId
-                              },
-                              event_type: "ClosePatientComment"
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Splunk.sendLog"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["sendLog"] != null &&
-                typeof $steps["sendLog"] === "object" &&
-                typeof $steps["sendLog"].then === "function"
-              ) {
-                $steps["sendLog"] = await $steps["sendLog"];
-              }
             }}
             role={"img"}
           />

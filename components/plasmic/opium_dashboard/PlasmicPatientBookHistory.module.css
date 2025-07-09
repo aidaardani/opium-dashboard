@@ -19,6 +19,7 @@
   height: auto;
   max-width: 100%;
   width: 100%;
+  cursor: pointer;
   min-width: 0;
 }
 .freeBox__fRnft > :global(.__wab_flex-container) {
@@ -46,7 +47,7 @@
 }
 .text___7T5Bl {
   position: relative;
-  width: 150px;
+  width: 120px;
   height: auto;
   max-width: 100%;
   text-align: center;
@@ -61,7 +62,7 @@
 }
 .text__o0XkE {
   position: relative;
-  width: 180px;
+  width: 120px;
   height: auto;
   max-width: 100%;
   text-align: center;
@@ -76,7 +77,7 @@
 }
 .text__kwpGe {
   position: relative;
-  width: 150px;
+  width: 100px;
   height: auto;
   max-width: 100%;
   text-align: center;
@@ -92,12 +93,18 @@
 .svg___31RtK {
   object-fit: cover;
   max-width: 100%;
-  height: 1em;
+  min-width: 20px;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 .svg__xLisO {
   object-fit: cover;
   max-width: 100%;
-  height: 1em;
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 .freeBox__cMr5E {
   display: flex;

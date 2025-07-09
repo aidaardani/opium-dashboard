@@ -1368,7 +1368,7 @@
 }
 .text___2APaX {
   position: relative;
-  width: 150px;
+  width: 120px;
   height: auto;
   max-width: 100%;
   text-align: center;
@@ -1384,7 +1384,7 @@
 }
 .text___3IwyS {
   position: relative;
-  width: 180px;
+  width: 120px;
   height: auto;
   max-width: 100%;
   text-align: center;
@@ -1400,7 +1400,7 @@
 }
 .text__ri8RL {
   position: relative;
-  width: 190px;
+  width: 100px;
   height: auto;
   max-width: 100%;
   text-align: center;
@@ -1411,6 +1411,23 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .text__ri8RL {
     width: 100px;
+    flex-shrink: 0;
+  }
+}
+.text__fDnQg {
+  position: relative;
+  width: 20px;
+  height: auto;
+  max-width: 100%;
+  text-align: center;
+  font-weight: 600;
+  font-size: var(--token-6NbVMeD6zQwn);
+  min-width: 20px;
+  flex-shrink: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__fDnQg {
+    width: 20px;
     flex-shrink: 0;
   }
 }

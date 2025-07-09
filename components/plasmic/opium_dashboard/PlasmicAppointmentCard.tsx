@@ -3573,6 +3573,17 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       ? "\u06a9\u062f \u067e\u06cc\u06af\u06cc\u0631\u06cc"
                       : "\u06a9\u062f \u067e\u06cc\u06af\u06cc\u0631\u06cc \u0646\u0648\u0628\u062a"}
                   </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__fDnQg
+                    )}
+                  >
+                    {hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? " "
+                      : " "}
+                  </div>
                 </div>
                 <div className={classNames(projectcss.all, sty.freeBox__oLGp)}>
                   {(() => {
