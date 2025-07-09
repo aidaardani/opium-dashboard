@@ -1413,96 +1413,17 @@
     flex-shrink: 0;
   }
 }
-.freeBox__q4Jhn {
+.freeBox__oLGp {
   display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
   height: auto;
   max-width: 100%;
-  justify-content: center;
-  align-items: flex-end;
-  background: #ffffff;
-  min-width: 0;
-  padding: 5px;
-  border-bottom: 1px solid var(--token-Y3HOiwZmAcAF);
-}
-.freeBox__ujEoc {
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  height: auto;
-  max-width: 100%;
-  width: 100%;
-  min-width: 0;
-}
-.freeBox__ujEoc > :global(.__wab_flex-container) {
-  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: space-between;
   min-width: 0;
-  margin-left: calc(0px - var(--token-_c276Gs_1FIE));
-  width: calc(100% + var(--token-_c276Gs_1FIE));
-}
-.freeBox__ujEoc > :global(.__wab_flex-container) > *,
-.freeBox__ujEoc > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.freeBox__ujEoc > :global(.__wab_flex-container) > picture > img,
-.freeBox__ujEoc
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-left: var(--token-_c276Gs_1FIE);
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .freeBox__ujEoc > :global(.__wab_flex-container) {
-    justify-content: center;
-  }
-}
-.text__gAjGj {
-  position: relative;
-  width: 150px;
-  height: auto;
-  max-width: 100%;
-  text-align: center;
-  font-size: var(--token-6NbVMeD6zQwn);
-  flex-shrink: 0;
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .text__gAjGj {
-    width: 120px;
-    flex-shrink: 0;
-  }
-}
-.text__ojVSl {
-  position: relative;
-  width: 180px;
-  height: auto;
-  max-width: 100%;
-  text-align: center;
-  font-size: var(--token-6NbVMeD6zQwn);
-  flex-shrink: 0;
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .text__ojVSl {
-    width: 100px;
-    flex-shrink: 0;
-  }
-}
-.text__wfhAw {
-  position: relative;
-  width: 150px;
-  height: auto;
-  max-width: 100%;
-  text-align: center;
-  font-size: var(--token-6NbVMeD6zQwn);
-  flex-shrink: 0;
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .text__wfhAw {
-    width: 100px;
-    flex-shrink: 0;
-  }
+  padding: 8px;
 }
 .freeBox__fEuSf {
   display: flex;

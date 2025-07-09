@@ -2967,6 +2967,19 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicBookHistory.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "OR9-0rUKyYr6",
+          "name": "PatientBookHistory",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicPatientBookHistory.tsx",
+          "importSpec": {
+            "modulePath": "PatientBookHistory.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicPatientBookHistory.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
