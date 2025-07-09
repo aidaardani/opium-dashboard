@@ -3192,7 +3192,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   $refs["apiBookHistory"] = ref;
                 }}
                 url={
-                  "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/BookHistory"
+                  "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/PatientHistory"
                 }
               >
                 {(() => {
