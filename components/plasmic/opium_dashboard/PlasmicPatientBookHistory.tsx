@@ -237,7 +237,7 @@ function PlasmicPatientBookHistory__RenderFunc(props: {
           <React.Fragment>
             {(() => {
               try {
-                return $props.center_id === "5532"
+                return $props.centerId === "5532"
                   ? "ویزیت آنلاین"
                   : "ویزیت حضوری";
               } catch (e) {
