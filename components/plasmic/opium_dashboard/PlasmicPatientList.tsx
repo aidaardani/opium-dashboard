@@ -554,6 +554,19 @@ function PlasmicPatientList__RenderFunc(props: {
                   throw e;
                 }
               })()}
+              bookFrom={(() => {
+                try {
+                  return currentItem.from;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
               bookId={(() => {
                 try {
                   return currentItem.id;

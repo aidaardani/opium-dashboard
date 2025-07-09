@@ -2954,6 +2954,19 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/book-list-2"
+        },
+        {
+          "id": "rR-1UY0gBJU1",
+          "name": "BookHistory",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicBookHistory.tsx",
+          "importSpec": {
+            "modulePath": "BookHistory.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicBookHistory.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

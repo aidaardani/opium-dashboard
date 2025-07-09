@@ -88,6 +88,7 @@ import TimeSvgIcon from "./icons/PlasmicIcon__TimeSvg"; // plasmic-import: p7f4t
 import UserInfoSvgIcon from "./icons/PlasmicIcon__UserInfoSvg"; // plasmic-import: gQQbHyEZZZ3o/icon
 import CalenderSvgIcon from "./icons/PlasmicIcon__CalenderSvg"; // plasmic-import: 0uxseSsmSKEH/icon
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
+import ChevronDownIcon from "../fragment_icons/icons/PlasmicIcon__ChevronDown"; // plasmic-import: aC_QFogxt1Ko/icon
 import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: euu18ryAtnAt/icon
 import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: BMYyZW6g83gg/icon
 
@@ -134,6 +135,7 @@ export type PlasmicAppointmentCard__ArgsType = {
   onDelete?: () => void;
   centerType?: string;
   prescriptionDate?: string;
+  bookFrom?: string;
 };
 type ArgPropType = keyof PlasmicAppointmentCard__ArgsType;
 export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
@@ -163,7 +165,8 @@ export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
   "insurance",
   "onDelete",
   "centerType",
-  "prescriptionDate"
+  "prescriptionDate",
+  "bookFrom"
 );
 
 export type PlasmicAppointmentCard__OverridesType = {
@@ -176,6 +179,7 @@ export type PlasmicAppointmentCard__OverridesType = {
   bime?: Flex__<typeof PatientPrivateData>;
   dialog4?: Flex__<typeof Dialog>;
   cost2?: Flex__<typeof PatientPrivateData>;
+  apiBookHistory?: Flex__<typeof ApiRequest>;
   apiPres?: Flex__<typeof ApiRequest>;
   deletebookdialog?: Flex__<typeof Dialog>;
   dialog2?: Flex__<typeof Dialog>;
@@ -215,6 +219,7 @@ export interface DefaultAppointmentCardProps {
   onDelete?: () => void;
   centerType?: string;
   prescriptionDate?: string;
+  bookFrom?: string;
   onlineBorder?: SingleBooleanChoiceArg<"onlineBorder">;
   className?: string;
 }
@@ -426,6 +431,36 @@ function PlasmicAppointmentCard__RenderFunc(props: {
       },
       {
         path: "loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "apiBookHistory.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiBookHistory"
+      },
+      {
+        path: "apiBookHistory.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiBookHistory"
+      },
+      {
+        path: "apiBookHistory.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiBookHistory"
+      },
+      {
+        path: "showBookHistory",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
@@ -3050,41 +3085,637 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                 })()}
               />
 
+              <ApiRequest
+                data-plasmic-name={"apiBookHistory"}
+                data-plasmic-override={overrides.apiBookHistory}
+                className={classNames("__wab_instance", sty.apiBookHistory)}
+                errorDisplay={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__fh8M9
+                    )}
+                  >
+                    {"Error fetching data"}
+                  </div>
+                }
+                loadingDisplay={
+                  <Icon34Icon
+                    className={classNames(projectcss.all, sty.svg__sxIp4)}
+                    role={"img"}
+                  />
+                }
+                method={"GET"}
+                onError={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiBookHistory",
+                    "error"
+                  ]).apply(null, eventArgs);
+                }}
+                onLoading={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiBookHistory",
+                    "loading"
+                  ]).apply(null, eventArgs);
+                }}
+                onSuccess={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiBookHistory",
+                    "data"
+                  ]).apply(null, eventArgs);
+
+                  (async data => {
+                    const $steps = {};
+
+                    $steps["sendLog"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    event_group: "PatientInfo",
+                                    data: {
+                                      UserCenterId: $props.userCenterId,
+                                      CenterId: $props.centerId,
+                                      CenterName: $props.centerName,
+                                      RefId: $props.refId,
+                                      PatientHistory: $state.apiBookHistory.data
+                                    },
+                                    event_type: "ApiBookHistory"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendLog"] != null &&
+                      typeof $steps["sendLog"] === "object" &&
+                      typeof $steps["sendLog"].then === "function"
+                    ) {
+                      $steps["sendLog"] = await $steps["sendLog"];
+                    }
+                  }).apply(null, eventArgs);
+                }}
+                params={(() => {
+                  try {
+                    return {
+                      RefId: $props.refId,
+                      UserCenterId: $props.userCenterId
+                    };
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                ref={ref => {
+                  $refs["apiBookHistory"] = ref;
+                }}
+                url={
+                  "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/BookHistory"
+                }
+              >
+                {(() => {
+                  try {
+                    return $props.bookType === "حضوری";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <PatientPrivateData
+                    className={classNames(
+                      "__wab_instance",
+                      sty.patientPrivateData__qHlMg
+                    )}
+                    label={
+                      "\u0633\u0648\u0627\u0628\u0642 \u0645\u0631\u0627\u062c\u0639\u0647"
+                    }
+                    value={(() => {
+                      try {
+                        return $props.centerName;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                  />
+                ) : null}
+              </ApiRequest>
               {(() => {
                 try {
-                  return $props.bookType === "حضوری";
+                  return (
+                    $state.apiBookHistory.data.filter(
+                      item => item.formattedDate < $props.bookFrom
+                    ).length > 0
+                  );
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
                     e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    return true;
+                    return false;
                   }
                   throw e;
                 }
               })() ? (
-                <PatientPrivateData
-                  className={classNames(
-                    "__wab_instance",
-                    sty.patientPrivateData__qHlMg
-                  )}
-                  label={"\u0646\u0627\u0645 \u0645\u0631\u06a9\u0632"}
-                  value={(() => {
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__tNVg)}
+                >
+                  <PatientPrivateData
+                    className={classNames(
+                      "__wab_instance",
+                      sty.patientPrivateData__mn9Wu
+                    )}
+                    label={
+                      "\u0633\u0648\u0627\u0628\u0642 \u0645\u0631\u0627\u062c\u0639\u0647"
+                    }
+                    transparent={true}
+                    value={(() => {
+                      try {
+                        return (() => {
+                          const filteredList =
+                            $state.apiBookHistory.data.filter(
+                              item => item.formattedDate < $props.bookFrom
+                            );
+                          const latestFormattedDate = filteredList.reduce(
+                            (prev, current) =>
+                              prev.formattedDate > current.formattedDate
+                                ? prev
+                                : current
+                          ).formattedDate;
+                          const gregorianDate = new Date(
+                            parseInt(latestFormattedDate) * 1000
+                          );
+                          const persianDate = new Intl.DateTimeFormat("fa-IR", {
+                            day: "2-digit",
+                            month: "long",
+                            year: "numeric"
+                          }).format(gregorianDate);
+                          return persianDate;
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                  />
+
+                  {(() => {
                     try {
-                      return $props.centerName;
+                      return !$state.showBookHistory;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
                         e?.plasmicType === "PlasmicUndefinedDataError"
                       ) {
-                        return undefined;
+                        return false;
                       }
                       throw e;
                     }
-                  })()}
-                />
+                  })() ? (
+                    <ChevronLeftIcon
+                      className={classNames(projectcss.all, sty.svg__u5Za2)}
+                      onClick={async event => {
+                        const $steps = {};
+
+                        $steps["updateShowBookHistory"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["showBookHistory"]
+                                },
+                                operation: 4
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                const oldValue = $stateGet(
+                                  objRoot,
+                                  variablePath
+                                );
+                                $stateSet(objRoot, variablePath, !oldValue);
+                                return !oldValue;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateShowBookHistory"] != null &&
+                          typeof $steps["updateShowBookHistory"] === "object" &&
+                          typeof $steps["updateShowBookHistory"].then ===
+                            "function"
+                        ) {
+                          $steps["updateShowBookHistory"] = await $steps[
+                            "updateShowBookHistory"
+                          ];
+                        }
+
+                        $steps["invokeGlobalAction"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  (() => {
+                                    try {
+                                      return {
+                                        event_group: "PatientInfo",
+                                        data: {
+                                          UserCenterId: $props.userCenterId,
+                                          CenterId: $props.centerId,
+                                          CenterName: $props.centerName,
+                                          RefId: $props.refId,
+                                          PatientHistory:
+                                            $state.apiBookHistory.data
+                                        },
+                                        event_type: "OpenPatientHistory"
+                                      };
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions["Splunk.sendLog"]?.apply(
+                                null,
+                                [...actionArgs.args]
+                              );
+                            })()
+                          : undefined;
+                        if (
+                          $steps["invokeGlobalAction"] != null &&
+                          typeof $steps["invokeGlobalAction"] === "object" &&
+                          typeof $steps["invokeGlobalAction"].then ===
+                            "function"
+                        ) {
+                          $steps["invokeGlobalAction"] = await $steps[
+                            "invokeGlobalAction"
+                          ];
+                        }
+                      }}
+                      role={"img"}
+                    />
+                  ) : null}
+                  {(() => {
+                    try {
+                      return $state.showBookHistory;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return false;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <ChevronDownIcon
+                      className={classNames(projectcss.all, sty.svg__wYwXi)}
+                      onClick={async event => {
+                        const $steps = {};
+
+                        $steps["updateShowBookHistory"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["showBookHistory"]
+                                },
+                                operation: 4
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                const oldValue = $stateGet(
+                                  objRoot,
+                                  variablePath
+                                );
+                                $stateSet(objRoot, variablePath, !oldValue);
+                                return !oldValue;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateShowBookHistory"] != null &&
+                          typeof $steps["updateShowBookHistory"] === "object" &&
+                          typeof $steps["updateShowBookHistory"].then ===
+                            "function"
+                        ) {
+                          $steps["updateShowBookHistory"] = await $steps[
+                            "updateShowBookHistory"
+                          ];
+                        }
+
+                        $steps["sendLog"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  (() => {
+                                    try {
+                                      return {
+                                        event_group: "PatientInfo",
+                                        data: {
+                                          UserCenterId: $props.userCenterId,
+                                          CenterId: $props.centerId,
+                                          CenterName: $props.centerName,
+                                          RefId: $props.refId,
+                                          PatientHistory:
+                                            $state.apiBookHistory.data
+                                        },
+                                        event_type: "ClosePatientHistory"
+                                      };
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions["Splunk.sendLog"]?.apply(
+                                null,
+                                [...actionArgs.args]
+                              );
+                            })()
+                          : undefined;
+                        if (
+                          $steps["sendLog"] != null &&
+                          typeof $steps["sendLog"] === "object" &&
+                          typeof $steps["sendLog"].then === "function"
+                        ) {
+                          $steps["sendLog"] = await $steps["sendLog"];
+                        }
+                      }}
+                      role={"img"}
+                    />
+                  ) : null}
+                </Stack__>
               ) : null}
             </div>
+            {(() => {
+              try {
+                return (
+                  $state.showBookHistory &&
+                  $state.apiBookHistory.data.filter(
+                    item => item.formattedDate < $props.bookFrom
+                  ).length > 0
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })() ? (
+              <div className={classNames(projectcss.all, sty.freeBox__oqfdv)}>
+                <div className={classNames(projectcss.all, sty.freeBox__cImpZ)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___2APaX
+                    )}
+                  >
+                    {"\u062a\u0627\u0631\u06cc\u062e"}
+                  </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___3IwyS
+                    )}
+                  >
+                    {"\u0646\u0648\u0639 \u0646\u0648\u0628\u062a"}
+                  </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__ri8RL
+                    )}
+                  >
+                    {hasVariant(globalVariants, "screen", "mobileOnly")
+                      ? "\u06a9\u062f \u067e\u06cc\u06af\u06cc\u0631\u06cc"
+                      : "\u06a9\u062f \u067e\u06cc\u06af\u06cc\u0631\u06cc \u0646\u0648\u0628\u062a"}
+                  </div>
+                </div>
+                {(() => {
+                  try {
+                    return true;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return false;
+                    }
+                    throw e;
+                  }
+                })()
+                  ? (_par =>
+                      !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                      (() => {
+                        try {
+                          return $state.apiBookHistory.data.filter(
+                            item => item.formattedDate < $props.bookFrom
+                          );
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()
+                    ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                      const currentItem = __plasmic_item_0;
+                      const currentIndex = __plasmic_idx_0;
+                      return (
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__q4Jhn
+                          )}
+                          key={currentIndex}
+                        >
+                          <Stack__
+                            as={"div"}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__ujEoc
+                            )}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__gAjGj,
+                                {
+                                  [sty.textonlineBorder__gAjGj5Rn5G]:
+                                    hasVariant(
+                                      $state,
+                                      "onlineBorder",
+                                      "onlineBorder"
+                                    )
+                                }
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return (() => {
+                                      const gregorianDate = new Date(
+                                        parseInt(currentItem.formattedDate) *
+                                          1000
+                                      );
+                                      const jalaliDate =
+                                        new Intl.DateTimeFormat("fa-IR", {
+                                          day: "numeric",
+                                          month: "long",
+                                          year: "numeric"
+                                        }).format(gregorianDate);
+                                      return jalaliDate;
+                                    })();
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
+                            </div>
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__ojVSl
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return currentItem.center_id === "5532"
+                                      ? "ویزیت آنلاین"
+                                      : "ویزیت حضوری";
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
+                            </div>
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__wfhAw
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return currentItem.ref_id;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
+                            </div>
+                          </Stack__>
+                        </div>
+                      );
+                    })
+                  : null}
+              </div>
+            ) : null}
             <Stack__
               as={"div"}
               hasGap={true}
@@ -5290,6 +5921,7 @@ const PlasmicDescendants = {
     "bime",
     "dialog4",
     "cost2",
+    "apiBookHistory",
     "apiPres",
     "deletebookdialog",
     "dialog2",
@@ -5304,10 +5936,19 @@ const PlasmicDescendants = {
   apiGetPyamentInfo2: ["apiGetPyamentInfo2"],
   dialog5: ["dialog5"],
   dialog6: ["dialog6"],
-  dialog: ["dialog", "bime", "dialog4", "cost2", "apiPres", "deletebookdialog"],
+  dialog: [
+    "dialog",
+    "bime",
+    "dialog4",
+    "cost2",
+    "apiBookHistory",
+    "apiPres",
+    "deletebookdialog"
+  ],
   bime: ["bime"],
   dialog4: ["dialog4"],
   cost2: ["cost2"],
+  apiBookHistory: ["apiBookHistory"],
   apiPres: ["apiPres"],
   deletebookdialog: ["deletebookdialog"],
   dialog2: ["dialog2", "descriptionInput"],
@@ -5331,6 +5972,7 @@ type NodeDefaultElementType = {
   bime: typeof PatientPrivateData;
   dialog4: typeof Dialog;
   cost2: typeof PatientPrivateData;
+  apiBookHistory: typeof ApiRequest;
   apiPres: typeof ApiRequest;
   deletebookdialog: typeof Dialog;
   dialog2: typeof Dialog;
@@ -5410,6 +6052,7 @@ export const PlasmicAppointmentCard = Object.assign(
     bime: makeNodeComponent("bime"),
     dialog4: makeNodeComponent("dialog4"),
     cost2: makeNodeComponent("cost2"),
+    apiBookHistory: makeNodeComponent("apiBookHistory"),
     apiPres: makeNodeComponent("apiPres"),
     deletebookdialog: makeNodeComponent("deletebookdialog"),
     dialog2: makeNodeComponent("dialog2"),
