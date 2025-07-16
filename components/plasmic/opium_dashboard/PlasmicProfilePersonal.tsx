@@ -116,8 +116,7 @@ export type PlasmicProfilePersonal__OverridesType = {
   medicalCode?: Flex__<typeof Input>;
   profilePersonalPhoneNumber?: Flex__<typeof ProfilePersonalPhoneNumber>;
   drNotifyCell?: Flex__<typeof Input>;
-  providerApi?: Flex__<typeof ApiRequest>;
-  notifyCellApi?: Flex__<typeof ApiRequest>;
+  apiNotifyCell?: Flex__<typeof ApiRequest>;
   notifyCell?: Flex__<typeof Input>;
   fragmentTextEditor?: Flex__<typeof TextEditor>;
   button?: Flex__<typeof Button>;
@@ -330,37 +329,13 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         refName: "profile"
       },
       {
-        path: "notifyCellApi.data",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "notifyCellApi"
-      },
-      {
-        path: "notifyCellApi.error",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "notifyCellApi"
-      },
-      {
-        path: "notifyCellApi.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "notifyCellApi"
-      },
-      {
         path: "notifyCell.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.notifyCellApi.data.providers[0].notify_cell;
+              return $state.apiNotifyCell.data[0].notify_cell;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -373,28 +348,28 @@ function PlasmicProfilePersonal__RenderFunc(props: {
           })()
       },
       {
-        path: "providerApi.data",
+        path: "apiNotifyCell.data",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
-        refName: "providerApi"
+        refName: "apiNotifyCell"
       },
       {
-        path: "providerApi.error",
+        path: "apiNotifyCell.error",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
-        refName: "providerApi"
+        refName: "apiNotifyCell"
       },
       {
-        path: "providerApi.loading",
+        path: "apiNotifyCell.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
-        refName: "providerApi"
+        refName: "apiNotifyCell"
       },
       {
         path: "biography",
@@ -525,7 +500,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
             (async data => {
               const $steps = {};
 
-              $steps["updateBiography"] = false
+              $steps["updateBiography"] = true
                 ? (() => {
                     const actionArgs = {
                       variable: {
@@ -533,7 +508,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                         variablePath: ["biography"]
                       },
                       operation: 0,
-                      value: $state.providerApi?.data?.providers?.[0]?.biography
+                      value: $state.profile.data?.data?.biography
                     };
                     return (({ variable, value, startIndex, deleteCount }) => {
                       if (!variable) {
@@ -860,9 +835,9 @@ function PlasmicProfilePersonal__RenderFunc(props: {
               />
             </div>
             <ApiRequest
-              data-plasmic-name={"providerApi"}
-              data-plasmic-override={overrides.providerApi}
-              className={classNames("__wab_instance", sty.providerApi)}
+              data-plasmic-name={"apiNotifyCell"}
+              data-plasmic-override={overrides.apiNotifyCell}
+              className={classNames("__wab_instance", sty.apiNotifyCell)}
               errorDisplay={null}
               loadingDisplay={
                 <div
@@ -878,67 +853,28 @@ function PlasmicProfilePersonal__RenderFunc(props: {
               method={"GET"}
               onError={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
-                  "providerApi",
+                  "apiNotifyCell",
                   "error"
                 ]).apply(null, eventArgs);
               }}
               onLoading={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
-                  "providerApi",
+                  "apiNotifyCell",
                   "loading"
                 ]).apply(null, eventArgs);
               }}
               onSuccess={async (...eventArgs: any) => {
                 generateStateOnChangeProp($state, [
-                  "providerApi",
+                  "apiNotifyCell",
                   "data"
                 ]).apply(null, eventArgs);
-
-                (async data => {
-                  const $steps = {};
-
-                  $steps["updateBiography"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["biography"]
-                          },
-                          operation: 0,
-                          value:
-                            $state.providerApi?.data?.providers?.[0]?.biography
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateBiography"] != null &&
-                    typeof $steps["updateBiography"] === "object" &&
-                    typeof $steps["updateBiography"].then === "function"
-                  ) {
-                    $steps["updateBiography"] = await $steps["updateBiography"];
-                  }
-                }).apply(null, eventArgs);
               }}
               ref={ref => {
-                $refs["providerApi"] = ref;
+                $refs["apiNotifyCell"] = ref;
               }}
               url={(() => {
                 try {
-                  return `https://apigw.paziresh24.com/v1/providers?user_id=${$state.auth.data.data.id}`;
+                  return `https://apigw.paziresh24.com/v1/n8n-nelson/webhook/GetNotifyCell`;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -950,106 +886,38 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 }
               })()}
             >
-              <ApiRequest
-                data-plasmic-name={"notifyCellApi"}
-                data-plasmic-override={overrides.notifyCellApi}
-                className={classNames("__wab_instance", sty.notifyCellApi)}
-                errorDisplay={
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text___9PJ2O
-                    )}
-                  >
-                    {""}
-                  </div>
-                }
-                loadingDisplay={
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__dnc
-                    )}
-                  >
-                    {""}
-                  </div>
-                }
-                method={"GET"}
-                onError={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "notifyCellApi",
-                    "error"
-                  ]).apply(null, eventArgs);
-                }}
-                onLoading={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "notifyCellApi",
-                    "loading"
-                  ]).apply(null, eventArgs);
-                }}
-                onSuccess={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "notifyCellApi",
-                    "data"
-                  ]).apply(null, eventArgs);
-                }}
-                ref={ref => {
-                  $refs["notifyCellApi"] = ref;
-                }}
-                url={(() => {
-                  try {
-                    return (() => {
-                      const providerId = $state.providerApi.data.providers.find(
-                        item => item.user_id == $state.auth.data.data.id
-                      ).id;
-                      return `https://apigw.paziresh24.com/v1/providers/${providerId}/notify-cell`;
-                    })();
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
+              <div className={classNames(projectcss.all, sty.freeBox__l8Vrq)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__loV48
+                  )}
+                >
+                  {
+                    "\u062a\u0644\u0641\u0646 \u0647\u0645\u0631\u0627\u0647 \u0645\u0646\u0634\u06cc"
                   }
-                })()}
-              >
-                <div className={classNames(projectcss.all, sty.freeBox__l8Vrq)}>
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__loV48
-                    )}
-                  >
-                    {
-                      "\u062a\u0644\u0641\u0646 \u0647\u0645\u0631\u0627\u0647 \u0645\u0646\u0634\u06cc"
-                    }
-                  </div>
-                  <Input
-                    data-plasmic-name={"notifyCell"}
-                    data-plasmic-override={overrides.notifyCell}
-                    className={classNames("__wab_instance", sty.notifyCell)}
-                    onChange={async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "notifyCell",
-                        "value"
-                      ]).apply(null, eventArgs);
-                    }}
-                    placeholder={
-                      "\u0634\u0645\u0627\u0631\u0647 \u0645\u0646\u0634\u06cc"
-                    }
-                    type={"text"}
-                    value={generateStateValueProp($state, [
+                </div>
+                <Input
+                  data-plasmic-name={"notifyCell"}
+                  data-plasmic-override={overrides.notifyCell}
+                  className={classNames("__wab_instance", sty.notifyCell)}
+                  onChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
                       "notifyCell",
                       "value"
-                    ])}
-                  />
-                </div>
-              </ApiRequest>
+                    ]).apply(null, eventArgs);
+                  }}
+                  placeholder={
+                    "\u0634\u0645\u0627\u0631\u0647 \u0645\u0646\u0634\u06cc"
+                  }
+                  type={"text"}
+                  value={generateStateValueProp($state, [
+                    "notifyCell",
+                    "value"
+                  ])}
+                />
+              </div>
             </ApiRequest>
             <TextEditor
               data-plasmic-name={"fragmentTextEditor"}
@@ -1187,8 +1055,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 }
 
                 $steps["showToastForNotifyCell"] =
-                  $state.notifyCellApi.data.providers[0].notify_cell &&
-                  $state.notifyCellApi.data.providers[0].notify_cell !== "" &&
+                  $state.apiNotifyCell.data[0].notify_cell &&
+                  $state.apiNotifyCell.data[0].notify_cell !== "" &&
                   !$state.notifyCell.value.trim()
                     ? (() => {
                         const actionArgs = {
@@ -1242,8 +1110,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 $steps["showToastForDoNothing"] = !(
                   $state.profile?.data?.data?.biography?.trim() !==
                     $state.biography.trim() ||
-                  $state.notifyCellApi.data.providers?.[0]?.notify_cell?.trim() !==
-                    $state.notifyCell.value.trim() ||
+                  $state.apiNotifyCell.data[0].notify_cell?.trim() !==
+                    $state.notifyCell.value ||
                   $state.auth.data.data.national_code !==
                     $state.nationalCode.value
                 )
@@ -1496,12 +1364,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 }
 
                 $steps["apiProviderUserId"] =
-                  (($state.profile?.data?.data?.biography?.trim() || "") !==
-                    ($state.biography?.trim() || "") &&
-                    $state.biography !== "") ||
-                  (($state.notifyCellApi?.data?.providers[0].notify_cell?.trim() ||
-                    "") !== ($state.notifyCell?.value?.trim() || "") &&
-                    $state.notifyCell?.value !== "")
+                  ($state.profile?.data?.data?.biography?.trim() || "") !==
+                    ($state.biography?.trim() || "") && $state.biography !== ""
                     ? (() => {
                         const actionArgs = {
                           args: [
@@ -1524,7 +1388,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                               try {
                                 return {
                                   biography: $state.biography,
-                                  employee_id: $state.medicalCode.value,
+                                  employee_id:
+                                    $state.profile.data.data.medical_code,
                                   notify_cell: $state.notifyCell.value
                                 };
                               } catch (e) {
@@ -1582,10 +1447,6 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                                   $state.biography?.trim() &&
                                   $state.biography !== ""
                                   ? "بیوگرافی با موفقیت ویرایش شد."
-                                  : $state.notifyCellApi?.data?.providers[0].notify_cell.trim() !==
-                                      $state.notifyCell?.value?.trim() &&
-                                    $state.notifyCell?.value !== ""
-                                  ? "شماره منشی با موفقیت ویرایش شد."
                                   : "اطلاعات پزشک با موفقیت ویرایش شد.";
                               } catch (e) {
                                 if (
@@ -1612,6 +1473,109 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 ) {
                   $steps["showToastProvider"] = await $steps[
                     "showToastProvider"
+                  ];
+                }
+
+                $steps["apiUpdateNotifyCell"] =
+                  $state.notifyCell.value !== "" &&
+                  $state.notifyCell.value !==
+                    $state.apiNotifyCell.data[0].notify_cell
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "PATCH",
+                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/UpdateNotifyCell",
+                            undefined,
+                            (() => {
+                              try {
+                                return {
+                                  notifyCell: $state.notifyCell.value.replace(
+                                    /^0/,
+                                    ""
+                                  )
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                if (
+                  $steps["apiUpdateNotifyCell"] != null &&
+                  typeof $steps["apiUpdateNotifyCell"] === "object" &&
+                  typeof $steps["apiUpdateNotifyCell"].then === "function"
+                ) {
+                  $steps["apiUpdateNotifyCell"] = await $steps[
+                    "apiUpdateNotifyCell"
+                  ];
+                }
+
+                $steps["showToastForUpdateNotifyCell"] = $steps
+                  .apiUpdateNotifyCell?.data?.message
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return $steps.apiUpdateNotifyCell.data.message.includes(
+                                "success"
+                              )
+                                ? "success"
+                                : "error";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })(),
+                          (() => {
+                            try {
+                              return $steps.apiUpdateNotifyCell?.data?.message.includes(
+                                "success"
+                              )
+                                ? "شماره منشی با موفقیت آپدیت شد"
+                                : "آپدیت شماره منشی با خطا رو به رو شد";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["showToastForUpdateNotifyCell"] != null &&
+                  typeof $steps["showToastForUpdateNotifyCell"] === "object" &&
+                  typeof $steps["showToastForUpdateNotifyCell"].then ===
+                    "function"
+                ) {
+                  $steps["showToastForUpdateNotifyCell"] = await $steps[
+                    "showToastForUpdateNotifyCell"
                   ];
                 }
 
@@ -1655,9 +1619,9 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   ($state.profile?.data?.data?.biography.trim() !==
                     $state.biography?.trim() &&
                     $state.biography !== "") ||
-                  ($state.notifyCellApi?.data?.providers[0].notify_cell.trim() !==
-                    $state.notifyCell?.value?.trim() &&
-                    $state.notifyCell?.value !== "")
+                  ($state.apiNotifyCell.data[0].notify_cell.trim() !==
+                    $state.notifyCell.value.trim() &&
+                    $state.notify_cell.value !== "")
                     ? (() => {
                         const actionArgs = {
                           tplRef: "profile",
@@ -1753,8 +1717,7 @@ const PlasmicDescendants = {
     "medicalCode",
     "profilePersonalPhoneNumber",
     "drNotifyCell",
-    "providerApi",
-    "notifyCellApi",
+    "apiNotifyCell",
     "notifyCell",
     "fragmentTextEditor",
     "button"
@@ -1767,8 +1730,7 @@ const PlasmicDescendants = {
     "medicalCode",
     "profilePersonalPhoneNumber",
     "drNotifyCell",
-    "providerApi",
-    "notifyCellApi",
+    "apiNotifyCell",
     "notifyCell",
     "fragmentTextEditor",
     "button"
@@ -1780,8 +1742,7 @@ const PlasmicDescendants = {
     "medicalCode",
     "profilePersonalPhoneNumber",
     "drNotifyCell",
-    "providerApi",
-    "notifyCellApi",
+    "apiNotifyCell",
     "notifyCell",
     "fragmentTextEditor",
     "button"
@@ -1791,8 +1752,7 @@ const PlasmicDescendants = {
   medicalCode: ["medicalCode"],
   profilePersonalPhoneNumber: ["profilePersonalPhoneNumber"],
   drNotifyCell: ["drNotifyCell"],
-  providerApi: ["providerApi", "notifyCellApi", "notifyCell"],
-  notifyCellApi: ["notifyCellApi", "notifyCell"],
+  apiNotifyCell: ["apiNotifyCell", "notifyCell"],
   notifyCell: ["notifyCell"],
   fragmentTextEditor: ["fragmentTextEditor"],
   button: ["button"]
@@ -1809,8 +1769,7 @@ type NodeDefaultElementType = {
   medicalCode: typeof Input;
   profilePersonalPhoneNumber: typeof ProfilePersonalPhoneNumber;
   drNotifyCell: typeof Input;
-  providerApi: typeof ApiRequest;
-  notifyCellApi: typeof ApiRequest;
+  apiNotifyCell: typeof ApiRequest;
   notifyCell: typeof Input;
   fragmentTextEditor: typeof TextEditor;
   button: typeof Button;
@@ -1883,8 +1842,7 @@ export const PlasmicProfilePersonal = Object.assign(
     medicalCode: makeNodeComponent("medicalCode"),
     profilePersonalPhoneNumber: makeNodeComponent("profilePersonalPhoneNumber"),
     drNotifyCell: makeNodeComponent("drNotifyCell"),
-    providerApi: makeNodeComponent("providerApi"),
-    notifyCellApi: makeNodeComponent("notifyCellApi"),
+    apiNotifyCell: makeNodeComponent("apiNotifyCell"),
     notifyCell: makeNodeComponent("notifyCell"),
     fragmentTextEditor: makeNodeComponent("fragmentTextEditor"),
     button: makeNodeComponent("button"),

@@ -101,11 +101,10 @@ export const PlasmicProfileExperties__ArgProps = new Array<ArgPropType>(
 export type PlasmicProfileExperties__OverridesType = {
   root?: Flex__<"div">;
   authApi?: Flex__<typeof ApiRequest>;
-  providerApi?: Flex__<typeof ApiRequest>;
+  expertisesApi?: Flex__<typeof ApiRequest>;
   profileExpertiseItem?: Flex__<typeof ProfileExpertiseItem>;
   h6?: Flex__<"h6">;
   profileExpertiseItem2?: Flex__<typeof ProfileExpertiseItem>;
-  spetialitiesApi?: Flex__<typeof ApiRequest>;
   dialog?: Flex__<typeof Dialog>;
 };
 
@@ -5063,30 +5062,6 @@ function PlasmicProfileExperties__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
       },
       {
-        path: "spetialitiesApi.data",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "spetialitiesApi"
-      },
-      {
-        path: "spetialitiesApi.error",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "spetialitiesApi"
-      },
-      {
-        path: "spetialitiesApi.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "spetialitiesApi"
-      },
-      {
         path: "changedExperies",
         type: "private",
         variableType: "array",
@@ -5117,28 +5092,28 @@ function PlasmicProfileExperties__RenderFunc(props: {
         refName: "authApi"
       },
       {
-        path: "providerApi.data",
+        path: "expertisesApi.data",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
-        refName: "providerApi"
+        refName: "expertisesApi"
       },
       {
-        path: "providerApi.error",
+        path: "expertisesApi.error",
         type: "private",
         variableType: "object",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
-        refName: "providerApi"
+        refName: "expertisesApi"
       },
       {
-        path: "providerApi.loading",
+        path: "expertisesApi.loading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
-        refName: "providerApi"
+        refName: "expertisesApi"
       },
       {
         path: "isLoading",
@@ -5226,9 +5201,9 @@ function PlasmicProfileExperties__RenderFunc(props: {
         url={"https://api.paziresh24.com/V1/auth/me"}
       >
         <ApiRequest
-          data-plasmic-name={"providerApi"}
-          data-plasmic-override={overrides.providerApi}
-          className={classNames("__wab_instance", sty.providerApi)}
+          data-plasmic-name={"expertisesApi"}
+          data-plasmic-override={overrides.expertisesApi}
+          className={classNames("__wab_instance", sty.expertisesApi)}
           errorDisplay={null}
           loadingDisplay={
             <Icon34Icon
@@ -5238,19 +5213,19 @@ function PlasmicProfileExperties__RenderFunc(props: {
           }
           method={"GET"}
           onError={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["providerApi", "error"]).apply(
+            generateStateOnChangeProp($state, ["expertisesApi", "error"]).apply(
               null,
               eventArgs
             );
           }}
           onLoading={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["providerApi", "loading"]).apply(
-              null,
-              eventArgs
-            );
+            generateStateOnChangeProp($state, [
+              "expertisesApi",
+              "loading"
+            ]).apply(null, eventArgs);
           }}
           onSuccess={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["providerApi", "data"]).apply(
+            generateStateOnChangeProp($state, ["expertisesApi", "data"]).apply(
               null,
               eventArgs
             );
@@ -5259,8 +5234,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
               const $steps = {};
 
               $steps["sendLog"] =
-                !$state.providerApi.data.data ||
-                !$state.providerApi.data.data.length
+                !$state.expertisesApi.data.data ||
+                !$state.expertisesApi.data.data.length
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -5302,7 +5277,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
             }).apply(null, eventArgs);
           }}
           ref={ref => {
-            $refs["providerApi"] = ref;
+            $refs["expertisesApi"] = ref;
           }}
           url={(() => {
             try {
@@ -5321,7 +5296,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
             (() => {
               try {
-                return $state.providerApi.data.data;
+                return $state.expertisesApi.data.data;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -5790,8 +5765,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
             {(() => {
               try {
                 return (
-                  !$state.providerApi.data.data ||
-                  !$state.providerApi.data.data.length
+                  !$state.expertisesApi.data.data ||
+                  !$state.expertisesApi.data.data.length
                 );
               } catch (e) {
                 if (
@@ -6573,10 +6548,10 @@ function PlasmicProfileExperties__RenderFunc(props: {
                     $steps["cleanUp"] = await $steps["cleanUp"];
                   }
 
-                  $steps["runActionOnProviderApi"] = true
+                  $steps["runActionOnExpertisesApi"] = true
                     ? (() => {
                         const actionArgs = {
-                          tplRef: "providerApi",
+                          tplRef: "expertisesApi",
                           action: "refresh"
                         };
                         return (({ tplRef, action, args }) => {
@@ -6585,12 +6560,13 @@ function PlasmicProfileExperties__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["runActionOnProviderApi"] != null &&
-                    typeof $steps["runActionOnProviderApi"] === "object" &&
-                    typeof $steps["runActionOnProviderApi"].then === "function"
+                    $steps["runActionOnExpertisesApi"] != null &&
+                    typeof $steps["runActionOnExpertisesApi"] === "object" &&
+                    typeof $steps["runActionOnExpertisesApi"].then ===
+                      "function"
                   ) {
-                    $steps["runActionOnProviderApi"] = await $steps[
-                      "runActionOnProviderApi"
+                    $steps["runActionOnExpertisesApi"] = await $steps[
+                      "runActionOnExpertisesApi"
                     ];
                   }
                 }}
@@ -6694,61 +6670,6 @@ function PlasmicProfileExperties__RenderFunc(props: {
               />
             </Stack__>
           </Stack__>
-          <ApiRequest
-            data-plasmic-name={"spetialitiesApi"}
-            data-plasmic-override={overrides.spetialitiesApi}
-            children={null}
-            className={classNames("__wab_instance", sty.spetialitiesApi)}
-            errorDisplay={null}
-            loadingDisplay={
-              <div className={classNames(projectcss.all, sty.freeBox___1LOpQ)}>
-                <Icon34Icon
-                  className={classNames(projectcss.all, sty.svg__eOkO9)}
-                  role={"img"}
-                />
-              </div>
-            }
-            method={"GET"}
-            onError={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "spetialitiesApi",
-                "error"
-              ]).apply(null, eventArgs);
-            }}
-            onLoading={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "spetialitiesApi",
-                "loading"
-              ]).apply(null, eventArgs);
-            }}
-            onSuccess={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "spetialitiesApi",
-                "data"
-              ]).apply(null, eventArgs);
-            }}
-            ref={ref => {
-              $refs["spetialitiesApi"] = ref;
-            }}
-            url={(() => {
-              try {
-                return (() => {
-                  const providerId = $state.providerApi.data.providers.find(
-                    item => item.user_id == $state.authApi.data.data.id
-                  ).id;
-                  return `https://apigw.paziresh24.com/v1/providers-specialities?provider_id=${providerId}`;
-                })();
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })()}
-          />
         </ApiRequest>
       </ApiRequest>
       <Dialog
@@ -7015,7 +6936,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
                 $steps["runActionOnProviderApi"] = true
                   ? (() => {
                       const actionArgs = {
-                        tplRef: "providerApi",
+                        tplRef: "expertisesApi",
                         action: "refresh"
                       };
                       return (({ tplRef, action, args }) => {
@@ -7184,32 +7105,28 @@ const PlasmicDescendants = {
   root: [
     "root",
     "authApi",
-    "providerApi",
+    "expertisesApi",
     "profileExpertiseItem",
     "h6",
     "profileExpertiseItem2",
-    "spetialitiesApi",
     "dialog"
   ],
   authApi: [
     "authApi",
-    "providerApi",
+    "expertisesApi",
     "profileExpertiseItem",
     "h6",
-    "profileExpertiseItem2",
-    "spetialitiesApi"
+    "profileExpertiseItem2"
   ],
-  providerApi: [
-    "providerApi",
+  expertisesApi: [
+    "expertisesApi",
     "profileExpertiseItem",
     "h6",
-    "profileExpertiseItem2",
-    "spetialitiesApi"
+    "profileExpertiseItem2"
   ],
   profileExpertiseItem: ["profileExpertiseItem"],
   h6: ["h6"],
   profileExpertiseItem2: ["profileExpertiseItem2"],
-  spetialitiesApi: ["spetialitiesApi"],
   dialog: ["dialog"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -7218,11 +7135,10 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   authApi: typeof ApiRequest;
-  providerApi: typeof ApiRequest;
+  expertisesApi: typeof ApiRequest;
   profileExpertiseItem: typeof ProfileExpertiseItem;
   h6: "h6";
   profileExpertiseItem2: typeof ProfileExpertiseItem;
-  spetialitiesApi: typeof ApiRequest;
   dialog: typeof Dialog;
 };
 
@@ -7287,11 +7203,10 @@ export const PlasmicProfileExperties = Object.assign(
   {
     // Helper components rendering sub-elements
     authApi: makeNodeComponent("authApi"),
-    providerApi: makeNodeComponent("providerApi"),
+    expertisesApi: makeNodeComponent("expertisesApi"),
     profileExpertiseItem: makeNodeComponent("profileExpertiseItem"),
     h6: makeNodeComponent("h6"),
     profileExpertiseItem2: makeNodeComponent("profileExpertiseItem2"),
-    spetialitiesApi: makeNodeComponent("spetialitiesApi"),
     dialog: makeNodeComponent("dialog"),
 
     // Metadata about props expected for PlasmicProfileExperties

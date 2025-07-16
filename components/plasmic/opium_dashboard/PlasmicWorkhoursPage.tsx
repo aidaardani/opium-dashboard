@@ -61,10 +61,9 @@ import {
 
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import DrCenters from "../../DrCenters"; // plasmic-import: IkLsGKQP_uPj/component
-import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
-import AvailabilitySuggestionsSpecialities from "../../AvailabilitySuggestionsSpecialities"; // plasmic-import: bBN7I3yc6plC/component
 import HoursDaysOfWeek from "../../HoursDaysOfWeek"; // plasmic-import: lSLy8Nehd6MM/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 
 import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
@@ -95,16 +94,11 @@ export type PlasmicWorkhoursPage__OverridesType = {
   workhoursPage?: Flex__<"div">;
   apIworkhours?: Flex__<typeof ApiRequest>;
   drCenters?: Flex__<typeof DrCenters>;
-  sideEffect?: Flex__<typeof SideEffect>;
-  availabilitySuggestionsSpecialities?: Flex__<
-    typeof AvailabilitySuggestionsSpecialities
-  >;
   hoursDaysOfWeek?: Flex__<typeof HoursDaysOfWeek>;
   vacation?: Flex__<"div">;
   button?: Flex__<typeof Button>;
   runCodeGtmMetrica?: Flex__<typeof SideEffect>;
   gtm?: Flex__<typeof Embed>;
-  apiSpeciality?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultWorkhoursPageProps {}
@@ -205,30 +199,6 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "apIworkhours"
-      },
-      {
-        path: "apiSpeciality.data",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "apiSpeciality"
-      },
-      {
-        path: "apiSpeciality.error",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "apiSpeciality"
-      },
-      {
-        path: "apiSpeciality.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "apiSpeciality"
       },
       {
         path: "provider",
@@ -440,79 +410,6 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                 }}
               />
             </Stack__>
-            {(() => {
-              try {
-                return $state.apiSpeciality.data["speciality-id"] === "206";
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return false;
-                }
-                throw e;
-              }
-            })() ? (
-              <div className={classNames(projectcss.all, sty.freeBox__bic)}>
-                <SideEffect
-                  data-plasmic-name={"sideEffect"}
-                  data-plasmic-override={overrides.sideEffect}
-                  className={classNames("__wab_instance", sty.sideEffect)}
-                  onMount={async () => {
-                    const $steps = {};
-
-                    $steps["sendLog"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              (() => {
-                                try {
-                                  return {
-                                    group:
-                                      "availability-suggestions-specialities",
-                                    data: { center_data: $state.centers },
-                                    type: "workhour-page"
-                                  };
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Splunk.sendLog"]?.apply(null, [
-                            ...actionArgs.args
-                          ]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["sendLog"] != null &&
-                      typeof $steps["sendLog"] === "object" &&
-                      typeof $steps["sendLog"].then === "function"
-                    ) {
-                      $steps["sendLog"] = await $steps["sendLog"];
-                    }
-                  }}
-                />
-
-                <AvailabilitySuggestionsSpecialities
-                  data-plasmic-name={"availabilitySuggestionsSpecialities"}
-                  data-plasmic-override={
-                    overrides.availabilitySuggestionsSpecialities
-                  }
-                  className={classNames(
-                    "__wab_instance",
-                    sty.availabilitySuggestionsSpecialities
-                  )}
-                />
-              </div>
-            ) : null}
             <div className={classNames(projectcss.all, sty.freeBox__lw8Cb)}>
               {(() => {
                 try {
@@ -799,59 +696,6 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
               '\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"\nheight="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->\n\n<!-- Yandex.Metrika counter -->\n<script type="text/javascript" >\n   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n   m[i].l=1*new Date();\n   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})\n   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");\n\n   ym(98277236, "init", {\n        clickmap:true,\n        trackLinks:true,\n        accurateTrackBounce:true,\n        webvisor:true\n   });\n</script>\n<noscript><div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div></noscript>\n<!-- /Yandex.Metrika counter -->'
             }
           />
-
-          <ApiRequest
-            data-plasmic-name={"apiSpeciality"}
-            data-plasmic-override={overrides.apiSpeciality}
-            className={classNames("__wab_instance", sty.apiSpeciality)}
-            errorDisplay={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__hlG9O
-                )}
-              >
-                {"Error fetching data"}
-              </div>
-            }
-            loadingDisplay={
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__rVRoE
-                )}
-              >
-                {"Loading..."}
-              </div>
-            }
-            method={"GET"}
-            onError={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "apiSpeciality",
-                "error"
-              ]).apply(null, eventArgs);
-            }}
-            onLoading={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "apiSpeciality",
-                "loading"
-              ]).apply(null, eventArgs);
-            }}
-            onSuccess={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "apiSpeciality",
-                "data"
-              ]).apply(null, eventArgs);
-            }}
-            ref={ref => {
-              $refs["apiSpeciality"] = ref;
-            }}
-            url={
-              "https://apigw.paziresh24.com/v1/availability-suggestions-specialities"
-            }
-          />
         </div>
       </div>
     </React.Fragment>
@@ -863,25 +707,19 @@ const PlasmicDescendants = {
     "workhoursPage",
     "apIworkhours",
     "drCenters",
-    "sideEffect",
-    "availabilitySuggestionsSpecialities",
     "hoursDaysOfWeek",
     "vacation",
     "button",
     "runCodeGtmMetrica",
-    "gtm",
-    "apiSpeciality"
+    "gtm"
   ],
   apIworkhours: ["apIworkhours"],
   drCenters: ["drCenters"],
-  sideEffect: ["sideEffect"],
-  availabilitySuggestionsSpecialities: ["availabilitySuggestionsSpecialities"],
   hoursDaysOfWeek: ["hoursDaysOfWeek"],
   vacation: ["vacation", "button"],
   button: ["button"],
   runCodeGtmMetrica: ["runCodeGtmMetrica"],
-  gtm: ["gtm"],
-  apiSpeciality: ["apiSpeciality"]
+  gtm: ["gtm"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -890,14 +728,11 @@ type NodeDefaultElementType = {
   workhoursPage: "div";
   apIworkhours: typeof ApiRequest;
   drCenters: typeof DrCenters;
-  sideEffect: typeof SideEffect;
-  availabilitySuggestionsSpecialities: typeof AvailabilitySuggestionsSpecialities;
   hoursDaysOfWeek: typeof HoursDaysOfWeek;
   vacation: "div";
   button: typeof Button;
   runCodeGtmMetrica: typeof SideEffect;
   gtm: typeof Embed;
-  apiSpeciality: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -962,16 +797,11 @@ export const PlasmicWorkhoursPage = Object.assign(
     // Helper components rendering sub-elements
     apIworkhours: makeNodeComponent("apIworkhours"),
     drCenters: makeNodeComponent("drCenters"),
-    sideEffect: makeNodeComponent("sideEffect"),
-    availabilitySuggestionsSpecialities: makeNodeComponent(
-      "availabilitySuggestionsSpecialities"
-    ),
     hoursDaysOfWeek: makeNodeComponent("hoursDaysOfWeek"),
     vacation: makeNodeComponent("vacation"),
     button: makeNodeComponent("button"),
     runCodeGtmMetrica: makeNodeComponent("runCodeGtmMetrica"),
     gtm: makeNodeComponent("gtm"),
-    apiSpeciality: makeNodeComponent("apiSpeciality"),
 
     // Metadata about props expected for PlasmicWorkhoursPage
     internalVariantProps: PlasmicWorkhoursPage__VariantProps,
