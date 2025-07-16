@@ -1055,9 +1055,9 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 }
 
                 $steps["showToastForNotifyCell"] =
-                  $state.apiNotifyCell.data[0].notify_cell &&
-                  $state.apiNotifyCell.data[0].notify_cell !== "" &&
-                  !$state.notifyCell.value.trim()
+                  $state.apiNotifyCell?.data[0]?.notify_cell &&
+                  $state.apiNotifyCell?.data[0]?.notify_cell !== "" &&
+                  !$state.notifyCell?.value?.trim()
                     ? (() => {
                         const actionArgs = {
                           args: [
@@ -1110,7 +1110,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 $steps["showToastForDoNothing"] = !(
                   $state.profile?.data?.data?.biography?.trim() !==
                     $state.biography.trim() ||
-                  $state.apiNotifyCell.data[0].notify_cell?.trim() !==
+                  $state.apiNotifyCell?.data[0]?.notify_cell?.trim() !==
                     $state.notifyCell.value ||
                   $state.auth.data.data.national_code !==
                     $state.nationalCode.value
@@ -1479,7 +1479,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 $steps["apiUpdateNotifyCell"] =
                   $state.notifyCell.value !== "" &&
                   $state.notifyCell.value !==
-                    $state.apiNotifyCell.data[0].notify_cell
+                    $state.apiNotifyCell?.data[0]?.notify_cell
                     ? (() => {
                         const actionArgs = {
                           args: [
@@ -1619,9 +1619,9 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   ($state.profile?.data?.data?.biography.trim() !==
                     $state.biography?.trim() &&
                     $state.biography !== "") ||
-                  ($state.apiNotifyCell.data[0].notify_cell.trim() !==
-                    $state.notifyCell.value.trim() &&
-                    $state.notify_cell.value !== "")
+                  ($state.apiNotifyCell?.data[0]?.notify_cell?.trim() !==
+                    $state.notifyCell?.value.trim() &&
+                    $state.notify_cell?.value !== "")
                     ? (() => {
                         const actionArgs = {
                           tplRef: "profile",
