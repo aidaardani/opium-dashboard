@@ -5410,7 +5410,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
                               const centerId = $state.centersApi.data.data.find(
                                 item => item.type_id == 1
                               ).id;
-                              return `http://apigw.paziresh24.com/v1/doctor/contact-details/${centerId}`;
+                              return `https://apigw.paziresh24.com/v1/doctor/contact-details/${centerId}`;
                             })();
                           } catch (e) {
                             if (
