@@ -238,7 +238,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.apiRequest?.data?.providers[0]?.notify_cell;
+              return $state.apiRequest.data[0].notify_cell;
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -4947,7 +4947,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                                       $state.centersApi.data.data.find(
                                         item => item.type_id == 1
                                       ).id;
-                                    return `https://api.paziresh24.com/V1/doctor/centers/${centerId}`;
+                                    return `http://apigw.paziresh24.com/v1/doctor/contact-details/${centerId}`;
                                   })();
                                 } catch (e) {
                                   if (
@@ -5023,6 +5023,51 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                       typeof $steps["centerMutation"].then === "function"
                     ) {
                       $steps["centerMutation"] = await $steps["centerMutation"];
+                    }
+
+                    $steps["updateNotifyCell"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "PATCH",
+                              "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/UpdateNotifyCell",
+                              undefined,
+                              (() => {
+                                try {
+                                  return {
+                                    notifyCell:
+                                      $state.notifyCell.notifyCellValue.replace(
+                                        /^0/,
+                                        ""
+                                      )
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateNotifyCell"] != null &&
+                      typeof $steps["updateNotifyCell"] === "object" &&
+                      typeof $steps["updateNotifyCell"].then === "function"
+                    ) {
+                      $steps["updateNotifyCell"] = await $steps[
+                        "updateNotifyCell"
+                      ];
                     }
 
                     $steps["updateIsLoadingSave2"] = true

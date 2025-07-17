@@ -381,7 +381,7 @@ function PlasmicProfile__RenderFunc(props: {
                   "__wab_instance",
                   sty.accordionItem__ajgb1
                 )}
-                id={"88"}
+                id={"8"}
                 label2={
                   <Stack__
                     as={"div"}

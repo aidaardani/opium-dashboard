@@ -502,6 +502,71 @@ function PlasmicProfileHead__RenderFunc(props: {
                       $steps["toast"] = await $steps["toast"];
                     }
 
+                    $steps["toastUnsuccessfull"] =
+                      $steps.uploadImage.status == 413
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "error",
+                                "\u0633\u0627\u06cc\u0632 \u0639\u06a9\u0633 \u0628\u0633\u06cc\u0627\u0631 \u0628\u0632\u0631\u06af \u0627\u0633\u062a."
+                              ]
+                            };
+                            return $globalActions["Fragment.showToast"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["toastUnsuccessfull"] != null &&
+                      typeof $steps["toastUnsuccessfull"] === "object" &&
+                      typeof $steps["toastUnsuccessfull"].then === "function"
+                    ) {
+                      $steps["toastUnsuccessfull"] = await $steps[
+                        "toastUnsuccessfull"
+                      ];
+                    }
+
+                    $steps["cleanUp"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "POST",
+                              "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/Cleanup",
+                              undefined,
+                              (() => {
+                                try {
+                                  return {
+                                    doctor_id: $state.profile.data.data.id,
+                                    server_id: 1
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["cleanUp"] != null &&
+                      typeof $steps["cleanUp"] === "object" &&
+                      typeof $steps["cleanUp"].then === "function"
+                    ) {
+                      $steps["cleanUp"] = await $steps["cleanUp"];
+                    }
+
                     $steps["runActionOnProfile"] =
                       $steps.uploadImage.status == 200
                         ? (() => {

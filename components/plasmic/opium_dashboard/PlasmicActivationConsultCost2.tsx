@@ -731,9 +731,9 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
               {(() => {
                 try {
                   return (
-                    "سهم پذیرش۲۴‌: " +
+                    "سهم ‌‌شما: " +
                     new Intl.NumberFormat("fa-IR").format(
-                      0.3 *
+                      0.7 *
                         ($state.select.value === "custom"
                           ? $state.input.value
                           : $state.select.value)

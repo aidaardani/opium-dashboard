@@ -207,6 +207,19 @@ function PlasmicProfileNotifyCell__RenderFunc(props: {
       <ApiRequest
         data-plasmic-name={"apiRequest"}
         data-plasmic-override={overrides.apiRequest}
+        body={(() => {
+          try {
+            return undefined;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
         className={classNames("__wab_instance", sty.apiRequest)}
         errorDisplay={null}
         loadingDisplay={
@@ -274,7 +287,7 @@ function PlasmicProfileNotifyCell__RenderFunc(props: {
         ref={ref => {
           $refs["apiRequest"] = ref;
         }}
-        url={"https://apigw.paziresh24.com/v1/providers/1494238/notify-cell"}
+        url={"https://apigw.paziresh24.com/v1/n8n-nelson/webhook/GetNotifyCell"}
       >
         <Input
           data-plasmic-name={"notifyCell"}

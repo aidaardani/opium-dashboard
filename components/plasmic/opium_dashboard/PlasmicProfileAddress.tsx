@@ -4137,8 +4137,10 @@ function PlasmicProfileAddress__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.centersApi.data.data.find(item => item.type_id == 1)
-                .address;
+              return $state.centersApi.data.data
+                .find(item => item.type_id == 1)
+                .address.replace(/<p>/g, "")
+                .replace(/<\/p>/g, "");
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -5408,7 +5410,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
                               const centerId = $state.centersApi.data.data.find(
                                 item => item.type_id == 1
                               ).id;
-                              return `https://api.paziresh24.com/V1/doctor/centers/${centerId}`;
+                              return `http://apigw.paziresh24.com/v1/doctor/contact-details/${centerId}`;
                             })();
                           } catch (e) {
                             if (

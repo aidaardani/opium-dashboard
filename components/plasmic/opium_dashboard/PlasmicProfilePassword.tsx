@@ -537,7 +537,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
                 $steps["updateIsLoading"] = await $steps["updateIsLoading"];
               }
 
-              $steps["invokeGlobalAction"] = !$state.authApi.data.data
+              $steps["enabelStaticPassword"] = !$state.authApi.data.data
                 .is_static_password_enabled
                 ? (() => {
                     const actionArgs = {
@@ -552,16 +552,16 @@ function PlasmicProfilePassword__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["invokeGlobalAction"] != null &&
-                typeof $steps["invokeGlobalAction"] === "object" &&
-                typeof $steps["invokeGlobalAction"].then === "function"
+                $steps["enabelStaticPassword"] != null &&
+                typeof $steps["enabelStaticPassword"] === "object" &&
+                typeof $steps["enabelStaticPassword"].then === "function"
               ) {
-                $steps["invokeGlobalAction"] = await $steps[
-                  "invokeGlobalAction"
+                $steps["enabelStaticPassword"] = await $steps[
+                  "enabelStaticPassword"
                 ];
               }
 
-              $steps["invokeGlobalAction2"] = true
+              $steps["changeStaticPassword"] = true
                 ? (() => {
                     const actionArgs = {
                       args: [
@@ -601,13 +601,127 @@ function PlasmicProfilePassword__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["invokeGlobalAction2"] != null &&
-                typeof $steps["invokeGlobalAction2"] === "object" &&
-                typeof $steps["invokeGlobalAction2"].then === "function"
+                $steps["changeStaticPassword"] != null &&
+                typeof $steps["changeStaticPassword"] === "object" &&
+                typeof $steps["changeStaticPassword"].then === "function"
               ) {
-                $steps["invokeGlobalAction2"] = await $steps[
-                  "invokeGlobalAction2"
+                $steps["changeStaticPassword"] = await $steps[
+                  "changeStaticPassword"
                 ];
+              }
+
+              $steps["showToast"] =
+                $steps.changeStaticPassword.data.status === "FAILED"
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "error",
+                          (() => {
+                            try {
+                              return $steps.changeStaticPassword.data
+                                .message ===
+                                "تکمیل گزینه old password الزامی است"
+                                ? "رمز عبور قبلی را وارد کنید"
+                                : $steps.changeStaticPassword.data.message;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+              if (
+                $steps["showToast"] != null &&
+                typeof $steps["showToast"] === "object" &&
+                typeof $steps["showToast"].then === "function"
+              ) {
+                $steps["showToast"] = await $steps["showToast"];
+              }
+
+              $steps["showSuccessToast"] =
+                $steps.changeStaticPassword.data.message ===
+                "static password changed."
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          undefined,
+                          (() => {
+                            try {
+                              return $steps.changeStaticPassword.data
+                                .message === "static password changed."
+                                ? "رمز عبور با موفقیت ویرایش شد."
+                                : $steps.changeStaticPassword.data.message;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+              if (
+                $steps["showSuccessToast"] != null &&
+                typeof $steps["showSuccessToast"] === "object" &&
+                typeof $steps["showSuccessToast"].then === "function"
+              ) {
+                $steps["showSuccessToast"] = await $steps["showSuccessToast"];
+              }
+
+              $steps["showUnsuccessfull"] =
+                $steps.changeStaticPassword.data.message ===
+                "old password is incorrect."
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "error",
+                          (() => {
+                            try {
+                              return $steps.changeStaticPassword.data
+                                .message === "old password is incorrect."
+                                ? "رمز عبور قبلی اشتباه است."
+                                : $steps.changeStaticPassword.data.message;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+              if (
+                $steps["showUnsuccessfull"] != null &&
+                typeof $steps["showUnsuccessfull"] === "object" &&
+                typeof $steps["showUnsuccessfull"].then === "function"
+              ) {
+                $steps["showUnsuccessfull"] = await $steps["showUnsuccessfull"];
               }
 
               $steps["updateIsLoading2"] = true
@@ -639,14 +753,13 @@ function PlasmicProfilePassword__RenderFunc(props: {
                 $steps["updateIsLoading2"] = await $steps["updateIsLoading2"];
               }
 
-              $steps["invokeGlobalAction3"] = !!$steps.invokeGlobalAction.data
-                .message
+              $steps["showToast2"] = !!$steps.enabelStaticPassword.data.message
                 ? (() => {
                     const actionArgs = {
                       args: [
                         (() => {
                           try {
-                            return $steps.invokeGlobalAction.data.message
+                            return $steps.enabelStaticPassword.data.message
                               ? "success"
                               : "error";
                           } catch (e) {
@@ -661,7 +774,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
                         })(),
                         (() => {
                           try {
-                            return $steps.invokeGlobalAction.data.message;
+                            return $steps.enabelStaticPassword.data.message;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -680,13 +793,11 @@ function PlasmicProfilePassword__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["invokeGlobalAction3"] != null &&
-                typeof $steps["invokeGlobalAction3"] === "object" &&
-                typeof $steps["invokeGlobalAction3"].then === "function"
+                $steps["showToast2"] != null &&
+                typeof $steps["showToast2"] === "object" &&
+                typeof $steps["showToast2"].then === "function"
               ) {
-                $steps["invokeGlobalAction3"] = await $steps[
-                  "invokeGlobalAction3"
-                ];
+                $steps["showToast2"] = await $steps["showToast2"];
               }
 
               $steps["sendEvent"] = true

@@ -73,6 +73,7 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJ
 import sty from "./PlasmicActivationFinish.module.css"; // plasmic-import: mPvOWIDs-DaE/css
 
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
+import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 import TelegramIcon from "../fragment_icons/icons/PlasmicIcon__Telegram"; // plasmic-import: vu4uxcIH4gVk/icon
 import EitaaIcon from "../fragment_icons/icons/PlasmicIcon__Eitaa"; // plasmic-import: qxWwW7vbw7na/icon
 
@@ -379,10 +380,81 @@ function PlasmicActivationFinish__RenderFunc(props: {
                     />
                   </div>
                 </div>
-                <div
-                  className={classNames(projectcss.all, sty.freeBox__bnBis)}
-                />
+                <div className={classNames(projectcss.all, sty.freeBox__bnBis)}>
+                  <Button
+                    children2={
+                      "\u062a\u06a9\u0645\u06cc\u0644 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u067e\u0631\u0648\u0641\u0627\u06cc\u0644"
+                    }
+                    className={classNames("__wab_instance", sty.button__frbtU)}
+                    onClick={async event => {
+                      const $steps = {};
 
+                      $steps["sendLog"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return {
+                                      event_group: "EditProfile",
+                                      data: { UserID: $ctx.query.userId },
+                                      event_type:
+                                        "Click-EditProfileButton-ActivaionFinishPage"
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendLog"] != null &&
+                        typeof $steps["sendLog"] === "object" &&
+                        typeof $steps["sendLog"].then === "function"
+                      ) {
+                        $steps["sendLog"] = await $steps["sendLog"];
+                      }
+
+                      $steps["goToPage"] = true
+                        ? (() => {
+                            const actionArgs = { destination: `/profile-page` };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["goToPage"] != null &&
+                        typeof $steps["goToPage"] === "object" &&
+                        typeof $steps["goToPage"].then === "function"
+                      ) {
+                        $steps["goToPage"] = await $steps["goToPage"];
+                      }
+                    }}
+                  />
+                </div>
                 <Stack__
                   as={"div"}
                   hasGap={true}
