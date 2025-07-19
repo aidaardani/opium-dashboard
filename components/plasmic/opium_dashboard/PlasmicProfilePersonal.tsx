@@ -528,6 +528,81 @@ function PlasmicProfilePersonal__RenderFunc(props: {
               ) {
                 $steps["updateBiography"] = await $steps["updateBiography"];
               }
+
+              $steps["defaultBio"] = (
+                !$state.biography &&
+                $state.profile.data.data.name &&
+                $state.profile.data.data.family &&
+                $state.profile.data.data.medical_code
+                  ? true
+                  : false
+              )
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "GET",
+                        "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/DefaultBio",
+                        (() => {
+                          try {
+                            return {
+                              UserNameFamily: $state.profile.data.data.name,
+                              UserFamily: $state.profile.data.data.family,
+                              McCode: $state.profile.data.data.medical_code
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })(),
+                        undefined
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+              if (
+                $steps["defaultBio"] != null &&
+                typeof $steps["defaultBio"] === "object" &&
+                typeof $steps["defaultBio"].then === "function"
+              ) {
+                $steps["defaultBio"] = await $steps["defaultBio"];
+              }
+
+              $steps["updateBiography2"] = !$state.biography
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["biography"]
+                      },
+                      operation: 0,
+                      value: $steps.defaultBio.data.content
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateBiography2"] != null &&
+                typeof $steps["updateBiography2"] === "object" &&
+                typeof $steps["updateBiography2"].then === "function"
+              ) {
+                $steps["updateBiography2"] = await $steps["updateBiography2"];
+              }
             }).apply(null, eventArgs);
           }}
           ref={ref => {
@@ -1389,8 +1464,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                                 return {
                                   biography: $state.biography,
                                   employee_id:
-                                    $state.profile.data.data.medical_code,
-                                  notify_cell: $state.notifyCell.value
+                                    $state.profile.data.data.medical_code
                                 };
                               } catch (e) {
                                 if (
