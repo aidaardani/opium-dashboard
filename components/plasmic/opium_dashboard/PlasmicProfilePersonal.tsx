@@ -1119,7 +1119,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
               try {
                 return (
                   $state.defaultBio !== "بیوگرافی یافت نشد" &&
-                  $state.biography != ""
+                  $state.profile?.data?.data?.biography == ""
                 );
               } catch (e) {
                 if (

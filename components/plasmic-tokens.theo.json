@@ -153,7 +153,7 @@
     {
       "name": "Brand/Brand-Foreground",
       "type": "color",
-      "value": "#EFF6FF",
+      "value": "#EFF6FF80",
       "category": "color",
       "meta": {
         "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
@@ -1333,7 +1333,7 @@
     {
       "name": "System: Info Bg",
       "type": "color",
-      "value": "var(--antd-colorInfoBg)",
+      "value": "#EFF6FF80",
       "category": "color",
       "meta": {
         "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
