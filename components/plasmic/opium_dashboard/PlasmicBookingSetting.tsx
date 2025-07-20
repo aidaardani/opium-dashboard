@@ -111,7 +111,6 @@ export type PlasmicBookingSetting__OverridesType = {
   paymentTotal?: Flex__<typeof PaymentTotal>;
   runCodeGtmMetrica?: Flex__<typeof SideEffect>;
   gtm?: Flex__<typeof Embed>;
-  apiGetmoshir?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultBookingSettingProps {}
@@ -329,30 +328,6 @@ function PlasmicBookingSetting__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "centers"
-      },
-      {
-        path: "apiGetmoshir.data",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "apiGetmoshir"
-      },
-      {
-        path: "apiGetmoshir.error",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "apiGetmoshir"
-      },
-      {
-        path: "apiGetmoshir.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "apiGetmoshir"
       }
     ],
     [$props, $ctx, $refs]
@@ -513,9 +488,19 @@ function PlasmicBookingSetting__RenderFunc(props: {
               ref={ref => {
                 $refs["centers"] = ref;
               }}
-              url={
-                "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/allcenters"
-              }
+              url={(() => {
+                try {
+                  return `https://apigw.paziresh24.com/v1/doctor/${$ctx.query.user_id}/centers`;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
             />
 
             <SideEffect
@@ -539,11 +524,11 @@ function PlasmicBookingSetting__RenderFunc(props: {
                               return {
                                 key: "booking:booking_date_range",
                                 userid: $ctx.query?.user_id,
-                                centerid: $state.centers?.data?.data?.find(
+                                centerid: $state.centers?.data?.items?.find(
                                   center =>
                                     center.id !== "5532" &&
-                                    center.type_id === 1 &&
-                                    center.is_active_booking
+                                    center.center_type === 1 &&
+                                    center.disable_booking === false
                                 ).id
                               };
                             } catch (e) {
@@ -621,11 +606,11 @@ function PlasmicBookingSetting__RenderFunc(props: {
                               return {
                                 key: "booking:delay_to_delete_book_refund",
                                 userid: $ctx.query?.user_id,
-                                centerid: $state.centers.data.data.find(
+                                centerid: $state.centers?.data?.items?.find(
                                   center =>
                                     center.id !== "5532" &&
-                                    center.type_id === 1 &&
-                                    center.is_active_booking
+                                    center.center_type === 1 &&
+                                    center.disable_booking === false
                                 ).id
                               };
                             } catch (e) {
@@ -705,11 +690,11 @@ function PlasmicBookingSetting__RenderFunc(props: {
                               return {
                                 key: "booking:activate_online_payment",
                                 userid: $ctx.query?.user_id,
-                                centerid: $state.centers.data.data.find(
+                                centerid: $state.centers?.data?.items?.find(
                                   center =>
                                     center.id !== "5532" &&
-                                    center.type_id === 1 &&
-                                    center.is_active_booking
+                                    center.center_type === 1 &&
+                                    center.disable_booking === false
                                 ).id
                               };
                             } catch (e) {
@@ -787,11 +772,11 @@ function PlasmicBookingSetting__RenderFunc(props: {
                               return {
                                 group: "settings",
                                 userid: $ctx.query?.user_id,
-                                centerid: $state.centers.data.data.find(
+                                centerid: $state.centers?.data?.items?.find(
                                   center =>
                                     center.id !== "5532" &&
-                                    center.type_id === 1 &&
-                                    center.is_active_booking
+                                    center.center_type === 1 &&
+                                    center.disable_booking === false
                                 ).id,
                                 type: "load-page"
                               };
@@ -867,11 +852,11 @@ function PlasmicBookingSetting__RenderFunc(props: {
               </div>
               {(() => {
                 try {
-                  return $state.centers.data.data.some(
+                  return $state.centers?.data?.items?.find(
                     center =>
                       center.id !== "5532" &&
-                      center.type_id === 1 &&
-                      center.is_active_booking
+                      center.center_type === 1 &&
+                      center.disable_booking === false
                   );
                 } catch (e) {
                   if (
@@ -1756,11 +1741,11 @@ function PlasmicBookingSetting__RenderFunc(props: {
                 try {
                   return (
                     $state.settingBookingPaymentStatus[0].value == 1 &&
-                    $state.centers.data.data.some(
+                    $state.centers?.data?.items?.find(
                       center =>
                         center.id !== "5532" &&
-                        center.type_id === 1 &&
-                        center.is_active_booking
+                        center.center_type === 1 &&
+                        center.disable_booking === false
                     )
                   );
                 } catch (e) {
@@ -2382,77 +2367,100 @@ function PlasmicBookingSetting__RenderFunc(props: {
                   })()}
                 </div>
               ) : null}
-              {(() => {
-                try {
-                  return (
-                    $state.centers.data.data.some(
-                      center => center.id === "5532" && center.is_active_booking
-                    ) ||
-                    [
-                      "4595386",
-                      "326636",
-                      "16266569",
-                      "6688061",
-                      "7291112",
-                      "1143749",
-                      "4032102",
-                      "3480790",
-                      "3967156",
-                      "5149629",
-                      "2306391",
-                      "4042914",
-                      "4137981",
-                      "5050715",
-                      "308221",
-                      "17169317",
-                      "3574718",
-                      "487696",
-                      "5062083",
-                      "4107220",
-                      "1188775",
-                      "16908467",
-                      "15494837",
-                      "1937620",
-                      "16199910",
-                      "17499349",
-                      "2848780",
-                      "4094747",
-                      "6719828",
-                      "14572237",
-                      "3135655",
-                      "17582988",
-                      "17009191"
-                    ].includes($ctx.query.user_id)
-                  );
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <div
-                  data-plasmic-name={"paymentSetting"}
-                  data-plasmic-override={overrides.paymentSetting}
-                  className={classNames(projectcss.all, sty.paymentSetting)}
-                  dir={"rtl"}
-                  onClick={async event => {
-                    const $steps = {};
+              <div
+                data-plasmic-name={"paymentSetting"}
+                data-plasmic-override={overrides.paymentSetting}
+                className={classNames(projectcss.all, sty.paymentSetting)}
+                dir={"rtl"}
+                onClick={async event => {
+                  const $steps = {};
 
-                    $steps["sendEvent"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              (() => {
+                  $steps["sendEvent"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  group: "settings",
+                                  userid: $ctx.query.user_id,
+                                  type: "click-accordion-payment-setting"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendEvent"] != null &&
+                    typeof $steps["sendEvent"] === "object" &&
+                    typeof $steps["sendEvent"].then === "function"
+                  ) {
+                    $steps["sendEvent"] = await $steps["sendEvent"];
+                  }
+                }}
+              >
+                {(() => {
+                  const child$Props = {
+                    activeKey: generateStateValueProp($state, [
+                      "accordion2",
+                      "activePanelId"
+                    ]),
+                    bordered: true,
+                    className: classNames("__wab_instance", sty.accordion2),
+                    items: (
+                      <React.Fragment>
+                        <AntdAccordionItem
+                          className={classNames(
+                            "__wab_instance",
+                            sty.accordionItem___5EhKh
+                          )}
+                          id={1}
+                          label2={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__oyvci
+                              )}
+                            >
+                              {
+                                "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u062a\u0633\u0648\u06cc\u0647 \u062d\u0633\u0627\u0628"
+                              }
+                            </div>
+                          }
+                          showArrow={true}
+                        >
+                          <Stack__
+                            as={"div"}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__tdVUz
+                            )}
+                          >
+                            <PaymentTotal
+                              data-plasmic-name={"paymentTotal"}
+                              data-plasmic-override={overrides.paymentTotal}
+                              className={classNames(
+                                "__wab_instance",
+                                sty.paymentTotal
+                              )}
+                              userId={(() => {
                                 try {
-                                  return {
-                                    group: "settings",
-                                    userid: $ctx.query.user_id,
-                                    type: "click-accordion-payment-setting"
-                                  };
+                                  return $ctx.query.user_id;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -2463,151 +2471,74 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                   }
                                   throw e;
                                 }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Splunk.sendLog"]?.apply(null, [
-                            ...actionArgs.args
-                          ]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["sendEvent"] != null &&
-                      typeof $steps["sendEvent"] === "object" &&
-                      typeof $steps["sendEvent"].then === "function"
-                    ) {
-                      $steps["sendEvent"] = await $steps["sendEvent"];
-                    }
-                  }}
-                >
-                  {(() => {
-                    const child$Props = {
-                      activeKey: generateStateValueProp($state, [
-                        "accordion2",
-                        "activePanelId"
-                      ]),
-                      bordered: true,
-                      className: classNames("__wab_instance", sty.accordion2),
-                      items: (
-                        <React.Fragment>
-                          <AntdAccordionItem
-                            className={classNames(
-                              "__wab_instance",
-                              sty.accordionItem___5EhKh
-                            )}
-                            id={1}
-                            label2={
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__oyvci
-                                )}
-                              >
-                                {
-                                  "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u062a\u0633\u0648\u06cc\u0647 \u062d\u0633\u0627\u0628"
-                                }
-                              </div>
-                            }
-                            showArrow={true}
-                          >
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__tdVUz
-                              )}
-                            >
-                              <PaymentTotal
-                                data-plasmic-name={"paymentTotal"}
-                                data-plasmic-override={overrides.paymentTotal}
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.paymentTotal
-                                )}
-                                userId={(() => {
-                                  try {
-                                    return $ctx.query.user_id;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                              />
-                            </Stack__>
-                          </AntdAccordionItem>
-                          <AntdAccordionItem
-                            className={classNames(
-                              "__wab_instance",
-                              sty.accordionItem__nC8Bb
-                            )}
-                            id={2}
-                            label2={
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__zBD
-                                )}
-                              >
-                                {
-                                  "\u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a \u0622\u06cc\u0646\u062f\u0647"
-                                }
-                              </div>
-                            }
-                            showArrow={true}
-                          >
+                              })()}
+                            />
+                          </Stack__>
+                        </AntdAccordionItem>
+                        <AntdAccordionItem
+                          className={classNames(
+                            "__wab_instance",
+                            sty.accordionItem__nC8Bb
+                          )}
+                          id={2}
+                          label2={
                             <div
                               className={classNames(
                                 projectcss.all,
                                 projectcss.__wab_text,
-                                sty.text___4Uke4
+                                sty.text__zBD
                               )}
                             >
-                              {"Second Children"}
+                              {
+                                "\u0645\u062d\u062f\u0648\u062f\u06cc\u062a \u0631\u0632\u0631\u0648 \u0646\u0648\u0628\u062a \u0622\u06cc\u0646\u062f\u0647"
+                              }
                             </div>
-                          </AntdAccordionItem>
-                        </React.Fragment>
-                      ),
-                      onChange: async (...eventArgs: any) => {
-                        generateStateOnChangePropForCodeComponents(
-                          $state,
-                          "activePanelId",
-                          ["accordion2", "activePanelId"],
-                          AntdAccordion_Helpers
-                        ).apply(null, eventArgs);
+                          }
+                          showArrow={true}
+                        >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text___4Uke4
+                            )}
+                          >
+                            {"Second Children"}
+                          </div>
+                        </AntdAccordionItem>
+                      </React.Fragment>
+                    ),
+                    onChange: async (...eventArgs: any) => {
+                      generateStateOnChangePropForCodeComponents(
+                        $state,
+                        "activePanelId",
+                        ["accordion2", "activePanelId"],
+                        AntdAccordion_Helpers
+                      ).apply(null, eventArgs);
+                    }
+                  };
+                  initializeCodeComponentStates(
+                    $state,
+                    [
+                      {
+                        name: "activePanelId",
+                        plasmicStateName: "accordion2.activePanelId"
                       }
-                    };
-                    initializeCodeComponentStates(
-                      $state,
-                      [
-                        {
-                          name: "activePanelId",
-                          plasmicStateName: "accordion2.activePanelId"
-                        }
-                      ],
-                      [],
-                      AntdAccordion_Helpers ?? {},
-                      child$Props
-                    );
+                    ],
+                    [],
+                    AntdAccordion_Helpers ?? {},
+                    child$Props
+                  );
 
-                    return (
-                      <AntdAccordion
-                        data-plasmic-name={"accordion2"}
-                        data-plasmic-override={overrides.accordion2}
-                        {...child$Props}
-                      />
-                    );
-                  })()}
-                </div>
-              ) : null}
+                  return (
+                    <AntdAccordion
+                      data-plasmic-name={"accordion2"}
+                      data-plasmic-override={overrides.accordion2}
+                      {...child$Props}
+                    />
+                  );
+                })()}
+              </div>
             </Stack__>
             <SideEffect
               data-plasmic-name={"runCodeGtmMetrica"}
@@ -2714,12 +2645,11 @@ function PlasmicBookingSetting__RenderFunc(props: {
 
             {(() => {
               try {
-                return !$state.centers.data.data.some(
+                return !$state.centers?.data?.items?.find(
                   center =>
-                    (center.id !== "5532" &&
-                      center.type_id === 1 &&
-                      center.is_active_booking) ||
-                    (center.id === "5532" && center.is_active_booking)
+                    center.id !== "5532" &&
+                    center.center_type === 1 &&
+                    center.disable_booking === false
                 );
               } catch (e) {
                 if (
@@ -2745,58 +2675,6 @@ function PlasmicBookingSetting__RenderFunc(props: {
                 </div>
               </div>
             ) : null}
-            <ApiRequest
-              data-plasmic-name={"apiGetmoshir"}
-              data-plasmic-override={overrides.apiGetmoshir}
-              className={classNames("__wab_instance", sty.apiGetmoshir)}
-              errorDisplay={
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__sCqh2
-                  )}
-                >
-                  {"Error fetching data"}
-                </div>
-              }
-              loadingDisplay={
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__tQS
-                  )}
-                >
-                  {"Loading..."}
-                </div>
-              }
-              method={"GET"}
-              onError={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "apiGetmoshir",
-                  "error"
-                ]).apply(null, eventArgs);
-              }}
-              onLoading={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "apiGetmoshir",
-                  "loading"
-                ]).apply(null, eventArgs);
-              }}
-              onSuccess={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "apiGetmoshir",
-                  "data"
-                ]).apply(null, eventArgs);
-              }}
-              ref={ref => {
-                $refs["apiGetmoshir"] = ref;
-              }}
-              url={
-                "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-moshir-members"
-              }
-            />
           </div>
         ) : null}
       </div>
@@ -2822,8 +2700,7 @@ const PlasmicDescendants = {
     "accordion2",
     "paymentTotal",
     "runCodeGtmMetrica",
-    "gtm",
-    "apiGetmoshir"
+    "gtm"
   ],
   growthbook: ["growthbook"],
   centers: ["centers"],
@@ -2844,8 +2721,7 @@ const PlasmicDescendants = {
   accordion2: ["accordion2", "paymentTotal"],
   paymentTotal: ["paymentTotal"],
   runCodeGtmMetrica: ["runCodeGtmMetrica"],
-  gtm: ["gtm"],
-  apiGetmoshir: ["apiGetmoshir"]
+  gtm: ["gtm"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -2868,7 +2744,6 @@ type NodeDefaultElementType = {
   paymentTotal: typeof PaymentTotal;
   runCodeGtmMetrica: typeof SideEffect;
   gtm: typeof Embed;
-  apiGetmoshir: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -2949,7 +2824,6 @@ export const PlasmicBookingSetting = Object.assign(
     paymentTotal: makeNodeComponent("paymentTotal"),
     runCodeGtmMetrica: makeNodeComponent("runCodeGtmMetrica"),
     gtm: makeNodeComponent("gtm"),
-    apiGetmoshir: makeNodeComponent("apiGetmoshir"),
 
     // Metadata about props expected for PlasmicBookingSetting
     internalVariantProps: PlasmicBookingSetting__VariantProps,

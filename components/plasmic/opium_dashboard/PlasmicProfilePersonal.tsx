@@ -401,6 +401,12 @@ function PlasmicProfilePersonal__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "defaultBio",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -602,6 +608,37 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 typeof $steps["updateBiography2"].then === "function"
               ) {
                 $steps["updateBiography2"] = await $steps["updateBiography2"];
+              }
+
+              $steps["updateDefaultBIo"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["defaultBio"]
+                      },
+                      operation: 0,
+                      value:
+                        $steps.defaultBio.data.content ||
+                        $steps.defaultBio.data.message
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateDefaultBIo"] != null &&
+                typeof $steps["updateDefaultBIo"] === "object" &&
+                typeof $steps["updateDefaultBIo"].then === "function"
+              ) {
+                $steps["updateDefaultBIo"] = await $steps["updateDefaultBIo"];
               }
             }).apply(null, eventArgs);
           }}
@@ -1078,6 +1115,34 @@ function PlasmicProfilePersonal__RenderFunc(props: {
               ]}
             />
 
+            {(() => {
+              try {
+                return (
+                  $state.defaultBio !== "بیوگرافی یافت نشد" &&
+                  $state.biography != ""
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })() ? (
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__v9Rqn
+                )}
+              >
+                {
+                  "(\u0627\u06cc\u0646 \u0645\u062a\u0646 \u062a\u0648\u0633\u0637 \u0647\u0648\u0634 \u0645\u0646\u0635\u0648\u0639\u06cc \u0628\u0647 \u0635\u0648\u0631\u062a \u067e\u06cc\u0634 \u0641\u0631\u0636 \u062a\u062f\u0648\u06cc\u0646 \u0634\u062f\u0647 \u0627\u0633\u062a\u060c \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u0622\u0646 \u0631\u0627 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u0648 \u0628\u0631\u0627\u06cc \u0646\u0645\u0627\u06cc\u0634 \u062f\u0631 \u0633\u0627\u06cc\u062a \u0630\u062e\u06cc\u0631\u0647 \u06a9\u0646\u06cc\u062f.)"
+                }
+              </div>
+            ) : null}
             <Button
               data-plasmic-name={"button"}
               data-plasmic-override={overrides.button}
