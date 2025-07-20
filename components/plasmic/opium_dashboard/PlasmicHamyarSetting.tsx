@@ -91,8 +91,6 @@ export type PlasmicHamyarSetting__OverridesType = {
   hamyar?: Flex__<"div">;
   apiRequest?: Flex__<typeof ApiRequest>;
   hamyarCell?: Flex__<typeof Input>;
-  apiGetNotifyCell?: Flex__<typeof ApiRequest>;
-  apiGetHamyarCell?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultHamyarSettingProps {}
@@ -144,70 +142,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
         path: "hamyarCell.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
-          (() => {
-            try {
-              return $state.apiGetHamyarCell.data.message === "همیاری یافت نشد."
-                ? $state.apiGetNotifyCell.data[0].notify_cell
-                : $state.apiGetHamyarCell.data.hamyar_cell || "";
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()
-      },
-      {
-        path: "apiGetNotifyCell.data",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "apiGetNotifyCell"
-      },
-      {
-        path: "apiGetNotifyCell.error",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "apiGetNotifyCell"
-      },
-      {
-        path: "apiGetNotifyCell.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "apiGetNotifyCell"
-      },
-      {
-        path: "apiGetHamyarCell.data",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "apiGetHamyarCell"
-      },
-      {
-        path: "apiGetHamyarCell.error",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "apiGetHamyarCell"
-      },
-      {
-        path: "apiGetHamyarCell.loading",
-        type: "private",
-        variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
-
-        refName: "apiGetHamyarCell"
+        initFunc: ({ $props, $state, $queries, $ctx }) => ``
       },
       {
         path: "loading",
@@ -353,6 +288,136 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                   null,
                   eventArgs
                 );
+
+                (async data => {
+                  const $steps = {};
+
+                  $steps["paziresh24NotifyCell"] = !!$state.apiRequest.data
+                    .token
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            undefined,
+                            "https://apigw.paziresh24.com/open-platform/v1/nelson/notify-cell",
+                            undefined,
+                            undefined,
+                            (() => {
+                              try {
+                                return {
+                                  headers: {
+                                    Authorization:
+                                      "Bearer " + $state.apiRequest.data.token
+                                  }
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["paziresh24NotifyCell"] != null &&
+                    typeof $steps["paziresh24NotifyCell"] === "object" &&
+                    typeof $steps["paziresh24NotifyCell"].then === "function"
+                  ) {
+                    $steps["paziresh24NotifyCell"] = await $steps[
+                      "paziresh24NotifyCell"
+                    ];
+                  }
+
+                  $steps["hamyarCell"] = !!$state.apiRequest.data.token
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            undefined,
+                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/hamyar-cell",
+                            undefined,
+                            undefined,
+                            (() => {
+                              try {
+                                return {
+                                  headers: {
+                                    Authorization:
+                                      "Bearer " + $state.apiRequest.data.token
+                                  }
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                  if (
+                    $steps["hamyarCell"] != null &&
+                    typeof $steps["hamyarCell"] === "object" &&
+                    typeof $steps["hamyarCell"].then === "function"
+                  ) {
+                    $steps["hamyarCell"] = await $steps["hamyarCell"];
+                  }
+
+                  $steps["updateHamyarCellValue"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["hamyarCell", "value"]
+                          },
+                          operation: 0,
+                          value: $steps.hamyarCell?.data?.hamyar_cell
+                            ? $steps.hamyarCell?.data?.hamyar_cell
+                            : $steps.paziresh24NotifyCell?.data?.[0]
+                                ?.notify_cell ?? ""
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateHamyarCellValue"] != null &&
+                    typeof $steps["updateHamyarCellValue"] === "object" &&
+                    typeof $steps["updateHamyarCellValue"].then === "function"
+                  ) {
+                    $steps["updateHamyarCellValue"] = await $steps[
+                      "updateHamyarCellValue"
+                    ];
+                  }
+                }).apply(null, eventArgs);
               }}
               ref={ref => {
                 $refs["apiRequest"] = ref;
@@ -666,128 +731,6 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                   }}
                 />
               </div>
-              <ApiRequest
-                data-plasmic-name={"apiGetNotifyCell"}
-                data-plasmic-override={overrides.apiGetNotifyCell}
-                className={classNames("__wab_instance", sty.apiGetNotifyCell)}
-                config={(() => {
-                  try {
-                    return {
-                      headers: {
-                        Authorization: "Bearer " + $state.apiRequest.data.token
-                      }
-                    };
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
-                  }
-                })()}
-                errorDisplay={
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__lcpBl
-                    )}
-                  >
-                    {"Error fetching data"}
-                  </div>
-                }
-                loadingDisplay={
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__wuo0W
-                    )}
-                  >
-                    {"Loading..."}
-                  </div>
-                }
-                method={"GET"}
-                onError={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "apiGetNotifyCell",
-                    "error"
-                  ]).apply(null, eventArgs);
-                }}
-                onLoading={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "apiGetNotifyCell",
-                    "loading"
-                  ]).apply(null, eventArgs);
-                }}
-                onSuccess={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "apiGetNotifyCell",
-                    "data"
-                  ]).apply(null, eventArgs);
-                }}
-                ref={ref => {
-                  $refs["apiGetNotifyCell"] = ref;
-                }}
-                url={
-                  "https://apigw.paziresh24.com/open-platform/v1/nelson/notify-cell"
-                }
-              />
-
-              <ApiRequest
-                data-plasmic-name={"apiGetHamyarCell"}
-                data-plasmic-override={overrides.apiGetHamyarCell}
-                className={classNames("__wab_instance", sty.apiGetHamyarCell)}
-                errorDisplay={
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__x3J1V
-                    )}
-                  >
-                    {"Error fetching data"}
-                  </div>
-                }
-                loadingDisplay={
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text___2Y3Ef
-                    )}
-                  >
-                    {"Loading..."}
-                  </div>
-                }
-                method={"GET"}
-                onError={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "apiGetHamyarCell",
-                    "error"
-                  ]).apply(null, eventArgs);
-                }}
-                onLoading={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "apiGetHamyarCell",
-                    "loading"
-                  ]).apply(null, eventArgs);
-                }}
-                onSuccess={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "apiGetHamyarCell",
-                    "data"
-                  ]).apply(null, eventArgs);
-                }}
-                ref={ref => {
-                  $refs["apiGetHamyarCell"] = ref;
-                }}
-                url={
-                  "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/GetHamyarCell"
-                }
-              />
             </ApiRequest>
           </div>
         ) : null}
@@ -797,22 +740,9 @@ function PlasmicHamyarSetting__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  hamyar: [
-    "hamyar",
-    "apiRequest",
-    "hamyarCell",
-    "apiGetNotifyCell",
-    "apiGetHamyarCell"
-  ],
-  apiRequest: [
-    "apiRequest",
-    "hamyarCell",
-    "apiGetNotifyCell",
-    "apiGetHamyarCell"
-  ],
-  hamyarCell: ["hamyarCell"],
-  apiGetNotifyCell: ["apiGetNotifyCell"],
-  apiGetHamyarCell: ["apiGetHamyarCell"]
+  hamyar: ["hamyar", "apiRequest", "hamyarCell"],
+  apiRequest: ["apiRequest", "hamyarCell"],
+  hamyarCell: ["hamyarCell"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -821,8 +751,6 @@ type NodeDefaultElementType = {
   hamyar: "div";
   apiRequest: typeof ApiRequest;
   hamyarCell: typeof Input;
-  apiGetNotifyCell: typeof ApiRequest;
-  apiGetHamyarCell: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -887,8 +815,6 @@ export const PlasmicHamyarSetting = Object.assign(
     // Helper components rendering sub-elements
     apiRequest: makeNodeComponent("apiRequest"),
     hamyarCell: makeNodeComponent("hamyarCell"),
-    apiGetNotifyCell: makeNodeComponent("apiGetNotifyCell"),
-    apiGetHamyarCell: makeNodeComponent("apiGetHamyarCell"),
 
     // Metadata about props expected for PlasmicHamyarSetting
     internalVariantProps: PlasmicHamyarSetting__VariantProps,
