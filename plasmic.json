@@ -2983,17 +2983,31 @@
         },
         {
           "id": "1IY735SCe-vM",
-          "name": "Hamyar",
+          "name": "HamyarSetting",
           "type": "managed",
           "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
-          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicHamyar.tsx",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicHamyarSetting.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/new-page-5.tsx"
+            "modulePath": "../src/pages/hamyar/setting.tsx"
           },
-          "cssFilePath": "plasmic/opium_dashboard/PlasmicHamyar.module.css",
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicHamyarSetting.module.css",
           "scheme": "blackbox",
           "componentType": "page",
-          "path": "/new-page-5"
+          "path": "/hamyar/setting"
+        },
+        {
+          "id": "mEZS4KJMWfko",
+          "name": "HamyarLogin",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicHamyarLogin.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/hamyar/login.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicHamyarLogin.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/hamyar/login"
         }
       ],
       "icons": [
