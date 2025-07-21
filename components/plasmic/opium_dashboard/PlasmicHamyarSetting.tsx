@@ -970,6 +970,29 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                       ) {
                         $steps["error"] = await $steps["error"];
                       }
+
+                      $steps["runCode"] =
+                        $steps.success?.status == 200
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return (() => {
+                                    return window.hamdast?.widget?.addToProfile();
+                                  })();
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["runCode"] != null &&
+                        typeof $steps["runCode"] === "object" &&
+                        typeof $steps["runCode"].then === "function"
+                      ) {
+                        $steps["runCode"] = await $steps["runCode"];
+                      }
                     }}
                   />
                 ) : null}
@@ -1015,6 +1038,28 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                         typeof $steps["validation"].then === "function"
                       ) {
                         $steps["validation"] = await $steps["validation"];
+                      }
+
+                      $steps["runCode"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return (() => {
+                                  return window.hamdast?.widget?.removeFromProfile();
+                                })();
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runCode"] != null &&
+                        typeof $steps["runCode"] === "object" &&
+                        typeof $steps["runCode"].then === "function"
+                      ) {
+                        $steps["runCode"] = await $steps["runCode"];
                       }
                     }}
                     outline={true}
