@@ -5281,7 +5281,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
           }}
           url={(() => {
             try {
-              return `https://api.paziresh24.com/V1/doctor/expertises`;
+              return `https://doctors-api-cluster.paziresh24.com/V1/doctor/expertises`;
             } catch (e) {
               if (
                 e instanceof TypeError ||
