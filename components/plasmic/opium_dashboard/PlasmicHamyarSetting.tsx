@@ -1312,7 +1312,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                         const actionArgs = {
                                           args: [
                                             "PUT",
-                                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/payment",
+                                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/active",
                                             undefined,
                                             undefined,
                                             (() => {
