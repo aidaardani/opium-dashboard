@@ -1307,7 +1307,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                 }
 
                                 $steps["widgetAdded"] =
-                                  $steps.activeWidgetPopup?.event == "ACCEPTED"
+                                  $steps.activeWidgetPopup?.status == "ACCEPTED"
                                     ? (() => {
                                         const actionArgs = {
                                           args: [
