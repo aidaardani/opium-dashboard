@@ -274,10 +274,28 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                 </div>
               }
               loadingDisplay={
-                <Icon34Icon
-                  className={classNames(projectcss.all, sty.svg__xs5Sl)}
-                  role={"img"}
-                />
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__yCaXr)}
+                >
+                  <Icon34Icon
+                    className={classNames(projectcss.all, sty.svg__xs5Sl)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__hsyR7
+                    )}
+                  >
+                    {
+                      "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
+                    }
+                  </div>
+                </Stack__>
               }
               method={"POST"}
               onError={async (...eventArgs: any) => {
@@ -550,10 +568,28 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                   throw e;
                 }
               })() ? (
-                <Icon34Icon
-                  className={classNames(projectcss.all, sty.svg__l6LSj)}
-                  role={"img"}
-                />
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__q3018)}
+                >
+                  <Icon34Icon
+                    className={classNames(projectcss.all, sty.svg___5EhRf)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__n4G9D
+                    )}
+                  >
+                    {
+                      "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
+                    }
+                  </div>
+                </Stack__>
               ) : null}
               {(() => {
                 try {
@@ -1381,7 +1417,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                 const actionArgs = {
                                   args: [
                                     "PUT",
-                                    "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/payment",
+                                    "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/deactive",
                                     undefined,
                                     undefined,
                                     (() => {

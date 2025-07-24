@@ -31,11 +31,48 @@
   max-width: 100%;
   object-fit: cover;
 }
+.freeBox__yCaXr {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.freeBox__yCaXr > :global(.__wab_flex-container) {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  margin-top: calc(0px - 15px);
+  height: calc(100% + 15px);
+}
+.freeBox__yCaXr > :global(.__wab_flex-container) > *,
+.freeBox__yCaXr > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__yCaXr > :global(.__wab_flex-container) > picture > img,
+.freeBox__yCaXr
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-top: 15px;
+}
 .svg__xs5Sl {
   object-fit: cover;
   max-width: 100%;
   width: 32px;
   height: 1em;
+  flex-shrink: 0;
+}
+.text__hsyR7 {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  font-size: var(--token-6NbVMeD6zQwn);
+  font-weight: 400;
 }
 .text__pSuk0 {
   position: relative;
@@ -45,11 +82,48 @@
   min-width: 0;
   display: none;
 }
-.svg__l6LSj {
+.freeBox__q3018 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.freeBox__q3018 > :global(.__wab_flex-container) {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  margin-top: calc(0px - 15px);
+  height: calc(100% + 15px);
+}
+.freeBox__q3018 > :global(.__wab_flex-container) > *,
+.freeBox__q3018 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__q3018 > :global(.__wab_flex-container) > picture > img,
+.freeBox__q3018
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-top: 15px;
+}
+.svg___5EhRf {
   object-fit: cover;
   max-width: 100%;
   width: 32px;
   height: 1em;
+  flex-shrink: 0;
+}
+.text__n4G9D {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  font-size: var(--token-6NbVMeD6zQwn);
+  font-weight: 400;
 }
 .freeBox__oijXs {
   display: flex;
