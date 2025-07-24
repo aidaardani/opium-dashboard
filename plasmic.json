@@ -267,8 +267,7 @@
           "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "sqPBLwEBBKHA2WDuGb17eV",
@@ -1250,6 +1249,11 @@
           "id": "_Qaeb-4Y8N07",
           "name": "CheckSvgIcon",
           "moduleFilePath": "plasmic/fragment_design_system/icons/PlasmicIcon__CheckSvg.tsx"
+        },
+        {
+          "id": "usOc2d77sFG3",
+          "name": "Icon2Icon",
+          "moduleFilePath": "plasmic/fragment_design_system/icons/PlasmicIcon__Icon2.tsx"
         }
       ],
       "images": [],
@@ -1270,8 +1274,7 @@
           "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "9g1e5LLLDS4TGJiaFCSEyH",

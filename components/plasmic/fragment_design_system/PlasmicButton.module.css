@@ -358,19 +358,12 @@
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  display: none;
-}
-.svgloading {
-  display: block;
 }
 .svgloading_outline {
   color: var(--token-JDvyxAtm9ONK);
 }
-.svgloading_color_link {
-  color: var(--token-u3OudfMChOo3);
-}
 .svgloading_color_red_outline {
-  color: #e54d2e;
+  color: var(--token-1jTXKEDkeRHC);
 }
 .slotTargetChildren2 {
   color: #ededec;

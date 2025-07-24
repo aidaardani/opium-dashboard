@@ -73,6 +73,7 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicHamyarSetting.module.css"; // plasmic-import: 1IY735SCe-vM/css
 
+import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 
@@ -173,6 +174,12 @@ function PlasmicHamyarSetting__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "apiRequest"
+      },
+      {
+        path: "pageLoading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -260,15 +267,10 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                 </div>
               }
               loadingDisplay={
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__fnFai
-                  )}
-                >
-                  {"Loading..."}
-                </div>
+                <Icon34Icon
+                  className={classNames(projectcss.all, sty.svg__xs5Sl)}
+                  role={"img"}
+                />
               }
               method={"POST"}
               onError={async (...eventArgs: any) => {
@@ -291,6 +293,40 @@ function PlasmicHamyarSetting__RenderFunc(props: {
 
                 (async data => {
                   const $steps = {};
+
+                  $steps["startLoading"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["pageLoading"]
+                          },
+                          operation: 0,
+                          value: true
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["startLoading"] != null &&
+                    typeof $steps["startLoading"] === "object" &&
+                    typeof $steps["startLoading"].then === "function"
+                  ) {
+                    $steps["startLoading"] = await $steps["startLoading"];
+                  }
 
                   $steps["paziresh24NotifyCell"] = !!$state.apiRequest.data
                     .token
@@ -379,7 +415,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                     $steps["hamyarCell"] = await $steps["hamyarCell"];
                   }
 
-                  $steps["updateHamyarCellValue"] = true
+                  $steps["updateCellState"] = true
                     ? (() => {
                         const actionArgs = {
                           variable: {
@@ -409,12 +445,46 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["updateHamyarCellValue"] != null &&
-                    typeof $steps["updateHamyarCellValue"] === "object" &&
-                    typeof $steps["updateHamyarCellValue"].then === "function"
+                    $steps["updateCellState"] != null &&
+                    typeof $steps["updateCellState"] === "object" &&
+                    typeof $steps["updateCellState"].then === "function"
                   ) {
-                    $steps["updateHamyarCellValue"] = await $steps[
-                      "updateHamyarCellValue"
+                    $steps["updateCellState"] = await $steps["updateCellState"];
+                  }
+
+                  $steps["updatePageLoading"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["pageLoading"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updatePageLoading"] != null &&
+                    typeof $steps["updatePageLoading"] === "object" &&
+                    typeof $steps["updatePageLoading"].then === "function"
+                  ) {
+                    $steps["updatePageLoading"] = await $steps[
+                      "updatePageLoading"
                     ];
                   }
                 }).apply(null, eventArgs);
@@ -426,646 +496,928 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                 "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/auth"
               }
             >
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__oOzfc)}
-              >
-                <div className={classNames(projectcss.all, sty.freeBox__yg021)}>
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__rE7Sn
-                    )}
-                  >
-                    {"  \u00ab\u0647\u0645\u06cc\u0627\u0631\u00bb"}
-                  </div>
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__nSJbZ
-                  )}
-                >
-                  {
-                    "\u0627\u06cc\u0646 \u0627\u0628\u0632\u0627\u0631\u06a9 \u062f\u0631 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u067e\u0632\u0634\u06a9 \u0648 \u0628\u062e\u0634 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0645\u0637\u0628 \u0646\u0645\u0627\u06cc\u0634 \u062f\u0627\u062f\u0647 \u0645\u06cc\u200c\u0634\u0648\u062f \u0648 \u0627\u0645\u06a9\u0627\u0646 \u0628\u0631\u0642\u0631\u0627\u0631\u06cc \u062a\u0645\u0627\u0633 \u0627\u0645\u0646 \u0628\u0627 \u0647\u0645\u06cc\u0627\u0631 \u0631\u0627 \u0641\u0631\u0627\u0647\u0645 \u0645\u06cc\u200c\u06a9\u0646\u062f\u061b \u0628\u062f\u0648\u0646 \u0627\u06cc\u0646\u06a9\u0647 \u0634\u0645\u0627\u0631\u0647\u200c \u062a\u0644\u0641\u0646 \u0637\u0631\u0641\u06cc\u0646 \u0646\u0645\u0627\u06cc\u0634 \u062f\u0627\u062f\u0647 \u0634\u0648\u062f."
+              {(() => {
+                try {
+                  return $state.pageLoading;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
                   }
-                </div>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__rAaHq)}
-                >
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__ny25R)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__ecVqI
-                      )}
-                    >
-                      {hasVariant(globalVariants, "screen", "mobileOnly")
-                        ? "\n\ud83d\udccd \n\u0646\u0645\u0627\u06cc\u0634 \u062f\u0631 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u067e\u0632\u0634\u06a9\n"
-                        : "\n\ud83d\udccd \u0646\u0645\u0627\u06cc\u0634 \u062f\u0631 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u067e\u0632\u0634\u06a9\n"}
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox__nkZmb)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__en82O
-                      )}
-                    >
-                      {hasVariant(globalVariants, "screen", "mobileOnly")
-                        ? "\n\ud83d\udcde\n\u0628\u0631\u0642\u0631\u0627\u0631\u06cc \u062a\u0645\u0627\u0633 \u0628\u062f\u0648\u0646 \u0627\u0641\u0634\u0627\u06cc \u0634\u0645\u0627\u0631\u0647 \u0645\u0646\u0634\u06cc\n"
-                        : "\n\ud83d\udcde\u0628\u0631\u0642\u0631\u0627\u0631\u06cc \u062a\u0645\u0627\u0633 \u0628\u062f\u0648\u0646 \u0627\u0641\u0634\u0627\u06cc \u0634\u0645\u0627\u0631\u0647 \u0647\u0645\u06cc\u0627\u0631\n"}
-                    </div>
-                  </div>
-                  <div
-                    className={classNames(projectcss.all, sty.freeBox___4BM1)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__c6Tgs
-                      )}
-                    >
-                      {hasVariant(globalVariants, "screen", "mobileOnly")
-                        ? "\n\u2699\ufe0f \n\u0631\u0627\u0647\u200c\u0627\u0646\u062f\u0627\u0632\u06cc \u0633\u0631\u06cc\u0639 \u0628\u0627 \u06cc\u06a9 \u067e\u0631\u062f\u0627\u062e\u062a \u0633\u0627\u062f\u0647\n"
-                        : "\n\u2699\ufe0f \u0631\u0627\u0647\u200c\u0627\u0646\u062f\u0627\u0632\u06cc \u0633\u0631\u06cc\u0639 \u0628\u0627 \u06cc\u06a9 \u067e\u0631\u062f\u0627\u062e\u062a \u0633\u0627\u062f\u0647\n"}
-                    </div>
-                  </div>
-                </Stack__>
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__czEeg)}
-              >
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__kQ0Le
-                  )}
-                >
-                  {
-                    "\u0644\u0637\u0641\u0627 \u0634\u0645\u0627\u0631\u0647 \u0627\u06cc \u06a9\u0647 \u0645\u06cc\u062e\u0648\u0627\u0647\u06cc\u062f \u062a\u0645\u0627\u0633 \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0631\u0627 \u0628\u0647 \u0622\u0646 \u0627\u0631\u0633\u0627\u0644 \u06a9\u0646\u06cc\u0645 \u062f\u0631 \u06a9\u0627\u062f\u0631 \u0632\u06cc\u0631 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f:"
+                  throw e;
+                }
+              })() ? (
+                <Icon34Icon
+                  className={classNames(projectcss.all, sty.svg__l6LSj)}
+                  role={"img"}
+                />
+              ) : null}
+              {(() => {
+                try {
+                  return !$state.pageLoading;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
                   }
-                </div>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox___19ZQb)}
-                >
-                  <Input
-                    data-plasmic-name={"hamyarCell"}
-                    data-plasmic-override={overrides.hamyarCell}
-                    className={classNames("__wab_instance", sty.hamyarCell)}
-                    onChange={async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "hamyarCell",
-                        "value"
-                      ]).apply(null, eventArgs);
-                    }}
-                    placeholder={
-                      "\u0634\u0645\u0627\u0631\u0647 \u0647\u0645\u06cc\u0627\u0631"
-                    }
-                    value={generateStateValueProp($state, [
-                      "hamyarCell",
-                      "value"
-                    ])}
-                  />
-
-                  {(() => {
-                    try {
-                      return $state.apiRequest.data.active;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return true;
+                  throw e;
+                }
+              })() ? (
+                <div className={classNames(projectcss.all, sty.freeBox__oijXs)}>
+                  <Stack__
+                    as={"div"}
+                    hasGap={true}
+                    className={classNames(projectcss.all, sty.freeBox__czEeg)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__kQ0Le
+                      )}
+                    >
+                      {
+                        "\u0644\u0637\u0641\u0627 \u0634\u0645\u0627\u0631\u0647 \u0627\u06cc \u06a9\u0647 \u0645\u06cc\u062e\u0648\u0627\u0647\u06cc\u062f \u062a\u0645\u0627\u0633 \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0631\u0627 \u0628\u0647 \u0622\u0646 \u0627\u0631\u0633\u0627\u0644 \u06a9\u0646\u06cc\u0645 \u062f\u0631 \u06a9\u0627\u062f\u0631 \u0632\u06cc\u0631 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f:"
                       }
-                      throw e;
-                    }
-                  })() ? (
-                    <Button
-                      children2={"\u0630\u062e\u06cc\u0631\u0647"}
+                    </div>
+                    <Stack__
+                      as={"div"}
+                      hasGap={true}
                       className={classNames(
-                        "__wab_instance",
-                        sty.button__uJfMi
+                        projectcss.all,
+                        sty.freeBox___19ZQb
                       )}
-                      loading={(() => {
+                    >
+                      <Input
+                        data-plasmic-name={"hamyarCell"}
+                        data-plasmic-override={overrides.hamyarCell}
+                        className={classNames("__wab_instance", sty.hamyarCell)}
+                        onChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "hamyarCell",
+                            "value"
+                          ]).apply(null, eventArgs);
+                        }}
+                        placeholder={
+                          "\u0634\u0645\u0627\u0631\u0647 \u0647\u0645\u06cc\u0627\u0631"
+                        }
+                        value={generateStateValueProp($state, [
+                          "hamyarCell",
+                          "value"
+                        ])}
+                      />
+
+                      {(() => {
                         try {
-                          return $state.loading;
+                          return $state.apiRequest.data.active;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
                             e?.plasmicType === "PlasmicUndefinedDataError"
                           ) {
-                            return [];
+                            return true;
                           }
                           throw e;
                         }
-                      })()}
-                      onClick={async event => {
-                        const $steps = {};
+                      })() ? (
+                        <Button
+                          children2={"\u0630\u062e\u06cc\u0631\u0647"}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.button__uJfMi
+                          )}
+                          loading={(() => {
+                            try {
+                              return $state.loading;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return [];
+                              }
+                              throw e;
+                            }
+                          })()}
+                          onClick={async event => {
+                            const $steps = {};
 
-                        $steps["startLoading"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["loading"]
-                                },
-                                operation: 4
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                const oldValue = $stateGet(
-                                  objRoot,
-                                  variablePath
-                                );
-                                $stateSet(objRoot, variablePath, !oldValue);
-                                return !oldValue;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["startLoading"] != null &&
-                          typeof $steps["startLoading"] === "object" &&
-                          typeof $steps["startLoading"].then === "function"
-                        ) {
-                          $steps["startLoading"] = await $steps["startLoading"];
-                        }
-
-                        $steps["updateHamyarCell"] = $state.hamyarCell.value
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  "PUT",
-                                  "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/hamyar-cell",
-                                  undefined,
-                                  (() => {
-                                    try {
-                                      return {
-                                        hamyar_cell: $state.hamyarCell.value
-                                      };
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
+                            $steps["startLoading"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["loading"]
+                                    },
+                                    operation: 0,
+                                    value: true
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
                                     }
-                                  })(),
-                                  (() => {
-                                    try {
-                                      return {
-                                        headers: {
-                                          Authorization:
-                                            "Bearer " +
-                                            $state.apiRequest.data.token
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["startLoading"] != null &&
+                              typeof $steps["startLoading"] === "object" &&
+                              typeof $steps["startLoading"].then === "function"
+                            ) {
+                              $steps["startLoading"] = await $steps[
+                                "startLoading"
+                              ];
+                            }
+
+                            $steps["updateHamyarCell"] = $state.hamyarCell.value
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "PUT",
+                                      "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/hamyar-cell",
+                                      undefined,
+                                      (() => {
+                                        try {
+                                          return {
+                                            hamyar_cell: $state.hamyarCell.value
+                                          };
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
                                         }
-                                      };
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
+                                      })(),
+                                      (() => {
+                                        try {
+                                          return {
+                                            headers: {
+                                              Authorization:
+                                                "Bearer " +
+                                                $state.apiRequest.data.token
+                                            }
+                                          };
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.apiRequest"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateHamyarCell"] != null &&
+                              typeof $steps["updateHamyarCell"] === "object" &&
+                              typeof $steps["updateHamyarCell"].then ===
+                                "function"
+                            ) {
+                              $steps["updateHamyarCell"] = await $steps[
+                                "updateHamyarCell"
+                              ];
+                            }
+
+                            $steps["finishLoading"] = false
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["loading"]
+                                    },
+                                    operation: 4
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
                                     }
+                                    const { objRoot, variablePath } = variable;
+
+                                    const oldValue = $stateGet(
+                                      objRoot,
+                                      variablePath
+                                    );
+                                    $stateSet(objRoot, variablePath, !oldValue);
+                                    return !oldValue;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["finishLoading"] != null &&
+                              typeof $steps["finishLoading"] === "object" &&
+                              typeof $steps["finishLoading"].then === "function"
+                            ) {
+                              $steps["finishLoading"] = await $steps[
+                                "finishLoading"
+                              ];
+                            }
+
+                            $steps["showToast"] =
+                              $steps.updateHamyarCell.data.message === "success"
+                                ? (() => {
+                                    const actionArgs = {
+                                      args: [
+                                        undefined,
+                                        "\u0634\u0645\u0627\u0631\u0647 \u0647\u0645\u06cc\u0627\u0631 \u0645\u0648\u0631\u062f\u0646\u0638\u0631 \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f."
+                                      ]
+                                    };
+                                    return $globalActions[
+                                      "Fragment.showToast"
+                                    ]?.apply(null, [...actionArgs.args]);
                                   })()
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.apiRequest"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
+                                : undefined;
+                            if (
+                              $steps["showToast"] != null &&
+                              typeof $steps["showToast"] === "object" &&
+                              typeof $steps["showToast"].then === "function"
+                            ) {
+                              $steps["showToast"] = await $steps["showToast"];
+                            }
+                          }}
+                        />
+                      ) : null}
+                    </Stack__>
+                  </Stack__>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__gEg0)}
+                  >
+                    {(() => {
+                      try {
+                        return !$state.apiRequest.data.active;
+                      } catch (e) {
                         if (
-                          $steps["updateHamyarCell"] != null &&
-                          typeof $steps["updateHamyarCell"] === "object" &&
-                          typeof $steps["updateHamyarCell"].then === "function"
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
                         ) {
-                          $steps["updateHamyarCell"] = await $steps[
-                            "updateHamyarCell"
-                          ];
+                          return true;
                         }
-
-                        $steps["finishLoading"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["loading"]
-                                },
-                                operation: 4
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                const oldValue = $stateGet(
-                                  objRoot,
-                                  variablePath
-                                );
-                                $stateSet(objRoot, variablePath, !oldValue);
-                                return !oldValue;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["finishLoading"] != null &&
-                          typeof $steps["finishLoading"] === "object" &&
-                          typeof $steps["finishLoading"].then === "function"
-                        ) {
-                          $steps["finishLoading"] = await $steps[
-                            "finishLoading"
-                          ];
+                        throw e;
+                      }
+                    })() ? (
+                      <Button
+                        children2={
+                          "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc"
                         }
+                        className={classNames(
+                          "__wab_instance",
+                          sty.button__rOok
+                        )}
+                        loading={(() => {
+                          try {
+                            return $state.loading;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()}
+                        onClick={async event => {
+                          const $steps = {};
 
-                        $steps["showToast"] =
-                          $steps.updateHamyarCell.data.message === "success"
+                          $steps["validation"] =
+                            !$state.hamyarCell.value ||
+                            $state.hamyarCell.value.trim() === ""
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "error",
+                                      "\u0634\u0645\u0627\u0631\u0647 \u0647\u0645\u06cc\u0627\u0631 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.showToast"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["validation"] != null &&
+                            typeof $steps["validation"] === "object" &&
+                            typeof $steps["validation"].then === "function"
+                          ) {
+                            $steps["validation"] = await $steps["validation"];
+                          }
+
+                          $steps["startLoading"] = !!$state.hamyarCell.value
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["loading"]
+                                  },
+                                  operation: 0,
+                                  value: true
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["startLoading"] != null &&
+                            typeof $steps["startLoading"] === "object" &&
+                            typeof $steps["startLoading"].then === "function"
+                          ) {
+                            $steps["startLoading"] = await $steps[
+                              "startLoading"
+                            ];
+                          }
+
+                          $steps["update"] = !!$state.hamyarCell.value
                             ? (() => {
                                 const actionArgs = {
                                   args: [
+                                    "PUT",
+                                    "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/hamyar-cell",
                                     undefined,
-                                    "\u0634\u0645\u0627\u0631\u0647 \u0647\u0645\u06cc\u0627\u0631 \u0645\u0648\u0631\u062f\u0646\u0638\u0631 \u0630\u062e\u06cc\u0631\u0647 \u0634\u062f."
+                                    (() => {
+                                      try {
+                                        return {
+                                          hamyar_cell: $state.hamyarCell.value
+                                        };
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })(),
+                                    (() => {
+                                      try {
+                                        return {
+                                          headers: {
+                                            Authorization:
+                                              "Bearer " +
+                                              $state.apiRequest.data.token
+                                          }
+                                        };
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
                                   ]
                                 };
                                 return $globalActions[
-                                  "Fragment.showToast"
+                                  "Fragment.apiRequest"
                                 ]?.apply(null, [...actionArgs.args]);
                               })()
                             : undefined;
-                        if (
-                          $steps["showToast"] != null &&
-                          typeof $steps["showToast"] === "object" &&
-                          typeof $steps["showToast"].then === "function"
-                        ) {
-                          $steps["showToast"] = await $steps["showToast"];
-                        }
-                      }}
-                    />
-                  ) : null}
-                </Stack__>
-              </Stack__>
-              <div className={classNames(projectcss.all, sty.freeBox__gEg0)}>
-                {(() => {
-                  try {
-                    return !$state.apiRequest.data.active;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <Button
-                    children2={
-                      "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc"
-                    }
-                    className={classNames("__wab_instance", sty.button__rOok)}
-                    onClick={async event => {
-                      const $steps = {};
+                          if (
+                            $steps["update"] != null &&
+                            typeof $steps["update"] === "object" &&
+                            typeof $steps["update"].then === "function"
+                          ) {
+                            $steps["update"] = await $steps["update"];
+                          }
 
-                      $steps["validation"] =
-                        !$state.hamyarCell.value ||
-                        $state.hamyarCell.value.trim() === ""
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  undefined,
-                                  "\u0634\u0645\u0627\u0631\u0647 \u0647\u0645\u06cc\u0627\u0631 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.showToast"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                      if (
-                        $steps["validation"] != null &&
-                        typeof $steps["validation"] === "object" &&
-                        typeof $steps["validation"].then === "function"
-                      ) {
-                        $steps["validation"] = await $steps["validation"];
-                      }
-
-                      $steps["update"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              args: [
-                                "PUT",
-                                "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/hamyar-cell",
-                                undefined,
-                                (() => {
-                                  try {
-                                    return {
-                                      hamyar_cell: $state.hamyarCell.value
-                                    };
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
+                          $steps["payment"] =
+                            $state.apiRequest?.data?.payment_status !== "paid"
+                              ? (() => {
+                                  const actionArgs = {
+                                    customFunction: async () => {
+                                      return (() => {
+                                        return window.hamdast.payment.pay({
+                                          product_key: "x6q8epw9k04deyi"
+                                        });
+                                      })();
                                     }
-                                    throw e;
-                                  }
-                                })(),
-                                (() => {
-                                  try {
-                                    return {
-                                      headers: {
-                                        Authorization:
-                                          "Bearer " +
-                                          $state.apiRequest.data.token
-                                      }
-                                    };
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
+                                  };
+                                  return (({ customFunction }) => {
+                                    return customFunction();
+                                  })?.apply(null, [actionArgs]);
                                 })()
-                              ]
-                            };
-                            return $globalActions["Fragment.apiRequest"]?.apply(
-                              null,
-                              [...actionArgs.args]
-                            );
-                          })()
-                        : undefined;
-                      if (
-                        $steps["update"] != null &&
-                        typeof $steps["update"] === "object" &&
-                        typeof $steps["update"].then === "function"
-                      ) {
-                        $steps["update"] = await $steps["update"];
-                      }
+                              : undefined;
+                          if (
+                            $steps["payment"] != null &&
+                            typeof $steps["payment"] === "object" &&
+                            typeof $steps["payment"].then === "function"
+                          ) {
+                            $steps["payment"] = await $steps["payment"];
+                          }
 
-                      $steps["payment"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              customFunction: async () => {
-                                return await window.hamdast.payment.pay({
-                                  product_key: "x6q8epw9k04deyi"
-                                });
-                              }
-                            };
-                            return (({ customFunction }) => {
-                              return customFunction();
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["payment"] != null &&
-                        typeof $steps["payment"] === "object" &&
-                        typeof $steps["payment"].then === "function"
-                      ) {
-                        $steps["payment"] = await $steps["payment"];
-                      }
-
-                      $steps["success"] =
-                        $steps.payment?.event == "HAMDAST_PAYMENT_SUCCESS"
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  "POST",
-                                  "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/active",
-                                  undefined,
-                                  (() => {
-                                    try {
-                                      return {
-                                        receipt_id: $steps.payment?.receipt_id
-                                      };
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })(),
-                                  (() => {
-                                    try {
-                                      return {
-                                        headers: {
-                                          Authorization:
-                                            "Bearer " +
-                                            $state.apiRequest.data.token
+                          $steps["paymentSuccess"] =
+                            $steps.payment?.event == "HAMDAST_PAYMENT_SUCCESS"
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "POST",
+                                      "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/payment",
+                                      undefined,
+                                      (() => {
+                                        try {
+                                          return {
+                                            receipt_id:
+                                              $steps.payment?.receipt_id
+                                          };
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
                                         }
-                                      };
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
+                                      })(),
+                                      (() => {
+                                        try {
+                                          return {
+                                            headers: {
+                                              Authorization:
+                                                "Bearer " +
+                                                $state.apiRequest.data.token
+                                            }
+                                          };
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.apiRequest"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["paymentSuccess"] != null &&
+                            typeof $steps["paymentSuccess"] === "object" &&
+                            typeof $steps["paymentSuccess"].then === "function"
+                          ) {
+                            $steps["paymentSuccess"] = await $steps[
+                              "paymentSuccess"
+                            ];
+                          }
+
+                          $steps["paymentCancel"] =
+                            $steps.payment?.event == "HAMDAST_PAYMENT_CANCEL"
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "error",
+                                      "\u0634\u0645\u0627 \u0627\u0632 \u067e\u0631\u062f\u0627\u062e\u062a \u0627\u0646\u0635\u0631\u0627\u0641 \u062f\u0627\u062f\u06cc\u062f."
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.showToast"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["paymentCancel"] != null &&
+                            typeof $steps["paymentCancel"] === "object" &&
+                            typeof $steps["paymentCancel"].then === "function"
+                          ) {
+                            $steps["paymentCancel"] = await $steps[
+                              "paymentCancel"
+                            ];
+                          }
+
+                          $steps["paymentError"] =
+                            $steps.payment?.event == "HAMDAST_PAYMENT_ERROR"
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "error",
+                                      "\u0645\u0634\u06a9\u0644\u06cc \u062f\u0631 \u067e\u0631\u062f\u0627\u062e\u062a \u0628\u0647 \u067e\u0647 \u0648\u062c\u0648\u062f \u0622\u0645\u062f\u0647."
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.showToast"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["paymentError"] != null &&
+                            typeof $steps["paymentError"] === "object" &&
+                            typeof $steps["paymentError"].then === "function"
+                          ) {
+                            $steps["paymentError"] = await $steps[
+                              "paymentError"
+                            ];
+                          }
+
+                          $steps["activeWidgetPopup"] =
+                            ($steps.paymentSuccess?.status == 200 ||
+                              $state.apiRequest.data.payment_status ==
+                                "paid") &&
+                            !!$state.hamyarCell.value
+                              ? (() => {
+                                  const actionArgs = {
+                                    customFunction: async () => {
+                                      return window.hamdast?.widget?.addToProfile();
                                     }
-                                  })()
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.apiRequest"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                      if (
-                        $steps["success"] != null &&
-                        typeof $steps["success"] === "object" &&
-                        typeof $steps["success"].then === "function"
-                      ) {
-                        $steps["success"] = await $steps["success"];
-                      }
+                                  };
+                                  return (({ customFunction }) => {
+                                    return customFunction();
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["activeWidgetPopup"] != null &&
+                            typeof $steps["activeWidgetPopup"] === "object" &&
+                            typeof $steps["activeWidgetPopup"].then ===
+                              "function"
+                          ) {
+                            $steps["activeWidgetPopup"] = await $steps[
+                              "activeWidgetPopup"
+                            ];
+                          }
 
-                      $steps["cancel"] =
-                        $steps.payment?.event == "HAMDAST_PAYMENT_CANCEL"
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  "error",
-                                  "\u0634\u0645\u0627 \u0627\u0632 \u067e\u0631\u062f\u0627\u062e\u062a \u0627\u0646\u0635\u0631\u0627\u0641 \u062f\u0627\u062f\u06cc\u062f."
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.showToast"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                      if (
-                        $steps["cancel"] != null &&
-                        typeof $steps["cancel"] === "object" &&
-                        typeof $steps["cancel"].then === "function"
-                      ) {
-                        $steps["cancel"] = await $steps["cancel"];
-                      }
+                          $steps["widgetAdded"] =
+                            $steps.activeWidgetPopup?.event == "ACCEPTED"
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "PUT",
+                                      "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/payment",
+                                      undefined,
+                                      undefined,
+                                      (() => {
+                                        try {
+                                          return {
+                                            headers: {
+                                              Authorization:
+                                                "Bearer " +
+                                                $state.apiRequest.data.token
+                                            }
+                                          };
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.apiRequest"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["widgetAdded"] != null &&
+                            typeof $steps["widgetAdded"] === "object" &&
+                            typeof $steps["widgetAdded"].then === "function"
+                          ) {
+                            $steps["widgetAdded"] = await $steps["widgetAdded"];
+                          }
 
-                      $steps["error"] =
-                        $steps.payment?.event == "HAMDAST_PAYMENT_ERROR"
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  "error",
-                                  "\u0645\u0634\u06a9\u0644\u06cc \u062f\u0631 \u067e\u0631\u062f\u0627\u062e\u062a \u0628\u0647 \u067e\u0647 \u0648\u062c\u0648\u062f \u0622\u0645\u062f\u0647."
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.showToast"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                      if (
-                        $steps["error"] != null &&
-                        typeof $steps["error"] === "object" &&
-                        typeof $steps["error"].then === "function"
-                      ) {
-                        $steps["error"] = await $steps["error"];
-                      }
+                          $steps["widgetCanceled"] =
+                            $steps.activeWidgetPopup?.status == "CANCELED"
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "error",
+                                      "\u0627\u0641\u0632\u0648\u062f\u0646 \u0627\u0628\u0632\u0627\u0631\u06a9 \u0647\u0645\u06cc\u0627\u0631 \u0644\u063a\u0648 \u0634\u062f."
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.showToast"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["widgetCanceled"] != null &&
+                            typeof $steps["widgetCanceled"] === "object" &&
+                            typeof $steps["widgetCanceled"].then === "function"
+                          ) {
+                            $steps["widgetCanceled"] = await $steps[
+                              "widgetCanceled"
+                            ];
+                          }
 
-                      $steps["runCode"] =
-                        $steps.success?.status == 200
-                          ? (() => {
-                              const actionArgs = {
-                                customFunction: async () => {
-                                  return (() => {
-                                    return window.hamdast?.widget?.addToProfile();
-                                  })();
-                                }
-                              };
-                              return (({ customFunction }) => {
-                                return customFunction();
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                      if (
-                        $steps["runCode"] != null &&
-                        typeof $steps["runCode"] === "object" &&
-                        typeof $steps["runCode"].then === "function"
-                      ) {
-                        $steps["runCode"] = await $steps["runCode"];
-                      }
-                    }}
-                  />
-                ) : null}
-                {(() => {
-                  try {
-                    return $state.apiRequest.data.active;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return true;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <Button
-                    children2={
-                      "\u063a\u06cc\u0631\u0641\u0639\u0627\u0644 \u0633\u0627\u0632\u06cc"
-                    }
-                    className={classNames("__wab_instance", sty.button__o4BOn)}
-                    onClick={async event => {
-                      const $steps = {};
+                          $steps["runActionOnApiRequest"] = !!$state.hamyarCell
+                            .value
+                            ? (() => {
+                                const actionArgs = {
+                                  tplRef: "apiRequest",
+                                  action: "refresh"
+                                };
+                                return (({ tplRef, action, args }) => {
+                                  return $refs?.[tplRef]?.[action]?.(
+                                    ...(args ?? [])
+                                  );
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["runActionOnApiRequest"] != null &&
+                            typeof $steps["runActionOnApiRequest"] ===
+                              "object" &&
+                            typeof $steps["runActionOnApiRequest"].then ===
+                              "function"
+                          ) {
+                            $steps["runActionOnApiRequest"] = await $steps[
+                              "runActionOnApiRequest"
+                            ];
+                          }
 
-                      $steps["validation"] =
-                        !$state.hamyarCell.value ||
-                        $state.hamyarCell.value.trim() === ""
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  undefined,
-                                  "\u0634\u0645\u0627\u0631\u0647 \u0647\u0645\u06cc\u0627\u0631 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.showToast"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                      if (
-                        $steps["validation"] != null &&
-                        typeof $steps["validation"] === "object" &&
-                        typeof $steps["validation"].then === "function"
-                      ) {
-                        $steps["validation"] = await $steps["validation"];
-                      }
+                          $steps["finishLoading"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["loading"]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
 
-                      $steps["runCode"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              customFunction: async () => {
-                                return (() => {
-                                  return window.hamdast?.widget?.removeFromProfile();
-                                })();
-                              }
-                            };
-                            return (({ customFunction }) => {
-                              return customFunction();
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["runCode"] != null &&
-                        typeof $steps["runCode"] === "object" &&
-                        typeof $steps["runCode"].then === "function"
-                      ) {
-                        $steps["runCode"] = await $steps["runCode"];
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["finishLoading"] != null &&
+                            typeof $steps["finishLoading"] === "object" &&
+                            typeof $steps["finishLoading"].then === "function"
+                          ) {
+                            $steps["finishLoading"] = await $steps[
+                              "finishLoading"
+                            ];
+                          }
+                        }}
+                      />
+                    ) : null}
+                    {(() => {
+                      try {
+                        return $state.apiRequest.data.active;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
                       }
-                    }}
-                    outline={true}
-                  />
-                ) : null}
-              </div>
+                    })() ? (
+                      <Button
+                        children2={
+                          "\u063a\u06cc\u0631\u0641\u0639\u0627\u0644 \u0633\u0627\u0632\u06cc"
+                        }
+                        className={classNames(
+                          "__wab_instance",
+                          sty.button__o4BOn
+                        )}
+                        loading={(() => {
+                          try {
+                            return $state.loading;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["startLoading"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["loading"]
+                                  },
+                                  operation: 0,
+                                  value: true
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["startLoading"] != null &&
+                            typeof $steps["startLoading"] === "object" &&
+                            typeof $steps["startLoading"].then === "function"
+                          ) {
+                            $steps["startLoading"] = await $steps[
+                              "startLoading"
+                            ];
+                          }
+
+                          $steps["removeFromProfile"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  customFunction: async () => {
+                                    return window.hamdast?.widget?.removeFromProfile();
+                                  }
+                                };
+                                return (({ customFunction }) => {
+                                  return customFunction();
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["removeFromProfile"] != null &&
+                            typeof $steps["removeFromProfile"] === "object" &&
+                            typeof $steps["removeFromProfile"].then ===
+                              "function"
+                          ) {
+                            $steps["removeFromProfile"] = await $steps[
+                              "removeFromProfile"
+                            ];
+                          }
+
+                          $steps["deactive"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    "PUT",
+                                    "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/payment",
+                                    undefined,
+                                    undefined,
+                                    (() => {
+                                      try {
+                                        return {
+                                          headers: {
+                                            Authorization:
+                                              "Bearer " +
+                                              $state.apiRequest.data.token
+                                          }
+                                        };
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Fragment.apiRequest"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["deactive"] != null &&
+                            typeof $steps["deactive"] === "object" &&
+                            typeof $steps["deactive"].then === "function"
+                          ) {
+                            $steps["deactive"] = await $steps["deactive"];
+                          }
+
+                          $steps["refresh"] = true
+                            ? (() => {
+                                const actionArgs = { tplRef: "apiRequest" };
+                                return (({ tplRef, action, args }) => {
+                                  return $refs?.[tplRef]?.[action]?.(
+                                    ...(args ?? [])
+                                  );
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["refresh"] != null &&
+                            typeof $steps["refresh"] === "object" &&
+                            typeof $steps["refresh"].then === "function"
+                          ) {
+                            $steps["refresh"] = await $steps["refresh"];
+                          }
+
+                          $steps["finishLoading"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["loading"]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["finishLoading"] != null &&
+                            typeof $steps["finishLoading"] === "object" &&
+                            typeof $steps["finishLoading"].then === "function"
+                          ) {
+                            $steps["finishLoading"] = await $steps[
+                              "finishLoading"
+                            ];
+                          }
+                        }}
+                        outline={true}
+                      />
+                    ) : null}
+                  </div>
+                </div>
+              ) : null}
             </ApiRequest>
           </div>
         ) : null}
