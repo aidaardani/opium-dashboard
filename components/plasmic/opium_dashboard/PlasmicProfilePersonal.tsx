@@ -1249,11 +1249,11 @@ function PlasmicProfilePersonal__RenderFunc(props: {
 
                 $steps["showToastForDoNothing"] = !(
                   $state.profile?.data?.data?.biography?.trim() !==
-                    $state.biography.trim() ||
+                    $state.biography?.trim() ||
                   $state.apiNotifyCell?.data[0]?.notify_cell?.trim() !==
-                    $state.notifyCell.value ||
-                  $state.auth.data.data.national_code !==
-                    $state.nationalCode.value
+                    $state.notifyCell?.value ||
+                  $state.auth?.data?.data?.national_code !==
+                    $state.nationalCode?.value
                 )
                   ? (() => {
                       const actionArgs = {
@@ -1326,7 +1326,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                               try {
                                 return {
                                   nationalcode:
-                                    $state.nationalCode.value.replace(
+                                    $state.nationalCode?.value?.replace(
                                       /[۰-۹]/g,
                                       function (d) {
                                         return String.fromCharCode(
@@ -1334,7 +1334,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                                         );
                                       }
                                     ),
-                                  mobile: "0" + $state.auth.data.data.username
+                                  mobile:
+                                    "0" + $state.auth?.data?.data?.username
                                 };
                               } catch (e) {
                                 if (
