@@ -3013,6 +3013,20 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/hamyar/login"
+        },
+        {
+          "id": "rr87k7w79e_B",
+          "name": "HamyarOauthRedirect",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicHamyarOauthRedirect.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/hamyar/OauthRedirect.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicHamyarOauthRedirect.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/hamyar/OauthRedirect"
         }
       ],
       "icons": [
