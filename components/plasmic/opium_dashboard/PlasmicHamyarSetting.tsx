@@ -530,42 +530,6 @@ function PlasmicHamyarSetting__RenderFunc(props: {
             >
               {(() => {
                 try {
-                  return $state.pageLoading;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__q3018)}
-                >
-                  <Icon34Icon
-                    className={classNames(projectcss.all, sty.svg___5EhRf)}
-                    role={"img"}
-                  />
-
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__n4G9D
-                    )}
-                  >
-                    {
-                      "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
-                    }
-                  </div>
-                </Stack__>
-              ) : null}
-              {(() => {
-                try {
                   return !!$state.auth.data.token;
                 } catch (e) {
                   if (
@@ -655,6 +619,48 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                       "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/user"
                     }
                   >
+                    {(() => {
+                      try {
+                        return $state.pageLoading;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return true;
+                        }
+                        throw e;
+                      }
+                    })() ? (
+                      <Stack__
+                        as={"div"}
+                        hasGap={true}
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__q3018
+                        )}
+                      >
+                        <Icon34Icon
+                          className={classNames(
+                            projectcss.all,
+                            sty.svg___5EhRf
+                          )}
+                          role={"img"}
+                        />
+
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__n4G9D
+                          )}
+                        >
+                          {
+                            "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
+                          }
+                        </div>
+                      </Stack__>
+                    ) : null}
                     {(() => {
                       try {
                         return !$state.pageLoading;
