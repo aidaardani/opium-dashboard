@@ -180,6 +180,12 @@ function PlasmicHamyarSetting__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "token",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -242,7 +248,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
               body={(() => {
                 try {
                   return {
-                    code: $ctx.query.code
+                    code: $ctx.query.code,
+                    token: $state.token
                   };
                 } catch (e) {
                   if (
@@ -452,7 +459,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                     $steps["updateCellState"] = await $steps["updateCellState"];
                   }
 
-                  $steps["updatePageLoading"] = true
+                  $steps["finishPageLoading"] = true
                     ? (() => {
                         const actionArgs = {
                           variable: {
@@ -479,13 +486,47 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["updatePageLoading"] != null &&
-                    typeof $steps["updatePageLoading"] === "object" &&
-                    typeof $steps["updatePageLoading"].then === "function"
+                    $steps["finishPageLoading"] != null &&
+                    typeof $steps["finishPageLoading"] === "object" &&
+                    typeof $steps["finishPageLoading"].then === "function"
                   ) {
-                    $steps["updatePageLoading"] = await $steps[
-                      "updatePageLoading"
+                    $steps["finishPageLoading"] = await $steps[
+                      "finishPageLoading"
                     ];
+                  }
+
+                  $steps["setToken"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["token"]
+                          },
+                          operation: 0,
+                          value: $state.apiRequest.data.token
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["setToken"] != null &&
+                    typeof $steps["setToken"] === "object" &&
+                    typeof $steps["setToken"].then === "function"
+                  ) {
+                    $steps["setToken"] = await $steps["setToken"];
                   }
                 }).apply(null, eventArgs);
               }}
@@ -950,9 +991,11 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                               ? (() => {
                                   const actionArgs = {
                                     customFunction: async () => {
-                                      return await window.hamdast.payment.pay({
-                                        product_key: "x6q8epw9k04deyi"
-                                      });
+                                      return (() => {
+                                        return window.hamdast.payment.pay({
+                                          product_key: "x6q8epw9k04deyi"
+                                        });
+                                      })();
                                     }
                                   };
                                   return (({ customFunction }) => {
@@ -1314,7 +1357,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                             ? (() => {
                                 const actionArgs = {
                                   customFunction: async () => {
-                                    return await window.hamdast?.widget?.removeFromProfile();
+                                    return window.hamdast?.widget?.removeFromProfile();
                                   }
                                 };
                                 return (({ customFunction }) => {
