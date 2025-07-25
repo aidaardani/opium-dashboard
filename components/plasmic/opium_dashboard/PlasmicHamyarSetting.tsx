@@ -360,8 +360,9 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                       variablePath: ["isValidNumber"]
                                     },
                                     operation: 0,
-                                    value:
-                                      $state.hamyarCellTell?.value?.length > 2
+                                    value: /^\d{2,}$/.test(
+                                      $state.hamyarCellTell?.value
+                                    )
                                   };
                                   return (({
                                     variable,
@@ -943,7 +944,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                               variablePath: ["isValidNumber"]
                                             },
                                             operation: 0,
-                                            value: value.length > 2
+                                            value: /^\d{2,}$/.test(value)
                                           };
                                           return (({
                                             variable,
