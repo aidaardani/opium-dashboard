@@ -1621,6 +1621,30 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                           ];
                         }
 
+                        $steps["showSuccessToast"] =
+                          $steps.widgetAdded?.status == 200
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    undefined,
+                                    "\u0627\u0628\u0632\u0627\u0631\u06a9 \u0628\u0647 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0627\u0636\u0627\u0641\u0647 \u0634\u062f."
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Fragment.showToast"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                        if (
+                          $steps["showSuccessToast"] != null &&
+                          typeof $steps["showSuccessToast"] === "object" &&
+                          typeof $steps["showSuccessToast"].then === "function"
+                        ) {
+                          $steps["showSuccessToast"] = await $steps[
+                            "showSuccessToast"
+                          ];
+                        }
+
                         $steps["refreshData"] = $state.isValidNumber
                           ? (() => {
                               const actionArgs = {
