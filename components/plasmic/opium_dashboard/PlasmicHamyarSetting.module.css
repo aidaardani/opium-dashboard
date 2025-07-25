@@ -391,7 +391,9 @@
 .img {
   object-fit: cover;
   max-width: 100%;
-  width: 480px;
+  width: 350px;
+  height: 247px;
+  flex-shrink: 0;
 }
 .img > picture > img {
   object-fit: cover;
@@ -418,6 +420,7 @@
   text-align: center;
   margin-top: 0px;
   font-weight: 400;
+  font-size: 14px;
   min-width: 0;
 }
 .freeBox__rIFjx {
@@ -567,7 +570,8 @@
   width: 100%;
   height: 100%;
   max-width: 100%;
-  min-width: 0;
+  grid-column-start: 1 !important;
+  grid-column-end: -1 !important;
   min-height: 0;
   padding: 8px;
 }
@@ -575,7 +579,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 0;
   min-height: 0;
   margin-top: calc(0px - 15px);
   height: calc(100% + 15px);

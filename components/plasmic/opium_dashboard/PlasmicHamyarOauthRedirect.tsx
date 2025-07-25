@@ -69,6 +69,8 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicHamyarOauthRedirect.module.css"; // plasmic-import: rr87k7w79e_B/css
 
+import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
+
 createPlasmicElementProxy;
 
 export type PlasmicHamyarOauthRedirect__VariantMembers = {};
@@ -84,6 +86,9 @@ export const PlasmicHamyarOauthRedirect__ArgProps = new Array<ArgPropType>();
 export type PlasmicHamyarOauthRedirect__OverridesType = {
   root?: Flex__<"div">;
   sideEffect?: Flex__<typeof SideEffect>;
+  freeBox?: Flex__<"div">;
+  svg?: Flex__<"svg">;
+  text?: Flex__<"div">;
 };
 
 export interface DefaultHamyarOauthRedirectProps {}
@@ -282,6 +287,35 @@ function PlasmicHamyarOauthRedirect__RenderFunc(props: {
                 }
               }}
             />
+
+            <Stack__
+              as={"div"}
+              data-plasmic-name={"freeBox"}
+              data-plasmic-override={overrides.freeBox}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox)}
+            >
+              <Icon34Icon
+                data-plasmic-name={"svg"}
+                data-plasmic-override={overrides.svg}
+                className={classNames(projectcss.all, sty.svg)}
+                role={"img"}
+              />
+
+              <div
+                data-plasmic-name={"text"}
+                data-plasmic-override={overrides.text}
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text
+                )}
+              >
+                {
+                  "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
+                }
+              </div>
+            </Stack__>
           </div>
         ) : null}
       </div>
@@ -290,8 +324,11 @@ function PlasmicHamyarOauthRedirect__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "sideEffect"],
-  sideEffect: ["sideEffect"]
+  root: ["root", "sideEffect", "freeBox", "svg", "text"],
+  sideEffect: ["sideEffect"],
+  freeBox: ["freeBox", "svg", "text"],
+  svg: ["svg"],
+  text: ["text"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -299,6 +336,9 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   sideEffect: typeof SideEffect;
+  freeBox: "div";
+  svg: "svg";
+  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -362,6 +402,9 @@ export const PlasmicHamyarOauthRedirect = Object.assign(
   {
     // Helper components rendering sub-elements
     sideEffect: makeNodeComponent("sideEffect"),
+    freeBox: makeNodeComponent("freeBox"),
+    svg: makeNodeComponent("svg"),
+    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicHamyarOauthRedirect
     internalVariantProps: PlasmicHamyarOauthRedirect__VariantProps,

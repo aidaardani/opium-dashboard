@@ -230,7 +230,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
         path: "dialog.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) => true
       }
     ],
     [$props, $ctx, $refs]
@@ -842,8 +842,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                 }
 
                                 $steps["showToast"] =
-                                  $steps.updateHamyarCell.data.message ===
-                                  "success"
+                                  $steps.updateHamyarCell.status == 204
                                     ? (() => {
                                         const actionArgs = {
                                           args: [
@@ -1310,8 +1309,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                 }
 
                                 $steps["showToast"] =
-                                  $steps.updateHamyarCell.data.message ===
-                                  "success"
+                                  $steps.updateHamyarCell.status == 204
                                     ? (() => {
                                         const actionArgs = {
                                           args: [
@@ -1353,7 +1351,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                         data-plasmic-override={overrides.img}
                         alt={""}
                         className={classNames(sty.img)}
-                        displayHeight={"auto"}
+                        displayHeight={"247px"}
                         displayMaxHeight={"none"}
                         displayMaxWidth={"100%"}
                         displayMinHeight={"0"}
@@ -1361,7 +1359,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                         displayWidth={
                           hasVariant(globalVariants, "screen", "mobileOnly")
                             ? "350px"
-                            : "480px"
+                            : "350px"
                         }
                         loading={"lazy"}
                         src={
@@ -1450,46 +1448,6 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                               typeof $steps["runCode"].then === "function"
                             ) {
                               $steps["runCode"] = await $steps["runCode"];
-                            }
-
-                            $steps["updateDialogOpen"] = true
-                              ? (() => {
-                                  const actionArgs = {
-                                    variable: {
-                                      objRoot: $state,
-                                      variablePath: ["dialog", "open"]
-                                    },
-                                    operation: 4
-                                  };
-                                  return (({
-                                    variable,
-                                    value,
-                                    startIndex,
-                                    deleteCount
-                                  }) => {
-                                    if (!variable) {
-                                      return;
-                                    }
-                                    const { objRoot, variablePath } = variable;
-
-                                    const oldValue = $stateGet(
-                                      objRoot,
-                                      variablePath
-                                    );
-                                    $stateSet(objRoot, variablePath, !oldValue);
-                                    return !oldValue;
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                            if (
-                              $steps["updateDialogOpen"] != null &&
-                              typeof $steps["updateDialogOpen"] === "object" &&
-                              typeof $steps["updateDialogOpen"].then ===
-                                "function"
-                            ) {
-                              $steps["updateDialogOpen"] = await $steps[
-                                "updateDialogOpen"
-                              ];
                             }
                           }}
                           showStartIcon={true}
