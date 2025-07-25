@@ -351,40 +351,86 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                         (async val => {
                           const $steps = {};
 
-                          $steps["updateHamyarCellValue"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["hamyarCell", "value"]
-                                  },
-                                  operation: 0
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
+                          $steps["updateIsValidNumber"] =
+                            $state.radioGroup.value == "tel"
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["isValidNumber"]
+                                    },
+                                    operation: 0,
+                                    value:
+                                      $state.hamyarCellTell?.value?.length > 2
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
 
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
                           if (
-                            $steps["updateHamyarCellValue"] != null &&
-                            typeof $steps["updateHamyarCellValue"] ===
-                              "object" &&
-                            typeof $steps["updateHamyarCellValue"].then ===
+                            $steps["updateIsValidNumber"] != null &&
+                            typeof $steps["updateIsValidNumber"] === "object" &&
+                            typeof $steps["updateIsValidNumber"].then ===
                               "function"
                           ) {
-                            $steps["updateHamyarCellValue"] = await $steps[
-                              "updateHamyarCellValue"
+                            $steps["updateIsValidNumber"] = await $steps[
+                              "updateIsValidNumber"
+                            ];
+                          }
+
+                          $steps["updateIsValidNumber2"] =
+                            $state.radioGroup.value == "mobile"
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["isValidNumber"]
+                                    },
+                                    operation: 0,
+                                    value: (() => {
+                                      const regex = /^09\d{9}$/;
+                                      return regex.test(
+                                        $state.hamyarCell.value
+                                      );
+                                    })()
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["updateIsValidNumber2"] != null &&
+                            typeof $steps["updateIsValidNumber2"] ===
+                              "object" &&
+                            typeof $steps["updateIsValidNumber2"].then ===
+                              "function"
+                          ) {
+                            $steps["updateIsValidNumber2"] = await $steps[
+                              "updateIsValidNumber2"
                             ];
                           }
                         }).apply(null, eventArgs);
