@@ -80,6 +80,7 @@ import sty from "./PlasmicHamyarSetting.module.css"; // plasmic-import: 1IY735SC
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
+import Icon45Icon from "./icons/PlasmicIcon__Icon45"; // plasmic-import: YyulLjs7e3e8/icon
 
 createPlasmicElementProxy;
 
@@ -100,8 +101,8 @@ export type PlasmicHamyarSetting__OverridesType = {
   mobile2?: Flex__<"div">;
   hamyarCellTell?: Flex__<typeof Input>;
   tellPrefix?: Flex__<typeof Select>;
-  user?: Flex__<typeof ApiRequest>;
   sideEffect?: Flex__<typeof SideEffect>;
+  user?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultHamyarSettingProps {}
@@ -189,7 +190,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
         path: "pageLoading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) => true
       },
       {
         path: "radioGroup.value",
@@ -211,6 +212,12 @@ function PlasmicHamyarSetting__RenderFunc(props: {
       },
       {
         path: "isValidNumber",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "saveLoading",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
@@ -270,19 +277,39 @@ function PlasmicHamyarSetting__RenderFunc(props: {
               sty.hamyar
             )}
           >
-            {(() => {
-              try {
-                return !$state.pageLoading;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
-                }
-                throw e;
-              }
-            })() ? (
+            {(
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? (() => {
+                    try {
+                      return (
+                        !$state.pageLoading &&
+                        !$state.user.loading &&
+                        !$state.user.error
+                      );
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })()
+                : (() => {
+                    try {
+                      return !$state.pageLoading && !$state.user.error;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })()
+            ) ? (
               <div className={classNames(projectcss.all, sty.freeBox__oijXs)}>
                 <Stack__
                   as={"div"}
@@ -528,7 +555,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                 e instanceof TypeError ||
                                 e?.plasmicType === "PlasmicUndefinedDataError"
                               ) {
-                                return true;
+                                return false;
                               }
                               throw e;
                             }
@@ -541,7 +568,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                               )}
                               loading={(() => {
                                 try {
-                                  return $state.loading;
+                                  return $state.saveLoading;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -556,21 +583,19 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                               onClick={async event => {
                                 const $steps = {};
 
-                                $steps["validation"] =
-                                  !$state.hamyarCell.value ||
-                                  $state.hamyarCell.value.trim() === ""
-                                    ? (() => {
-                                        const actionArgs = {
-                                          args: [
-                                            "error",
-                                            "\u0634\u0645\u0627\u0631\u0647 \u0647\u0645\u06cc\u0627\u0631 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
-                                          ]
-                                        };
-                                        return $globalActions[
-                                          "Fragment.showToast"
-                                        ]?.apply(null, [...actionArgs.args]);
-                                      })()
-                                    : undefined;
+                                $steps["validation"] = !$state.isValidNumber
+                                  ? (() => {
+                                      const actionArgs = {
+                                        args: [
+                                          "error",
+                                          "\u0644\u0637\u0641\u0627 \u0634\u0645\u0627\u0631\u0647 \u062a\u0645\u0627\u0633 \u0631\u0627 \u0628\u0647 \u062f\u0631\u0633\u062a\u06cc \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+                                        ]
+                                      };
+                                      return $globalActions[
+                                        "Fragment.showToast"
+                                      ]?.apply(null, [...actionArgs.args]);
+                                    })()
+                                  : undefined;
                                 if (
                                   $steps["validation"] != null &&
                                   typeof $steps["validation"] === "object" &&
@@ -582,13 +607,12 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   ];
                                 }
 
-                                $steps["startLoading"] = !!$state.hamyarCell
-                                  .value
+                                $steps["startLoading"] = $state.isValidNumber
                                   ? (() => {
                                       const actionArgs = {
                                         variable: {
                                           objRoot: $state,
-                                          variablePath: ["loading"]
+                                          variablePath: ["saveLoading"]
                                         },
                                         operation: 0,
                                         value: true
@@ -621,58 +645,58 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   ];
                                 }
 
-                                $steps["updateHamyarCell"] = $state.hamyarCell
-                                  .value
-                                  ? (() => {
-                                      const actionArgs = {
-                                        args: [
-                                          "PUT",
-                                          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/hamyar-cell",
-                                          undefined,
-                                          (() => {
-                                            try {
-                                              return {
-                                                hamyar_cell:
-                                                  $state.hamyarCell.value
-                                              };
-                                            } catch (e) {
-                                              if (
-                                                e instanceof TypeError ||
-                                                e?.plasmicType ===
-                                                  "PlasmicUndefinedDataError"
-                                              ) {
-                                                return undefined;
-                                              }
-                                              throw e;
-                                            }
-                                          })(),
-                                          (() => {
-                                            try {
-                                              return {
-                                                headers: {
-                                                  Authorization:
-                                                    "Bearer " +
-                                                    $state.user.data.token
+                                $steps["updateHamyarCell"] =
+                                  $state.isValidNumber
+                                    ? (() => {
+                                        const actionArgs = {
+                                          args: [
+                                            "PUT",
+                                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/hamyar-cell",
+                                            undefined,
+                                            (() => {
+                                              try {
+                                                return {
+                                                  hamyar_cell:
+                                                    $state.hamyarCell.value
+                                                };
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return undefined;
                                                 }
-                                              };
-                                            } catch (e) {
-                                              if (
-                                                e instanceof TypeError ||
-                                                e?.plasmicType ===
-                                                  "PlasmicUndefinedDataError"
-                                              ) {
-                                                return undefined;
+                                                throw e;
                                               }
-                                              throw e;
-                                            }
-                                          })()
-                                        ]
-                                      };
-                                      return $globalActions[
-                                        "Fragment.apiRequest"
-                                      ]?.apply(null, [...actionArgs.args]);
-                                    })()
-                                  : undefined;
+                                            })(),
+                                            (() => {
+                                              try {
+                                                return {
+                                                  headers: {
+                                                    Authorization:
+                                                      "Bearer " +
+                                                      $state.user.data.token
+                                                  }
+                                                };
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return undefined;
+                                                }
+                                                throw e;
+                                              }
+                                            })()
+                                          ]
+                                        };
+                                        return $globalActions[
+                                          "Fragment.apiRequest"
+                                        ]?.apply(null, [...actionArgs.args]);
+                                      })()
+                                    : undefined;
                                 if (
                                   $steps["updateHamyarCell"] != null &&
                                   typeof $steps["updateHamyarCell"] ===
@@ -690,7 +714,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                       const actionArgs = {
                                         variable: {
                                           objRoot: $state,
-                                          variablePath: ["loading"]
+                                          variablePath: ["saveLoading"]
                                         },
                                         operation: 0,
                                         value: false
@@ -998,7 +1022,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                 e instanceof TypeError ||
                                 e?.plasmicType === "PlasmicUndefinedDataError"
                               ) {
-                                return true;
+                                return false;
                               }
                               throw e;
                             }
@@ -1011,7 +1035,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                               )}
                               loading={(() => {
                                 try {
-                                  return $state.loading;
+                                  return $state.saveLoading;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -1026,21 +1050,19 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                               onClick={async event => {
                                 const $steps = {};
 
-                                $steps["validation"] =
-                                  !$state.hamyarCellTell.value ||
-                                  $state.hamyarCellTell.value.trim() === ""
-                                    ? (() => {
-                                        const actionArgs = {
-                                          args: [
-                                            "error",
-                                            "\u0634\u0645\u0627\u0631\u0647 \u0647\u0645\u06cc\u0627\u0631 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
-                                          ]
-                                        };
-                                        return $globalActions[
-                                          "Fragment.showToast"
-                                        ]?.apply(null, [...actionArgs.args]);
-                                      })()
-                                    : undefined;
+                                $steps["validation"] = !$state.isValidNumber
+                                  ? (() => {
+                                      const actionArgs = {
+                                        args: [
+                                          "error",
+                                          "\u0644\u0637\u0641\u0627 \u0634\u0645\u0627\u0631\u0647 \u062a\u0645\u0627\u0633 \u0631\u0627 \u0628\u0647 \u062f\u0631\u0633\u062a\u06cc \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+                                        ]
+                                      };
+                                      return $globalActions[
+                                        "Fragment.showToast"
+                                      ]?.apply(null, [...actionArgs.args]);
+                                    })()
+                                  : undefined;
                                 if (
                                   $steps["validation"] != null &&
                                   typeof $steps["validation"] === "object" &&
@@ -1052,13 +1074,12 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   ];
                                 }
 
-                                $steps["startLoading"] = !!$state.hamyarCellTell
-                                  .value
+                                $steps["startLoading"] = $state.isValidNumber
                                   ? (() => {
                                       const actionArgs = {
                                         variable: {
                                           objRoot: $state,
-                                          variablePath: ["loading"]
+                                          variablePath: ["saveLoading"]
                                         },
                                         operation: 0,
                                         value: true
@@ -1091,58 +1112,59 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   ];
                                 }
 
-                                $steps["updateHamyarCell"] = $state
-                                  .hamyarCellTell.value
-                                  ? (() => {
-                                      const actionArgs = {
-                                        args: [
-                                          "PUT",
-                                          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/hamyar-cell",
-                                          undefined,
-                                          (() => {
-                                            try {
-                                              return {
-                                                hamyar_cell:
-                                                  $state.hamyarCellTell.value
-                                              };
-                                            } catch (e) {
-                                              if (
-                                                e instanceof TypeError ||
-                                                e?.plasmicType ===
-                                                  "PlasmicUndefinedDataError"
-                                              ) {
-                                                return undefined;
-                                              }
-                                              throw e;
-                                            }
-                                          })(),
-                                          (() => {
-                                            try {
-                                              return {
-                                                headers: {
-                                                  Authorization:
-                                                    "Bearer " +
-                                                    $state.user.data.token
+                                $steps["updateHamyarCell"] =
+                                  $state.isValidNumber
+                                    ? (() => {
+                                        const actionArgs = {
+                                          args: [
+                                            "PUT",
+                                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/hamyar-cell",
+                                            undefined,
+                                            (() => {
+                                              try {
+                                                return {
+                                                  hamyar_cell:
+                                                    $state.tellPrefix.value +
+                                                    $state.hamyarCellTell.value
+                                                };
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return undefined;
                                                 }
-                                              };
-                                            } catch (e) {
-                                              if (
-                                                e instanceof TypeError ||
-                                                e?.plasmicType ===
-                                                  "PlasmicUndefinedDataError"
-                                              ) {
-                                                return undefined;
+                                                throw e;
                                               }
-                                              throw e;
-                                            }
-                                          })()
-                                        ]
-                                      };
-                                      return $globalActions[
-                                        "Fragment.apiRequest"
-                                      ]?.apply(null, [...actionArgs.args]);
-                                    })()
-                                  : undefined;
+                                            })(),
+                                            (() => {
+                                              try {
+                                                return {
+                                                  headers: {
+                                                    Authorization:
+                                                      "Bearer " +
+                                                      $state.user.data.token
+                                                  }
+                                                };
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return undefined;
+                                                }
+                                                throw e;
+                                              }
+                                            })()
+                                          ]
+                                        };
+                                        return $globalActions[
+                                          "Fragment.apiRequest"
+                                        ]?.apply(null, [...actionArgs.args]);
+                                      })()
+                                    : undefined;
                                 if (
                                   $steps["updateHamyarCell"] != null &&
                                   typeof $steps["updateHamyarCell"] ===
@@ -1160,7 +1182,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                       const actionArgs = {
                                         variable: {
                                           objRoot: $state,
-                                          variablePath: ["loading"]
+                                          variablePath: ["saveLoading"]
                                         },
                                         operation: 0,
                                         value: false
@@ -1265,23 +1287,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                               const actionArgs = {
                                 args: [
                                   "error",
-                                  (() => {
-                                    try {
-                                      return $state.hamyarCell.value.length >
-                                        0 && !$state.isValidNumber
-                                        ? "لطفا شماره تماس را به درستی وارد کنید."
-                                        : "شماره همیار را وارد کنید.";
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()
+                                  "\u0644\u0637\u0641\u0627 \u0634\u0645\u0627\u0631\u0647 \u062a\u0645\u0627\u0633 \u0631\u0627 \u0628\u0647 \u062f\u0631\u0633\u062a\u06cc \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
                                 ]
                               };
                               return $globalActions[
@@ -1341,7 +1347,11 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   (() => {
                                     try {
                                       return {
-                                        hamyar_cell: $state.hamyarCell.value
+                                        hamyar_cell:
+                                          $state.radioGroup.value == "mobile"
+                                            ? $state.hamyarCell.value
+                                            : $state.tellPrefix.value +
+                                              $state.hamyarCellTell.value
                                       };
                                     } catch (e) {
                                       if (
@@ -1522,7 +1532,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                         $steps["activeWidgetPopup"] =
                           ($steps.paymentSuccess?.status == 200 ||
                             $state.user.data.payment_status == "paid") &&
-                          !!$state.hamyarCell.value
+                          !!$state.isValidNumber
                             ? (() => {
                                 const actionArgs = {
                                   customFunction: async () => {
@@ -1678,7 +1688,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                         e instanceof TypeError ||
                         e?.plasmicType === "PlasmicUndefinedDataError"
                       ) {
-                        return true;
+                        return false;
                       }
                       throw e;
                     }
@@ -1865,118 +1875,83 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                       outline={true}
                     />
                   ) : null}
+                  {(() => {
+                    try {
+                      return $state.user.loading;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return false;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <Icon34Icon
+                      className={classNames(projectcss.all, sty.svg__ig276)}
+                      role={"img"}
+                    />
+                  ) : null}
                 </div>
               </div>
             ) : null}
-            <ApiRequest
-              data-plasmic-name={"user"}
-              data-plasmic-override={overrides.user}
-              className={classNames("__wab_instance", sty.user)}
-              config={(() => {
-                try {
-                  return {
-                    headers: {
-                      Authorization: "Bearer " + $ctx.query.access_token
+            {(
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? (() => {
+                    try {
+                      return (
+                        $state.pageLoading &&
+                        !$state.user.loading &&
+                        !$state.user.error
+                      );
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
                     }
-                  };
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-              errorDisplay={null}
-              loadingDisplay={
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__yCaXr)}
-                >
-                  <Icon34Icon
-                    className={classNames(projectcss.all, sty.svg__xs5Sl)}
-                    role={"img"}
-                  />
+                  })()
+                : (() => {
+                    try {
+                      return $state.pageLoading && !$state.user.error;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })()
+            ) ? (
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__q3018)}
+              >
+                <Icon34Icon
+                  className={classNames(projectcss.all, sty.svg___5EhRf)}
+                  role={"img"}
+                />
 
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__hsyR7
-                    )}
-                  >
-                    {
-                      "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
-                    }
-                  </div>
-                </Stack__>
-              }
-              method={"GET"}
-              onError={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["user", "error"]).apply(
-                  null,
-                  eventArgs
-                );
-              }}
-              onLoading={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["user", "loading"]).apply(
-                  null,
-                  eventArgs
-                );
-              }}
-              onSuccess={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["user", "data"]).apply(
-                  null,
-                  eventArgs
-                );
-              }}
-              ref={ref => {
-                $refs["user"] = ref;
-              }}
-              url={
-                "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/user"
-              }
-            >
-              {(() => {
-                try {
-                  return $state.pageLoading;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__q3018)}
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__n4G9D
+                  )}
                 >
-                  <Icon34Icon
-                    className={classNames(projectcss.all, sty.svg___5EhRf)}
-                    role={"img"}
-                  />
-
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__n4G9D
-                    )}
-                  >
-                    {
-                      "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
-                    }
-                  </div>
-                </Stack__>
-              ) : null}
-            </ApiRequest>
+                  {
+                    "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
+                  }
+                </div>
+              </Stack__>
+            ) : null}
             <SideEffect
               data-plasmic-name={"sideEffect"}
               data-plasmic-override={overrides.sideEffect}
@@ -2178,6 +2153,80 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                 }
               }}
             />
+
+            <ApiRequest
+              data-plasmic-name={"user"}
+              data-plasmic-override={overrides.user}
+              children={null}
+              className={classNames("__wab_instance", sty.user)}
+              config={(() => {
+                try {
+                  return {
+                    headers: {
+                      Authorization: "Bearer " + $ctx.query.access_token
+                    }
+                  };
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              errorDisplay={
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__rrpfJ)}
+                >
+                  <Icon45Icon
+                    className={classNames(projectcss.all, sty.svg__taKo)}
+                    role={"img"}
+                  />
+
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__ueFzU
+                    )}
+                  >
+                    {
+                      "\u062e\u0637\u0627 \u062f\u0631 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
+                    }
+                  </div>
+                </Stack__>
+              }
+              loadingDisplay={null}
+              method={"GET"}
+              onError={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["user", "error"]).apply(
+                  null,
+                  eventArgs
+                );
+              }}
+              onLoading={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["user", "loading"]).apply(
+                  null,
+                  eventArgs
+                );
+              }}
+              onSuccess={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["user", "data"]).apply(
+                  null,
+                  eventArgs
+                );
+              }}
+              ref={ref => {
+                $refs["user"] = ref;
+              }}
+              url={
+                "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hamyar/v1/user"
+              }
+            />
           </div>
         ) : null}
       </div>
@@ -2194,8 +2243,8 @@ const PlasmicDescendants = {
     "mobile2",
     "hamyarCellTell",
     "tellPrefix",
-    "user",
-    "sideEffect"
+    "sideEffect",
+    "user"
   ],
   radioGroup: ["radioGroup"],
   mobile: ["mobile", "hamyarCell"],
@@ -2203,8 +2252,8 @@ const PlasmicDescendants = {
   mobile2: ["mobile2", "hamyarCellTell", "tellPrefix"],
   hamyarCellTell: ["hamyarCellTell"],
   tellPrefix: ["tellPrefix"],
-  user: ["user"],
-  sideEffect: ["sideEffect"]
+  sideEffect: ["sideEffect"],
+  user: ["user"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -2217,8 +2266,8 @@ type NodeDefaultElementType = {
   mobile2: "div";
   hamyarCellTell: typeof Input;
   tellPrefix: typeof Select;
-  user: typeof ApiRequest;
   sideEffect: typeof SideEffect;
+  user: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -2287,8 +2336,8 @@ export const PlasmicHamyarSetting = Object.assign(
     mobile2: makeNodeComponent("mobile2"),
     hamyarCellTell: makeNodeComponent("hamyarCellTell"),
     tellPrefix: makeNodeComponent("tellPrefix"),
-    user: makeNodeComponent("user"),
     sideEffect: makeNodeComponent("sideEffect"),
+    user: makeNodeComponent("user"),
 
     // Metadata about props expected for PlasmicHamyarSetting
     internalVariantProps: PlasmicHamyarSetting__VariantProps,

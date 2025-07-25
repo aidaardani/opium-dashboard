@@ -166,7 +166,7 @@ function PlasmicHamyarLogin__RenderFunc(props: {
                     const actionArgs = {
                       destination: (() => {
                         try {
-                          return `https://user.paziresh24.com/realms/paziresh24/protocol/openid-connect/auth?client_id=hamyar&response_type=code&scope=provider.profile.read+user.profile.read&redirect_uri=https://hamyar.fragm.site/hamyar/setting&kc_idp_hint=gozar&skip_prompt=true`;
+                          return `https://user.paziresh24.com/realms/paziresh24/protocol/openid-connect/auth?client_id=hamyar&response_type=code&scope=provider.profile.read+user.profile.read&redirect_uri=https://hamyar.fragm.site/hamyar/oauth/redirect&kc_idp_hint=gozar&skip_prompt=true`;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||

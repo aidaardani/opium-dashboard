@@ -3021,7 +3021,7 @@
           "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
           "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicHamyarOauthRedirect.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/hamyar/OauthRedirect.tsx"
+            "modulePath": "../src/pages/hamyar/oauth/redirect.tsx"
           },
           "cssFilePath": "plasmic/opium_dashboard/PlasmicHamyarOauthRedirect.module.css",
           "scheme": "blackbox",
