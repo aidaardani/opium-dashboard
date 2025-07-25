@@ -281,11 +281,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
               hasVariant(globalVariants, "screen", "mobileOnly")
                 ? (() => {
                     try {
-                      return (
-                        !$state.pageLoading &&
-                        !$state.user.loading &&
-                        !$state.user.error
-                      );
+                      return !$state.pageLoading && !$state.user.error;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -304,7 +300,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                         e instanceof TypeError ||
                         e?.plasmicType === "PlasmicUndefinedDataError"
                       ) {
-                        return true;
+                        return false;
                       }
                       throw e;
                     }
@@ -351,6 +347,47 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                         ) {
                           return;
                         }
+
+                        (async val => {
+                          const $steps = {};
+
+                          $steps["updateHamyarCellValue"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["hamyarCell", "value"]
+                                  },
+                                  operation: 0
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateHamyarCellValue"] != null &&
+                            typeof $steps["updateHamyarCellValue"] ===
+                              "object" &&
+                            typeof $steps["updateHamyarCellValue"].then ===
+                              "function"
+                          ) {
+                            $steps["updateHamyarCellValue"] = await $steps[
+                              "updateHamyarCellValue"
+                            ];
+                          }
+                        }).apply(null, eventArgs);
                       }}
                       options={
                         <Stack__
@@ -676,7 +713,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                                   headers: {
                                                     Authorization:
                                                       "Bearer " +
-                                                      $state.user.data.token
+                                                      $ctx.query.access_token
                                                   }
                                                 };
                                               } catch (e) {
@@ -1144,7 +1181,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                                   headers: {
                                                     Authorization:
                                                       "Bearer " +
-                                                      $state.user.data.token
+                                                      $ctx.query.access_token
                                                   }
                                                 };
                                               } catch (e) {
@@ -1369,7 +1406,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                       return {
                                         headers: {
                                           Authorization:
-                                            "Bearer " + $state.user.data.token
+                                            "Bearer " + $ctx.query.access_token
                                         }
                                       };
                                     } catch (e) {
@@ -1452,7 +1489,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                         return {
                                           headers: {
                                             Authorization:
-                                              "Bearer " + $state.user.data.token
+                                              "Bearer " +
+                                              $ctx.query.access_token
                                           }
                                         };
                                       } catch (e) {
@@ -1568,7 +1606,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                         return {
                                           headers: {
                                             Authorization:
-                                              "Bearer " + $state.user.data.token
+                                              "Bearer " +
+                                              $ctx.query.access_token
                                           }
                                         };
                                       } catch (e) {
@@ -1645,27 +1684,6 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                           ];
                         }
 
-                        $steps["refreshData"] = $state.isValidNumber
-                          ? (() => {
-                              const actionArgs = {
-                                tplRef: "user",
-                                action: "refresh"
-                              };
-                              return (({ tplRef, action, args }) => {
-                                return $refs?.[tplRef]?.[action]?.(
-                                  ...(args ?? [])
-                                );
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["refreshData"] != null &&
-                          typeof $steps["refreshData"] === "object" &&
-                          typeof $steps["refreshData"].then === "function"
-                        ) {
-                          $steps["refreshData"] = await $steps["refreshData"];
-                        }
-
                         $steps["finishLoading"] = true
                           ? (() => {
                               const actionArgs = {
@@ -1700,6 +1718,27 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                           $steps["finishLoading"] = await $steps[
                             "finishLoading"
                           ];
+                        }
+
+                        $steps["refreshData"] = $state.isValidNumber
+                          ? (() => {
+                              const actionArgs = {
+                                tplRef: "user",
+                                action: "refresh"
+                              };
+                              return (({ tplRef, action, args }) => {
+                                return $refs?.[tplRef]?.[action]?.(
+                                  ...(args ?? [])
+                                );
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["refreshData"] != null &&
+                          typeof $steps["refreshData"] === "object" &&
+                          typeof $steps["refreshData"].then === "function"
+                        ) {
+                          $steps["refreshData"] = await $steps["refreshData"];
                         }
                       }}
                     />
@@ -1810,7 +1849,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                       return {
                                         headers: {
                                           Authorization:
-                                            "Bearer " + $state.user.data.token
+                                            "Bearer " + $ctx.query.access_token
                                         }
                                       };
                                     } catch (e) {
@@ -1924,11 +1963,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
               hasVariant(globalVariants, "screen", "mobileOnly")
                 ? (() => {
                     try {
-                      return (
-                        $state.pageLoading &&
-                        !$state.user.loading &&
-                        !$state.user.error
-                      );
+                      return $state.pageLoading && !$state.user.error;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
