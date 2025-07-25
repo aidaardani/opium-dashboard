@@ -64,6 +64,7 @@ import Radio from "../../Radio"; // plasmic-import: q-9PO6DtyMIj/component
 import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import Select from "../../Select"; // plasmic-import: C-JgjGWfRxfZ/component
+import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 
@@ -79,6 +80,7 @@ import sty from "./PlasmicHamyarSetting.module.css"; // plasmic-import: 1IY735SC
 
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
+import Icon49Icon from "./icons/PlasmicIcon__Icon49"; // plasmic-import: M3prZfr47u3N/icon
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
 import Icon45Icon from "./icons/PlasmicIcon__Icon45"; // plasmic-import: YyulLjs7e3e8/icon
 
@@ -101,6 +103,8 @@ export type PlasmicHamyarSetting__OverridesType = {
   mobile2?: Flex__<"div">;
   hamyarCellTell?: Flex__<typeof Input>;
   tellPrefix?: Flex__<typeof Select>;
+  dialog?: Flex__<typeof Dialog>;
+  img?: Flex__<typeof PlasmicImg__>;
   sideEffect?: Flex__<typeof SideEffect>;
   user?: Flex__<typeof ApiRequest>;
 };
@@ -218,6 +222,12 @@ function PlasmicHamyarSetting__RenderFunc(props: {
       },
       {
         path: "saveLoading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "dialog.open",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
@@ -1331,6 +1341,246 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                     ) : null}
                   </Stack__>
                 </Stack__>
+                <Dialog
+                  data-plasmic-name={"dialog"}
+                  data-plasmic-override={overrides.dialog}
+                  body={
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__vf37B)}
+                    >
+                      <PlasmicImg__
+                        data-plasmic-name={"img"}
+                        data-plasmic-override={overrides.img}
+                        alt={""}
+                        className={classNames(sty.img)}
+                        displayHeight={"auto"}
+                        displayMaxHeight={"none"}
+                        displayMaxWidth={"100%"}
+                        displayMinHeight={"0"}
+                        displayMinWidth={"0"}
+                        displayWidth={
+                          hasVariant(globalVariants, "screen", "mobileOnly")
+                            ? "350px"
+                            : "480px"
+                        }
+                        loading={"lazy"}
+                        src={
+                          "https://hamdast.s3.ir-thr-at1.arvanstorage.ir/landing%2Fhamyar.png?versionId="
+                        }
+                      />
+
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__hhWeF
+                        )}
+                      >
+                        {
+                          "\u0647\u0645\u06cc\u0627\u0631 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0628\u0647 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0627\u0636\u0627\u0641\u0647 \u0634\u062f\ud83c\udf89"
+                        }
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__wxnOz
+                        )}
+                      >
+                        <React.Fragment>
+                          <React.Fragment>
+                            {
+                              "\u0647\u0645 \u0627\u06a9\u0646\u0648\u0646 \u0645\u0631\u0627\u062c\u0639\u06cc\u0646 \u0635\u0641\u062d\u0647 \u0634\u0645\u0627 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u0646\u062f \u0628\u0627 \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0627\u0632 \u062f\u06a9\u0645\u0647 "
+                            }
+                          </React.Fragment>
+                          <span
+                            className={
+                              "plasmic_default__all plasmic_default__span"
+                            }
+                            style={{ fontWeight: 700 }}
+                          >
+                            {
+                              "\u062a\u0645\u0627\u0633 \u0628\u0627 \u0645\u0646\u0634\u06cc"
+                            }
+                          </span>
+                          <React.Fragment>
+                            {
+                              " \u0628\u062f\u0648\u0646 \u0627\u0641\u0634\u0627\u06cc \u0634\u0645\u0627\u0631\u0647 \u0645\u0646\u0634\u06cc \u06cc\u0627 \u0645\u0637\u0628 \u062a\u0645\u0627\u0633 \u0628\u0627 \u0634\u0645\u0627 \u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u0646\u062f."
+                            }
+                          </React.Fragment>
+                        </React.Fragment>
+                      </div>
+                      <Stack__
+                        as={"div"}
+                        hasGap={true}
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__rIFjx
+                        )}
+                      >
+                        <Button
+                          children2={
+                            "\u0645\u0634\u0627\u0647\u062f\u0647 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0645\u0646"
+                          }
+                          className={classNames(
+                            "__wab_instance",
+                            sty.button__qv09P
+                          )}
+                          onClick={async event => {
+                            const $steps = {};
+
+                            $steps["runCode"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    customFunction: async () => {
+                                      return globalThis.open(
+                                        `https://www.paziresh24.com/dr/${$state.user.data?.slug}`,
+                                        "blank"
+                                      );
+                                    }
+                                  };
+                                  return (({ customFunction }) => {
+                                    return customFunction();
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["runCode"] != null &&
+                              typeof $steps["runCode"] === "object" &&
+                              typeof $steps["runCode"].then === "function"
+                            ) {
+                              $steps["runCode"] = await $steps["runCode"];
+                            }
+
+                            $steps["updateDialogOpen"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["dialog", "open"]
+                                    },
+                                    operation: 4
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    const oldValue = $stateGet(
+                                      objRoot,
+                                      variablePath
+                                    );
+                                    $stateSet(objRoot, variablePath, !oldValue);
+                                    return !oldValue;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateDialogOpen"] != null &&
+                              typeof $steps["updateDialogOpen"] === "object" &&
+                              typeof $steps["updateDialogOpen"].then ===
+                                "function"
+                            ) {
+                              $steps["updateDialogOpen"] = await $steps[
+                                "updateDialogOpen"
+                              ];
+                            }
+                          }}
+                          showStartIcon={true}
+                          startIcon={
+                            <Icon49Icon
+                              className={classNames(
+                                projectcss.all,
+                                sty.svg__phEl
+                              )}
+                              role={"img"}
+                            />
+                          }
+                        />
+
+                        <Button
+                          children2={
+                            "\u0628\u0627\u0632\u06af\u0634\u062a \u0628\u0647 \u0647\u0645\u06cc\u0627\u0631"
+                          }
+                          className={classNames(
+                            "__wab_instance",
+                            sty.button__puBcs
+                          )}
+                          onClick={async event => {
+                            const $steps = {};
+
+                            $steps["updateDialogOpen"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["dialog", "open"]
+                                    },
+                                    operation: 4
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    const oldValue = $stateGet(
+                                      objRoot,
+                                      variablePath
+                                    );
+                                    $stateSet(objRoot, variablePath, !oldValue);
+                                    return !oldValue;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["updateDialogOpen"] != null &&
+                              typeof $steps["updateDialogOpen"] === "object" &&
+                              typeof $steps["updateDialogOpen"].then ===
+                                "function"
+                            ) {
+                              $steps["updateDialogOpen"] = await $steps[
+                                "updateDialogOpen"
+                              ];
+                            }
+                          }}
+                          outline={true}
+                        />
+                      </Stack__>
+                    </div>
+                  }
+                  className={classNames("__wab_instance", sty.dialog)}
+                  noTrigger={true}
+                  onOpenChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+                      null,
+                      eventArgs
+                    );
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  open={generateStateValueProp($state, ["dialog", "open"])}
+                  title={null}
+                  trigger={null}
+                />
+
                 <div className={classNames(projectcss.all, sty.freeBox__gEg0)}>
                   {(() => {
                     try {
@@ -1711,14 +1961,27 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                           $steps.widgetAdded?.status == 200
                             ? (() => {
                                 const actionArgs = {
-                                  args: [
-                                    undefined,
-                                    "\u0627\u0628\u0632\u0627\u0631\u06a9 \u0628\u0647 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u0627\u0636\u0627\u0641\u0647 \u0634\u062f."
-                                  ]
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["dialog", "open"]
+                                  },
+                                  operation: 0,
+                                  value: true
                                 };
-                                return $globalActions[
-                                  "Fragment.showToast"
-                                ]?.apply(null, [...actionArgs.args]);
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
                               })()
                             : undefined;
                         if (
@@ -1923,6 +2186,27 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                           typeof $steps["deactive"].then === "function"
                         ) {
                           $steps["deactive"] = await $steps["deactive"];
+                        }
+
+                        $steps["toast"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  undefined,
+                                  "\u0647\u0645\u06cc\u0627\u0631 \u0627\u0632 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u062d\u0630\u0641 \u0634\u062f."
+                                ]
+                              };
+                              return $globalActions[
+                                "Fragment.showToast"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["toast"] != null &&
+                          typeof $steps["toast"] === "object" &&
+                          typeof $steps["toast"].then === "function"
+                        ) {
+                          $steps["toast"] = await $steps["toast"];
                         }
 
                         $steps["finishLoading"] = true
@@ -2385,6 +2669,8 @@ const PlasmicDescendants = {
     "mobile2",
     "hamyarCellTell",
     "tellPrefix",
+    "dialog",
+    "img",
     "sideEffect",
     "user"
   ],
@@ -2394,6 +2680,8 @@ const PlasmicDescendants = {
   mobile2: ["mobile2", "hamyarCellTell", "tellPrefix"],
   hamyarCellTell: ["hamyarCellTell"],
   tellPrefix: ["tellPrefix"],
+  dialog: ["dialog", "img"],
+  img: ["img"],
   sideEffect: ["sideEffect"],
   user: ["user"]
 } as const;
@@ -2408,6 +2696,8 @@ type NodeDefaultElementType = {
   mobile2: "div";
   hamyarCellTell: typeof Input;
   tellPrefix: typeof Select;
+  dialog: typeof Dialog;
+  img: typeof PlasmicImg__;
   sideEffect: typeof SideEffect;
   user: typeof ApiRequest;
 };
@@ -2478,6 +2768,8 @@ export const PlasmicHamyarSetting = Object.assign(
     mobile2: makeNodeComponent("mobile2"),
     hamyarCellTell: makeNodeComponent("hamyarCellTell"),
     tellPrefix: makeNodeComponent("tellPrefix"),
+    dialog: makeNodeComponent("dialog"),
+    img: makeNodeComponent("img"),
     sideEffect: makeNodeComponent("sideEffect"),
     user: makeNodeComponent("user"),
 

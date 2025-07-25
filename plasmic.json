@@ -3389,6 +3389,11 @@
           "id": "IBpo2F3LWTf-",
           "name": "Icon48Icon",
           "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon48.tsx"
+        },
+        {
+          "id": "M3prZfr47u3N",
+          "name": "Icon49Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon49.tsx"
         }
       ],
       "images": [

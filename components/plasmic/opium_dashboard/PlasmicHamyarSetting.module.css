@@ -373,6 +373,116 @@
   width: auto;
   height: 1em;
 }
+.dialog:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.freeBox__vf37B {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
+.img {
+  object-fit: cover;
+  max-width: 100%;
+  width: 480px;
+}
+.img > picture > img {
+  object-fit: cover;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .img {
+    width: 350px;
+  }
+}
+.text__hhWeF {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: center;
+  margin-top: 0px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  min-width: 0;
+}
+.text__wxnOz {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: center;
+  margin-top: 0px;
+  font-weight: 400;
+  min-width: 0;
+}
+.freeBox__rIFjx {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin-top: 20px;
+  min-width: 0;
+}
+.freeBox__rIFjx > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-width: 0;
+  margin-left: calc(0px - 10px);
+  width: calc(100% + 10px);
+}
+.freeBox__rIFjx > :global(.__wab_flex-container) > *,
+.freeBox__rIFjx > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.freeBox__rIFjx > :global(.__wab_flex-container) > picture > img,
+.freeBox__rIFjx
+  > :global(.__wab_flex-container)
+  > :global(.__wab_slot)
+  > picture
+  > img {
+  margin-left: 10px;
+}
+.button__qv09P:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.svg__phEl {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+  color: #ffffff;
+}
+.svg__aLnTr {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.button__puBcs:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.svg__qy4Ql {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.svg__nZuvu {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
 .freeBox__gEg0 {
   display: flex;
   flex-direction: column;
