@@ -224,31 +224,14 @@ function PlasmicHamyarOauthRedirect__RenderFunc(props: {
                   $steps.authApi.status == 200
                     ? (() => {
                         const actionArgs = {
-                          destination: `/hamyar/setting?access_token=${(() => {
-                            try {
-                              return $steps.authApi?.data?.access_token;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()}`
-                        };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
+                          customFunction: async () => {
+                            return globalThis.location.replace(
+                              `/hamyar/setting?access_token=${$steps.authApi?.data?.access_token}`
+                            );
                           }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
                         })?.apply(null, [actionArgs]);
                       })()
                     : undefined;
@@ -260,30 +243,25 @@ function PlasmicHamyarOauthRedirect__RenderFunc(props: {
                   $steps["redirect"] = await $steps["redirect"];
                 }
 
-                $steps["goToHamyarLogin"] =
+                $steps["runCode"] =
                   $steps.authApi.status != 200
                     ? (() => {
-                        const actionArgs = { destination: `/hamyar/login` };
-                        return (({ destination }) => {
-                          if (
-                            typeof destination === "string" &&
-                            destination.startsWith("#")
-                          ) {
-                            document
-                              .getElementById(destination.substr(1))
-                              .scrollIntoView({ behavior: "smooth" });
-                          } else {
-                            __nextRouter?.push(destination);
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return globalThis.location.replace(`/hamyar/login`);
                           }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
                         })?.apply(null, [actionArgs]);
                       })()
                     : undefined;
                 if (
-                  $steps["goToHamyarLogin"] != null &&
-                  typeof $steps["goToHamyarLogin"] === "object" &&
-                  typeof $steps["goToHamyarLogin"].then === "function"
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
                 ) {
-                  $steps["goToHamyarLogin"] = await $steps["goToHamyarLogin"];
+                  $steps["runCode"] = await $steps["runCode"];
                 }
               }}
             />

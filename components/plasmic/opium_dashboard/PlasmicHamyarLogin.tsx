@@ -166,43 +166,26 @@ function PlasmicHamyarLogin__RenderFunc(props: {
             onMount={async () => {
               const $steps = {};
 
-              $steps["goToPage"] = true
+              $steps["runCode"] = true
                 ? (() => {
                     const actionArgs = {
-                      destination: (() => {
-                        try {
-                          return `https://user.paziresh24.com/realms/paziresh24/protocol/openid-connect/auth?client_id=hamyar&response_type=code&scope=provider.profile.read+user.profile.read&redirect_uri=https://hamyar.fragm.site/hamyar/oauth/redirect&kc_idp_hint=gozar&skip_prompt=true`;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()
-                    };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
+                      customFunction: async () => {
+                        return globalThis.location.replace(
+                          `https://user.paziresh24.com/realms/paziresh24/protocol/openid-connect/auth?client_id=hamyar&response_type=code&scope=provider.profile.read+user.profile.read&redirect_uri=https://hamyar.fragm.site/hamyar/oauth/redirect&kc_idp_hint=gozar&skip_prompt=true```
+                        );
                       }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
                     })?.apply(null, [actionArgs]);
                   })()
                 : undefined;
               if (
-                $steps["goToPage"] != null &&
-                typeof $steps["goToPage"] === "object" &&
-                typeof $steps["goToPage"].then === "function"
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
               ) {
-                $steps["goToPage"] = await $steps["goToPage"];
+                $steps["runCode"] = await $steps["runCode"];
               }
             }}
           />
