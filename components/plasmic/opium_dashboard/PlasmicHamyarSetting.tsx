@@ -352,7 +352,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                           const $steps = {};
 
                           $steps["updateIsValidNumber"] =
-                            $state.radioGroup.value == "tel"
+                            val == "tel"
                               ? (() => {
                                   const actionArgs = {
                                     variable: {
@@ -392,7 +392,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                           }
 
                           $steps["updateIsValidNumber2"] =
-                            $state.radioGroup.value == "mobile"
+                            val == "mobile"
                               ? (() => {
                                   const actionArgs = {
                                     variable: {
@@ -2256,6 +2256,42 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                   typeof $steps["finishLoading"].then === "function"
                 ) {
                   $steps["finishLoading"] = await $steps["finishLoading"];
+                }
+
+                $steps["updateIsValidNumber"] = $state.hamyarCell.value
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["isValidNumber"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateIsValidNumber"] != null &&
+                  typeof $steps["updateIsValidNumber"] === "object" &&
+                  typeof $steps["updateIsValidNumber"].then === "function"
+                ) {
+                  $steps["updateIsValidNumber"] = await $steps[
+                    "updateIsValidNumber"
+                  ];
                 }
               }}
             />
