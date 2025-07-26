@@ -122,6 +122,7 @@ export type PlasmicActivationOfficeEditCostV2__OverridesType = {
   input2?: Flex__<typeof Input>;
   shabaApi?: Flex__<typeof ApiRequest>;
   درحالدریافتاطلاعات?: Flex__<"div">;
+  apiGetPaymentStatus?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultActivationOfficeEditCostV2Props {
@@ -442,6 +443,30 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => false,
 
         refName: "popover"
+      },
+      {
+        path: "apiGetPaymentStatus.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiGetPaymentStatus"
+      },
+      {
+        path: "apiGetPaymentStatus.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiGetPaymentStatus"
+      },
+      {
+        path: "apiGetPaymentStatus.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiGetPaymentStatus"
       }
     ],
     [$props, $ctx, $refs]
@@ -1500,7 +1525,23 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                 sty.text___5SuYy
               )}
             >
-              {"\u0630\u062e\u06cc\u0631\u0647"}
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return $state.apiGetPaymentStatus.data.active === "0"
+                      ? "فعالسازی پرداخت آنلاین مطب"
+                      : "ذخیره تغییرات";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "\u0630\u062e\u06cc\u0631\u0647";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
             </div>
           }
           className={classNames("__wab_instance", sty.button__pQjcb)}
@@ -1623,6 +1664,88 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               $steps["showToastForLowCost"] = await $steps[
                 "showToastForLowCost"
               ];
+            }
+
+            $steps["apiActivePayment"] = (() => {
+              function toEnglishDigits(str) {
+                return str.replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
+              }
+              const inputValue = toEnglishDigits(
+                String($state.input.value).trim()
+              );
+              return $state.select.value === "custom"
+                ? inputValue !== "0" &&
+                    inputValue !== "" &&
+                    Number(inputValue) !== 0 &&
+                    $state.apiGetPaymentStatus.data.active == "0"
+                : true;
+            })()
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      "PATCH",
+                      "https://api.paziresh24.com/V1/doctor/payments/settings/",
+                      undefined,
+                      (() => {
+                        try {
+                          return (() => {
+                            function toEnglishDigits(str) {
+                              return str.replace(/[۰-۹]/g, d =>
+                                "۰۱۲۳۴۵۶۷۸۹".indexOf(d)
+                              );
+                            }
+                            const inputValue = toEnglishDigits(
+                              String($state.input.value).trim()
+                            );
+                            const selectValue = toEnglishDigits(
+                              String($state.select.value).trim()
+                            );
+                            const cost =
+                              ($state.select.value === "custom"
+                                ? Number(inputValue)
+                                : Number(selectValue)) * 10;
+                            if ($state.input2.value === "") {
+                              return {
+                                active: 1,
+                                center_id: $props.centerId,
+                                deposit_amount: cost
+                              };
+                            } else {
+                              return {
+                                active: 1,
+                                center_id: $props.centerId,
+                                deposit_amount: cost * 10,
+                                card_number: $state.shabaApi.data.card_number,
+                                IBAN: $state.shabaApi.data.IBAN,
+                                deposit_owners:
+                                  $state.shabaApi.data.deposit_owners[0],
+                                bank_name: $state.shabaApi.data.bank_name
+                              };
+                            }
+                          })();
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["apiActivePayment"] != null &&
+              typeof $steps["apiActivePayment"] === "object" &&
+              typeof $steps["apiActivePayment"].then === "function"
+            ) {
+              $steps["apiActivePayment"] = await $steps["apiActivePayment"];
             }
 
             $steps["editCost"] = (() => {
@@ -1877,87 +2000,6 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
             ) {
               $steps["sendEvent"] = await $steps["sendEvent"];
             }
-
-            $steps["apiActivePayment"] = (() => {
-              function toEnglishDigits(str) {
-                return str.replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
-              }
-              const inputValue = toEnglishDigits(
-                String($state.input.value).trim()
-              );
-              return $state.select.value === "custom"
-                ? inputValue !== "0" &&
-                    inputValue !== "" &&
-                    Number(inputValue) !== 0
-                : true;
-            })()
-              ? (() => {
-                  const actionArgs = {
-                    args: [
-                      "PATCH",
-                      "https://api.paziresh24.com/V1/doctor/payments/settings/",
-                      undefined,
-                      (() => {
-                        try {
-                          return (() => {
-                            function toEnglishDigits(str) {
-                              return str.replace(/[۰-۹]/g, d =>
-                                "۰۱۲۳۴۵۶۷۸۹".indexOf(d)
-                              );
-                            }
-                            const inputValue = toEnglishDigits(
-                              String($state.input.value).trim()
-                            );
-                            const selectValue = toEnglishDigits(
-                              String($state.select.value).trim()
-                            );
-                            const cost =
-                              ($state.select.value === "custom"
-                                ? Number(inputValue)
-                                : Number(selectValue)) * 10;
-                            if ($state.input2.value === "") {
-                              return {
-                                active: 1,
-                                center_id: $props.centerId,
-                                deposit_amount: cost
-                              };
-                            } else {
-                              return {
-                                active: 1,
-                                center_id: $props.centerId,
-                                deposit_amount: cost * 10,
-                                card_number: $state.shabaApi.data.card_number,
-                                IBAN: $state.shabaApi.data.IBAN,
-                                deposit_owners:
-                                  $state.shabaApi.data.deposit_owners[0],
-                                bank_name: $state.shabaApi.data.bank_name
-                              };
-                            }
-                          })();
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
-                        }
-                      })()
-                    ]
-                  };
-                  return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                    ...actionArgs.args
-                  ]);
-                })()
-              : undefined;
-            if (
-              $steps["apiActivePayment"] != null &&
-              typeof $steps["apiActivePayment"] === "object" &&
-              typeof $steps["apiActivePayment"].then === "function"
-            ) {
-              $steps["apiActivePayment"] = await $steps["apiActivePayment"];
-            }
           }}
         />
 
@@ -2172,6 +2214,68 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
           />
         ) : null}
       </Stack__>
+      <ApiRequest
+        data-plasmic-name={"apiGetPaymentStatus"}
+        data-plasmic-override={overrides.apiGetPaymentStatus}
+        className={classNames("__wab_instance", sty.apiGetPaymentStatus)}
+        errorDisplay={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__rLI
+            )}
+          >
+            {"Error fetching data"}
+          </div>
+        }
+        loadingDisplay={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__qsWtr
+            )}
+          >
+            {"Loading..."}
+          </div>
+        }
+        method={"GET"}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "apiGetPaymentStatus",
+            "error"
+          ]).apply(null, eventArgs);
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "apiGetPaymentStatus",
+            "loading"
+          ]).apply(null, eventArgs);
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "apiGetPaymentStatus",
+            "data"
+          ]).apply(null, eventArgs);
+        }}
+        ref={ref => {
+          $refs["apiGetPaymentStatus"] = ref;
+        }}
+        url={(() => {
+          try {
+            return `https://api.paziresh24.com/V1/doctor/payments/settings/?center_id=${$props.centerId}`;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+      />
     </Stack__>
   ) as React.ReactElement | null;
 }
@@ -2188,7 +2292,8 @@ const PlasmicDescendants = {
     "dialog2",
     "input2",
     "shabaApi",
-    "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
+    "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a",
+    "apiGetPaymentStatus"
   ],
   apiGetPreferCost: ["apiGetPreferCost"],
   apiGetCost: ["apiGetCost"],
@@ -2204,7 +2309,8 @@ const PlasmicDescendants = {
   ],
   درحالدریافتاطلاعات: [
     "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
-  ]
+  ],
+  apiGetPaymentStatus: ["apiGetPaymentStatus"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -2221,6 +2327,7 @@ type NodeDefaultElementType = {
   input2: typeof Input;
   shabaApi: typeof ApiRequest;
   درحالدریافتاطلاعات: "div";
+  apiGetPaymentStatus: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -2296,6 +2403,7 @@ export const PlasmicActivationOfficeEditCostV2 = Object.assign(
     درحالدریافتاطلاعات: makeNodeComponent(
       "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
     ),
+    apiGetPaymentStatus: makeNodeComponent("apiGetPaymentStatus"),
 
     // Metadata about props expected for PlasmicActivationOfficeEditCostV2
     internalVariantProps: PlasmicActivationOfficeEditCostV2__VariantProps,
