@@ -3027,6 +3027,48 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/hamyar/OauthRedirect"
+        },
+        {
+          "id": "WrOEuH2QHZZj",
+          "name": "RahnamaLogin",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicRahnamaLogin.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/rahnama/login.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicRahnamaLogin.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/rahnama/login"
+        },
+        {
+          "id": "9xK9BO54VZlA",
+          "name": "RahnamaOauthRedirect",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicRahnamaOauthRedirect.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/rahnama/oauth/redirect.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicRahnamaOauthRedirect.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/rahnama/oauth/redirect"
+        },
+        {
+          "id": "hMCmm2ZdzaWd",
+          "name": "RahnamaSetting",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicRahnamaSetting.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/rahnama/setting.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicRahnamaSetting.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/rahnama/setting"
         }
       ],
       "icons": [
