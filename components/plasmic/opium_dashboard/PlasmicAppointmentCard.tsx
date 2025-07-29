@@ -2590,43 +2590,26 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   })()}
                 />
               ) : null}
-              {(() => {
-                try {
-                  return (
-                    $props.insurance !== undefined &&
-                    $props.insurance !== "" &&
-                    $props.insurance !== null
-                  );
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <PatientPrivateData
-                  data-plasmic-name={"bime"}
-                  data-plasmic-override={overrides.bime}
-                  className={classNames("__wab_instance", sty.bime)}
-                  label={"\u0628\u06cc\u0645\u0647"}
-                  value={(() => {
-                    try {
-                      return $props.insurance;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
+              <PatientPrivateData
+                data-plasmic-name={"bime"}
+                data-plasmic-override={overrides.bime}
+                className={classNames("__wab_instance", sty.bime)}
+                label={"\u0628\u06cc\u0645\u0647"}
+                value={(() => {
+                  try {
+                    return $props.insurance;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
                     }
-                  })()}
-                />
-              ) : null}
+                    throw e;
+                  }
+                })()}
+              />
+
               <PatientPrivateData
                 className={classNames(
                   "__wab_instance",
@@ -3030,47 +3013,28 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   />
                 ) : null}
               </div>
-              {(() => {
-                try {
-                  return (
-                    $props.cost !== undefined &&
-                    $props.cost !== "" &&
-                    $props.cost !== "0 تومان" &&
-                    $props.cost !== "NaN تومان" &&
-                    $props.paymentStatus === "پرداخت شده"
-                  );
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
+              <PatientPrivateData
+                data-plasmic-name={"cost2"}
+                data-plasmic-override={overrides.cost2}
+                className={classNames("__wab_instance", sty.cost2)}
+                label={
+                  "\u0645\u0628\u0644\u063a \u0648\u06cc\u0632\u06cc\u062a"
                 }
-              })() ? (
-                <PatientPrivateData
-                  data-plasmic-name={"cost2"}
-                  data-plasmic-override={overrides.cost2}
-                  className={classNames("__wab_instance", sty.cost2)}
-                  label={
-                    "\u0645\u0628\u0644\u063a \u0648\u06cc\u0632\u06cc\u062a"
-                  }
-                  value={(() => {
-                    try {
-                      return $props.cost;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
+                value={(() => {
+                  try {
+                    return $props.cost;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
                     }
-                  })()}
-                />
-              ) : null}
+                    throw e;
+                  }
+                })()}
+              />
+
               <PatientPrivateData
                 className={classNames(
                   "__wab_instance",
