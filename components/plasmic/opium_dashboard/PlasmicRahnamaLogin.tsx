@@ -171,7 +171,7 @@ function PlasmicRahnamaLogin__RenderFunc(props: {
                     const actionArgs = {
                       customFunction: async () => {
                         return globalThis.location.replace(
-                          `https://user.paziresh24.com/realms/paziresh24/protocol/openid-connect/auth?client_id=rahnama&response_type=code&scope=provider.profile.read+user.profile.read&redirect_uri=https://rahnama.fragm.site/rahnama/oauth/redirect&kc_idp_hint=gozar&skip_prompt=true`
+                          `https://user.paziresh24.com/realms/paziresh24/protocol/openid-connect/auth?client_id=hamdast-rahnama&response_type=code&scope=provider.profile.read+user.profile.read&redirect_uri=https://rahnama.fragm.site/rahnama/oauth/redirect&kc_idp_hint=gozar&skip_prompt=true`
                         );
                       }
                     };
