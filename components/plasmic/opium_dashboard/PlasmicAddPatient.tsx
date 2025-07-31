@@ -1442,10 +1442,9 @@ function PlasmicAddPatient__RenderFunc(props: {
                                       center_id: $props.centerId,
                                       user_center_id: $props.userCenterId,
                                       type: 3,
-                                      from_timestamp:
-                                        $state.freeturnsApi.data.result[0].from,
-                                      to_timestamp:
-                                        $state.freeturnsApi.data.result[0].to
+                                      from: $state.freeturnsApi.data.result[0]
+                                        .from,
+                                      to: $state.freeturnsApi.data.result[0].to
                                     };
                                   } catch (e) {
                                     if (
@@ -2309,10 +2308,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                                                         service_id:
                                                           $props.serviceId2,
                                                         type: 3,
-                                                        from_timestamp:
-                                                          currentItem.from,
-                                                        to_timestamp:
-                                                          currentItem.to
+                                                        from: currentItem.from,
+                                                        to: currentItem.to
                                                       };
                                                     } catch (e) {
                                                       if (
@@ -3459,10 +3456,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                                                           user_center_id:
                                                             $props.userCenterId,
                                                           type: 3,
-                                                          from_timestamp:
-                                                            $state.newTimeFromBook,
-                                                          to_timestamp:
-                                                            $state.newTimeToBook
+                                                          from: $state.newTimeFromBook,
+                                                          to: $state.newTimeToBook
                                                         };
                                                       } catch (e) {
                                                         if (
