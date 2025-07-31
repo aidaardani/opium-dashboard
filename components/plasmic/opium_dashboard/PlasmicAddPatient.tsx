@@ -1433,8 +1433,9 @@ function PlasmicAddPatient__RenderFunc(props: {
                         ? (() => {
                             const actionArgs = {
                               args: [
-                                "GET",
+                                "POST",
                                 "https://apigw.paziresh24.com/v2/suspend",
+                                undefined,
                                 (() => {
                                   try {
                                     return {
@@ -2295,8 +2296,9 @@ function PlasmicAddPatient__RenderFunc(props: {
                                           ? (() => {
                                               const actionArgs = {
                                                 args: [
-                                                  "GET",
+                                                  "POST",
                                                   "https://apigw.paziresh24.com/v2/suspend",
+                                                  undefined,
                                                   (() => {
                                                     try {
                                                       return {
@@ -2373,8 +2375,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                                                           $state.inputcell
                                                             .value,
                                                         request_code:
-                                                          $steps.suspend.data
-                                                            .request_code,
+                                                          $steps.suspend?.data
+                                                            ?.request_code,
                                                         national_code:
                                                           $state.nationalCode
                                                             .value
@@ -3446,8 +3448,9 @@ function PlasmicAddPatient__RenderFunc(props: {
                                             ? (() => {
                                                 const actionArgs = {
                                                   args: [
-                                                    "GET",
+                                                    "POST",
                                                     "https://apigw.paziresh24.com/v2/suspend",
+                                                    undefined,
                                                     (() => {
                                                       try {
                                                         return {
