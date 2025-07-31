@@ -2022,9 +2022,23 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                   sty.text__yoAJz
                 )}
               >
-                {
-                  "\u063a\u06cc\u0631\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u067e\u0631\u062f\u0627\u062e\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0645\u0637\u0628"
-                }
+                <React.Fragment>
+                  {(() => {
+                    try {
+                      return $state.apiGetPaymentStatus.data.active === "0"
+                        ? "انصراف"
+                        : "غیرفعالسازی پرداخت آنلاین مطب";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "\u063a\u06cc\u0631\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u067e\u0631\u062f\u0627\u062e\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0645\u0637\u0628";
+                      }
+                      throw e;
+                    }
+                  })()}
+                </React.Fragment>
               </div>
             }
             className={classNames("__wab_instance", sty.button__cRiZx)}
