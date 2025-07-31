@@ -174,16 +174,23 @@
   width: auto;
   height: 1em;
 }
-.httpRestApiFetcher__u6ZdB:global(.__wab_instance) {
-  width: 100%;
+.freeturnsApi:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
-  position: relative;
-  background: var(--token-Y3HOiwZmAcAF);
-  min-width: 0;
 }
-.text__a7PNv {
-  text-align: center;
+.svg__weoyW {
+  object-fit: cover;
+  max-width: 100%;
+  width: 24px;
+  height: 24px;
+  align-self: center;
+}
+.text__peSKx {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
 }
 .verticalStackFunction {
   display: flex;
@@ -426,12 +433,9 @@
   > img {
   margin-top: 1px;
 }
-.httpRestApiFetcher__nyQGf:global(.__wab_instance) {
-  width: 100%;
+.freeturnByRangeDateApi:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
-  position: relative;
-  min-width: 0;
 }
 .freeBox__naOsf {
   display: flex;

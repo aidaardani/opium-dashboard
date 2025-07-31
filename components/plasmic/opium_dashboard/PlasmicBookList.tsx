@@ -70,7 +70,6 @@ import { Switch } from "@/fragment/components/switch"; // plasmic-import: dH6_Vl
 import PatientList from "../../PatientList"; // plasmic-import: uw2UKvNlq2Yr/component
 import AddPatient from "../../AddPatient"; // plasmic-import: tPaqHhQ134RQ/component
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
-import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
 

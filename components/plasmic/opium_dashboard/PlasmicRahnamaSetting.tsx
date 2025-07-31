@@ -75,13 +75,10 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicRahnamaSetting.module.css"; // plasmic-import: hMCmm2ZdzaWd/css
 
-import Icon45Icon from "./icons/PlasmicIcon__Icon45"; // plasmic-import: YyulLjs7e3e8/icon
-import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
-import Icon54Icon from "./icons/PlasmicIcon__Icon54"; // plasmic-import: gzgrHidiT4aC/icon
-import Icon56Icon from "./icons/PlasmicIcon__Icon56"; // plasmic-import: 7lp3HMlkerVM/icon
-import Icon55Icon from "./icons/PlasmicIcon__Icon55"; // plasmic-import: KDj4P8rbd3VG/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
+import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
+import Icon45Icon from "./icons/PlasmicIcon__Icon45"; // plasmic-import: YyulLjs7e3e8/icon
 
 createPlasmicElementProxy;
 
@@ -96,18 +93,14 @@ export const PlasmicRahnamaSetting__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicRahnamaSetting__OverridesType = {
   hamyar?: Flex__<"div">;
+  social?: Flex__<"div">;
+  apps?: Flex__<typeof ApiRequest>;
+  insta?: Flex__<"div">;
+  appSwitch?: Flex__<typeof Switch>;
+  handleInput?: Flex__<typeof Input>;
+  img?: Flex__<typeof PlasmicImg__>;
   user?: Flex__<typeof ApiRequest>;
   apiGetSocialApp?: Flex__<typeof ApiRequest>;
-  social?: Flex__<"div">;
-  insta?: Flex__<"div">;
-  instaSwitch?: Flex__<typeof Switch>;
-  instaId?: Flex__<typeof Input>;
-  aparat?: Flex__<"div">;
-  aparatSwitch?: Flex__<typeof Switch>;
-  aparatId?: Flex__<typeof Input>;
-  x?: Flex__<"div">;
-  xSwitch?: Flex__<typeof Switch>;
-  xid?: Flex__<typeof Input>;
 };
 
 export interface DefaultRahnamaSettingProps {}
@@ -204,40 +197,14 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => false
       },
       {
-        path: "instaId.value",
+        path: "handleInput[].value",
         type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        variableType: "text"
       },
       {
-        path: "instaSwitch.checked",
+        path: "appSwitch[].checked",
         type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "aparatSwitch.checked",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "aparatId.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
-      {
-        path: "xSwitch.checked",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
-      },
-      {
-        path: "xid.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        variableType: "text"
       },
       {
         path: "apiGetSocialApp.data",
@@ -262,6 +229,30 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "apiGetSocialApp"
+      },
+      {
+        path: "apps.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apps"
+      },
+      {
+        path: "apps.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apps"
+      },
+      {
+        path: "apps.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apps"
       }
     ],
     [$props, $ctx, $refs]
@@ -318,6 +309,1050 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
               sty.hamyar
             )}
           >
+            {(
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? (() => {
+                    try {
+                      return !$state.pageLoading && !$state.user.error;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })()
+                : (() => {
+                    try {
+                      return !$state.pageLoading && !$state.user.error;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return false;
+                      }
+                      throw e;
+                    }
+                  })()
+            ) ? (
+              <div className={classNames(projectcss.all, sty.freeBox___4Vw9F)}>
+                <div
+                  data-plasmic-name={"social"}
+                  data-plasmic-override={overrides.social}
+                  className={classNames(projectcss.all, sty.social)}
+                >
+                  <ApiRequest
+                    data-plasmic-name={"apps"}
+                    data-plasmic-override={overrides.apps}
+                    className={classNames("__wab_instance", sty.apps)}
+                    errorDisplay={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__iGI
+                        )}
+                      >
+                        {"Error fetching data"}
+                      </div>
+                    }
+                    loadingDisplay={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__nmtaY
+                        )}
+                      >
+                        {"Loading..."}
+                      </div>
+                    }
+                    method={"GET"}
+                    onError={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "apps",
+                        "error"
+                      ]).apply(null, eventArgs);
+                    }}
+                    onLoading={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "apps",
+                        "loading"
+                      ]).apply(null, eventArgs);
+                    }}
+                    onSuccess={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, ["apps", "data"]).apply(
+                        null,
+                        eventArgs
+                      );
+                    }}
+                    ref={ref => {
+                      $refs["apps"] = ref;
+                    }}
+                    url={
+                      "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/rahnama/v1/apps"
+                    }
+                  >
+                    {(_par =>
+                      !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                      (() => {
+                        try {
+                          return $state.apps.data;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [];
+                          }
+                          throw e;
+                        }
+                      })()
+                    ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                      const currentItem = __plasmic_item_0;
+                      const currentIndex = __plasmic_idx_0;
+                      return (
+                        <div
+                          data-plasmic-name={"insta"}
+                          data-plasmic-override={overrides.insta}
+                          className={classNames(projectcss.all, sty.insta)}
+                          key={currentIndex}
+                        >
+                          <Stack__
+                            as={"div"}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__cf2I3
+                            )}
+                          >
+                            {(() => {
+                              const child$Props = {
+                                checked: generateStateValueProp($state, [
+                                  "appSwitch",
+                                  __plasmic_idx_0,
+                                  "checked"
+                                ]),
+                                className: classNames(
+                                  "__wab_instance",
+                                  sty.appSwitch
+                                ),
+                                onCheckedChange: async (...eventArgs: any) => {
+                                  generateStateOnChangeProp($state, [
+                                    "appSwitch",
+                                    __plasmic_idx_0,
+                                    "checked"
+                                  ]).apply(null, eventArgs);
+                                }
+                              };
+                              initializeCodeComponentStates(
+                                $state,
+                                [
+                                  {
+                                    name: "checked",
+                                    plasmicStateName: "appSwitch[].checked"
+                                  }
+                                ],
+                                [__plasmic_idx_0],
+                                undefined ?? {},
+                                child$Props
+                              );
+                              initializePlasmicStates(
+                                $state,
+                                [
+                                  {
+                                    name: "appSwitch[].checked",
+                                    initFunc: ({ $props, $state, $queries }) =>
+                                      (() => {
+                                        try {
+                                          return $state.apiGetSocialApp.data[
+                                            "social-media-app"
+                                          ].find(
+                                            item => item.app === currentItem.key
+                                          )?.is_active;
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                  }
+                                ],
+                                [__plasmic_idx_0]
+                              );
+                              return (
+                                <Switch
+                                  data-plasmic-name={"appSwitch"}
+                                  data-plasmic-override={overrides.appSwitch}
+                                  {...child$Props}
+                                />
+                              );
+                            })()}
+                            {(() => {
+                              const child$Props = {
+                                className: classNames(
+                                  "__wab_instance",
+                                  sty.handleInput
+                                ),
+                                onChange: async (...eventArgs: any) => {
+                                  generateStateOnChangeProp($state, [
+                                    "handleInput",
+                                    __plasmic_idx_0,
+                                    "value"
+                                  ]).apply(null, eventArgs);
+                                },
+                                placeholder: `آیدی ${currentItem.Title}`,
+                                value: generateStateValueProp($state, [
+                                  "handleInput",
+                                  __plasmic_idx_0,
+                                  "value"
+                                ])
+                              };
+                              initializeCodeComponentStates(
+                                $state,
+                                [
+                                  {
+                                    name: "value",
+                                    plasmicStateName: "handleInput[].value"
+                                  }
+                                ],
+                                [__plasmic_idx_0],
+                                undefined ?? {},
+                                child$Props
+                              );
+                              initializePlasmicStates(
+                                $state,
+                                [
+                                  {
+                                    name: "handleInput[].value",
+                                    initFunc: ({ $props, $state, $queries }) =>
+                                      (() => {
+                                        try {
+                                          return $state.apiGetSocialApp.data[
+                                            "social-media-app"
+                                          ].find(
+                                            item => item.app === currentItem.key
+                                          )?.handle;
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                  }
+                                ],
+                                [__plasmic_idx_0]
+                              );
+                              return (
+                                <Input
+                                  data-plasmic-name={"handleInput"}
+                                  data-plasmic-override={overrides.handleInput}
+                                  {...child$Props}
+                                />
+                              );
+                            })()}
+                            <PlasmicImg__
+                              data-plasmic-name={"img"}
+                              data-plasmic-override={overrides.img}
+                              alt={""}
+                              className={classNames(sty.img)}
+                              displayHeight={"28px"}
+                              displayMaxHeight={"none"}
+                              displayMaxWidth={"100%"}
+                              displayMinHeight={"0"}
+                              displayMinWidth={"0"}
+                              displayWidth={"28px"}
+                              loading={"lazy"}
+                              src={(() => {
+                                try {
+                                  return currentItem.icon;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            />
+                          </Stack__>
+                        </div>
+                      );
+                    })}
+                  </ApiRequest>
+                </div>
+                {(() => {
+                  try {
+                    return !$state.user.data.active;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return false;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <Button
+                    children2={
+                      "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc"
+                    }
+                    className={classNames("__wab_instance", sty.button___2VOdx)}
+                    loading={(() => {
+                      try {
+                        return $state.loading;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["validation"] = $state.apps.data.some(
+                        (item, index) =>
+                          !!$state.appSwitch[index].checked &&
+                          !$state.handleInput[index].value
+                      )
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "error",
+                                (() => {
+                                  try {
+                                    return (
+                                      "آیدی " +
+                                      $state.apps.data
+                                        .map((item, index) =>
+                                          !!$state.appSwitch[index].checked &&
+                                          !$state.handleInput[index].value
+                                            ? item.Title
+                                            : null
+                                        )
+                                        .filter(item => item)
+                                        .join("\u060C ") +
+                                      " را وارد کنید"
+                                    );
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.showToast"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["validation"] != null &&
+                        typeof $steps["validation"] === "object" &&
+                        typeof $steps["validation"].then === "function"
+                      ) {
+                        $steps["validation"] = await $steps["validation"];
+                      }
+
+                      $steps["startLoading"] = !$state.apps.data.some(
+                        (item, index) =>
+                          !!$state.appSwitch[index].checked &&
+                          !$state.handleInput[index].value
+                      )
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["loading"]
+                              },
+                              operation: 0,
+                              value: true
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["startLoading"] != null &&
+                        typeof $steps["startLoading"] === "object" &&
+                        typeof $steps["startLoading"].then === "function"
+                      ) {
+                        $steps["startLoading"] = await $steps["startLoading"];
+                      }
+
+                      $steps["update"] = !$state.apps.data.some(
+                        (item, index) =>
+                          !!$state.appSwitch[index].checked &&
+                          !$state.handleInput[index].value
+                      )
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "PUT",
+                                "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/rahnama/v1/social-id",
+                                undefined,
+                                (() => {
+                                  try {
+                                    return {
+                                      social_media_app: $state.apps.data.map(
+                                        (item, index) => ({
+                                          app: item.key,
+                                          handle:
+                                            $state.handleInput[index].value,
+                                          is_active:
+                                            $state.appSwitch[index].checked ??
+                                            false
+                                        })
+                                      )
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })(),
+                                (() => {
+                                  try {
+                                    return {
+                                      headers: {
+                                        Authorization:
+                                          "Bearer " + $ctx.query.access_token
+                                      }
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.apiRequest"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["update"] != null &&
+                        typeof $steps["update"] === "object" &&
+                        typeof $steps["update"].then === "function"
+                      ) {
+                        $steps["update"] = await $steps["update"];
+                      }
+
+                      $steps["payment"] =
+                        $state.user?.data?.payment_status !== "paid"
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return (() => {
+                                    return window.hamdast.payment.pay({
+                                      product_key: "x6q8epw9k04deyi"
+                                    });
+                                  })();
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["payment"] != null &&
+                        typeof $steps["payment"] === "object" &&
+                        typeof $steps["payment"].then === "function"
+                      ) {
+                        $steps["payment"] = await $steps["payment"];
+                      }
+
+                      $steps["paymentSuccess"] =
+                        $steps.payment?.event == "HAMDAST_PAYMENT_SUCCESS"
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  "POST",
+                                  "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/rahnama/v1/payment",
+                                  undefined,
+                                  (() => {
+                                    try {
+                                      return {
+                                        receipt_id: $steps.payment?.receipt_id
+                                      };
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })(),
+                                  (() => {
+                                    try {
+                                      return {
+                                        headers: {
+                                          Authorization:
+                                            "Bearer " + $ctx.query.access_token
+                                        }
+                                      };
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions[
+                                "Fragment.apiRequest"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["paymentSuccess"] != null &&
+                        typeof $steps["paymentSuccess"] === "object" &&
+                        typeof $steps["paymentSuccess"].then === "function"
+                      ) {
+                        $steps["paymentSuccess"] = await $steps[
+                          "paymentSuccess"
+                        ];
+                      }
+
+                      $steps["paymentCancel"] =
+                        $steps.payment?.event == "HAMDAST_PAYMENT_CANCEL"
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  "error",
+                                  "\u0634\u0645\u0627 \u0627\u0632 \u067e\u0631\u062f\u0627\u062e\u062a \u0627\u0646\u0635\u0631\u0627\u0641 \u062f\u0627\u062f\u06cc\u062f."
+                                ]
+                              };
+                              return $globalActions[
+                                "Fragment.showToast"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["paymentCancel"] != null &&
+                        typeof $steps["paymentCancel"] === "object" &&
+                        typeof $steps["paymentCancel"].then === "function"
+                      ) {
+                        $steps["paymentCancel"] = await $steps["paymentCancel"];
+                      }
+
+                      $steps["paymentError"] =
+                        $steps.payment?.event == "HAMDAST_PAYMENT_ERROR"
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  "error",
+                                  "\u0645\u0634\u06a9\u0644\u06cc \u062f\u0631 \u067e\u0631\u062f\u0627\u062e\u062a \u0628\u0647 \u067e\u0647 \u0648\u062c\u0648\u062f \u0622\u0645\u062f\u0647."
+                                ]
+                              };
+                              return $globalActions[
+                                "Fragment.showToast"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["paymentError"] != null &&
+                        typeof $steps["paymentError"] === "object" &&
+                        typeof $steps["paymentError"].then === "function"
+                      ) {
+                        $steps["paymentError"] = await $steps["paymentError"];
+                      }
+
+                      $steps["activeWidgetPopup"] =
+                        $steps.paymentSuccess?.status == 200 ||
+                        $state.user.data.payment_status == "paid"
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return window.hamdast?.widget?.addToProfile();
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["activeWidgetPopup"] != null &&
+                        typeof $steps["activeWidgetPopup"] === "object" &&
+                        typeof $steps["activeWidgetPopup"].then === "function"
+                      ) {
+                        $steps["activeWidgetPopup"] = await $steps[
+                          "activeWidgetPopup"
+                        ];
+                      }
+
+                      $steps["widgetAdded"] =
+                        $steps.activeWidgetPopup?.status == "ACCEPTED"
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  "PUT",
+                                  "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/rahnama/v1/active",
+                                  undefined,
+                                  undefined,
+                                  (() => {
+                                    try {
+                                      return {
+                                        headers: {
+                                          Authorization:
+                                            "Bearer " + $ctx.query.access_token
+                                        }
+                                      };
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions[
+                                "Fragment.apiRequest"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["widgetAdded"] != null &&
+                        typeof $steps["widgetAdded"] === "object" &&
+                        typeof $steps["widgetAdded"].then === "function"
+                      ) {
+                        $steps["widgetAdded"] = await $steps["widgetAdded"];
+                      }
+
+                      $steps["widgetCanceled"] =
+                        $steps.activeWidgetPopup?.status == "CANCELED"
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  "error",
+                                  "\u0627\u0641\u0632\u0648\u062f\u0646 \u0627\u0628\u0632\u0627\u0631\u06a9 \u0647\u0645\u06cc\u0627\u0631 \u0644\u063a\u0648 \u0634\u062f."
+                                ]
+                              };
+                              return $globalActions[
+                                "Fragment.showToast"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["widgetCanceled"] != null &&
+                        typeof $steps["widgetCanceled"] === "object" &&
+                        typeof $steps["widgetCanceled"].then === "function"
+                      ) {
+                        $steps["widgetCanceled"] = await $steps[
+                          "widgetCanceled"
+                        ];
+                      }
+
+                      $steps["finishLoading"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["loading"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["finishLoading"] != null &&
+                        typeof $steps["finishLoading"] === "object" &&
+                        typeof $steps["finishLoading"].then === "function"
+                      ) {
+                        $steps["finishLoading"] = await $steps["finishLoading"];
+                      }
+
+                      $steps["refreshData"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              tplRef: "user",
+                              action: "refresh"
+                            };
+                            return (({ tplRef, action, args }) => {
+                              return $refs?.[tplRef]?.[action]?.(
+                                ...(args ?? [])
+                              );
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["refreshData"] != null &&
+                        typeof $steps["refreshData"] === "object" &&
+                        typeof $steps["refreshData"].then === "function"
+                      ) {
+                        $steps["refreshData"] = await $steps["refreshData"];
+                      }
+                    }}
+                  />
+                ) : null}
+                {(() => {
+                  try {
+                    return $state.user.data.active;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return false;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <Button
+                    children2={
+                      "\u063a\u06cc\u0631\u0641\u0639\u0627\u0644 \u0633\u0627\u0632\u06cc"
+                    }
+                    className={classNames("__wab_instance", sty.button__pmLau)}
+                    loading={(() => {
+                      try {
+                        return $state.loading;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["startLoading"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["loading"]
+                              },
+                              operation: 0,
+                              value: true
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["startLoading"] != null &&
+                        typeof $steps["startLoading"] === "object" &&
+                        typeof $steps["startLoading"].then === "function"
+                      ) {
+                        $steps["startLoading"] = await $steps["startLoading"];
+                      }
+
+                      $steps["removeFromProfile"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              customFunction: async () => {
+                                return window.hamdast?.widget?.removeFromProfile();
+                              }
+                            };
+                            return (({ customFunction }) => {
+                              return customFunction();
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["removeFromProfile"] != null &&
+                        typeof $steps["removeFromProfile"] === "object" &&
+                        typeof $steps["removeFromProfile"].then === "function"
+                      ) {
+                        $steps["removeFromProfile"] = await $steps[
+                          "removeFromProfile"
+                        ];
+                      }
+
+                      $steps["deactive"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "PUT",
+                                "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/rahnama/v1/deactive",
+                                undefined,
+                                undefined,
+                                (() => {
+                                  try {
+                                    return {
+                                      headers: {
+                                        Authorization:
+                                          "Bearer " + $ctx.query.access_token
+                                      }
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.apiRequest"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["deactive"] != null &&
+                        typeof $steps["deactive"] === "object" &&
+                        typeof $steps["deactive"].then === "function"
+                      ) {
+                        $steps["deactive"] = await $steps["deactive"];
+                      }
+
+                      $steps["toast"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                undefined,
+                                "\u0647\u0645\u06cc\u0627\u0631 \u0627\u0632 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u062d\u0630\u0641 \u0634\u062f."
+                              ]
+                            };
+                            return $globalActions["Fragment.showToast"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["toast"] != null &&
+                        typeof $steps["toast"] === "object" &&
+                        typeof $steps["toast"].then === "function"
+                      ) {
+                        $steps["toast"] = await $steps["toast"];
+                      }
+
+                      $steps["finishLoading"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["loading"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["finishLoading"] != null &&
+                        typeof $steps["finishLoading"] === "object" &&
+                        typeof $steps["finishLoading"].then === "function"
+                      ) {
+                        $steps["finishLoading"] = await $steps["finishLoading"];
+                      }
+
+                      $steps["refresh"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              tplRef: "user",
+                              action: "refresh"
+                            };
+                            return (({ tplRef, action, args }) => {
+                              return $refs?.[tplRef]?.[action]?.(
+                                ...(args ?? [])
+                              );
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["refresh"] != null &&
+                        typeof $steps["refresh"] === "object" &&
+                        typeof $steps["refresh"].then === "function"
+                      ) {
+                        $steps["refresh"] = await $steps["refresh"];
+                      }
+                    }}
+                    outline={true}
+                  />
+                ) : null}
+              </div>
+            ) : null}
+            {(() => {
+              try {
+                return $state.user.loading;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })() ? (
+              <Icon34Icon
+                className={classNames(projectcss.all, sty.svg___6R37X)}
+                role={"img"}
+              />
+            ) : null}
+            {(
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? (() => {
+                    try {
+                      return $state.pageLoading && !$state.user.error;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })()
+                : (() => {
+                    try {
+                      return $state.pageLoading && !$state.user.error;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })()
+            ) ? (
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__phTya)}
+              >
+                <Icon34Icon
+                  className={classNames(projectcss.all, sty.svg__ffBhX)}
+                  role={"img"}
+                />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__yfJq7
+                  )}
+                >
+                  {
+                    "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
+                  }
+                </div>
+              </Stack__>
+            ) : null}
             <ApiRequest
               data-plasmic-name={"user"}
               data-plasmic-override={overrides.user}
@@ -456,236 +1491,6 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
 
                 (async data => {
                   const $steps = {};
-
-                  $steps["updateXidValue"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["xid", "value"]
-                          },
-                          operation: 0,
-                          value:
-                            $state.apiGetSocialApp.data["social-media-id"][
-                              "x-id"
-                            ]
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateXidValue"] != null &&
-                    typeof $steps["updateXidValue"] === "object" &&
-                    typeof $steps["updateXidValue"].then === "function"
-                  ) {
-                    $steps["updateXidValue"] = await $steps["updateXidValue"];
-                  }
-
-                  $steps["updateXSwitchChecked"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["xSwitch", "checked"]
-                          },
-                          operation: 0,
-                          value:
-                            $state.apiGetSocialApp.data["social-media-app"].x
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateXSwitchChecked"] != null &&
-                    typeof $steps["updateXSwitchChecked"] === "object" &&
-                    typeof $steps["updateXSwitchChecked"].then === "function"
-                  ) {
-                    $steps["updateXSwitchChecked"] = await $steps[
-                      "updateXSwitchChecked"
-                    ];
-                  }
-
-                  $steps["updateAparatValue"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["aparatId", "value"]
-                          },
-                          operation: 0,
-                          value:
-                            $state.apiGetSocialApp.data["social-media-id"][
-                              "aparat-id"
-                            ]
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateAparatValue"] != null &&
-                    typeof $steps["updateAparatValue"] === "object" &&
-                    typeof $steps["updateAparatValue"].then === "function"
-                  ) {
-                    $steps["updateAparatValue"] = await $steps[
-                      "updateAparatValue"
-                    ];
-                  }
-
-                  $steps["updateAparatSwitchChecked"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["aparatSwitch", "checked"]
-                          },
-                          operation: 0,
-                          value:
-                            $state.apiGetSocialApp.data["social-media-app"]
-                              .aparat
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateAparatSwitchChecked"] != null &&
-                    typeof $steps["updateAparatSwitchChecked"] === "object" &&
-                    typeof $steps["updateAparatSwitchChecked"].then ===
-                      "function"
-                  ) {
-                    $steps["updateAparatSwitchChecked"] = await $steps[
-                      "updateAparatSwitchChecked"
-                    ];
-                  }
-
-                  $steps["updateInstaIdValue"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["instaId", "value"]
-                          },
-                          operation: 0,
-                          value:
-                            $state.apiGetSocialApp.data["social-media-id"][
-                              "insta-id"
-                            ]
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateInstaIdValue"] != null &&
-                    typeof $steps["updateInstaIdValue"] === "object" &&
-                    typeof $steps["updateInstaIdValue"].then === "function"
-                  ) {
-                    $steps["updateInstaIdValue"] = await $steps[
-                      "updateInstaIdValue"
-                    ];
-                  }
-
-                  $steps["updateInstaSwitchChecked"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["instaSwitch", "checked"]
-                          },
-                          operation: 0,
-                          value:
-                            $state.apiGetSocialApp.data["social-media-app"]
-                              .insta
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["updateInstaSwitchChecked"] != null &&
-                    typeof $steps["updateInstaSwitchChecked"] === "object" &&
-                    typeof $steps["updateInstaSwitchChecked"].then ===
-                      "function"
-                  ) {
-                    $steps["updateInstaSwitchChecked"] = await $steps[
-                      "updateInstaSwitchChecked"
-                    ];
-                  }
                 }).apply(null, eventArgs);
               }}
               ref={ref => {
@@ -695,1014 +1500,6 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
                 "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/rahnama/v1/social"
               }
             />
-
-            {(() => {
-              try {
-                return $state.user.loading;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return false;
-                }
-                throw e;
-              }
-            })() ? (
-              <Icon34Icon
-                className={classNames(projectcss.all, sty.svg___6R37X)}
-                role={"img"}
-              />
-            ) : null}
-            {(
-              hasVariant(globalVariants, "screen", "mobileOnly")
-                ? (() => {
-                    try {
-                      return !$state.pageLoading && !$state.user.error;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return true;
-                      }
-                      throw e;
-                    }
-                  })()
-                : (() => {
-                    try {
-                      return !$state.pageLoading && !$state.user.error;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return false;
-                      }
-                      throw e;
-                    }
-                  })()
-            ) ? (
-              <div className={classNames(projectcss.all, sty.freeBox___4Vw9F)}>
-                <div className={classNames(projectcss.all, sty.freeBox__uEmkl)}>
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__mtMaa
-                    )}
-                  >
-                    {
-                      "\u0645\u062f\u06cc\u0631\u06cc\u062a \u0648 \u0646\u0645\u0627\u06cc\u0634 \u0634\u0628\u06a9\u0647\u200c\u0647\u0627\u06cc \u0627\u062c\u062a\u0645\u0627\u0639\u06cc"
-                    }
-                  </div>
-                </div>
-                <div
-                  data-plasmic-name={"social"}
-                  data-plasmic-override={overrides.social}
-                  className={classNames(projectcss.all, sty.social)}
-                >
-                  <div
-                    data-plasmic-name={"insta"}
-                    data-plasmic-override={overrides.insta}
-                    className={classNames(projectcss.all, sty.insta)}
-                  >
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.freeBox__cf2I3)}
-                    >
-                      <Switch
-                        data-plasmic-name={"instaSwitch"}
-                        data-plasmic-override={overrides.instaSwitch}
-                        checked={generateStateValueProp($state, [
-                          "instaSwitch",
-                          "checked"
-                        ])}
-                        className={classNames(
-                          "__wab_instance",
-                          sty.instaSwitch
-                        )}
-                        onCheckedChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "instaSwitch",
-                            "checked"
-                          ]).apply(null, eventArgs);
-                        }}
-                      />
-
-                      <Input
-                        data-plasmic-name={"instaId"}
-                        data-plasmic-override={overrides.instaId}
-                        className={classNames("__wab_instance", sty.instaId)}
-                        onChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "instaId",
-                            "value"
-                          ]).apply(null, eventArgs);
-                        }}
-                        placeholder={
-                          "\u0622\u06cc\u062f\u06cc \u0627\u06cc\u0646\u0633\u062a\u0627\u06af\u0631\u0627\u0645"
-                        }
-                        value={generateStateValueProp($state, [
-                          "instaId",
-                          "value"
-                        ])}
-                      />
-
-                      <Icon54Icon
-                        className={classNames(projectcss.all, sty.svg__wV7S)}
-                        role={"img"}
-                      />
-                    </Stack__>
-                  </div>
-                  <div
-                    data-plasmic-name={"aparat"}
-                    data-plasmic-override={overrides.aparat}
-                    className={classNames(projectcss.all, sty.aparat)}
-                  >
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox___8Tvlu
-                      )}
-                    >
-                      <Switch
-                        data-plasmic-name={"aparatSwitch"}
-                        data-plasmic-override={overrides.aparatSwitch}
-                        checked={generateStateValueProp($state, [
-                          "aparatSwitch",
-                          "checked"
-                        ])}
-                        className={classNames(
-                          "__wab_instance",
-                          sty.aparatSwitch
-                        )}
-                        onCheckedChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "aparatSwitch",
-                            "checked"
-                          ]).apply(null, eventArgs);
-                        }}
-                      />
-
-                      <Input
-                        data-plasmic-name={"aparatId"}
-                        data-plasmic-override={overrides.aparatId}
-                        className={classNames("__wab_instance", sty.aparatId)}
-                        onChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "aparatId",
-                            "value"
-                          ]).apply(null, eventArgs);
-                        }}
-                        placeholder={
-                          "\u0622\u06cc\u062f\u06cc \u0622\u067e\u0627\u0631\u0627\u062a"
-                        }
-                        value={generateStateValueProp($state, [
-                          "aparatId",
-                          "value"
-                        ])}
-                      />
-
-                      <Icon56Icon
-                        className={classNames(projectcss.all, sty.svg__rbb7J)}
-                        role={"img"}
-                      />
-                    </Stack__>
-                  </div>
-                  <div
-                    data-plasmic-name={"x"}
-                    data-plasmic-override={overrides.x}
-                    className={classNames(projectcss.all, sty.x)}
-                  >
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.freeBox__yfQm)}
-                    >
-                      <Switch
-                        data-plasmic-name={"xSwitch"}
-                        data-plasmic-override={overrides.xSwitch}
-                        checked={generateStateValueProp($state, [
-                          "xSwitch",
-                          "checked"
-                        ])}
-                        className={classNames("__wab_instance", sty.xSwitch)}
-                        onCheckedChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "xSwitch",
-                            "checked"
-                          ]).apply(null, eventArgs);
-                        }}
-                      />
-
-                      <Input
-                        data-plasmic-name={"xid"}
-                        data-plasmic-override={overrides.xid}
-                        className={classNames("__wab_instance", sty.xid)}
-                        onChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "xid",
-                            "value"
-                          ]).apply(null, eventArgs);
-                        }}
-                        placeholder={
-                          "\u0622\u06cc\u062f\u06cc \u0627\u06cc\u06a9\u0633"
-                        }
-                        value={generateStateValueProp($state, ["xid", "value"])}
-                      />
-
-                      <Icon55Icon
-                        className={classNames(projectcss.all, sty.svg___0XSbM)}
-                        role={"img"}
-                      />
-                    </Stack__>
-                  </div>
-                  {(() => {
-                    try {
-                      return !$state.user.data.active;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return false;
-                      }
-                      throw e;
-                    }
-                  })() ? (
-                    <Button
-                      children2={
-                        "\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc"
-                      }
-                      className={classNames(
-                        "__wab_instance",
-                        sty.button___2VOdx
-                      )}
-                      loading={(() => {
-                        try {
-                          return $state.loading;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return [];
-                          }
-                          throw e;
-                        }
-                      })()}
-                      onClick={async event => {
-                        const $steps = {};
-
-                        $steps["validationInsta"] =
-                          ($state.instaId.value == "" ||
-                            $state.instaId.value == " ") &&
-                          $state.instaSwitch.checked === true
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    "error",
-                                    "\u0644\u0637\u0641\u0627 \u0622\u06cc\u062f\u0627 \u0627\u06cc\u0646\u0633\u062a\u0627\u06af\u0631\u0627\u0645 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
-                                  ]
-                                };
-                                return $globalActions[
-                                  "Fragment.showToast"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
-                        if (
-                          $steps["validationInsta"] != null &&
-                          typeof $steps["validationInsta"] === "object" &&
-                          typeof $steps["validationInsta"].then === "function"
-                        ) {
-                          $steps["validationInsta"] = await $steps[
-                            "validationInsta"
-                          ];
-                        }
-
-                        $steps["validationForAparat"] =
-                          ($state.aparatId.value == "" ||
-                            $state.aparatId.value == " ") &&
-                          $state.aparatSwitch.checked === true
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    "error",
-                                    "\u0644\u0637\u0641\u0627 \u0627\u06cc\u062f\u06cc \u0627\u067e\u0627\u0631\u0627\u062a \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
-                                  ]
-                                };
-                                return $globalActions[
-                                  "Fragment.showToast"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
-                        if (
-                          $steps["validationForAparat"] != null &&
-                          typeof $steps["validationForAparat"] === "object" &&
-                          typeof $steps["validationForAparat"].then ===
-                            "function"
-                        ) {
-                          $steps["validationForAparat"] = await $steps[
-                            "validationForAparat"
-                          ];
-                        }
-
-                        $steps["validationX"] =
-                          ($state.xid.value == "" || $state.xid.value == " ") &&
-                          $state.xSwitch.checked === true
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    "error",
-                                    "\u0644\u0637\u0641\u0627 \u0627\u06cc\u062f\u06cc \u062a\u0648\u06cc\u06cc\u062a\u0631 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
-                                  ]
-                                };
-                                return $globalActions[
-                                  "Fragment.showToast"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
-                        if (
-                          $steps["validationX"] != null &&
-                          typeof $steps["validationX"] === "object" &&
-                          typeof $steps["validationX"].then === "function"
-                        ) {
-                          $steps["validationX"] = await $steps["validationX"];
-                        }
-
-                        $steps["startLoading"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["loading"]
-                                },
-                                operation: 0,
-                                value: true
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["startLoading"] != null &&
-                          typeof $steps["startLoading"] === "object" &&
-                          typeof $steps["startLoading"].then === "function"
-                        ) {
-                          $steps["startLoading"] = await $steps["startLoading"];
-                        }
-
-                        $steps["update"] = (() => {
-                          const isValidInput =
-                            (!$state.instaSwitch.checked ||
-                              ($state.instaSwitch.checked &&
-                                !!$state.instaId.value)) &&
-                            (!$state.xSwitch.checked ||
-                              ($state.xSwitch.checked && !!$state.xid.value)) &&
-                            (!$state.aparatSwitch.checked ||
-                              ($state.aparatSwitch.checked &&
-                                !!$state.aparatId.value));
-                          return isValidInput;
-                        })()
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  "PUT",
-                                  "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/rahnama/v1/social-id",
-                                  undefined,
-                                  (() => {
-                                    try {
-                                      return {
-                                        social_media_app: {
-                                          insta:
-                                            $state.instaSwitch.checked ?? false,
-                                          x: $state.xSwitch.checked ?? false,
-                                          aparat:
-                                            $state.aparatSwitch.checked ?? false
-                                        },
-                                        social_media_id: {
-                                          "insta-id":
-                                            $state.instaId.value || "",
-                                          "x-id": $state.xid.value || "",
-                                          "aparat-id":
-                                            $state.aparatId.value || ""
-                                        }
-                                      };
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })(),
-                                  (() => {
-                                    try {
-                                      return {
-                                        headers: {
-                                          Authorization:
-                                            "Bearer " + $ctx.query.access_token
-                                        }
-                                      };
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.apiRequest"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["update"] != null &&
-                          typeof $steps["update"] === "object" &&
-                          typeof $steps["update"].then === "function"
-                        ) {
-                          $steps["update"] = await $steps["update"];
-                        }
-
-                        $steps["payment"] =
-                          $state.user?.data?.payment_status !== "paid"
-                            ? (() => {
-                                const actionArgs = {
-                                  customFunction: async () => {
-                                    return (() => {
-                                      return window.hamdast.payment.pay({
-                                        product_key: "x6q8epw9k04deyi"
-                                      });
-                                    })();
-                                  }
-                                };
-                                return (({ customFunction }) => {
-                                  return customFunction();
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                        if (
-                          $steps["payment"] != null &&
-                          typeof $steps["payment"] === "object" &&
-                          typeof $steps["payment"].then === "function"
-                        ) {
-                          $steps["payment"] = await $steps["payment"];
-                        }
-
-                        $steps["paymentSuccess"] =
-                          $steps.payment?.event == "HAMDAST_PAYMENT_SUCCESS"
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    "POST",
-                                    "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/rahnama/v1/payment",
-                                    undefined,
-                                    (() => {
-                                      try {
-                                        return {
-                                          receipt_id: $steps.payment?.receipt_id
-                                        };
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })(),
-                                    (() => {
-                                      try {
-                                        return {
-                                          headers: {
-                                            Authorization:
-                                              "Bearer " +
-                                              $ctx.query.access_token
-                                          }
-                                        };
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                                  ]
-                                };
-                                return $globalActions[
-                                  "Fragment.apiRequest"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
-                        if (
-                          $steps["paymentSuccess"] != null &&
-                          typeof $steps["paymentSuccess"] === "object" &&
-                          typeof $steps["paymentSuccess"].then === "function"
-                        ) {
-                          $steps["paymentSuccess"] = await $steps[
-                            "paymentSuccess"
-                          ];
-                        }
-
-                        $steps["paymentCancel"] =
-                          $steps.payment?.event == "HAMDAST_PAYMENT_CANCEL"
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    "error",
-                                    "\u0634\u0645\u0627 \u0627\u0632 \u067e\u0631\u062f\u0627\u062e\u062a \u0627\u0646\u0635\u0631\u0627\u0641 \u062f\u0627\u062f\u06cc\u062f."
-                                  ]
-                                };
-                                return $globalActions[
-                                  "Fragment.showToast"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
-                        if (
-                          $steps["paymentCancel"] != null &&
-                          typeof $steps["paymentCancel"] === "object" &&
-                          typeof $steps["paymentCancel"].then === "function"
-                        ) {
-                          $steps["paymentCancel"] = await $steps[
-                            "paymentCancel"
-                          ];
-                        }
-
-                        $steps["paymentError"] =
-                          $steps.payment?.event == "HAMDAST_PAYMENT_ERROR"
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    "error",
-                                    "\u0645\u0634\u06a9\u0644\u06cc \u062f\u0631 \u067e\u0631\u062f\u0627\u062e\u062a \u0628\u0647 \u067e\u0647 \u0648\u062c\u0648\u062f \u0622\u0645\u062f\u0647."
-                                  ]
-                                };
-                                return $globalActions[
-                                  "Fragment.showToast"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
-                        if (
-                          $steps["paymentError"] != null &&
-                          typeof $steps["paymentError"] === "object" &&
-                          typeof $steps["paymentError"].then === "function"
-                        ) {
-                          $steps["paymentError"] = await $steps["paymentError"];
-                        }
-
-                        $steps["activeWidgetPopup"] =
-                          $steps.paymentSuccess?.status == 200 ||
-                          $state.user.data.payment_status == "paid"
-                            ? (() => {
-                                const actionArgs = {
-                                  customFunction: async () => {
-                                    return window.hamdast?.widget?.addToProfile();
-                                  }
-                                };
-                                return (({ customFunction }) => {
-                                  return customFunction();
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                        if (
-                          $steps["activeWidgetPopup"] != null &&
-                          typeof $steps["activeWidgetPopup"] === "object" &&
-                          typeof $steps["activeWidgetPopup"].then === "function"
-                        ) {
-                          $steps["activeWidgetPopup"] = await $steps[
-                            "activeWidgetPopup"
-                          ];
-                        }
-
-                        $steps["widgetAdded"] =
-                          $steps.activeWidgetPopup?.status == "ACCEPTED"
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    "PUT",
-                                    "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/rahnama/v1/active",
-                                    undefined,
-                                    undefined,
-                                    (() => {
-                                      try {
-                                        return {
-                                          headers: {
-                                            Authorization:
-                                              "Bearer " +
-                                              $ctx.query.access_token
-                                          }
-                                        };
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                                  ]
-                                };
-                                return $globalActions[
-                                  "Fragment.apiRequest"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
-                        if (
-                          $steps["widgetAdded"] != null &&
-                          typeof $steps["widgetAdded"] === "object" &&
-                          typeof $steps["widgetAdded"].then === "function"
-                        ) {
-                          $steps["widgetAdded"] = await $steps["widgetAdded"];
-                        }
-
-                        $steps["widgetCanceled"] =
-                          $steps.activeWidgetPopup?.status == "CANCELED"
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    "error",
-                                    "\u0627\u0641\u0632\u0648\u062f\u0646 \u0627\u0628\u0632\u0627\u0631\u06a9 \u0647\u0645\u06cc\u0627\u0631 \u0644\u063a\u0648 \u0634\u062f."
-                                  ]
-                                };
-                                return $globalActions[
-                                  "Fragment.showToast"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
-                        if (
-                          $steps["widgetCanceled"] != null &&
-                          typeof $steps["widgetCanceled"] === "object" &&
-                          typeof $steps["widgetCanceled"].then === "function"
-                        ) {
-                          $steps["widgetCanceled"] = await $steps[
-                            "widgetCanceled"
-                          ];
-                        }
-
-                        $steps["finishLoading"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["loading"]
-                                },
-                                operation: 0,
-                                value: false
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["finishLoading"] != null &&
-                          typeof $steps["finishLoading"] === "object" &&
-                          typeof $steps["finishLoading"].then === "function"
-                        ) {
-                          $steps["finishLoading"] = await $steps[
-                            "finishLoading"
-                          ];
-                        }
-
-                        $steps["refreshData"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                tplRef: "user",
-                                action: "refresh"
-                              };
-                              return (({ tplRef, action, args }) => {
-                                return $refs?.[tplRef]?.[action]?.(
-                                  ...(args ?? [])
-                                );
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["refreshData"] != null &&
-                          typeof $steps["refreshData"] === "object" &&
-                          typeof $steps["refreshData"].then === "function"
-                        ) {
-                          $steps["refreshData"] = await $steps["refreshData"];
-                        }
-                      }}
-                    />
-                  ) : null}
-                  {(() => {
-                    try {
-                      return $state.user.data.active;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return false;
-                      }
-                      throw e;
-                    }
-                  })() ? (
-                    <Button
-                      children2={
-                        "\u063a\u06cc\u0631\u0641\u0639\u0627\u0644 \u0633\u0627\u0632\u06cc"
-                      }
-                      className={classNames(
-                        "__wab_instance",
-                        sty.button__pmLau
-                      )}
-                      loading={(() => {
-                        try {
-                          return $state.loading;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return [];
-                          }
-                          throw e;
-                        }
-                      })()}
-                      onClick={async event => {
-                        const $steps = {};
-
-                        $steps["startLoading"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["loading"]
-                                },
-                                operation: 0,
-                                value: true
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["startLoading"] != null &&
-                          typeof $steps["startLoading"] === "object" &&
-                          typeof $steps["startLoading"].then === "function"
-                        ) {
-                          $steps["startLoading"] = await $steps["startLoading"];
-                        }
-
-                        $steps["removeFromProfile"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                customFunction: async () => {
-                                  return window.hamdast?.widget?.removeFromProfile();
-                                }
-                              };
-                              return (({ customFunction }) => {
-                                return customFunction();
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["removeFromProfile"] != null &&
-                          typeof $steps["removeFromProfile"] === "object" &&
-                          typeof $steps["removeFromProfile"].then === "function"
-                        ) {
-                          $steps["removeFromProfile"] = await $steps[
-                            "removeFromProfile"
-                          ];
-                        }
-
-                        $steps["deactive"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  "PUT",
-                                  "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/rahnama/v1/deactive",
-                                  undefined,
-                                  undefined,
-                                  (() => {
-                                    try {
-                                      return {
-                                        headers: {
-                                          Authorization:
-                                            "Bearer " + $ctx.query.access_token
-                                        }
-                                      };
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.apiRequest"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["deactive"] != null &&
-                          typeof $steps["deactive"] === "object" &&
-                          typeof $steps["deactive"].then === "function"
-                        ) {
-                          $steps["deactive"] = await $steps["deactive"];
-                        }
-
-                        $steps["toast"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                args: [
-                                  undefined,
-                                  "\u0647\u0645\u06cc\u0627\u0631 \u0627\u0632 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u0634\u0645\u0627 \u062d\u0630\u0641 \u0634\u062f."
-                                ]
-                              };
-                              return $globalActions[
-                                "Fragment.showToast"
-                              ]?.apply(null, [...actionArgs.args]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["toast"] != null &&
-                          typeof $steps["toast"] === "object" &&
-                          typeof $steps["toast"].then === "function"
-                        ) {
-                          $steps["toast"] = await $steps["toast"];
-                        }
-
-                        $steps["finishLoading"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["loading"]
-                                },
-                                operation: 0,
-                                value: false
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["finishLoading"] != null &&
-                          typeof $steps["finishLoading"] === "object" &&
-                          typeof $steps["finishLoading"].then === "function"
-                        ) {
-                          $steps["finishLoading"] = await $steps[
-                            "finishLoading"
-                          ];
-                        }
-
-                        $steps["refresh"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                tplRef: "user",
-                                action: "refresh"
-                              };
-                              return (({ tplRef, action, args }) => {
-                                return $refs?.[tplRef]?.[action]?.(
-                                  ...(args ?? [])
-                                );
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["refresh"] != null &&
-                          typeof $steps["refresh"] === "object" &&
-                          typeof $steps["refresh"].then === "function"
-                        ) {
-                          $steps["refresh"] = await $steps["refresh"];
-                        }
-                      }}
-                      outline={true}
-                    />
-                  ) : null}
-                </div>
-              </div>
-            ) : null}
-            {(
-              hasVariant(globalVariants, "screen", "mobileOnly")
-                ? (() => {
-                    try {
-                      return $state.pageLoading && !$state.user.error;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return true;
-                      }
-                      throw e;
-                    }
-                  })()
-                : (() => {
-                    try {
-                      return $state.pageLoading && !$state.user.error;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return true;
-                      }
-                      throw e;
-                    }
-                  })()
-            ) ? (
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__phTya)}
-              >
-                <Icon34Icon
-                  className={classNames(projectcss.all, sty.svg__ffBhX)}
-                  role={"img"}
-                />
-
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__yfJq7
-                  )}
-                >
-                  {
-                    "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
-                  }
-                </div>
-              </Stack__>
-            ) : null}
           </div>
         ) : null}
       </div>
@@ -1713,60 +1510,37 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
 const PlasmicDescendants = {
   hamyar: [
     "hamyar",
+    "social",
+    "apps",
+    "insta",
+    "appSwitch",
+    "handleInput",
+    "img",
     "user",
-    "apiGetSocialApp",
-    "social",
-    "insta",
-    "instaSwitch",
-    "instaId",
-    "aparat",
-    "aparatSwitch",
-    "aparatId",
-    "x",
-    "xSwitch",
-    "xid"
+    "apiGetSocialApp"
   ],
+  social: ["social", "apps", "insta", "appSwitch", "handleInput", "img"],
+  apps: ["apps", "insta", "appSwitch", "handleInput", "img"],
+  insta: ["insta", "appSwitch", "handleInput", "img"],
+  appSwitch: ["appSwitch"],
+  handleInput: ["handleInput"],
+  img: ["img"],
   user: ["user"],
-  apiGetSocialApp: ["apiGetSocialApp"],
-  social: [
-    "social",
-    "insta",
-    "instaSwitch",
-    "instaId",
-    "aparat",
-    "aparatSwitch",
-    "aparatId",
-    "x",
-    "xSwitch",
-    "xid"
-  ],
-  insta: ["insta", "instaSwitch", "instaId"],
-  instaSwitch: ["instaSwitch"],
-  instaId: ["instaId"],
-  aparat: ["aparat", "aparatSwitch", "aparatId"],
-  aparatSwitch: ["aparatSwitch"],
-  aparatId: ["aparatId"],
-  x: ["x", "xSwitch", "xid"],
-  xSwitch: ["xSwitch"],
-  xid: ["xid"]
+  apiGetSocialApp: ["apiGetSocialApp"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   hamyar: "div";
+  social: "div";
+  apps: typeof ApiRequest;
+  insta: "div";
+  appSwitch: typeof Switch;
+  handleInput: typeof Input;
+  img: typeof PlasmicImg__;
   user: typeof ApiRequest;
   apiGetSocialApp: typeof ApiRequest;
-  social: "div";
-  insta: "div";
-  instaSwitch: typeof Switch;
-  instaId: typeof Input;
-  aparat: "div";
-  aparatSwitch: typeof Switch;
-  aparatId: typeof Input;
-  x: "div";
-  xSwitch: typeof Switch;
-  xid: typeof Input;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1829,18 +1603,14 @@ export const PlasmicRahnamaSetting = Object.assign(
   makeNodeComponent("hamyar"),
   {
     // Helper components rendering sub-elements
+    social: makeNodeComponent("social"),
+    apps: makeNodeComponent("apps"),
+    insta: makeNodeComponent("insta"),
+    appSwitch: makeNodeComponent("appSwitch"),
+    handleInput: makeNodeComponent("handleInput"),
+    img: makeNodeComponent("img"),
     user: makeNodeComponent("user"),
     apiGetSocialApp: makeNodeComponent("apiGetSocialApp"),
-    social: makeNodeComponent("social"),
-    insta: makeNodeComponent("insta"),
-    instaSwitch: makeNodeComponent("instaSwitch"),
-    instaId: makeNodeComponent("instaId"),
-    aparat: makeNodeComponent("aparat"),
-    aparatSwitch: makeNodeComponent("aparatSwitch"),
-    aparatId: makeNodeComponent("aparatId"),
-    x: makeNodeComponent("x"),
-    xSwitch: makeNodeComponent("xSwitch"),
-    xid: makeNodeComponent("xid"),
 
     // Metadata about props expected for PlasmicRahnamaSetting
     internalVariantProps: PlasmicRahnamaSetting__VariantProps,

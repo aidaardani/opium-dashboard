@@ -64,7 +64,7 @@ import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/compone
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import { TimePicker } from "@/fragment/components/time-picker"; // plasmic-import: 0Mwoeihejk-H/codeComponent
-import { DataFetcher } from "@plasmicpkgs/plasmic-query";
+import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import { DatePicker } from "@/fragment/components/date-picker"; // plasmic-import: b38lDo6Nm8Rh/codeComponent
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -82,6 +82,7 @@ import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: e
 import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: BMYyZW6g83gg/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
+import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
 import CalendarIcon from "../fragment_icons/icons/PlasmicIcon__Calendar"; // plasmic-import: e2zWN9c_lxv7/icon
 import Icon17Icon from "../fragment_design_system/icons/PlasmicIcon__Icon17"; // plasmic-import: eCsLCdWP9DST/icon
 import Icon2Icon from "./icons/PlasmicIcon__Icon2"; // plasmic-import: q8mRvXMvOrv9/icon
@@ -117,12 +118,14 @@ export type PlasmicAddPatient__OverridesType = {
   verticalStackData?: Flex__<"div">;
   inputcell?: Flex__<typeof TextInput>;
   inputfullname?: Flex__<typeof TextInput>;
+  freeturnsApi?: Flex__<typeof ApiRequest>;
   verticalStackFunction?: Flex__<"div">;
   freeturnBook?: Flex__<typeof Button>;
   preferBooktimeButton?: Flex__<typeof Button>;
   preferBooktime?: Flex__<typeof Dialog>;
   تقویم?: Flex__<typeof Dialog>;
   datePicker?: Flex__<typeof DatePicker>;
+  freeturnByRangeDateApi?: Flex__<typeof ApiRequest>;
   addNewBookTime?: Flex__<"div">;
   dialogNewTimePicker?: Flex__<typeof Dialog>;
   fromHorizental?: Flex__<"div">;
@@ -329,6 +332,85 @@ function PlasmicAddPatient__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "freeturnsApi.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "freeturnsApi"
+      },
+      {
+        path: "freeturnsApi.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "freeturnsApi"
+      },
+      {
+        path: "freeturnsApi.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "freeturnsApi"
+      },
+      {
+        path: "dateForFreeturn",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return {
+                from:
+                  new Date(Math.floor(Date.now() / 1000) * 1000).setHours(
+                    0,
+                    0,
+                    0,
+                    0
+                  ) / 1000,
+                to:
+                  new Date(
+                    (Math.floor(Date.now() / 1000) + 10 * 24 * 60 * 60) * 1000
+                  ).setHours(0, 0, 0, 0) / 1000
+              };
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return {};
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "freeturnByRangeDateApi.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "freeturnByRangeDateApi"
+      },
+      {
+        path: "freeturnByRangeDateApi.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "freeturnByRangeDateApi"
+      },
+      {
+        path: "freeturnByRangeDateApi.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "freeturnByRangeDateApi"
       }
     ],
     [$props, $ctx, $refs]
@@ -1150,41 +1232,52 @@ function PlasmicAddPatient__RenderFunc(props: {
                   />
                 </Stack__>
               ) : null}
-              <DataFetcher
-                className={classNames(
-                  "__wab_instance",
-                  sty.httpRestApiFetcher__u6ZdB
-                )}
-                dataName={"fetchedDatafirstfreeturn"}
+              <ApiRequest
+                data-plasmic-name={"freeturnsApi"}
+                data-plasmic-override={overrides.freeturnsApi}
+                className={classNames("__wab_instance", sty.freeturnsApi)}
                 errorDisplay={
-                  <DataCtxReader__>
-                    {$ctx => "Error fetching data"}
-                  </DataCtxReader__>
-                }
-                errorName={"fetchedDatafirstfreeturnFetchError"}
-                loadingDisplay={
-                  <DataCtxReader__>
-                    {$ctx => (
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__a7PNv
-                        )}
-                      >
-                        {
-                          "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0632\u0645\u0627\u0646 \u0646\u0648\u0628\u062a \u0647\u0627..."
-                        }
-                      </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__peSKx
                     )}
-                  </DataCtxReader__>
+                  >
+                    {"Error fetching data"}
+                  </div>
+                }
+                loadingDisplay={
+                  <Icon34Icon
+                    className={classNames(projectcss.all, sty.svg__weoyW)}
+                    role={"img"}
+                  />
                 }
                 method={"GET"}
-                noLayout={false}
-                previewSpinner={false}
-                queryKey={(() => {
+                onError={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "freeturnsApi",
+                    "error"
+                  ]).apply(null, eventArgs);
+                }}
+                onLoading={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "freeturnsApi",
+                    "loading"
+                  ]).apply(null, eventArgs);
+                }}
+                onSuccess={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "freeturnsApi",
+                    "data"
+                  ]).apply(null, eventArgs);
+                }}
+                ref={ref => {
+                  $refs["freeturnsApi"] = ref;
+                }}
+                url={(() => {
                   try {
-                    return $state.firstFreeTimeApiInvalidate;
+                    return `https://apigw.paziresh24.com/v2/freeturns?center_id=${$props.centerId}&user_center_id=${$props.userCenterId}&from=${$state.dateForFreeturn.from}&to=${$state.dateForFreeturn.to}`;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -1195,694 +1288,1330 @@ function PlasmicAddPatient__RenderFunc(props: {
                     throw e;
                   }
                 })()}
-                url={(() => {
-                  try {
-                    return `https://apigw.paziresh24.com/v2/freeturns?center_id=${
-                      $props.centerId
-                    }&user_center_id=${$props.userCenterId}&from=${Math.floor(
-                      Date.now() / 1000
-                    )}&to=${Math.floor(Date.now() / 1000) + 10 * 24 * 60 * 60}`;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return "undefined";
-                    }
-                    throw e;
-                  }
-                })()}
               >
-                <DataCtxReader__>
-                  {$ctx => (
-                    <Stack__
-                      as={"div"}
-                      data-plasmic-name={"verticalStackFunction"}
-                      data-plasmic-override={overrides.verticalStackFunction}
-                      hasGap={true}
-                      className={classNames(
-                        projectcss.all,
-                        sty.verticalStackFunction
-                      )}
-                      dir={"rtl"}
-                    >
-                      <Button
-                        data-plasmic-name={"freeturnBook"}
-                        data-plasmic-override={overrides.freeturnBook}
-                        children2={
-                          <React.Fragment>
-                            {(() => {
+                <Stack__
+                  as={"div"}
+                  data-plasmic-name={"verticalStackFunction"}
+                  data-plasmic-override={overrides.verticalStackFunction}
+                  hasGap={true}
+                  className={classNames(
+                    projectcss.all,
+                    sty.verticalStackFunction
+                  )}
+                  dir={"rtl"}
+                >
+                  <Button
+                    data-plasmic-name={"freeturnBook"}
+                    data-plasmic-override={overrides.freeturnBook}
+                    children2={
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return (() => {
+                              const timestamp =
+                                $state.freeturnsApi.data.result[0].from;
+                              const date = new Date(timestamp * 1000);
+                              const options = {
+                                timeZone: "Asia/Tehran",
+                                year: "numeric",
+                                month: "2-digit",
+                                day: "2-digit",
+                                hour: "2-digit",
+                                minute: "2-digit"
+                              };
+                              const formattedDate = new Intl.DateTimeFormat(
+                                "fa-IR",
+                                options
+                              ).format(date);
+                              return formattedDate
+                                .replace(" ", " - ")
+                                .replace(",", "")
+                                .replace(
+                                  /(\d{2})\/(\d{2})\/(\d{4})/,
+                                  "$3/$2/$1"
+                                );
+                            })();
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u0646\u0648\u0628\u062a\u06cc \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f.";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    }
+                    className={classNames("__wab_instance", sty.freeturnBook)}
+                    endIcon={
+                      <ChevronLeftIcon
+                        className={classNames(projectcss.all, sty.svg___15U4V)}
+                        role={"img"}
+                      />
+                    }
+                    loading={(() => {
+                      try {
+                        return $state.loadingButton;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["checkForm"] =
+                        (!$state.fullname || !$state.cell) &&
+                        (!$state.inputfullname.value || !$state.inputcell.value)
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  "error",
+                                  "\u0644\u0637\u0641\u0627 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u06cc\u0645\u0627\u0631 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+                                ]
+                              };
+                              return $globalActions[
+                                "Fragment.showToast"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["checkForm"] != null &&
+                        typeof $steps["checkForm"] === "object" &&
+                        typeof $steps["checkForm"].then === "function"
+                      ) {
+                        $steps["checkForm"] = await $steps["checkForm"];
+                      }
+
+                      $steps["startLoading"] = Boolean(
+                        ($state.fullname && $state.cell) ||
+                          ($state.inputfullname.value && $state.inputcell.value)
+                      )
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["loadingButton"]
+                              },
+                              operation: 0,
+                              value: true
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["startLoading"] != null &&
+                        typeof $steps["startLoading"] === "object" &&
+                        typeof $steps["startLoading"].then === "function"
+                      ) {
+                        $steps["startLoading"] = await $steps["startLoading"];
+                      }
+
+                      $steps["suspend"] = Boolean(
+                        ($state.fullname && $state.cell) ||
+                          ($state.inputfullname.value && $state.inputcell.value)
+                      )
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "GET",
+                                "https://apigw.paziresh24.com/v2/suspend",
+                                (() => {
+                                  try {
+                                    return {
+                                      center_id: $props.centerId,
+                                      user_center_id: $props.userCenterId,
+                                      type: 3,
+                                      from_timestamp:
+                                        $state.freeturnsApi.data.result[0].from,
+                                      to_timestamp:
+                                        $state.freeturnsApi.data.result[0].to
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.apiRequest"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["suspend"] != null &&
+                        typeof $steps["suspend"] === "object" &&
+                        typeof $steps["suspend"].then === "function"
+                      ) {
+                        $steps["suspend"] = await $steps["suspend"];
+                      }
+
+                      $steps["bookApi"] = Boolean(
+                        ($state.fullname && $state.cell) ||
+                          ($state.inputfullname.value && $state.inputcell.value)
+                      )
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "POST",
+                                "https://apigw.paziresh24.com/v2/book",
+                                undefined,
+                                (() => {
+                                  try {
+                                    return {
+                                      center_id: $props.centerId,
+                                      user_center_id: $props.userCenterId,
+                                      type: 3,
+                                      fullname:
+                                        $state.fullname.trim() ||
+                                        $state.inputfullname.value,
+                                      cell:
+                                        $state.cell.trim() ||
+                                        $state.inputcell.value,
+                                      request_code:
+                                        $steps.suspend.data.request_code,
+                                      national_code: $state.nationalCode.value
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.apiRequest"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["bookApi"] != null &&
+                        typeof $steps["bookApi"] === "object" &&
+                        typeof $steps["bookApi"].then === "function"
+                      ) {
+                        $steps["bookApi"] = await $steps["bookApi"];
+                      }
+
+                      $steps["invokeGlobalAction"] =
+                        $steps.bookApi.data.status == "28" ||
+                        $steps.bookApi.data.status == "0"
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  undefined,
+                                  "\u0646\u0648\u0628\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062b\u0628\u062a \u0634\u062f."
+                                ]
+                              };
+                              return $globalActions[
+                                "Fragment.showToast"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["invokeGlobalAction"] != null &&
+                        typeof $steps["invokeGlobalAction"] === "object" &&
+                        typeof $steps["invokeGlobalAction"].then === "function"
+                      ) {
+                        $steps["invokeGlobalAction"] = await $steps[
+                          "invokeGlobalAction"
+                        ];
+                      }
+
+                      $steps["updateBooktimeOpen"] =
+                        $steps.bookApi.data.status == "28" ||
+                        $steps.bookApi.data.status == "0"
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["booktime", "open"]
+                                },
+                                operation: 0,
+                                value: false
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["updateBooktimeOpen"] != null &&
+                        typeof $steps["updateBooktimeOpen"] === "object" &&
+                        typeof $steps["updateBooktimeOpen"].then === "function"
+                      ) {
+                        $steps["updateBooktimeOpen"] = await $steps[
+                          "updateBooktimeOpen"
+                        ];
+                      }
+
+                      $steps["finishLoading"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["loadingButton"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["finishLoading"] != null &&
+                        typeof $steps["finishLoading"] === "object" &&
+                        typeof $steps["finishLoading"].then === "function"
+                      ) {
+                        $steps["finishLoading"] = await $steps["finishLoading"];
+                      }
+
+                      $steps["eventSubmitBook"] =
+                        $steps.bookApi.data.status == "28" ||
+                        $steps.bookApi.data.status == "0"
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  (() => {
+                                    try {
+                                      return {
+                                        group: "add-book",
+                                        data: {
+                                          center_id: $props.centerId,
+                                          user_center_id: $props.userCenterId,
+                                          type: 3,
+                                          fullname:
+                                            $state.fullname ??
+                                            $state.inputfullname.value,
+                                          cell:
+                                            $state.cell ??
+                                            $state.inputcell.value,
+                                          national_code:
+                                            $state.nationalCode.value
+                                        },
+                                        type: "add-first-free-book"
+                                      };
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions["Splunk.sendLog"]?.apply(
+                                null,
+                                [...actionArgs.args]
+                              );
+                            })()
+                          : undefined;
+                      if (
+                        $steps["eventSubmitBook"] != null &&
+                        typeof $steps["eventSubmitBook"] === "object" &&
+                        typeof $steps["eventSubmitBook"].then === "function"
+                      ) {
+                        $steps["eventSubmitBook"] = await $steps[
+                          "eventSubmitBook"
+                        ];
+                      }
+
+                      $steps["runBooked"] =
+                        $steps.bookApi.data.status == "28" ||
+                        $steps.bookApi.data.status == "0"
+                          ? (() => {
+                              const actionArgs = { eventRef: $props["booked"] };
+                              return (({ eventRef, args }) => {
+                                return eventRef?.(...(args ?? []));
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["runBooked"] != null &&
+                        typeof $steps["runBooked"] === "object" &&
+                        typeof $steps["runBooked"].then === "function"
+                      ) {
+                        $steps["runBooked"] = await $steps["runBooked"];
+                      }
+                    }}
+                    space={undefined}
+                    startIcon={
+                      <ChevronRightIcon
+                        className={classNames(projectcss.all, sty.svg__nchar)}
+                        role={"img"}
+                      />
+                    }
+                  />
+
+                  <Button
+                    data-plasmic-name={"preferBooktimeButton"}
+                    data-plasmic-override={overrides.preferBooktimeButton}
+                    children2={
+                      "\u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u062e\u0627\u0644\u06cc"
+                    }
+                    className={classNames(
+                      "__wab_instance",
+                      sty.preferBooktimeButton
+                    )}
+                    color={"softBlue"}
+                    endIcon={
+                      <ChevronLeftIcon
+                        className={classNames(projectcss.all, sty.svg__b5FO)}
+                        role={"img"}
+                      />
+                    }
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["invokeGlobalAction"] =
+                        (!$state.fullname || !$state.cell) &&
+                        (!$state.inputfullname.value || !$state.inputcell.value)
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  "error",
+                                  "\u0644\u0637\u0641\u0627 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u06cc\u0645\u0627\u0631 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+                                ]
+                              };
+                              return $globalActions[
+                                "Fragment.showToast"
+                              ]?.apply(null, [...actionArgs.args]);
+                            })()
+                          : undefined;
+                      if (
+                        $steps["invokeGlobalAction"] != null &&
+                        typeof $steps["invokeGlobalAction"] === "object" &&
+                        typeof $steps["invokeGlobalAction"].then === "function"
+                      ) {
+                        $steps["invokeGlobalAction"] = await $steps[
+                          "invokeGlobalAction"
+                        ];
+                      }
+
+                      $steps["updatePreferBooktimeOpen"] = Boolean(
+                        ($state.fullname && $state.cell) ||
+                          ($state.inputfullname.value && $state.inputcell.value)
+                      )
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["preferBooktime", "open"]
+                              },
+                              operation: 0,
+                              value: true
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updatePreferBooktimeOpen"] != null &&
+                        typeof $steps["updatePreferBooktimeOpen"] ===
+                          "object" &&
+                        typeof $steps["updatePreferBooktimeOpen"].then ===
+                          "function"
+                      ) {
+                        $steps["updatePreferBooktimeOpen"] = await $steps[
+                          "updatePreferBooktimeOpen"
+                        ];
+                      }
+
+                      $steps["clickOnPreferBook"] =
+                        $steps.updatePreferBooktimeOpen === true
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  (() => {
+                                    try {
+                                      return {
+                                        group: "add-book",
+                                        data: {
+                                          center_id: $props.centerId,
+                                          user_center_id: $props.userCenterId,
+                                          type: 3,
+                                          fullname:
+                                            $state.fullname ??
+                                            $state.inputfullname.value,
+                                          cell:
+                                            $state.cell ??
+                                            $state.inputcell.value,
+                                          national_code:
+                                            $state.nationalCode.value
+                                        },
+                                        type: "click-prefer-book"
+                                      };
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions["Splunk.sendLog"]?.apply(
+                                null,
+                                [...actionArgs.args]
+                              );
+                            })()
+                          : undefined;
+                      if (
+                        $steps["clickOnPreferBook"] != null &&
+                        typeof $steps["clickOnPreferBook"] === "object" &&
+                        typeof $steps["clickOnPreferBook"].then === "function"
+                      ) {
+                        $steps["clickOnPreferBook"] = await $steps[
+                          "clickOnPreferBook"
+                        ];
+                      }
+                    }}
+                    outline={true}
+                    shape={
+                      hasVariant(globalVariants, "screen", "mobileOnly")
+                        ? undefined
+                        : undefined
+                    }
+                    startIcon={
+                      <ChevronRightIcon
+                        className={classNames(projectcss.all, sty.svg__fwPna)}
+                        role={"img"}
+                      />
+                    }
+                  />
+
+                  <Dialog
+                    data-plasmic-name={"preferBooktime"}
+                    data-plasmic-override={overrides.preferBooktime}
+                    body={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__xnFeB
+                        )}
+                      >
+                        <Dialog
+                          data-plasmic-name={"\u062a\u0642\u0648\u06cc\u0645"}
+                          data-plasmic-override={overrides.تقویم}
+                          body={
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox___2SXqI
+                              )}
+                            >
+                              <DatePicker
+                                data-plasmic-name={"datePicker"}
+                                data-plasmic-override={overrides.datePicker}
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.datePicker
+                                )}
+                                holidays={(() => {
+                                  try {
+                                    return $state.holidays.map(
+                                      item => item.date
+                                    );
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return [];
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                                locale={"fa"}
+                                onChange={async (...eventArgs: any) => {
+                                  generateStateOnChangeProp($state, [
+                                    "datePicker",
+                                    "value"
+                                  ]).apply(null, eventArgs);
+                                  generateStateOnChangeProp($state, [
+                                    "datePicker",
+                                    "values"
+                                  ]).apply(null, eventArgs);
+
+                                  (async date => {
+                                    const $steps = {};
+
+                                    $steps["updateStateتقویمOpen"] = true
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["تقویم", "open"]
+                                            },
+                                            operation: 0,
+                                            value: false
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                    if (
+                                      $steps["updateStateتقویمOpen"] != null &&
+                                      typeof $steps["updateStateتقویمOpen"] ===
+                                        "object" &&
+                                      typeof $steps["updateStateتقویمOpen"]
+                                        .then === "function"
+                                    ) {
+                                      $steps["updateStateتقویمOpen"] =
+                                        await $steps["updateStateتقویمOpen"];
+                                    }
+                                  }).apply(null, eventArgs);
+                                }}
+                                value={generateStateValueProp($state, [
+                                  "datePicker",
+                                  "value"
+                                ])}
+                                values={generateStateValueProp($state, [
+                                  "datePicker",
+                                  "values"
+                                ])}
+                              />
+                            </div>
+                          }
+                          className={classNames("__wab_instance", sty.تقویم)}
+                          onOpenChange={async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "تقویم",
+                              "open"
+                            ]).apply(null, eventArgs);
+
+                            if (
+                              eventArgs.length > 1 &&
+                              eventArgs[1] &&
+                              eventArgs[1]._plasmic_state_init_
+                            ) {
+                              return;
+                            }
+                          }}
+                          open={generateStateValueProp($state, [
+                            "تقویم",
+                            "open"
+                          ])}
+                          title={
+                            "\u062a\u0642\u0648\u06cc\u0645 \u0645\u0627\u0647\u0627\u0646\u0647"
+                          }
+                          trigger={
+                            <Stack__
+                              as={"div"}
+                              hasGap={true}
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__kqRc
+                              )}
+                            >
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__skZB
+                                )}
+                              >
+                                <React.Fragment>
+                                  {(() => {
+                                    try {
+                                      return (() => {
+                                        const persianDate = $state.datePicker
+                                          .value
+                                          ? new Intl.DateTimeFormat(
+                                              "fa-IR"
+                                            ).format(
+                                              $state.datePicker.value * 1000
+                                            )
+                                          : new Intl.DateTimeFormat(
+                                              "fa-IR"
+                                            ).format(
+                                              $ctx.fetchedDatafirstfreeturn[0]
+                                                .filds.result[0].from * 1000
+                                            );
+                                        return persianDate;
+                                      })();
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return "";
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                </React.Fragment>
+                              </div>
+                              <CalendarIcon
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.svg__sUsAp
+                                )}
+                                role={"img"}
+                              />
+                            </Stack__>
+                          }
+                        />
+
+                        <Stack__
+                          as={"div"}
+                          hasGap={true}
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__mTcO
+                          )}
+                        >
+                          <ApiRequest
+                            data-plasmic-name={"freeturnByRangeDateApi"}
+                            data-plasmic-override={
+                              overrides.freeturnByRangeDateApi
+                            }
+                            className={classNames(
+                              "__wab_instance",
+                              sty.freeturnByRangeDateApi
+                            )}
+                            errorDisplay={null}
+                            loadingDisplay={
+                              "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0632\u0645\u0627\u0646 \u0646\u0648\u0628\u062a \u0647\u0627..."
+                            }
+                            method={"GET"}
+                            onError={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "freeturnByRangeDateApi",
+                                "error"
+                              ]).apply(null, eventArgs);
+                            }}
+                            onLoading={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "freeturnByRangeDateApi",
+                                "loading"
+                              ]).apply(null, eventArgs);
+                            }}
+                            onSuccess={async (...eventArgs: any) => {
+                              generateStateOnChangeProp($state, [
+                                "freeturnByRangeDateApi",
+                                "data"
+                              ]).apply(null, eventArgs);
+                            }}
+                            ref={ref => {
+                              $refs["freeturnByRangeDateApi"] = ref;
+                            }}
+                            url={(() => {
                               try {
                                 return (() => {
-                                  const timestamp =
-                                    $ctx.fetchedDatafirstfreeturn[0].filds
-                                      .result[0].from;
-                                  const date = new Date(timestamp * 1000);
-                                  const options = {
-                                    timeZone: "Asia/Tehran",
-                                    year: "numeric",
-                                    month: "2-digit",
-                                    day: "2-digit",
-                                    hour: "2-digit",
-                                    minute: "2-digit"
-                                  };
-                                  const formattedDate = new Intl.DateTimeFormat(
-                                    "fa-IR",
-                                    options
-                                  ).format(date);
-                                  return formattedDate
-                                    .replace(" ", " - ")
-                                    .replace(",", "")
-                                    .replace(
-                                      /(\d{2})\/(\d{2})\/(\d{4})/,
-                                      "$3/$2/$1"
-                                    );
+                                  const from = $state.datePicker.value
+                                    ? $state.datePicker.value
+                                    : $state.freeturnsApi.data.result[0].from;
+                                  const to = new Date(from * 1000);
+                                  to.setHours(23, 59, 59, 0);
+                                  return `https://apigw.paziresh24.com/v2/freeturns?center_id=${
+                                    $props.centerId
+                                  }&user_center_id=${
+                                    $props.userCenterId
+                                  }&from=${from}&to=${to.getTime() / 1000}`;
                                 })();
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
                                   e?.plasmicType === "PlasmicUndefinedDataError"
                                 ) {
-                                  return "\u0646\u0648\u0628\u062a\u06cc \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f.";
+                                  return undefined;
                                 }
                                 throw e;
                               }
                             })()}
-                          </React.Fragment>
-                        }
-                        className={classNames(
-                          "__wab_instance",
-                          sty.freeturnBook
-                        )}
-                        endIcon={
-                          <ChevronLeftIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg___15U4V
-                            )}
-                            role={"img"}
-                          />
-                        }
-                        loading={(() => {
-                          try {
-                            return $state.loadingButton;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return [];
-                            }
-                            throw e;
-                          }
-                        })()}
-                        onClick={async event => {
-                          const $steps = {};
-
-                          $steps["checkForm"] =
-                            (!$state.fullname || !$state.cell) &&
-                            (!$state.inputfullname.value ||
-                              !$state.inputcell.value)
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      "error",
-                                      "\u0644\u0637\u0641\u0627 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u06cc\u0645\u0627\u0631 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "Fragment.showToast"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
-                          if (
-                            $steps["checkForm"] != null &&
-                            typeof $steps["checkForm"] === "object" &&
-                            typeof $steps["checkForm"].then === "function"
-                          ) {
-                            $steps["checkForm"] = await $steps["checkForm"];
-                          }
-
-                          $steps["startLoading"] = Boolean(
-                            ($state.fullname && $state.cell) ||
-                              ($state.inputfullname.value &&
-                                $state.inputcell.value)
-                          )
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["loadingButton"]
-                                  },
-                                  operation: 0,
-                                  value: true
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["startLoading"] != null &&
-                            typeof $steps["startLoading"] === "object" &&
-                            typeof $steps["startLoading"].then === "function"
-                          ) {
-                            $steps["startLoading"] = await $steps[
-                              "startLoading"
-                            ];
-                          }
-
-                          $steps["suspend"] = Boolean(
-                            ($state.fullname && $state.cell) ||
-                              ($state.inputfullname.value &&
-                                $state.inputcell.value)
-                          )
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    "GET",
-                                    "https://apigw.paziresh24.com/v2/suspend",
-                                    (() => {
-                                      try {
-                                        return {
-                                          center_id: $props.centerId,
-                                          user_center_id: $props.userCenterId,
-                                          type: 3,
-                                          from_timestamp:
-                                            $ctx.fetchedDatafirstfreeturn[0]
-                                              .filds.result[0].from,
-                                          to_timestamp:
-                                            $ctx.fetchedDatafirstfreeturn[0]
-                                              .filds.result[0].to
-                                        };
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                                  ]
-                                };
-                                return $globalActions[
-                                  "Fragment.apiRequest"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["suspend"] != null &&
-                            typeof $steps["suspend"] === "object" &&
-                            typeof $steps["suspend"].then === "function"
-                          ) {
-                            $steps["suspend"] = await $steps["suspend"];
-                          }
-
-                          $steps["bookApi"] = Boolean(
-                            ($state.fullname && $state.cell) ||
-                              ($state.inputfullname.value &&
-                                $state.inputcell.value)
-                          )
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    "POST",
-                                    "https://apigw.paziresh24.com/v2/book",
-                                    undefined,
-                                    (() => {
-                                      try {
-                                        return {
-                                          center_id: $props.centerId,
-                                          user_center_id: $props.userCenterId,
-                                          type: 3,
-                                          fullname:
-                                            $state.fullname.trim() ||
-                                            $state.inputfullname.value,
-                                          cell:
-                                            $state.cell.trim() ||
-                                            $state.inputcell.value,
-                                          request_code:
-                                            $steps.suspend.data.request_code,
-                                          national_code:
-                                            $state.nationalCode.value
-                                        };
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                                  ]
-                                };
-                                return $globalActions[
-                                  "Fragment.apiRequest"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["bookApi"] != null &&
-                            typeof $steps["bookApi"] === "object" &&
-                            typeof $steps["bookApi"].then === "function"
-                          ) {
-                            $steps["bookApi"] = await $steps["bookApi"];
-                          }
-
-                          $steps["invokeGlobalAction"] =
-                            $steps.bookApi.data.status == "28" ||
-                            $steps.bookApi.data.status == "0"
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      undefined,
-                                      "\u0646\u0648\u0628\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062b\u0628\u062a \u0634\u062f."
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "Fragment.showToast"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
-                          if (
-                            $steps["invokeGlobalAction"] != null &&
-                            typeof $steps["invokeGlobalAction"] === "object" &&
-                            typeof $steps["invokeGlobalAction"].then ===
-                              "function"
-                          ) {
-                            $steps["invokeGlobalAction"] = await $steps[
-                              "invokeGlobalAction"
-                            ];
-                          }
-
-                          $steps["updateBooktimeOpen"] =
-                            $steps.bookApi.data.status == "28" ||
-                            $steps.bookApi.data.status == "0"
-                              ? (() => {
-                                  const actionArgs = {
-                                    variable: {
-                                      objRoot: $state,
-                                      variablePath: ["booktime", "open"]
-                                    },
-                                    operation: 0,
-                                    value: false
-                                  };
-                                  return (({
-                                    variable,
-                                    value,
-                                    startIndex,
-                                    deleteCount
-                                  }) => {
-                                    if (!variable) {
-                                      return;
-                                    }
-                                    const { objRoot, variablePath } = variable;
-
-                                    $stateSet(objRoot, variablePath, value);
-                                    return value;
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                          if (
-                            $steps["updateBooktimeOpen"] != null &&
-                            typeof $steps["updateBooktimeOpen"] === "object" &&
-                            typeof $steps["updateBooktimeOpen"].then ===
-                              "function"
-                          ) {
-                            $steps["updateBooktimeOpen"] = await $steps[
-                              "updateBooktimeOpen"
-                            ];
-                          }
-
-                          $steps["finishLoading"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["loadingButton"]
-                                  },
-                                  operation: 0,
-                                  value: false
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["finishLoading"] != null &&
-                            typeof $steps["finishLoading"] === "object" &&
-                            typeof $steps["finishLoading"].then === "function"
-                          ) {
-                            $steps["finishLoading"] = await $steps[
-                              "finishLoading"
-                            ];
-                          }
-
-                          $steps["eventSubmitBook"] =
-                            $steps.bookApi.data.status == "28" ||
-                            $steps.bookApi.data.status == "0"
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      (() => {
-                                        try {
-                                          return {
-                                            group: "add-book",
-                                            data: {
-                                              center_id: $props.centerId,
-                                              user_center_id:
-                                                $props.userCenterId,
-                                              type: 3,
-                                              fullname:
-                                                $state.fullname ??
-                                                $state.inputfullname.value,
-                                              cell:
-                                                $state.cell ??
-                                                $state.inputcell.value,
-                                              national_code:
-                                                $state.nationalCode.value
-                                            },
-                                            type: "add-first-free-book"
-                                          };
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return undefined;
-                                          }
-                                          throw e;
-                                        }
-                                      })()
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "Splunk.sendLog"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
-                          if (
-                            $steps["eventSubmitBook"] != null &&
-                            typeof $steps["eventSubmitBook"] === "object" &&
-                            typeof $steps["eventSubmitBook"].then === "function"
-                          ) {
-                            $steps["eventSubmitBook"] = await $steps[
-                              "eventSubmitBook"
-                            ];
-                          }
-
-                          $steps["runBooked"] =
-                            $steps.bookApi.data.status == "28" ||
-                            $steps.bookApi.data.status == "0"
-                              ? (() => {
-                                  const actionArgs = {
-                                    eventRef: $props["booked"]
-                                  };
-                                  return (({ eventRef, args }) => {
-                                    return eventRef?.(...(args ?? []));
-                                  })?.apply(null, [actionArgs]);
-                                })()
-                              : undefined;
-                          if (
-                            $steps["runBooked"] != null &&
-                            typeof $steps["runBooked"] === "object" &&
-                            typeof $steps["runBooked"].then === "function"
-                          ) {
-                            $steps["runBooked"] = await $steps["runBooked"];
-                          }
-                        }}
-                        space={undefined}
-                        startIcon={
-                          <ChevronRightIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__nchar
-                            )}
-                            role={"img"}
-                          />
-                        }
-                      />
-
-                      <Button
-                        data-plasmic-name={"preferBooktimeButton"}
-                        data-plasmic-override={overrides.preferBooktimeButton}
-                        children2={
-                          "\u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u062e\u0627\u0644\u06cc"
-                        }
-                        className={classNames(
-                          "__wab_instance",
-                          sty.preferBooktimeButton
-                        )}
-                        color={"softBlue"}
-                        endIcon={
-                          <ChevronLeftIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__b5FO
-                            )}
-                            role={"img"}
-                          />
-                        }
-                        onClick={async event => {
-                          const $steps = {};
-
-                          $steps["invokeGlobalAction"] =
-                            (!$state.fullname || !$state.cell) &&
-                            (!$state.inputfullname.value ||
-                              !$state.inputcell.value)
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      "error",
-                                      "\u0644\u0637\u0641\u0627 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u06cc\u0645\u0627\u0631 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "Fragment.showToast"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
-                          if (
-                            $steps["invokeGlobalAction"] != null &&
-                            typeof $steps["invokeGlobalAction"] === "object" &&
-                            typeof $steps["invokeGlobalAction"].then ===
-                              "function"
-                          ) {
-                            $steps["invokeGlobalAction"] = await $steps[
-                              "invokeGlobalAction"
-                            ];
-                          }
-
-                          $steps["updatePreferBooktimeOpen"] = Boolean(
-                            ($state.fullname && $state.cell) ||
-                              ($state.inputfullname.value &&
-                                $state.inputcell.value)
-                          )
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["preferBooktime", "open"]
-                                  },
-                                  operation: 0,
-                                  value: true
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["updatePreferBooktimeOpen"] != null &&
-                            typeof $steps["updatePreferBooktimeOpen"] ===
-                              "object" &&
-                            typeof $steps["updatePreferBooktimeOpen"].then ===
-                              "function"
-                          ) {
-                            $steps["updatePreferBooktimeOpen"] = await $steps[
-                              "updatePreferBooktimeOpen"
-                            ];
-                          }
-
-                          $steps["clickOnPreferBook"] =
-                            $steps.updatePreferBooktimeOpen === true
-                              ? (() => {
-                                  const actionArgs = {
-                                    args: [
-                                      (() => {
-                                        try {
-                                          return {
-                                            group: "add-book",
-                                            data: {
-                                              center_id: $props.centerId,
-                                              user_center_id:
-                                                $props.userCenterId,
-                                              type: 3,
-                                              fullname:
-                                                $state.fullname ??
-                                                $state.inputfullname.value,
-                                              cell:
-                                                $state.cell ??
-                                                $state.inputcell.value,
-                                              national_code:
-                                                $state.nationalCode.value
-                                            },
-                                            type: "click-prefer-book"
-                                          };
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return undefined;
-                                          }
-                                          throw e;
-                                        }
-                                      })()
-                                    ]
-                                  };
-                                  return $globalActions[
-                                    "Splunk.sendLog"
-                                  ]?.apply(null, [...actionArgs.args]);
-                                })()
-                              : undefined;
-                          if (
-                            $steps["clickOnPreferBook"] != null &&
-                            typeof $steps["clickOnPreferBook"] === "object" &&
-                            typeof $steps["clickOnPreferBook"].then ===
-                              "function"
-                          ) {
-                            $steps["clickOnPreferBook"] = await $steps[
-                              "clickOnPreferBook"
-                            ];
-                          }
-                        }}
-                        outline={true}
-                        shape={
-                          hasVariant(globalVariants, "screen", "mobileOnly")
-                            ? undefined
-                            : undefined
-                        }
-                        startIcon={
-                          <ChevronRightIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__fwPna
-                            )}
-                            role={"img"}
-                          />
-                        }
-                      />
-
-                      <Dialog
-                        data-plasmic-name={"preferBooktime"}
-                        data-plasmic-override={overrides.preferBooktime}
-                        body={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox__xnFeB
-                            )}
                           >
-                            <Dialog
-                              data-plasmic-name={
-                                "\u062a\u0642\u0648\u06cc\u0645"
+                            {(() => {
+                              try {
+                                return $state.loadingButton;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return true;
+                                }
+                                throw e;
                               }
-                              data-plasmic-override={overrides.تقویم}
-                              body={
+                            })() ? (
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__naOsf
+                                )}
+                              >
+                                <Icon17Icon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__cixM
+                                  )}
+                                  role={"img"}
+                                />
+                              </div>
+                            ) : null}
+                            {(() => {
+                              try {
+                                return (
+                                  !$state.loadingButton &&
+                                  $state.freeturnByRangeDateApi.data?.result
+                                    ?.length == 0
+                                );
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return true;
+                                }
+                                throw e;
+                              }
+                            })() ? (
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__k5TzV
+                                )}
+                              >
                                 <div
                                   className={classNames(
                                     projectcss.all,
-                                    sty.freeBox___2SXqI
+                                    projectcss.__wab_text,
+                                    sty.text__tnT4M
                                   )}
                                 >
-                                  <DatePicker
-                                    data-plasmic-name={"datePicker"}
-                                    data-plasmic-override={overrides.datePicker}
-                                    className={classNames(
-                                      "__wab_instance",
-                                      sty.datePicker
-                                    )}
-                                    holidays={(() => {
-                                      try {
-                                        return $state.holidays.map(
-                                          item => item.date
-                                        );
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return [];
-                                        }
-                                        throw e;
+                                  {
+                                    "\u0646\u0648\u0628\u062a \u062e\u0627\u0644\u06cc \u062f\u0631 \u0627\u06cc\u0646 \u062a\u0627\u0631\u06cc\u062e \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f."
+                                  }
+                                </div>
+                              </div>
+                            ) : null}
+                            {(() => {
+                              try {
+                                return !$state.loadingButton;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return true;
+                                }
+                                throw e;
+                              }
+                            })() ? (
+                              <Stack__
+                                as={"div"}
+                                hasGap={true}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__hage0
+                                )}
+                              >
+                                {(_par =>
+                                  !_par
+                                    ? []
+                                    : Array.isArray(_par)
+                                    ? _par
+                                    : [_par])(
+                                  (() => {
+                                    try {
+                                      return $state.freeturnByRangeDateApi.data
+                                        .result;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return [];
                                       }
-                                    })()}
-                                    locale={"fa"}
-                                    onChange={async (...eventArgs: any) => {
-                                      generateStateOnChangeProp($state, [
-                                        "datePicker",
-                                        "value"
-                                      ]).apply(null, eventArgs);
-                                      generateStateOnChangeProp($state, [
-                                        "datePicker",
-                                        "values"
-                                      ]).apply(null, eventArgs);
-
-                                      (async date => {
+                                      throw e;
+                                    }
+                                  })()
+                                ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                                  const currentItem = __plasmic_item_0;
+                                  const currentIndex = __plasmic_idx_0;
+                                  return (
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        sty.freeBox__eUi9U
+                                      )}
+                                      key={currentIndex}
+                                      onClick={async event => {
                                         const $steps = {};
 
-                                        $steps["updateStateتقویمOpen"] = true
+                                        $steps["startLoading"] = Boolean(
+                                          ($state.fullname && $state.cell) ||
+                                            ($state.inputfullname.value &&
+                                              $state.inputcell.value)
+                                        )
                                           ? (() => {
                                               const actionArgs = {
                                                 variable: {
                                                   objRoot: $state,
                                                   variablePath: [
-                                                    "تقویم",
-                                                    "open"
+                                                    "loadingButton"
+                                                  ]
+                                                },
+                                                operation: 0,
+                                                value: true
+                                              };
+                                              return (({
+                                                variable,
+                                                value,
+                                                startIndex,
+                                                deleteCount
+                                              }) => {
+                                                if (!variable) {
+                                                  return;
+                                                }
+                                                const {
+                                                  objRoot,
+                                                  variablePath
+                                                } = variable;
+
+                                                $stateSet(
+                                                  objRoot,
+                                                  variablePath,
+                                                  value
+                                                );
+                                                return value;
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                        if (
+                                          $steps["startLoading"] != null &&
+                                          typeof $steps["startLoading"] ===
+                                            "object" &&
+                                          typeof $steps["startLoading"].then ===
+                                            "function"
+                                        ) {
+                                          $steps["startLoading"] = await $steps[
+                                            "startLoading"
+                                          ];
+                                        }
+
+                                        $steps["suspend"] = Boolean(
+                                          ($state.fullname && $state.cell) ||
+                                            ($state.inputfullname.value &&
+                                              $state.inputcell.value)
+                                        )
+                                          ? (() => {
+                                              const actionArgs = {
+                                                args: [
+                                                  "GET",
+                                                  "https://apigw.paziresh24.com/v2/suspend",
+                                                  (() => {
+                                                    try {
+                                                      return {
+                                                        center_id:
+                                                          $props.centerId,
+                                                        user_center_id:
+                                                          $props.userCenterId,
+                                                        service_id:
+                                                          $props.serviceId2,
+                                                        type: 3,
+                                                        from_timestamp:
+                                                          currentItem.from,
+                                                        to_timestamp:
+                                                          currentItem.to
+                                                      };
+                                                    } catch (e) {
+                                                      if (
+                                                        e instanceof
+                                                          TypeError ||
+                                                        e?.plasmicType ===
+                                                          "PlasmicUndefinedDataError"
+                                                      ) {
+                                                        return undefined;
+                                                      }
+                                                      throw e;
+                                                    }
+                                                  })()
+                                                ]
+                                              };
+                                              return $globalActions[
+                                                "Fragment.apiRequest"
+                                              ]?.apply(null, [
+                                                ...actionArgs.args
+                                              ]);
+                                            })()
+                                          : undefined;
+                                        if (
+                                          $steps["suspend"] != null &&
+                                          typeof $steps["suspend"] ===
+                                            "object" &&
+                                          typeof $steps["suspend"].then ===
+                                            "function"
+                                        ) {
+                                          $steps["suspend"] = await $steps[
+                                            "suspend"
+                                          ];
+                                        }
+
+                                        $steps["preferBook"] = Boolean(
+                                          ($state.fullname && $state.cell) ||
+                                            ($state.inputfullname.value &&
+                                              $state.inputcell.value)
+                                        )
+                                          ? (() => {
+                                              const actionArgs = {
+                                                args: [
+                                                  "POST",
+                                                  "https://apigw.paziresh24.com/v2/book",
+                                                  undefined,
+                                                  (() => {
+                                                    try {
+                                                      return {
+                                                        center_id:
+                                                          $props.centerId,
+                                                        user_center_id:
+                                                          $props.userCenterId,
+                                                        type: 3,
+                                                        fullname:
+                                                          $state.fullname?.trim() ??
+                                                          $state.inputfullname
+                                                            .value,
+                                                        cell:
+                                                          $state.cell?.trim() ??
+                                                          $state.inputcell
+                                                            .value,
+                                                        request_code:
+                                                          $steps.suspend.data
+                                                            .request_code,
+                                                        national_code:
+                                                          $state.nationalCode
+                                                            .value
+                                                      };
+                                                    } catch (e) {
+                                                      if (
+                                                        e instanceof
+                                                          TypeError ||
+                                                        e?.plasmicType ===
+                                                          "PlasmicUndefinedDataError"
+                                                      ) {
+                                                        return undefined;
+                                                      }
+                                                      throw e;
+                                                    }
+                                                  })()
+                                                ]
+                                              };
+                                              return $globalActions[
+                                                "Fragment.apiRequest"
+                                              ]?.apply(null, [
+                                                ...actionArgs.args
+                                              ]);
+                                            })()
+                                          : undefined;
+                                        if (
+                                          $steps["preferBook"] != null &&
+                                          typeof $steps["preferBook"] ===
+                                            "object" &&
+                                          typeof $steps["preferBook"].then ===
+                                            "function"
+                                        ) {
+                                          $steps["preferBook"] = await $steps[
+                                            "preferBook"
+                                          ];
+                                        }
+
+                                        $steps["invokeGlobalAction"] =
+                                          $steps.preferBook.data.status ==
+                                            "28" ||
+                                          $steps.preferBook.data.status == "0"
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  args: [
+                                                    undefined,
+                                                    "\u0646\u0648\u0628\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062b\u0628\u062a \u0634\u062f."
+                                                  ]
+                                                };
+                                                return $globalActions[
+                                                  "Fragment.showToast"
+                                                ]?.apply(null, [
+                                                  ...actionArgs.args
+                                                ]);
+                                              })()
+                                            : undefined;
+                                        if (
+                                          $steps["invokeGlobalAction"] !=
+                                            null &&
+                                          typeof $steps[
+                                            "invokeGlobalAction"
+                                          ] === "object" &&
+                                          typeof $steps["invokeGlobalAction"]
+                                            .then === "function"
+                                        ) {
+                                          $steps["invokeGlobalAction"] =
+                                            await $steps["invokeGlobalAction"];
+                                        }
+
+                                        $steps["updatePreferBooktimeOpen2"] =
+                                          $steps.preferBook.data.status ==
+                                            "28" ||
+                                          $steps.preferBook.data.status == "0"
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  variable: {
+                                                    objRoot: $state,
+                                                    variablePath: [
+                                                      "preferBooktime",
+                                                      "open"
+                                                    ]
+                                                  },
+                                                  operation: 0,
+                                                  value: false
+                                                };
+                                                return (({
+                                                  variable,
+                                                  value,
+                                                  startIndex,
+                                                  deleteCount
+                                                }) => {
+                                                  if (!variable) {
+                                                    return;
+                                                  }
+                                                  const {
+                                                    objRoot,
+                                                    variablePath
+                                                  } = variable;
+
+                                                  $stateSet(
+                                                    objRoot,
+                                                    variablePath,
+                                                    value
+                                                  );
+                                                  return value;
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                        if (
+                                          $steps["updatePreferBooktimeOpen2"] !=
+                                            null &&
+                                          typeof $steps[
+                                            "updatePreferBooktimeOpen2"
+                                          ] === "object" &&
+                                          typeof $steps[
+                                            "updatePreferBooktimeOpen2"
+                                          ].then === "function"
+                                        ) {
+                                          $steps["updatePreferBooktimeOpen2"] =
+                                            await $steps[
+                                              "updatePreferBooktimeOpen2"
+                                            ];
+                                        }
+
+                                        $steps["updatePreferBooktimeOpen"] =
+                                          $steps.preferBook.data.status ==
+                                            "28" ||
+                                          $steps.preferBook.data.status == "0"
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  variable: {
+                                                    objRoot: $state,
+                                                    variablePath: [
+                                                      "preferBooktime",
+                                                      "open"
+                                                    ]
+                                                  },
+                                                  operation: 0,
+                                                  value: false
+                                                };
+                                                return (({
+                                                  variable,
+                                                  value,
+                                                  startIndex,
+                                                  deleteCount
+                                                }) => {
+                                                  if (!variable) {
+                                                    return;
+                                                  }
+                                                  const {
+                                                    objRoot,
+                                                    variablePath
+                                                  } = variable;
+
+                                                  $stateSet(
+                                                    objRoot,
+                                                    variablePath,
+                                                    value
+                                                  );
+                                                  return value;
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                        if (
+                                          $steps["updatePreferBooktimeOpen"] !=
+                                            null &&
+                                          typeof $steps[
+                                            "updatePreferBooktimeOpen"
+                                          ] === "object" &&
+                                          typeof $steps[
+                                            "updatePreferBooktimeOpen"
+                                          ].then === "function"
+                                        ) {
+                                          $steps["updatePreferBooktimeOpen"] =
+                                            await $steps[
+                                              "updatePreferBooktimeOpen"
+                                            ];
+                                        }
+
+                                        $steps["updateBooktimeOpen"] =
+                                          $steps.preferBook.data.status ==
+                                            "28" ||
+                                          $steps.preferBook.data.status == "0"
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  variable: {
+                                                    objRoot: $state,
+                                                    variablePath: [
+                                                      "booktime",
+                                                      "open"
+                                                    ]
+                                                  },
+                                                  operation: 0,
+                                                  value: false
+                                                };
+                                                return (({
+                                                  variable,
+                                                  value,
+                                                  startIndex,
+                                                  deleteCount
+                                                }) => {
+                                                  if (!variable) {
+                                                    return;
+                                                  }
+                                                  const {
+                                                    objRoot,
+                                                    variablePath
+                                                  } = variable;
+
+                                                  $stateSet(
+                                                    objRoot,
+                                                    variablePath,
+                                                    value
+                                                  );
+                                                  return value;
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                        if (
+                                          $steps["updateBooktimeOpen"] !=
+                                            null &&
+                                          typeof $steps[
+                                            "updateBooktimeOpen"
+                                          ] === "object" &&
+                                          typeof $steps["updateBooktimeOpen"]
+                                            .then === "function"
+                                        ) {
+                                          $steps["updateBooktimeOpen"] =
+                                            await $steps["updateBooktimeOpen"];
+                                        }
+
+                                        $steps["finishLoading"] = true
+                                          ? (() => {
+                                              const actionArgs = {
+                                                variable: {
+                                                  objRoot: $state,
+                                                  variablePath: [
+                                                    "loadingButton"
                                                   ]
                                                 },
                                                 operation: 0,
@@ -1912,923 +2641,1090 @@ function PlasmicAddPatient__RenderFunc(props: {
                                             })()
                                           : undefined;
                                         if (
-                                          $steps["updateStateتقویمOpen"] !=
-                                            null &&
-                                          typeof $steps[
-                                            "updateStateتقویمOpen"
-                                          ] === "object" &&
-                                          typeof $steps["updateStateتقویمOpen"]
+                                          $steps["finishLoading"] != null &&
+                                          typeof $steps["finishLoading"] ===
+                                            "object" &&
+                                          typeof $steps["finishLoading"]
                                             .then === "function"
                                         ) {
-                                          $steps["updateStateتقویمOpen"] =
-                                            await $steps[
-                                              "updateStateتقویمOpen"
-                                            ];
+                                          $steps["finishLoading"] =
+                                            await $steps["finishLoading"];
                                         }
-                                      }).apply(null, eventArgs);
-                                    }}
-                                    value={generateStateValueProp($state, [
-                                      "datePicker",
-                                      "value"
-                                    ])}
-                                    values={generateStateValueProp($state, [
-                                      "datePicker",
-                                      "values"
-                                    ])}
-                                  />
-                                </div>
-                              }
-                              className={classNames(
-                                "__wab_instance",
-                                sty.تقویم
-                              )}
-                              onOpenChange={async (...eventArgs: any) => {
-                                generateStateOnChangeProp($state, [
-                                  "تقویم",
-                                  "open"
-                                ]).apply(null, eventArgs);
 
-                                if (
-                                  eventArgs.length > 1 &&
-                                  eventArgs[1] &&
-                                  eventArgs[1]._plasmic_state_init_
-                                ) {
-                                  return;
-                                }
-                              }}
-                              open={generateStateValueProp($state, [
-                                "تقویم",
-                                "open"
-                              ])}
-                              title={
-                                "\u062a\u0642\u0648\u06cc\u0645 \u0645\u0627\u0647\u0627\u0646\u0647"
-                              }
-                              trigger={
-                                <Stack__
-                                  as={"div"}
-                                  hasGap={true}
+                                        $steps["eventSubmitBook"] =
+                                          $steps.preferBook.data.status ==
+                                            "28" ||
+                                          $steps.preferBook.data.status == "0"
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  args: [
+                                                    (() => {
+                                                      try {
+                                                        return {
+                                                          group: "add-book",
+                                                          data: {
+                                                            center_id:
+                                                              $props.centerId,
+                                                            user_center_id:
+                                                              $props.userCenterId,
+                                                            type: 3,
+                                                            fullname:
+                                                              $state.fullname ??
+                                                              $state
+                                                                .inputfullname
+                                                                .value,
+                                                            cell:
+                                                              $state.cell ??
+                                                              $state.inputcell
+                                                                .value,
+                                                            national_code:
+                                                              $state
+                                                                .nationalCode
+                                                                .value
+                                                          },
+                                                          type: "add-prefer-book"
+                                                        };
+                                                      } catch (e) {
+                                                        if (
+                                                          e instanceof
+                                                            TypeError ||
+                                                          e?.plasmicType ===
+                                                            "PlasmicUndefinedDataError"
+                                                        ) {
+                                                          return undefined;
+                                                        }
+                                                        throw e;
+                                                      }
+                                                    })()
+                                                  ]
+                                                };
+                                                return $globalActions[
+                                                  "Splunk.sendLog"
+                                                ]?.apply(null, [
+                                                  ...actionArgs.args
+                                                ]);
+                                              })()
+                                            : undefined;
+                                        if (
+                                          $steps["eventSubmitBook"] != null &&
+                                          typeof $steps["eventSubmitBook"] ===
+                                            "object" &&
+                                          typeof $steps["eventSubmitBook"]
+                                            .then === "function"
+                                        ) {
+                                          $steps["eventSubmitBook"] =
+                                            await $steps["eventSubmitBook"];
+                                        }
+
+                                        $steps["runBooked"] =
+                                          $steps.preferBook.data.status ==
+                                            "28" ||
+                                          $steps.preferBook.data.status == "0"
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  eventRef: $props["booked"]
+                                                };
+                                                return (({
+                                                  eventRef,
+                                                  args
+                                                }) => {
+                                                  return eventRef?.(
+                                                    ...(args ?? [])
+                                                  );
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                        if (
+                                          $steps["runBooked"] != null &&
+                                          typeof $steps["runBooked"] ===
+                                            "object" &&
+                                          typeof $steps["runBooked"].then ===
+                                            "function"
+                                        ) {
+                                          $steps["runBooked"] = await $steps[
+                                            "runBooked"
+                                          ];
+                                        }
+                                      }}
+                                    >
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          projectcss.__wab_text,
+                                          sty.text__tPPx
+                                        )}
+                                      >
+                                        <React.Fragment>
+                                          {(() => {
+                                            try {
+                                              return new Date(
+                                                currentItem.from * 1000
+                                              ).toLocaleString("fa-IR", {
+                                                timeZone: "Asia/Tehran",
+                                                hour12: false,
+                                                hour: "numeric",
+                                                minute: "numeric"
+                                              });
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return "";
+                                              }
+                                              throw e;
+                                            }
+                                          })()}
+                                        </React.Fragment>
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                                <div
+                                  data-plasmic-name={"addNewBookTime"}
+                                  data-plasmic-override={
+                                    overrides.addNewBookTime
+                                  }
                                   className={classNames(
                                     projectcss.all,
-                                    sty.freeBox__kqRc
+                                    sty.addNewBookTime
                                   )}
+                                  onClick={async event => {
+                                    const $steps = {};
+
+                                    $steps["startLoading"] = true
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["loadingButton"]
+                                            },
+                                            operation: 0,
+                                            value: true
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                    if (
+                                      $steps["startLoading"] != null &&
+                                      typeof $steps["startLoading"] ===
+                                        "object" &&
+                                      typeof $steps["startLoading"].then ===
+                                        "function"
+                                    ) {
+                                      $steps["startLoading"] = await $steps[
+                                        "startLoading"
+                                      ];
+                                    }
+
+                                    $steps["updateDialogNewTimePickerOpen"] =
+                                      true
+                                        ? (() => {
+                                            const actionArgs = {
+                                              variable: {
+                                                objRoot: $state,
+                                                variablePath: [
+                                                  "dialogNewTimePicker",
+                                                  "open"
+                                                ]
+                                              },
+                                              operation: 0,
+                                              value: true
+                                            };
+                                            return (({
+                                              variable,
+                                              value,
+                                              startIndex,
+                                              deleteCount
+                                            }) => {
+                                              if (!variable) {
+                                                return;
+                                              }
+                                              const { objRoot, variablePath } =
+                                                variable;
+
+                                              $stateSet(
+                                                objRoot,
+                                                variablePath,
+                                                value
+                                              );
+                                              return value;
+                                            })?.apply(null, [actionArgs]);
+                                          })()
+                                        : undefined;
+                                    if (
+                                      $steps["updateDialogNewTimePickerOpen"] !=
+                                        null &&
+                                      typeof $steps[
+                                        "updateDialogNewTimePickerOpen"
+                                      ] === "object" &&
+                                      typeof $steps[
+                                        "updateDialogNewTimePickerOpen"
+                                      ].then === "function"
+                                    ) {
+                                      $steps["updateDialogNewTimePickerOpen"] =
+                                        await $steps[
+                                          "updateDialogNewTimePickerOpen"
+                                        ];
+                                    }
+
+                                    $steps["finishLoading"] = true
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["loadingButton"]
+                                            },
+                                            operation: 0,
+                                            value: false
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                    if (
+                                      $steps["finishLoading"] != null &&
+                                      typeof $steps["finishLoading"] ===
+                                        "object" &&
+                                      typeof $steps["finishLoading"].then ===
+                                        "function"
+                                    ) {
+                                      $steps["finishLoading"] = await $steps[
+                                        "finishLoading"
+                                      ];
+                                    }
+
+                                    $steps["eventClickForAddBookOutOfSlut"] =
+                                      true
+                                        ? (() => {
+                                            const actionArgs = {
+                                              args: [
+                                                (() => {
+                                                  try {
+                                                    return {
+                                                      group: "add-book",
+                                                      data: {
+                                                        center_id:
+                                                          $props.centerId,
+                                                        user_center_id:
+                                                          $props.userCenterId,
+                                                        type: 3,
+                                                        fullname:
+                                                          $state.fullname ??
+                                                          $state.inputfullname
+                                                            .value,
+                                                        cell:
+                                                          $state.cell ??
+                                                          $state.inputcell
+                                                            .value,
+                                                        national_code:
+                                                          $state.nationalCode
+                                                            .value
+                                                      },
+                                                      type: "click-for-add-book-out-of-slot"
+                                                    };
+                                                  } catch (e) {
+                                                    if (
+                                                      e instanceof TypeError ||
+                                                      e?.plasmicType ===
+                                                        "PlasmicUndefinedDataError"
+                                                    ) {
+                                                      return undefined;
+                                                    }
+                                                    throw e;
+                                                  }
+                                                })()
+                                              ]
+                                            };
+                                            return $globalActions[
+                                              "Splunk.sendLog"
+                                            ]?.apply(null, [
+                                              ...actionArgs.args
+                                            ]);
+                                          })()
+                                        : undefined;
+                                    if (
+                                      $steps["eventClickForAddBookOutOfSlut"] !=
+                                        null &&
+                                      typeof $steps[
+                                        "eventClickForAddBookOutOfSlut"
+                                      ] === "object" &&
+                                      typeof $steps[
+                                        "eventClickForAddBookOutOfSlut"
+                                      ].then === "function"
+                                    ) {
+                                      $steps["eventClickForAddBookOutOfSlut"] =
+                                        await $steps[
+                                          "eventClickForAddBookOutOfSlut"
+                                        ];
+                                    }
+                                  }}
                                 >
-                                  <div
+                                  <Icon2Icon
                                     className={classNames(
                                       projectcss.all,
-                                      projectcss.__wab_text,
-                                      sty.text__skZB
-                                    )}
-                                  >
-                                    <React.Fragment>
-                                      {(() => {
-                                        try {
-                                          return (() => {
-                                            const persianDate = $state
-                                              .datePicker.value
-                                              ? new Intl.DateTimeFormat(
-                                                  "fa-IR"
-                                                ).format(
-                                                  $state.datePicker.value * 1000
-                                                )
-                                              : new Intl.DateTimeFormat(
-                                                  "fa-IR"
-                                                ).format(
-                                                  $ctx
-                                                    .fetchedDatafirstfreeturn[0]
-                                                    .filds.result[0].from * 1000
-                                                );
-                                            return persianDate;
-                                          })();
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return "";
-                                          }
-                                          throw e;
-                                        }
-                                      })()}
-                                    </React.Fragment>
-                                  </div>
-                                  <CalendarIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__sUsAp
+                                      sty.svg___2GeMo
                                     )}
                                     role={"img"}
                                   />
-                                </Stack__>
-                              }
-                            />
-
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__mTcO
-                              )}
-                            >
-                              <DataFetcher
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.httpRestApiFetcher__nyQGf
-                                )}
-                                dataName={"fetchedData"}
-                                errorDisplay={
-                                  <DataCtxReader__>
-                                    {$ctx => "Error fetching data"}
-                                  </DataCtxReader__>
-                                }
-                                errorName={"fetchError"}
-                                loadingDisplay={
-                                  <DataCtxReader__>
-                                    {$ctx =>
-                                      "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0632\u0645\u0627\u0646 \u0646\u0648\u0628\u062a \u0647\u0627..."
-                                    }
-                                  </DataCtxReader__>
-                                }
-                                method={"GET"}
-                                noLayout={false}
-                                previewSpinner={false}
-                                url={(() => {
-                                  try {
-                                    return (() => {
-                                      const from = $state.datePicker.value
-                                        ? $state.datePicker.value
-                                        : $ctx.fetchedDatafirstfreeturn[0].filds
-                                            .result[0].from;
-                                      const to = new Date(from * 1000);
-                                      to.setHours(23, 59, 59, 0);
-                                      return `https://apigw.paziresh24.com/v2/freeturns?center_id=${
-                                        $props.centerId
-                                      }&user_center_id=${
-                                        $props.userCenterId
-                                      }&from=${from}&to=${to.getTime() / 1000}`;
-                                    })();
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
+                                </div>
+                                <Dialog
+                                  data-plasmic-name={"dialogNewTimePicker"}
+                                  data-plasmic-override={
+                                    overrides.dialogNewTimePicker
                                   }
-                                })()}
-                              >
-                                <DataCtxReader__>
-                                  {$ctx => (
-                                    <React.Fragment>
-                                      {(() => {
-                                        try {
-                                          return $state.loadingButton;
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return true;
-                                          }
-                                          throw e;
+                                  body={
+                                    <Stack__
+                                      as={"div"}
+                                      hasGap={true}
+                                      className={classNames(
+                                        projectcss.all,
+                                        sty.freeBox___6SJkA
+                                      )}
+                                    >
+                                      <div
+                                        data-plasmic-name={"fromHorizental"}
+                                        data-plasmic-override={
+                                          overrides.fromHorizental
                                         }
-                                      })() ? (
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.fromHorizental
+                                        )}
+                                      >
                                         <div
+                                          data-plasmic-name={"fromText"}
+                                          data-plasmic-override={
+                                            overrides.fromText
+                                          }
                                           className={classNames(
                                             projectcss.all,
-                                            sty.freeBox__naOsf
+                                            projectcss.__wab_text,
+                                            sty.fromText
                                           )}
                                         >
-                                          <Icon17Icon
+                                          {
+                                            "\u0632\u0645\u0627\u0646 \u0634\u0631\u0648\u0639:"
+                                          }
+                                        </div>
+                                        <TimePicker
+                                          data-plasmic-name={"fromTimePicker"}
+                                          data-plasmic-override={
+                                            overrides.fromTimePicker
+                                          }
+                                          className={classNames(
+                                            "__wab_instance",
+                                            sty.fromTimePicker
+                                          )}
+                                          onChange={async (
+                                            ...eventArgs: any
+                                          ) => {
+                                            generateStateOnChangeProp($state, [
+                                              "fromTimePicker",
+                                              "value"
+                                            ]).apply(null, eventArgs);
+                                          }}
+                                          value={generateStateValueProp(
+                                            $state,
+                                            ["fromTimePicker", "value"]
+                                          )}
+                                        />
+                                      </div>
+                                      <div
+                                        data-plasmic-name={"toHorizental"}
+                                        data-plasmic-override={
+                                          overrides.toHorizental
+                                        }
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.toHorizental
+                                        )}
+                                      >
+                                        <div
+                                          data-plasmic-name={"toText"}
+                                          data-plasmic-override={
+                                            overrides.toText
+                                          }
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.toText
+                                          )}
+                                        >
+                                          {
+                                            "\u0632\u0645\u0627\u0646 \u067e\u0627\u06cc\u0627\u0646:"
+                                          }
+                                        </div>
+                                        <TimePicker
+                                          data-plasmic-name={"toTimePicker"}
+                                          data-plasmic-override={
+                                            overrides.toTimePicker
+                                          }
+                                          className={classNames(
+                                            "__wab_instance",
+                                            sty.toTimePicker
+                                          )}
+                                          onChange={async (
+                                            ...eventArgs: any
+                                          ) => {
+                                            generateStateOnChangeProp($state, [
+                                              "toTimePicker",
+                                              "value"
+                                            ]).apply(null, eventArgs);
+                                          }}
+                                          value={generateStateValueProp(
+                                            $state,
+                                            ["toTimePicker", "value"]
+                                          )}
+                                        />
+                                      </div>
+                                      <Button
+                                        data-plasmic-name={"submitNewBook"}
+                                        data-plasmic-override={
+                                          overrides.submitNewBook
+                                        }
+                                        children2={
+                                          "\u062b\u0628\u062a \u0646\u0648\u0628\u062a"
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.submitNewBook
+                                        )}
+                                        endIcon={
+                                          <ChevronLeftIcon
                                             className={classNames(
                                               projectcss.all,
-                                              sty.svg__cixM
+                                              sty.svg___5XVi
                                             )}
                                             role={"img"}
                                           />
-                                        </div>
-                                      ) : null}
-                                      {(() => {
-                                        try {
-                                          return (
-                                            !$state.loadingButton &&
-                                            $ctx?.fetchedData?.[0]?.filds
-                                              ?.result?.length == 0
-                                          );
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return true;
-                                          }
-                                          throw e;
                                         }
-                                      })() ? (
-                                        <div
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.freeBox__k5TzV
-                                          )}
-                                        >
-                                          <div
-                                            className={classNames(
-                                              projectcss.all,
-                                              projectcss.__wab_text,
-                                              sty.text__tnT4M
-                                            )}
-                                          >
-                                            {
-                                              "\u0646\u0648\u0628\u062a \u062e\u0627\u0644\u06cc \u062f\u0631 \u0627\u06cc\u0646 \u062a\u0627\u0631\u06cc\u062e \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f."
+                                        loading={(() => {
+                                          try {
+                                            return $state.loadingButton;
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return [];
                                             }
-                                          </div>
-                                        </div>
-                                      ) : null}
-                                      {(() => {
-                                        try {
-                                          return !$state.loadingButton;
-                                        } catch (e) {
-                                          if (
-                                            e instanceof TypeError ||
-                                            e?.plasmicType ===
-                                              "PlasmicUndefinedDataError"
-                                          ) {
-                                            return true;
+                                            throw e;
                                           }
-                                          throw e;
-                                        }
-                                      })() ? (
-                                        <Stack__
-                                          as={"div"}
-                                          hasGap={true}
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.freeBox__hage0
-                                          )}
-                                        >
-                                          {(_par =>
-                                            !_par
-                                              ? []
-                                              : Array.isArray(_par)
-                                              ? _par
-                                              : [_par])(
-                                            (() => {
-                                              try {
-                                                return $ctx.fetchedData[0].filds
-                                                  .result;
-                                              } catch (e) {
-                                                if (
-                                                  e instanceof TypeError ||
-                                                  e?.plasmicType ===
-                                                    "PlasmicUndefinedDataError"
-                                                ) {
-                                                  return [];
-                                                }
-                                                throw e;
-                                              }
-                                            })()
-                                          ).map(
-                                            (
-                                              __plasmic_item_0,
-                                              __plasmic_idx_0
-                                            ) => {
-                                              const currentItem =
-                                                __plasmic_item_0;
-                                              const currentIndex =
-                                                __plasmic_idx_0;
-                                              return (
-                                                <div
-                                                  className={classNames(
-                                                    projectcss.all,
-                                                    sty.freeBox__eUi9U
-                                                  )}
-                                                  key={currentIndex}
-                                                  onClick={async event => {
-                                                    const $steps = {};
+                                        })()}
+                                        onClick={async event => {
+                                          const $steps = {};
 
-                                                    $steps["startLoading"] =
-                                                      Boolean(
-                                                        ($state.fullname &&
-                                                          $state.cell) ||
-                                                          ($state.inputfullname
-                                                            .value &&
+                                          $steps["checkForm"] =
+                                            (!$state.fullname ||
+                                              !$state.cell) &&
+                                            (!$state.inputfullname.value ||
+                                              !$state.inputcell.value)
+                                              ? (() => {
+                                                  const actionArgs = {
+                                                    args: [
+                                                      "error",
+                                                      "\u0644\u0637\u0641\u0627 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u06cc\u0645\u0627\u0631 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+                                                    ]
+                                                  };
+                                                  return $globalActions[
+                                                    "Fragment.showToast"
+                                                  ]?.apply(null, [
+                                                    ...actionArgs.args
+                                                  ]);
+                                                })()
+                                              : undefined;
+                                          if (
+                                            $steps["checkForm"] != null &&
+                                            typeof $steps["checkForm"] ===
+                                              "object" &&
+                                            typeof $steps["checkForm"].then ===
+                                              "function"
+                                          ) {
+                                            $steps["checkForm"] = await $steps[
+                                              "checkForm"
+                                            ];
+                                          }
+
+                                          $steps["startLoading"] = Boolean(
+                                            ($state.fullname && $state.cell) ||
+                                              ($state.inputfullname.value &&
+                                                $state.inputcell.value)
+                                          )
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  variable: {
+                                                    objRoot: $state,
+                                                    variablePath: [
+                                                      "loadingButton"
+                                                    ]
+                                                  },
+                                                  operation: 0,
+                                                  value: true
+                                                };
+                                                return (({
+                                                  variable,
+                                                  value,
+                                                  startIndex,
+                                                  deleteCount
+                                                }) => {
+                                                  if (!variable) {
+                                                    return;
+                                                  }
+                                                  const {
+                                                    objRoot,
+                                                    variablePath
+                                                  } = variable;
+
+                                                  $stateSet(
+                                                    objRoot,
+                                                    variablePath,
+                                                    value
+                                                  );
+                                                  return value;
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                          if (
+                                            $steps["startLoading"] != null &&
+                                            typeof $steps["startLoading"] ===
+                                              "object" &&
+                                            typeof $steps["startLoading"]
+                                              .then === "function"
+                                          ) {
+                                            $steps["startLoading"] =
+                                              await $steps["startLoading"];
+                                          }
+
+                                          $steps["checkTime"] =
+                                            $state.fromTimePicker.value >
+                                            $state.toTimePicker.value
+                                              ? (() => {
+                                                  const actionArgs = {
+                                                    args: [
+                                                      "error",
+                                                      "\u0632\u0645\u0627\u0646 \u067e\u0627\u06cc\u0627\u0646 \u0628\u0627\u06cc\u062f \u0627\u0632 \u0632\u0645\u0627\u0646 \u0634\u0631\u0648\u0639 \u0628\u0632\u0631\u06af\u062a\u0631 \u0628\u0627\u0634\u062f."
+                                                    ]
+                                                  };
+                                                  return $globalActions[
+                                                    "Fragment.showToast"
+                                                  ]?.apply(null, [
+                                                    ...actionArgs.args
+                                                  ]);
+                                                })()
+                                              : undefined;
+                                          if (
+                                            $steps["checkTime"] != null &&
+                                            typeof $steps["checkTime"] ===
+                                              "object" &&
+                                            typeof $steps["checkTime"].then ===
+                                              "function"
+                                          ) {
+                                            $steps["checkTime"] = await $steps[
+                                              "checkTime"
+                                            ];
+                                          }
+
+                                          $steps["newTimeFromBook"] = true
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  variable: {
+                                                    objRoot: $state,
+                                                    variablePath: [
+                                                      "newTimeFromBook"
+                                                    ]
+                                                  },
+                                                  operation: 0,
+                                                  value: (() => {
+                                                    if (
+                                                      $state.datePicker.value
+                                                    ) {
+                                                      return Math.floor(
+                                                        new Date(
+                                                          $state.datePicker
+                                                            .value * 1000
+                                                        ).setHours(
+                                                          parseInt(
+                                                            $state.fromTimePicker.value.split(
+                                                              ":"
+                                                            )[0]
+                                                          ),
+                                                          parseInt(
+                                                            $state.fromTimePicker.value.split(
+                                                              ":"
+                                                            )[1]
+                                                          ),
+                                                          0,
+                                                          0
+                                                        ) / 1000
+                                                      );
+                                                    } else {
+                                                      return Math.floor(
+                                                        new Date().setHours(
+                                                          parseInt(
+                                                            $state.fromTimePicker.value.split(
+                                                              ":"
+                                                            )[0]
+                                                          ),
+                                                          parseInt(
+                                                            $state.fromTimePicker.value.split(
+                                                              ":"
+                                                            )[1]
+                                                          ),
+                                                          0,
+                                                          0
+                                                        ) / 1000
+                                                      );
+                                                    }
+                                                  })()
+                                                };
+                                                return (({
+                                                  variable,
+                                                  value,
+                                                  startIndex,
+                                                  deleteCount
+                                                }) => {
+                                                  if (!variable) {
+                                                    return;
+                                                  }
+                                                  const {
+                                                    objRoot,
+                                                    variablePath
+                                                  } = variable;
+
+                                                  $stateSet(
+                                                    objRoot,
+                                                    variablePath,
+                                                    value
+                                                  );
+                                                  return value;
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                          if (
+                                            $steps["newTimeFromBook"] != null &&
+                                            typeof $steps["newTimeFromBook"] ===
+                                              "object" &&
+                                            typeof $steps["newTimeFromBook"]
+                                              .then === "function"
+                                          ) {
+                                            $steps["newTimeFromBook"] =
+                                              await $steps["newTimeFromBook"];
+                                          }
+
+                                          $steps["newTimeToBook"] = true
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  variable: {
+                                                    objRoot: $state,
+                                                    variablePath: [
+                                                      "newTimeToBook"
+                                                    ]
+                                                  },
+                                                  operation: 0,
+                                                  value: (() => {
+                                                    if (
+                                                      $state.datePicker.value
+                                                    ) {
+                                                      return Math.floor(
+                                                        new Date(
+                                                          $state.datePicker
+                                                            .value * 1000
+                                                        ).setHours(
+                                                          parseInt(
+                                                            $state.toTimePicker.value.split(
+                                                              ":"
+                                                            )[0]
+                                                          ),
+                                                          parseInt(
+                                                            $state.toTimePicker.value.split(
+                                                              ":"
+                                                            )[1]
+                                                          ),
+                                                          0,
+                                                          0
+                                                        ) / 1000
+                                                      );
+                                                    } else {
+                                                      return Math.floor(
+                                                        new Date().setHours(
+                                                          parseInt(
+                                                            $state.toTimePicker.value.split(
+                                                              ":"
+                                                            )[0]
+                                                          ),
+                                                          parseInt(
+                                                            $state.toTimePicker.value.split(
+                                                              ":"
+                                                            )[1]
+                                                          ),
+                                                          0,
+                                                          0
+                                                        ) / 1000
+                                                      );
+                                                    }
+                                                  })()
+                                                };
+                                                return (({
+                                                  variable,
+                                                  value,
+                                                  startIndex,
+                                                  deleteCount
+                                                }) => {
+                                                  if (!variable) {
+                                                    return;
+                                                  }
+                                                  const {
+                                                    objRoot,
+                                                    variablePath
+                                                  } = variable;
+
+                                                  $stateSet(
+                                                    objRoot,
+                                                    variablePath,
+                                                    value
+                                                  );
+                                                  return value;
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                          if (
+                                            $steps["newTimeToBook"] != null &&
+                                            typeof $steps["newTimeToBook"] ===
+                                              "object" &&
+                                            typeof $steps["newTimeToBook"]
+                                              .then === "function"
+                                          ) {
+                                            $steps["newTimeToBook"] =
+                                              await $steps["newTimeToBook"];
+                                          }
+
+                                          $steps["suspend"] = Boolean(
+                                            ($state.fullname && $state.cell) ||
+                                              ($state.inputfullname.value &&
+                                                $state.inputcell.value &&
+                                                $state.fromTimePicker.value <
+                                                  $state.toTimePicker.value)
+                                          )
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  args: [
+                                                    "GET",
+                                                    "https://apigw.paziresh24.com/v2/suspend",
+                                                    (() => {
+                                                      try {
+                                                        return {
+                                                          center_id:
+                                                            $props.centerId,
+                                                          user_center_id:
+                                                            $props.userCenterId,
+                                                          type: 3,
+                                                          from_timestamp:
+                                                            $state.newTimeFromBook,
+                                                          to_timestamp:
+                                                            $state.newTimeToBook
+                                                        };
+                                                      } catch (e) {
+                                                        if (
+                                                          e instanceof
+                                                            TypeError ||
+                                                          e?.plasmicType ===
+                                                            "PlasmicUndefinedDataError"
+                                                        ) {
+                                                          return undefined;
+                                                        }
+                                                        throw e;
+                                                      }
+                                                    })()
+                                                  ]
+                                                };
+                                                return $globalActions[
+                                                  "Fragment.apiRequest"
+                                                ]?.apply(null, [
+                                                  ...actionArgs.args
+                                                ]);
+                                              })()
+                                            : undefined;
+                                          if (
+                                            $steps["suspend"] != null &&
+                                            typeof $steps["suspend"] ===
+                                              "object" &&
+                                            typeof $steps["suspend"].then ===
+                                              "function"
+                                          ) {
+                                            $steps["suspend"] = await $steps[
+                                              "suspend"
+                                            ];
+                                          }
+
+                                          $steps["bookApi"] = Boolean(
+                                            ($state.fullname && $state.cell) ||
+                                              ($state.inputfullname.value &&
+                                                $state.inputcell.value &&
+                                                $state.fromTimePicker.value <
+                                                  $state.toTimePicker.value)
+                                          )
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  args: [
+                                                    "POST",
+                                                    "https://apigw.paziresh24.com/v2/book",
+                                                    undefined,
+                                                    (() => {
+                                                      try {
+                                                        return {
+                                                          center_id:
+                                                            $props.centerId,
+                                                          user_center_id:
+                                                            $props.userCenterId,
+                                                          type: 3,
+                                                          fullname:
+                                                            $state.fullname?.trim() ??
+                                                            $state.inputfullname
+                                                              .value,
+                                                          cell:
+                                                            $state.cell?.trim() ??
                                                             $state.inputcell
-                                                              .value)
-                                                      )
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              variable: {
-                                                                objRoot: $state,
-                                                                variablePath: [
-                                                                  "loadingButton"
-                                                                ]
-                                                              },
-                                                              operation: 0,
-                                                              value: true
-                                                            };
-                                                            return (({
-                                                              variable,
-                                                              value,
-                                                              startIndex,
-                                                              deleteCount
-                                                            }) => {
-                                                              if (!variable) {
-                                                                return;
-                                                              }
-                                                              const {
-                                                                objRoot,
-                                                                variablePath
-                                                              } = variable;
+                                                              .value,
+                                                          request_code:
+                                                            $steps.suspend.data
+                                                              .request_code,
+                                                          national_code:
+                                                            $state.nationalCode
+                                                              .value
+                                                        };
+                                                      } catch (e) {
+                                                        if (
+                                                          e instanceof
+                                                            TypeError ||
+                                                          e?.plasmicType ===
+                                                            "PlasmicUndefinedDataError"
+                                                        ) {
+                                                          return undefined;
+                                                        }
+                                                        throw e;
+                                                      }
+                                                    })()
+                                                  ]
+                                                };
+                                                return $globalActions[
+                                                  "Fragment.apiRequest"
+                                                ]?.apply(null, [
+                                                  ...actionArgs.args
+                                                ]);
+                                              })()
+                                            : undefined;
+                                          if (
+                                            $steps["bookApi"] != null &&
+                                            typeof $steps["bookApi"] ===
+                                              "object" &&
+                                            typeof $steps["bookApi"].then ===
+                                              "function"
+                                          ) {
+                                            $steps["bookApi"] = await $steps[
+                                              "bookApi"
+                                            ];
+                                          }
 
-                                                              $stateSet(
-                                                                objRoot,
-                                                                variablePath,
-                                                                value
-                                                              );
-                                                              return value;
-                                                            })?.apply(null, [
-                                                              actionArgs
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps["startLoading"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "startLoading"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "startLoading"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps["startLoading"] =
-                                                        await $steps[
-                                                          "startLoading"
-                                                        ];
+                                          $steps["successToast"] =
+                                            $steps.bookApi.data.status ==
+                                              "28" ||
+                                            $steps.bookApi.data.status == "0"
+                                              ? (() => {
+                                                  const actionArgs = {
+                                                    args: [
+                                                      undefined,
+                                                      "\u0646\u0648\u0628\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062b\u0628\u062a \u0634\u062f."
+                                                    ]
+                                                  };
+                                                  return $globalActions[
+                                                    "Fragment.showToast"
+                                                  ]?.apply(null, [
+                                                    ...actionArgs.args
+                                                  ]);
+                                                })()
+                                              : undefined;
+                                          if (
+                                            $steps["successToast"] != null &&
+                                            typeof $steps["successToast"] ===
+                                              "object" &&
+                                            typeof $steps["successToast"]
+                                              .then === "function"
+                                          ) {
+                                            $steps["successToast"] =
+                                              await $steps["successToast"];
+                                          }
+
+                                          $steps["updateBooktimeOpen"] =
+                                            $steps.bookApi.data.status ==
+                                              "28" ||
+                                            $steps.bookApi.data.status == "0"
+                                              ? (() => {
+                                                  const actionArgs = {
+                                                    variable: {
+                                                      objRoot: $state,
+                                                      variablePath: [
+                                                        "booktime",
+                                                        "open"
+                                                      ]
+                                                    },
+                                                    operation: 0,
+                                                    value: false
+                                                  };
+                                                  return (({
+                                                    variable,
+                                                    value,
+                                                    startIndex,
+                                                    deleteCount
+                                                  }) => {
+                                                    if (!variable) {
+                                                      return;
                                                     }
+                                                    const {
+                                                      objRoot,
+                                                      variablePath
+                                                    } = variable;
 
-                                                    $steps["suspend"] = Boolean(
-                                                      ($state.fullname &&
-                                                        $state.cell) ||
-                                                        ($state.inputfullname
-                                                          .value &&
-                                                          $state.inputcell
-                                                            .value)
-                                                    )
-                                                      ? (() => {
-                                                          const actionArgs = {
-                                                            args: [
-                                                              "GET",
-                                                              "https://apigw.paziresh24.com/v2/suspend",
-                                                              (() => {
-                                                                try {
-                                                                  return {
-                                                                    center_id:
-                                                                      $props.centerId,
-                                                                    user_center_id:
-                                                                      $props.userCenterId,
-                                                                    service_id:
-                                                                      $props.serviceId2,
-                                                                    type: 3,
-                                                                    from_timestamp:
-                                                                      currentItem.from,
-                                                                    to_timestamp:
-                                                                      currentItem.to
-                                                                  };
-                                                                } catch (e) {
-                                                                  if (
-                                                                    e instanceof
-                                                                      TypeError ||
-                                                                    e?.plasmicType ===
-                                                                      "PlasmicUndefinedDataError"
-                                                                  ) {
-                                                                    return undefined;
-                                                                  }
-                                                                  throw e;
-                                                                }
-                                                              })()
-                                                            ]
-                                                          };
-                                                          return $globalActions[
-                                                            "Fragment.apiRequest"
-                                                          ]?.apply(null, [
-                                                            ...actionArgs.args
-                                                          ]);
-                                                        })()
-                                                      : undefined;
-                                                    if (
-                                                      $steps["suspend"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "suspend"
-                                                      ] === "object" &&
-                                                      typeof $steps["suspend"]
-                                                        .then === "function"
-                                                    ) {
-                                                      $steps["suspend"] =
-                                                        await $steps["suspend"];
-                                                    }
+                                                    $stateSet(
+                                                      objRoot,
+                                                      variablePath,
+                                                      value
+                                                    );
+                                                    return value;
+                                                  })?.apply(null, [actionArgs]);
+                                                })()
+                                              : undefined;
+                                          if (
+                                            $steps["updateBooktimeOpen"] !=
+                                              null &&
+                                            typeof $steps[
+                                              "updateBooktimeOpen"
+                                            ] === "object" &&
+                                            typeof $steps["updateBooktimeOpen"]
+                                              .then === "function"
+                                          ) {
+                                            $steps["updateBooktimeOpen"] =
+                                              await $steps[
+                                                "updateBooktimeOpen"
+                                              ];
+                                          }
 
-                                                    $steps["preferBook"] =
-                                                      Boolean(
-                                                        ($state.fullname &&
-                                                          $state.cell) ||
-                                                          ($state.inputfullname
-                                                            .value &&
-                                                            $state.inputcell
-                                                              .value)
-                                                      )
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              args: [
-                                                                "POST",
-                                                                "https://apigw.paziresh24.com/v2/book",
-                                                                undefined,
-                                                                (() => {
-                                                                  try {
-                                                                    return {
-                                                                      center_id:
-                                                                        $props.centerId,
-                                                                      user_center_id:
-                                                                        $props.userCenterId,
-                                                                      type: 3,
-                                                                      fullname:
-                                                                        $state.fullname?.trim() ??
-                                                                        $state
-                                                                          .inputfullname
-                                                                          .value,
-                                                                      cell:
-                                                                        $state.cell?.trim() ??
-                                                                        $state
-                                                                          .inputcell
-                                                                          .value,
-                                                                      request_code:
-                                                                        $steps
-                                                                          .suspend
-                                                                          .data
-                                                                          .request_code,
-                                                                      national_code:
-                                                                        $state
-                                                                          .nationalCode
-                                                                          .value
-                                                                    };
-                                                                  } catch (e) {
-                                                                    if (
-                                                                      e instanceof
-                                                                        TypeError ||
-                                                                      e?.plasmicType ===
-                                                                        "PlasmicUndefinedDataError"
-                                                                    ) {
-                                                                      return undefined;
-                                                                    }
-                                                                    throw e;
-                                                                  }
-                                                                })()
-                                                              ]
-                                                            };
-                                                            return $globalActions[
-                                                              "Fragment.apiRequest"
-                                                            ]?.apply(null, [
-                                                              ...actionArgs.args
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps["preferBook"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "preferBook"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "preferBook"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps["preferBook"] =
-                                                        await $steps[
-                                                          "preferBook"
-                                                        ];
-                                                    }
+                                          $steps["finishLoading"] = true
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  variable: {
+                                                    objRoot: $state,
+                                                    variablePath: [
+                                                      "loadingButton"
+                                                    ]
+                                                  },
+                                                  operation: 0,
+                                                  value: false
+                                                };
+                                                return (({
+                                                  variable,
+                                                  value,
+                                                  startIndex,
+                                                  deleteCount
+                                                }) => {
+                                                  if (!variable) {
+                                                    return;
+                                                  }
+                                                  const {
+                                                    objRoot,
+                                                    variablePath
+                                                  } = variable;
 
-                                                    $steps[
-                                                      "invokeGlobalAction"
-                                                    ] =
-                                                      $steps.preferBook.data
-                                                        .status == "28" ||
-                                                      $steps.preferBook.data
-                                                        .status == "0"
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              args: [
-                                                                undefined,
-                                                                "\u0646\u0648\u0628\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062b\u0628\u062a \u0634\u062f."
-                                                              ]
-                                                            };
-                                                            return $globalActions[
-                                                              "Fragment.showToast"
-                                                            ]?.apply(null, [
-                                                              ...actionArgs.args
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps[
-                                                        "invokeGlobalAction"
-                                                      ] != null &&
-                                                      typeof $steps[
-                                                        "invokeGlobalAction"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "invokeGlobalAction"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps[
-                                                        "invokeGlobalAction"
-                                                      ] = await $steps[
-                                                        "invokeGlobalAction"
-                                                      ];
-                                                    }
+                                                  $stateSet(
+                                                    objRoot,
+                                                    variablePath,
+                                                    value
+                                                  );
+                                                  return value;
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                          if (
+                                            $steps["finishLoading"] != null &&
+                                            typeof $steps["finishLoading"] ===
+                                              "object" &&
+                                            typeof $steps["finishLoading"]
+                                              .then === "function"
+                                          ) {
+                                            $steps["finishLoading"] =
+                                              await $steps["finishLoading"];
+                                          }
 
-                                                    $steps[
-                                                      "updatePreferBooktimeOpen2"
-                                                    ] =
-                                                      $steps.preferBook.data
-                                                        .status == "28" ||
-                                                      $steps.preferBook.data
-                                                        .status == "0"
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              variable: {
-                                                                objRoot: $state,
-                                                                variablePath: [
-                                                                  "preferBooktime",
-                                                                  "open"
-                                                                ]
-                                                              },
-                                                              operation: 0,
-                                                              value: false
-                                                            };
-                                                            return (({
-                                                              variable,
-                                                              value,
-                                                              startIndex,
-                                                              deleteCount
-                                                            }) => {
-                                                              if (!variable) {
-                                                                return;
-                                                              }
-                                                              const {
-                                                                objRoot,
-                                                                variablePath
-                                                              } = variable;
-
-                                                              $stateSet(
-                                                                objRoot,
-                                                                variablePath,
-                                                                value
-                                                              );
-                                                              return value;
-                                                            })?.apply(null, [
-                                                              actionArgs
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps[
-                                                        "updatePreferBooktimeOpen2"
-                                                      ] != null &&
-                                                      typeof $steps[
-                                                        "updatePreferBooktimeOpen2"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "updatePreferBooktimeOpen2"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps[
-                                                        "updatePreferBooktimeOpen2"
-                                                      ] = await $steps[
-                                                        "updatePreferBooktimeOpen2"
-                                                      ];
-                                                    }
-
-                                                    $steps[
-                                                      "updatePreferBooktimeOpen"
-                                                    ] =
-                                                      $steps.preferBook.data
-                                                        .status == "28" ||
-                                                      $steps.preferBook.data
-                                                        .status == "0"
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              variable: {
-                                                                objRoot: $state,
-                                                                variablePath: [
-                                                                  "preferBooktime",
-                                                                  "open"
-                                                                ]
-                                                              },
-                                                              operation: 0,
-                                                              value: false
-                                                            };
-                                                            return (({
-                                                              variable,
-                                                              value,
-                                                              startIndex,
-                                                              deleteCount
-                                                            }) => {
-                                                              if (!variable) {
-                                                                return;
-                                                              }
-                                                              const {
-                                                                objRoot,
-                                                                variablePath
-                                                              } = variable;
-
-                                                              $stateSet(
-                                                                objRoot,
-                                                                variablePath,
-                                                                value
-                                                              );
-                                                              return value;
-                                                            })?.apply(null, [
-                                                              actionArgs
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps[
-                                                        "updatePreferBooktimeOpen"
-                                                      ] != null &&
-                                                      typeof $steps[
-                                                        "updatePreferBooktimeOpen"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "updatePreferBooktimeOpen"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps[
-                                                        "updatePreferBooktimeOpen"
-                                                      ] = await $steps[
-                                                        "updatePreferBooktimeOpen"
-                                                      ];
-                                                    }
-
-                                                    $steps[
-                                                      "updateBooktimeOpen"
-                                                    ] =
-                                                      $steps.preferBook.data
-                                                        .status == "28" ||
-                                                      $steps.preferBook.data
-                                                        .status == "0"
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              variable: {
-                                                                objRoot: $state,
-                                                                variablePath: [
-                                                                  "booktime",
-                                                                  "open"
-                                                                ]
-                                                              },
-                                                              operation: 0,
-                                                              value: false
-                                                            };
-                                                            return (({
-                                                              variable,
-                                                              value,
-                                                              startIndex,
-                                                              deleteCount
-                                                            }) => {
-                                                              if (!variable) {
-                                                                return;
-                                                              }
-                                                              const {
-                                                                objRoot,
-                                                                variablePath
-                                                              } = variable;
-
-                                                              $stateSet(
-                                                                objRoot,
-                                                                variablePath,
-                                                                value
-                                                              );
-                                                              return value;
-                                                            })?.apply(null, [
-                                                              actionArgs
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps[
-                                                        "updateBooktimeOpen"
-                                                      ] != null &&
-                                                      typeof $steps[
-                                                        "updateBooktimeOpen"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "updateBooktimeOpen"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps[
-                                                        "updateBooktimeOpen"
-                                                      ] = await $steps[
-                                                        "updateBooktimeOpen"
-                                                      ];
-                                                    }
-
-                                                    $steps["finishLoading"] =
-                                                      true
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              variable: {
-                                                                objRoot: $state,
-                                                                variablePath: [
-                                                                  "loadingButton"
-                                                                ]
-                                                              },
-                                                              operation: 0,
-                                                              value: false
-                                                            };
-                                                            return (({
-                                                              variable,
-                                                              value,
-                                                              startIndex,
-                                                              deleteCount
-                                                            }) => {
-                                                              if (!variable) {
-                                                                return;
-                                                              }
-                                                              const {
-                                                                objRoot,
-                                                                variablePath
-                                                              } = variable;
-
-                                                              $stateSet(
-                                                                objRoot,
-                                                                variablePath,
-                                                                value
-                                                              );
-                                                              return value;
-                                                            })?.apply(null, [
-                                                              actionArgs
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps["finishLoading"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "finishLoading"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "finishLoading"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps["finishLoading"] =
-                                                        await $steps[
-                                                          "finishLoading"
-                                                        ];
-                                                    }
-
-                                                    $steps["eventSubmitBook"] =
-                                                      $steps.preferBook.data
-                                                        .status == "28" ||
-                                                      $steps.preferBook.data
-                                                        .status == "0"
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              args: [
-                                                                (() => {
-                                                                  try {
-                                                                    return {
-                                                                      group:
-                                                                        "add-book",
-                                                                      data: {
-                                                                        center_id:
-                                                                          $props.centerId,
-                                                                        user_center_id:
-                                                                          $props.userCenterId,
-                                                                        type: 3,
-                                                                        fullname:
-                                                                          $state.fullname ??
-                                                                          $state
-                                                                            .inputfullname
-                                                                            .value,
-                                                                        cell:
-                                                                          $state.cell ??
-                                                                          $state
-                                                                            .inputcell
-                                                                            .value,
-                                                                        national_code:
-                                                                          $state
-                                                                            .nationalCode
-                                                                            .value
-                                                                      },
-                                                                      type: "add-prefer-book"
-                                                                    };
-                                                                  } catch (e) {
-                                                                    if (
-                                                                      e instanceof
-                                                                        TypeError ||
-                                                                      e?.plasmicType ===
-                                                                        "PlasmicUndefinedDataError"
-                                                                    ) {
-                                                                      return undefined;
-                                                                    }
-                                                                    throw e;
-                                                                  }
-                                                                })()
-                                                              ]
-                                                            };
-                                                            return $globalActions[
-                                                              "Splunk.sendLog"
-                                                            ]?.apply(null, [
-                                                              ...actionArgs.args
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps[
-                                                        "eventSubmitBook"
-                                                      ] != null &&
-                                                      typeof $steps[
-                                                        "eventSubmitBook"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "eventSubmitBook"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps[
-                                                        "eventSubmitBook"
-                                                      ] = await $steps[
-                                                        "eventSubmitBook"
-                                                      ];
-                                                    }
-
-                                                    $steps["runBooked"] =
-                                                      $steps.preferBook.data
-                                                        .status == "28" ||
-                                                      $steps.preferBook.data
-                                                        .status == "0"
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              eventRef:
-                                                                $props["booked"]
-                                                            };
-                                                            return (({
-                                                              eventRef,
-                                                              args
-                                                            }) => {
-                                                              return eventRef?.(
-                                                                ...(args ?? [])
-                                                              );
-                                                            })?.apply(null, [
-                                                              actionArgs
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps["runBooked"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "runBooked"
-                                                      ] === "object" &&
-                                                      typeof $steps["runBooked"]
-                                                        .then === "function"
-                                                    ) {
-                                                      $steps["runBooked"] =
-                                                        await $steps[
-                                                          "runBooked"
-                                                        ];
-                                                    }
-                                                  }}
-                                                >
-                                                  <div
-                                                    className={classNames(
-                                                      projectcss.all,
-                                                      projectcss.__wab_text,
-                                                      sty.text__tPPx
-                                                    )}
-                                                  >
-                                                    <React.Fragment>
-                                                      {(() => {
+                                          $steps["eventSubmitBook"] =
+                                            $steps.bookApi.data.status ==
+                                              "28" ||
+                                            $steps.bookApi.data.status == "0"
+                                              ? (() => {
+                                                  const actionArgs = {
+                                                    args: [
+                                                      (() => {
                                                         try {
-                                                          return new Date(
-                                                            currentItem.from *
-                                                              1000
-                                                          ).toLocaleString(
-                                                            "fa-IR",
-                                                            {
-                                                              timeZone:
-                                                                "Asia/Tehran",
-                                                              hour12: false,
-                                                              hour: "numeric",
-                                                              minute: "numeric"
-                                                            }
-                                                          );
+                                                          return {
+                                                            group: "add-book",
+                                                            data: {
+                                                              center_id:
+                                                                $props.centerId,
+                                                              user_center_id:
+                                                                $props.userCenterId,
+                                                              type: 3,
+                                                              fullname:
+                                                                $state.fullname ??
+                                                                $state
+                                                                  .inputfullname
+                                                                  .value,
+                                                              cell:
+                                                                $state.cell ??
+                                                                $state.inputcell
+                                                                  .value,
+                                                              national_code:
+                                                                $state
+                                                                  .nationalCode
+                                                                  .value
+                                                            },
+                                                            type: "add-book-out-of-slot"
+                                                          };
                                                         } catch (e) {
                                                           if (
                                                             e instanceof
@@ -2836,1298 +3732,172 @@ function PlasmicAddPatient__RenderFunc(props: {
                                                             e?.plasmicType ===
                                                               "PlasmicUndefinedDataError"
                                                           ) {
-                                                            return "";
+                                                            return undefined;
                                                           }
                                                           throw e;
                                                         }
-                                                      })()}
-                                                    </React.Fragment>
-                                                  </div>
-                                                </div>
-                                              );
-                                            }
-                                          )}
-                                          <div
-                                            data-plasmic-name={"addNewBookTime"}
-                                            data-plasmic-override={
-                                              overrides.addNewBookTime
-                                            }
+                                                      })()
+                                                    ]
+                                                  };
+                                                  return $globalActions[
+                                                    "Splunk.sendLog"
+                                                  ]?.apply(null, [
+                                                    ...actionArgs.args
+                                                  ]);
+                                                })()
+                                              : undefined;
+                                          if (
+                                            $steps["eventSubmitBook"] != null &&
+                                            typeof $steps["eventSubmitBook"] ===
+                                              "object" &&
+                                            typeof $steps["eventSubmitBook"]
+                                              .then === "function"
+                                          ) {
+                                            $steps["eventSubmitBook"] =
+                                              await $steps["eventSubmitBook"];
+                                          }
+
+                                          $steps["runBooked"] =
+                                            $steps.bookApi.data.status ==
+                                              "28" ||
+                                            $steps.bookApi.data.status == "0"
+                                              ? (() => {
+                                                  const actionArgs = {
+                                                    eventRef: $props["booked"]
+                                                  };
+                                                  return (({
+                                                    eventRef,
+                                                    args
+                                                  }) => {
+                                                    return eventRef?.(
+                                                      ...(args ?? [])
+                                                    );
+                                                  })?.apply(null, [actionArgs]);
+                                                })()
+                                              : undefined;
+                                          if (
+                                            $steps["runBooked"] != null &&
+                                            typeof $steps["runBooked"] ===
+                                              "object" &&
+                                            typeof $steps["runBooked"].then ===
+                                              "function"
+                                          ) {
+                                            $steps["runBooked"] = await $steps[
+                                              "runBooked"
+                                            ];
+                                          }
+                                        }}
+                                        space={undefined}
+                                        startIcon={
+                                          <ChevronRightIcon
                                             className={classNames(
                                               projectcss.all,
-                                              sty.addNewBookTime
+                                              sty.svg__iM9Te
                                             )}
-                                            onClick={async event => {
-                                              const $steps = {};
-
-                                              $steps["startLoading"] = true
-                                                ? (() => {
-                                                    const actionArgs = {
-                                                      variable: {
-                                                        objRoot: $state,
-                                                        variablePath: [
-                                                          "loadingButton"
-                                                        ]
-                                                      },
-                                                      operation: 0,
-                                                      value: true
-                                                    };
-                                                    return (({
-                                                      variable,
-                                                      value,
-                                                      startIndex,
-                                                      deleteCount
-                                                    }) => {
-                                                      if (!variable) {
-                                                        return;
-                                                      }
-                                                      const {
-                                                        objRoot,
-                                                        variablePath
-                                                      } = variable;
-
-                                                      $stateSet(
-                                                        objRoot,
-                                                        variablePath,
-                                                        value
-                                                      );
-                                                      return value;
-                                                    })?.apply(null, [
-                                                      actionArgs
-                                                    ]);
-                                                  })()
-                                                : undefined;
-                                              if (
-                                                $steps["startLoading"] !=
-                                                  null &&
-                                                typeof $steps[
-                                                  "startLoading"
-                                                ] === "object" &&
-                                                typeof $steps["startLoading"]
-                                                  .then === "function"
-                                              ) {
-                                                $steps["startLoading"] =
-                                                  await $steps["startLoading"];
-                                              }
-
-                                              $steps[
-                                                "updateDialogNewTimePickerOpen"
-                                              ] = true
-                                                ? (() => {
-                                                    const actionArgs = {
-                                                      variable: {
-                                                        objRoot: $state,
-                                                        variablePath: [
-                                                          "dialogNewTimePicker",
-                                                          "open"
-                                                        ]
-                                                      },
-                                                      operation: 0,
-                                                      value: true
-                                                    };
-                                                    return (({
-                                                      variable,
-                                                      value,
-                                                      startIndex,
-                                                      deleteCount
-                                                    }) => {
-                                                      if (!variable) {
-                                                        return;
-                                                      }
-                                                      const {
-                                                        objRoot,
-                                                        variablePath
-                                                      } = variable;
-
-                                                      $stateSet(
-                                                        objRoot,
-                                                        variablePath,
-                                                        value
-                                                      );
-                                                      return value;
-                                                    })?.apply(null, [
-                                                      actionArgs
-                                                    ]);
-                                                  })()
-                                                : undefined;
-                                              if (
-                                                $steps[
-                                                  "updateDialogNewTimePickerOpen"
-                                                ] != null &&
-                                                typeof $steps[
-                                                  "updateDialogNewTimePickerOpen"
-                                                ] === "object" &&
-                                                typeof $steps[
-                                                  "updateDialogNewTimePickerOpen"
-                                                ].then === "function"
-                                              ) {
-                                                $steps[
-                                                  "updateDialogNewTimePickerOpen"
-                                                ] = await $steps[
-                                                  "updateDialogNewTimePickerOpen"
-                                                ];
-                                              }
-
-                                              $steps["finishLoading"] = true
-                                                ? (() => {
-                                                    const actionArgs = {
-                                                      variable: {
-                                                        objRoot: $state,
-                                                        variablePath: [
-                                                          "loadingButton"
-                                                        ]
-                                                      },
-                                                      operation: 0,
-                                                      value: false
-                                                    };
-                                                    return (({
-                                                      variable,
-                                                      value,
-                                                      startIndex,
-                                                      deleteCount
-                                                    }) => {
-                                                      if (!variable) {
-                                                        return;
-                                                      }
-                                                      const {
-                                                        objRoot,
-                                                        variablePath
-                                                      } = variable;
-
-                                                      $stateSet(
-                                                        objRoot,
-                                                        variablePath,
-                                                        value
-                                                      );
-                                                      return value;
-                                                    })?.apply(null, [
-                                                      actionArgs
-                                                    ]);
-                                                  })()
-                                                : undefined;
-                                              if (
-                                                $steps["finishLoading"] !=
-                                                  null &&
-                                                typeof $steps[
-                                                  "finishLoading"
-                                                ] === "object" &&
-                                                typeof $steps["finishLoading"]
-                                                  .then === "function"
-                                              ) {
-                                                $steps["finishLoading"] =
-                                                  await $steps["finishLoading"];
-                                              }
-
-                                              $steps[
-                                                "eventClickForAddBookOutOfSlut"
-                                              ] = true
-                                                ? (() => {
-                                                    const actionArgs = {
-                                                      args: [
-                                                        (() => {
-                                                          try {
-                                                            return {
-                                                              group: "add-book",
-                                                              data: {
-                                                                center_id:
-                                                                  $props.centerId,
-                                                                user_center_id:
-                                                                  $props.userCenterId,
-                                                                type: 3,
-                                                                fullname:
-                                                                  $state.fullname ??
-                                                                  $state
-                                                                    .inputfullname
-                                                                    .value,
-                                                                cell:
-                                                                  $state.cell ??
-                                                                  $state
-                                                                    .inputcell
-                                                                    .value,
-                                                                national_code:
-                                                                  $state
-                                                                    .nationalCode
-                                                                    .value
-                                                              },
-                                                              type: "click-for-add-book-out-of-slot"
-                                                            };
-                                                          } catch (e) {
-                                                            if (
-                                                              e instanceof
-                                                                TypeError ||
-                                                              e?.plasmicType ===
-                                                                "PlasmicUndefinedDataError"
-                                                            ) {
-                                                              return undefined;
-                                                            }
-                                                            throw e;
-                                                          }
-                                                        })()
-                                                      ]
-                                                    };
-                                                    return $globalActions[
-                                                      "Splunk.sendLog"
-                                                    ]?.apply(null, [
-                                                      ...actionArgs.args
-                                                    ]);
-                                                  })()
-                                                : undefined;
-                                              if (
-                                                $steps[
-                                                  "eventClickForAddBookOutOfSlut"
-                                                ] != null &&
-                                                typeof $steps[
-                                                  "eventClickForAddBookOutOfSlut"
-                                                ] === "object" &&
-                                                typeof $steps[
-                                                  "eventClickForAddBookOutOfSlut"
-                                                ].then === "function"
-                                              ) {
-                                                $steps[
-                                                  "eventClickForAddBookOutOfSlut"
-                                                ] = await $steps[
-                                                  "eventClickForAddBookOutOfSlut"
-                                                ];
-                                              }
-                                            }}
-                                          >
-                                            <Icon2Icon
-                                              className={classNames(
-                                                projectcss.all,
-                                                sty.svg___2GeMo
-                                              )}
-                                              role={"img"}
-                                            />
-                                          </div>
-                                          <Dialog
-                                            data-plasmic-name={
-                                              "dialogNewTimePicker"
-                                            }
-                                            data-plasmic-override={
-                                              overrides.dialogNewTimePicker
-                                            }
-                                            body={
-                                              <Stack__
-                                                as={"div"}
-                                                hasGap={true}
-                                                className={classNames(
-                                                  projectcss.all,
-                                                  sty.freeBox___6SJkA
-                                                )}
-                                              >
-                                                <div
-                                                  data-plasmic-name={
-                                                    "fromHorizental"
-                                                  }
-                                                  data-plasmic-override={
-                                                    overrides.fromHorizental
-                                                  }
-                                                  className={classNames(
-                                                    projectcss.all,
-                                                    sty.fromHorizental
-                                                  )}
-                                                >
-                                                  <div
-                                                    data-plasmic-name={
-                                                      "fromText"
-                                                    }
-                                                    data-plasmic-override={
-                                                      overrides.fromText
-                                                    }
-                                                    className={classNames(
-                                                      projectcss.all,
-                                                      projectcss.__wab_text,
-                                                      sty.fromText
-                                                    )}
-                                                  >
-                                                    {
-                                                      "\u0632\u0645\u0627\u0646 \u0634\u0631\u0648\u0639:"
-                                                    }
-                                                  </div>
-                                                  <TimePicker
-                                                    data-plasmic-name={
-                                                      "fromTimePicker"
-                                                    }
-                                                    data-plasmic-override={
-                                                      overrides.fromTimePicker
-                                                    }
-                                                    className={classNames(
-                                                      "__wab_instance",
-                                                      sty.fromTimePicker
-                                                    )}
-                                                    onChange={async (
-                                                      ...eventArgs: any
-                                                    ) => {
-                                                      generateStateOnChangeProp(
-                                                        $state,
-                                                        [
-                                                          "fromTimePicker",
-                                                          "value"
-                                                        ]
-                                                      ).apply(null, eventArgs);
-                                                    }}
-                                                    value={generateStateValueProp(
-                                                      $state,
-                                                      [
-                                                        "fromTimePicker",
-                                                        "value"
-                                                      ]
-                                                    )}
-                                                  />
-                                                </div>
-                                                <div
-                                                  data-plasmic-name={
-                                                    "toHorizental"
-                                                  }
-                                                  data-plasmic-override={
-                                                    overrides.toHorizental
-                                                  }
-                                                  className={classNames(
-                                                    projectcss.all,
-                                                    sty.toHorizental
-                                                  )}
-                                                >
-                                                  <div
-                                                    data-plasmic-name={"toText"}
-                                                    data-plasmic-override={
-                                                      overrides.toText
-                                                    }
-                                                    className={classNames(
-                                                      projectcss.all,
-                                                      projectcss.__wab_text,
-                                                      sty.toText
-                                                    )}
-                                                  >
-                                                    {
-                                                      "\u0632\u0645\u0627\u0646 \u067e\u0627\u06cc\u0627\u0646:"
-                                                    }
-                                                  </div>
-                                                  <TimePicker
-                                                    data-plasmic-name={
-                                                      "toTimePicker"
-                                                    }
-                                                    data-plasmic-override={
-                                                      overrides.toTimePicker
-                                                    }
-                                                    className={classNames(
-                                                      "__wab_instance",
-                                                      sty.toTimePicker
-                                                    )}
-                                                    onChange={async (
-                                                      ...eventArgs: any
-                                                    ) => {
-                                                      generateStateOnChangeProp(
-                                                        $state,
-                                                        [
-                                                          "toTimePicker",
-                                                          "value"
-                                                        ]
-                                                      ).apply(null, eventArgs);
-                                                    }}
-                                                    value={generateStateValueProp(
-                                                      $state,
-                                                      ["toTimePicker", "value"]
-                                                    )}
-                                                  />
-                                                </div>
-                                                <Button
-                                                  data-plasmic-name={
-                                                    "submitNewBook"
-                                                  }
-                                                  data-plasmic-override={
-                                                    overrides.submitNewBook
-                                                  }
-                                                  children2={
-                                                    "\u062b\u0628\u062a \u0646\u0648\u0628\u062a"
-                                                  }
-                                                  className={classNames(
-                                                    "__wab_instance",
-                                                    sty.submitNewBook
-                                                  )}
-                                                  endIcon={
-                                                    <ChevronLeftIcon
-                                                      className={classNames(
-                                                        projectcss.all,
-                                                        sty.svg___5XVi
-                                                      )}
-                                                      role={"img"}
-                                                    />
-                                                  }
-                                                  loading={(() => {
-                                                    try {
-                                                      return $state.loadingButton;
-                                                    } catch (e) {
-                                                      if (
-                                                        e instanceof
-                                                          TypeError ||
-                                                        e?.plasmicType ===
-                                                          "PlasmicUndefinedDataError"
-                                                      ) {
-                                                        return [];
-                                                      }
-                                                      throw e;
-                                                    }
-                                                  })()}
-                                                  onClick={async event => {
-                                                    const $steps = {};
-
-                                                    $steps["checkForm"] =
-                                                      (!$state.fullname ||
-                                                        !$state.cell) &&
-                                                      (!$state.inputfullname
-                                                        .value ||
-                                                        !$state.inputcell.value)
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              args: [
-                                                                "error",
-                                                                "\u0644\u0637\u0641\u0627 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u06cc\u0645\u0627\u0631 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
-                                                              ]
-                                                            };
-                                                            return $globalActions[
-                                                              "Fragment.showToast"
-                                                            ]?.apply(null, [
-                                                              ...actionArgs.args
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps["checkForm"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "checkForm"
-                                                      ] === "object" &&
-                                                      typeof $steps["checkForm"]
-                                                        .then === "function"
-                                                    ) {
-                                                      $steps["checkForm"] =
-                                                        await $steps[
-                                                          "checkForm"
-                                                        ];
-                                                    }
-
-                                                    $steps["startLoading"] =
-                                                      Boolean(
-                                                        ($state.fullname &&
-                                                          $state.cell) ||
-                                                          ($state.inputfullname
-                                                            .value &&
-                                                            $state.inputcell
-                                                              .value)
-                                                      )
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              variable: {
-                                                                objRoot: $state,
-                                                                variablePath: [
-                                                                  "loadingButton"
-                                                                ]
-                                                              },
-                                                              operation: 0,
-                                                              value: true
-                                                            };
-                                                            return (({
-                                                              variable,
-                                                              value,
-                                                              startIndex,
-                                                              deleteCount
-                                                            }) => {
-                                                              if (!variable) {
-                                                                return;
-                                                              }
-                                                              const {
-                                                                objRoot,
-                                                                variablePath
-                                                              } = variable;
-
-                                                              $stateSet(
-                                                                objRoot,
-                                                                variablePath,
-                                                                value
-                                                              );
-                                                              return value;
-                                                            })?.apply(null, [
-                                                              actionArgs
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps["startLoading"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "startLoading"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "startLoading"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps["startLoading"] =
-                                                        await $steps[
-                                                          "startLoading"
-                                                        ];
-                                                    }
-
-                                                    $steps["checkTime"] =
-                                                      $state.fromTimePicker
-                                                        .value >
-                                                      $state.toTimePicker.value
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              args: [
-                                                                "error",
-                                                                "\u0632\u0645\u0627\u0646 \u067e\u0627\u06cc\u0627\u0646 \u0628\u0627\u06cc\u062f \u0627\u0632 \u0632\u0645\u0627\u0646 \u0634\u0631\u0648\u0639 \u0628\u0632\u0631\u06af\u062a\u0631 \u0628\u0627\u0634\u062f."
-                                                              ]
-                                                            };
-                                                            return $globalActions[
-                                                              "Fragment.showToast"
-                                                            ]?.apply(null, [
-                                                              ...actionArgs.args
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps["checkTime"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "checkTime"
-                                                      ] === "object" &&
-                                                      typeof $steps["checkTime"]
-                                                        .then === "function"
-                                                    ) {
-                                                      $steps["checkTime"] =
-                                                        await $steps[
-                                                          "checkTime"
-                                                        ];
-                                                    }
-
-                                                    $steps["newTimeFromBook"] =
-                                                      true
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              variable: {
-                                                                objRoot: $state,
-                                                                variablePath: [
-                                                                  "newTimeFromBook"
-                                                                ]
-                                                              },
-                                                              operation: 0,
-                                                              value: (() => {
-                                                                if (
-                                                                  $state
-                                                                    .datePicker
-                                                                    .value
-                                                                ) {
-                                                                  return Math.floor(
-                                                                    new Date(
-                                                                      $state
-                                                                        .datePicker
-                                                                        .value *
-                                                                        1000
-                                                                    ).setHours(
-                                                                      parseInt(
-                                                                        $state.fromTimePicker.value.split(
-                                                                          ":"
-                                                                        )[0]
-                                                                      ),
-                                                                      parseInt(
-                                                                        $state.fromTimePicker.value.split(
-                                                                          ":"
-                                                                        )[1]
-                                                                      ),
-                                                                      0,
-                                                                      0
-                                                                    ) / 1000
-                                                                  );
-                                                                } else {
-                                                                  return Math.floor(
-                                                                    new Date().setHours(
-                                                                      parseInt(
-                                                                        $state.fromTimePicker.value.split(
-                                                                          ":"
-                                                                        )[0]
-                                                                      ),
-                                                                      parseInt(
-                                                                        $state.fromTimePicker.value.split(
-                                                                          ":"
-                                                                        )[1]
-                                                                      ),
-                                                                      0,
-                                                                      0
-                                                                    ) / 1000
-                                                                  );
-                                                                }
-                                                              })()
-                                                            };
-                                                            return (({
-                                                              variable,
-                                                              value,
-                                                              startIndex,
-                                                              deleteCount
-                                                            }) => {
-                                                              if (!variable) {
-                                                                return;
-                                                              }
-                                                              const {
-                                                                objRoot,
-                                                                variablePath
-                                                              } = variable;
-
-                                                              $stateSet(
-                                                                objRoot,
-                                                                variablePath,
-                                                                value
-                                                              );
-                                                              return value;
-                                                            })?.apply(null, [
-                                                              actionArgs
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps[
-                                                        "newTimeFromBook"
-                                                      ] != null &&
-                                                      typeof $steps[
-                                                        "newTimeFromBook"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "newTimeFromBook"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps[
-                                                        "newTimeFromBook"
-                                                      ] = await $steps[
-                                                        "newTimeFromBook"
-                                                      ];
-                                                    }
-
-                                                    $steps["newTimeToBook"] =
-                                                      true
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              variable: {
-                                                                objRoot: $state,
-                                                                variablePath: [
-                                                                  "newTimeToBook"
-                                                                ]
-                                                              },
-                                                              operation: 0,
-                                                              value: (() => {
-                                                                if (
-                                                                  $state
-                                                                    .datePicker
-                                                                    .value
-                                                                ) {
-                                                                  return Math.floor(
-                                                                    new Date(
-                                                                      $state
-                                                                        .datePicker
-                                                                        .value *
-                                                                        1000
-                                                                    ).setHours(
-                                                                      parseInt(
-                                                                        $state.toTimePicker.value.split(
-                                                                          ":"
-                                                                        )[0]
-                                                                      ),
-                                                                      parseInt(
-                                                                        $state.toTimePicker.value.split(
-                                                                          ":"
-                                                                        )[1]
-                                                                      ),
-                                                                      0,
-                                                                      0
-                                                                    ) / 1000
-                                                                  );
-                                                                } else {
-                                                                  return Math.floor(
-                                                                    new Date().setHours(
-                                                                      parseInt(
-                                                                        $state.toTimePicker.value.split(
-                                                                          ":"
-                                                                        )[0]
-                                                                      ),
-                                                                      parseInt(
-                                                                        $state.toTimePicker.value.split(
-                                                                          ":"
-                                                                        )[1]
-                                                                      ),
-                                                                      0,
-                                                                      0
-                                                                    ) / 1000
-                                                                  );
-                                                                }
-                                                              })()
-                                                            };
-                                                            return (({
-                                                              variable,
-                                                              value,
-                                                              startIndex,
-                                                              deleteCount
-                                                            }) => {
-                                                              if (!variable) {
-                                                                return;
-                                                              }
-                                                              const {
-                                                                objRoot,
-                                                                variablePath
-                                                              } = variable;
-
-                                                              $stateSet(
-                                                                objRoot,
-                                                                variablePath,
-                                                                value
-                                                              );
-                                                              return value;
-                                                            })?.apply(null, [
-                                                              actionArgs
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps["newTimeToBook"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "newTimeToBook"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "newTimeToBook"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps["newTimeToBook"] =
-                                                        await $steps[
-                                                          "newTimeToBook"
-                                                        ];
-                                                    }
-
-                                                    $steps["suspend"] = Boolean(
-                                                      ($state.fullname &&
-                                                        $state.cell) ||
-                                                        ($state.inputfullname
-                                                          .value &&
-                                                          $state.inputcell
-                                                            .value &&
-                                                          $state.fromTimePicker
-                                                            .value <
-                                                            $state.toTimePicker
-                                                              .value)
-                                                    )
-                                                      ? (() => {
-                                                          const actionArgs = {
-                                                            args: [
-                                                              "GET",
-                                                              "https://apigw.paziresh24.com/v2/suspend",
-                                                              (() => {
-                                                                try {
-                                                                  return {
-                                                                    center_id:
-                                                                      $props.centerId,
-                                                                    user_center_id:
-                                                                      $props.userCenterId,
-                                                                    type: 3,
-                                                                    from_timestamp:
-                                                                      $state.newTimeFromBook,
-                                                                    to_timestamp:
-                                                                      $state.newTimeToBook
-                                                                  };
-                                                                } catch (e) {
-                                                                  if (
-                                                                    e instanceof
-                                                                      TypeError ||
-                                                                    e?.plasmicType ===
-                                                                      "PlasmicUndefinedDataError"
-                                                                  ) {
-                                                                    return undefined;
-                                                                  }
-                                                                  throw e;
-                                                                }
-                                                              })()
-                                                            ]
-                                                          };
-                                                          return $globalActions[
-                                                            "Fragment.apiRequest"
-                                                          ]?.apply(null, [
-                                                            ...actionArgs.args
-                                                          ]);
-                                                        })()
-                                                      : undefined;
-                                                    if (
-                                                      $steps["suspend"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "suspend"
-                                                      ] === "object" &&
-                                                      typeof $steps["suspend"]
-                                                        .then === "function"
-                                                    ) {
-                                                      $steps["suspend"] =
-                                                        await $steps["suspend"];
-                                                    }
-
-                                                    $steps["bookApi"] = Boolean(
-                                                      ($state.fullname &&
-                                                        $state.cell) ||
-                                                        ($state.inputfullname
-                                                          .value &&
-                                                          $state.inputcell
-                                                            .value &&
-                                                          $state.fromTimePicker
-                                                            .value <
-                                                            $state.toTimePicker
-                                                              .value)
-                                                    )
-                                                      ? (() => {
-                                                          const actionArgs = {
-                                                            args: [
-                                                              "POST",
-                                                              "https://apigw.paziresh24.com/v2/book",
-                                                              undefined,
-                                                              (() => {
-                                                                try {
-                                                                  return {
-                                                                    center_id:
-                                                                      $props.centerId,
-                                                                    user_center_id:
-                                                                      $props.userCenterId,
-                                                                    type: 3,
-                                                                    fullname:
-                                                                      $state.fullname?.trim() ??
-                                                                      $state
-                                                                        .inputfullname
-                                                                        .value,
-                                                                    cell:
-                                                                      $state.cell?.trim() ??
-                                                                      $state
-                                                                        .inputcell
-                                                                        .value,
-                                                                    request_code:
-                                                                      $steps
-                                                                        .suspend
-                                                                        .data
-                                                                        .request_code,
-                                                                    national_code:
-                                                                      $state
-                                                                        .nationalCode
-                                                                        .value
-                                                                  };
-                                                                } catch (e) {
-                                                                  if (
-                                                                    e instanceof
-                                                                      TypeError ||
-                                                                    e?.plasmicType ===
-                                                                      "PlasmicUndefinedDataError"
-                                                                  ) {
-                                                                    return undefined;
-                                                                  }
-                                                                  throw e;
-                                                                }
-                                                              })()
-                                                            ]
-                                                          };
-                                                          return $globalActions[
-                                                            "Fragment.apiRequest"
-                                                          ]?.apply(null, [
-                                                            ...actionArgs.args
-                                                          ]);
-                                                        })()
-                                                      : undefined;
-                                                    if (
-                                                      $steps["bookApi"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "bookApi"
-                                                      ] === "object" &&
-                                                      typeof $steps["bookApi"]
-                                                        .then === "function"
-                                                    ) {
-                                                      $steps["bookApi"] =
-                                                        await $steps["bookApi"];
-                                                    }
-
-                                                    $steps["successToast"] =
-                                                      $steps.bookApi.data
-                                                        .status == "28" ||
-                                                      $steps.bookApi.data
-                                                        .status == "0"
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              args: [
-                                                                undefined,
-                                                                "\u0646\u0648\u0628\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062b\u0628\u062a \u0634\u062f."
-                                                              ]
-                                                            };
-                                                            return $globalActions[
-                                                              "Fragment.showToast"
-                                                            ]?.apply(null, [
-                                                              ...actionArgs.args
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps["successToast"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "successToast"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "successToast"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps["successToast"] =
-                                                        await $steps[
-                                                          "successToast"
-                                                        ];
-                                                    }
-
-                                                    $steps[
-                                                      "updateBooktimeOpen"
-                                                    ] =
-                                                      $steps.bookApi.data
-                                                        .status == "28" ||
-                                                      $steps.bookApi.data
-                                                        .status == "0"
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              variable: {
-                                                                objRoot: $state,
-                                                                variablePath: [
-                                                                  "booktime",
-                                                                  "open"
-                                                                ]
-                                                              },
-                                                              operation: 0,
-                                                              value: false
-                                                            };
-                                                            return (({
-                                                              variable,
-                                                              value,
-                                                              startIndex,
-                                                              deleteCount
-                                                            }) => {
-                                                              if (!variable) {
-                                                                return;
-                                                              }
-                                                              const {
-                                                                objRoot,
-                                                                variablePath
-                                                              } = variable;
-
-                                                              $stateSet(
-                                                                objRoot,
-                                                                variablePath,
-                                                                value
-                                                              );
-                                                              return value;
-                                                            })?.apply(null, [
-                                                              actionArgs
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps[
-                                                        "updateBooktimeOpen"
-                                                      ] != null &&
-                                                      typeof $steps[
-                                                        "updateBooktimeOpen"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "updateBooktimeOpen"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps[
-                                                        "updateBooktimeOpen"
-                                                      ] = await $steps[
-                                                        "updateBooktimeOpen"
-                                                      ];
-                                                    }
-
-                                                    $steps["finishLoading"] =
-                                                      true
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              variable: {
-                                                                objRoot: $state,
-                                                                variablePath: [
-                                                                  "loadingButton"
-                                                                ]
-                                                              },
-                                                              operation: 0,
-                                                              value: false
-                                                            };
-                                                            return (({
-                                                              variable,
-                                                              value,
-                                                              startIndex,
-                                                              deleteCount
-                                                            }) => {
-                                                              if (!variable) {
-                                                                return;
-                                                              }
-                                                              const {
-                                                                objRoot,
-                                                                variablePath
-                                                              } = variable;
-
-                                                              $stateSet(
-                                                                objRoot,
-                                                                variablePath,
-                                                                value
-                                                              );
-                                                              return value;
-                                                            })?.apply(null, [
-                                                              actionArgs
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps["finishLoading"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "finishLoading"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "finishLoading"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps["finishLoading"] =
-                                                        await $steps[
-                                                          "finishLoading"
-                                                        ];
-                                                    }
-
-                                                    $steps["eventSubmitBook"] =
-                                                      $steps.bookApi.data
-                                                        .status == "28" ||
-                                                      $steps.bookApi.data
-                                                        .status == "0"
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              args: [
-                                                                (() => {
-                                                                  try {
-                                                                    return {
-                                                                      group:
-                                                                        "add-book",
-                                                                      data: {
-                                                                        center_id:
-                                                                          $props.centerId,
-                                                                        user_center_id:
-                                                                          $props.userCenterId,
-                                                                        type: 3,
-                                                                        fullname:
-                                                                          $state.fullname ??
-                                                                          $state
-                                                                            .inputfullname
-                                                                            .value,
-                                                                        cell:
-                                                                          $state.cell ??
-                                                                          $state
-                                                                            .inputcell
-                                                                            .value,
-                                                                        national_code:
-                                                                          $state
-                                                                            .nationalCode
-                                                                            .value
-                                                                      },
-                                                                      type: "add-book-out-of-slot"
-                                                                    };
-                                                                  } catch (e) {
-                                                                    if (
-                                                                      e instanceof
-                                                                        TypeError ||
-                                                                      e?.plasmicType ===
-                                                                        "PlasmicUndefinedDataError"
-                                                                    ) {
-                                                                      return undefined;
-                                                                    }
-                                                                    throw e;
-                                                                  }
-                                                                })()
-                                                              ]
-                                                            };
-                                                            return $globalActions[
-                                                              "Splunk.sendLog"
-                                                            ]?.apply(null, [
-                                                              ...actionArgs.args
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps[
-                                                        "eventSubmitBook"
-                                                      ] != null &&
-                                                      typeof $steps[
-                                                        "eventSubmitBook"
-                                                      ] === "object" &&
-                                                      typeof $steps[
-                                                        "eventSubmitBook"
-                                                      ].then === "function"
-                                                    ) {
-                                                      $steps[
-                                                        "eventSubmitBook"
-                                                      ] = await $steps[
-                                                        "eventSubmitBook"
-                                                      ];
-                                                    }
-
-                                                    $steps["runBooked"] =
-                                                      $steps.bookApi.data
-                                                        .status == "28" ||
-                                                      $steps.bookApi.data
-                                                        .status == "0"
-                                                        ? (() => {
-                                                            const actionArgs = {
-                                                              eventRef:
-                                                                $props["booked"]
-                                                            };
-                                                            return (({
-                                                              eventRef,
-                                                              args
-                                                            }) => {
-                                                              return eventRef?.(
-                                                                ...(args ?? [])
-                                                              );
-                                                            })?.apply(null, [
-                                                              actionArgs
-                                                            ]);
-                                                          })()
-                                                        : undefined;
-                                                    if (
-                                                      $steps["runBooked"] !=
-                                                        null &&
-                                                      typeof $steps[
-                                                        "runBooked"
-                                                      ] === "object" &&
-                                                      typeof $steps["runBooked"]
-                                                        .then === "function"
-                                                    ) {
-                                                      $steps["runBooked"] =
-                                                        await $steps[
-                                                          "runBooked"
-                                                        ];
-                                                    }
-                                                  }}
-                                                  space={undefined}
-                                                  startIcon={
-                                                    <ChevronRightIcon
-                                                      className={classNames(
-                                                        projectcss.all,
-                                                        sty.svg__iM9Te
-                                                      )}
-                                                      role={"img"}
-                                                    />
-                                                  }
-                                                />
-                                              </Stack__>
-                                            }
-                                            className={classNames(
-                                              "__wab_instance",
-                                              sty.dialogNewTimePicker
-                                            )}
-                                            onOpenChange={async (
-                                              ...eventArgs: any
-                                            ) => {
-                                              generateStateOnChangeProp(
-                                                $state,
-                                                ["dialogNewTimePicker", "open"]
-                                              ).apply(null, eventArgs);
-
-                                              if (
-                                                eventArgs.length > 1 &&
-                                                eventArgs[1] &&
-                                                eventArgs[1]
-                                                  ._plasmic_state_init_
-                                              ) {
-                                                return;
-                                              }
-                                            }}
-                                            open={generateStateValueProp(
-                                              $state,
-                                              ["dialogNewTimePicker", "open"]
-                                            )}
-                                            title={
-                                              <div
-                                                className={classNames(
-                                                  projectcss.all,
-                                                  sty.freeBox__sScTo
-                                                )}
-                                              >
-                                                <div
-                                                  className={classNames(
-                                                    projectcss.all,
-                                                    projectcss.__wab_text,
-                                                    sty.text__u8H7
-                                                  )}
-                                                >
-                                                  {hasVariant(
-                                                    globalVariants,
-                                                    "screen",
-                                                    "mobileOnly"
-                                                  )
-                                                    ? "\u062b\u0628\u062a \u0646\u0648\u0628\u062a \u0628\u0631\u0627\u06cc \u0632\u0645\u0627\u0646 \u062f\u0644\u062e\u0648\u0627\u0647"
-                                                    : "\u062b\u0628\u062a \u0646\u0648\u0628\u062a \u0628\u0631\u0627\u06cc \u0632\u0645\u0627\u0646 \u062f\u0644\u062e\u0648\u0627\u0647"}
-                                                </div>
-                                              </div>
-                                            }
-                                            trigger={null}
+                                            role={"img"}
                                           />
-                                        </Stack__>
-                                      ) : null}
-                                    </React.Fragment>
+                                        }
+                                      />
+                                    </Stack__>
+                                  }
+                                  className={classNames(
+                                    "__wab_instance",
+                                    sty.dialogNewTimePicker
                                   )}
-                                </DataCtxReader__>
-                              </DataFetcher>
-                            </Stack__>
-                          </div>
-                        }
-                        className={classNames(
-                          "__wab_instance",
-                          sty.preferBooktime
-                        )}
-                        noTrigger={true}
-                        onOpenChange={async (...eventArgs: any) => {
-                          generateStateOnChangeProp($state, [
-                            "preferBooktime",
-                            "open"
-                          ]).apply(null, eventArgs);
+                                  onOpenChange={async (...eventArgs: any) => {
+                                    generateStateOnChangeProp($state, [
+                                      "dialogNewTimePicker",
+                                      "open"
+                                    ]).apply(null, eventArgs);
 
-                          if (
-                            eventArgs.length > 1 &&
-                            eventArgs[1] &&
-                            eventArgs[1]._plasmic_state_init_
-                          ) {
-                            return;
+                                    if (
+                                      eventArgs.length > 1 &&
+                                      eventArgs[1] &&
+                                      eventArgs[1]._plasmic_state_init_
+                                    ) {
+                                      return;
+                                    }
+                                  }}
+                                  open={generateStateValueProp($state, [
+                                    "dialogNewTimePicker",
+                                    "open"
+                                  ])}
+                                  title={
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        sty.freeBox__sScTo
+                                      )}
+                                    >
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          projectcss.__wab_text,
+                                          sty.text__u8H7
+                                        )}
+                                      >
+                                        {hasVariant(
+                                          globalVariants,
+                                          "screen",
+                                          "mobileOnly"
+                                        )
+                                          ? "\u062b\u0628\u062a \u0646\u0648\u0628\u062a \u0628\u0631\u0627\u06cc \u0632\u0645\u0627\u0646 \u062f\u0644\u062e\u0648\u0627\u0647"
+                                          : "\u062b\u0628\u062a \u0646\u0648\u0628\u062a \u0628\u0631\u0627\u06cc \u0632\u0645\u0627\u0646 \u062f\u0644\u062e\u0648\u0627\u0647"}
+                                      </div>
+                                    </div>
+                                  }
+                                  trigger={null}
+                                />
+                              </Stack__>
+                            ) : null}
+                          </ApiRequest>
+                        </Stack__>
+                      </div>
+                    }
+                    className={classNames("__wab_instance", sty.preferBooktime)}
+                    noTrigger={true}
+                    onOpenChange={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "preferBooktime",
+                        "open"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    open={generateStateValueProp($state, [
+                      "preferBooktime",
+                      "open"
+                    ])}
+                    title={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox___1K98
+                        )}
+                      >
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text___1RvX
+                          )}
+                        >
+                          {
+                            "\u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u062e\u0627\u0644\u06cc"
                           }
-                        }}
-                        open={generateStateValueProp($state, [
-                          "preferBooktime",
-                          "open"
-                        ])}
-                        title={
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox___1K98
-                            )}
-                          >
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text___1RvX
-                              )}
-                            >
-                              {
-                                "\u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u062e\u0627\u0644\u06cc"
-                              }
-                            </div>
-                          </div>
-                        }
-                        trigger={null}
-                      />
-                    </Stack__>
-                  )}
-                </DataCtxReader__>
-              </DataFetcher>
+                        </div>
+                      </div>
+                    }
+                    trigger={null}
+                  />
+                </Stack__>
+              </ApiRequest>
             </React.Fragment>
           }
           className={classNames("__wab_instance", sty.booktime)}
@@ -4249,12 +4019,14 @@ const PlasmicDescendants = {
     "verticalStackData",
     "inputcell",
     "inputfullname",
+    "freeturnsApi",
     "verticalStackFunction",
     "freeturnBook",
     "preferBooktimeButton",
     "preferBooktime",
     "\u062a\u0642\u0648\u06cc\u0645",
     "datePicker",
+    "freeturnByRangeDateApi",
     "addNewBookTime",
     "dialogNewTimePicker",
     "fromHorizental",
@@ -4274,12 +4046,14 @@ const PlasmicDescendants = {
     "verticalStackData",
     "inputcell",
     "inputfullname",
+    "freeturnsApi",
     "verticalStackFunction",
     "freeturnBook",
     "preferBooktimeButton",
     "preferBooktime",
     "\u062a\u0642\u0648\u06cc\u0645",
     "datePicker",
+    "freeturnByRangeDateApi",
     "addNewBookTime",
     "dialogNewTimePicker",
     "fromHorizental",
@@ -4294,6 +4068,25 @@ const PlasmicDescendants = {
   verticalStackData: ["verticalStackData", "inputcell", "inputfullname"],
   inputcell: ["inputcell"],
   inputfullname: ["inputfullname"],
+  freeturnsApi: [
+    "freeturnsApi",
+    "verticalStackFunction",
+    "freeturnBook",
+    "preferBooktimeButton",
+    "preferBooktime",
+    "\u062a\u0642\u0648\u06cc\u0645",
+    "datePicker",
+    "freeturnByRangeDateApi",
+    "addNewBookTime",
+    "dialogNewTimePicker",
+    "fromHorizental",
+    "fromText",
+    "fromTimePicker",
+    "toHorizental",
+    "toText",
+    "toTimePicker",
+    "submitNewBook"
+  ],
   verticalStackFunction: [
     "verticalStackFunction",
     "freeturnBook",
@@ -4301,6 +4094,7 @@ const PlasmicDescendants = {
     "preferBooktime",
     "\u062a\u0642\u0648\u06cc\u0645",
     "datePicker",
+    "freeturnByRangeDateApi",
     "addNewBookTime",
     "dialogNewTimePicker",
     "fromHorizental",
@@ -4317,6 +4111,7 @@ const PlasmicDescendants = {
     "preferBooktime",
     "\u062a\u0642\u0648\u06cc\u0645",
     "datePicker",
+    "freeturnByRangeDateApi",
     "addNewBookTime",
     "dialogNewTimePicker",
     "fromHorizental",
@@ -4329,6 +4124,18 @@ const PlasmicDescendants = {
   ],
   تقویم: ["\u062a\u0642\u0648\u06cc\u0645", "datePicker"],
   datePicker: ["datePicker"],
+  freeturnByRangeDateApi: [
+    "freeturnByRangeDateApi",
+    "addNewBookTime",
+    "dialogNewTimePicker",
+    "fromHorizental",
+    "fromText",
+    "fromTimePicker",
+    "toHorizental",
+    "toText",
+    "toTimePicker",
+    "submitNewBook"
+  ],
   addNewBookTime: ["addNewBookTime"],
   dialogNewTimePicker: [
     "dialogNewTimePicker",
@@ -4361,12 +4168,14 @@ type NodeDefaultElementType = {
   verticalStackData: "div";
   inputcell: typeof TextInput;
   inputfullname: typeof TextInput;
+  freeturnsApi: typeof ApiRequest;
   verticalStackFunction: "div";
   freeturnBook: typeof Button;
   preferBooktimeButton: typeof Button;
   preferBooktime: typeof Dialog;
   تقویم: typeof Dialog;
   datePicker: typeof DatePicker;
+  freeturnByRangeDateApi: typeof ApiRequest;
   addNewBookTime: "div";
   dialogNewTimePicker: typeof Dialog;
   fromHorizental: "div";
@@ -4446,12 +4255,14 @@ export const PlasmicAddPatient = Object.assign(
     verticalStackData: makeNodeComponent("verticalStackData"),
     inputcell: makeNodeComponent("inputcell"),
     inputfullname: makeNodeComponent("inputfullname"),
+    freeturnsApi: makeNodeComponent("freeturnsApi"),
     verticalStackFunction: makeNodeComponent("verticalStackFunction"),
     freeturnBook: makeNodeComponent("freeturnBook"),
     preferBooktimeButton: makeNodeComponent("preferBooktimeButton"),
     preferBooktime: makeNodeComponent("preferBooktime"),
     تقویم: makeNodeComponent("\u062a\u0642\u0648\u06cc\u0645"),
     datePicker: makeNodeComponent("datePicker"),
+    freeturnByRangeDateApi: makeNodeComponent("freeturnByRangeDateApi"),
     addNewBookTime: makeNodeComponent("addNewBookTime"),
     dialogNewTimePicker: makeNodeComponent("dialogNewTimePicker"),
     fromHorizental: makeNodeComponent("fromHorizental"),
