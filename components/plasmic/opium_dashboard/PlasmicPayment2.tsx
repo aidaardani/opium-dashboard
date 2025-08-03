@@ -504,11 +504,7 @@ function PlasmicPayment2__RenderFunc(props: {
               throw e;
             }
           })() ? (
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__qatAv)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__qatAv)}>
               <div
                 data-plasmic-name={"all2"}
                 data-plasmic-override={overrides.all2}
@@ -612,18 +608,12 @@ function PlasmicPayment2__RenderFunc(props: {
                   </React.Fragment>
                 </div>
               </div>
-            </Stack__>
+            </div>
           ) : null}
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox___2S06)}
-          >
-            <Stack__
-              as={"div"}
+          <div className={classNames(projectcss.all, sty.freeBox___2S06)}>
+            <div
               data-plasmic-name={"manual"}
               data-plasmic-override={overrides.manual}
-              hasGap={true}
               className={classNames(projectcss.all, sty.manual)}
             >
               <div
@@ -648,11 +638,7 @@ function PlasmicPayment2__RenderFunc(props: {
                   "\u067e\u0633 \u0627\u0632 \u062b\u0628\u062a \u062f\u0631\u062e\u0648\u0627\u0633\u062a \u062a\u0633\u0648\u06cc\u0647 \u062d\u0633\u0627\u0628\u060c \u062f\u0631\u0622\u0645\u062f \u0634\u0645\u0627 \u0627\u0632 \u067e\u0630\u06cc\u0631\u0634\u06f2\u06f4 \u062a\u0627 \u06a9\u0645\u062a\u0631 \u0627\u0632 10 \u0633\u0627\u0639\u062a \u0622\u06cc\u0646\u062f\u0647 \u0628\u0647 \u062d\u0633\u0627\u0628 \u0634\u0645\u0627 \u0648\u0627\u0631\u06cc\u0632 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f."
                 }
               </div>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__yABng)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__yABng)}>
                 <Button
                   data-plasmic-name={"requestToPay"}
                   data-plasmic-override={overrides.requestToPay}
@@ -802,13 +788,11 @@ function PlasmicPayment2__RenderFunc(props: {
                     }
                   }}
                 />
-              </Stack__>
-            </Stack__>
-            <Stack__
-              as={"div"}
+              </div>
+            </div>
+            <div
               data-plasmic-name={"daily"}
               data-plasmic-override={overrides.daily}
-              hasGap={true}
               className={classNames(projectcss.all, sty.daily)}
             >
               <div
@@ -1080,8 +1064,8 @@ function PlasmicPayment2__RenderFunc(props: {
                   }
                 }}
               />
-            </Stack__>
-          </Stack__>
+            </div>
+          </div>
         </div>
       </ApiRequest>
     </div>

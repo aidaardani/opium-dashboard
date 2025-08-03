@@ -292,11 +292,7 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
         sty.root
       )}
     >
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__tFkby)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__tFkby)}>
         <Input
           data-plasmic-name={"input"}
           data-plasmic-override={overrides.input}
@@ -395,16 +391,12 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
           outline={true}
           size={"compact"}
         />
-      </Stack__>
+      </div>
       <Dialog
         data-plasmic-name={"dialog"}
         data-plasmic-override={overrides.dialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__giATp)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__giATp)}>
             {(() => {
               try {
                 return $state.step === "OTP_CODE";
@@ -418,11 +410,7 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                 throw e;
               }
             })() ? (
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox___5FKBx)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox___5FKBx)}>
                 <div
                   data-plasmic-name={"text"}
                   data-plasmic-override={overrides.text}
@@ -492,7 +480,7 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                   type={"text"}
                   value={generateStateValueProp($state, ["otpCode", "value"])}
                 />
-              </Stack__>
+              </div>
             ) : null}
             <Input
               data-plasmic-name={"input2"}
@@ -1409,7 +1397,7 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                 }}
               />
             ) : null}
-          </Stack__>
+          </div>
         }
         className={classNames("__wab_instance", sty.dialog)}
         noTrigger={true}

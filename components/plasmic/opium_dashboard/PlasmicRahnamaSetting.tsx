@@ -421,9 +421,7 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
                           className={classNames(projectcss.all, sty.insta)}
                           key={currentIndex}
                         >
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__cf2I3
@@ -591,7 +589,7 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
                                 }
                               })()}
                             />
-                          </Stack__>
+                          </div>
                         </div>
                       );
                     })}
@@ -798,7 +796,7 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
                                 customFunction: async () => {
                                   return (() => {
                                     return window.hamdast.payment.pay({
-                                      product_key: "x6q8epw9k04deyi"
+                                      product_key: "6jljd8pasbqasgz"
                                     });
                                   })();
                                 }
@@ -1330,11 +1328,7 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
                     }
                   })()
             ) ? (
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__phTya)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__phTya)}>
                 <Icon34Icon
                   className={classNames(projectcss.all, sty.svg__ffBhX)}
                   role={"img"}
@@ -1351,7 +1345,7 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
                     "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
                   }
                 </div>
-              </Stack__>
+              </div>
             ) : null}
             <ApiRequest
               data-plasmic-name={"user"}
@@ -1376,11 +1370,7 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
                 }
               })()}
               errorDisplay={
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__q4YcQ)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__q4YcQ)}>
                   <Icon45Icon
                     className={classNames(projectcss.all, sty.svg__gyrcp)}
                     role={"img"}
@@ -1397,7 +1387,7 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
                       "\u062e\u0637\u0627 \u062f\u0631 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
                     }
                   </div>
-                </Stack__>
+                </div>
               }
               loadingDisplay={null}
               method={"GET"}

@@ -209,11 +209,7 @@ function PlasmicUncertainBookStatusListPage__RenderFunc(props: {
             sty.root
           )}
         >
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__q1Xo)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__q1Xo)}>
             <div className={classNames(projectcss.all, sty.freeBox___0IePt)}>
               <SideEffect
                 data-plasmic-name={"sideEffect"}
@@ -430,11 +426,7 @@ function PlasmicUncertainBookStatusListPage__RenderFunc(props: {
                 throw e;
               }
             })() ? (
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__efiaG)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__efiaG)}>
                 <Dialog
                   data-plasmic-name={"dialog"}
                   data-plasmic-override={overrides.dialog}
@@ -661,7 +653,7 @@ function PlasmicUncertainBookStatusListPage__RenderFunc(props: {
                     }
                   }}
                 />
-              </Stack__>
+              </div>
             ) : null}
             {(() => {
               try {
@@ -685,7 +677,7 @@ function PlasmicUncertainBookStatusListPage__RenderFunc(props: {
                 />
               </div>
             ) : null}
-          </Stack__>
+          </div>
           <SideEffect
             data-plasmic-name={"runCodeGtmMetrica"}
             data-plasmic-override={overrides.runCodeGtmMetrica}

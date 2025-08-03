@@ -65,26 +65,11 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  min-width: 0;
-  padding: 8px;
-}
-.freeBox__wXnUq > :global(.__wab_flex-container) {
-  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  row-gap: 5px;
   min-width: 0;
-  margin-top: calc(0px - 5px);
-  height: calc(100% + 5px);
-}
-.freeBox__wXnUq > :global(.__wab_flex-container) > *,
-.freeBox__wXnUq > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.freeBox__wXnUq > :global(.__wab_flex-container) > picture > img,
-.freeBox__wXnUq
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: 5px;
+  padding: 8px;
 }
 .title {
   display: flex;
@@ -255,29 +240,14 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
   width: 100%;
   height: auto;
   max-width: 100%;
+  row-gap: var(--token-vMUQwr5Jto1d);
   min-width: 0;
   padding: 8px;
-}
-.button > :global(.__wab_flex-container) {
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  min-width: 0;
-  margin-top: calc(0px - var(--token-vMUQwr5Jto1d));
-  height: calc(100% + var(--token-vMUQwr5Jto1d));
-}
-.button > :global(.__wab_flex-container) > *,
-.button > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.button > :global(.__wab_flex-container) > picture > img,
-.button
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: var(--token-vMUQwr5Jto1d);
 }
 .dialog:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
@@ -367,29 +337,14 @@
   display: flex;
   flex-direction: row;
   position: relative;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: auto;
   max-width: 100%;
+  column-gap: 10px;
   min-width: 0;
   padding: 8px;
-}
-.button2 > :global(.__wab_flex-container) {
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  margin-left: calc(0px - 10px);
-  width: calc(100% + 10px);
-}
-.button2 > :global(.__wab_flex-container) > *,
-.button2 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.button2 > :global(.__wab_flex-container) > picture > img,
-.button2
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-left: 10px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .button2 {
@@ -397,32 +352,10 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
+    row-gap: 6px;
+    column-gap: 0px;
     min-width: 0;
     min-height: 0;
-  }
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .button2 > :global(.__wab_flex-container) {
-    flex-direction: column;
-    min-width: 0;
-    min-height: 0;
-    margin-left: calc(0px - 0px);
-    width: calc(100% + 0px);
-    margin-top: calc(0px - 6px);
-    height: calc(100% + 6px);
-  }
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .button2 > :global(.__wab_flex-container) > *,
-  .button2 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-  .button2 > :global(.__wab_flex-container) > picture > img,
-  .button2
-    > :global(.__wab_flex-container)
-    > :global(.__wab_slot)
-    > picture
-    > img {
-    margin-left: 0px;
-    margin-top: 6px;
   }
 }
 .getNow:global(.__wab_instance) {
@@ -590,29 +523,14 @@
   display: flex;
   flex-direction: row;
   position: relative;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: auto;
   max-width: 100%;
+  column-gap: 10px;
   min-width: 0;
   padding: 8px;
-}
-.button3 > :global(.__wab_flex-container) {
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  margin-left: calc(0px - 10px);
-  width: calc(100% + 10px);
-}
-.button3 > :global(.__wab_flex-container) > *,
-.button3 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.button3 > :global(.__wab_flex-container) > picture > img,
-.button3
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-left: 10px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .button3 {
@@ -620,32 +538,10 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
+    row-gap: 6px;
+    column-gap: 0px;
     min-width: 0;
     min-height: 0;
-  }
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .button3 > :global(.__wab_flex-container) {
-    flex-direction: column;
-    min-width: 0;
-    min-height: 0;
-    margin-left: calc(0px - 0px);
-    width: calc(100% + 0px);
-    margin-top: calc(0px - 6px);
-    height: calc(100% + 6px);
-  }
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .button3 > :global(.__wab_flex-container) > *,
-  .button3 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-  .button3 > :global(.__wab_flex-container) > picture > img,
-  .button3
-    > :global(.__wab_flex-container)
-    > :global(.__wab_slot)
-    > picture
-    > img {
-    margin-left: 0px;
-    margin-top: 6px;
   }
 }
 .getNow2:global(.__wab_instance) {
@@ -749,25 +645,10 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  min-width: 0;
-}
-.freeBox__ujGLv > :global(.__wab_flex-container) {
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  row-gap: var(--token-vMUQwr5Jto1d);
   min-width: 0;
-  margin-top: calc(0px - var(--token-vMUQwr5Jto1d));
-  height: calc(100% + var(--token-vMUQwr5Jto1d));
-}
-.freeBox__ujGLv > :global(.__wab_flex-container) > *,
-.freeBox__ujGLv > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.freeBox__ujGLv > :global(.__wab_flex-container) > picture > img,
-.freeBox__ujGLv
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: var(--token-vMUQwr5Jto1d);
 }
 .text__wxpPj {
   position: relative;

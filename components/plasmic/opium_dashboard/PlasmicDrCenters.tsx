@@ -264,13 +264,11 @@ function PlasmicDrCenters__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -289,9 +287,7 @@ function PlasmicDrCenters__RenderFunc(props: {
         data-plasmic-override={overrides.fragmentPopover}
         className={classNames("__wab_instance", sty.fragmentPopover)}
         content={
-          <Stack__
-            as={"div"}
-            hasGap={true}
+          <div
             className={classNames(projectcss.all, sty.freeBox__jC2P)}
             dir={``}
           >
@@ -1041,7 +1037,7 @@ function PlasmicDrCenters__RenderFunc(props: {
                 "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/check-booking"
               }
             />
-          </Stack__>
+          </div>
         }
         onOpenChange={async (...eventArgs: any) => {
           generateStateOnChangeProp($state, ["fragmentPopover", "open"]).apply(
@@ -1146,7 +1142,7 @@ function PlasmicDrCenters__RenderFunc(props: {
           </div>
         }
       />
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

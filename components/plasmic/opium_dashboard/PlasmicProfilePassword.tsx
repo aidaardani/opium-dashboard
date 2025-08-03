@@ -287,16 +287,8 @@ function PlasmicProfilePassword__RenderFunc(props: {
         }}
         url={"https://api.paziresh24.com/V1/auth/me"}
       >
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__vi37B)}
-        >
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__j39Cj)}
-          >
+        <div className={classNames(projectcss.all, sty.freeBox__vi37B)}>
+          <div className={classNames(projectcss.all, sty.freeBox__j39Cj)}>
             <Switch
               data-plasmic-name={"_switch"}
               data-plasmic-override={overrides._switch}
@@ -335,7 +327,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
                 })()}
               </React.Fragment>
             </div>
-          </Stack__>
+          </div>
           {(() => {
             try {
               return $state.authApi.data.data.is_static_password_enabled;
@@ -391,11 +383,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
               })()}
             </div>
           ) : null}
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__foiIa)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__foiIa)}>
             {(() => {
               const child$Props = {
                 className: classNames("__wab_instance", sty.passwordInput),
@@ -474,7 +462,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
                 />
               );
             })()}
-          </Stack__>
+          </div>
           <Button
             data-plasmic-name={"button"}
             data-plasmic-override={overrides.button}
@@ -837,7 +825,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
               }
             }}
           />
-        </Stack__>
+        </div>
       </ApiRequest>
     </div>
   ) as React.ReactElement | null;

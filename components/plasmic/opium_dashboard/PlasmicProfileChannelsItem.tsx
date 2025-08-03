@@ -200,13 +200,11 @@ function PlasmicProfileChannelsItem__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -219,11 +217,7 @@ function PlasmicProfileChannelsItem__RenderFunc(props: {
         sty.root
       )}
     >
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__u6DHm)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__u6DHm)}>
         {(() => {
           try {
             return $props.type === "eitaa";
@@ -283,10 +277,8 @@ function PlasmicProfileChannelsItem__RenderFunc(props: {
             })()}
           </React.Fragment>
         </div>
-      </Stack__>
-      <Stack__
-        as={"div"}
-        hasGap={true}
+      </div>
+      <div
         className={classNames(projectcss.all, sty.freeBox__aaHpl, {
           [sty.freeBoxnoUserName__aaHpl0NTyP]: hasVariant(
             $state,
@@ -313,9 +305,7 @@ function PlasmicProfileChannelsItem__RenderFunc(props: {
         />
 
         {(hasVariant($state, "noUserName", "noUserName") ? false : true) ? (
-          <Stack__
-            as={"div"}
-            hasGap={true}
+          <div
             className={classNames(projectcss.all, sty.freeBox__v832N, {
               [sty.freeBoxnoUserName__v832N0NTyP]: hasVariant(
                 $state,
@@ -413,10 +403,10 @@ function PlasmicProfileChannelsItem__RenderFunc(props: {
                 target={true}
               />
             ) : null}
-          </Stack__>
+          </div>
         ) : null}
-      </Stack__>
-    </Stack__>
+      </div>
+    </div>
   ) as React.ReactElement | null;
 }
 

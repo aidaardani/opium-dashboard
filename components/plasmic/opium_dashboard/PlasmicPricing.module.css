@@ -49,29 +49,14 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
   height: auto;
   max-width: 100%;
+  row-gap: 10px;
   min-width: 0;
   padding: 8px;
-}
-.outlineVertical > :global(.__wab_flex-container) {
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-width: 0;
-  margin-top: calc(0px - 10px);
-  height: calc(100% + 10px);
-}
-.outlineVertical > :global(.__wab_flex-container) > *,
-.outlineVertical > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.outlineVertical > :global(.__wab_flex-container) > picture > img,
-.outlineVertical
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: 10px;
 }
 .titleVertical {
   display: flex;
@@ -115,57 +100,22 @@
   display: flex;
   flex-direction: row;
   position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
   width: 100%;
   height: auto;
   max-width: 100%;
+  column-gap: 15px;
   min-width: 0;
   padding: 8px;
   border: 1px solid var(--token-jgohepLVeKvh);
-}
-.kindOfPrice > :global(.__wab_flex-container) {
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: flex-start;
-  min-width: 0;
-  margin-left: calc(0px - 15px);
-  width: calc(100% + 15px);
-}
-.kindOfPrice > :global(.__wab_flex-container) > *,
-.kindOfPrice > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.kindOfPrice > :global(.__wab_flex-container) > picture > img,
-.kindOfPrice
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-left: 15px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .kindOfPrice {
     display: flex;
     flex-direction: column;
-  }
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .kindOfPrice > :global(.__wab_flex-container) {
-    flex-direction: column;
-    margin-left: calc(0px - 0px);
-    width: calc(100% + 0px);
-    margin-top: calc(0px - 15px);
-    height: calc(100% + 15px);
-  }
-}
-@media (min-width: 0px) and (max-width: 768px) {
-  .kindOfPrice > :global(.__wab_flex-container) > *,
-  .kindOfPrice > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-  .kindOfPrice > :global(.__wab_flex-container) > picture > img,
-  .kindOfPrice
-    > :global(.__wab_flex-container)
-    > :global(.__wab_slot)
-    > picture
-    > img {
-    margin-left: 0px;
-    margin-top: 15px;
+    row-gap: 15px;
+    column-gap: 0px;
   }
 }
 .silverVertical {
@@ -232,6 +182,7 @@
   .freeBox__sOxr2 {
     display: flex;
     flex-direction: column;
+    column-gap: 0px;
   }
 }
 .checkboxSilver:global(.__wab_instance) {
@@ -309,6 +260,7 @@
   .freeBox__vpFLj {
     display: flex;
     flex-direction: column;
+    column-gap: 0px;
   }
 }
 .text__ysEh {

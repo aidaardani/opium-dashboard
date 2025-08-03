@@ -4328,13 +4328,11 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -4398,11 +4396,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
           </div>
         }
         loadingDisplay={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__w7Wnr)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__w7Wnr)}>
             <Icon26Icon
               className={classNames(projectcss.all, sty.svg__slnZl)}
               role={"img"}
@@ -4412,7 +4406,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
               className={classNames(projectcss.all, sty.svg__i5Zwx)}
               role={"img"}
             />
-          </Stack__>
+          </div>
         }
         method={"GET"}
         onError={async (...eventArgs: any) => {
@@ -4493,9 +4487,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
           }
         })()}
       >
-        <Stack__
-          as={"div"}
-          hasGap={true}
+        <div
           className={classNames(projectcss.all, sty.freeBox__itFNx)}
           onClick={async event => {
             const $steps = {};
@@ -4604,7 +4596,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
               })()}
             </React.Fragment>
           </div>
-        </Stack__>
+        </div>
       </ApiRequest>
       <Button
         children2={"\u0627\u0646\u062c\u0627\u0645 \u0634\u062f"}
@@ -4772,11 +4764,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
             }}
             url={"https://api.paziresh24.com/V1/doctor/centers"}
           >
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__snooH)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__snooH)}>
               <ProfileTells
                 data-plasmic-name={"tells"}
                 data-plasmic-override={overrides.tells}
@@ -5287,7 +5275,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                   }}
                 />
               </ApiRequest>
-            </Stack__>
+            </div>
           </ApiRequest>
         }
         className={classNames("__wab_instance", sty.tellsDialog)}
@@ -5318,11 +5306,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         data-plasmic-override={overrides.changeadreesDialog}
         body={
           <React.Fragment>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox___8UZ8S)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox___8UZ8S)}>
               <Select
                 data-plasmic-name={"selectProvince2"}
                 data-plasmic-override={overrides.selectProvince2}
@@ -5460,12 +5444,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                   }
                 }}
               />
-            </Stack__>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__kajpA)}
-            >
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox__kajpA)}>
               <TextInput
                 data-plasmic-name={"adressTextInput"}
                 data-plasmic-override={overrides.adressTextInput}
@@ -5680,7 +5660,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                   }
                 }}
               />
-            </Stack__>
+            </div>
           </React.Fragment>
         }
         className={classNames("__wab_instance", sty.changeadreesDialog)}
@@ -5710,16 +5690,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         data-plasmic-name={"cityDialog"}
         data-plasmic-override={overrides.cityDialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__cVQx)}
-          >
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__fqYLa)}
-            >
+          <div className={classNames(projectcss.all, sty.freeBox__cVQx)}>
+            <div className={classNames(projectcss.all, sty.freeBox__fqYLa)}>
               <Icon7Icon
                 className={classNames(projectcss.all, sty.svg___47WtT)}
                 role={"img"}
@@ -5736,7 +5708,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                   "\u0645\u062a\u0627\u0633\u0641\u0627\u0646\u0647 \u0627\u0633\u062a\u0627\u0646 \u0648 \u0634\u0647\u0631 \u0634\u0645\u0627 \u0628\u0647 \u062f\u0631\u0633\u062a\u06cc \u062a\u0634\u062e\u06cc\u0635 \u062f\u0627\u062f\u0647 \u0646\u0634\u062f \u0644\u0637\u0641\u0627 \u0628\u0635\u0648\u0631\u062a \u062f\u0633\u062a\u06cc \u0634\u0647\u0631 \u0648 \u0627\u0633\u062a\u0627\u0646 \u062e\u0648\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
                 }
               </div>
-            </Stack__>
+            </div>
             <Select
               data-plasmic-name={"selectProvince"}
               data-plasmic-override={overrides.selectProvince}
@@ -5948,7 +5920,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                 }
               }}
             />
-          </Stack__>
+          </div>
         }
         className={classNames("__wab_instance", sty.cityDialog)}
         noTrigger={true}
@@ -5972,7 +5944,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         }
         trigger={null}
       />
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

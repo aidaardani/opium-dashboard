@@ -378,13 +378,11 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -467,11 +465,9 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
           </React.Fragment>
         </div>
       </div>
-      <Stack__
-        as={"div"}
+      <div
         data-plasmic-name={"cost"}
         data-plasmic-override={overrides.cost}
-        hasGap={true}
         className={classNames(projectcss.all, sty.cost)}
       >
         <div
@@ -715,11 +711,7 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
             </React.Fragment>
           </div>
         ) : null}
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__tX33C)}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox__tX33C)}>
           <div
             className={classNames(
               projectcss.all,
@@ -805,13 +797,11 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
               />
             }
           />
-        </Stack__>
-      </Stack__>
-      <Stack__
-        as={"div"}
+        </div>
+      </div>
+      <div
         data-plasmic-name={"cardNum"}
         data-plasmic-override={overrides.cardNum}
-        hasGap={true}
         className={classNames(projectcss.all, sty.cardNum)}
       >
         <div
@@ -1014,7 +1004,7 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
             </ApiRequest>
           </div>
         ) : null}
-      </Stack__>
+      </div>
       <div
         data-plasmic-name={"rules"}
         data-plasmic-override={overrides.rules}
@@ -1081,11 +1071,7 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
           </div>
         </Checkbox>
       </div>
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__zaL)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__zaL)}>
         <Button
           data-plasmic-name={"button"}
           data-plasmic-override={overrides.button}
@@ -1333,8 +1319,8 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
             }
           }}
         />
-      </Stack__>
-    </Stack__>
+      </div>
+    </div>
   ) as React.ReactElement | null;
 }
 

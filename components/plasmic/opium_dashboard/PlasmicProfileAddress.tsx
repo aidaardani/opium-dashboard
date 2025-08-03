@@ -4436,16 +4436,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
         }}
         url={"https://api.paziresh24.com/V1/doctor/centers"}
       >
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__bj1H7)}
-        >
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__do9Q)}
-          >
+        <div className={classNames(projectcss.all, sty.freeBox__bj1H7)}>
+          <div className={classNames(projectcss.all, sty.freeBox__do9Q)}>
             <Select
               data-plasmic-name={"provinceSelect"}
               data-plasmic-override={overrides.provinceSelect}
@@ -4529,12 +4521,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
               triggerClassName={classNames("__wab_instance", sty.citySelect)}
               value={generateStateValueProp($state, ["citySelect", "value"])}
             />
-          </Stack__>
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__ztYm)}
-          >
+          </div>
+          <div className={classNames(projectcss.all, sty.freeBox__ztYm)}>
             <div
               className={classNames(
                 projectcss.all,
@@ -4586,7 +4574,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
               type={"text"}
               value={generateStateValueProp($state, ["address", "value"])}
             />
-          </Stack__>
+          </div>
           <ProfileTells
             data-plasmic-name={"profileTells"}
             data-plasmic-override={overrides.profileTells}
@@ -4699,9 +4687,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
               }
             })()}
           >
-            <Stack__
-              as={"div"}
-              hasGap={true}
+            <div
               className={classNames(
                 projectcss.all,
                 sty.freeBox__axO8D,
@@ -4829,7 +4815,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   />
                 );
               })}
-            </Stack__>
+            </div>
           </ApiRequest>
           <div className={classNames(projectcss.all, sty.freeBox__pr7VM)}>
             <FileInput
@@ -5051,9 +5037,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   throw e;
                 }
               })() ? (
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
+                <div
                   className={classNames(projectcss.all, sty.freeBox___0EeuL)}
                 >
                   {(() => {
@@ -5139,7 +5123,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
                       "( \u062d\u062f\u0627\u06a9\u062b\u0631 \u06cc\u06a9 \u0645\u06af\u0627\u0628\u0627\u06cc\u062a )"
                     }
                   </div>
-                </Stack__>
+                </div>
               ) : null}
             </FileInput>
             {(() => {
@@ -5175,11 +5159,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
               </div>
             ) : null}
           </div>
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__qaWiL)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__qaWiL)}>
             <Checkbox
               data-plasmic-name={"checkbox"}
               data-plasmic-override={overrides.checkbox}
@@ -5296,7 +5276,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 "\u062c\u0627\u06cc \u067e\u0627\u0631\u06a9 \u062f\u0627\u0631\u062f"
               }
             </Checkbox>
-          </Stack__>
+          </div>
           <div className={classNames(projectcss.all, sty.freeBox__yYGwS)}>
             {(() => {
               try {
@@ -5631,7 +5611,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
               }
             }}
           />
-        </Stack__>
+        </div>
         {false ? (
           <SideEffect
             data-plasmic-name={"sideEffect"}
@@ -5693,11 +5673,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
         data-plasmic-name={"imageDialog"}
         data-plasmic-override={overrides.imageDialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__rykZm)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__rykZm)}>
             <PlasmicImg__
               alt={""}
               className={classNames(sty.img__sXkNt)}
@@ -5775,7 +5751,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 />
               }
             />
-          </Stack__>
+          </div>
         }
         className={classNames("__wab_instance", sty.imageDialog)}
         noTrigger={true}
@@ -5802,11 +5778,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
         data-plasmic-name={"deleteImageDialog"}
         data-plasmic-override={overrides.deleteImageDialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__qdRDn)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__qdRDn)}>
             <Button
               children2={"\u0628\u0644\u0647 \u0648 \u062d\u0630\u0641"}
               className={classNames("__wab_instance", sty.button__voqZ5)}
@@ -6034,7 +6006,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 }
               }}
             />
-          </Stack__>
+          </div>
         }
         className={classNames("__wab_instance", sty.deleteImageDialog)}
         noTrigger={true}

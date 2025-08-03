@@ -276,11 +276,9 @@ function PlasmicRules__RenderFunc(props: {
             }}
           />
 
-          <Stack__
-            as={"div"}
+          <div
             data-plasmic-name={"freeBox"}
             data-plasmic-override={overrides.freeBox}
-            hasGap={true}
             className={classNames(projectcss.all, sty.freeBox)}
           >
             <div
@@ -742,7 +740,7 @@ function PlasmicRules__RenderFunc(props: {
                 />
               </ApiRequest>
             </div>
-          </Stack__>
+          </div>
         </div>
       </div>
     </React.Fragment>

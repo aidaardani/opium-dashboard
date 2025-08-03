@@ -172,13 +172,11 @@ function PlasmicActiveOfficeBooking__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -268,7 +266,7 @@ function PlasmicActiveOfficeBooking__RenderFunc(props: {
           </React.Fragment>
         )}
       </div>
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

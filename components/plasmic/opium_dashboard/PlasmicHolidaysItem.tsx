@@ -198,13 +198,11 @@ function PlasmicHolidaysItem__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -304,11 +302,7 @@ function PlasmicHolidaysItem__RenderFunc(props: {
           </React.Fragment>
         </div>
       </div>
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__d3IHe)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__d3IHe)}>
         {(() => {
           try {
             return (
@@ -482,11 +476,7 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                   })()}
                 </React.Fragment>
               </div>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__iu5V)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__iu5V)}>
                 <Button
                   children2={
                     <div
@@ -956,7 +946,7 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                     }}
                   />
                 ) : null}
-              </Stack__>
+              </div>
             </React.Fragment>
           }
           className={classNames("__wab_instance", sty.dialog)}
@@ -1000,8 +990,8 @@ function PlasmicHolidaysItem__RenderFunc(props: {
           }
           trigger={null}
         />
-      </Stack__>
-    </Stack__>
+      </div>
+    </div>
   ) as React.ReactElement | null;
 }
 

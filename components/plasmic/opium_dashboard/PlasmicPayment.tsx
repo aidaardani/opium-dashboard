@@ -569,11 +569,7 @@ function PlasmicPayment__RenderFunc(props: {
               throw e;
             }
           })() ? (
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__rdnfG)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__rdnfG)}>
               <div
                 data-plasmic-name={"all2"}
                 data-plasmic-override={overrides.all2}
@@ -677,21 +673,15 @@ function PlasmicPayment__RenderFunc(props: {
                   </React.Fragment>
                 </div>
               </div>
-            </Stack__>
+            </div>
           ) : null}
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__feQhK)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__feQhK)}>
             <Dialog
               data-plasmic-name={"dialog"}
               data-plasmic-override={overrides.dialog}
               body={
                 <React.Fragment>
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__xqJiq)}
                   >
                     <ApiRequest
@@ -909,13 +899,11 @@ function PlasmicPayment__RenderFunc(props: {
                         </AntdRadioGroup>
                       </ApiRequest>
                     </ApiRequest>
-                  </Stack__>
+                  </div>
                   <div
                     className={classNames(projectcss.all, sty.freeBox__x4IL)}
                   >
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__lTutQ)}
                     >
                       <Button
@@ -1166,7 +1154,7 @@ function PlasmicPayment__RenderFunc(props: {
                           }
                         }}
                       />
-                    </Stack__>
+                    </div>
                   </div>
                 </React.Fragment>
               }
@@ -1366,7 +1354,7 @@ function PlasmicPayment__RenderFunc(props: {
                 }
               }}
             />
-          </Stack__>
+          </div>
         </div>
       </ApiRequest>
     </div>

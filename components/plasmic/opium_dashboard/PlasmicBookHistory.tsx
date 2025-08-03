@@ -180,11 +180,7 @@ function PlasmicBookHistory__RenderFunc(props: {
         sty.root
       )}
     >
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__opJv9)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__opJv9)}>
         <div
           className={classNames(
             projectcss.all,
@@ -196,11 +192,7 @@ function PlasmicBookHistory__RenderFunc(props: {
             "\u0633\u0648\u0627\u0628\u0642 \u0645\u0631\u0627\u062c\u0639\u0647"
           }
         </div>
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__w8JD)}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox__w8JD)}>
           <div
             className={classNames(
               projectcss.all,
@@ -357,8 +349,8 @@ function PlasmicBookHistory__RenderFunc(props: {
               role={"img"}
             />
           ) : null}
-        </Stack__>
-      </Stack__>
+        </div>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }

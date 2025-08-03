@@ -330,11 +330,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                 step={5}
               />
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__dp6AO)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__dp6AO)}>
               <ApiRequest
                 data-plasmic-name={"centersApi"}
                 data-plasmic-override={overrides.centersApi}
@@ -389,9 +385,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                     throw e;
                   }
                 })() ? (
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox___869Rv)}
                   >
                     {(() => {
@@ -494,9 +488,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                         throw e;
                       }
                     })() ? (
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__ewBdp
@@ -1271,12 +1263,12 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                             }
                           }}
                         />
-                      </Stack__>
+                      </div>
                     ) : null}
-                  </Stack__>
+                  </div>
                 ) : null}
               </ApiRequest>
-            </Stack__>
+            </div>
           </div>
           <SideEffect
             data-plasmic-name={"sideEffect"}

@@ -286,11 +286,7 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
           </div>
         </div>
       </div>
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox___8FpsP)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox___8FpsP)}>
         {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
           (() => {
             try {
@@ -463,11 +459,7 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
             );
           })();
         })}
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__wpZS)}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox__wpZS)}>
           <ApiRequest
             data-plasmic-name={"profileApi"}
             data-plasmic-override={overrides.profileApi}
@@ -689,17 +681,13 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
             }}
             outline={true}
           />
-        </Stack__>
-      </Stack__>
+        </div>
+      </div>
       <Dialog
         data-plasmic-name={"dialog"}
         data-plasmic-override={overrides.dialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__ght6W)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__ght6W)}>
             <div
               className={classNames(
                 projectcss.all,
@@ -711,11 +699,7 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                 "  \u0628\u062f\u0644\u06cc\u0644 \u0639\u062f\u0645 \u067e\u0630\u06cc\u0631\u0634 \u0642\u0648\u0627\u0646\u06cc\u0646 \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u067e\u0630\u06cc\u0631\u0634\u06f2\u06f4 \u0627\u0645\u06a9\u0627\u0646 \u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0631\u0627 \u0646\u062f\u0627\u0631\u06cc\u062f."
               }
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox___7Op5H)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox___7Op5H)}>
               <Button
                 children2={
                   "\u0645\u0634\u0627\u0647\u062f\u0647 \u0642\u0648\u0627\u0646\u06cc\u0646"
@@ -909,8 +893,8 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                 }}
                 outline={true}
               />
-            </Stack__>
-          </Stack__>
+            </div>
+          </div>
         }
         className={classNames("__wab_instance", sty.dialog)}
         noTrigger={true}

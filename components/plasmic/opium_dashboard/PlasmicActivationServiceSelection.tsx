@@ -267,11 +267,7 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
         url={"https://api.paziresh24.com/V1/doctor/profile"}
       >
         <div className={classNames(projectcss.all, sty.freeBox__llAJ)}>
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox___5Nis4)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox___5Nis4)}>
             <Avatar
               data-plasmic-name={"avatar"}
               data-plasmic-override={overrides.avatar}
@@ -420,12 +416,8 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
               }}
               outline={true}
             />
-          </Stack__>
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__qHMpg)}
-          >
+          </div>
+          <div className={classNames(projectcss.all, sty.freeBox__qHMpg)}>
             <div
               className={classNames(
                 projectcss.all,
@@ -615,7 +607,7 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
                 />
               );
             })}
-          </Stack__>
+          </div>
           <Button
             children2={
               "\u0645\u0631\u062d\u0644\u0647  \u0628\u0639\u062f\u06cc"

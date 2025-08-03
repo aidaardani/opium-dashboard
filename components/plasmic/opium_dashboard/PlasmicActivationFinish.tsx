@@ -271,11 +271,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                 }}
               />
 
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__aR1V)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__aR1V)}>
                 <PlasmicImg__
                   data-plasmic-name={"img"}
                   data-plasmic-override={overrides.img}
@@ -455,11 +451,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                     }}
                   />
                 </div>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__tYnz9)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__tYnz9)}>
                   <Button
                     children2={
                       "\u06af\u0641\u062a\u06af\u0648 \u062f\u0631 \u062a\u0644\u06af\u0631\u0627\u0645"
@@ -616,7 +608,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                     outline={true}
                     showEndIcon={true}
                   />
-                </Stack__>
+                </div>
                 <Button
                   children2={
                     <div
@@ -726,7 +718,7 @@ function PlasmicActivationFinish__RenderFunc(props: {
                   outline={true}
                   showEndIcon={true}
                 />
-              </Stack__>
+              </div>
             </div>
           </div>
           <SideEffect

@@ -279,9 +279,7 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                     })()
               }
             >
-              <Stack__
-                as={"div"}
-                hasGap={true}
+              <div
                 className={classNames(projectcss.all, sty.freeBox__s0AfW)}
                 style={(() => {
                   try {
@@ -338,12 +336,8 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                     "\u0644\u06cc\u0633\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 "
                   }
                 </div>
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__fleUv)}
-              >
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__fleUv)}>
                 <Icon16Icon
                   className={classNames(projectcss.all, sty.svg__lYyKc)}
                   role={"img"}
@@ -385,12 +379,8 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                     "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644"
                   }
                 </div>
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox___5VmVt)}
-              >
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox___5VmVt)}>
                 <Icon8Icon
                   className={classNames(projectcss.all, sty.svg__y2Pix)}
                   role={"img"}
@@ -430,12 +420,8 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                 >
                   {"\u0646\u0633\u062e\u0647 \u0646\u0648\u06cc\u0633\u06cc"}
                 </div>
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__mIeJs)}
-              >
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__mIeJs)}>
                 <Icons8Chart641SvgIcon
                   className={classNames(projectcss.all, sty.svg__y2Zbh)}
                   role={"img"}
@@ -477,12 +463,8 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                     "\u0631\u062a\u0628\u0647 \u0645\u0646 \u062f\u0631 \u067e\u0630\u06cc\u0631\u0634 24"
                   }
                 </div>
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__plunK)}
-              >
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__plunK)}>
                 <Icon9Icon
                   className={classNames(projectcss.all, sty.svg__gHa2O)}
                   role={"img"}
@@ -524,12 +506,8 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                     "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u0646\u0648\u0628\u062a \u062f\u0647\u06cc"
                   }
                 </div>
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__bz3A)}
-              >
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__bz3A)}>
                 <Icon12Icon
                   className={classNames(projectcss.all, sty.svg__nDjJe)}
                   role={"img"}
@@ -569,12 +547,8 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                 >
                   {"\u067e\u0631\u062f\u0627\u062e\u062a"}
                 </div>
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__rvusO)}
-              >
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__rvusO)}>
                 <Icon7Icon
                   className={classNames(projectcss.all, sty.svg___4CWbC)}
                   role={"img"}
@@ -616,12 +590,8 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                     "\u0642\u0648\u0627\u0646\u06cc\u0646 \u0645\u0634\u0627\u0648\u0631\u0647"
                   }
                 </div>
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__tMfvv)}
-              >
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__tMfvv)}>
                 <Icon17Icon
                   className={classNames(projectcss.all, sty.svg__czZjI)}
                   role={"img"}
@@ -663,12 +633,8 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                     "\u0646\u0638\u0631\u0627\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646"
                   }
                 </div>
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__wgcR7)}
-              >
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__wgcR7)}>
                 <Icons8Power50SvgIcon
                   className={classNames(projectcss.all, sty.svg__q0Yco)}
                   role={"img"}
@@ -708,12 +674,8 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                 >
                   {"\u062e\u0631\u0648\u062c"}
                 </div>
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__blEnR)}
-              >
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__blEnR)}>
                 <Icons8Support64SvgIcon
                   className={classNames(projectcss.all, sty.svg___7AbY9)}
                   role={"img"}
@@ -755,12 +717,8 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                     "\u0627\u0631\u062a\u0628\u0627\u0637 \u0628\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc"
                   }
                 </div>
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__okTde)}
-              >
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__okTde)}>
                 <PlasmicImg__
                   alt={""}
                   className={classNames(sty.img__n4Rlf)}
@@ -813,13 +771,9 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                 >
                   {"\u067e\u0630\u06cc\u0631\u0634 24"}
                 </div>
-              </Stack__>
+              </div>
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox___0BiG)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox___0BiG)}>
               {(
                 hasVariant(globalVariants, "screen", "mobileOnly")
                   ? true
@@ -895,7 +849,7 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                 }}
                 role={"img"}
               />
-            </Stack__>
+            </div>
             {(
               hasVariant(globalVariants, "screen", "mobileOnly")
                 ? (() => {

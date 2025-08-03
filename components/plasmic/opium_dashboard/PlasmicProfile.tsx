@@ -189,13 +189,11 @@ function PlasmicProfile__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -232,9 +230,7 @@ function PlasmicProfile__RenderFunc(props: {
                 )}
                 id={1}
                 label2={
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox___1L4T)}
                   >
                     <Icon29Icon
@@ -253,7 +249,7 @@ function PlasmicProfile__RenderFunc(props: {
                         "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0641\u0631\u062f\u06cc"
                       }
                     </div>
-                  </Stack__>
+                  </div>
                 }
                 showArrow={false}
               >
@@ -271,9 +267,7 @@ function PlasmicProfile__RenderFunc(props: {
                 )}
                 id={"2"}
                 label2={
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__zdRj3)}
                   >
                     <Icon30Icon
@@ -290,7 +284,7 @@ function PlasmicProfile__RenderFunc(props: {
                     >
                       {"\u062a\u062e\u0635\u0635"}
                     </div>
-                  </Stack__>
+                  </div>
                 }
                 showArrow={false}
               >
@@ -307,9 +301,7 @@ function PlasmicProfile__RenderFunc(props: {
                 )}
                 id={"3"}
                 label2={
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox___5N3Yt)}
                   >
                     <Icon31Icon
@@ -328,7 +320,7 @@ function PlasmicProfile__RenderFunc(props: {
                         "\u067e\u06cc\u0627\u0645 \u0631\u0633\u0627\u0646 \u0647\u0627"
                       }
                     </div>
-                  </Stack__>
+                  </div>
                 }
                 showArrow={false}
               >
@@ -345,9 +337,7 @@ function PlasmicProfile__RenderFunc(props: {
                 )}
                 id={"88"}
                 label2={
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__enKFw)}
                   >
                     <Icon35Icon
@@ -366,7 +356,7 @@ function PlasmicProfile__RenderFunc(props: {
                         "\u0622\u062f\u0631\u0633 \u0648 \u0634\u0645\u0627\u0631\u0647 \u062a\u0644\u0641\u0646 \u0645\u0637\u0628"
                       }
                     </div>
-                  </Stack__>
+                  </div>
                 }
                 showArrow={false}
               >
@@ -383,9 +373,7 @@ function PlasmicProfile__RenderFunc(props: {
                 )}
                 id={"8"}
                 label2={
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__eWEpn)}
                   >
                     <PlasmicIcon__
@@ -409,7 +397,7 @@ function PlasmicProfile__RenderFunc(props: {
                         "\u0628\u06cc\u0645\u0647 \u0647\u0627\u06cc \u0637\u0631\u0641 \u0642\u0631\u0627\u0631\u062f\u0627\u062f"
                       }
                     </div>
-                  </Stack__>
+                  </div>
                 }
                 showArrow={false}
               >
@@ -504,9 +492,7 @@ function PlasmicProfile__RenderFunc(props: {
                 )}
                 id={"4"}
                 label2={
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__tQxif)}
                   >
                     <Icon32Icon
@@ -525,7 +511,7 @@ function PlasmicProfile__RenderFunc(props: {
                         "\u0631\u0645\u0632 \u0639\u0628\u0648\u0631 \u062b\u0627\u0628\u062a"
                       }
                     </div>
-                  </Stack__>
+                  </div>
                 }
                 showArrow={false}
               >
@@ -542,9 +528,7 @@ function PlasmicProfile__RenderFunc(props: {
                 )}
                 id={"5"}
                 label2={
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__rs5Nj)}
                   >
                     <Icon33Icon
@@ -563,7 +547,7 @@ function PlasmicProfile__RenderFunc(props: {
                         "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u0646\u0633\u062e\u0647 \u0646\u0648\u06cc\u0633\u06cc"
                       }
                     </div>
-                  </Stack__>
+                  </div>
                 }
                 showArrow={false}
               >
@@ -682,7 +666,7 @@ function PlasmicProfile__RenderFunc(props: {
           />
         );
       })()}
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

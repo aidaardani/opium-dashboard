@@ -586,11 +586,7 @@ function PlasmicBookList__RenderFunc(props: {
                   role={"img"}
                 />
 
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__jlzo)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__jlzo)}>
                   <div
                     className={classNames(
                       projectcss.all,
@@ -799,7 +795,7 @@ function PlasmicBookList__RenderFunc(props: {
                       />
                     }
                   />
-                </Stack__>
+                </div>
                 <Icon37Icon
                   className={classNames(projectcss.all, sty.svg__wr8D)}
                   onClick={async event => {
@@ -1662,9 +1658,7 @@ function PlasmicBookList__RenderFunc(props: {
                         overrides.determiningTheSituationDialog
                       }
                       body={
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
+                        <div
                           className={classNames(
                             projectcss.all,
                             sty.freeBox__gGaQu
@@ -1742,9 +1736,7 @@ function PlasmicBookList__RenderFunc(props: {
                               })()}
                             </React.Fragment>
                           </div>
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__vRjaR
@@ -2183,8 +2175,8 @@ function PlasmicBookList__RenderFunc(props: {
                                 }
                               }}
                             />
-                          </Stack__>
-                        </Stack__>
+                          </div>
+                        </div>
                       }
                       className={classNames(
                         "__wab_instance",
@@ -2241,11 +2233,9 @@ function PlasmicBookList__RenderFunc(props: {
                       trigger={null}
                     />
 
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"switch2"}
                       data-plasmic-override={overrides.switch2}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.switch2)}
                     >
                       <div
@@ -2707,7 +2697,7 @@ function PlasmicBookList__RenderFunc(props: {
                           }).apply(null, eventArgs);
                         }}
                       />
-                    </Stack__>
+                    </div>
                   </ApiRequest>
                 </div>
               ) : null}

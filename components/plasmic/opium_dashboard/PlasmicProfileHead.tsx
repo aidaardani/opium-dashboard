@@ -254,16 +254,8 @@ function PlasmicProfileHead__RenderFunc(props: {
         }}
         url={"https://api.paziresh24.com/V1/doctor/profile"}
       >
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__p2O2Y)}
-        >
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__sK3Um)}
-          >
+        <div className={classNames(projectcss.all, sty.freeBox__p2O2Y)}>
+          <div className={classNames(projectcss.all, sty.freeBox__sK3Um)}>
             <div className={classNames(projectcss.all, sty.freeBox__f836)}>
               <Avatar
                 data-plasmic-name={"avatar"}
@@ -635,11 +627,7 @@ function PlasmicProfileHead__RenderFunc(props: {
                 </FileInput>
               </div>
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__lx8K6)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__lx8K6)}>
               <div
                 className={classNames(
                   projectcss.all,
@@ -665,9 +653,7 @@ function PlasmicProfileHead__RenderFunc(props: {
                   })()}
                 </React.Fragment>
               </div>
-              <Stack__
-                as={"div"}
-                hasGap={true}
+              <div
                 className={classNames(
                   projectcss.all,
                   sty.freeBox__bjZmx,
@@ -722,9 +708,9 @@ function PlasmicProfileHead__RenderFunc(props: {
                     </div>
                   );
                 })}
-              </Stack__>
-            </Stack__>
-          </Stack__>
+              </div>
+            </div>
+          </div>
           <div className={classNames(projectcss.all, sty.freeBox__prR0)}>
             <PlasmicLink__
               data-plasmic-name={"link"}
@@ -757,7 +743,7 @@ function PlasmicProfileHead__RenderFunc(props: {
               }
             </PlasmicLink__>
           </div>
-        </Stack__>
+        </div>
       </ApiRequest>
     </div>
   ) as React.ReactElement | null;

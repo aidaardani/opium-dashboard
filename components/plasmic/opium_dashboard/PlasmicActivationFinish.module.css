@@ -119,43 +119,25 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
   height: auto;
   max-width: 100%;
   margin-top: var(--token-Fv8-L_kN-2Ma);
   margin-bottom: var(--token-Fv8-L_kN-2Ma);
   align-self: center;
+  row-gap: var(--token-Fv8-L_kN-2Ma);
   min-width: 0;
   padding: 8px;
-}
-.freeBox__aR1V > :global(.__wab_flex-container) {
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-width: 0;
-  margin-top: calc(0px - var(--token-Fv8-L_kN-2Ma));
-  height: calc(100% + var(--token-Fv8-L_kN-2Ma));
-}
-.freeBox__aR1V > :global(.__wab_flex-container) > *,
-.freeBox__aR1V > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.freeBox__aR1V > :global(.__wab_flex-container) > picture > img,
-.freeBox__aR1V
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: var(--token-Fv8-L_kN-2Ma);
 }
 .img {
   object-fit: cover;
   max-width: 100%;
-  margin-top: calc(0px + var(--token-Fv8-L_kN-2Ma)) !important;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px;
   width: 170px;
   height: 160px;
   flex-shrink: 0;
+  margin: 0px;
 }
 .img > picture > img {
   object-fit: cover;
@@ -230,32 +212,15 @@
   display: flex;
   flex-direction: row;
   position: relative;
+  align-items: stretch;
+  justify-content: center;
   width: 100%;
   height: auto;
   max-width: 100%;
-  min-width: 0;
-}
-.freeBox__tYnz9 > :global(.__wab_flex-container) {
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: center;
   flex-wrap: wrap;
+  column-gap: var(--token-vMUQwr5Jto1d);
+  row-gap: var(--token-vMUQwr5Jto1d);
   min-width: 0;
-  margin-left: calc(0px - var(--token-vMUQwr5Jto1d));
-  width: calc(100% + var(--token-vMUQwr5Jto1d));
-  margin-top: calc(0px - var(--token-vMUQwr5Jto1d));
-  height: calc(100% + var(--token-vMUQwr5Jto1d));
-}
-.freeBox__tYnz9 > :global(.__wab_flex-container) > *,
-.freeBox__tYnz9 > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.freeBox__tYnz9 > :global(.__wab_flex-container) > picture > img,
-.freeBox__tYnz9
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-left: var(--token-vMUQwr5Jto1d);
-  margin-top: var(--token-vMUQwr5Jto1d);
 }
 .button__tePf:global(.__wab_instance) {
   max-width: 100%;

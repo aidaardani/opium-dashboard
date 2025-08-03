@@ -234,11 +234,9 @@ function PlasmicDurationSelection__RenderFunc(props: {
         }}
         url={"https://apigw.paziresh24.com/v1/sample-duration"}
       >
-        <Stack__
-          as={"div"}
+        <div
           data-plasmic-name={"freeBox"}
           data-plasmic-override={overrides.freeBox}
-          hasGap={true}
           className={classNames(projectcss.all, sty.freeBox)}
         >
           {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
@@ -287,7 +285,7 @@ function PlasmicDurationSelection__RenderFunc(props: {
               </div>
             );
           })}
-        </Stack__>
+        </div>
       </ApiRequest>
     </div>
   ) as React.ReactElement | null;

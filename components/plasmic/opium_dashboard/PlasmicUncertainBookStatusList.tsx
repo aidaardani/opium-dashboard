@@ -376,9 +376,7 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
           throw e;
         }
       })() ? (
-        <Stack__
-          as={"div"}
-          hasGap={true}
+        <div
           className={classNames(projectcss.all, sty.freeBox__mUrfz)}
           onClick={async event => {
             const $steps = {};
@@ -524,17 +522,13 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
               '\u0627\u0632 \u0627\u06cc\u0646 \u067e\u0633\u060c \u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u0628\u0627 \u0648\u0636\u0639\u06cc\u062a \u0646\u0627\u0645\u0634\u062e\u0635\u060c \u0628\u0639\u062f \u0627\u0632 \u06f3\u06f0 \u0631\u0648\u0632\u060c \u0628\u0647 \u0639\u0646\u0648\u0627\u0646 \u0646\u0648\u0628\u062a "\u0648\u06cc\u0632\u06cc\u062a \u0634\u062f\u0647" \u062f\u0631 \u0646\u0638\u0631 \u06af\u0631\u0641\u062a\u0647 \u062e\u0648\u0627\u0647\u0646\u062f \u0634\u062f.'
             }
           </div>
-        </Stack__>
+        </div>
       ) : null}
       <Dialog
         data-plasmic-name={"dialog"}
         data-plasmic-override={overrides.dialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__d51Fh)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__d51Fh)}>
             <div
               className={classNames(
                 projectcss.all,
@@ -546,11 +540,7 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
                 "\u0622\u06cc\u0627 \u0627\u0637\u0645\u06cc\u0646\u0627\u0646 \u062f\u0627\u0631\u06cc\u062f \u06a9\u0647 \u0647\u0645\u0647 \u0646\u0648\u0628\u062a \u0647\u0627 \u0631\u0627 \u0648\u06cc\u0632\u06cc\u062a \u06a9\u0631\u062f\u0647 \u0627\u06cc\u062f\u061f\u200c"
               }
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__epDHv)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__epDHv)}>
               <Button
                 data-plasmic-name={"yesSure"}
                 data-plasmic-override={overrides.yesSure}
@@ -910,8 +900,8 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
                   }
                 }}
               />
-            </Stack__>
-          </Stack__>
+            </div>
+          </div>
         }
         className={classNames("__wab_instance", sty.dialog)}
         onOpenChange={async (...eventArgs: any) => {

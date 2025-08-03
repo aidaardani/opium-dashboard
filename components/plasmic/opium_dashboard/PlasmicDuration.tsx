@@ -66,8 +66,6 @@ import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import { TimePicker } from "@/fragment/components/time-picker"; // plasmic-import: 0Mwoeihejk-H/codeComponent
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
-import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
-
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -262,18 +260,12 @@ function PlasmicDuration__RenderFunc(props: {
     $refs
   });
 
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantsfobTirRaixGf()
-  });
-
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -316,16 +308,8 @@ function PlasmicDuration__RenderFunc(props: {
         }}
         url={"https://apigw.paziresh24.com/v1/sample-duration"}
       >
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox___6SjG1)}
-        >
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox___4Yxhp)}
-          >
+        <div className={classNames(projectcss.all, sty.freeBox___6SjG1)}>
+          <div className={classNames(projectcss.all, sty.freeBox___4Yxhp)}>
             <div
               className={classNames(
                 projectcss.all,
@@ -477,13 +461,9 @@ function PlasmicDuration__RenderFunc(props: {
                 ) : null
               }
             />
-          </Stack__>
+          </div>
           <div className={classNames(projectcss.all, sty.freeBox__mljoZ)}>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox___6E1Ri)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox___6E1Ri)}>
               <div
                 className={classNames(projectcss.all, sty.freeBox__uH8A)}
                 onClick={async event => {
@@ -534,9 +514,7 @@ function PlasmicDuration__RenderFunc(props: {
                   data-plasmic-name={"dialog"}
                   data-plasmic-override={overrides.dialog}
                   body={
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__vXIx)}
                     >
                       <TimePicker
@@ -830,7 +808,7 @@ function PlasmicDuration__RenderFunc(props: {
                           }
                         }}
                       />
-                    </Stack__>
+                    </div>
                   }
                   className={classNames("__wab_instance", sty.dialog)}
                   onOpenChange={async (...eventArgs: any) => {
@@ -1172,11 +1150,11 @@ function PlasmicDuration__RenderFunc(props: {
                   </div>
                 );
               })}
-            </Stack__>
+            </div>
           </div>
-        </Stack__>
+        </div>
       </ApiRequest>
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

@@ -63,8 +63,6 @@ import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import { DatePicker } from "@/fragment/components/date-picker"; // plasmic-import: b38lDo6Nm8Rh/codeComponent
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
-import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
-
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -180,18 +178,12 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
     $refs
   });
 
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantsfobTirRaixGf()
-  });
-
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -215,11 +207,7 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
           "\u0644\u06cc\u0633\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627\u06cc \u0645\u0637\u0628"
         }
       </div>
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__cR9Gj)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__cR9Gj)}>
         <div
           className={classNames(projectcss.all, sty.freeBox___0IHk)}
           onClick={async event => {
@@ -324,16 +312,8 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
           data-plasmic-name={"dialog2"}
           data-plasmic-override={overrides.dialog2}
           body={
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__hO9T7)}
-            >
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__v3WIa)}
-              >
+            <div className={classNames(projectcss.all, sty.freeBox__hO9T7)}>
+              <div className={classNames(projectcss.all, sty.freeBox__v3WIa)}>
                 <div
                   className={classNames(
                     projectcss.all,
@@ -383,11 +363,7 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
                   ])}
                 />
 
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__zaHvX)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__zaHvX)}>
                   <Button
                     children2={
                       <div
@@ -532,9 +508,9 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
                       }
                     }}
                   />
-                </Stack__>
-              </Stack__>
-            </Stack__>
+                </div>
+              </div>
+            </div>
           }
           className={classNames("__wab_instance", sty.dialog2)}
           onOpenChange={async (...eventArgs: any) => {
@@ -553,11 +529,7 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
           }}
           open={generateStateValueProp($state, ["dialog2", "open"])}
           title={
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__d1Eii)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__d1Eii)}>
               <FilterSvg2Icon
                 className={classNames(projectcss.all, sty.svg__dPria)}
                 role={"img"}
@@ -574,7 +546,7 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
                   "\u0641\u06cc\u0644\u062a\u0631 \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627\u06cc \u0645\u0637\u0628"
                 }
               </div>
-            </Stack__>
+            </div>
           }
           trigger={
             <div
@@ -664,8 +636,8 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
             </div>
           }
         />
-      </Stack__>
-    </Stack__>
+      </div>
+    </div>
   ) as React.ReactElement | null;
 }
 

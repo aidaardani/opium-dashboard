@@ -269,25 +269,14 @@
   display: flex;
   flex-direction: row;
   position: relative;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: auto;
   max-width: 100%;
+  column-gap: var(--token-fhaz6q6bl-fW);
   min-width: 0;
   padding: 8px;
-}
-.cell > :global(.__wab_flex-container) {
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  margin-left: calc(0px - var(--token-fhaz6q6bl-fW));
-  width: calc(100% + var(--token-fhaz6q6bl-fW));
-}
-.cell > :global(.__wab_flex-container) > *,
-.cell > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.cell > :global(.__wab_flex-container) > picture > img,
-.cell > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
-  margin-left: var(--token-fhaz6q6bl-fW);
 }
 .svg {
   object-fit: cover;

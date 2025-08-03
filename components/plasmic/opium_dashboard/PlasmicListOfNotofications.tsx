@@ -746,11 +746,9 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                   <div
                     className={classNames(projectcss.all, sty.freeBox__qlUGr)}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"sendnotifications"}
                       data-plasmic-override={overrides.sendnotifications}
-                      hasGap={true}
                       className={classNames(
                         projectcss.all,
                         sty.sendnotifications
@@ -1087,12 +1085,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                           </div>
                         }
                       />
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
+                    </div>
+                    <div
                       data-plasmic-name={"sendwhom"}
                       data-plasmic-override={overrides.sendwhom}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.sendwhom)}
                     >
                       <div
@@ -1443,12 +1439,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                           </div>
                         }
                       />
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
+                    </div>
+                    <div
                       data-plasmic-name={"sendwhat"}
                       data-plasmic-override={overrides.sendwhat}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.sendwhat)}
                     >
                       <div
@@ -1472,17 +1466,13 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                           sty.fragmentPopoverSendWhat
                         )}
                         content={
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__qCnfd
                             )}
                           >
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
+                            <div
                               className={classNames(
                                 projectcss.all,
                                 sty.freeBox__yEAd
@@ -1958,8 +1948,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                   />
                                 ) : null}
                               </div>
-                            </Stack__>
-                          </Stack__>
+                            </div>
+                          </div>
                         }
                         onOpenChange={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
@@ -1975,9 +1965,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                           $refs["fragmentPopoverSendWhat"] = ref;
                         }}
                         trigger={
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox___0FJxc
@@ -2074,7 +2062,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                 />
                               ) : null}
                             </div>
-                          </Stack__>
+                          </div>
                         }
                       />
 
@@ -2117,11 +2105,9 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                         ])}
                       />
 
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"sample"}
                         data-plasmic-override={overrides.sample}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.sample)}
                       >
                         <div
@@ -2278,11 +2264,9 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                   }
                                   showArrow={true}
                                 >
-                                  <Stack__
-                                    as={"div"}
+                                  <div
                                     data-plasmic-name={"sample2"}
                                     data-plasmic-override={overrides.sample2}
-                                    hasGap={true}
                                     className={classNames(
                                       projectcss.all,
                                       sty.sample2
@@ -2529,7 +2513,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                         })()}
                                       </React.Fragment>
                                     </div>
-                                  </Stack__>
+                                  </div>
                                 </AntdAccordionItem>
                                 <AntdAccordionItem
                                   className={classNames(
@@ -2592,8 +2576,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                             />
                           );
                         })()}
-                      </Stack__>
-                    </Stack__>
+                      </div>
+                    </div>
                     <div
                       data-plasmic-name={"save"}
                       data-plasmic-override={overrides.save}
@@ -2806,17 +2790,13 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                         data-plasmic-name={"dialog"}
                         data-plasmic-override={overrides.dialog}
                         body={
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__uWcSu
                             )}
                           >
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
+                            <div
                               className={classNames(
                                 projectcss.all,
                                 sty.freeBox___4LeRq
@@ -2833,9 +2813,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                   "\u0647\u0632\u06cc\u0646\u0647 \u0647\u0631 \u067e\u06cc\u0627\u0645\u06a9 \u0627\u0631\u0633\u0627\u0644\u06cc \u0627\u0632 \u0627\u06cc\u0646 \u0633\u0631\u0648\u06cc\u0633 \u00ab\u06f7\u06f5\u06f0 \u062a\u0648\u0645\u0627\u0646\u00bb \u0627\u0633\u062a \u06a9\u0647 \u062f\u0631 \u067e\u0627\u06cc\u0627\u0646 \u0647\u0631 \u0645\u0627\u0647 \u0628\u0631\u0627\u06cc \u067e\u0632\u0634\u06a9 \u0628\u0647 \u062c\u0647\u062a \u067e\u0631\u062f\u0627\u062e\u062a \u0627\u06cc\u0646 \u0647\u0632\u06cc\u0646\u0647\u060c \u0641\u0627\u06a9\u062a\u0648\u0631 \u0635\u0627\u062f\u0631 \u0645\u06cc\u06af\u0631\u062f\u062f."
                                 }
                               </div>
-                              <Stack__
-                                as={"div"}
-                                hasGap={true}
+                              <div
                                 className={classNames(
                                   projectcss.all,
                                   sty.freeBox__cTmTe
@@ -2861,9 +2839,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                     </span>
                                   </React.Fragment>
                                 </div>
-                                <Stack__
-                                  as={"div"}
-                                  hasGap={true}
+                                <div
                                   className={classNames(
                                     projectcss.all,
                                     sty.freeBox__ukQrX
@@ -3508,10 +3484,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                       }
                                     }}
                                   />
-                                </Stack__>
-                              </Stack__>
-                            </Stack__>
-                          </Stack__>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         }
                         className={classNames("__wab_instance", sty.dialog)}
                         onOpenChange={async (...eventArgs: any) => {
@@ -3670,11 +3646,9 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                 throw e;
               }
             })() ? (
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"listofnotifications"}
                 data-plasmic-override={overrides.listofnotifications}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.listofnotifications)}
               >
                 <div
@@ -3831,7 +3805,7 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                     />
                   );
                 })}
-              </Stack__>
+              </div>
             ) : null}
             <MetrikaYandex
               data-plasmic-name={"metrikaYandex"}

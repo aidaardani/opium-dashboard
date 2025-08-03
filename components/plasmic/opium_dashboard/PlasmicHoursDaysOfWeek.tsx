@@ -305,13 +305,11 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -388,11 +386,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
         }}
         url={"https://api.paziresh24.com/V1/doctor/center/workhours"}
       >
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__v0MpJ)}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox__v0MpJ)}>
           {(() => {
             try {
               return !$state.workhoursApi.error;
@@ -1524,11 +1518,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
               data-plasmic-name={"dialog"}
               data-plasmic-override={overrides.dialog}
               body={
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__yPjAx)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__yPjAx)}>
                   <div
                     className={classNames(projectcss.all, sty.freeBox__qkWxr)}
                   >
@@ -1610,9 +1600,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                       );
                     })}
                   </div>
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox___9A26S)}
                   >
                     <Button
@@ -2269,8 +2257,8 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                       }}
                       outline={true}
                     />
-                  </Stack__>
-                </Stack__>
+                  </div>
+                </div>
               }
               className={classNames("__wab_instance", sty.dialog)}
               onOpenChange={async (...eventArgs: any) => {
@@ -2289,11 +2277,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
               }}
               open={generateStateValueProp($state, ["dialog", "open"])}
               title={
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__zuyaT)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__zuyaT)}>
                   <div
                     className={classNames(
                       projectcss.all,
@@ -2305,14 +2289,14 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                       "\u062f\u0631 \u0628\u0627\u0632\u0647  \u062d\u0630\u0641 \u0634\u062f\u0647\u060c \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0646\u0648\u0628\u062a \u062f\u0627\u0631\u0646\u062f!"
                     }
                   </div>
-                </Stack__>
+                </div>
               }
               trigger={null}
             />
           </div>
-        </Stack__>
+        </div>
       </ApiRequest>
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

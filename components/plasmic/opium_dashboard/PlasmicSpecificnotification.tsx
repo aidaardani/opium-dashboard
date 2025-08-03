@@ -442,11 +442,9 @@ function PlasmicSpecificnotification__RenderFunc(props: {
         }}
       />
 
-      <Stack__
-        as={"div"}
+      <div
         data-plasmic-name={"sendwhom2"}
         data-plasmic-override={overrides.sendwhom2}
-        hasGap={true}
         className={classNames(projectcss.all, sty.sendwhom2)}
       >
         <div
@@ -500,12 +498,10 @@ function PlasmicSpecificnotification__RenderFunc(props: {
             />
           </div>
         </div>
-      </Stack__>
-      <Stack__
-        as={"div"}
+      </div>
+      <div
         data-plasmic-name={"sendwhat2"}
         data-plasmic-override={overrides.sendwhat2}
-        hasGap={true}
         className={classNames(projectcss.all, sty.sendwhat2)}
       >
         <div
@@ -527,21 +523,11 @@ function PlasmicSpecificnotification__RenderFunc(props: {
             sty.fragmentPopoverEditNotification2
           )}
           content={
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__eg4TZ)}
-            >
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__qGiq5)}
-              >
-                <Stack__
-                  as={"div"}
+            <div className={classNames(projectcss.all, sty.freeBox__eg4TZ)}>
+              <div className={classNames(projectcss.all, sty.freeBox__qGiq5)}>
+                <div
                   data-plasmic-name={"drname2"}
                   data-plasmic-override={overrides.drname2}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.drname2)}
                   onClick={async event => {
                     const $steps = {};
@@ -627,12 +613,10 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                       role={"img"}
                     />
                   ) : null}
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                </div>
+                <div
                   data-plasmic-name={"patientname2"}
                   data-plasmic-override={overrides.patientname2}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.patientname2)}
                   onClick={async event => {
                     const $steps = {};
@@ -719,12 +703,10 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                       role={"img"}
                     />
                   ) : null}
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                </div>
+                <div
                   data-plasmic-name={"refid2"}
                   data-plasmic-override={overrides.refid2}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.refid2)}
                   onClick={async event => {
                     const $steps = {};
@@ -810,12 +792,10 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                       role={"img"}
                     />
                   ) : null}
-                </Stack__>
-                <Stack__
-                  as={"div"}
+                </div>
+                <div
                   data-plasmic-name={"booktime2"}
                   data-plasmic-override={overrides.booktime2}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.booktime2)}
                   onClick={async event => {
                     const $steps = {};
@@ -902,9 +882,9 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                       role={"img"}
                     />
                   ) : null}
-                </Stack__>
-              </Stack__>
-            </Stack__>
+                </div>
+              </div>
+            </div>
           }
           onOpenChange={async (...eventArgs: any) => {
             generateStateOnChangeProp($state, [
@@ -1063,11 +1043,9 @@ function PlasmicSpecificnotification__RenderFunc(props: {
           ])}
         />
 
-        <Stack__
-          as={"div"}
+        <div
           data-plasmic-name={"sample3"}
           data-plasmic-override={overrides.sample3}
-          hasGap={true}
           className={classNames(projectcss.all, sty.sample3)}
         >
           <div className={classNames(projectcss.all, sty.freeBox__rE4Xb)}>
@@ -1205,11 +1183,9 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                     }
                     showArrow={true}
                   >
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"sample4"}
                       data-plasmic-override={overrides.sample4}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.sample4)}
                     >
                       <div
@@ -1378,7 +1354,7 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                           })()}
                         </React.Fragment>
                       </div>
-                    </Stack__>
+                    </div>
                   </AntdAccordionItem>
                   <AntdAccordionItem
                     className={classNames(
@@ -1441,8 +1417,8 @@ function PlasmicSpecificnotification__RenderFunc(props: {
               />
             );
           })()}
-        </Stack__>
-      </Stack__>
+        </div>
+      </div>
       <Button
         children2={"\u0630\u062e\u06cc\u0631\u0647"}
         className={classNames("__wab_instance", sty.button___9WY8O)}
@@ -1613,16 +1589,8 @@ function PlasmicSpecificnotification__RenderFunc(props: {
         data-plasmic-name={"dialog"}
         data-plasmic-override={overrides.dialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__e2XM)}
-          >
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__geBZd)}
-            >
+          <div className={classNames(projectcss.all, sty.freeBox__e2XM)}>
+            <div className={classNames(projectcss.all, sty.freeBox__geBZd)}>
               <div
                 className={classNames(
                   projectcss.all,
@@ -1634,12 +1602,8 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                   "\u0647\u0632\u06cc\u0646\u0647 \u0647\u0631 \u067e\u06cc\u0627\u0645\u06a9 \u0627\u0631\u0633\u0627\u0644\u06cc \u0627\u0632 \u0627\u06cc\u0646 \u0633\u0631\u0648\u06cc\u0633 \u00ab\u06f7\u06f5\u06f0 \u062a\u0648\u0645\u0627\u0646\u00bb \u0627\u0633\u062a \u06a9\u0647 \u062f\u0631 \u067e\u0627\u06cc\u0627\u0646 \u0647\u0631 \u0645\u0627\u0647 \u0628\u0631\u0627\u06cc \u067e\u0632\u0634\u06a9 \u0628\u0647 \u062c\u0647\u062a \u067e\u0631\u062f\u0627\u062e\u062a \u0627\u06cc\u0646 \u0647\u0632\u06cc\u0646\u0647\u060c \u0641\u0627\u06a9\u062a\u0648\u0631 \u0635\u0627\u062f\u0631 \u0645\u06cc\u06af\u0631\u062f\u062f."
                 }
               </div>
-            </Stack__>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__lBblx)}
-            >
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox__lBblx)}>
               <div
                 className={classNames(
                   projectcss.all,
@@ -1658,11 +1622,7 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                   </span>
                 </React.Fragment>
               </div>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__vnoCe)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__vnoCe)}>
                 <Button
                   children2={
                     <div
@@ -2140,9 +2100,9 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                     }
                   }}
                 />
-              </Stack__>
-            </Stack__>
-          </Stack__>
+              </div>
+            </div>
+          </div>
         }
         className={classNames("__wab_instance", sty.dialog)}
         onOpenChange={async (...eventArgs: any) => {

@@ -310,11 +310,7 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
           data-plasmic-name={"dialog"}
           data-plasmic-override={overrides.dialog}
           body={
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox___8Lca7)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox___8Lca7)}>
               <div
                 data-plasmic-name={
                   "\u0633\u0627\u0639\u062a\u0648\u062a\u0627\u0631\u06cc\u062e"
@@ -542,11 +538,7 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                   />
                 ) : null}
               </div>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__nLkcA)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__nLkcA)}>
                 <Button
                   children2={
                     "\u062a\u062c\u0648\u06cc\u0632 \u0646\u0633\u062e\u0647"
@@ -683,14 +675,12 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                     }
                   />
                 ) : null}
-              </Stack__>
+              </div>
               <Dialog
                 data-plasmic-name={"dialogdeletebook"}
                 data-plasmic-override={overrides.dialogdeletebook}
                 body={
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__aWff6)}
                   >
                     <Button
@@ -1193,7 +1183,7 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                         />
                       }
                     />
-                  </Stack__>
+                  </div>
                 }
                 className={classNames("__wab_instance", sty.dialogdeletebook)}
                 onOpenChange={async (...eventArgs: any) => {
@@ -1229,7 +1219,7 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                 }
                 trigger={null}
               />
-            </Stack__>
+            </div>
           }
           className={classNames("__wab_instance", sty.dialog, {
             [sty.dialogonlineBorder]: hasVariant(
@@ -1302,9 +1292,7 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
             "\u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u06cc\u0645\u0627\u0631"
           }
           trigger={
-            <Stack__
-              as={"div"}
-              hasGap={true}
+            <div
               className={classNames(projectcss.all, sty.freeBox__dHtct, {
                 [sty.freeBoxonlineBorder__dHtctulIv]: hasVariant(
                   $state,
@@ -1363,11 +1351,7 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                   </div>
                 </div>
               </div>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__j7BPc)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__j7BPc)}>
                 <div
                   className={classNames(
                     projectcss.all,
@@ -1398,11 +1382,7 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                     })()}
                   </React.Fragment>
                 </div>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__xIRgq)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__xIRgq)}>
                   <div
                     className={classNames(
                       projectcss.all,
@@ -1462,7 +1442,7 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                       role={"img"}
                     />
                   ) : null}
-                </Stack__>
+                </div>
                 <div
                   className={classNames(
                     projectcss.all,
@@ -1493,16 +1473,14 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                     })()}
                   </React.Fragment>
                 </div>
-              </Stack__>
-            </Stack__>
+              </div>
+            </div>
           }
         />
       </div>
-      <Stack__
-        as={"div"}
+      <div
         data-plasmic-name={"bookState"}
         data-plasmic-override={overrides.bookState}
-        hasGap={true}
         className={classNames(projectcss.all, sty.bookState)}
         dir={"rtl"}
       >
@@ -1510,11 +1488,7 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
           data-plasmic-name={"dialog2"}
           data-plasmic-override={overrides.dialog2}
           body={
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__ntGzy)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__ntGzy)}>
               <div
                 className={classNames(
                   projectcss.all,
@@ -1785,7 +1759,7 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                   />
                 }
               />
-            </Stack__>
+            </div>
           }
           className={classNames("__wab_instance", sty.dialog2)}
           noTrigger={(() => {
@@ -2131,7 +2105,7 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
             }
           })()}
         />
-      </Stack__>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }

@@ -410,13 +410,11 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -1263,11 +1261,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
             "\u062f\u0631 \u0635\u0648\u0631\u062a \u0644\u063a\u0648 \u0646\u0648\u0628\u062a \u062a\u0648\u0633\u0637 \u0628\u06cc\u0645\u0627\u0631 \u062a\u0627 \u06f5 \u0633\u0627\u0639\u062a \u067e\u06cc\u0634 \u0627\u0632 \u0632\u0645\u0627\u0646 \u0646\u0648\u0628\u062a \u0628\u06cc\u0645\u0627\u0631\u060c \u0648\u062c\u0647 \u0628\u06cc\u0645\u0627\u0631 \u0645\u0633\u062a\u0631\u062f \u0645\u06cc\u200c\u06af\u0631\u062f\u062f."
           }
         </div>
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__k3Zgm)}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox__k3Zgm)}>
           <Button
             children2={
               <div
@@ -1916,11 +1910,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                     </React.Fragment>
                   </div>
                 </div>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__bPvSb)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__bPvSb)}>
                   <Button
                     children2={
                       hasVariant(globalVariants, "screen", "mobileOnly")
@@ -2276,7 +2266,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                       }
                     }}
                   />
-                </Stack__>
+                </div>
               </React.Fragment>
             }
             className={classNames("__wab_instance", sty.dialogCardNumber)}
@@ -2588,9 +2578,9 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
               }
             }}
           />
-        </Stack__>
+        </div>
       </ApiRequest>
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

@@ -66,8 +66,6 @@ import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nA
 import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 
-import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
-
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -238,10 +236,6 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
     $refs
   });
 
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantsfobTirRaixGf()
-  });
-
   return (
     <React.Fragment>
       <Head></Head>
@@ -341,11 +335,7 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
             url={"https://api.paziresh24.com/V1/doctor/centers"}
           />
 
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__lu1Oc)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__lu1Oc)}>
             <div
               data-plasmic-name={"title"}
               data-plasmic-override={overrides.title}
@@ -502,11 +492,9 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                 data-plasmic-override={overrides.buttons}
                 className={classNames(projectcss.all, sty.buttons)}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"button"}
                   data-plasmic-override={overrides.button}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.button)}
                 >
                   <Dialog
@@ -714,11 +702,9 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                               throw e;
                             }
                           })() ? (
-                            <Stack__
-                              as={"div"}
+                            <div
                               data-plasmic-name={"button2"}
                               data-plasmic-override={overrides.button2}
-                              hasGap={true}
                               className={classNames(
                                 projectcss.all,
                                 sty.button2
@@ -1002,7 +988,7 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                                   }
                                 }}
                               />
-                            </Stack__>
+                            </div>
                           ) : null}
                           {(() => {
                             try {
@@ -1263,9 +1249,7 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                     data-plasmic-name={"dialog3"}
                     data-plasmic-override={overrides.dialog3}
                     body={
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__mqBtP
@@ -1455,7 +1439,7 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                             }
                           }}
                         />
-                      </Stack__>
+                      </div>
                     }
                     className={classNames("__wab_instance", sty.dialog3)}
                     onOpenChange={async (...eventArgs: any) => {
@@ -1538,10 +1522,10 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                       />
                     }
                   />
-                </Stack__>
+                </div>
               </div>
             </div>
-          </Stack__>
+          </div>
           <SideEffect
             data-plasmic-name={"runCodeGtmMetrica"}
             data-plasmic-override={overrides.runCodeGtmMetrica}

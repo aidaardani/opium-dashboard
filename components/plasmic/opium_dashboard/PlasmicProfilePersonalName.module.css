@@ -4,22 +4,11 @@
   position: relative;
   width: 100%;
   height: auto;
-  justify-self: flex-start;
-  min-width: 0;
-}
-.root > :global(.__wab_flex-container) {
-  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  justify-self: flex-start;
+  row-gap: var(--token-Fv8-L_kN-2Ma);
   min-width: 0;
-  margin-top: calc(0px - var(--token-Fv8-L_kN-2Ma));
-  height: calc(100% + var(--token-Fv8-L_kN-2Ma));
-}
-.root > :global(.__wab_flex-container) > *,
-.root > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.root > :global(.__wab_flex-container) > picture > img,
-.root > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
-  margin-top: var(--token-Fv8-L_kN-2Ma);
 }
 .freeBox___9Qm6P {
   display: flex;
@@ -28,26 +17,11 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  min-width: 0;
-  padding: 8px;
-}
-.freeBox___9Qm6P > :global(.__wab_flex-container) {
-  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  row-gap: 4px;
   min-width: 0;
-  margin-top: calc(0px - 4px);
-  height: calc(100% + 4px);
-}
-.freeBox___9Qm6P > :global(.__wab_flex-container) > *,
-.freeBox___9Qm6P > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.freeBox___9Qm6P > :global(.__wab_flex-container) > picture > img,
-.freeBox___9Qm6P
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: 4px;
+  padding: 8px;
 }
 .text__uRmj {
   position: relative;
@@ -89,26 +63,11 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  min-width: 0;
-  padding: 8px;
-}
-.freeBox__tbLnE > :global(.__wab_flex-container) {
-  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  row-gap: 4px;
   min-width: 0;
-  margin-top: calc(0px - 4px);
-  height: calc(100% + 4px);
-}
-.freeBox__tbLnE > :global(.__wab_flex-container) > *,
-.freeBox__tbLnE > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.freeBox__tbLnE > :global(.__wab_flex-container) > picture > img,
-.freeBox__tbLnE
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: 4px;
+  padding: 8px;
 }
 .text__zgckb {
   position: relative;

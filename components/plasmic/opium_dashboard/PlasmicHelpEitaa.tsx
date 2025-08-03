@@ -59,8 +59,6 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
-
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -125,10 +123,6 @@ function PlasmicHelpEitaa__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantsfobTirRaixGf()
-  });
-
   return (
     <React.Fragment>
       <Head></Head>
@@ -157,11 +151,7 @@ function PlasmicHelpEitaa__RenderFunc(props: {
             sty.root
           )}
         >
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__jyofd)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__jyofd)}>
             <div
               className={classNames(
                 projectcss.all,
@@ -197,11 +187,7 @@ function PlasmicHelpEitaa__RenderFunc(props: {
                 }
               </div>
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__wqvC)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__wqvC)}>
               <PlasmicImg__
                 alt={""}
                 className={classNames(sty.img___5H4Tm)}
@@ -237,7 +223,7 @@ function PlasmicHelpEitaa__RenderFunc(props: {
                   aspectRatio: undefined
                 }}
               />
-            </Stack__>
+            </div>
             <div className={classNames(projectcss.all, sty.freeBox___7H5Np)}>
               <div
                 className={classNames(
@@ -251,11 +237,7 @@ function PlasmicHelpEitaa__RenderFunc(props: {
                 }
               </div>
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox___6NqKt)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox___6NqKt)}>
               <PlasmicImg__
                 alt={""}
                 className={classNames(sty.img__q4WAm)}
@@ -309,8 +291,8 @@ function PlasmicHelpEitaa__RenderFunc(props: {
                   aspectRatio: undefined
                 }}
               />
-            </Stack__>
-          </Stack__>
+            </div>
+          </div>
         </div>
       </div>
     </React.Fragment>

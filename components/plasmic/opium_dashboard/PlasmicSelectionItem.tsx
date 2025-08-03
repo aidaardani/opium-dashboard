@@ -180,9 +180,7 @@ function PlasmicSelectionItem__RenderFunc(props: {
         { [sty.rootisSelected]: hasVariant($state, "isSelected", "isSelected") }
       )}
     >
-      <Stack__
-        as={"div"}
-        hasGap={true}
+      <div
         className={classNames(projectcss.all, sty.freeBox__n4BcD, {
           [sty.freeBoxisSelected__n4BcDKlR9Z]: hasVariant(
             $state,
@@ -220,11 +218,7 @@ function PlasmicSelectionItem__RenderFunc(props: {
           })}
         />
 
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__qpN8I)}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox__qpN8I)}>
           <div
             className={classNames(
               projectcss.all,
@@ -271,8 +265,8 @@ function PlasmicSelectionItem__RenderFunc(props: {
               })()}
             </React.Fragment>
           </div>
-        </Stack__>
-      </Stack__>
+        </div>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }

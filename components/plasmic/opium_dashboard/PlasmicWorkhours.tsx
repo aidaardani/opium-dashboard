@@ -375,9 +375,7 @@ function PlasmicWorkhours__RenderFunc(props: {
             const currentItem = __plasmic_item_0;
             const currentIndex = __plasmic_idx_0;
             return (
-              <Stack__
-                as={"div"}
-                hasGap={true}
+              <div
                 className={classNames(projectcss.all, sty.freeBox__my02V)}
                 key={currentIndex}
               >
@@ -1445,7 +1443,7 @@ function PlasmicWorkhours__RenderFunc(props: {
                     />
                   );
                 })()}
-              </Stack__>
+              </div>
             );
           })
         : null}

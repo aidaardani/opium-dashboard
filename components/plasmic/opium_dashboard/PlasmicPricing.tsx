@@ -67,8 +67,6 @@ import { accordionHelpers as AntdAccordion_Helpers } from "@plasmicpkgs/antd5/sk
 import { AntdAccordionItem } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import MetrikaYandex from "../../MetrikaYandex"; // plasmic-import: bwh2kDzd78mD/component
 
-import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
-
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -344,10 +342,6 @@ function PlasmicPricing__RenderFunc(props: {
     $refs
   });
 
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantsfobTirRaixGf()
-  });
-
   return (
     <React.Fragment>
       <Head></Head>
@@ -441,11 +435,9 @@ function PlasmicPricing__RenderFunc(props: {
                 throw e;
               }
             })() ? (
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"outlineVertical"}
                 data-plasmic-override={overrides.outlineVertical}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.outlineVertical)}
               >
                 <div
@@ -468,11 +460,9 @@ function PlasmicPricing__RenderFunc(props: {
                     }
                   </h2>
                 </div>
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"kindOfPrice"}
                   data-plasmic-override={overrides.kindOfPrice}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.kindOfPrice)}
                 >
                   <div
@@ -856,7 +846,7 @@ function PlasmicPricing__RenderFunc(props: {
                       </div>
                     </div>
                   </div>
-                </Stack__>
+                </div>
                 <div className={classNames(projectcss.all, sty.freeBox__vpFLj)}>
                   <div
                     className={classNames(
@@ -2925,7 +2915,7 @@ function PlasmicPricing__RenderFunc(props: {
                     );
                   })()}
                 </div>
-              </Stack__>
+              </div>
             ) : null}
             <ApiRequest
               data-plasmic-name={"apiRequestForNotificationSetting"}

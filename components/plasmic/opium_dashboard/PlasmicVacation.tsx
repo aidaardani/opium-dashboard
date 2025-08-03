@@ -657,13 +657,11 @@ function PlasmicVacation__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -676,16 +674,8 @@ function PlasmicVacation__RenderFunc(props: {
         sty.root
       )}
     >
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__coCru)}
-      >
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__p3Mdz)}
-        >
+      <div className={classNames(projectcss.all, sty.freeBox__coCru)}>
+        <div className={classNames(projectcss.all, sty.freeBox__p3Mdz)}>
           <div
             className={classNames(
               projectcss.all,
@@ -706,7 +696,7 @@ function PlasmicVacation__RenderFunc(props: {
               "\u0634\u0645\u0627 \u0645\u06cc \u062a\u0648\u0627\u0646\u06cc\u062f \u0628\u0631\u0627\u06cc \u0633\u0627\u0639\u0627\u062a\u06cc \u06a9\u0647 \u0637\u0628\u0642 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u062e\u0648\u062f \u062d\u0636\u0648\u0631 \u0646\u062f\u0627\u0631\u06cc\u062f\u060c \u0645\u0631\u062e\u0635\u06cc \u0627\u0639\u0645\u0627\u0644 \u06a9\u0646\u06cc\u062f."
             }
           </div>
-        </Stack__>
+        </div>
         <ApiRequest
           data-plasmic-name={"centersApi"}
           data-plasmic-override={overrides.centersApi}
@@ -800,16 +790,12 @@ function PlasmicVacation__RenderFunc(props: {
             }}
           />
         </ApiRequest>
-      </Stack__>
+      </div>
       <Dialog
         data-plasmic-name={"addVocationDialog"}
         data-plasmic-override={overrides.addVocationDialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__esgU9)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__esgU9)}>
             <DateRangePicker
               data-plasmic-name={"dateRangePicker"}
               data-plasmic-override={overrides.dateRangePicker}
@@ -871,11 +857,7 @@ function PlasmicVacation__RenderFunc(props: {
                 throw e;
               }
             })() ? (
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__gtp5T)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__gtp5T)}>
                 <div
                   className={classNames(
                     projectcss.all,
@@ -1076,7 +1058,7 @@ function PlasmicVacation__RenderFunc(props: {
                     })()}
                   </React.Fragment>
                 </div>
-              </Stack__>
+              </div>
             ) : null}
             <div className={classNames(projectcss.all, sty.freeBox__vCfSi)}>
               {(() => {
@@ -1633,7 +1615,7 @@ function PlasmicVacation__RenderFunc(props: {
                 }
               }}
             />
-          </Stack__>
+          </div>
         }
         className={classNames("__wab_instance", sty.addVocationDialog)}
         onOpenChange={async (...eventArgs: any) => {
@@ -1825,11 +1807,7 @@ function PlasmicVacation__RenderFunc(props: {
             "\u0644\u06cc\u0633\u062a \u0645\u0631\u062e\u0635\u06cc \u0647\u0627\u06cc \u062b\u0628\u062a \u0634\u062f\u0647:"
           }
         </div>
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__rjW9A)}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox__rjW9A)}>
           {(() => {
             const child$Props = {
               onChange: async (...eventArgs: any) => {
@@ -2040,7 +2018,7 @@ function PlasmicVacation__RenderFunc(props: {
               />
             );
           })()}
-        </Stack__>
+        </div>
       </div>
       <ApiRequest
         data-plasmic-name={"vacationApi"}
@@ -2168,9 +2146,7 @@ function PlasmicVacation__RenderFunc(props: {
             throw e;
           }
         })() ? (
-          <Stack__
-            as={"div"}
-            hasGap={true}
+          <div
             className={classNames(
               projectcss.all,
               sty.freeBox__pQyuJ,
@@ -2195,9 +2171,7 @@ function PlasmicVacation__RenderFunc(props: {
               const currentItem = __plasmic_item_0;
               const currentIndex = __plasmic_idx_0;
               return (
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
+                <div
                   className={classNames(projectcss.all, sty.freeBox__dc1Y)}
                   key={currentIndex}
                 >
@@ -2264,9 +2238,7 @@ function PlasmicVacation__RenderFunc(props: {
                       throw e;
                     }
                   })() ? (
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__vvyn9)}
                     >
                       <Icon26Icon
@@ -2448,23 +2420,19 @@ function PlasmicVacation__RenderFunc(props: {
                         }}
                         role={"img"}
                       />
-                    </Stack__>
+                    </div>
                   ) : null}
-                </Stack__>
+                </div>
               );
             })}
-          </Stack__>
+          </div>
         ) : null}
       </ApiRequest>
       <Dialog
         data-plasmic-name={"errorDialog"}
         data-plasmic-override={overrides.errorDialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__o8Zyk)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__o8Zyk)}>
             <div
               className={classNames(
                 projectcss.all,
@@ -2487,11 +2455,7 @@ function PlasmicVacation__RenderFunc(props: {
                 "\u062f\u0631\ufee7\ufec8\ufeae \u062f\u0627\ufeb7\ufe98\ufeea \ufe91\ufe8e\ufeb7\ufbff\ufeaa \ufb90\ufeea \ufb58\ufeb2 \u0627\u0632 \ufea3\ufeac\u0641 \u06cc\u0627 \u062c\u0627\u0628\u062c\u0627\u06cc\u06cc \u0646\u0648\u0628\u062a \ufe91\ufeae\u0627\u06cc \ufe91\ufbff\ufee4\ufe8e\u0631\u0627\u0646 \ufb58\ufbff\ufe8e\ufee3\ufb8f \u0627\u0631\ufeb3\ufe8e\u0644 \ufee3\ufbfd \ufeb7\ufeee\u062f."
               }
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__fYxVg)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__fYxVg)}>
               <Button
                 children2={
                   <div
@@ -2826,8 +2790,8 @@ function PlasmicVacation__RenderFunc(props: {
                 }}
                 outline={true}
               />
-            </Stack__>
-          </Stack__>
+            </div>
+          </div>
         }
         className={classNames("__wab_instance", sty.errorDialog)}
         noTrigger={true}
@@ -2854,11 +2818,7 @@ function PlasmicVacation__RenderFunc(props: {
         data-plasmic-name={"changeDateDialog"}
         data-plasmic-override={overrides.changeDateDialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__v9WaA)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__v9WaA)}>
             <div
               className={classNames(
                 projectcss.all,
@@ -2868,11 +2828,7 @@ function PlasmicVacation__RenderFunc(props: {
             >
               {"\u0646\u0648\u0628\u062a \u0647\u0627 \u0628\u0647 "}
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__qMfdl)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__qMfdl)}>
               <div
                 className={classNames(
                   projectcss.all,
@@ -2969,7 +2925,7 @@ function PlasmicVacation__RenderFunc(props: {
               >
                 {"\u0633\u0627\u0639\u062a"}
               </div>
-            </Stack__>
+            </div>
             <div
               className={classNames(
                 projectcss.all,
@@ -2983,7 +2939,7 @@ function PlasmicVacation__RenderFunc(props: {
               children2={"\u062a\u0627\u06cc\u06cc\u062f"}
               className={classNames("__wab_instance", sty.button__vIp1U)}
             />
-          </Stack__>
+          </div>
         }
         className={classNames("__wab_instance", sty.changeDateDialog)}
         noTrigger={true}
@@ -3012,11 +2968,7 @@ function PlasmicVacation__RenderFunc(props: {
         data-plasmic-name={"selectDate"}
         data-plasmic-override={overrides.selectDate}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__ahm6J)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__ahm6J)}>
             <DatePicker
               data-plasmic-name={"datePicker"}
               data-plasmic-override={overrides.datePicker}
@@ -3041,7 +2993,7 @@ function PlasmicVacation__RenderFunc(props: {
               children2={"\u062a\u0627\u06cc\u06cc\u062f"}
               className={classNames("__wab_instance", sty.button__gGfXg)}
             />
-          </Stack__>
+          </div>
         }
         className={classNames("__wab_instance", sty.selectDate)}
         noTrigger={true}
@@ -3070,11 +3022,7 @@ function PlasmicVacation__RenderFunc(props: {
         data-plasmic-name={"selectTime"}
         data-plasmic-override={overrides.selectTime}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__oZPy)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__oZPy)}>
             <TimePicker
               data-plasmic-name={"timePicker"}
               data-plasmic-override={overrides.timePicker}
@@ -3203,7 +3151,7 @@ function PlasmicVacation__RenderFunc(props: {
                 }
               }}
             />
-          </Stack__>
+          </div>
         }
         className={classNames("__wab_instance", sty.selectTime)}
         noTrigger={true}
@@ -3230,11 +3178,7 @@ function PlasmicVacation__RenderFunc(props: {
         data-plasmic-name={"deleteDialog"}
         data-plasmic-override={overrides.deleteDialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox___9UkGr)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox___9UkGr)}>
             <div
               className={classNames(
                 projectcss.all,
@@ -3246,11 +3190,7 @@ function PlasmicVacation__RenderFunc(props: {
                 "\u0622\u06cc\u0627 \u0627\u0632 \u062d\u0630\u0641 \u0645\u0631\u062e\u0635\u06cc \u062e\u0648\u062f \u0627\u0637\u0645\u06cc\u0646\u0627\u0646 \u062f\u0627\u0631\u06cc\u062f\u061f"
               }
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__siU1P)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__siU1P)}>
               <Button
                 children2={"\u062d\u0630\u0641 \u0645\u0631\u062e\u0635\u06cc"}
                 className={classNames("__wab_instance", sty.button__dvvA1)}
@@ -3557,8 +3497,8 @@ function PlasmicVacation__RenderFunc(props: {
                 }}
                 outline={true}
               />
-            </Stack__>
-          </Stack__>
+            </div>
+          </div>
         }
         className={classNames("__wab_instance", sty.deleteDialog)}
         noTrigger={true}
@@ -3700,11 +3640,7 @@ function PlasmicVacation__RenderFunc(props: {
                 throw e;
               }
             })() ? (
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__cnac)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__cnac)}>
                 <div
                   className={classNames(
                     projectcss.all,
@@ -3937,7 +3873,7 @@ function PlasmicVacation__RenderFunc(props: {
                     })()}
                   </React.Fragment>
                 </div>
-              </Stack__>
+              </div>
             ) : null}
             <div className={classNames(projectcss.all, sty.freeBox__fxWyW)}>
               {(() => {
@@ -4504,7 +4440,7 @@ function PlasmicVacation__RenderFunc(props: {
         }
         trigger={null}
       />
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

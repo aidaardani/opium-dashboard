@@ -262,11 +262,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
           )}
           dir={"rtl"}
         >
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__d4Ycy)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__d4Ycy)}>
             <ApiRequest
               data-plasmic-name={"apIworkhours"}
               data-plasmic-override={overrides.apIworkhours}
@@ -322,11 +318,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
               url={"https://api.paziresh24.com/V1/doctor/centers"}
             />
 
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox___9HgIy)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox___9HgIy)}>
               <div
                 className={classNames(
                   projectcss.all,
@@ -409,7 +401,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                   }).apply(null, eventArgs);
                 }}
               />
-            </Stack__>
+            </div>
             <div className={classNames(projectcss.all, sty.freeBox__lw8Cb)}>
               {(() => {
                 try {
@@ -482,7 +474,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                 />
               ) : null}
             </div>
-          </Stack__>
+          </div>
           {(() => {
             try {
               return (
@@ -503,18 +495,12 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
               throw e;
             }
           })() ? (
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"vacation"}
               data-plasmic-override={overrides.vacation}
-              hasGap={true}
               className={classNames(projectcss.all, sty.vacation)}
             >
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox___0YkBo)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox___0YkBo)}>
                 <div
                   className={classNames(
                     projectcss.all,
@@ -526,7 +512,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                     "\u0645\u062f\u06cc\u0631\u06cc\u062a \u062a\u0639\u0637\u06cc\u0644\u06cc \u0647\u0627"
                   }
                 </div>
-              </Stack__>
+              </div>
               <div
                 className={classNames(
                   projectcss.all,
@@ -592,7 +578,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                   }
                 }}
               />
-            </Stack__>
+            </div>
           ) : null}
           <SideEffect
             data-plasmic-name={"runCodeGtmMetrica"}

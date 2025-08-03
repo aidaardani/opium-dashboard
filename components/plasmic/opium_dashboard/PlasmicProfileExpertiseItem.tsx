@@ -249,16 +249,8 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
         sty.root
       )}
     >
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__dvkie)}
-      >
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__cvu6I)}
-        >
+      <div className={classNames(projectcss.all, sty.freeBox__dvkie)}>
+        <div className={classNames(projectcss.all, sty.freeBox__cvu6I)}>
           <Select
             data-plasmic-name={"selectDegree"}
             data-plasmic-override={overrides.selectDegree}
@@ -356,12 +348,8 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
             )}
             value={generateStateValueProp($state, ["selectExpertise", "value"])}
           />
-        </Stack__>
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__kTtUf)}
-        >
+        </div>
+        <div className={classNames(projectcss.all, sty.freeBox__kTtUf)}>
           <Input
             data-plasmic-name={"input"}
             data-plasmic-override={overrides.input}
@@ -383,8 +371,8 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
             type={"text"}
             value={generateStateValueProp($state, ["input", "value"])}
           />
-        </Stack__>
-      </Stack__>
+        </div>
+      </div>
       <Button
         data-plasmic-name={"button"}
         data-plasmic-override={overrides.button}

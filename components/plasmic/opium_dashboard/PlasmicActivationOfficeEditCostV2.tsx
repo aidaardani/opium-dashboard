@@ -66,8 +66,6 @@ import { Popover } from "@/fragment/components/popover"; // plasmic-import: umJX
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
-import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
-
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -478,18 +476,12 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
     $refs
   });
 
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantsfobTirRaixGf()
-  });
-
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -1114,11 +1106,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
           throw e;
         }
       })() ? (
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__ctU4T)}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox__ctU4T)}>
           <div
             className={classNames(
               projectcss.all,
@@ -1230,7 +1218,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               />
             }
           />
-        </Stack__>
+        </div>
       ) : null}
       <div className={classNames(projectcss.all, sty.freeBox__ppfPw)}>
         <div className={classNames(projectcss.all, sty.freeBox__z9Wr5)}>
@@ -1511,11 +1499,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
           </div>
         ) : null}
       </div>
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__i99Hq)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__i99Hq)}>
         <Button
           children2={
             <div
@@ -2224,7 +2208,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
             }}
           />
         ) : null}
-      </Stack__>
+      </div>
       <ApiRequest
         data-plasmic-name={"apiGetPaymentStatus"}
         data-plasmic-override={overrides.apiGetPaymentStatus}
@@ -2287,7 +2271,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
           }
         })()}
       />
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

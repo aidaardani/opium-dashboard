@@ -312,16 +312,8 @@ function PlasmicPaymentSetting__RenderFunc(props: {
       />
 
       <div className={classNames(projectcss.all, sty.freeBox__nUsX)}>
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox___0U0Oo)}
-        >
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__w0Spf)}
-          >
+        <div className={classNames(projectcss.all, sty.freeBox___0U0Oo)}>
+          <div className={classNames(projectcss.all, sty.freeBox__w0Spf)}>
             <ApiRequest
               data-plasmic-name={"apiRequest"}
               data-plasmic-override={overrides.apiRequest}
@@ -511,9 +503,7 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                           }
                         })()}
                       >
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
+                        <div
                           className={classNames(
                             projectcss.all,
                             sty.freeBox__niafZ
@@ -567,20 +557,16 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                               })()}
                             </React.Fragment>
                           </div>
-                        </Stack__>
+                        </div>
                       </AntdRadio>
                     );
                   })}
                 </AntdRadioGroup>
               </ApiRequest>
             </ApiRequest>
-          </Stack__>
+          </div>
           <div className={classNames(projectcss.all, sty.freeBox__f5DZy)}>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__iaAir)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__iaAir)}>
               <Button
                 data-plasmic-name={"button"}
                 data-plasmic-override={overrides.button}
@@ -844,9 +830,9 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                   }
                 }}
               />
-            </Stack__>
+            </div>
           </div>
-        </Stack__>
+        </div>
       </div>
     </div>
   ) as React.ReactElement | null;

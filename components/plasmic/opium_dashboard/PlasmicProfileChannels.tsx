@@ -65,8 +65,6 @@ import ProfileChannelsItem from "../../ProfileChannelsItem"; // plasmic-import: 
 import { Switch } from "@/fragment/components/switch"; // plasmic-import: dH6_VlwkAh4P/codeComponent
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
-import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
-
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -314,18 +312,12 @@ function PlasmicProfileChannels__RenderFunc(props: {
     $refs
   });
 
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantsfobTirRaixGf()
-  });
-
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -342,11 +334,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
         data-plasmic-name={"dialog"}
         data-plasmic-override={overrides.dialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox___5DbTo)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox___5DbTo)}>
             {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
               (() => {
                 try {
@@ -400,7 +388,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
                 </div>
               );
             })}
-          </Stack__>
+          </div>
         }
         className={classNames("__wab_instance", sty.dialog)}
         noTrigger={true}
@@ -470,16 +458,8 @@ function PlasmicProfileChannels__RenderFunc(props: {
         }}
         url={"https://api.paziresh24.com/V1/doctor/visit-channels"}
       >
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__zYO)}
-        >
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__huZso)}
-          >
+        <div className={classNames(projectcss.all, sty.freeBox__zYO)}>
+          <div className={classNames(projectcss.all, sty.freeBox__huZso)}>
             <div
               className={classNames(
                 projectcss.all,
@@ -502,7 +482,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
                 "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u0627\u06cc\u0646 \u067e\u06cc\u0627\u0645 \u0631\u0633\u0627\u0646 \u0647\u0627 \u062f\u0631 \u062f\u0633\u062a\u0631\u0633 \u0628\u06cc\u0645\u0627\u0631 \u0642\u0631\u0627\u0631 \u0645\u06cc\u06af\u06cc\u0631\u062f."
               }
             </div>
-          </Stack__>
+          </div>
           <div
             className={classNames(
               projectcss.all,
@@ -531,11 +511,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
               </React.Fragment>
             </React.Fragment>
           </div>
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__jftlG)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__jftlG)}>
             <div
               className={classNames(
                 projectcss.all,
@@ -591,12 +567,8 @@ function PlasmicProfileChannels__RenderFunc(props: {
                 "usernameValue"
               ])}
             />
-          </Stack__>
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__ylzte)}
-          >
+          </div>
+          <div className={classNames(projectcss.all, sty.freeBox__ylzte)}>
             <div
               className={classNames(
                 projectcss.all,
@@ -653,7 +625,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
                 "usernameValue"
               ])}
             />
-          </Stack__>
+          </div>
           <div className={classNames(projectcss.all, sty.freeBox__b6VXx)}>
             <div
               className={classNames(
@@ -664,16 +636,8 @@ function PlasmicProfileChannels__RenderFunc(props: {
             >
               {"\u062a\u0645\u0627\u0633 \u0627\u064e\u0645\u0646"}
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__dOtV)}
-            >
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__awmco)}
-              >
+            <div className={classNames(projectcss.all, sty.freeBox__dOtV)}>
+              <div className={classNames(projectcss.all, sty.freeBox__awmco)}>
                 <div
                   className={classNames(
                     projectcss.all,
@@ -728,7 +692,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   }}
                   role={"img"}
                 />
-              </Stack__>
+              </div>
               <Switch
                 data-plasmic-name={"_switch"}
                 data-plasmic-override={overrides._switch}
@@ -786,7 +750,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   }).apply(null, eventArgs);
                 }}
               />
-            </Stack__>
+            </div>
           </div>
           {(() => {
             try {
@@ -1139,9 +1103,9 @@ function PlasmicProfileChannels__RenderFunc(props: {
               }}
             />
           ) : null}
-        </Stack__>
+        </div>
       </ApiRequest>
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

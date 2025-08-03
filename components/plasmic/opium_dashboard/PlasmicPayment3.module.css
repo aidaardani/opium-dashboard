@@ -124,6 +124,7 @@
     align-items: flex-end;
     justify-content: center;
     padding-right: 3px;
+    row-gap: 0px;
   }
 }
 .text__jpos7 {

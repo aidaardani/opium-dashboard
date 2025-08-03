@@ -307,11 +307,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                   })()
             ) ? (
               <div className={classNames(projectcss.all, sty.freeBox__oijXs)}>
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__czEeg)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__czEeg)}>
                   <div
                     className={classNames(
                       projectcss.all,
@@ -323,9 +319,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                       "\u062a\u0646\u0638\u06cc\u0645\u0627\u062a \u0634\u0645\u0627\u0631\u0647 \u062a\u0645\u0627\u0633"
                     }
                   </div>
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__pl5Bz)}
                   >
                     <RadioGroup
@@ -437,9 +431,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                         }).apply(null, eventArgs);
                       }}
                       options={
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
+                        <div
                           className={classNames(
                             projectcss.all,
                             sty.freeBox__ykcbS
@@ -486,7 +478,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                             }
                             value={"tel"}
                           />
-                        </Stack__>
+                        </div>
                       }
                       showLabel={false}
                     />
@@ -504,11 +496,9 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                         throw e;
                       }
                     })() ? (
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"mobile"}
                         data-plasmic-override={overrides.mobile}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.mobile)}
                       >
                         <div
@@ -522,9 +512,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                             "\u0644\u0637\u0641\u0627 \u0634\u0645\u0627\u0631\u0647 \u0627\u06cc \u06a9\u0647 \u0645\u06cc\u062e\u0648\u0627\u0647\u06cc\u062f \u062a\u0645\u0627\u0633 \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0631\u0627 \u0628\u0647 \u0622\u0646 \u0627\u0631\u0633\u0627\u0644 \u06a9\u0646\u06cc\u0645 \u062f\u0631 \u06a9\u0627\u062f\u0631 \u0632\u06cc\u0631 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f:"
                           }
                         </div>
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
+                        <div
                           className={classNames(
                             projectcss.all,
                             sty.freeBox___19ZQb
@@ -857,8 +845,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                               }}
                             />
                           ) : null}
-                        </Stack__>
-                      </Stack__>
+                        </div>
+                      </div>
                     ) : null}
                     {(() => {
                       try {
@@ -873,11 +861,9 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                         throw e;
                       }
                     })() ? (
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"mobile2"}
                         data-plasmic-override={overrides.mobile2}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.mobile2)}
                       >
                         <div
@@ -902,17 +888,13 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                             "\u067e\u06cc\u0634 \u0634\u0645\u0627\u0631\u0647 \u0634\u0647\u0631 \u062e\u0648\u062f \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f."
                           }
                         </div>
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
+                        <div
                           className={classNames(
                             projectcss.all,
                             sty.freeBox___2Jx4W
                           )}
                         >
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__dakYm
@@ -1068,7 +1050,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                 "value"
                               ])}
                             />
-                          </Stack__>
+                          </div>
                           {(() => {
                             try {
                               return (
@@ -1324,11 +1306,11 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                               }}
                             />
                           ) : null}
-                        </Stack__>
-                      </Stack__>
+                        </div>
+                      </div>
                     ) : null}
-                  </Stack__>
-                </Stack__>
+                  </div>
+                </div>
                 <div className={classNames(projectcss.all, sty.freeBox__gEg0)}>
                   {(() => {
                     try {
@@ -2030,11 +2012,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                     }
                   })()
             ) ? (
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__q3018)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__q3018)}>
                 <Icon34Icon
                   className={classNames(projectcss.all, sty.svg___5EhRf)}
                   role={"img"}
@@ -2051,7 +2029,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                     "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
                   }
                 </div>
-              </Stack__>
+              </div>
             ) : null}
             <SideEffect
               data-plasmic-name={"sideEffect"}
@@ -2314,11 +2292,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                 }
               })()}
               errorDisplay={
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__rrpfJ)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__rrpfJ)}>
                   <Icon45Icon
                     className={classNames(projectcss.all, sty.svg__taKo)}
                     role={"img"}
@@ -2335,7 +2309,7 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                       "\u062e\u0637\u0627 \u062f\u0631 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
                     }
                   </div>
-                </Stack__>
+                </div>
               }
               loadingDisplay={null}
               method={"GET"}

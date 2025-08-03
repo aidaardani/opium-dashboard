@@ -253,11 +253,7 @@ function PlasmicEventsList__RenderFunc(props: {
             }}
           />
 
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__hzMFy)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__hzMFy)}>
             {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
               (() => {
                 try {
@@ -291,11 +287,9 @@ function PlasmicEventsList__RenderFunc(props: {
                         sty.freeBox___1P9Pv
                       )}
                     >
-                      <Stack__
-                        as={"div"}
+                      <div
                         data-plasmic-name={"user"}
                         data-plasmic-override={overrides.user}
-                        hasGap={true}
                         className={classNames(projectcss.all, sty.user)}
                       >
                         <Icon16Icon
@@ -334,7 +328,7 @@ function PlasmicEventsList__RenderFunc(props: {
                             })()}
                           </React.Fragment>
                         </div>
-                      </Stack__>
+                      </div>
                       <div
                         data-plasmic-name={"event"}
                         data-plasmic-override={overrides.event}
@@ -491,7 +485,7 @@ function PlasmicEventsList__RenderFunc(props: {
                 </div>
               );
             })}
-          </Stack__>
+          </div>
         </div>
       </div>
     </React.Fragment>

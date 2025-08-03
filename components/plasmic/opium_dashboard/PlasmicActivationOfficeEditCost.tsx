@@ -65,8 +65,6 @@ import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nA
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
-import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
-
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -448,18 +446,12 @@ function PlasmicActivationOfficeEditCost__RenderFunc(props: {
     $refs
   });
 
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantsfobTirRaixGf()
-  });
-
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -1379,11 +1371,7 @@ function PlasmicActivationOfficeEditCost__RenderFunc(props: {
             "\u062c\u0632\u0626\u06cc\u0627\u062a \u067e\u0631\u062f\u0627\u062e\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u062f\u0631 \u0645\u0646\u0648\u06cc \u0645\u062f\u06cc\u0631\u06cc\u062a \u0645\u0627\u0644\u06cc \u062f\u0631\u062c \u0645\u06cc\u200c\u0634\u0648\u062f."
           }
         </div>
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__mlGzj)}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox__mlGzj)}>
           <Button
             children2={
               <div
@@ -1861,9 +1849,9 @@ function PlasmicActivationOfficeEditCost__RenderFunc(props: {
               }
             }}
           />
-        </Stack__>
+        </div>
       </ApiRequest>
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

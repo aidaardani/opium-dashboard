@@ -195,13 +195,11 @@ function PlasmicProfileTells__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"tells"}
       data-plasmic-override={overrides.tells}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -363,9 +361,7 @@ function PlasmicProfileTells__RenderFunc(props: {
         const currentItem = __plasmic_item_0;
         const currentIndex = __plasmic_idx_0;
         return (
-          <Stack__
-            as={"div"}
-            hasGap={true}
+          <div
             className={classNames(projectcss.all, sty.freeBox__pmjag)}
             key={currentIndex}
           >
@@ -536,7 +532,7 @@ function PlasmicProfileTells__RenderFunc(props: {
               }}
               size={"minimal"}
             />
-          </Stack__>
+          </div>
         );
       })}
       <Button
@@ -701,7 +697,7 @@ function PlasmicProfileTells__RenderFunc(props: {
           </div>
         </div>
       ) : null}
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

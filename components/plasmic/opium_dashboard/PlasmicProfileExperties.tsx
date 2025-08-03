@@ -5144,13 +5144,11 @@ function PlasmicProfileExperties__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -5757,11 +5755,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
               );
             })();
           })}
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__deNqh)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__deNqh)}>
             {(() => {
               try {
                 return (
@@ -5778,11 +5772,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
                 throw e;
               }
             })() ? (
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox___3PSHh)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox___3PSHh)}>
                 <div
                   className={classNames(
                     projectcss.all,
@@ -5861,7 +5851,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
                     </React.Fragment>
                   </React.Fragment>
                 </div>
-              </Stack__>
+              </div>
             ) : null}
             <div className={classNames(projectcss.all, sty.freeBox__afDni)}>
               <div
@@ -5894,11 +5884,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
                 }
               </div>
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__hKrof)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__hKrof)}>
               {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                 (() => {
                   try {
@@ -6257,12 +6243,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                   );
                 })();
               })}
-            </Stack__>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox___3Ija4)}
-            >
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox___3Ija4)}>
               <Button
                 children2={
                   "\u0630\u062e\u06cc\u0631\u0647 \u06a9\u0631\u062f\u0646 \u062a\u063a\u06cc\u06cc\u0631\u0627\u062a"
@@ -6668,19 +6650,15 @@ function PlasmicProfileExperties__RenderFunc(props: {
                 }}
                 outline={true}
               />
-            </Stack__>
-          </Stack__>
+            </div>
+          </div>
         </ApiRequest>
       </ApiRequest>
       <Dialog
         data-plasmic-name={"dialog"}
         data-plasmic-override={overrides.dialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__zSbRq)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__zSbRq)}>
             <Button
               children2={
                 <div
@@ -7041,7 +7019,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
                 }
               }}
             />
-          </Stack__>
+          </div>
         }
         className={classNames("__wab_instance", sty.dialog)}
         noTrigger={true}
@@ -7097,7 +7075,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
         }
         trigger={null}
       />
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

@@ -359,11 +359,7 @@ function PlasmicReceipt__RenderFunc(props: {
           </div>
         </div>
       </div>
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__oKeVr)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__oKeVr)}>
         <div className={classNames(projectcss.all, sty.freeBox__ipvRv)}>
           <div
             className={classNames(
@@ -424,12 +420,10 @@ function PlasmicReceipt__RenderFunc(props: {
             value={generateStateValueProp($state, ["numberInput", "value"])}
           />
         </div>
-      </Stack__>
-      <Stack__
-        as={"div"}
+      </div>
+      <div
         data-plasmic-name={"pay"}
         data-plasmic-override={overrides.pay}
-        hasGap={true}
         className={classNames(projectcss.all, sty.pay)}
       >
         <Button
@@ -445,7 +439,7 @@ function PlasmicReceipt__RenderFunc(props: {
           }
           className={classNames("__wab_instance", sty.button__rfEPw)}
         />
-      </Stack__>
+      </div>
       <ApiRequest
         data-plasmic-name={"apiRequest"}
         data-plasmic-override={overrides.apiRequest}

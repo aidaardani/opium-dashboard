@@ -189,9 +189,7 @@ function PlasmicPatientBookHistory__RenderFunc(props: {
         sty.root
       )}
     >
-      <Stack__
-        as={"div"}
-        hasGap={true}
+      <div
         className={classNames(projectcss.all, sty.freeBox__fRnft)}
         onClick={async event => {
           const $steps = {};
@@ -392,7 +390,7 @@ function PlasmicPatientBookHistory__RenderFunc(props: {
             role={"img"}
           />
         ) : null}
-      </Stack__>
+      </div>
       {(() => {
         try {
           return $state.isOpen;

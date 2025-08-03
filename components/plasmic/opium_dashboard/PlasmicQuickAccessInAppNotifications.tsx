@@ -404,18 +404,14 @@ function PlasmicQuickAccessInAppNotifications__RenderFunc(props: {
                     const currentItem = __plasmic_item_0;
                     const currentIndex = __plasmic_idx_0;
                     return (
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__vQiU
                         )}
                         key={currentIndex}
                       >
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
+                        <div
                           className={classNames(
                             projectcss.all,
                             sty.freeBox__uBwji
@@ -547,8 +543,8 @@ function PlasmicQuickAccessInAppNotifications__RenderFunc(props: {
                               }
                             }}
                           />
-                        </Stack__>
-                      </Stack__>
+                        </div>
+                      </div>
                     );
                   })}
                 </div>

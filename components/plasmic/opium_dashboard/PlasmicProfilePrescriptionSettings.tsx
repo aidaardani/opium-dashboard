@@ -200,13 +200,11 @@ function PlasmicProfilePrescriptionSettings__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -268,16 +266,8 @@ function PlasmicProfilePrescriptionSettings__RenderFunc(props: {
         }}
         url={"https://apigw.paziresh24.com/prescription/settings"}
       >
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__bDhZr)}
-        >
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox___7Un2B)}
-          >
+        <div className={classNames(projectcss.all, sty.freeBox__bDhZr)}>
+          <div className={classNames(projectcss.all, sty.freeBox___7Un2B)}>
             <Switch
               data-plasmic-name={"smsActivation"}
               data-plasmic-override={overrides.smsActivation}
@@ -470,12 +460,8 @@ function PlasmicProfilePrescriptionSettings__RenderFunc(props: {
                 "\u063a\u06cc\u0631\u0641\u0639\u0627\u0644 \u06a9\u0631\u062f\u0646 SMS \u0646\u0647\u0627\u06cc\u06cc \u0633\u0627\u0632\u06cc \u0646\u0633\u062e\u0647"
               }
             </div>
-          </Stack__>
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox___62Cd1)}
-          >
+          </div>
+          <div className={classNames(projectcss.all, sty.freeBox___62Cd1)}>
             <Switch
               data-plasmic-name={"information"}
               data-plasmic-override={overrides.information}
@@ -543,10 +529,10 @@ function PlasmicProfilePrescriptionSettings__RenderFunc(props: {
                 "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0627\u062d\u0631\u0627\u0632 \u0647\u0648\u06cc\u062a"
               }
             </div>
-          </Stack__>
-        </Stack__>
+          </div>
+        </div>
       </ApiRequest>
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

@@ -218,11 +218,9 @@ function PlasmicUserworkflow__RenderFunc(props: {
         data-plasmic-override={overrides.workflowsdata}
         className={classNames(projectcss.all, sty.workflowsdata)}
       >
-        <Stack__
-          as={"div"}
+        <div
           data-plasmic-name={"who"}
           data-plasmic-override={overrides.who}
-          hasGap={true}
           className={classNames(projectcss.all, sty.who)}
         >
           <Icon16Icon
@@ -259,17 +257,13 @@ function PlasmicUserworkflow__RenderFunc(props: {
               })()}
             </React.Fragment>
           </div>
-        </Stack__>
+        </div>
         <div
           data-plasmic-name={"whats"}
           data-plasmic-override={overrides.whats}
           className={classNames(projectcss.all, sty.whats)}
         >
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__otgw)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__otgw)}>
             {(() => {
               try {
                 return $props.currentItem.events === "submit-book";
@@ -347,12 +341,10 @@ function PlasmicUserworkflow__RenderFunc(props: {
                 })()}
               </React.Fragment>
             </div>
-          </Stack__>
-          <Stack__
-            as={"div"}
+          </div>
+          <div
             data-plasmic-name={"channel"}
             data-plasmic-override={overrides.channel}
-            hasGap={true}
             className={classNames(projectcss.all, sty.channel)}
           >
             <Icon17Icon
@@ -383,7 +375,7 @@ function PlasmicUserworkflow__RenderFunc(props: {
                 })()}
               </React.Fragment>
             </div>
-          </Stack__>
+          </div>
         </div>
         <div
           data-plasmic-name={"editbuttonvertical"}
@@ -711,9 +703,7 @@ function PlasmicUserworkflow__RenderFunc(props: {
                 <div
                   className={classNames(projectcss.all, sty.freeBox___5Yrqq)}
                 >
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__dkcpQ)}
                   >
                     <Button
@@ -942,7 +932,7 @@ function PlasmicUserworkflow__RenderFunc(props: {
                         }
                       }}
                     />
-                  </Stack__>
+                  </div>
                 </div>
               </div>
             }

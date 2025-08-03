@@ -247,11 +247,7 @@ function PlasmicRadioGroup__RenderFunc(props: {
       ) : null}
       {renderPlasmicSlot({
         defaultContents: (
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__xmJsd)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__xmJsd)}>
             <Radio
               className={classNames("__wab_instance", sty.radio__bLpVw)}
               label={"Option 1"}
@@ -269,7 +265,7 @@ function PlasmicRadioGroup__RenderFunc(props: {
               label={"Option 3"}
               value={"option3"}
             />
-          </Stack__>
+          </div>
         ),
         value: args.options
       })}

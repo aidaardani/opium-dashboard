@@ -427,13 +427,11 @@ function PlasmicAddPatient__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -1126,11 +1124,9 @@ function PlasmicAddPatient__RenderFunc(props: {
                   throw e;
                 }
               })() ? (
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"verticalStackData"}
                   data-plasmic-override={overrides.verticalStackData}
-                  hasGap={true}
                   className={classNames(projectcss.all, sty.verticalStackData)}
                 >
                   <div
@@ -1230,7 +1226,7 @@ function PlasmicAddPatient__RenderFunc(props: {
                       ]) ?? ""
                     }
                   />
-                </Stack__>
+                </div>
               ) : null}
               <ApiRequest
                 data-plasmic-name={"freeturnsApi"}
@@ -1289,11 +1285,9 @@ function PlasmicAddPatient__RenderFunc(props: {
                   }
                 })()}
               >
-                <Stack__
-                  as={"div"}
+                <div
                   data-plasmic-name={"verticalStackFunction"}
                   data-plasmic-override={overrides.verticalStackFunction}
-                  hasGap={true}
                   className={classNames(
                     projectcss.all,
                     sty.verticalStackFunction
@@ -1991,9 +1985,7 @@ function PlasmicAddPatient__RenderFunc(props: {
                             "\u062a\u0642\u0648\u06cc\u0645 \u0645\u0627\u0647\u0627\u0646\u0647"
                           }
                           trigger={
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
+                            <div
                               className={classNames(
                                 projectcss.all,
                                 sty.freeBox__kqRc
@@ -2045,13 +2037,11 @@ function PlasmicAddPatient__RenderFunc(props: {
                                 )}
                                 role={"img"}
                               />
-                            </Stack__>
+                            </div>
                           }
                         />
 
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
+                        <div
                           className={classNames(
                             projectcss.all,
                             sty.freeBox__mTcO
@@ -2194,9 +2184,7 @@ function PlasmicAddPatient__RenderFunc(props: {
                                 throw e;
                               }
                             })() ? (
-                              <Stack__
-                                as={"div"}
-                                hasGap={true}
+                              <div
                                 className={classNames(
                                   projectcss.all,
                                   sty.freeBox__hage0
@@ -3009,9 +2997,7 @@ function PlasmicAddPatient__RenderFunc(props: {
                                     overrides.dialogNewTimePicker
                                   }
                                   body={
-                                    <Stack__
-                                      as={"div"}
-                                      hasGap={true}
+                                    <div
                                       className={classNames(
                                         projectcss.all,
                                         sty.freeBox___6SJkA
@@ -3796,7 +3782,7 @@ function PlasmicAddPatient__RenderFunc(props: {
                                           />
                                         }
                                       />
-                                    </Stack__>
+                                    </div>
                                   }
                                   className={classNames(
                                     "__wab_instance",
@@ -3846,10 +3832,10 @@ function PlasmicAddPatient__RenderFunc(props: {
                                   }
                                   trigger={null}
                                 />
-                              </Stack__>
+                              </div>
                             ) : null}
                           </ApiRequest>
-                        </Stack__>
+                        </div>
                       </div>
                     }
                     className={classNames("__wab_instance", sty.preferBooktime)}
@@ -3894,7 +3880,7 @@ function PlasmicAddPatient__RenderFunc(props: {
                     }
                     trigger={null}
                   />
-                </Stack__>
+                </div>
               </ApiRequest>
             </React.Fragment>
           }
@@ -4002,7 +3988,7 @@ function PlasmicAddPatient__RenderFunc(props: {
           }
         />
       ) : null}
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

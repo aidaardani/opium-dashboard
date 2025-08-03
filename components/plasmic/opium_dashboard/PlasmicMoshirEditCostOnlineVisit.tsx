@@ -339,13 +339,11 @@ function PlasmicMoshirEditCostOnlineVisit__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -770,11 +768,7 @@ function PlasmicMoshirEditCostOnlineVisit__RenderFunc(props: {
           "\u062f\u0631 \u0635\u0648\u0631\u062a \u0646\u0627\u0631\u0636\u0627\u06cc\u062a\u06cc \u0628\u06cc\u0645\u0627\u0631\u060c \u06f1\u06f0\u06f0 \u062f\u0631\u0635\u062f \u0645\u0628\u0644\u063a \u067e\u0631\u062f\u0627\u062e\u062a\u06cc \u0628\u06cc\u0645\u0627\u0631 \u0627\u0633\u062a\u0631\u062f\u0627\u062f \u062e\u0648\u0627\u0647\u062f \u0634\u062f."
         }
       </div>
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__oDLg)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__oDLg)}>
         <Button
           data-plasmic-name={"button"}
           data-plasmic-override={overrides.button}
@@ -1094,8 +1088,8 @@ function PlasmicMoshirEditCostOnlineVisit__RenderFunc(props: {
             }
           }}
         />
-      </Stack__>
-    </Stack__>
+      </div>
+    </div>
   ) as React.ReactElement | null;
 }
 

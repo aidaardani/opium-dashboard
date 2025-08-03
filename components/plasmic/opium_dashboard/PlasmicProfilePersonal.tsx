@@ -419,13 +419,11 @@ function PlasmicProfilePersonal__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -647,11 +645,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
           }}
           url={"https://api.paziresh24.com/V1/doctor/profile"}
         >
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox___7IsrU)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox___7IsrU)}>
             {(hasVariant($state, "noName", "noName") ? false : true) ? (
               <ProfilePersonalName
                 data-plasmic-name={"profilePersonalName"}
@@ -1840,10 +1834,10 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                 }
               }}
             />
-          </Stack__>
+          </div>
         </ApiRequest>
       </ApiRequest>
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

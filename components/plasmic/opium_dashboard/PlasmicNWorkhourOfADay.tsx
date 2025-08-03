@@ -277,11 +277,9 @@ function PlasmicNWorkhourOfADay__RenderFunc(props: {
               }
             })()
       ) ? (
-        <Stack__
-          as={"div"}
+        <div
           data-plasmic-name={"freeBox"}
           data-plasmic-override={overrides.freeBox}
-          hasGap={true}
           className={classNames(projectcss.all, sty.freeBox, {
             [sty.freeBoxdeleteNewWorkhoure]: hasVariant(
               $state,
@@ -512,7 +510,7 @@ function PlasmicNWorkhourOfADay__RenderFunc(props: {
             }}
             role={"img"}
           />
-        </Stack__>
+        </div>
       ) : null}
     </div>
   ) as React.ReactElement | null;

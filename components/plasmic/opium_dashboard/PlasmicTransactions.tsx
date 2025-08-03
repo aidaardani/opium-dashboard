@@ -309,9 +309,7 @@ function PlasmicTransactions__RenderFunc(props: {
                     <div
                       className={classNames(projectcss.all, sty.freeBox__qBcr7)}
                     >
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__mmx8X
@@ -333,7 +331,7 @@ function PlasmicTransactions__RenderFunc(props: {
                             "\u0628\u0631\u0627\u06cc \u0634\u0645\u0627 \u0686\u0646\u062f \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc \u0648\u062c\u0648\u062f \u062f\u0627\u0631\u062f!"
                           }
                         </div>
-                      </Stack__>
+                      </div>
                       <div
                         className={classNames(
                           projectcss.all,

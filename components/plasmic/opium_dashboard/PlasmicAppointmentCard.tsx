@@ -488,13 +488,11 @@ function PlasmicAppointmentCard__RenderFunc(props: {
   });
 
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
@@ -917,14 +915,10 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               data-plasmic-name={"dialog5"}
               data-plasmic-override={overrides.dialog5}
               body={
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
+                <div
                   className={classNames(projectcss.all, sty.freeBox___8VPqZ)}
                 >
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__pIQq)}
                   >
                     <div
@@ -955,7 +949,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         })()}
                       </React.Fragment>
                     </div>
-                  </Stack__>
+                  </div>
                   {(() => {
                     try {
                       return $state.apiGetPyamentInfo2.data[0].bank_id === 36;
@@ -1061,7 +1055,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       }}
                     />
                   ) : null}
-                </Stack__>
+                </div>
               }
               className={classNames("__wab_instance", sty.dialog5)}
               onOpenChange={async (...eventArgs: any) => {
@@ -1548,9 +1542,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             </div>
           ) : null}
         </div>
-        <Stack__
-          as={"div"}
-          hasGap={true}
+        <div
           className={classNames(projectcss.all, sty.freeBox___9MLBi, {
             [sty.freeBoxonlineBorder___9MLBi5Rn5G]: hasVariant(
               $state,
@@ -1598,13 +1590,9 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               </React.Fragment>
             </div>
           ) : null}
-        </Stack__>
+        </div>
       </div>
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__iKQw)}
-      >
+      <div className={classNames(projectcss.all, sty.freeBox__iKQw)}>
         <div className={classNames(projectcss.all, sty.freeBox__k1Ytc)}>
           <div
             className={classNames(
@@ -1664,11 +1652,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             >
               {"\u06a9\u062f \u0645\u0644\u06cc:"}
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox___1DinK)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox___1DinK)}>
               <Icon48Icon
                 className={classNames(projectcss.all, sty.svg__fjX81)}
                 onClick={async event => {
@@ -1766,7 +1750,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   </React.Fragment>
                 </div>
               ) : null}
-            </Stack__>
+            </div>
           </div>
         ) : null}
         {(
@@ -2187,17 +2171,13 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   data-plasmic-name={"dialog6"}
                   data-plasmic-override={overrides.dialog6}
                   body={
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(
                         projectcss.all,
                         sty.freeBox___3ALbV
                       )}
                     >
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox___2ZrJj
@@ -2232,7 +2212,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                             })()}
                           </React.Fragment>
                         </div>
-                      </Stack__>
+                      </div>
                       {(() => {
                         try {
                           return (
@@ -2339,7 +2319,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                           }}
                         />
                       ) : null}
-                    </Stack__>
+                    </div>
                   }
                   className={classNames("__wab_instance", sty.dialog6)}
                   onOpenChange={async (...eventArgs: any) => {
@@ -2426,22 +2406,14 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             </div>
           </div>
         ) : null}
-      </Stack__>
+      </div>
       <Dialog
         data-plasmic-name={"dialog"}
         data-plasmic-override={overrides.dialog}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__vEfgU)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__vEfgU)}>
             <div className={classNames(projectcss.all, sty.freeBox___1W7Ni)}>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__oLwfu)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__oLwfu)}>
                 <CalenderSvgIcon
                   className={classNames(projectcss.all, sty.svg__b6Gk2)}
                   role={"img"}
@@ -2470,12 +2442,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     })()}
                   </React.Fragment>
                 </div>
-              </Stack__>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__gXOE)}
-              >
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__gXOE)}>
                 <TimeSvgIcon
                   className={classNames(projectcss.all, sty.svg__hcRhi)}
                   role={"img"}
@@ -2504,7 +2472,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     })()}
                   </React.Fragment>
                 </div>
-              </Stack__>
+              </div>
             </div>
             <div className={classNames(projectcss.all, sty.freeBox__eAwl4)}>
               <PatientPrivateData
@@ -2676,17 +2644,13 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     data-plasmic-name={"dialog4"}
                     data-plasmic-override={overrides.dialog4}
                     body={
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__vqd4L
                         )}
                       >
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
+                        <div
                           className={classNames(
                             projectcss.all,
                             sty.freeBox__q9I2G
@@ -2722,7 +2686,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                               })()}
                             </React.Fragment>
                           </div>
-                        </Stack__>
+                        </div>
                         {(() => {
                           try {
                             return (
@@ -2829,7 +2793,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                             }}
                           />
                         ) : null}
-                      </Stack__>
+                      </div>
                     }
                     className={classNames("__wab_instance", sty.dialog4)}
                     onOpenChange={async (...eventArgs: any) => {
@@ -3221,11 +3185,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   throw e;
                 }
               })() ? (
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__tNVg)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__tNVg)}>
                   <PatientPrivateData
                     className={classNames(
                       "__wab_instance",
@@ -3485,7 +3445,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       role={"img"}
                     />
                   ) : null}
-                </Stack__>
+                </div>
               ) : null}
             </div>
             {(() => {
@@ -3667,11 +3627,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                 </div>
               </div>
             ) : null}
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__fEuSf)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__fEuSf)}>
               <Button
                 children2={"\u0644\u063a\u0648 \u0646\u0648\u0628\u062a"}
                 className={classNames("__wab_instance", sty.button__iLuiz)}
@@ -4260,16 +4216,12 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   }
                 })()}
               />
-            </Stack__>
+            </div>
             <Dialog
               data-plasmic-name={"deletebookdialog"}
               data-plasmic-override={overrides.deletebookdialog}
               body={
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox__lPskW)}
-                >
+                <div className={classNames(projectcss.all, sty.freeBox__lPskW)}>
                   <Button
                     children2={"\u0644\u063a\u0648 \u0646\u0648\u0628\u062a"}
                     className={classNames("__wab_instance", sty.button__drPzr)}
@@ -4761,7 +4713,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       />
                     }
                   />
-                </Stack__>
+                </div>
               }
               className={classNames("__wab_instance", sty.deletebookdialog)}
               onOpenChange={async (...eventArgs: any) => {
@@ -4797,7 +4749,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               }
               trigger={null}
             />
-          </Stack__>
+          </div>
         }
         className={classNames("__wab_instance", sty.dialog, {
           [sty.dialogonlineBorder]: hasVariant(
@@ -4892,11 +4844,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
         data-plasmic-name={"dialog2"}
         data-plasmic-override={overrides.dialog2}
         body={
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__hwdAm)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__hwdAm)}>
             <div
               className={classNames(
                 projectcss.all,
@@ -5170,7 +5118,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                 />
               }
             />
-          </Stack__>
+          </div>
         }
         className={classNames("__wab_instance", sty.dialog2)}
         noTrigger={true}
@@ -5246,11 +5194,9 @@ function PlasmicAppointmentCard__RenderFunc(props: {
         trigger={null}
       />
 
-      <Stack__
-        as={"div"}
+      <div
         data-plasmic-name={"bookState"}
         data-plasmic-override={overrides.bookState}
-        hasGap={true}
         className={classNames(projectcss.all, sty.bookState)}
         dir={"rtl"}
       >
@@ -5776,7 +5722,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             }
           })()}
         />
-      </Stack__>
+      </div>
       <ApiRequest
         data-plasmic-name={"apiselcetedonlinevisitchannels"}
         data-plasmic-override={overrides.apiselcetedonlinevisitchannels}
@@ -5857,7 +5803,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
           }
         })()}
       />
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 

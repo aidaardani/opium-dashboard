@@ -251,11 +251,7 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
                 step={4}
               />
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__tbTeQ)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__tbTeQ)}>
               <ApiRequest
                 data-plasmic-name={"centersApi"}
                 data-plasmic-override={overrides.centersApi}
@@ -297,14 +293,8 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
                 }}
                 url={"https://api.paziresh24.com/V1/doctor/centers"}
               >
-                <Stack__
-                  as={"div"}
-                  hasGap={true}
-                  className={classNames(projectcss.all, sty.freeBox___7OQm)}
-                >
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                <div className={classNames(projectcss.all, sty.freeBox___7OQm)}>
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__uscdy)}
                   >
                     <div
@@ -344,7 +334,7 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
                         "\u0627\u06af\u0631 \u062f\u0631 \u0645\u0637\u0628 \u067e\u0631\u0648\u0633\u06cc\u062c\u0631 \u0647\u0627\u06cc \u062f\u0631\u0645\u0627\u0646\u06cc \u0627\u0646\u062c\u0627\u0645 \u0645\u06cc \u062f\u0647\u06cc\u062f \u0627\u06cc\u0646 \u0632\u0645\u0627\u0646 \u0631\u0627 \u0637\u0648\u0644\u0627\u0646\u06cc \u062a\u0631 \u06a9\u0646\u06cc\u062f."
                       }
                     </div>
-                  </Stack__>
+                  </div>
                   <HoursDaysOfWeek
                     data-plasmic-name={"hoursDaysOfWeek"}
                     data-plasmic-override={overrides.hoursDaysOfWeek}
@@ -432,9 +422,9 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
                       }
                     })()}
                   />
-                </Stack__>
+                </div>
               </ApiRequest>
-            </Stack__>
+            </div>
           </div>
           <SideEffect
             data-plasmic-name={"sideEffect"}

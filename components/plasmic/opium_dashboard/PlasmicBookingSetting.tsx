@@ -807,9 +807,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
               }}
             />
 
-            <Stack__
-              as={"div"}
-              hasGap={true}
+            <div
               Dir={"rtl"}
               className={classNames(projectcss.all, sty.freeBox__oNzqi)}
             >
@@ -948,9 +946,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                             }
                             showArrow={true}
                           >
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
+                            <div
                               className={classNames(
                                 projectcss.all,
                                 sty.freeBox___1DFm2
@@ -1007,9 +1003,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                   </React.Fragment>
                                 </div>
                               ) : null}
-                              <Stack__
-                                as={"div"}
-                                hasGap={true}
+                              <div
                                 className={classNames(
                                   projectcss.all,
                                   sty.freeBox__ae6B6
@@ -1387,7 +1381,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                 >
                                   {"\u0631\u0648\u0632"}
                                 </div>
-                              </Stack__>
+                              </div>
                               <Button
                                 children2={"\u0630\u062e\u06cc\u0631\u0647"}
                                 className={classNames(
@@ -1670,7 +1664,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                   }
                                 }}
                               />
-                            </Stack__>
+                            </div>
                           </AntdAccordionItem>
                           <AntdAccordionItem
                             className={classNames(
@@ -1840,17 +1834,13 @@ function PlasmicBookingSetting__RenderFunc(props: {
                             }
                             showArrow={true}
                           >
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
+                            <div
                               className={classNames(
                                 projectcss.all,
                                 sty.freeBox__kbhem
                               )}
                             >
-                              <Stack__
-                                as={"div"}
-                                hasGap={true}
+                              <div
                                 className={classNames(
                                   projectcss.all,
                                   sty.freeBox__zV7Mv
@@ -1914,10 +1904,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     </React.Fragment>
                                   </div>
                                 ) : null}
-                              </Stack__>
-                              <Stack__
-                                as={"div"}
-                                hasGap={true}
+                              </div>
+                              <div
                                 className={classNames(
                                   projectcss.all,
                                   sty.freeBox__pDza
@@ -2060,7 +2048,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                 >
                                   {"\u0633\u0627\u0639\u062a"}
                                 </div>
-                              </Stack__>
+                              </div>
                               <Button
                                 children2={"\u0630\u062e\u06cc\u0631\u0647"}
                                 className={classNames(
@@ -2297,7 +2285,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                   }
                                 }}
                               />
-                            </Stack__>
+                            </div>
                           </AntdAccordionItem>
                           <AntdAccordionItem
                             className={classNames(
@@ -2443,9 +2431,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                           }
                           showArrow={true}
                         >
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
+                          <div
                             className={classNames(
                               projectcss.all,
                               sty.freeBox__tdVUz
@@ -2473,7 +2459,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                 }
                               })()}
                             />
-                          </Stack__>
+                          </div>
                         </AntdAccordionItem>
                         <AntdAccordionItem
                           className={classNames(
@@ -2539,7 +2525,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                   );
                 })()}
               </div>
-            </Stack__>
+            </div>
             <SideEffect
               data-plasmic-name={"runCodeGtmMetrica"}
               data-plasmic-override={overrides.runCodeGtmMetrica}

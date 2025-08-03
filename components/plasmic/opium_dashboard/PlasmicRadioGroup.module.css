@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-width: 0;
   row-gap: var(--token-HnZ71H022VEt);
+  min-width: 0;
 }
 .ariaRadioGroup[data-disabled]:global(.__wab_instance) {
   opacity: 0.5;
@@ -12,21 +12,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-}
-.freeBox__xmJsd > :global(.__wab_flex-container) {
-  flex-direction: column;
-  margin-top: calc(0px - var(--token-HnZ71H022VEt));
-  height: calc(100% + var(--token-HnZ71H022VEt));
-}
-.freeBox__xmJsd > :global(.__wab_flex-container) > *,
-.freeBox__xmJsd > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
-.freeBox__xmJsd > :global(.__wab_flex-container) > picture > img,
-.freeBox__xmJsd
-  > :global(.__wab_flex-container)
-  > :global(.__wab_slot)
-  > picture
-  > img {
-  margin-top: var(--token-HnZ71H022VEt);
+  row-gap: var(--token-HnZ71H022VEt);
 }
 .radio__bLpVw:global(.__wab_instance):global(.__wab_instance) {
   position: relative;

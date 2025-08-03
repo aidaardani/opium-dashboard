@@ -182,9 +182,7 @@ function PlasmicActivationServiceSelectionButton__RenderFunc(props: {
         { [sty.rootisSelected]: hasVariant($state, "isSelected", "isSelected") }
       )}
     >
-      <Stack__
-        as={"div"}
-        hasGap={true}
+      <div
         className={classNames(projectcss.all, sty.freeBox__m0ESn, {
           [sty.freeBoxisSelected__m0ESnuUtvU]: hasVariant(
             $state,
@@ -298,7 +296,7 @@ function PlasmicActivationServiceSelectionButton__RenderFunc(props: {
             </React.Fragment>
           </div>
         </div>
-      </Stack__>
+      </div>
     </div>
   ) as React.ReactElement | null;
 }

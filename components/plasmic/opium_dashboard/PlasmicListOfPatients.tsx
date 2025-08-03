@@ -515,11 +515,9 @@ function PlasmicListOfPatients__RenderFunc(props: {
                   </React.Fragment>
                 </div>
               </div>
-              <Stack__
-                as={"div"}
+              <div
                 data-plasmic-name={"cell"}
                 data-plasmic-override={overrides.cell}
-                hasGap={true}
                 className={classNames(projectcss.all, sty.cell)}
               >
                 {(() => {
@@ -576,7 +574,7 @@ function PlasmicListOfPatients__RenderFunc(props: {
                     })()}
                   </React.Fragment>
                 </div>
-              </Stack__>
+              </div>
               <div
                 data-plasmic-name={"date"}
                 data-plasmic-override={overrides.date}

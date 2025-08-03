@@ -268,11 +268,9 @@ function PlasmicRahnamaOauthRedirect__RenderFunc(props: {
               }}
             />
 
-            <Stack__
-              as={"div"}
+            <div
               data-plasmic-name={"freeBox"}
               data-plasmic-override={overrides.freeBox}
-              hasGap={true}
               className={classNames(projectcss.all, sty.freeBox)}
             >
               <Icon34Icon
@@ -295,7 +293,7 @@ function PlasmicRahnamaOauthRedirect__RenderFunc(props: {
                   "\u062f\u0631\u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
                 }
               </div>
-            </Stack__>
+            </div>
           </div>
         ) : null}
       </div>
