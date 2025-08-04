@@ -3149,9 +3149,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       "__wab_instance",
                       sty.patientPrivateData__qHlMg
                     )}
-                    label={
-                      "\u0633\u0648\u0627\u0628\u0642 \u0645\u0631\u0627\u062c\u0639\u0647"
-                    }
+                    label={"\u0646\u0627\u0645 \u0645\u0631\u06a9\u0632"}
                     value={(() => {
                       try {
                         return $props.centerName;
