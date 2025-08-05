@@ -66,6 +66,8 @@ import { Popover } from "@/fragment/components/popover"; // plasmic-import: umJX
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
+import { useScreenVariants as useScreenVariantsfobTirRaixGf } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: fobTIRRaixGf/globalVariant
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -120,6 +122,8 @@ export type PlasmicActivationOfficeEditCostV2__OverridesType = {
   input2?: Flex__<typeof Input>;
   shabaApi?: Flex__<typeof ApiRequest>;
   درحالدریافتاطلاعات?: Flex__<"div">;
+  dialog?: Flex__<typeof Dialog>;
+  cancel?: Flex__<typeof Button>;
   apiGetPaymentStatus?: Flex__<typeof ApiRequest>;
 };
 
@@ -465,6 +469,12 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "apiGetPaymentStatus"
+      },
+      {
+        path: "dialog.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -474,6 +484,10 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
     $ctx,
     $queries: {},
     $refs
+  });
+
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantsfobTirRaixGf()
   });
 
   return (
@@ -2003,7 +2017,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__yoAJz
+                  sty.text__zuRc6
                 )}
               >
                 <React.Fragment>
@@ -2025,7 +2039,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                 </React.Fragment>
               </div>
             }
-            className={classNames("__wab_instance", sty.button__cRiZx)}
+            className={classNames("__wab_instance", sty.button__zySkf)}
             color={"softSand"}
             loading={(() => {
               try {
@@ -2085,9 +2099,14 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                               data: {
                                 user_center_Id: $props.userCenterId,
                                 isCustomPrice: $state.select.value === "custom",
-                                price: $state.select.value
+                                price: $state.select.value,
+                                paymentStatus:
+                                  $state.apiGetPaymentStatus.data.active === "0"
+                                    ? "with out payment"
+                                    : "deactive online payment"
                               },
-                              event_type: "click-cancel-button-office-payment"
+                              event_type:
+                                "click-first-button-to-deActive-office-payment"
                             };
                           } catch (e) {
                             if (
@@ -2112,6 +2131,41 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                 typeof $steps["sendEvent"].then === "function"
               ) {
                 $steps["sendEvent"] = await $steps["sendEvent"];
+              }
+
+              $steps["updateDialogOpen"] =
+                $state.apiGetPaymentStatus.data.active !== "0"
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["dialog", "open"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+              if (
+                $steps["updateDialogOpen"] != null &&
+                typeof $steps["updateDialogOpen"] === "object" &&
+                typeof $steps["updateDialogOpen"].then === "function"
+              ) {
+                $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
               }
 
               $steps["updateIsCancelLoading2"] = true
@@ -2145,69 +2199,466 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                 ];
               }
 
-              $steps["apiCancelOnlinePayment"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "PATCH",
-                        "https://api.paziresh24.com/V1/doctor/payments/settings/",
-                        undefined,
-                        (() => {
-                          try {
-                            return {
-                              center_id: $props.centerId,
-                              active: 0
-                            };
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
+              $steps["runOnchange"] =
+                $state.apiGetPaymentStatus.data.active === "0"
+                  ? (() => {
+                      const actionArgs = { eventRef: $props["onchange"] };
+                      return (({ eventRef, args }) => {
+                        return eventRef?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
               if (
-                $steps["apiCancelOnlinePayment"] != null &&
-                typeof $steps["apiCancelOnlinePayment"] === "object" &&
-                typeof $steps["apiCancelOnlinePayment"].then === "function"
+                $steps["runOnchange"] != null &&
+                typeof $steps["runOnchange"] === "object" &&
+                typeof $steps["runOnchange"].then === "function"
               ) {
-                $steps["apiCancelOnlinePayment"] = await $steps[
-                  "apiCancelOnlinePayment"
-                ];
-              }
-
-              $steps["showToast"] = true
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        undefined,
-                        "\u067e\u0631\u062f\u0627\u062e\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0628\u0631\u0627\u06cc \u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u0645\u0637\u0628 \u0634\u0645\u0627 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644 \u0634\u062f."
-                      ]
-                    };
-                    return $globalActions["Fragment.showToast"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-              if (
-                $steps["showToast"] != null &&
-                typeof $steps["showToast"] === "object" &&
-                typeof $steps["showToast"].then === "function"
-              ) {
-                $steps["showToast"] = await $steps["showToast"];
+                $steps["runOnchange"] = await $steps["runOnchange"];
               }
             }}
           />
         ) : null}
+        <Dialog
+          data-plasmic-name={"dialog"}
+          data-plasmic-override={overrides.dialog}
+          body={
+            <div className={classNames(projectcss.all, sty.freeBox__jLRvB)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__kiDc8
+                )}
+              >
+                {
+                  "\u0627\u06cc\u0627 \u0627\u0632 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644 \u06a9\u0631\u062f\u0646 \u067e\u0631\u062f\u0627\u062e\u062a \u0627\u06cc\u0646\u062a\u0631\u0646\u062a\u06cc \u0628\u0631\u0627\u06cc \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0627\u06cc\u0646\u062a\u0631\u0646\u062a\u06cc \u0645\u0637\u0628 \u0627\u0637\u0645\u06cc\u0646\u0627\u0646 \u062f\u0627\u0631\u06cc\u062f\u061f "
+                }
+              </div>
+              <div className={classNames(projectcss.all, sty.freeBox__un2Di)}>
+                <Button
+                  data-plasmic-name={"cancel"}
+                  data-plasmic-override={overrides.cancel}
+                  children2={
+                    "\u0645\u0646\u0635\u0631\u0641 \u0634\u062f\u0645"
+                  }
+                  className={classNames("__wab_instance", sty.cancel)}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["sendLog"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    event_group: "payment-page",
+                                    data: {
+                                      user_center_Id: $props.userCenterId,
+                                      isCustomPrice:
+                                        $state.select.value === "custom",
+                                      price: $state.select.value
+                                    },
+                                    event_type:
+                                      "click-cancel-to-deActive-office-payment"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendLog"] != null &&
+                      typeof $steps["sendLog"] === "object" &&
+                      typeof $steps["sendLog"].then === "function"
+                    ) {
+                      $steps["sendLog"] = await $steps["sendLog"];
+                    }
+
+                    $steps["updateDialogOpen"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["dialog", "open"]
+                            },
+                            operation: 0,
+                            value: false
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateDialogOpen"] != null &&
+                      typeof $steps["updateDialogOpen"] === "object" &&
+                      typeof $steps["updateDialogOpen"].then === "function"
+                    ) {
+                      $steps["updateDialogOpen"] = await $steps[
+                        "updateDialogOpen"
+                      ];
+                    }
+                  }}
+                />
+
+                {(() => {
+                  try {
+                    return $props.centerId !== "5532";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return false;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <Button
+                    children2={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__cRbZ9
+                        )}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return $state.apiGetPaymentStatus.data.active ===
+                                "0"
+                                ? "انصراف"
+                                : "غیرفعالسازی پرداخت آنلاین مطب";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "\u063a\u06cc\u0631\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u067e\u0631\u062f\u0627\u062e\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0645\u0637\u0628";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </div>
+                    }
+                    className={classNames("__wab_instance", sty.button__xQ4Vu)}
+                    color={"softSand"}
+                    loading={(() => {
+                      try {
+                        return $state.isCancelLoading;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["updateIsCancelLoading"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["isCancelLoading"]
+                              },
+                              operation: 0,
+                              value: true
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateIsCancelLoading"] != null &&
+                        typeof $steps["updateIsCancelLoading"] === "object" &&
+                        typeof $steps["updateIsCancelLoading"].then ===
+                          "function"
+                      ) {
+                        $steps["updateIsCancelLoading"] = await $steps[
+                          "updateIsCancelLoading"
+                        ];
+                      }
+
+                      $steps["sendEvent"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return {
+                                      event_group: "payment-page",
+                                      data: {
+                                        user_center_Id: $props.userCenterId,
+                                        isCustomPrice:
+                                          $state.select.value === "custom",
+                                        price: $state.select.value
+                                      },
+                                      event_type:
+                                        "click-deactive-button-office-payment"
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendEvent"] != null &&
+                        typeof $steps["sendEvent"] === "object" &&
+                        typeof $steps["sendEvent"].then === "function"
+                      ) {
+                        $steps["sendEvent"] = await $steps["sendEvent"];
+                      }
+
+                      $steps["apiCancelOnlinePayment"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "PATCH",
+                                "https://api.paziresh24.com/V1/doctor/payments/settings/",
+                                undefined,
+                                (() => {
+                                  try {
+                                    return {
+                                      center_id: $props.centerId,
+                                      active: 0
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.apiRequest"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["apiCancelOnlinePayment"] != null &&
+                        typeof $steps["apiCancelOnlinePayment"] === "object" &&
+                        typeof $steps["apiCancelOnlinePayment"].then ===
+                          "function"
+                      ) {
+                        $steps["apiCancelOnlinePayment"] = await $steps[
+                          "apiCancelOnlinePayment"
+                        ];
+                      }
+
+                      $steps["updateIsCancelLoading2"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["isCancelLoading"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateIsCancelLoading2"] != null &&
+                        typeof $steps["updateIsCancelLoading2"] === "object" &&
+                        typeof $steps["updateIsCancelLoading2"].then ===
+                          "function"
+                      ) {
+                        $steps["updateIsCancelLoading2"] = await $steps[
+                          "updateIsCancelLoading2"
+                        ];
+                      }
+
+                      $steps["showToast"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                undefined,
+                                "\u067e\u0631\u062f\u0627\u062e\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u0628\u0631\u0627\u06cc \u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u0645\u0637\u0628 \u0634\u0645\u0627 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644 \u0634\u062f."
+                              ]
+                            };
+                            return $globalActions["Fragment.showToast"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["showToast"] != null &&
+                        typeof $steps["showToast"] === "object" &&
+                        typeof $steps["showToast"].then === "function"
+                      ) {
+                        $steps["showToast"] = await $steps["showToast"];
+                      }
+
+                      $steps["updateDialogOpen"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["dialog", "open"]
+                              },
+                              operation: 0,
+                              value: false
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["updateDialogOpen"] != null &&
+                        typeof $steps["updateDialogOpen"] === "object" &&
+                        typeof $steps["updateDialogOpen"].then === "function"
+                      ) {
+                        $steps["updateDialogOpen"] = await $steps[
+                          "updateDialogOpen"
+                        ];
+                      }
+
+                      $steps["runOnchange"] = true
+                        ? (() => {
+                            const actionArgs = { eventRef: $props["onchange"] };
+                            return (({ eventRef, args }) => {
+                              return eventRef?.(...(args ?? []));
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["runOnchange"] != null &&
+                        typeof $steps["runOnchange"] === "object" &&
+                        typeof $steps["runOnchange"].then === "function"
+                      ) {
+                        $steps["runOnchange"] = await $steps["runOnchange"];
+                      }
+                    }}
+                  />
+                ) : null}
+              </div>
+            </div>
+          }
+          className={classNames("__wab_instance", sty.dialog)}
+          onOpenChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+              null,
+              eventArgs
+            );
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+          open={generateStateValueProp($state, ["dialog", "open"])}
+          title={
+            <div className={classNames(projectcss.all, sty.freeBox__pu6Aw)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__iyBy
+                )}
+              >
+                {
+                  "\u063a\u06cc\u0631\u0641\u0639\u0627\u0644\u0633\u0627\u0632\u06cc \u0646\u0648\u0628\u062a \u062f\u0647\u06cc \u0627\u06cc\u0646\u062a\u0631\u0646\u062a\u06cc \u0645\u0637\u0628"
+                }
+              </div>
+            </div>
+          }
+          trigger={null}
+        />
       </div>
       <ApiRequest
         data-plasmic-name={"apiGetPaymentStatus"}
@@ -2288,6 +2739,8 @@ const PlasmicDescendants = {
     "input2",
     "shabaApi",
     "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a",
+    "dialog",
+    "cancel",
     "apiGetPaymentStatus"
   ],
   apiGetPreferCost: ["apiGetPreferCost"],
@@ -2305,6 +2758,8 @@ const PlasmicDescendants = {
   درحالدریافتاطلاعات: [
     "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
   ],
+  dialog: ["dialog", "cancel"],
+  cancel: ["cancel"],
   apiGetPaymentStatus: ["apiGetPaymentStatus"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -2322,6 +2777,8 @@ type NodeDefaultElementType = {
   input2: typeof Input;
   shabaApi: typeof ApiRequest;
   درحالدریافتاطلاعات: "div";
+  dialog: typeof Dialog;
+  cancel: typeof Button;
   apiGetPaymentStatus: typeof ApiRequest;
 };
 
@@ -2398,6 +2855,8 @@ export const PlasmicActivationOfficeEditCostV2 = Object.assign(
     درحالدریافتاطلاعات: makeNodeComponent(
       "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
     ),
+    dialog: makeNodeComponent("dialog"),
+    cancel: makeNodeComponent("cancel"),
     apiGetPaymentStatus: makeNodeComponent("apiGetPaymentStatus"),
 
     // Metadata about props expected for PlasmicActivationOfficeEditCostV2
