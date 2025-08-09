@@ -450,6 +450,144 @@ function PlasmicActivationFinish__RenderFunc(props: {
                       }
                     }}
                   />
+
+                  <Button
+                    children2={
+                      "\u0645\u0634\u0627\u0647\u062f\u0647 \u0634\u0627\u062e\u0635\u200c\u0647\u0627\u06cc \u0639\u0645\u0644\u06a9\u0631\u062f"
+                    }
+                    className={classNames("__wab_instance", sty.button__bTjb)}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["sendLog"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return {
+                                      event_group: "MyPerformance",
+                                      data: { UserID: $ctx.query.userId },
+                                      event_type:
+                                        "Click-myPerformanceButton-ActivaionFinishPage"
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendLog"] != null &&
+                        typeof $steps["sendLog"] === "object" &&
+                        typeof $steps["sendLog"].then === "function"
+                      ) {
+                        $steps["sendLog"] = await $steps["sendLog"];
+                      }
+
+                      $steps["goToPage"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "https://www.paziresh24.com/dashboard/apps/sanje/my-performance/"
+                              ]
+                            };
+                            return $globalActions["Hamdast.openLink"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["goToPage"] != null &&
+                        typeof $steps["goToPage"] === "object" &&
+                        typeof $steps["goToPage"].then === "function"
+                      ) {
+                        $steps["goToPage"] = await $steps["goToPage"];
+                      }
+                    }}
+                  />
+
+                  <Button
+                    children2={
+                      "\u0645\u0634\u0627\u0647\u062f\u0647 \u0627\u0628\u0632\u0627\u0631\u06a9\u200c\u0647\u0627"
+                    }
+                    className={classNames("__wab_instance", sty.button__hErmm)}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["sendLog"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return {
+                                      event_group: "promot",
+                                      data: { UserID: $ctx.query.userId },
+                                      event_type:
+                                        "Click-AppsButton-ActivaionFinishPage"
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendLog"] != null &&
+                        typeof $steps["sendLog"] === "object" &&
+                        typeof $steps["sendLog"].then === "function"
+                      ) {
+                        $steps["sendLog"] = await $steps["sendLog"];
+                      }
+
+                      $steps["goToPage"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: ["https://www.paziresh24.com/_/apps/"]
+                            };
+                            return $globalActions["Hamdast.openLink"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["goToPage"] != null &&
+                        typeof $steps["goToPage"] === "object" &&
+                        typeof $steps["goToPage"].then === "function"
+                      ) {
+                        $steps["goToPage"] = await $steps["goToPage"];
+                      }
+                    }}
+                  />
                 </div>
                 <div className={classNames(projectcss.all, sty.freeBox__tYnz9)}>
                   <Button
