@@ -3470,6 +3470,11 @@
           "id": "7lp3HMlkerVM",
           "name": "Icon56Icon",
           "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon56.tsx"
+        },
+        {
+          "id": "Kwkscun125Ke",
+          "name": "Icon57Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon57.tsx"
         }
       ],
       "images": [
@@ -3537,6 +3542,11 @@
           "id": "uSUnvZessmMK",
           "name": "image 7",
           "filePath": "../public/plasmic/opium_dashboard/images/image7.png"
+        },
+        {
+          "id": "Y9nhX_eVb8by",
+          "name": "image 8",
+          "filePath": "../public/plasmic/opium_dashboard/images/image8.png"
         }
       ],
       "indirect": false,
