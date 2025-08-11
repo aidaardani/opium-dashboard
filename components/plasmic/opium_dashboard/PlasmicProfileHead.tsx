@@ -738,7 +738,7 @@ function PlasmicProfileHead__RenderFunc(props: {
               )}
             >
               {
-                "\u0644\u06cc\u0646\u06a9 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644"
+                "\u06a9\u067e\u06cc \u0644\u06cc\u0646\u06a9 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644"
               }
             </div>
             <Icon48Icon

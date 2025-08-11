@@ -4137,10 +4137,28 @@ function PlasmicProfileAddress__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.centersApi.data.data
-                .find(item => item.type_id == 1)
-                .address.replace(/<p>/g, "")
-                .replace(/<\/p>/g, "");
+              return (() => {
+                const provinceId = $state.centersApi.data.data.find(
+                  item => item.type_id == 1
+                ).province;
+                const cityId = $state.centersApi.data.data.find(
+                  item => item.type_id == 1
+                ).city;
+                const provinceName = $state.province.find(
+                  item => item.id == provinceId
+                ).name;
+                const cityName = $state.cities.find(
+                  item => item.id == cityId
+                ).name;
+                let address = $state.centersApi.data.data
+                  .find(item => item.type_id == 1)
+                  .address.replace(/<p>/g, "")
+                  .replace(/<\/p>/g, "");
+                address = address
+                  .replace(`${provinceName}, ${cityName}`, "")
+                  .trim();
+                return address;
+              })();
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -4241,13 +4259,43 @@ function PlasmicProfileAddress__RenderFunc(props: {
         path: "map.lat",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 35.70069003610754
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $state.centersApi.data.data.find(
+                center => center.id !== 5532 && center.type_id === 1
+              ).lat;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return 35.70069003610754;
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "map.lng",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 51.35918498039246
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $state.centersApi.data.data.find(
+                center => center.id !== 5532 && center.type_id === 1
+              ).lon;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return 51.35918498039246;
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "profileTells.oldTells",
@@ -4428,6 +4476,68 @@ function PlasmicProfileAddress__RenderFunc(props: {
               typeof $steps["sendEvent"].then === "function"
             ) {
               $steps["sendEvent"] = await $steps["sendEvent"];
+            }
+
+            $steps["updateMapLat"] = true
+              ? (() => {
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["map", "lat"]
+                    },
+                    operation: 0,
+                    value: $state.centersApi.data.data.find(
+                      center => center.id !== 5532 && center.type_id === 1
+                    ).lat
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
+                    }
+                    const { objRoot, variablePath } = variable;
+
+                    $stateSet(objRoot, variablePath, value);
+                    return value;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["updateMapLat"] != null &&
+              typeof $steps["updateMapLat"] === "object" &&
+              typeof $steps["updateMapLat"].then === "function"
+            ) {
+              $steps["updateMapLat"] = await $steps["updateMapLat"];
+            }
+
+            $steps["updateMapLng"] = true
+              ? (() => {
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["map", "lng"]
+                    },
+                    operation: 0,
+                    value: $state.centersApi.data.data.find(
+                      center => center.id !== 5532 && center.type_id === 1
+                    ).lon
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
+                    }
+                    const { objRoot, variablePath } = variable;
+
+                    $stateSet(objRoot, variablePath, value);
+                    return value;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["updateMapLng"] != null &&
+              typeof $steps["updateMapLng"] === "object" &&
+              typeof $steps["updateMapLng"].then === "function"
+            ) {
+              $steps["updateMapLng"] = await $steps["updateMapLng"];
             }
           }).apply(null, eventArgs);
         }}
