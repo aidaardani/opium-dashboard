@@ -1808,112 +1808,54 @@ function PlasmicVacation__RenderFunc(props: {
           }
         </div>
         <div className={classNames(projectcss.all, sty.freeBox__rjW9A)}>
-          {(() => {
-            const child$Props = {
-              onChange: async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["year", "value"]).apply(
-                  null,
-                  eventArgs
-                );
-              },
-              onOpenChange: async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["year", "open"]).apply(
-                  null,
-                  eventArgs
-                );
-              },
-              open: generateStateValueProp($state, ["year", "open"]),
-              options: (() => {
-                try {
-                  return (() => {
-                    $$.dayjs.locale("fa");
-                    const currentYear = $$.dayjs().year();
-                    const years = [
-                      currentYear - 1,
-                      currentYear,
-                      currentYear + 1
-                    ];
+          <Select
+            data-plasmic-name={"year"}
+            data-plasmic-override={overrides.year}
+            onChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["year", "value"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            onOpenChange={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["year", "open"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            open={generateStateValueProp($state, ["year", "open"])}
+            options={(() => {
+              try {
+                return (() => {
+                  $$.dayjs.locale("fa");
+                  const currentYear = $$.dayjs().year();
+                  const years = [currentYear - 1, currentYear, currentYear + 1];
 
-                    const convertToJalali = year => {
-                      const now = new Date(`${year}-01-01`);
-                      const norooz = new Date(`${year}-03-21`);
-                      return now < norooz ? year - 622 : year - 621;
-                    };
-                    return years.map(year => ({
-                      label: convertToJalali(year),
-                      value: convertToJalali(year)
-                    }));
-                  })();
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
+                  const convertToJalali = year => {
+                    const now = new Date(`${year}-01-01`);
+                    const norooz = new Date(`${year}-03-21`);
+                    return now < norooz ? year - 622 : year - 621;
+                  };
+                  return years.map(year => ({
+                    label: convertToJalali(year),
+                    value: convertToJalali(year)
+                  }));
+                })();
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
                 }
-              })(),
-              placeholder: "\u0633\u0627\u0644",
-              triggerClassName: classNames("__wab_instance", sty.year),
-              value: generateStateValueProp($state, ["year", "value"])
-            };
-            initializeCodeComponentStates(
-              $state,
-              [
-                {
-                  name: "value",
-                  plasmicStateName: "year.value"
-                },
-                {
-                  name: "open",
-                  plasmicStateName: "year.open"
-                }
-              ],
-              [],
-              undefined ?? {},
-              child$Props
-            );
-            initializePlasmicStates(
-              $state,
-              [
-                {
-                  name: "year.value",
-                  initFunc: ({ $props, $state, $queries }) =>
-                    (() => {
-                      try {
-                        return (() => {
-                          $$.dayjs.locale("fa");
-                          const currentYear = $$.dayjs().year();
-                          const convertToJalali = year => {
-                            const now = new Date(`${year}-01-01`);
-                            const norooz = new Date(`${year}-03-21`);
-                            return now < norooz ? year - 622 : year - 621;
-                          };
-                          return convertToJalali(currentYear);
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()
-                }
-              ],
-              []
-            );
-            return (
-              <Select
-                data-plasmic-name={"year"}
-                data-plasmic-override={overrides.year}
-                {...child$Props}
-              />
-            );
-          })()}
+                throw e;
+              }
+            })()}
+            placeholder={"\u0633\u0627\u0644"}
+            triggerClassName={classNames("__wab_instance", sty.year)}
+            value={generateStateValueProp($state, ["year", "value"])}
+          />
+
           {(() => {
             const child$Props = {
               onChange: async (...eventArgs: any) => {
@@ -3526,104 +3468,23 @@ function PlasmicVacation__RenderFunc(props: {
         data-plasmic-override={overrides.editDialog}
         body={
           <div className={classNames(projectcss.all, sty.freeBox__w6Swm)}>
-            {(() => {
-              const child$Props = {
-                className: classNames("__wab_instance", sty.dateRangePicker2),
-                locale: "fa",
-                onChange: async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "dateRangePicker2",
-                    "selectedDays"
-                  ]).apply(null, eventArgs);
-                },
-                selectedDays: generateStateValueProp($state, [
+            <DateRangePicker
+              data-plasmic-name={"dateRangePicker2"}
+              data-plasmic-override={overrides.dateRangePicker2}
+              className={classNames("__wab_instance", sty.dateRangePicker2)}
+              locale={"fa"}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
                   "dateRangePicker2",
                   "selectedDays"
-                ])
-              };
-              initializeCodeComponentStates(
-                $state,
-                [
-                  {
-                    name: "selectedDays",
-                    plasmicStateName: "dateRangePicker2.selectedDays"
-                  }
-                ],
-                [],
-                undefined ?? {},
-                child$Props
-              );
-              initializePlasmicStates(
-                $state,
-                [
-                  {
-                    name: "dateRangePicker2.selectedDays",
-                    initFunc: ({ $props, $state, $queries }) =>
-                      (() => {
-                        try {
-                          return (() => {
-                            const convertTimestampToDate = time => {
-                              const date = new Date(time * 1000);
-                              return date.toLocaleDateString();
-                            };
-                            const formattedDateToDateObject = formattedDate => {
-                              if (!formattedDate) return null;
-                              const dateObject = $$.moment(formattedDate);
-                              return {
-                                year: dateObject.year(),
-                                month: dateObject.month() + 1,
-                                day: dateObject.date()
-                              };
-                            };
-                            const from = formattedDateToDateObject(
-                              $$.moment
-                                .from(
-                                  convertTimestampToDate(
-                                    +$state.selectedVacation.from
-                                  ),
-                                  "YYYY/MM/DD"
-                                )
-                                .locale("fa")
-                                .format("YYYY/MM/DD")
-                            );
-                            const to = formattedDateToDateObject(
-                              $$.moment
-                                .from(
-                                  convertTimestampToDate(
-                                    +$state.selectedVacation.to
-                                  ),
-                                  "YYYY/MM/DD"
-                                )
-                                .locale("fa")
-                                .format("YYYY/MM/DD")
-                            );
-                            return {
-                              from: from || null,
-                              to: to || null
-                            };
-                          })();
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return { from: null, to: null };
-                          }
-                          throw e;
-                        }
-                      })()
-                  }
-                ],
-                []
-              );
-              return (
-                <DateRangePicker
-                  data-plasmic-name={"dateRangePicker2"}
-                  data-plasmic-override={overrides.dateRangePicker2}
-                  {...child$Props}
-                />
-              );
-            })()}
+                ]).apply(null, eventArgs);
+              }}
+              selectedDays={generateStateValueProp($state, [
+                "dateRangePicker2",
+                "selectedDays"
+              ])}
+            />
+
             {(() => {
               try {
                 return (
