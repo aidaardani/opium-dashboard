@@ -62,6 +62,9 @@
   width: auto;
   height: 1em;
 }
+.text {
+  padding-right: 0px;
+}
 .textvisited {
   color: var(--token-u3OudfMChOo3);
 }

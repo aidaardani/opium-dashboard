@@ -60,10 +60,10 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
+import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import Avatar from "../../Avatar"; // plasmic-import: 3i84rYjQRrs4/component
 import { UploadWrapper } from "@plasmicpkgs/antd5/skinny/registerUpload";
 import { FileInput } from "@/fragment/components/file-input"; // plasmic-import: FbJKJDT4Zqs9/codeComponent
-import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -75,8 +75,8 @@ import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJ
 import sty from "./PlasmicProfileHead.module.css"; // plasmic-import: PIAFRsJicCGh/css
 
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
-import Icon26Icon from "./icons/PlasmicIcon__Icon26"; // plasmic-import: frSwMvWOgAN1/icon
 import Icon48Icon from "./icons/PlasmicIcon__Icon48"; // plasmic-import: IBpo2F3LWTf-/icon
+import Icon26Icon from "./icons/PlasmicIcon__Icon26"; // plasmic-import: frSwMvWOgAN1/icon
 
 import __lib_copyToClipboard from "copy-to-clipboard";
 
@@ -94,12 +94,12 @@ export const PlasmicProfileHead__ArgProps = new Array<ArgPropType>();
 export type PlasmicProfileHead__OverridesType = {
   root?: Flex__<"div">;
   profile?: Flex__<typeof ApiRequest>;
-  avatar?: Flex__<typeof Avatar>;
-  upload?: Flex__<typeof UploadWrapper>;
-  fragmentFileInput?: Flex__<typeof FileInput>;
   link?: Flex__<"div">;
   dialog?: Flex__<typeof Dialog>;
   img?: Flex__<typeof PlasmicImg__>;
+  avatar?: Flex__<typeof Avatar>;
+  upload?: Flex__<typeof UploadWrapper>;
+  fragmentFileInput?: Flex__<typeof FileInput>;
 };
 
 export interface DefaultProfileHeadProps {
@@ -268,6 +268,250 @@ function PlasmicProfileHead__RenderFunc(props: {
         }}
         url={"https://api.paziresh24.com/V1/doctor/profile"}
       >
+        <div className={classNames(projectcss.all, sty.freeBox__i7Cap)}>
+          <div
+            data-plasmic-name={"link"}
+            data-plasmic-override={overrides.link}
+            className={classNames(projectcss.all, sty.link)}
+          >
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text___40BL
+              )}
+            >
+              {
+                "\u06a9\u067e\u06cc \u0644\u06cc\u0646\u06a9 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644"
+              }
+            </div>
+            <Icon48Icon
+              className={classNames(projectcss.all, sty.svg__sqBs7)}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["shortProfileInk"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          undefined,
+                          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/profile-short-link",
+                          (() => {
+                            try {
+                              return {
+                                link: `https://www.paziresh24.com/dr/${$state.profile.data.data.slug}`
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["shortProfileInk"] != null &&
+                  typeof $steps["shortProfileInk"] === "object" &&
+                  typeof $steps["shortProfileInk"].then === "function"
+                ) {
+                  $steps["shortProfileInk"] = await $steps["shortProfileInk"];
+                }
+
+                $steps["copyShortLink"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return $$.copyToClipboard(
+                            $steps.shortProfileInk.data.link
+                          );
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["copyShortLink"] != null &&
+                  typeof $steps["copyShortLink"] === "object" &&
+                  typeof $steps["copyShortLink"].then === "function"
+                ) {
+                  $steps["copyShortLink"] = await $steps["copyShortLink"];
+                }
+
+                $steps["updateDialogOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["dialog", "open"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateDialogOpen"] != null &&
+                  typeof $steps["updateDialogOpen"] === "object" &&
+                  typeof $steps["updateDialogOpen"].then === "function"
+                ) {
+                  $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
+                }
+
+                $steps["sendLog"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                event_group: "EditProfile",
+                                data: {
+                                  data: $state.profile.data.data
+                                },
+                                event_type: "CopyLink"
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["sendLog"] != null &&
+                  typeof $steps["sendLog"] === "object" &&
+                  typeof $steps["sendLog"].then === "function"
+                ) {
+                  $steps["sendLog"] = await $steps["sendLog"];
+                }
+              }}
+              role={"img"}
+            />
+
+            <Dialog
+              data-plasmic-name={"dialog"}
+              data-plasmic-override={overrides.dialog}
+              body={
+                <div className={classNames(projectcss.all, sty.freeBox__pN5Tc)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__xUaD7
+                    )}
+                  >
+                    {
+                      "\u0644\u06cc\u0646\u06a9 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u06a9\u067e\u06cc \u0634\u062f."
+                    }
+                  </div>
+                  <PlasmicImg__
+                    data-plasmic-name={"img"}
+                    data-plasmic-override={overrides.img}
+                    alt={""}
+                    className={classNames(sty.img)}
+                    displayHeight={"30px"}
+                    displayMaxHeight={"none"}
+                    displayMaxWidth={"100%"}
+                    displayMinHeight={"0"}
+                    displayMinWidth={"0"}
+                    displayWidth={"30px"}
+                    loading={"lazy"}
+                    src={{
+                      src: "/plasmic/opium_dashboard/images/image8.png",
+                      fullWidth: 225,
+                      fullHeight: 225,
+                      aspectRatio: undefined
+                    }}
+                  />
+                </div>
+              }
+              className={classNames("__wab_instance", sty.dialog)}
+              onOpenChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["dialog", "open"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              open={generateStateValueProp($state, ["dialog", "open"])}
+              title={""}
+              trigger={null}
+            />
+          </div>
+          <div className={classNames(projectcss.all, sty.freeBox__prR0)}>
+            <PlasmicLink__
+              className={classNames(
+                projectcss.all,
+                projectcss.a,
+                projectcss.__wab_text,
+                sty.link__elo1W
+              )}
+              component={Link}
+              href={(() => {
+                try {
+                  return `https://www.paziresh24.com/dr/${$state.profile.data.data.slug}`;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              platform={"nextjs"}
+              target={"_blank"}
+            >
+              {
+                "\u0645\u0634\u0627\u0647\u062f\u0647 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644"
+              }
+            </PlasmicLink__>
+          </div>
+        </div>
         <div className={classNames(projectcss.all, sty.freeBox__p2O2Y)}>
           <div className={classNames(projectcss.all, sty.freeBox__sK3Um)}>
             <div className={classNames(projectcss.all, sty.freeBox__f836)}>
@@ -725,248 +969,6 @@ function PlasmicProfileHead__RenderFunc(props: {
               </div>
             </div>
           </div>
-          <div
-            data-plasmic-name={"link"}
-            data-plasmic-override={overrides.link}
-            className={classNames(projectcss.all, sty.link)}
-          >
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text___40BL
-              )}
-            >
-              {
-                "\u06a9\u067e\u06cc \u0644\u06cc\u0646\u06a9 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644"
-              }
-            </div>
-            <Icon48Icon
-              className={classNames(projectcss.all, sty.svg__sqBs7)}
-              onClick={async event => {
-                const $steps = {};
-
-                $steps["shortProfileInk"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          undefined,
-                          "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/profile-short-link",
-                          (() => {
-                            try {
-                              return {
-                                link: `https://www.paziresh24.com/dr/${$state.profile.data.data.slug}`
-                              };
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
-                if (
-                  $steps["shortProfileInk"] != null &&
-                  typeof $steps["shortProfileInk"] === "object" &&
-                  typeof $steps["shortProfileInk"].then === "function"
-                ) {
-                  $steps["shortProfileInk"] = await $steps["shortProfileInk"];
-                }
-
-                $steps["copyShortLink"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        customFunction: async () => {
-                          return $$.copyToClipboard(
-                            $steps.shortProfileInk.data.link
-                          );
-                        }
-                      };
-                      return (({ customFunction }) => {
-                        return customFunction();
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["copyShortLink"] != null &&
-                  typeof $steps["copyShortLink"] === "object" &&
-                  typeof $steps["copyShortLink"].then === "function"
-                ) {
-                  $steps["copyShortLink"] = await $steps["copyShortLink"];
-                }
-
-                $steps["updateDialogOpen"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["dialog", "open"]
-                        },
-                        operation: 0,
-                        value: true
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["updateDialogOpen"] != null &&
-                  typeof $steps["updateDialogOpen"] === "object" &&
-                  typeof $steps["updateDialogOpen"].then === "function"
-                ) {
-                  $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
-                }
-
-                $steps["sendLog"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          (() => {
-                            try {
-                              return {
-                                event_group: "EditProfile",
-                                data: {
-                                  data: $state.profile.data.data
-                                },
-                                event_type: "CopyLink"
-                              };
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Splunk.sendLog"]?.apply(null, [
-                        ...actionArgs.args
-                      ]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["sendLog"] != null &&
-                  typeof $steps["sendLog"] === "object" &&
-                  typeof $steps["sendLog"].then === "function"
-                ) {
-                  $steps["sendLog"] = await $steps["sendLog"];
-                }
-              }}
-              role={"img"}
-            />
-
-            <Dialog
-              data-plasmic-name={"dialog"}
-              data-plasmic-override={overrides.dialog}
-              body={
-                <div className={classNames(projectcss.all, sty.freeBox__pN5Tc)}>
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text__xUaD7
-                    )}
-                  >
-                    {
-                      "\u0644\u06cc\u0646\u06a9 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644 \u06a9\u067e\u06cc \u0634\u062f."
-                    }
-                  </div>
-                  <PlasmicImg__
-                    data-plasmic-name={"img"}
-                    data-plasmic-override={overrides.img}
-                    alt={""}
-                    className={classNames(sty.img)}
-                    displayHeight={"30px"}
-                    displayMaxHeight={"none"}
-                    displayMaxWidth={"100%"}
-                    displayMinHeight={"0"}
-                    displayMinWidth={"0"}
-                    displayWidth={"30px"}
-                    loading={"lazy"}
-                    src={{
-                      src: "/plasmic/opium_dashboard/images/image8.png",
-                      fullWidth: 225,
-                      fullHeight: 225,
-                      aspectRatio: undefined
-                    }}
-                  />
-                </div>
-              }
-              className={classNames("__wab_instance", sty.dialog)}
-              onOpenChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["dialog", "open"]).apply(
-                  null,
-                  eventArgs
-                );
-
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-              open={generateStateValueProp($state, ["dialog", "open"])}
-              title={""}
-              trigger={null}
-            />
-          </div>
-          <div className={classNames(projectcss.all, sty.freeBox__prR0)}>
-            <PlasmicLink__
-              className={classNames(
-                projectcss.all,
-                projectcss.a,
-                projectcss.__wab_text,
-                sty.link__elo1W
-              )}
-              component={Link}
-              href={(() => {
-                try {
-                  return `https://www.paziresh24.com/dr/${$state.profile.data.data.slug}`;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
-                  }
-                  throw e;
-                }
-              })()}
-              platform={"nextjs"}
-              target={"_blank"}
-            >
-              {
-                "\u0645\u0634\u0627\u0647\u062f\u0647 \u067e\u0631\u0648\u0641\u0627\u06cc\u0644"
-              }
-            </PlasmicLink__>
-          </div>
         </div>
       </ApiRequest>
     </div>
@@ -977,28 +979,28 @@ const PlasmicDescendants = {
   root: [
     "root",
     "profile",
-    "avatar",
-    "upload",
-    "fragmentFileInput",
     "link",
     "dialog",
-    "img"
+    "img",
+    "avatar",
+    "upload",
+    "fragmentFileInput"
   ],
   profile: [
     "profile",
-    "avatar",
-    "upload",
-    "fragmentFileInput",
     "link",
     "dialog",
-    "img"
+    "img",
+    "avatar",
+    "upload",
+    "fragmentFileInput"
   ],
-  avatar: ["avatar"],
-  upload: ["upload"],
-  fragmentFileInput: ["fragmentFileInput"],
   link: ["link", "dialog", "img"],
   dialog: ["dialog", "img"],
-  img: ["img"]
+  img: ["img"],
+  avatar: ["avatar"],
+  upload: ["upload"],
+  fragmentFileInput: ["fragmentFileInput"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1006,12 +1008,12 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   profile: typeof ApiRequest;
-  avatar: typeof Avatar;
-  upload: typeof UploadWrapper;
-  fragmentFileInput: typeof FileInput;
   link: "div";
   dialog: typeof Dialog;
   img: typeof PlasmicImg__;
+  avatar: typeof Avatar;
+  upload: typeof UploadWrapper;
+  fragmentFileInput: typeof FileInput;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1075,12 +1077,12 @@ export const PlasmicProfileHead = Object.assign(
   {
     // Helper components rendering sub-elements
     profile: makeNodeComponent("profile"),
-    avatar: makeNodeComponent("avatar"),
-    upload: makeNodeComponent("upload"),
-    fragmentFileInput: makeNodeComponent("fragmentFileInput"),
     link: makeNodeComponent("link"),
     dialog: makeNodeComponent("dialog"),
     img: makeNodeComponent("img"),
+    avatar: makeNodeComponent("avatar"),
+    upload: makeNodeComponent("upload"),
+    fragmentFileInput: makeNodeComponent("fragmentFileInput"),
 
     // Metadata about props expected for PlasmicProfileHead
     internalVariantProps: PlasmicProfileHead__VariantProps,
