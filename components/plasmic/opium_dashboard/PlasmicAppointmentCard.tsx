@@ -1828,7 +1828,26 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                 <React.Fragment>
                   {(() => {
                     try {
-                      return "ویزیت آنلاین";
+                      return (
+                        "ویزیت آنلاین " +
+                        "-" +
+                        " " +
+                        (() => {
+                          if (
+                            $state.apiselcetedonlinevisitchannels.data
+                              .online_channel === "whatsapp"
+                          ) {
+                            return "واتساپ";
+                          } else if (
+                            $state.apiselcetedonlinevisitchannels.data
+                              .online_channel === "eitaa"
+                          ) {
+                            return "ایتا";
+                          } else {
+                            return "";
+                          }
+                        })()
+                      );
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -1844,23 +1863,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             ) : null}
           </div>
         ) : null}
-        {(
-          hasVariant(globalVariants, "screen", "mobileOnly")
-            ? (() => {
-                try {
-                  return $props.centerId === "5532";
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })()
-            : false
-        ) ? (
+        {(hasVariant(globalVariants, "screen", "mobileOnly") ? true : false) ? (
           <div className={classNames(projectcss.all, sty.freeBox__oaKqB)}>
             <div
               className={classNames(
@@ -1914,7 +1917,23 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             ) : null}
           </div>
         ) : null}
-        {(hasVariant(globalVariants, "screen", "mobileOnly") ? true : false) ? (
+        {(
+          hasVariant(globalVariants, "screen", "mobileOnly")
+            ? (() => {
+                try {
+                  return $props.centerId !== "5532";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })()
+            : false
+        ) ? (
           <div className={classNames(projectcss.all, sty.freeBox__seUTg)}>
             <div
               className={classNames(

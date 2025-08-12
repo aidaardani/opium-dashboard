@@ -3243,8 +3243,26 @@ function PlasmicBookList__RenderFunc(props: {
               trigger={
                 (
                   hasVariant(globalVariants, "screen", "mobileOnly")
-                    ? true
-                    : false
+                    ? (() => {
+                        try {
+                          return (
+                            $state.selectedCenter != "5532" &&
+                            $state.apiAllCenters.data.items.find(
+                              item =>
+                                item.user_center_id === $state.selectedCenter
+                            ).center_type === 1
+                          );
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return false;
+                          }
+                          throw e;
+                        }
+                      })()
+                    : true
                 ) ? (
                   <Button
                     children2={

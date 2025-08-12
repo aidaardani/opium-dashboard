@@ -550,6 +550,7 @@
   height: auto;
   max-width: 100%;
   color: #616161;
+  text-align: center;
   display: none;
 }
 @media (min-width: 0px) and (max-width: 768px) {
@@ -567,7 +568,7 @@
   height: auto;
   max-width: 100%;
   column-gap: var(--token-fhaz6q6bl-fW);
-  padding: 8px;
+  padding: 0px 8px;
 }
 .svg__fjX81 {
   object-fit: cover;
@@ -628,7 +629,7 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__oaKqB {
     justify-content: space-between;
-    display: flex;
+    display: none;
     padding: 0px;
   }
 }
