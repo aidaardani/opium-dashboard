@@ -5992,7 +5992,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
         ) : null}
         <Button
           children2={
-            "\u0645\u0634\u0627\u0647\u062f\u0647 \u062c\u0632\u0626\u06cc\u0627\u062a"
+            "\u067e\u0631\u0648\u0646\u062f\u0647 \u0628\u06cc\u0645\u0627\u0631"
           }
           className={classNames("__wab_instance", sty.button__zley0)}
           onClick={async event => {
