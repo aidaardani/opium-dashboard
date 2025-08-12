@@ -1256,6 +1256,8 @@
   height: auto;
   max-width: 100%;
   text-align: right;
+  font-size: 14px;
+  font-weight: 300;
   min-width: 0;
 }
 .descriptionInput2:global(.__wab_instance) {

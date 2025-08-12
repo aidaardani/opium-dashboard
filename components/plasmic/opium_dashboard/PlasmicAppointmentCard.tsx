@@ -3121,7 +3121,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         $steps["updateSetDesc"] = await $steps["updateSetDesc"];
                       }
 
-                      $steps["invokeGlobalAction"] = true
+                      $steps["sendLog"] = true
                         ? (() => {
                             const actionArgs = {
                               args: [
@@ -3133,11 +3133,9 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                                         UserCenterId: $props.userCenterId,
                                         CenterId: $props.centerId,
                                         CenterName: $props.centerName,
-                                        RefId: $props.refId,
-                                        PatientHistory:
-                                          $state.apiBookHistory.data
+                                        RefId: $props.refId
                                       },
-                                      event_type: "set-desc"
+                                      event_type: "open-to-set-desc"
                                     };
                                   } catch (e) {
                                     if (
@@ -3159,13 +3157,11 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                           })()
                         : undefined;
                       if (
-                        $steps["invokeGlobalAction"] != null &&
-                        typeof $steps["invokeGlobalAction"] === "object" &&
-                        typeof $steps["invokeGlobalAction"].then === "function"
+                        $steps["sendLog"] != null &&
+                        typeof $steps["sendLog"] === "object" &&
+                        typeof $steps["sendLog"].then === "function"
                       ) {
-                        $steps["invokeGlobalAction"] = await $steps[
-                          "invokeGlobalAction"
-                        ];
+                        $steps["sendLog"] = await $steps["sendLog"];
                       }
                     }}
                     role={"img"}
@@ -3235,11 +3231,9 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                                         UserCenterId: $props.userCenterId,
                                         CenterId: $props.centerId,
                                         CenterName: $props.centerName,
-                                        RefId: $props.refId,
-                                        PatientHistory:
-                                          $state.apiBookHistory.data
+                                        RefId: $props.refId
                                       },
-                                      event_type: "set-desc"
+                                      event_type: "close-to-set-desc"
                                     };
                                   } catch (e) {
                                     if (
@@ -3924,7 +3918,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     </span>
                     <React.Fragment>
                       {
-                        "\u201d \u062e\u0648\u062f \u0631\u0627 \u06cc\u0627\u062f\u062f\u0627\u0634\u062a \u0646\u0645\u0627\u06cc\u06cc\u062f.\n\n(\u0627\u06cc\u0646 \u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u062f\u0631 \u0642\u0633\u0645\u062a "
+                        "\u201d \u062e\u0648\u062f \u0631\u0627 \u06cc\u0627\u062f\u062f\u0627\u0634\u062a \u0646\u0645\u0627\u06cc\u06cc\u062f.\n(\u0627\u06cc\u0646 \u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u062f\u0631 \u0642\u0633\u0645\u062a "
                       }
                     </React.Fragment>
                     <span
@@ -3937,7 +3931,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     </span>
                     <React.Fragment>
                       {
-                        " \u0628\u06cc\u0645\u0627\u0631 \u0630\u062e\u06cc\u0631\u0647 \u0645\u06cc\u200c\u0634\u0648\u062f.)\n"
+                        " \u0628\u06cc\u0645\u0627\u0631 \u0630\u062e\u06cc\u0631\u0647 \u0645\u06cc\u200c\u0634\u0648\u062f.)"
                       }
                     </React.Fragment>
                   </React.Fragment>

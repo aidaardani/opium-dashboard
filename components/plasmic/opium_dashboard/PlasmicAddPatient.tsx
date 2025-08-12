@@ -3907,29 +3907,6 @@ function PlasmicAddPatient__RenderFunc(props: {
           open={generateStateValueProp($state, ["booktime", "open"])}
           title={
             <div className={classNames(projectcss.all, sty.freeBox__xM9W3)}>
-              <div
-                className={classNames(
-                  projectcss.all,
-                  projectcss.__wab_text,
-                  sty.text__k18E
-                )}
-              >
-                <React.Fragment>
-                  {(() => {
-                    try {
-                      return undefined;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return "\u0644\u0637\u0641\u0627 \u0632\u0645\u0627\u0646 \u0646\u0648\u0628\u062a \u0645\u0648\u0631\u062f\u0646\u0638\u0631 \u062e\u0648\u062f \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u0646\u0645\u0627\u06cc\u06cc\u062f.";
-                      }
-                      throw e;
-                    }
-                  })()}
-                </React.Fragment>
-              </div>
               {(() => {
                 try {
                   return $state.fullname && true;
