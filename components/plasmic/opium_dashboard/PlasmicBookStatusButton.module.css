@@ -48,7 +48,7 @@
 @media (min-width: 0px) and (max-width: 768px) {
   .button:global(.__wab_instance) {
     width: 100%;
-    height: 40px;
+    height: 30px;
     min-width: 0;
     flex-shrink: 0;
   }
@@ -64,6 +64,11 @@
 }
 .text {
   padding-right: 0px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .text {
+    font-size: var(--token-VrIY9r5RDQZ_);
+  }
 }
 .textvisited {
   color: var(--token-u3OudfMChOo3);
