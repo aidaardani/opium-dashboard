@@ -49,6 +49,7 @@
   justify-content: flex-end;
   align-items: center;
   background: #ffffff;
+  column-gap: var(--token-vMUQwr5Jto1d);
   min-width: 0;
   padding: 8px 8px 0px;
 }
