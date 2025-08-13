@@ -5485,7 +5485,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                 )}
               >
                 {
-                  "\u0627\u062f\u0627\u0645\u0647 \u0622\u062f\u0631\u0633 \u0645\u0637\u0628 \u0631\u0627 \u062f\u0631 \u06a9\u0627\u062f\u0631 \u0632\u06cc\u0631 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f:"
+                  "\u0622\u062f\u0631\u0633 \u06a9\u0627\u0645\u0644 \u0648 \u062f\u0642\u06cc\u0642 \u0645\u0637\u0628 \u0631\u0627 \u062f\u0631 \u06a9\u0627\u062f\u0631 \u0632\u06cc\u0631 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f:"
                 }
               </div>
               <TextInput
@@ -5510,7 +5510,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                 }}
                 placeholder={(() => {
                   try {
-                    return "آدرس را وارد کنید...";
+                    return "خیابان، کوچه، پلاک، طبقه، واحد (مثال: خیابان ولیعصر، بن بست گل، پلاک 4، طبقه 2، واحد 6)";
                   } catch (e) {
                     if (
                       e instanceof TypeError ||

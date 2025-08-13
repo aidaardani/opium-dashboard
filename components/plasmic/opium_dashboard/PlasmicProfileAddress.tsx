@@ -4262,9 +4262,11 @@ function PlasmicProfileAddress__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.centersApi.data.data.find(
-                center => center.id !== 5532 && center.type_id === 1
-              ).lat;
+              return (
+                $state.centersApi.data.data.find(
+                  center => center.id !== 5532 && center.type_id === 1
+                )?.lat || 35.70069003610754
+              );
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -4283,9 +4285,11 @@ function PlasmicProfileAddress__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.centersApi.data.data.find(
-                center => center.id !== 5532 && center.type_id === 1
-              ).lon;
+              return (
+                $state.centersApi.data.data.find(
+                  center => center.id !== 5532 && center.type_id === 1
+                )?.lon || 51.35918498039246
+              );
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -4632,6 +4636,15 @@ function PlasmicProfileAddress__RenderFunc(props: {
               value={generateStateValueProp($state, ["citySelect", "value"])}
             />
           </div>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__p4HiG
+            )}
+          >
+            {"\u0622\u062f\u0631\u0633 \u0645\u0637\u0628 : "}
+          </div>
           <div className={classNames(projectcss.all, sty.freeBox__ztYm)}>
             <div
               className={classNames(
@@ -4680,7 +4693,9 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   eventArgs
                 );
               }}
-              placeholder={"\u0622\u062f\u0631\u0633 \u0645\u0637\u0628"}
+              placeholder={
+                "\u062e\u06cc\u0627\u0628\u0627\u0646\u060c \u06a9\u0648\u0686\u0647\u060c \u067e\u0644\u0627\u06a9\u060c \u0637\u0628\u0642\u0647\u060c \u0648\u0627\u062d\u062f ( \u0645\u062b\u0627\u0644 : \u062e\u06cc\u0627\u0628\u0627\u0646 \u0648\u0644\u06cc\u0639\u0635\u0631\u060c \u0628\u0627\u0644\u0627\u062a\u0631 \u0627\u0632 \u067e\u0627\u0631\u06a9 \u0633\u0627\u0639\u06cc\u060c \u0628\u0646 \u0628\u0633\u062a \u06af\u0644\u060c \u0633\u0627\u062e\u062a\u0645\u0627\u0646 \u06af\u0644\u060c \u0637\u0628\u0642\u0647 4\u060c \u0648\u0627\u062d\u062f 404\u060c \u06a9\u0644\u06cc\u0646\u06cc\u06a9 \u0648\u0627\u0631\u06cc\u0633 \u0627\u0631\u06a9\u06cc\u062f\u0647.)"
+              }
               type={"text"}
               value={generateStateValueProp($state, ["address", "value"])}
             />

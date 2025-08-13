@@ -75,6 +75,13 @@
   object-fit: cover;
   min-width: 0;
 }
+.text__p4HiG {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
 .freeBox__ztYm {
   display: flex;
   flex-direction: row;
