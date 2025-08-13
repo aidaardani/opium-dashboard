@@ -67,12 +67,14 @@
   width: 100%;
   max-width: 100%;
   object-fit: cover;
+  font-size: 14px;
   min-width: 0;
 }
 .citySelect:global(.__wab_instance) {
   width: 100%;
   max-width: 100%;
   object-fit: cover;
+  font-size: 14px;
   min-width: 0;
 }
 .text__p4HiG {
@@ -80,6 +82,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
+  font-size: 14px;
   min-width: 0;
 }
 .freeBox__ztYm {
@@ -91,7 +94,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  column-gap: var(--token-Fv8-L_kN-2Ma);
+  column-gap: var(--token-fhaz6q6bl-fW);
   min-width: 0;
   padding: 0px;
 }
@@ -101,11 +104,15 @@
   height: auto;
   max-width: 100%;
   white-space: pre;
+  font-size: 14px;
+  font-weight: 300;
 }
 .address:global(.__wab_instance) {
   width: 100%;
   max-width: 100%;
   object-fit: cover;
+  font-size: 14px;
+  font-weight: 300;
   min-width: 0;
 }
 .profileTells:global(.__wab_instance) {
@@ -296,14 +303,26 @@
 .checkbox:global(.__wab_instance) {
   max-width: 100%;
 }
+.text__zhSoP {
+  font-size: 14px;
+}
 .checkbox2:global(.__wab_instance) {
   max-width: 100%;
+}
+.text__k0En4 {
+  font-size: 14px;
 }
 .checkbox3:global(.__wab_instance) {
   max-width: 100%;
 }
+.text__si3C {
+  font-size: 14px;
+}
 .checkbox4:global(.__wab_instance) {
   max-width: 100%;
+}
+.text___29Hty {
+  font-size: 14px;
 }
 .freeBox__yYGwS {
   display: flex;

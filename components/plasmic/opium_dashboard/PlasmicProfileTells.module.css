@@ -29,6 +29,7 @@
   width: 100%;
   max-width: 100%;
   object-fit: cover;
+  font-size: 14px;
   min-width: 0;
   border-width: 1px;
   border-style: none;

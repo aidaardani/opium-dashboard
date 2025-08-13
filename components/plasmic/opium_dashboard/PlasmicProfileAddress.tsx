@@ -5310,9 +5310,17 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 }
               }}
             >
-              {
-                "\u062f\u0633\u062a\u0631\u0633\u06cc \u0628\u0647 \u0645\u062a\u0631\u0648 \u062f\u0627\u0631\u062f"
-              }
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__zhSoP
+                )}
+              >
+                {
+                  "\u062f\u0633\u062a\u0631\u0633\u06cc \u0628\u0647 \u0645\u062a\u0631\u0648 \u062f\u0627\u0631\u062f"
+                }
+              </div>
             </Checkbox>
             <Checkbox
               data-plasmic-name={"checkbox2"}
@@ -5339,9 +5347,17 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 }
               }}
             >
-              {
-                "\u0622\u0633\u0627\u0646\u0633\u0648\u0631 \u062f\u0627\u0631\u062f"
-              }
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__k0En4
+                )}
+              >
+                {
+                  "\u0622\u0633\u0627\u0646\u0633\u0648\u0631 \u062f\u0627\u0631\u062f"
+                }
+              </div>
             </Checkbox>
             <Checkbox
               data-plasmic-name={"checkbox3"}
@@ -5368,9 +5384,17 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 }
               }}
             >
-              {
-                "\u0627\u0645\u06a9\u0627\u0646 \u067e\u0630\u06cc\u0631\u0634 \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0648\u06cc\u0644\u0686\u0631\u06cc \u0648\u062c\u0648\u062f \u062f\u0627\u0631\u062f"
-              }
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__si3C
+                )}
+              >
+                {
+                  "\u0627\u0645\u06a9\u0627\u0646 \u067e\u0630\u06cc\u0631\u0634 \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0648\u06cc\u0644\u0686\u0631\u06cc \u0648\u062c\u0648\u062f \u062f\u0627\u0631\u062f"
+                }
+              </div>
             </Checkbox>
             <Checkbox
               data-plasmic-name={"checkbox4"}
@@ -5397,9 +5421,17 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 }
               }}
             >
-              {
-                "\u062c\u0627\u06cc \u067e\u0627\u0631\u06a9 \u062f\u0627\u0631\u062f"
-              }
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___29Hty
+                )}
+              >
+                {
+                  "\u062c\u0627\u06cc \u067e\u0627\u0631\u06a9 \u062f\u0627\u0631\u062f"
+                }
+              </div>
             </Checkbox>
           </div>
           <div className={classNames(projectcss.all, sty.freeBox__yYGwS)}>
