@@ -3937,7 +3937,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     </span>
                     <React.Fragment>
                       {
-                        "\u201d \u062e\u0648\u062f \u0631\u0627 \u06cc\u0627\u062f\u062f\u0627\u0634\u062a \u0646\u0645\u0627\u06cc\u06cc\u062f.\n(\u0627\u06cc\u0646 \u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u062f\u0631 \u0642\u0633\u0645\u062a "
+                        "\u201d \u062e\u0648\u062f \u0631\u0627 \u06cc\u0627\u062f\u062f\u0627\u0634\u062a \u0646\u0645\u0627\u06cc\u06cc\u062f.\n\n(\u0627\u06cc\u0646 \u062a\u0648\u0636\u06cc\u062d\u0627\u062a \u062f\u0631 \u0642\u0633\u0645\u062a "
                       }
                     </React.Fragment>
                     <span
@@ -4186,14 +4186,14 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                                 (() => {
                                   try {
                                     return {
-                                      group: "description",
+                                      event_group: "description",
                                       data: {
                                         center_id: $props.centerId,
                                         bookid: $props.bookId,
                                         description:
                                           $state.descriptionInput2.value
                                       },
-                                      type: "add-description"
+                                      event_type: "add-description"
                                     };
                                   } catch (e) {
                                     if (
@@ -6054,6 +6054,48 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               typeof $steps["updateDialogOpen"].then === "function"
             ) {
               $steps["updateDialogOpen"] = await $steps["updateDialogOpen"];
+            }
+
+            $steps["sendLog"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      (() => {
+                        try {
+                          return {
+                            event_group: "BookList",
+                            data: {
+                              BookId: $props.bookId,
+                              CenterId: $props.centerId,
+                              CenterName: $props.centerName,
+                              UserCenterId: $props.userCenterId,
+                              RefID: $props.refId
+                            },
+                            event_type: "MedicalFile"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Splunk.sendLog"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["sendLog"] != null &&
+              typeof $steps["sendLog"] === "object" &&
+              typeof $steps["sendLog"].then === "function"
+            ) {
+              $steps["sendLog"] = await $steps["sendLog"];
             }
           }}
           outline={true}
