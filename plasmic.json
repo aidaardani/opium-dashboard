@@ -34,7 +34,9 @@
       "globalContextsFilePath": "",
       "splitsProviderFilePath": "",
       "codeComponents": [],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "8PtdGodUbexNYgkuyBUcWu",
@@ -56,7 +58,9 @@
           "componentImportPath": "@plasmicpkgs/plasmic-embed-css"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "caTPwKxj5ZrD9LQ7DMdK4Z",
@@ -114,7 +118,9 @@
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "oBJtsp5RgVpcN6KCrDTuQT",
@@ -265,7 +271,9 @@
         }
       ],
       "customFunctions": [],
-      "jsBundleThemes": []
+      "jsBundleThemes": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "sqPBLwEBBKHA2WDuGb17eV",
@@ -355,7 +363,9 @@
           "componentImportPath": "@plasmicpkgs/radix-ui"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "kpio2pzukKRJkKg6SSrKTe",
@@ -370,7 +380,9 @@
       "globalContextsFilePath": "",
       "splitsProviderFilePath": "",
       "codeComponents": [],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "gmeH6XgPaBtkt51HunAo4g",
@@ -578,7 +590,9 @@
           "componentImportPath": "@plasmicpkgs/react-aria/skinny/registerDialog"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "jkU633o1Cz7HrJdwdxhVHk",
@@ -632,7 +646,9 @@
           }
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "k6BnBuAUepzRX8Qs2WvkKs",
@@ -647,7 +663,9 @@
       "globalContextsFilePath": "",
       "splitsProviderFilePath": "",
       "codeComponents": [],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "vqeFwpZFQ6buChy6T9PGwQ",
@@ -673,7 +691,9 @@
           }
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "ohDidvG9XsCeFumugENU3J",
@@ -1073,7 +1093,9 @@
           "componentImportPath": "@plasmicpkgs/antd5/skinny/registerBreadcrumb"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "a3pmZtcpA5asHkNtN3SGoF",
@@ -1088,7 +1110,9 @@
       "globalContextsFilePath": "",
       "splitsProviderFilePath": "",
       "codeComponents": [],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "YUiM7yqBWAqsh8KSnrdj7",
@@ -1116,7 +1140,9 @@
           "componentImportPath": "@plasmicpkgs/plasmic-query"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "h9Dbk9ygddw7UVEq1NNhKi",
@@ -1264,7 +1290,9 @@
         }
       ],
       "customFunctions": [],
-      "jsBundleThemes": []
+      "jsBundleThemes": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
@@ -3665,7 +3693,9 @@
           "name": "moment",
           "namespace": null
         }
-      ]
+      ],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     },
     {
       "projectId": "aEHVN5v6mfM4eovDsL8Z7d",
@@ -3680,7 +3710,9 @@
       "globalContextsFilePath": "",
       "splitsProviderFilePath": "",
       "codeComponents": [],
-      "customFunctions": []
+      "customFunctions": [],
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": ""
     }
   ],
   "globalVariants": {
@@ -3709,6 +3741,6 @@
   "nextjsConfig": {
     "pagesDir": "../src/pages"
   },
-  "cliVersion": "0.1.341",
-  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.341/dist/plasmic.schema.json"
+  "cliVersion": "0.1.342",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.342/dist/plasmic.schema.json"
 }

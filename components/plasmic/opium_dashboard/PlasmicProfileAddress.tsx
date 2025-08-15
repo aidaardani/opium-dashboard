@@ -4263,7 +4263,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
           (() => {
             try {
               return (
-                $state.centersApi.data.data.find(
+                $state.centersApi?.data?.data?.find(
                   center => center.id !== 5532 && center.type_id === 1
                 )?.lat || 35.70069003610754
               );
@@ -4286,7 +4286,7 @@ function PlasmicProfileAddress__RenderFunc(props: {
           (() => {
             try {
               return (
-                $state.centersApi.data.data.find(
+                $state.centersApi?.data?.data?.find(
                   center => center.id !== 5532 && center.type_id === 1
                 )?.lon || 51.35918498039246
               );
