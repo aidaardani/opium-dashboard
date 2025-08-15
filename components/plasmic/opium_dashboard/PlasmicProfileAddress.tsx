@@ -4262,11 +4262,15 @@ function PlasmicProfileAddress__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return (
-                $state.centersApi?.data?.data?.find(
-                  center => center.id !== 5532 && center.type_id === 1
-                )?.lat || 35.70069003610754
-              );
+              return (() => {
+                const centers = Array.isArray($state.centersApi?.data?.data)
+                  ? $state.centersApi.data.data
+                  : [];
+                const lat =
+                  centers.find(c => c.id !== 5532 && Number(c.type_id) === 1)
+                    ?.lat ?? 35.70069003610754;
+                return lat;
+              })();
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -4285,11 +4289,15 @@ function PlasmicProfileAddress__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return (
-                $state.centersApi?.data?.data?.find(
-                  center => center.id !== 5532 && center.type_id === 1
-                )?.lon || 51.35918498039246
-              );
+              return (() => {
+                const centers = Array.isArray($state.centersApi?.data?.data)
+                  ? $state.centersApi.data.data
+                  : [];
+                const lat =
+                  centers.find(c => c.id !== 5532 && Number(c.type_id) === 1)
+                    ?.lat ?? 51.35918498039246;
+                return lat;
+              })();
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -4482,7 +4490,12 @@ function PlasmicProfileAddress__RenderFunc(props: {
               $steps["sendEvent"] = await $steps["sendEvent"];
             }
 
-            $steps["updateMapLat"] = true
+            $steps["updateMapLat"] = $state.centersApi.data.data.find(
+              center =>
+                center.id !== "5532" &&
+                center.type_id === 1 &&
+                center.lat !== null
+            )
               ? (() => {
                   const actionArgs = {
                     variable: {
@@ -4513,7 +4526,12 @@ function PlasmicProfileAddress__RenderFunc(props: {
               $steps["updateMapLat"] = await $steps["updateMapLat"];
             }
 
-            $steps["updateMapLng"] = true
+            $steps["updateMapLng"] = $state.centersApi.data.data.find(
+              center =>
+                center.id !== "5532" &&
+                center.type_id === 1 &&
+                center.lon !== null
+            )
               ? (() => {
                   const actionArgs = {
                     variable: {
@@ -5449,28 +5467,115 @@ function PlasmicProfileAddress__RenderFunc(props: {
               }
             })() ? (
               <div className={classNames(projectcss.all, sty.freeBox__p1Evm)}>
-                <Map
-                  data-plasmic-name={"map"}
-                  data-plasmic-override={overrides.map}
-                  className={classNames("__wab_instance", sty.map)}
-                  height={"256px"}
-                  lat={generateStateValueProp($state, ["map", "lat"])}
-                  lng={generateStateValueProp($state, ["map", "lng"])}
-                  onChangeLat={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, ["map", "lat"]).apply(
-                      null,
-                      eventArgs
-                    );
-                  }}
-                  onChangeLng={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, ["map", "lng"]).apply(
-                      null,
-                      eventArgs
-                    );
-                  }}
-                  width={"100%"}
-                  zoom={20}
-                />
+                {(() => {
+                  const child$Props = {
+                    className: classNames("__wab_instance", sty.map),
+                    height: "256px",
+                    lat: generateStateValueProp($state, ["map", "lat"]),
+                    lng: generateStateValueProp($state, ["map", "lng"]),
+                    onChangeLat: async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, ["map", "lat"]).apply(
+                        null,
+                        eventArgs
+                      );
+                    },
+                    onChangeLng: async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, ["map", "lng"]).apply(
+                        null,
+                        eventArgs
+                      );
+                    },
+                    width: "100%",
+                    zoom: 20
+                  };
+                  initializeCodeComponentStates(
+                    $state,
+                    [
+                      {
+                        name: "lat",
+                        plasmicStateName: "map.lat"
+                      },
+                      {
+                        name: "lng",
+                        plasmicStateName: "map.lng"
+                      }
+                    ],
+                    [],
+                    undefined ?? {},
+                    child$Props
+                  );
+                  initializePlasmicStates(
+                    $state,
+                    [
+                      {
+                        name: "map.lat",
+                        initFunc: ({ $props, $state, $queries }) =>
+                          (() => {
+                            try {
+                              return (() => {
+                                const centers = Array.isArray(
+                                  $state.centersApi?.data?.data
+                                )
+                                  ? $state.centersApi.data.data
+                                  : [];
+                                const lat =
+                                  centers.find(
+                                    c =>
+                                      c.id !== 5532 && Number(c.type_id) === 1
+                                  )?.lat ?? 35.70069003610754;
+                                return lat;
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return 35.70069003610754;
+                              }
+                              throw e;
+                            }
+                          })()
+                      },
+                      {
+                        name: "map.lng",
+                        initFunc: ({ $props, $state, $queries }) =>
+                          (() => {
+                            try {
+                              return (() => {
+                                const centers = Array.isArray(
+                                  $state.centersApi?.data?.data
+                                )
+                                  ? $state.centersApi.data.data
+                                  : [];
+                                const lat =
+                                  centers.find(
+                                    c =>
+                                      c.id !== 5532 && Number(c.type_id) === 1
+                                  )?.lat ?? 51.35918498039246;
+                                return lat;
+                              })();
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return 51.35918498039246;
+                              }
+                              throw e;
+                            }
+                          })()
+                      }
+                    ],
+                    []
+                  );
+                  return (
+                    <Map
+                      data-plasmic-name={"map"}
+                      data-plasmic-override={overrides.map}
+                      {...child$Props}
+                    />
+                  );
+                })()}
               </div>
             ) : null}
           </div>
