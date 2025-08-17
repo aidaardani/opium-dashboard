@@ -33,7 +33,6 @@ import {
   classNames,
   createPlasmicElementProxy,
   deriveRenderOpts,
-  ensureGlobalVariants,
   generateOnMutateForSpec,
   generateStateOnChangeProp,
   generateStateOnChangePropForCodeComponents,
@@ -64,12 +63,14 @@ import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZ
 import { Popover } from "@/fragment/components/popover"; // plasmic-import: umJXC-fyxDQn/codeComponent
 import DaysOfWeek from "../../DaysOfWeek"; // plasmic-import: WbPt8L2jActx/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_fragment_design_system } from ""; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_antd_5_hostless } from ""; // plasmic-import: ohDidvG9XsCeFumugENU3J/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_plasmic_rich_components } from ""; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
-import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
-import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicWorkhours.module.css"; // plasmic-import: AuSNwEdbo4sV/css
 
@@ -113,10 +114,9 @@ export const PlasmicWorkhours__ArgProps = new Array<ArgPropType>(
 export type PlasmicWorkhours__OverridesType = {
   root?: Flex__<"div">;
   checkbox?: Flex__<typeof Checkbox>;
-  to?: Flex__<typeof Select>;
   from?: Flex__<typeof Select>;
+  to?: Flex__<typeof Select>;
   popoverConflictHour2?: Flex__<typeof Popover>;
-  text?: Flex__<"div">;
   fragmentPopover?: Flex__<typeof Popover>;
   daysOfWeek?: Flex__<typeof DaysOfWeek>;
 };
@@ -283,6 +283,14 @@ function PlasmicWorkhours__RenderFunc(props: {
     $refs
   });
 
+  const styleTokensClassNames = _useStyleTokens();
+  const styleTokensClassNames_fragment_design_system =
+    useStyleTokens_fragment_design_system();
+  const styleTokensClassNames_antd_5_hostless =
+    useStyleTokens_antd_5_hostless();
+  const styleTokensClassNames_plasmic_rich_components =
+    useStyleTokens_plasmic_rich_components();
+
   return (
     <div
       data-plasmic-name={"root"}
@@ -294,10 +302,10 @@ function PlasmicWorkhours__RenderFunc(props: {
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
-        projectcss.plasmic_tokens,
-        plasmic_fragment_design_system_css.plasmic_tokens,
-        plasmic_antd_5_hostless_css.plasmic_tokens,
-        plasmic_plasmic_rich_components_css.plasmic_tokens,
+        styleTokensClassNames,
+        styleTokensClassNames_fragment_design_system,
+        styleTokensClassNames_antd_5_hostless,
+        styleTokensClassNames_plasmic_rich_components,
         sty.root
       )}
     >
@@ -379,221 +387,6 @@ function PlasmicWorkhours__RenderFunc(props: {
                 className={classNames(projectcss.all, sty.freeBox__my02V)}
                 key={currentIndex}
               >
-                {(() => {
-                  const child$Props = {
-                    onChange: async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "to",
-                        __plasmic_idx_0,
-                        "value"
-                      ]).apply(null, eventArgs);
-
-                      (async value => {
-                        const $steps = {};
-
-                        $steps["runCode"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                customFunction: async () => {
-                                  return ($state.listOfWorkhoureCopy[
-                                    currentIndex
-                                  ].to = $state.to[currentIndex].value);
-                                }
-                              };
-                              return (({ customFunction }) => {
-                                return customFunction();
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["runCode"] != null &&
-                          typeof $steps["runCode"] === "object" &&
-                          typeof $steps["runCode"].then === "function"
-                        ) {
-                          $steps["runCode"] = await $steps["runCode"];
-                        }
-
-                        $steps["updateWarning"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                variable: {
-                                  objRoot: $state,
-                                  variablePath: ["warning"]
-                                },
-                                operation: 0,
-                                value: $state.listOfWorkhoureCopy.some(
-                                  (item, index) =>
-                                    index !== currentIndex
-                                      ? (new Date(
-                                          `2000-01-01T${currentItem.from}:00`
-                                        ).getTime() >=
-                                          new Date(
-                                            `2000-01-01T${item.from}:00`
-                                          ).getTime() &&
-                                          new Date(
-                                            `2000-01-01T${currentItem.from}:00`
-                                          ).getTime() <
-                                            new Date(
-                                              `2000-01-01T${item.to}:00`
-                                            ).getTime()) ||
-                                        (new Date(
-                                          `2000-01-01T${currentItem.to}:00`
-                                        ).getTime() >
-                                          new Date(
-                                            `2000-01-01T${item.from}:00`
-                                          ).getTime() &&
-                                          new Date(
-                                            `2000-01-01T${currentItem.to}:00`
-                                          ).getTime() <=
-                                            new Date(
-                                              `2000-01-01T${item.to}:00`
-                                            ).getTime())
-                                      : item.from === item.to
-                                )
-                              };
-                              return (({
-                                variable,
-                                value,
-                                startIndex,
-                                deleteCount
-                              }) => {
-                                if (!variable) {
-                                  return;
-                                }
-                                const { objRoot, variablePath } = variable;
-
-                                $stateSet(objRoot, variablePath, value);
-                                return value;
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["updateWarning"] != null &&
-                          typeof $steps["updateWarning"] === "object" &&
-                          typeof $steps["updateWarning"].then === "function"
-                        ) {
-                          $steps["updateWarning"] = await $steps[
-                            "updateWarning"
-                          ];
-                        }
-                      }).apply(null, eventArgs);
-                    },
-                    onOpenChange: async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "to",
-                        __plasmic_idx_0,
-                        "open"
-                      ]).apply(null, eventArgs);
-                    },
-                    open: generateStateValueProp($state, [
-                      "to",
-                      __plasmic_idx_0,
-                      "open"
-                    ]),
-                    options: (() => {
-                      try {
-                        return (() => {
-                          const duration = $props.duration;
-                          const options = [];
-                          let [initialHour, initialMinute] = currentItem.from
-                            .split(":")
-                            .map(Number);
-                          while (true) {
-                            initialHour += Math.floor(
-                              (initialMinute + duration) / 60
-                            );
-                            initialMinute = (initialMinute + duration) % 60;
-                            if (initialHour >= 24) {
-                              break;
-                            }
-                            const formattedHour =
-                              initialHour < 10
-                                ? `0${initialHour}`
-                                : `${initialHour}`;
-                            const formattedMinute =
-                              initialMinute < 10
-                                ? `0${initialMinute}`
-                                : `${initialMinute}`;
-                            options.push({
-                              label: `${formattedHour}:${formattedMinute}`,
-                              value: `${formattedHour}:${formattedMinute}`
-                            });
-                          }
-                          return options;
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })(),
-                    triggerClassName: classNames("__wab_instance", sty.to),
-                    value: generateStateValueProp($state, [
-                      "to",
-                      __plasmic_idx_0,
-                      "value"
-                    ])
-                  };
-                  initializeCodeComponentStates(
-                    $state,
-                    [
-                      {
-                        name: "value",
-                        plasmicStateName: "to[].value"
-                      },
-                      {
-                        name: "open",
-                        plasmicStateName: "to[].open"
-                      }
-                    ],
-                    [__plasmic_idx_0],
-                    undefined ?? {},
-                    child$Props
-                  );
-                  initializePlasmicStates(
-                    $state,
-                    [
-                      {
-                        name: "to[].value",
-                        initFunc: ({ $props, $state, $queries }) =>
-                          (() => {
-                            try {
-                              return currentItem.to;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return "17:40";
-                              }
-                              throw e;
-                            }
-                          })()
-                      },
-                      {
-                        name: "to[].open",
-                        initFunc: ({ $props, $state, $queries }) => undefined
-                      }
-                    ],
-                    [__plasmic_idx_0]
-                  );
-                  return (
-                    <Select
-                      data-plasmic-name={"to"}
-                      data-plasmic-override={overrides.to}
-                      {...child$Props}
-                    />
-                  );
-                })()}
-                <Icon6Icon
-                  className={classNames(projectcss.all, sty.svg__oUoA2)}
-                  role={"img"}
-                />
-
                 {(() => {
                   const child$Props = {
                     onChange: async (...eventArgs: any) => {
@@ -848,6 +641,230 @@ function PlasmicWorkhours__RenderFunc(props: {
                     />
                   );
                 })()}
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__nnfB
+                  )}
+                >
+                  {"\u062a\u0627"}
+                </div>
+                <Icon6Icon
+                  className={classNames(projectcss.all, sty.svg__oUoA2)}
+                  role={"img"}
+                />
+
+                {(() => {
+                  const child$Props = {
+                    onChange: async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "to",
+                        __plasmic_idx_0,
+                        "value"
+                      ]).apply(null, eventArgs);
+
+                      (async value => {
+                        const $steps = {};
+
+                        $steps["runCode"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                customFunction: async () => {
+                                  return ($state.listOfWorkhoureCopy[
+                                    currentIndex
+                                  ].to = $state.to[currentIndex].value);
+                                }
+                              };
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["runCode"] != null &&
+                          typeof $steps["runCode"] === "object" &&
+                          typeof $steps["runCode"].then === "function"
+                        ) {
+                          $steps["runCode"] = await $steps["runCode"];
+                        }
+
+                        $steps["updateWarning"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["warning"]
+                                },
+                                operation: 0,
+                                value: $state.listOfWorkhoureCopy.some(
+                                  (item, index) =>
+                                    index !== currentIndex
+                                      ? (new Date(
+                                          `2000-01-01T${currentItem.from}:00`
+                                        ).getTime() >=
+                                          new Date(
+                                            `2000-01-01T${item.from}:00`
+                                          ).getTime() &&
+                                          new Date(
+                                            `2000-01-01T${currentItem.from}:00`
+                                          ).getTime() <
+                                            new Date(
+                                              `2000-01-01T${item.to}:00`
+                                            ).getTime()) ||
+                                        (new Date(
+                                          `2000-01-01T${currentItem.to}:00`
+                                        ).getTime() >
+                                          new Date(
+                                            `2000-01-01T${item.from}:00`
+                                          ).getTime() &&
+                                          new Date(
+                                            `2000-01-01T${currentItem.to}:00`
+                                          ).getTime() <=
+                                            new Date(
+                                              `2000-01-01T${item.to}:00`
+                                            ).getTime())
+                                      : item.from === item.to
+                                )
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateWarning"] != null &&
+                          typeof $steps["updateWarning"] === "object" &&
+                          typeof $steps["updateWarning"].then === "function"
+                        ) {
+                          $steps["updateWarning"] = await $steps[
+                            "updateWarning"
+                          ];
+                        }
+                      }).apply(null, eventArgs);
+                    },
+                    onOpenChange: async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "to",
+                        __plasmic_idx_0,
+                        "open"
+                      ]).apply(null, eventArgs);
+                    },
+                    open: generateStateValueProp($state, [
+                      "to",
+                      __plasmic_idx_0,
+                      "open"
+                    ]),
+                    options: (() => {
+                      try {
+                        return (() => {
+                          const duration = $props.duration;
+                          const options = [];
+                          let [initialHour, initialMinute] = currentItem.from
+                            .split(":")
+                            .map(Number);
+                          while (true) {
+                            initialHour += Math.floor(
+                              (initialMinute + duration) / 60
+                            );
+                            initialMinute = (initialMinute + duration) % 60;
+                            if (initialHour >= 24) {
+                              break;
+                            }
+                            const formattedHour =
+                              initialHour < 10
+                                ? `0${initialHour}`
+                                : `${initialHour}`;
+                            const formattedMinute =
+                              initialMinute < 10
+                                ? `0${initialMinute}`
+                                : `${initialMinute}`;
+                            options.push({
+                              label: `${formattedHour}:${formattedMinute}`,
+                              value: `${formattedHour}:${formattedMinute}`
+                            });
+                          }
+                          return options;
+                        })();
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })(),
+                    triggerClassName: classNames("__wab_instance", sty.to),
+                    value: generateStateValueProp($state, [
+                      "to",
+                      __plasmic_idx_0,
+                      "value"
+                    ])
+                  };
+                  initializeCodeComponentStates(
+                    $state,
+                    [
+                      {
+                        name: "value",
+                        plasmicStateName: "to[].value"
+                      },
+                      {
+                        name: "open",
+                        plasmicStateName: "to[].open"
+                      }
+                    ],
+                    [__plasmic_idx_0],
+                    undefined ?? {},
+                    child$Props
+                  );
+                  initializePlasmicStates(
+                    $state,
+                    [
+                      {
+                        name: "to[].value",
+                        initFunc: ({ $props, $state, $queries }) =>
+                          (() => {
+                            try {
+                              return currentItem.to;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "17:40";
+                              }
+                              throw e;
+                            }
+                          })()
+                      },
+                      {
+                        name: "to[].open",
+                        initFunc: ({ $props, $state, $queries }) => undefined
+                      }
+                    ],
+                    [__plasmic_idx_0]
+                  );
+                  return (
+                    <Select
+                      data-plasmic-name={"to"}
+                      data-plasmic-override={overrides.to}
+                      {...child$Props}
+                    />
+                  );
+                })()}
                 {(() => {
                   try {
                     return currentIndex === 0;
@@ -1095,12 +1112,10 @@ function PlasmicWorkhours__RenderFunc(props: {
                         )}
                       >
                         <div
-                          data-plasmic-name={"text"}
-                          data-plasmic-override={overrides.text}
                           className={classNames(
                             projectcss.all,
                             projectcss.__wab_text,
-                            sty.text
+                            sty.text__eqoZj
                           )}
                         >
                           {
@@ -1455,18 +1470,16 @@ const PlasmicDescendants = {
   root: [
     "root",
     "checkbox",
-    "to",
     "from",
+    "to",
     "popoverConflictHour2",
-    "text",
     "fragmentPopover",
     "daysOfWeek"
   ],
   checkbox: ["checkbox"],
-  to: ["to"],
   from: ["from"],
-  popoverConflictHour2: ["popoverConflictHour2", "text"],
-  text: ["text"],
+  to: ["to"],
+  popoverConflictHour2: ["popoverConflictHour2"],
   fragmentPopover: ["fragmentPopover", "daysOfWeek"],
   daysOfWeek: ["daysOfWeek"]
 } as const;
@@ -1476,10 +1489,9 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   checkbox: typeof Checkbox;
-  to: typeof Select;
   from: typeof Select;
+  to: typeof Select;
   popoverConflictHour2: typeof Popover;
-  text: "div";
   fragmentPopover: typeof Popover;
   daysOfWeek: typeof DaysOfWeek;
 };
@@ -1545,10 +1557,9 @@ export const PlasmicWorkhours = Object.assign(
   {
     // Helper components rendering sub-elements
     checkbox: makeNodeComponent("checkbox"),
-    to: makeNodeComponent("to"),
     from: makeNodeComponent("from"),
+    to: makeNodeComponent("to"),
     popoverConflictHour2: makeNodeComponent("popoverConflictHour2"),
-    text: makeNodeComponent("text"),
     fragmentPopover: makeNodeComponent("fragmentPopover"),
     daysOfWeek: makeNodeComponent("daysOfWeek"),
 

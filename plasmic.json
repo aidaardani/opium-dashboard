@@ -3694,8 +3694,8 @@
           "namespace": null
         }
       ],
-      "styleTokensProviderFilePath": "",
-      "projectModuleFilePath": ""
+      "styleTokensProviderFilePath": "plasmic/opium_dashboard/PlasmicStyleTokensProvider.tsx",
+      "projectModuleFilePath": "plasmic/opium_dashboard/plasmic.tsx"
     },
     {
       "projectId": "aEHVN5v6mfM4eovDsL8Z7d",
