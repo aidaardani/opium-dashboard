@@ -1,0 +1,236 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-W6cMLA0AZVBO);
+  min-width: 0;
+}
+.authApi:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.freeBox__bhGCx {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.svg__lYhYn {
+  object-fit: cover;
+  max-width: 100%;
+  width: 24px;
+  flex-shrink: 0;
+  height: 1em;
+}
+.expertisesApi:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.svg__wNjv6 {
+  object-fit: cover;
+  max-width: 100%;
+  width: 24px;
+  height: 1em;
+}
+.freeBox__deNqh {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  row-gap: var(--token-Fv8-L_kN-2Ma);
+  min-width: 0;
+  padding: 8px;
+}
+.freeBox___3PSHh {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  background: #fff9db;
+  row-gap: 3px;
+  min-width: 0;
+  border-radius: 8px;
+  padding: 8px;
+}
+.text__f7WFc {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.h6 {
+  padding: 5px;
+}
+.freeBox__afDni {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 5px 12px;
+}
+.text__gaqai {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-weight: 200;
+  font-size: 12px;
+  min-width: 0;
+}
+.text___97Bgt {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-weight: 200;
+  font-size: 12px;
+  min-width: 0;
+}
+.freeBox__hKrof {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  row-gap: var(--token-vMUQwr5Jto1d);
+  min-width: 0;
+  padding: 0px;
+}
+.profileExpertiseItem2:global(.__wab_instance) {
+  max-width: 100%;
+}
+.freeBox___3Ija4 {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-vMUQwr5Jto1d);
+  min-width: 0;
+  padding: 8px;
+}
+.button__wTEc8:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.svg__gmgzy {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.svg___269KD {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.button__k32Sc:global(.__wab_instance) {
+  max-width: 100%;
+}
+.svg__ptbOs {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.svg__fAu9 {
+  object-fit: cover;
+  max-width: 100%;
+  width: 22px;
+  height: 22px;
+}
+.svg__hbwSp {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.dialog:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.freeBox__zSbRq {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-Fv8-L_kN-2Ma);
+  min-width: 0;
+  padding: 8px;
+}
+.button__tt0Tp:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.svg__vlog7 {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.text__a5AHs {
+  padding-bottom: 0px;
+}
+.svg___8EmA7 {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.button__lcR8T:global(.__wab_instance) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.svg__iYw0U {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.text__nu3Ag {
+  padding-bottom: 0px;
+}
+.svg___09GEl {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
