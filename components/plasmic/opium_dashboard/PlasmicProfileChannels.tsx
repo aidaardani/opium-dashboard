@@ -61,6 +61,7 @@ import {
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import ProfileChannelsItem from "../../ProfileChannelsItem"; // plasmic-import: JABa_xxikfr0/component
+import { Popover } from "@/fragment/components/popover"; // plasmic-import: umJXC-fyxDQn/codeComponent
 import { Switch } from "@/fragment/components/switch"; // plasmic-import: dH6_VlwkAh4P/codeComponent
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectModule
@@ -76,6 +77,7 @@ import sty from "./PlasmicProfileChannels.module.css"; // plasmic-import: o4nq-6
 
 import Icon28Icon from "./icons/PlasmicIcon__Icon28"; // plasmic-import: jhZk-kRqJ6_T/icon
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
+import Icon15Icon from "./icons/PlasmicIcon__Icon15"; // plasmic-import: dLXaRsSSHo3S/icon
 import Icon27Icon from "./icons/PlasmicIcon__Icon27"; // plasmic-import: _jqfq3yh1NEC/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
@@ -107,6 +109,8 @@ export type PlasmicProfileChannels__OverridesType = {
   dialog?: Flex__<typeof Dialog>;
   apiRequest?: Flex__<typeof ApiRequest>;
   eitaa?: Flex__<typeof ProfileChannelsItem>;
+  apiCheckEitaaUsername?: Flex__<typeof ApiRequest>;
+  popover?: Flex__<typeof Popover>;
   whatsapp?: Flex__<typeof ProfileChannelsItem>;
   _switch?: Flex__<typeof Switch>;
 };
@@ -302,6 +306,38 @@ function PlasmicProfileChannels__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "apiCheckEitaaUsername.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiCheckEitaaUsername"
+      },
+      {
+        path: "apiCheckEitaaUsername.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiCheckEitaaUsername"
+      },
+      {
+        path: "apiCheckEitaaUsername.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiCheckEitaaUsername"
+      },
+      {
+        path: "popover.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+
+        refName: "popover"
       }
     ],
     [$props, $ctx, $refs]
@@ -576,6 +612,201 @@ function PlasmicProfileChannels__RenderFunc(props: {
                 "usernameValue"
               ])}
             />
+
+            {(() => {
+              try {
+                return $state.eitaa?.usernameValue &&
+                  $state.eitaa?.usernameValue !== "" &&
+                  $state.eitaa?.usernameValue !== " "
+                  ? true
+                  : false;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })() ? (
+              <div className={classNames(projectcss.all, sty.freeBox__nRdhV)}>
+                <ApiRequest
+                  data-plasmic-name={"apiCheckEitaaUsername"}
+                  data-plasmic-override={overrides.apiCheckEitaaUsername}
+                  className={classNames(
+                    "__wab_instance",
+                    sty.apiCheckEitaaUsername
+                  )}
+                  errorDisplay={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__z0YH
+                      )}
+                    >
+                      {"Error fetching data"}
+                    </div>
+                  }
+                  loadingDisplay={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text___56K8
+                      )}
+                    >
+                      {"Loading..."}
+                    </div>
+                  }
+                  method={"GET"}
+                  onError={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "apiCheckEitaaUsername",
+                      "error"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onLoading={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "apiCheckEitaaUsername",
+                      "loading"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onSuccess={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "apiCheckEitaaUsername",
+                      "data"
+                    ]).apply(null, eventArgs);
+                  }}
+                  params={(() => {
+                    try {
+                      return { channel_id: $state.eitaa.usernameValue };
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                  ref={ref => {
+                    $refs["apiCheckEitaaUsername"] = ref;
+                  }}
+                  url={
+                    "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/check-eitaa-id"
+                  }
+                >
+                  {(() => {
+                    try {
+                      return (
+                        $state.apiCheckEitaaUsername.data.message !=
+                        "نام کاربری یکتا است."
+                      );
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return false;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__miUPf)}
+                    >
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__wzLe8
+                        )}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return $state.apiCheckEitaaUsername.data.message;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </div>
+                      <Popover
+                        data-plasmic-name={"popover"}
+                        data-plasmic-override={overrides.popover}
+                        className={classNames("__wab_instance", sty.popover)}
+                        content={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__e5P7F
+                            )}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__iXidD
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return $state.apiCheckEitaaUsername.data
+                                      .description;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
+                            </div>
+                          </div>
+                        }
+                        onOpenChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "popover",
+                            "open"
+                          ]).apply(null, eventArgs);
+                        }}
+                        open={generateStateValueProp($state, [
+                          "popover",
+                          "open"
+                        ])}
+                        ref={ref => {
+                          $refs["popover"] = ref;
+                        }}
+                        trigger={
+                          <Icon15Icon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__ai5Xp
+                            )}
+                            role={"img"}
+                          />
+                        }
+                      />
+                    </div>
+                  ) : null}
+                </ApiRequest>
+              </div>
+            ) : null}
           </div>
           <div className={classNames(projectcss.all, sty.freeBox__ylzte)}>
             <div
@@ -1182,10 +1413,28 @@ function PlasmicProfileChannels__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "dialog", "apiRequest", "eitaa", "whatsapp", "_switch"],
+  root: [
+    "root",
+    "dialog",
+    "apiRequest",
+    "eitaa",
+    "apiCheckEitaaUsername",
+    "popover",
+    "whatsapp",
+    "_switch"
+  ],
   dialog: ["dialog"],
-  apiRequest: ["apiRequest", "eitaa", "whatsapp", "_switch"],
+  apiRequest: [
+    "apiRequest",
+    "eitaa",
+    "apiCheckEitaaUsername",
+    "popover",
+    "whatsapp",
+    "_switch"
+  ],
   eitaa: ["eitaa"],
+  apiCheckEitaaUsername: ["apiCheckEitaaUsername", "popover"],
+  popover: ["popover"],
   whatsapp: ["whatsapp"],
   _switch: ["_switch"]
 } as const;
@@ -1197,6 +1446,8 @@ type NodeDefaultElementType = {
   dialog: typeof Dialog;
   apiRequest: typeof ApiRequest;
   eitaa: typeof ProfileChannelsItem;
+  apiCheckEitaaUsername: typeof ApiRequest;
+  popover: typeof Popover;
   whatsapp: typeof ProfileChannelsItem;
   _switch: typeof Switch;
 };
@@ -1264,6 +1515,8 @@ export const PlasmicProfileChannels = Object.assign(
     dialog: makeNodeComponent("dialog"),
     apiRequest: makeNodeComponent("apiRequest"),
     eitaa: makeNodeComponent("eitaa"),
+    apiCheckEitaaUsername: makeNodeComponent("apiCheckEitaaUsername"),
+    popover: makeNodeComponent("popover"),
     whatsapp: makeNodeComponent("whatsapp"),
     _switch: makeNodeComponent("_switch"),
 
