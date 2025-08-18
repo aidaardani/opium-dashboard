@@ -185,8 +185,10 @@
   max-width: 100%;
   justify-content: flex-start;
   align-items: center;
+  background: #fef9c380;
   min-width: 0;
-  padding: 8px;
+  border-radius: 8px;
+  padding: 4px;
 }
 .apiCheckEitaaUsername:global(.__wab_instance) {
   max-width: 100%;
@@ -219,11 +221,25 @@
   min-width: 0;
   padding: 8px;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__miUPf {
+    justify-content: flex-start;
+    align-items: center;
+    background: linear-gradient(#f7f2c280, #f7f2c280), #ffffff;
+    border-radius: 8px;
+  }
+}
 .text__wzLe8 {
   height: auto;
   max-width: 100%;
   color: var(--token-CVFO6fzYsS1_);
   width: auto;
+  font-size: 12px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__wzLe8 {
+    font-size: 12px;
+  }
 }
 .popover:global(.__wab_instance) {
   max-width: 100%;
@@ -234,6 +250,11 @@
   max-width: 100%;
   color: var(--token-CVFO6fzYsS1_);
   height: 1em;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .svg__ai5Xp {
+    width: 23px;
+  }
 }
 .freeBox__e5P7F {
   display: flex;
@@ -254,7 +275,16 @@
   max-width: 100%;
   color: var(--token-qtgMaW0djcWt);
   background: none;
+  font-size: 12px;
+  font-weight: 300;
   min-width: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__iXidD {
+    font-size: 12px;
+    font-weight: 300;
+    width: 370px;
+  }
 }
 .freeBox__ylzte {
   display: flex;
