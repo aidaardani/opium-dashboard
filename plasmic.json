@@ -3584,8 +3584,8 @@
       "indirect": false,
       "globalContextsFilePath": "plasmic/opium_dashboard/PlasmicGlobalContextsProvider.tsx",
       "splitsProviderFilePath": "",
-      "styleTokensProviderFilePath": "plasmic/opium_dashboard/PlasmicStyleTokensProvider.tsx",
-      "projectModuleFilePath": "plasmic/opium_dashboard/plasmic.tsx",
+      "styleTokensProviderFilePath": "",
+      "projectModuleFilePath": "",
       "codeComponents": [
         {
           "id": "NyxAPQhNXtxJ",

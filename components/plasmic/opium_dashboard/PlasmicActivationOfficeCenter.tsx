@@ -33,6 +33,7 @@ import {
   classNames,
   createPlasmicElementProxy,
   deriveRenderOpts,
+  ensureGlobalVariants,
   generateOnMutateForSpec,
   generateStateOnChangeProp,
   generateStateOnChangePropForCodeComponents,
@@ -66,14 +67,12 @@ import ProfileTells from "../../ProfileTells"; // plasmic-import: yzo0JdTgs2uD/c
 import ProfileNotifyCell from "../../ProfileNotifyCell"; // plasmic-import: ZGi1LAR5yxN_/component
 import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZzFQxrO/codeComponent
 import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
-import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectModule
-import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/styleTokensProvider
-import { _useStyleTokens as useStyleTokens_fragment_design_system } from "../fragment_design_system/PlasmicStyleTokensProvider"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/styleTokensProvider
-import { _useStyleTokens as useStyleTokens_antd_5_hostless } from "../antd_5_hostless/PlasmicStyleTokensProvider"; // plasmic-import: ohDidvG9XsCeFumugENU3J/styleTokensProvider
-import { _useStyleTokens as useStyleTokens_plasmic_rich_components } from "../plasmic_rich_components/PlasmicStyleTokensProvider"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
+import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
+import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
+import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicActivationOfficeCenter.module.css"; // plasmic-import: eC1lHj9ndIjA/css
 
@@ -4328,14 +4327,6 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
     $refs
   });
 
-  const styleTokensClassNames = _useStyleTokens();
-  const styleTokensClassNames_fragment_design_system =
-    useStyleTokens_fragment_design_system();
-  const styleTokensClassNames_antd_5_hostless =
-    useStyleTokens_antd_5_hostless();
-  const styleTokensClassNames_plasmic_rich_components =
-    useStyleTokens_plasmic_rich_components();
-
   return (
     <div
       data-plasmic-name={"root"}
@@ -4347,10 +4338,10 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
-        styleTokensClassNames,
-        styleTokensClassNames_fragment_design_system,
-        styleTokensClassNames_antd_5_hostless,
-        styleTokensClassNames_plasmic_rich_components,
+        projectcss.plasmic_tokens,
+        plasmic_fragment_design_system_css.plasmic_tokens,
+        plasmic_antd_5_hostless_css.plasmic_tokens,
+        plasmic_plasmic_rich_components_css.plasmic_tokens,
         sty.root
       )}
     >
