@@ -831,6 +831,60 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   ];
                 }
 
+                $steps["showToastForWhatsapp"] =
+                  $state.whatsapp.numberValue2 &&
+                  $state.whatsapp.numberValue2.trim() !== "" &&
+                  (!$state.whatsapp.numberValue2.startsWith("09") ||
+                    $state.whatsapp.numberValue2.length !== 11)
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u0641\u0631\u0645\u062a \u0634\u0645\u0627\u0631\u0647 \u0648\u0627\u062a\u0633\u0627\u067e \u0635\u062d\u06cc\u062d \u0646\u0645\u06cc\u200c\u0628\u0627\u0634\u062f."
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                if (
+                  $steps["showToastForWhatsapp"] != null &&
+                  typeof $steps["showToastForWhatsapp"] === "object" &&
+                  typeof $steps["showToastForWhatsapp"].then === "function"
+                ) {
+                  $steps["showToastForWhatsapp"] = await $steps[
+                    "showToastForWhatsapp"
+                  ];
+                }
+
+                $steps["showToastForEita"] =
+                  $state.eitaa.numberValue2 &&
+                  $state.eitaa.numberValue2.trim() !== "" &&
+                  (!$state.eitaa.numberValue2.startsWith("09") ||
+                    $state.eitaa.numberValue2.length !== 11)
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "error",
+                            "\u0641\u0631\u0645\u062a \u0634\u0645\u0627\u0631\u0647 \u0627\u06cc\u062a\u0627 \u0635\u062d\u06cc\u062d \u0646\u0645\u06cc\u200c\u0628\u0627\u0634\u062f."
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                if (
+                  $steps["showToastForEita"] != null &&
+                  typeof $steps["showToastForEita"] === "object" &&
+                  typeof $steps["showToastForEita"].then === "function"
+                ) {
+                  $steps["showToastForEita"] = await $steps["showToastForEita"];
+                }
+
                 $steps["sendEvent"] = true
                   ? (() => {
                       const actionArgs = {
@@ -875,55 +929,64 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   $steps["sendEvent"] = await $steps["sendEvent"];
                 }
 
-                $steps["invokeGlobalAction"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        args: [
-                          "PATCH",
-                          "https://api.paziresh24.com/V1/doctor/visit-channels",
-                          undefined,
-                          (() => {
-                            try {
-                              return (() => {
-                                const eitaaNumber = $state.eitaa.numberValue2;
-                                const whatsappNumber =
-                                  $state.whatsapp.numberValue2;
-                                const eitaUsername = $state.eitaa.usernameValue;
-                                const result = [];
-                                const addEntry = (type, channel) => {
-                                  if (channel) {
-                                    result.push({
-                                      type,
-                                      channel
-                                    });
+                $steps["invokeGlobalAction"] =
+                  $state.whatsapp.numberValue2 &&
+                  $state.whatsapp.numberValue2.trim() !== "" &&
+                  $state.whatsapp.numberValue2.startsWith("09") &&
+                  $state.whatsapp.numberValue2.length === 11 &&
+                  (!$state.eitaa.numberValue2 ||
+                    $state.eitaa.numberValue2.trim() === "" ||
+                    ($state.eitaa.numberValue2.startsWith("09") &&
+                      $state.eitaa.numberValue2.length === 11))
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "PATCH",
+                            "https://api.paziresh24.com/V1/doctor/visit-channels",
+                            undefined,
+                            (() => {
+                              try {
+                                return (() => {
+                                  const eitaaNumber = $state.eitaa.numberValue2;
+                                  const whatsappNumber =
+                                    $state.whatsapp.numberValue2;
+                                  const eitaUsername =
+                                    $state.eitaa.usernameValue;
+                                  const result = [];
+                                  const addEntry = (type, channel) => {
+                                    if (channel) {
+                                      result.push({
+                                        type,
+                                        channel
+                                      });
+                                    }
+                                  };
+                                  addEntry("eitaa_number", eitaaNumber);
+                                  addEntry("eitaa", eitaUsername);
+                                  addEntry("whatsapp", whatsappNumber);
+                                  if ($state._switch.checked) {
+                                    addEntry("secure_call", "02125015000");
                                   }
-                                };
-                                addEntry("eitaa_number", eitaaNumber);
-                                addEntry("eitaa", eitaUsername);
-                                addEntry("whatsapp", whatsappNumber);
-                                if ($state._switch.checked) {
-                                  addEntry("secure_call", "02125015000");
+                                  return { online_channels: result };
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
                                 }
-                                return { online_channels: result };
-                              })();
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
+                                throw e;
                               }
-                              throw e;
-                            }
-                          })()
-                        ]
-                      };
-                      return $globalActions["Fragment.apiRequest"]?.apply(
-                        null,
-                        [...actionArgs.args]
-                      );
-                    })()
-                  : undefined;
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
                 if (
                   $steps["invokeGlobalAction"] != null &&
                   typeof $steps["invokeGlobalAction"] === "object" &&
