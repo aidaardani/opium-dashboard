@@ -1162,10 +1162,10 @@ function PlasmicProfileChannels__RenderFunc(props: {
                 }
 
                 $steps["invokeGlobalAction"] =
-                  $state.whatsapp.numberValue2 &&
-                  $state.whatsapp.numberValue2.trim() !== "" &&
-                  $state.whatsapp.numberValue2.startsWith("09") &&
-                  $state.whatsapp.numberValue2.length === 11 &&
+                  (!$state.whatsapp.numberValue2 ||
+                    $state.whatsapp.numberValue2.trim() === "" ||
+                    ($state.whatsapp.numberValue2.startsWith("09") &&
+                      $state.whatsapp.numberValue2.length === 11)) &&
                   (!$state.eitaa.numberValue2 ||
                     $state.eitaa.numberValue2.trim() === "" ||
                     ($state.eitaa.numberValue2.startsWith("09") &&
