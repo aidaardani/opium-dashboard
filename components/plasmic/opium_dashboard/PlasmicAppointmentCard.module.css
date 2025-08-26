@@ -1287,6 +1287,19 @@
   font-weight: 300;
   min-width: 0;
 }
+.freeBox___2Cvea {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  background: #ffffff;
+  min-width: 0;
+  padding: 5px;
+}
 .descriptionInput2:global(.__wab_instance) {
   max-width: 100%;
   flex-shrink: 0;

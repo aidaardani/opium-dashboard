@@ -4069,37 +4069,40 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     </React.Fragment>
                   </React.Fragment>
                 </div>
-                <MultilineTextInput
-                  data-plasmic-name={"descriptionInput2"}
-                  data-plasmic-override={overrides.descriptionInput2}
-                  autoSize={true}
-                  className={classNames(
-                    "__wab_instance",
-                    sty.descriptionInput2
-                  )}
-                  onValueChange2={async (...eventArgs: any) => {
-                    generateStateOnChangeProp($state, [
+                <div
+                  className={classNames(projectcss.all, sty.freeBox___2Cvea)}
+                >
+                  <MultilineTextInput
+                    data-plasmic-name={"descriptionInput2"}
+                    data-plasmic-override={overrides.descriptionInput2}
+                    autoSize={true}
+                    className={classNames(
+                      "__wab_instance",
+                      sty.descriptionInput2
+                    )}
+                    onValueChange2={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "descriptionInput2",
+                        "value"
+                      ]).apply(null, eventArgs);
+
+                      if (
+                        eventArgs.length > 1 &&
+                        eventArgs[1] &&
+                        eventArgs[1]._plasmic_state_init_
+                      ) {
+                        return;
+                      }
+                    }}
+                    placeholder={
+                      "(\u062a\u06a9\u0645\u06cc\u0644 \u0627\u06cc\u0646 \u0628\u062e\u0634 \u0627\u062e\u062a\u06cc\u0627\u0631\u06cc \u0627\u0633\u062a.)"
+                    }
+                    value={generateStateValueProp($state, [
                       "descriptionInput2",
                       "value"
-                    ]).apply(null, eventArgs);
-
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
-                    }
-                  }}
-                  placeholder={
-                    "(\u062a\u06a9\u0645\u06cc\u0644 \u0627\u06cc\u0646 \u0628\u062e\u0634 \u0627\u062e\u062a\u06cc\u0627\u0631\u06cc \u0627\u0633\u062a.)"
-                  }
-                  value={generateStateValueProp($state, [
-                    "descriptionInput2",
-                    "value"
-                  ])}
-                />
-
+                    ])}
+                  />
+                </div>
                 <Button
                   children2={"\u062b\u0628\u062a"}
                   className={classNames("__wab_instance", sty.button__vxXj)}
