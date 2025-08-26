@@ -65,8 +65,8 @@ import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import PatientPrivateData from "../../PatientPrivateData"; // plasmic-import: 0zlB7TkmySN6/component
 import PatientBookHistory from "../../PatientBookHistory"; // plasmic-import: OR9-0rUKyYr6/component
-import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
 import MultilineTextInput from "../../MultilineTextInput"; // plasmic-import: CZBpNouNw7Ui/component
+import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
 import SafeCall from "../../SafeCall"; // plasmic-import: m0lwAXhykBZV/component
 import BookStatusButton from "../../BookStatusButton"; // plasmic-import: aW1julV8kikd/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
@@ -183,8 +183,8 @@ export type PlasmicAppointmentCard__OverridesType = {
   cost2?: Flex__<typeof PatientPrivateData>;
   description?: Flex__<"div">;
   apiBookHistory?: Flex__<typeof ApiRequest>;
+  apiGetComment?: Flex__<typeof ApiRequest>;
   patientBookHistory?: Flex__<typeof PatientBookHistory>;
-  descriptionInput3?: Flex__<typeof TextInput>;
   descriptionInput2?: Flex__<typeof MultilineTextInput>;
   apiPres?: Flex__<typeof ApiRequest>;
   deletebookdialog?: Flex__<typeof Dialog>;
@@ -478,12 +478,6 @@ function PlasmicAppointmentCard__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => false
       },
       {
-        path: "descriptionInput3.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
-      {
         path: "setDesc",
         type: "private",
         variableType: "boolean",
@@ -493,7 +487,46 @@ function PlasmicAppointmentCard__RenderFunc(props: {
         path: "descriptionInput2.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $state.apiGetComment.data.comment.length > 0
+                ? $state.apiGetComment.data.comment
+                : "";
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "apiGetComment.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiGetComment"
+      },
+      {
+        path: "apiGetComment.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiGetComment"
+      },
+      {
+        path: "apiGetComment.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiGetComment"
       }
     ],
     [$props, $ctx, $refs]
@@ -3722,6 +3755,74 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   ) : null}
                 </div>
               ) : null}
+              <ApiRequest
+                data-plasmic-name={"apiGetComment"}
+                data-plasmic-override={overrides.apiGetComment}
+                className={classNames("__wab_instance", sty.apiGetComment)}
+                errorDisplay={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__wqnUu
+                    )}
+                  >
+                    {"Error fetching data"}
+                  </div>
+                }
+                loadingDisplay={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__qvk1Z
+                    )}
+                  >
+                    {"Loading..."}
+                  </div>
+                }
+                method={"GET"}
+                onError={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiGetComment",
+                    "error"
+                  ]).apply(null, eventArgs);
+                }}
+                onLoading={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiGetComment",
+                    "loading"
+                  ]).apply(null, eventArgs);
+                }}
+                onSuccess={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiGetComment",
+                    "data"
+                  ]).apply(null, eventArgs);
+                }}
+                params={(() => {
+                  try {
+                    return {
+                      book_id: $props.bookId,
+                      center_id: $props.centerId
+                    };
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                ref={ref => {
+                  $refs["apiGetComment"] = ref;
+                }}
+                url={
+                  "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/book-comment"
+                }
+              />
             </div>
             {(() => {
               try {
@@ -3968,40 +4069,6 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     </React.Fragment>
                   </React.Fragment>
                 </div>
-                <TextInput
-                  data-plasmic-name={"descriptionInput3"}
-                  data-plasmic-override={overrides.descriptionInput3}
-                  className={classNames(
-                    "__wab_instance",
-                    sty.descriptionInput3
-                  )}
-                  onChange={async (...eventArgs: any) => {
-                    ((...eventArgs) => {
-                      generateStateOnChangeProp($state, [
-                        "descriptionInput3",
-                        "value"
-                      ])((e => e.target?.value).apply(null, eventArgs));
-                    }).apply(null, eventArgs);
-
-                    if (
-                      eventArgs.length > 1 &&
-                      eventArgs[1] &&
-                      eventArgs[1]._plasmic_state_init_
-                    ) {
-                      return;
-                    }
-                  }}
-                  placeholder={
-                    "(\u062a\u06a9\u0645\u06cc\u0644 \u0627\u06cc\u0646 \u0628\u062e\u0634 \u0627\u062e\u062a\u06cc\u0627\u0631\u06cc \u0627\u0633\u062a.)"
-                  }
-                  value={
-                    generateStateValueProp($state, [
-                      "descriptionInput3",
-                      "value"
-                    ]) ?? ""
-                  }
-                />
-
                 <MultilineTextInput
                   data-plasmic-name={"descriptionInput2"}
                   data-plasmic-override={overrides.descriptionInput2}
@@ -6234,8 +6301,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         (() => {
                           try {
                             return {
-                              description: $state.descriptionInput3.value.trim()
-                                ? $state.descriptionInput3.value
+                              description: $state.descriptionInput2.value.trim()
+                                ? $state.descriptionInput2.value
                                 : "ویزیت شما انجام شد. امیدوارم سلامت باشید"
                             };
                           } catch (e) {
@@ -6663,8 +6730,8 @@ const PlasmicDescendants = {
     "cost2",
     "description",
     "apiBookHistory",
+    "apiGetComment",
     "patientBookHistory",
-    "descriptionInput3",
     "descriptionInput2",
     "apiPres",
     "deletebookdialog",
@@ -6687,8 +6754,8 @@ const PlasmicDescendants = {
     "cost2",
     "description",
     "apiBookHistory",
+    "apiGetComment",
     "patientBookHistory",
-    "descriptionInput3",
     "descriptionInput2",
     "apiPres",
     "deletebookdialog"
@@ -6698,8 +6765,8 @@ const PlasmicDescendants = {
   cost2: ["cost2"],
   description: ["description"],
   apiBookHistory: ["apiBookHistory"],
+  apiGetComment: ["apiGetComment"],
   patientBookHistory: ["patientBookHistory"],
-  descriptionInput3: ["descriptionInput3"],
   descriptionInput2: ["descriptionInput2"],
   apiPres: ["apiPres"],
   deletebookdialog: ["deletebookdialog"],
@@ -6726,8 +6793,8 @@ type NodeDefaultElementType = {
   cost2: typeof PatientPrivateData;
   description: "div";
   apiBookHistory: typeof ApiRequest;
+  apiGetComment: typeof ApiRequest;
   patientBookHistory: typeof PatientBookHistory;
-  descriptionInput3: typeof TextInput;
   descriptionInput2: typeof MultilineTextInput;
   apiPres: typeof ApiRequest;
   deletebookdialog: typeof Dialog;
@@ -6810,8 +6877,8 @@ export const PlasmicAppointmentCard = Object.assign(
     cost2: makeNodeComponent("cost2"),
     description: makeNodeComponent("description"),
     apiBookHistory: makeNodeComponent("apiBookHistory"),
+    apiGetComment: makeNodeComponent("apiGetComment"),
     patientBookHistory: makeNodeComponent("patientBookHistory"),
-    descriptionInput3: makeNodeComponent("descriptionInput3"),
     descriptionInput2: makeNodeComponent("descriptionInput2"),
     apiPres: makeNodeComponent("apiPres"),
     deletebookdialog: makeNodeComponent("deletebookdialog"),
