@@ -490,7 +490,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           (() => {
             try {
-              return $state.apiGetComment.data.comment.length > 0
+              return $state.apiGetComment?.data?.comment.length > 0
                 ? $state.apiGetComment.data.comment
                 : "";
             } catch (e) {
