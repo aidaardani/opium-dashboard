@@ -1252,10 +1252,11 @@
   height: auto;
   max-width: 100%;
   row-gap: var(--token-vMUQwr5Jto1d);
-  background: #f8fafc;
+  background: #ffffff;
   min-width: 0;
   border-radius: 8px;
   padding: 8px 8px 0px;
+  border: 1px solid var(--token-BU1JCAY6hntB);
 }
 .text___8QPXo {
   width: 100%;
@@ -1285,6 +1286,7 @@
 }
 .descriptionInput2:global(.__wab_instance) {
   max-width: 100%;
+  flex-shrink: 1;
 }
 .button__vxXj:global(.__wab_instance) {
   max-width: 100%;
