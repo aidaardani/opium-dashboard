@@ -1266,9 +1266,10 @@
   font-weight: 300;
   min-width: 0;
 }
-.descriptionInput2:global(.__wab_instance) {
+.descriptionInput3:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
+  display: none;
 }
 .svg___5Cl8O {
   position: relative;
@@ -1281,6 +1282,9 @@
   object-fit: cover;
   width: auto;
   height: 1em;
+}
+.descriptionInput2:global(.__wab_instance) {
+  max-width: 100%;
 }
 .button__vxXj:global(.__wab_instance) {
   max-width: 100%;
