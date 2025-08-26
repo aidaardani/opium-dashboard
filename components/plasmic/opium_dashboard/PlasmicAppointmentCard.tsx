@@ -3804,7 +3804,9 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   try {
                     return {
                       book_id: $props.bookId,
-                      center_id: $props.centerId
+                      center_id: $props.centerId,
+                      user_center_id: $props.userCenterId,
+                      ref_id: $props.refId
                     };
                   } catch (e) {
                     if (
