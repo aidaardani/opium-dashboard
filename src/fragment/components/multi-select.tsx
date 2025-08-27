@@ -1,20 +1,20 @@
-import { CodeComponentMeta } from '@plasmicapp/host';
-import React, { MouseEventHandler } from 'react';
+import { CodeComponentMeta } from "@plasmicapp/host";
+import { ChevronsRightLeft } from "lucide-react";
+import React, { MouseEventHandler } from "react";
 
 import Select, {
   components,
   MultiValueGenericProps,
   MultiValueProps,
   Props,
-} from 'react-select';
+} from "react-select";
 import {
   SortableContainer,
   SortableContainerProps,
   SortableElement,
   SortEndHandler,
   SortableHandle,
-} from 'react-sortable-hoc';
-
+} from "react-sortable-hoc";
 
 function arrayMove<T>(array: readonly T[], from: number, to: number) {
   const slicedArray = array.slice();
@@ -26,20 +26,18 @@ function arrayMove<T>(array: readonly T[], from: number, to: number) {
   return slicedArray;
 }
 
-const SortableMultiValue = SortableElement(
-  (props: MultiValueProps) => {
-    // this prevents the menu from being opened/closed when the user clicks
-    // on a value to begin dragging it. ideally, detecting a click (instead of
-    // a drag) would still focus the control and toggle the menu, but that
-    // requires some magic with refs that are out of scope for this example
-    const onMouseDown: MouseEventHandler<HTMLDivElement> = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-    };
-    const innerProps = { ...props.innerProps, onMouseDown };
-    return <components.MultiValue {...props} innerProps={innerProps} />;
-  }
-);
+const SortableMultiValue = SortableElement((props: MultiValueProps) => {
+  // this prevents the menu from being opened/closed when the user clicks
+  // on a value to begin dragging it. ideally, detecting a click (instead of
+  // a drag) would still focus the control and toggle the menu, but that
+  // requires some magic with refs that are out of scope for this example
+  const onMouseDown: MouseEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+  const innerProps = { ...props.innerProps, onMouseDown };
+  return <components.MultiValue {...props} innerProps={innerProps} />;
+});
 
 const SortableMultiValueLabel = SortableHandle(
   (props: MultiValueGenericProps) => <components.MultiValueLabel {...props} />
@@ -49,28 +47,34 @@ const SortableSelect = SortableContainer(Select) as React.ComponentClass<
   Props<any, true> & SortableContainerProps
 >;
 
-export default function MultiSelect(props:any) {
-  const {options, onChange, value,placeholder,disabled, onChangeInput }= props
-  const [selected, setSelected] = React.useState<readonly any[]>([]);
-
-
+export default function MultiSelect(props: any) {
+  const {
+    options,
+    onChange,
+    value,
+    placeholder,
+    disabled,
+    onChangeInput,
+    isLoading,
+  } = props;
 
   const onSortEnd: SortEndHandler = ({ oldIndex, newIndex }) => {
-    const newValue = arrayMove(selected, oldIndex, newIndex);
+    const newValue = arrayMove(value, oldIndex, newIndex);
     onChange(newValue);
   };
 
   return (
     <SortableSelect
       useDragHandle
-      axis="xy"
       placeholder={placeholder}
       isDisabled={disabled}
-      scrol
       onSortEnd={onSortEnd}
-      distance={4}
-      getHelperDimensions={({ node }) => node.getBoundingClientRect()}
-      onInputChange={(inputValue, {action})=>{ if (action === 'input-change') onChangeInput(inputValue)}}
+      isLoading={isLoading}
+      loadingMessage={() => "درحال بارگذاری..."}
+      noOptionsMessage={() => "چیزی یافت نشد."}
+      onInputChange={(inputValue, { action }) => {
+        if (action === "input-change") onChangeInput(inputValue);
+      }}
       isMulti
       options={options}
       value={value}
@@ -85,8 +89,6 @@ export default function MultiSelect(props:any) {
     />
   );
 }
-
-
 
 export const multiSelectMeta: CodeComponentMeta<any> = {
   name: "MultiSlect",
@@ -109,10 +111,10 @@ export const multiSelectMeta: CodeComponentMeta<any> = {
     },
     value: {
       type: "choice",
-      multiSelect:true,
+      multiSelect: true,
       displayName: "Selected value",
       description: "Initial selected option",
-      options: (ps:any) => {
+      options: (ps: any) => {
         const rec = (op: any) => {
           if (typeof op === "string") {
             return [{ value: op, label: op }];
@@ -158,7 +160,8 @@ export const multiSelectMeta: CodeComponentMeta<any> = {
           'An array of items, like `["Option1", "Option2"]`, or an array of objects with `value`, `label`, or `disabled`, like `[{value: "usa", label: "United States"}, {value: "bra", label: "Brazil"}]`',
       },
     },
-    disabled: "boolean"
+    disabled: "boolean",
+    isLoading: "boolean",
   },
   classNameProp: "triggerClassName",
   defaultStyles: {
@@ -171,10 +174,10 @@ export const multiSelectMeta: CodeComponentMeta<any> = {
       valueProp: "value",
       onChangeProp: "onChange",
     },
-    input:{
+    input: {
       type: "readonly",
       onChangeProp: "onChangeInput",
-      variableType:"text"
-    }
+      variableType: "text",
+    },
   },
 };
