@@ -57,11 +57,7 @@ export default function MultiSelect(props:any) {
 
   const onSortEnd: SortEndHandler = ({ oldIndex, newIndex }) => {
     const newValue = arrayMove(selected, oldIndex, newIndex);
-    setSelected(newValue);
-    console.log(
-      'Values sorted:',
-      newValue.map((i) => i.value)
-    );
+    onChange(newValue);
   };
 
   return (
