@@ -50,7 +50,7 @@ const SortableSelect = SortableContainer(Select) as React.ComponentClass<
 >;
 
 export default function MultiSelect(props:any) {
-  const {options, onChange, value,placeholder,disabled }= props
+  const {options, onChange, value,placeholder,disabled, onChangeInput }= props
   const [selected, setSelected] = React.useState<readonly any[]>([]);
 
 
@@ -70,6 +70,7 @@ export default function MultiSelect(props:any) {
       onSortEnd={onSortEnd}
       distance={4}
       getHelperDimensions={({ node }) => node.getBoundingClientRect()}
+      onInputChange={(value)=>onChangeInput(value)}
       isMulti
       options={options}
       value={value}
@@ -102,6 +103,9 @@ export const multiSelectMeta: CodeComponentMeta<any> = {
           type: "object",
         },
       ],
+    },
+    onChangeInput: {
+      type: "string",
     },
     value: {
       type: "choice",
@@ -167,5 +171,10 @@ export const multiSelectMeta: CodeComponentMeta<any> = {
       valueProp: "value",
       onChangeProp: "onChange",
     },
+    input:{
+      type: "readonly",
+      onChangeProp: "onChangeInput",
+      variableType:"text"
+    }
   },
 };
