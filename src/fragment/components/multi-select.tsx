@@ -70,7 +70,7 @@ export default function MultiSelect(props:any) {
       onSortEnd={onSortEnd}
       distance={4}
       getHelperDimensions={({ node }) => node.getBoundingClientRect()}
-      onInputChange={(value)=>onChangeInput(value)}
+      onInputChange={(inputValue, {action})=>{ if (action === 'input-change') onChangeInput(inputValue)}}
       isMulti
       options={options}
       value={value}
