@@ -26,6 +26,7 @@ import {
   dateRangePicker,
   DateRangePicker,
 } from "@/fragment/components/date-range-picker";
+import MultiSelect, { multiSelectMeta } from "@/fragment/components/multi-select";
 export default function PlasmicHost() {
   return <PlasmicCanvasHost />;
 }
@@ -46,6 +47,7 @@ registerComponent(TextEditor, TextEditorMeta);
 registerComponent(FileInput, fileInputMeta);
 registerComponent(Map, mapMeta);
 registerComponent(DateRangePicker, dateRangePicker);
+registerComponent(MultiSelect, multiSelectMeta)
 registerFunction(moment, {
   name: "moment",
   importPath: "jalali-moment",
