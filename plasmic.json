@@ -3700,6 +3700,12 @@
           "name": "DateRangePicker",
           "displayName": "DateRangePicker",
           "componentImportPath": "@/fragment/components/date-range-picker"
+        },
+        {
+          "id": "Q72onvXK1B9P",
+          "name": "MultiSlect",
+          "displayName": "MultiSlect",
+          "componentImportPath": "@/fragment/components/multi-select"
         }
       ],
       "customFunctions": [
