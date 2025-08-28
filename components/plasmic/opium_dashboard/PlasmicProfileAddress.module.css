@@ -288,7 +288,6 @@
   color: var(--token-u3OudfMChOo3);
 }
 .freeBox__qaWiL {
-  display: flex;
   flex-direction: column;
   position: relative;
   align-items: flex-start;
@@ -298,6 +297,7 @@
   max-width: 100%;
   row-gap: var(--token-vMUQwr5Jto1d);
   min-width: 0;
+  display: none;
   padding: 0px;
 }
 .checkbox:global(.__wab_instance) {
