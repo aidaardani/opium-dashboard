@@ -3127,6 +3127,20 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/tags"
+        },
+        {
+          "id": "HZrKgM5NPqLx",
+          "name": "V2Tags",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicV2Tags.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/v-2/tags.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicV2Tags.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/v-2/tags"
         }
       ],
       "icons": [
