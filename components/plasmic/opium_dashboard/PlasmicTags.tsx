@@ -89,8 +89,8 @@ export const PlasmicTags__ArgProps = new Array<ArgPropType>("resourceId");
 
 export type PlasmicTags__OverridesType = {
   root?: Flex__<"div">;
-  apiGetDrTags?: Flex__<typeof ApiRequest>;
   apiGetTags?: Flex__<typeof ApiRequest>;
+  apiGetDrTags?: Flex__<typeof ApiRequest>;
   multiSlect?: Flex__<typeof MultiSlect>;
   button?: Flex__<typeof Button>;
 };
@@ -266,9 +266,109 @@ function PlasmicTags__RenderFunc(props: {
         sty.root
       )}
     >
+      <div className={classNames(projectcss.all, sty.freeBox__sTb0)}>
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__dhv0Q
+          )}
+        >
+          {
+            "\u06a9\u0644\u06cc\u062f\u0648\u0627\u0698\u0647\u200c\u0647\u0627\u06cc \u0645\u0631\u062a\u0628\u0637 \u0628\u0647 \u0634\u0645\u0627"
+          }
+        </div>
+      </div>
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__v7Xi7
+        )}
+      >
+        {
+          "\u0628\u0631\u0627\u06cc \u0627\u0641\u0632\u0627\u06cc\u0634 \u0634\u0627\u0646\u0633 \u062f\u06cc\u062f\u0647\u200c\u0634\u062f\u0646\u060c \u06a9\u0644\u06cc\u062f\u0648\u0627\u0698\u0647\u200c\u0647\u0627\u06cc \u0645\u0631\u062a\u0628\u0637 \u0631\u0627 \u0636\u0645\u0646 \u0627\u0648\u0644\u0648\u06cc\u062a\u200c\u0628\u0646\u062f\u06cc \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f (\u0628\u0647 \u062a\u0631\u062a\u06cc\u0628 \u0627\u0632 \u0628\u06cc\u0634\u062a\u0631\u06cc\u0646 \u062a\u0627 \u06a9\u0645\u062a\u0631\u06cc\u0646 \u0627\u0648\u0644\u0648\u06cc\u062a \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f)."
+        }
+      </div>
+      <div
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__guify
+        )}
+      >
+        {
+          " \u0627\u0646\u062a\u062e\u0627\u0628 \u06cc\u06a9 \u06a9\u0644\u06cc\u062f\u0648\u0627\u0698\u0647 \u0628\u0647\u200c\u062a\u0646\u0647\u0627\u06cc\u06cc \u062a\u0636\u0645\u06cc\u0646\u200c\u06a9\u0646\u0646\u062f\u0647 \u062c\u0627\u06cc\u06af\u0627\u0647 \u0628\u0627\u0644\u0627\u062a\u0631 \u0646\u06cc\u0633\u062a\u060c \u0627\u0645\u0627 \u0628\u0647 \u0646\u0645\u0627\u06cc\u0634 \u0634\u0645\u0627 \u062f\u0631 \u0646\u062a\u0627\u06cc\u062c \u062c\u0633\u062a\u062c\u0648 \u06a9\u0645\u06a9 \u0645\u06cc\u200c\u06a9\u0646\u062f."
+        }
+      </div>
+      <ApiRequest
+        data-plasmic-name={"apiGetTags"}
+        data-plasmic-override={overrides.apiGetTags}
+        className={classNames("__wab_instance", sty.apiGetTags)}
+        errorDisplay={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__iVuue
+            )}
+          >
+            {"Error fetching data"}
+          </div>
+        }
+        loadingDisplay={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__feHcZ
+            )}
+          >
+            {"Loading..."}
+          </div>
+        }
+        method={"GET"}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiGetTags", "error"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiGetTags", "loading"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["apiGetTags", "data"]).apply(
+            null,
+            eventArgs
+          );
+        }}
+        params={undefined}
+        ref={ref => {
+          $refs["apiGetTags"] = ref;
+        }}
+        url={(() => {
+          try {
+            return `https://apigw.paziresh24.com/tags?Resource_id=17&Tag_title=${$state.multiSlect.input}`;
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+      />
+
       <ApiRequest
         data-plasmic-name={"apiGetDrTags"}
         data-plasmic-override={overrides.apiGetDrTags}
+        children={null}
         className={classNames("__wab_instance", sty.apiGetDrTags)}
         errorDisplay={
           <div
@@ -315,59 +415,72 @@ function PlasmicTags__RenderFunc(props: {
           $refs["apiGetDrTags"] = ref;
         }}
         url={"https://apigw.paziresh24.com/v1/n8n-nelson/webhook/doctortags"}
-      >
-        <ApiRequest
-          data-plasmic-name={"apiGetTags"}
-          data-plasmic-override={overrides.apiGetTags}
-          className={classNames("__wab_instance", sty.apiGetTags)}
-          errorDisplay={
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__iVuue
-              )}
-            >
-              {"Error fetching data"}
-            </div>
-          }
-          loadingDisplay={
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__feHcZ
-              )}
-            >
-              {"Loading..."}
-            </div>
-          }
-          method={"GET"}
-          onError={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["apiGetTags", "error"]).apply(
+      />
+
+      <div className={classNames(projectcss.all, sty.freeBox__abi53)}>
+        <MultiSlect
+          data-plasmic-name={"multiSlect"}
+          data-plasmic-override={overrides.multiSlect}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["multiSlect", "value"]).apply(
+              null,
+              eventArgs
+            );
+
+            (async value => {
+              const $steps = {};
+
+              $steps["updateListOfDoctorTag"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["listOfDoctorTag"]
+                      },
+                      operation: 0,
+                      value: $state.multiSlect.value.map(
+                        ({ label, value, ...rest }, index) => ({
+                          ...rest,
+                          Tag_title: label,
+                          _id: value,
+                          priority: index + 1
+                        })
+                      )
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateListOfDoctorTag"] != null &&
+                typeof $steps["updateListOfDoctorTag"] === "object" &&
+                typeof $steps["updateListOfDoctorTag"].then === "function"
+              ) {
+                $steps["updateListOfDoctorTag"] = await $steps[
+                  "updateListOfDoctorTag"
+                ];
+              }
+            }).apply(null, eventArgs);
+          }}
+          onChangeInput={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["multiSlect", "input"]).apply(
               null,
               eventArgs
             );
           }}
-          onLoading={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["apiGetTags", "loading"]).apply(
-              null,
-              eventArgs
-            );
-          }}
-          onSuccess={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["apiGetTags", "data"]).apply(
-              null,
-              eventArgs
-            );
-          }}
-          params={undefined}
-          ref={ref => {
-            $refs["apiGetTags"] = ref;
-          }}
-          url={(() => {
+          options={(() => {
             try {
-              return `https://apigw.paziresh24.com/tags?Tag_title=${$state.multiSlect.input}`;
+              return $state.apiGetTags.data.hits.hits.map(hit => ({
+                label: hit._source.Tag_title,
+                value: hit._id
+              }));
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -378,36 +491,43 @@ function PlasmicTags__RenderFunc(props: {
               throw e;
             }
           })()}
+          placeholder={
+            "\u0639\u0641\u0648\u0646\u062a\u060c \u062f\u0644 \u062f\u0631\u062f \u0648 ..."
+          }
+          triggerClassName={classNames("__wab_instance", sty.multiSlect)}
+          value={generateStateValueProp($state, ["multiSlect", "value"])}
         />
-      </ApiRequest>
-      <MultiSlect
-        data-plasmic-name={"multiSlect"}
-        data-plasmic-override={overrides.multiSlect}
-        onChange={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["multiSlect", "value"]).apply(
-            null,
-            eventArgs
-          );
 
-          (async value => {
+        <Button
+          data-plasmic-name={"button"}
+          data-plasmic-override={overrides.button}
+          children2={"\u0630\u062e\u06cc\u0631\u0647"}
+          className={classNames("__wab_instance", sty.button)}
+          loading={(() => {
+            try {
+              return $state.loading;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return [];
+              }
+              throw e;
+            }
+          })()}
+          onClick={async event => {
             const $steps = {};
 
-            $steps["updateListOfDoctorTag"] = true
+            $steps["updateLoading"] = true
               ? (() => {
                   const actionArgs = {
                     variable: {
                       objRoot: $state,
-                      variablePath: ["listOfDoctorTag"]
+                      variablePath: ["loading"]
                     },
                     operation: 0,
-                    value: $state.multiSlect.value.map(
-                      ({ label, value, ...rest }, index) => ({
-                        ...rest,
-                        Tag_title: label,
-                        _id: value,
-                        priority: index + 1
-                      })
-                    )
+                    value: true
                   };
                   return (({ variable, value, startIndex, deleteCount }) => {
                     if (!variable) {
@@ -421,189 +541,108 @@ function PlasmicTags__RenderFunc(props: {
                 })()
               : undefined;
             if (
-              $steps["updateListOfDoctorTag"] != null &&
-              typeof $steps["updateListOfDoctorTag"] === "object" &&
-              typeof $steps["updateListOfDoctorTag"].then === "function"
+              $steps["updateLoading"] != null &&
+              typeof $steps["updateLoading"] === "object" &&
+              typeof $steps["updateLoading"].then === "function"
             ) {
-              $steps["updateListOfDoctorTag"] = await $steps[
-                "updateListOfDoctorTag"
-              ];
+              $steps["updateLoading"] = await $steps["updateLoading"];
             }
-          }).apply(null, eventArgs);
-        }}
-        onChangeInput={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, ["multiSlect", "input"]).apply(
-            null,
-            eventArgs
-          );
-        }}
-        options={(() => {
-          try {
-            return $state.apiGetTags.data.hits.hits.map(hit => ({
-              label: hit._source.Tag_title,
-              value: hit._id
-            }));
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-        placeholder={
-          "\u0639\u0641\u0648\u0646\u062a\u060c \u062f\u0644 \u062f\u0631\u062f \u0648 ..."
-        }
-        triggerClassName={classNames("__wab_instance", sty.multiSlect)}
-        value={generateStateValueProp($state, ["multiSlect", "value"])}
-      />
 
-      <Button
-        data-plasmic-name={"button"}
-        data-plasmic-override={overrides.button}
-        children2={"\u0630\u062e\u06cc\u0631\u0647"}
-        className={classNames("__wab_instance", sty.button)}
-        loading={(() => {
-          try {
-            return $state.loading;
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return [];
-            }
-            throw e;
-          }
-        })()}
-        onClick={async event => {
-          const $steps = {};
-
-          $steps["updateLoading"] = true
-            ? (() => {
-                const actionArgs = {
-                  variable: {
-                    objRoot: $state,
-                    variablePath: ["loading"]
-                  },
-                  operation: 0,
-                  value: true
-                };
-                return (({ variable, value, startIndex, deleteCount }) => {
-                  if (!variable) {
-                    return;
-                  }
-                  const { objRoot, variablePath } = variable;
-
-                  $stateSet(objRoot, variablePath, value);
-                  return value;
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
-          if (
-            $steps["updateLoading"] != null &&
-            typeof $steps["updateLoading"] === "object" &&
-            typeof $steps["updateLoading"].then === "function"
-          ) {
-            $steps["updateLoading"] = await $steps["updateLoading"];
-          }
-
-          $steps["updateDrTags"] = true
-            ? (() => {
-                const actionArgs = {
-                  args: [
-                    "PUT",
-                    "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/doctortags",
-                    undefined,
-                    (() => {
-                      try {
-                        return $state.listOfDoctorTag;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
+            $steps["updateDrTags"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      "PUT",
+                      "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/doctortags",
+                      undefined,
+                      (() => {
+                        try {
+                          return $state.listOfDoctorTag;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
                         }
-                        throw e;
-                      }
-                    })()
-                  ]
-                };
-                return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                  ...actionArgs.args
-                ]);
-              })()
-            : undefined;
-          if (
-            $steps["updateDrTags"] != null &&
-            typeof $steps["updateDrTags"] === "object" &&
-            typeof $steps["updateDrTags"].then === "function"
-          ) {
-            $steps["updateDrTags"] = await $steps["updateDrTags"];
-          }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["updateDrTags"] != null &&
+              typeof $steps["updateDrTags"] === "object" &&
+              typeof $steps["updateDrTags"].then === "function"
+            ) {
+              $steps["updateDrTags"] = await $steps["updateDrTags"];
+            }
 
-          $steps["finishLoading"] = true
-            ? (() => {
-                const actionArgs = {
-                  variable: {
-                    objRoot: $state,
-                    variablePath: ["loading"]
-                  },
-                  operation: 0,
-                  value: false
-                };
-                return (({ variable, value, startIndex, deleteCount }) => {
-                  if (!variable) {
-                    return;
-                  }
-                  const { objRoot, variablePath } = variable;
+            $steps["finishLoading"] = true
+              ? (() => {
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["loading"]
+                    },
+                    operation: 0,
+                    value: false
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
+                    }
+                    const { objRoot, variablePath } = variable;
 
-                  $stateSet(objRoot, variablePath, value);
-                  return value;
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
-          if (
-            $steps["finishLoading"] != null &&
-            typeof $steps["finishLoading"] === "object" &&
-            typeof $steps["finishLoading"].then === "function"
-          ) {
-            $steps["finishLoading"] = await $steps["finishLoading"];
-          }
+                    $stateSet(objRoot, variablePath, value);
+                    return value;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+            if (
+              $steps["finishLoading"] != null &&
+              typeof $steps["finishLoading"] === "object" &&
+              typeof $steps["finishLoading"].then === "function"
+            ) {
+              $steps["finishLoading"] = await $steps["finishLoading"];
+            }
 
-          $steps["showToast"] = true
-            ? (() => {
-                const actionArgs = {
-                  args: [
-                    undefined,
-                    "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0646\u062c\u0627\u0645 \u0634\u062f."
-                  ]
-                };
-                return $globalActions["Fragment.showToast"]?.apply(null, [
-                  ...actionArgs.args
-                ]);
-              })()
-            : undefined;
-          if (
-            $steps["showToast"] != null &&
-            typeof $steps["showToast"] === "object" &&
-            typeof $steps["showToast"].then === "function"
-          ) {
-            $steps["showToast"] = await $steps["showToast"];
-          }
-        }}
-      />
+            $steps["showToast"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      undefined,
+                      "\u062f\u0631\u062e\u0648\u0627\u0633\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0646\u062c\u0627\u0645 \u0634\u062f."
+                    ]
+                  };
+                  return $globalActions["Fragment.showToast"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["showToast"] != null &&
+              typeof $steps["showToast"] === "object" &&
+              typeof $steps["showToast"].then === "function"
+            ) {
+              $steps["showToast"] = await $steps["showToast"];
+            }
+          }}
+        />
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "apiGetDrTags", "apiGetTags", "multiSlect", "button"],
-  apiGetDrTags: ["apiGetDrTags", "apiGetTags"],
+  root: ["root", "apiGetTags", "apiGetDrTags", "multiSlect", "button"],
   apiGetTags: ["apiGetTags"],
+  apiGetDrTags: ["apiGetDrTags"],
   multiSlect: ["multiSlect"],
   button: ["button"]
 } as const;
@@ -612,8 +651,8 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  apiGetDrTags: typeof ApiRequest;
   apiGetTags: typeof ApiRequest;
+  apiGetDrTags: typeof ApiRequest;
   multiSlect: typeof MultiSlect;
   button: typeof Button;
 };
@@ -678,8 +717,8 @@ export const PlasmicTags = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    apiGetDrTags: makeNodeComponent("apiGetDrTags"),
     apiGetTags: makeNodeComponent("apiGetTags"),
+    apiGetDrTags: makeNodeComponent("apiGetDrTags"),
     multiSlect: makeNodeComponent("multiSlect"),
     button: makeNodeComponent("button"),
 

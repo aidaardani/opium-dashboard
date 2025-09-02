@@ -3113,6 +3113,20 @@
           "cssFilePath": "plasmic/opium_dashboard/PlasmicTags.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "lgo3IAnjn0Jo",
+          "name": "Tags2",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicTags2.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/tags.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicTags2.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/tags"
         }
       ],
       "icons": [
