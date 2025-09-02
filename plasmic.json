@@ -3100,6 +3100,19 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/rahnama/setting"
+        },
+        {
+          "id": "LsucsQcjU3gX",
+          "name": "Tags",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicTags.tsx",
+          "importSpec": {
+            "modulePath": "Tags.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicTags.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

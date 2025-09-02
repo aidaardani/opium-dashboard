@@ -520,13 +520,16 @@ function PlasmicPatientList__RenderFunc(props: {
         {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
           (() => {
             try {
-              return $state.apiAllBooks.data
-                ?.map(item => ({
-                  ...item,
-                  from:
-                    item?.from ?? new Date(item?.created_at).getTime() / 1000
-                }))
-                .sort((a, b) => new Date(a.from) - new Date(b.from));
+              return (() => {
+                return $state.apiAllBooks.data
+                  ?.map(item => ({
+                    ...item,
+                    from: item?.from
+                      ? Number(item?.from)
+                      : new Date(item?.created_at).getTime() / 1000
+                  }))
+                  .sort((a, b) => a.from - b.from);
+              })();
             } catch (e) {
               if (
                 e instanceof TypeError ||

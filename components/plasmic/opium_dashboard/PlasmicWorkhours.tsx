@@ -62,6 +62,7 @@ import {
 import Checkbox from "../../Checkbox"; // plasmic-import: IDR0sAqN5tth/component
 import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZzFQxrO/codeComponent
 import { Popover } from "@/fragment/components/popover"; // plasmic-import: umJXC-fyxDQn/codeComponent
+import { AntdTooltip } from "@plasmicpkgs/antd5/skinny/registerTooltip";
 import DaysOfWeek from "../../DaysOfWeek"; // plasmic-import: WbPt8L2jActx/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectModule
@@ -119,6 +120,7 @@ export type PlasmicWorkhours__OverridesType = {
   to?: Flex__<typeof Select>;
   popoverConflictHour2?: Flex__<typeof Popover>;
   fragmentPopover?: Flex__<typeof Popover>;
+  tooltip?: Flex__<typeof AntdTooltip>;
   daysOfWeek?: Flex__<typeof DaysOfWeek>;
 };
 
@@ -1426,6 +1428,41 @@ function PlasmicWorkhours__RenderFunc(props: {
                           className={classNames(projectcss.all, sty.svg__p7Ka)}
                           role={"img"}
                         />
+
+                        <AntdTooltip
+                          data-plasmic-name={"tooltip"}
+                          data-plasmic-override={overrides.tooltip}
+                          className={classNames("__wab_instance", sty.tooltip)}
+                          color={"#F1F5F9"}
+                          placement={"top"}
+                          titleText={``}
+                        >
+                          {(() => {
+                            try {
+                              return $props.dayOfWeek === 6;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return false;
+                              }
+                              throw e;
+                            }
+                          })() ? (
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__ei5Jx
+                              )}
+                            >
+                              {
+                                "\u06a9\u067e\u06cc \u0627\u06cc\u0646 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u0628\u0631\u0627\u06cc \u0631\u0648\u0632\u0647\u0627\u06cc \u062f\u06cc\u06af\u0631"
+                              }
+                            </div>
+                          ) : null}
+                        </AntdTooltip>
                       </div>
                     ) : null
                   };
@@ -1475,13 +1512,15 @@ const PlasmicDescendants = {
     "to",
     "popoverConflictHour2",
     "fragmentPopover",
+    "tooltip",
     "daysOfWeek"
   ],
   checkbox: ["checkbox"],
   from: ["from"],
   to: ["to"],
   popoverConflictHour2: ["popoverConflictHour2"],
-  fragmentPopover: ["fragmentPopover", "daysOfWeek"],
+  fragmentPopover: ["fragmentPopover", "tooltip", "daysOfWeek"],
+  tooltip: ["tooltip"],
   daysOfWeek: ["daysOfWeek"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -1494,6 +1533,7 @@ type NodeDefaultElementType = {
   to: typeof Select;
   popoverConflictHour2: typeof Popover;
   fragmentPopover: typeof Popover;
+  tooltip: typeof AntdTooltip;
   daysOfWeek: typeof DaysOfWeek;
 };
 
@@ -1562,6 +1602,7 @@ export const PlasmicWorkhours = Object.assign(
     to: makeNodeComponent("to"),
     popoverConflictHour2: makeNodeComponent("popoverConflictHour2"),
     fragmentPopover: makeNodeComponent("fragmentPopover"),
+    tooltip: makeNodeComponent("tooltip"),
     daysOfWeek: makeNodeComponent("daysOfWeek"),
 
     // Metadata about props expected for PlasmicWorkhours
