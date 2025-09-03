@@ -47,7 +47,7 @@ const SortableSelect = SortableContainer(Select) as React.ComponentClass<
   Props<any, true> & SortableContainerProps
 >;
 
-export default function MultiSelect(props: any) {
+export function MultiSlect(props: any) {
   const {
     options,
     onChange,
