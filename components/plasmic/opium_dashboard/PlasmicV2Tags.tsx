@@ -161,6 +161,9 @@ function PlasmicV2Tags__RenderFunc(props: {
             styleTokensClassNames_plasmic_rich_components,
             sty.root
           )}
+          onLoad={async event => {
+            const $steps = {};
+          }}
         />
       </div>
     </React.Fragment>

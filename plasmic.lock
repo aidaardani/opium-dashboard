@@ -2504,19 +2504,59 @@
           "checksum": "d061274f2c9296b6de6a3db427461b24"
         },
         {
-          "assetId": "9g1e5LLLDS4TGJiaFCSEyH",
-          "type": "projectCss",
-          "checksum": "6e1aa97bb23ce5fe3d331fc1453a5fea"
-        },
-        {
           "type": "renderModule",
           "assetId": "HZrKgM5NPqLx",
-          "checksum": "61e0140b44474b88fa0a235ab3ba2971"
+          "checksum": "fa727f2acd72aac04e31c8d9c888ac56"
         },
         {
           "type": "cssRules",
           "assetId": "HZrKgM5NPqLx",
-          "checksum": "61e0140b44474b88fa0a235ab3ba2971"
+          "checksum": "fa727f2acd72aac04e31c8d9c888ac56"
+        },
+        {
+          "assetId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "type": "projectCss",
+          "checksum": "5d69cb95e861515d571eb1d627505d54"
+        },
+        {
+          "type": "renderModule",
+          "assetId": "2I5--CZvi2JJ",
+          "checksum": "4d1bfddb9cf7045da985351381007aea"
+        },
+        {
+          "type": "cssRules",
+          "assetId": "2I5--CZvi2JJ",
+          "checksum": "4d1bfddb9cf7045da985351381007aea"
+        },
+        {
+          "type": "renderModule",
+          "assetId": "HmCnUxZ0LoGn",
+          "checksum": "8fa1c6273c2c09b3f79db45de23936f5"
+        },
+        {
+          "type": "cssRules",
+          "assetId": "HmCnUxZ0LoGn",
+          "checksum": "8fa1c6273c2c09b3f79db45de23936f5"
+        },
+        {
+          "type": "icon",
+          "assetId": "0NZo5-xhOPmN",
+          "checksum": "cdcdc22ad1bae553a401a1de981ff6e3"
+        },
+        {
+          "type": "icon",
+          "assetId": "pGI3UDernc6c",
+          "checksum": "f4fc83e41db9b46a111dd2bae2ae7e6c"
+        },
+        {
+          "type": "icon",
+          "assetId": "WYASMai6oCzZ",
+          "checksum": "b464a31ffae5bfd35e46f47e0b7132e2"
+        },
+        {
+          "type": "icon",
+          "assetId": "cJeBOhz6nZhs",
+          "checksum": "60a935e54b09364db7eb675c83d0ee38"
         }
       ],
       "codegenVersion": "0.0.2"

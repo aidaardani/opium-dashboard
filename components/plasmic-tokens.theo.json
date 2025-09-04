@@ -101,6 +101,16 @@
       }
     },
     {
+      "name": "Basic/Border",
+      "type": "color",
+      "value": "#D1D5DB",
+      "category": "color",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "t4c1tMMCkDe1"
+      }
+    },
+    {
       "name": "Basic/Ring",
       "type": "color",
       "value": "#9CA3AF",

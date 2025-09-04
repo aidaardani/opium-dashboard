@@ -125,6 +125,8 @@
   --plasmic-token-destructive-destructive-soft-foreground: var(
     --token-Kx_2gJH7s8ET
   );
+  --token-t4c1tMMCkDe1: #d1d5db;
+  --plasmic-token-basic-border: var(--token-t4c1tMMCkDe1);
 }
 
 .plasmic_tokens {

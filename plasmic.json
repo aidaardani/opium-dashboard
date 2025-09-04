@@ -3141,6 +3141,32 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/v-2/tags"
+        },
+        {
+          "id": "2I5--CZvi2JJ",
+          "name": "Tags2",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicTags2.tsx",
+          "importSpec": {
+            "modulePath": "Tags2.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicTags2.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "HmCnUxZ0LoGn",
+          "name": "V3Tags",
+          "type": "managed",
+          "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicV3Tags.tsx",
+          "importSpec": {
+            "modulePath": "V3Tags.tsx"
+          },
+          "cssFilePath": "plasmic/opium_dashboard/PlasmicV3Tags.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -3548,6 +3574,26 @@
           "id": "Kwkscun125Ke",
           "name": "Icon57Icon",
           "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon57.tsx"
+        },
+        {
+          "id": "0NZo5-xhOPmN",
+          "name": "Icon58Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon58.tsx"
+        },
+        {
+          "id": "pGI3UDernc6c",
+          "name": "Icon59Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon59.tsx"
+        },
+        {
+          "id": "WYASMai6oCzZ",
+          "name": "Icon60Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon60.tsx"
+        },
+        {
+          "id": "cJeBOhz6nZhs",
+          "name": "Icon61Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon61.tsx"
         }
       ],
       "images": [
