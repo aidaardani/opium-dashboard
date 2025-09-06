@@ -3,7 +3,7 @@
 import * as React from "react";
 import {
   PlasmicTags2,
-  DefaultTags2Props
+  DefaultTags2Props,
 } from "./plasmic/opium_dashboard/PlasmicTags2";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 
@@ -38,7 +38,7 @@ function Tags2_(props: Tags2Props, ref: HTMLElementRefOf<"div">) {
   // By default, we are just piping all Tags2Props here, but feel free
   // to do whatever works for you.
 
-  return <PlasmicTags2 root={{ ref }} {...props} />;
+  return <PlasmicTags2 />;
 }
 
 const Tags2 = React.forwardRef(Tags2_);
