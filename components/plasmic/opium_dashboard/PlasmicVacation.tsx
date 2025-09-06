@@ -168,6 +168,8 @@ function PlasmicVacation__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const globalVariants = _useGlobalVariants();
+
   const $globalActions = useGlobalActions?.();
 
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
@@ -224,13 +226,10 @@ function PlasmicVacation__RenderFunc(props: {
             try {
               return (() => {
                 $$.dayjs.locale("fa");
-                const currentYear = $$.dayjs().year();
-                const convertToJalali = year => {
-                  const now = new Date(`${year}-01-01`);
-                  const norooz = new Date(`${year}-03-21`);
-                  return now < norooz ? year - 622 : year - 621;
-                };
-                return convertToJalali(currentYear);
+                const today = new Date();
+                const gy = today.getFullYear();
+                const norooz = new Date(gy, 2, 21);
+                return today >= norooz ? gy - 621 : gy - 622;
               })();
             } catch (e) {
               if (
@@ -686,15 +685,99 @@ function PlasmicVacation__RenderFunc(props: {
     >
       <div className={classNames(projectcss.all, sty.freeBox__coCru)}>
         <div className={classNames(projectcss.all, sty.freeBox__p3Mdz)}>
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text___9HMe
-            )}
+          <ApiRequest
+            data-plasmic-name={"centersApi"}
+            data-plasmic-override={overrides.centersApi}
+            className={classNames("__wab_instance", sty.centersApi)}
+            errorDisplay={
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__q12TZ
+                )}
+              >
+                {
+                  "\u062e\u0637\u0627 \u062f\u0631 \u062f\u0631\u06cc\u0627\u0641\u062a \u0645\u0631\u0627\u06a9\u0632"
+                }
+              </div>
+            }
+            loadingDisplay={
+              <div className={classNames(projectcss.all, sty.freeBox__l84Dy)}>
+                <Icon34Icon
+                  className={classNames(projectcss.all, sty.svg__kUErt)}
+                  role={"img"}
+                />
+              </div>
+            }
+            method={"GET"}
+            onError={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["centersApi", "error"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            onLoading={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, [
+                "centersApi",
+                "loading"
+              ]).apply(null, eventArgs);
+            }}
+            onSuccess={async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["centersApi", "data"]).apply(
+                null,
+                eventArgs
+              );
+            }}
+            ref={ref => {
+              $refs["centersApi"] = ref;
+            }}
+            url={"https://api.paziresh24.com/V1/doctor/centers"}
           >
-            {"\u062b\u0628\u062a \u0645\u0631\u062e\u0635\u06cc"}
-          </div>
+            <DrCenters
+              data-plasmic-name={"drCenters"}
+              data-plasmic-override={overrides.drCenters}
+              centers={(() => {
+                try {
+                  return (() => {
+                    return $state.centersApi.data.data.map(center => ({
+                      name: center.name,
+                      id: center.id,
+                      type_id: center.type_id,
+                      address: center.address,
+                      tells: center.tells,
+                      user_center_id: center.user_center_id,
+                      is_active_booking: center.is_active_booking
+                    }));
+                  })();
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              className={classNames("__wab_instance", sty.drCenters)}
+              hasAllOption={false}
+              onSelectedCenterChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "drCenters",
+                  "selectedCenter"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+            />
+          </ApiRequest>
           <div
             className={classNames(
               projectcss.all,
@@ -707,99 +790,6 @@ function PlasmicVacation__RenderFunc(props: {
             }
           </div>
         </div>
-        <ApiRequest
-          data-plasmic-name={"centersApi"}
-          data-plasmic-override={overrides.centersApi}
-          className={classNames("__wab_instance", sty.centersApi)}
-          errorDisplay={
-            <div
-              className={classNames(
-                projectcss.all,
-                projectcss.__wab_text,
-                sty.text__q12TZ
-              )}
-            >
-              {
-                "\u062e\u0637\u0627 \u062f\u0631 \u062f\u0631\u06cc\u0627\u0641\u062a \u0645\u0631\u0627\u06a9\u0632"
-              }
-            </div>
-          }
-          loadingDisplay={
-            <div className={classNames(projectcss.all, sty.freeBox__l84Dy)}>
-              <Icon34Icon
-                className={classNames(projectcss.all, sty.svg__kUErt)}
-                role={"img"}
-              />
-            </div>
-          }
-          method={"GET"}
-          onError={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["centersApi", "error"]).apply(
-              null,
-              eventArgs
-            );
-          }}
-          onLoading={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["centersApi", "loading"]).apply(
-              null,
-              eventArgs
-            );
-          }}
-          onSuccess={async (...eventArgs: any) => {
-            generateStateOnChangeProp($state, ["centersApi", "data"]).apply(
-              null,
-              eventArgs
-            );
-          }}
-          ref={ref => {
-            $refs["centersApi"] = ref;
-          }}
-          url={"https://api.paziresh24.com/V1/doctor/centers"}
-        >
-          <DrCenters
-            data-plasmic-name={"drCenters"}
-            data-plasmic-override={overrides.drCenters}
-            centers={(() => {
-              try {
-                return (() => {
-                  return $state.centersApi.data.data.map(center => ({
-                    name: center.name,
-                    id: center.id,
-                    type_id: center.type_id,
-                    address: center.address,
-                    tells: center.tells,
-                    user_center_id: center.user_center_id,
-                    is_active_booking: center.is_active_booking
-                  }));
-                })();
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })()}
-            className={classNames("__wab_instance", sty.drCenters)}
-            hasAllOption={false}
-            onSelectedCenterChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, [
-                "drCenters",
-                "selectedCenter"
-              ]).apply(null, eventArgs);
-
-              if (
-                eventArgs.length > 1 &&
-                eventArgs[1] &&
-                eventArgs[1]._plasmic_state_init_
-              ) {
-                return;
-              }
-            }}
-          />
-        </ApiRequest>
       </div>
       <Dialog
         data-plasmic-name={"addVocationDialog"}
@@ -1511,32 +1501,33 @@ function PlasmicVacation__RenderFunc(props: {
                   $steps["toDateUpdate"] = await $steps["toDateUpdate"];
                 }
 
-                $steps["updateCheckboxIsChecked"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["checkbox", "isChecked"]
-                        },
-                        operation: 0,
-                        value: false
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
+                $steps["updateCheckboxIsChecked"] =
+                  $steps.submitVacation.status != 409
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["checkbox", "isChecked"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
 
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
                 if (
                   $steps["updateCheckboxIsChecked"] != null &&
                   typeof $steps["updateCheckboxIsChecked"] === "object" &&
@@ -1813,164 +1804,200 @@ function PlasmicVacation__RenderFunc(props: {
             sty.text___37X29
           )}
         >
-          {
-            "\u0644\u06cc\u0633\u062a \u0645\u0631\u062e\u0635\u06cc \u0647\u0627\u06cc \u062b\u0628\u062a \u0634\u062f\u0647:"
-          }
-        </div>
-        <div className={classNames(projectcss.all, sty.freeBox__rjW9A)}>
-          <Select
-            data-plasmic-name={"year"}
-            data-plasmic-override={overrides.year}
-            onChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["year", "value"]).apply(
-                null,
-                eventArgs
-              );
-            }}
-            onOpenChange={async (...eventArgs: any) => {
-              generateStateOnChangeProp($state, ["year", "open"]).apply(
-                null,
-                eventArgs
-              );
-            }}
-            open={generateStateValueProp($state, ["year", "open"])}
-            options={(() => {
-              try {
-                return (() => {
-                  $$.dayjs.locale("fa");
-                  const currentYear = $$.dayjs().year();
-                  const years = [currentYear - 1, currentYear, currentYear + 1];
-
-                  const convertToJalali = year => {
-                    const now = new Date(`${year}-01-01`);
-                    const norooz = new Date(`${year}-03-21`);
-                    return now < norooz ? year - 622 : year - 621;
-                  };
-                  return years.map(year => ({
-                    label: convertToJalali(year),
-                    value: convertToJalali(year)
-                  }));
-                })();
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
-                }
-                throw e;
-              }
-            })()}
-            placeholder={"\u0633\u0627\u0644"}
-            triggerClassName={classNames("__wab_instance", sty.year)}
-            value={generateStateValueProp($state, ["year", "value"])}
-          />
-
-          {(() => {
-            const child$Props = {
-              onChange: async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["month", "value"]).apply(
-                  null,
-                  eventArgs
-                );
-              },
-              onOpenChange: async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, ["month", "open"]).apply(
-                  null,
-                  eventArgs
-                );
-              },
-              open: generateStateValueProp($state, ["month", "open"]),
-              options: (() => {
+          {hasVariant(globalVariants, "screen", "mobileOnly") ? (
+            <React.Fragment>
+              {(() => {
                 try {
-                  return $state.monthData.map(item => ({
-                    label: item.persian_name,
-                    value: item.monthNum
-                  }));
+                  return `لیست مرخصی های ثبت ‌شده‌ی ${
+                    $state.centersApi.data.data.find(
+                      item =>
+                        item.user_center_id === $state.drCenters.selectedCenter
+                    ).name
+                  }:`;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
                     e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    return [{}];
+                    return "\u0644\u06cc\u0633\u062a \u0645\u0631\u062e\u0635\u06cc \u0647\u0627\u06cc \u062b\u0628\u062a \u0634\u062f\u0647:";
                   }
                   throw e;
                 }
-              })(),
-              placeholder: "\u0645\u0627\u0647",
-              triggerClassName: classNames("__wab_instance", sty.month),
-              value: generateStateValueProp($state, ["month", "value"])
-            };
-            initializeCodeComponentStates(
-              $state,
-              [
-                {
-                  name: "value",
-                  plasmicStateName: "month.value"
-                },
-                {
-                  name: "open",
-                  plasmicStateName: "month.open"
+              })()}
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              {(() => {
+                try {
+                  return `لیست مرخصی های ثبت ‌شده‌ی ${
+                    $state.centersApi.data.data.find(
+                      item =>
+                        item.user_center_id === $state.drCenters.selectedCenter
+                    ).name
+                  }`;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return "\u0644\u06cc\u0633\u062a \u0645\u0631\u062e\u0635\u06cc \u0647\u0627\u06cc \u062b\u0628\u062a \u0634\u062f\u0647:";
+                  }
+                  throw e;
                 }
-              ],
-              [],
-              undefined ?? {},
-              child$Props
-            );
-            initializePlasmicStates(
-              $state,
-              [
-                {
-                  name: "month.value",
-                  initFunc: ({ $props, $state, $queries }) =>
-                    (() => {
-                      try {
-                        return (() => {
-                          const formatter = new Intl.DateTimeFormat(
-                            "fa-IR-u-ca-persian",
-                            { month: "numeric" }
-                          );
-                          const jalaliMonthName = formatter.format(new Date());
-                          const convertPersianToEnglishNumbers = str => {
-                            const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
-                            const englishDigits = "0123456789";
-                            return str
-                              .split("")
-                              .map(char => {
-                                const index = persianDigits.indexOf(char);
-                                return index !== -1
-                                  ? englishDigits[index]
-                                  : char;
-                              })
-                              .join("");
-                          };
-                          return +convertPersianToEnglishNumbers(
-                            jalaliMonthName
-                          );
-                        })();
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()
-                }
-              ],
-              []
-            );
-            return (
-              <Select
-                data-plasmic-name={"month"}
-                data-plasmic-override={overrides.month}
-                {...child$Props}
-              />
-            );
-          })()}
+              })()}
+            </React.Fragment>
+          )}
         </div>
+      </div>
+      <div className={classNames(projectcss.all, sty.freeBox__rjW9A)}>
+        <Select
+          data-plasmic-name={"year"}
+          data-plasmic-override={overrides.year}
+          onChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["year", "value"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          onOpenChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["year", "open"]).apply(
+              null,
+              eventArgs
+            );
+          }}
+          open={generateStateValueProp($state, ["year", "open"])}
+          options={(() => {
+            try {
+              return (() => {
+                $$.dayjs.locale("fa");
+                const currentYear = $$.dayjs().year();
+                const years = [currentYear - 1, currentYear, currentYear + 1];
+
+                const convertToJalali = year => {
+                  const now = new Date(`${year}-01-01`);
+                  const norooz = new Date(`${year}-03-21`);
+                  return now < norooz ? year - 622 : year - 621;
+                };
+                return years.map(year => ({
+                  label: convertToJalali(year),
+                  value: convertToJalali(year)
+                }));
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()}
+          placeholder={"\u0633\u0627\u0644"}
+          triggerClassName={classNames("__wab_instance", sty.year)}
+          value={generateStateValueProp($state, ["year", "value"])}
+        />
+
+        {(() => {
+          const child$Props = {
+            onChange: async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["month", "value"]).apply(
+                null,
+                eventArgs
+              );
+            },
+            onOpenChange: async (...eventArgs: any) => {
+              generateStateOnChangeProp($state, ["month", "open"]).apply(
+                null,
+                eventArgs
+              );
+            },
+            open: generateStateValueProp($state, ["month", "open"]),
+            options: (() => {
+              try {
+                return $state.monthData.map(item => ({
+                  label: item.persian_name,
+                  value: item.monthNum
+                }));
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return [{}];
+                }
+                throw e;
+              }
+            })(),
+            placeholder: "\u0645\u0627\u0647",
+            triggerClassName: classNames("__wab_instance", sty.month),
+            value: generateStateValueProp($state, ["month", "value"])
+          };
+          initializeCodeComponentStates(
+            $state,
+            [
+              {
+                name: "value",
+                plasmicStateName: "month.value"
+              },
+              {
+                name: "open",
+                plasmicStateName: "month.open"
+              }
+            ],
+            [],
+            undefined ?? {},
+            child$Props
+          );
+          initializePlasmicStates(
+            $state,
+            [
+              {
+                name: "month.value",
+                initFunc: ({ $props, $state, $queries }) =>
+                  (() => {
+                    try {
+                      return (() => {
+                        const formatter = new Intl.DateTimeFormat(
+                          "fa-IR-u-ca-persian",
+                          { month: "numeric" }
+                        );
+                        const jalaliMonthName = formatter.format(new Date());
+                        const convertPersianToEnglishNumbers = str => {
+                          const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+                          const englishDigits = "0123456789";
+                          return str
+                            .split("")
+                            .map(char => {
+                              const index = persianDigits.indexOf(char);
+                              return index !== -1 ? englishDigits[index] : char;
+                            })
+                            .join("");
+                        };
+                        return +convertPersianToEnglishNumbers(jalaliMonthName);
+                      })();
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()
+              }
+            ],
+            []
+          );
+          return (
+            <Select
+              data-plasmic-name={"month"}
+              data-plasmic-override={overrides.month}
+              {...child$Props}
+            />
+          );
+        })()}
       </div>
       <ApiRequest
         data-plasmic-name={"vacationApi"}
@@ -2534,8 +2561,11 @@ function PlasmicVacation__RenderFunc(props: {
                                   const toTime = $state.checkbox.isChecked
                                     ? "23:59"
                                     : $state.toTime;
+                                  const toDateObject =
+                                    $state.dateRangePicker.selectedDays.to ||
+                                    $state.dateRangePicker.selectedDays.from;
                                   const toDate = convertDateAndTimeToTimeStamp(
-                                    $state.dateRangePicker.selectedDays.to,
+                                    toDateObject,
                                     toTime
                                   );
                                   return {
@@ -2567,6 +2597,108 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["deleteBooks"].then === "function"
                   ) {
                     $steps["deleteBooks"] = await $steps["deleteBooks"];
+                  }
+
+                  $steps["submitVacation"] =
+                    $steps.deleteBooks.status == 200
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "POST",
+                              (() => {
+                                try {
+                                  return (() => {
+                                    const centerId =
+                                      $state.centersApi.data.data.find(
+                                        center =>
+                                          center.user_center_id ==
+                                          $state.drCenters.selectedCenter
+                                      )?.id || "";
+                                    return `https://api.paziresh24.com/V1/doctor/vacation/${centerId}`;
+                                  })();
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })(),
+                              undefined,
+                              (() => {
+                                try {
+                                  return (() => {
+                                    const dateObjectToFormattedDate =
+                                      dateObject => {
+                                        return `${dateObject?.year}/${dateObject?.month}/${dateObject?.day}`;
+                                      };
+                                    const convertDateAndTimeToTimeStamp = (
+                                      date,
+                                      time
+                                    ) => {
+                                      return $$.moment
+                                        .from(
+                                          `${dateObjectToFormattedDate(
+                                            date
+                                          )} ${time}`,
+                                          "fa",
+                                          "JYYYY/JMM/JDD HH:mm"
+                                        )
+                                        .unix();
+                                    };
+                                    const fromTime = $state.checkbox.isChecked
+                                      ? "00:00"
+                                      : $state.fromTime;
+                                    const fromDate =
+                                      convertDateAndTimeToTimeStamp(
+                                        $state.dateRangePicker.selectedDays
+                                          .from,
+                                        fromTime
+                                      );
+                                    const toTime = $state.checkbox.isChecked
+                                      ? "23:59"
+                                      : $state.toTime;
+                                    const toDateObject =
+                                      $state.dateRangePicker.selectedDays.to ||
+                                      $state.dateRangePicker.selectedDays.from;
+                                    const toDate =
+                                      convertDateAndTimeToTimeStamp(
+                                        toDateObject,
+                                        toTime
+                                      );
+                                    return {
+                                      from: fromDate,
+                                      to: toDate
+                                    };
+                                  })();
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                  if (
+                    $steps["submitVacation"] != null &&
+                    typeof $steps["submitVacation"] === "object" &&
+                    typeof $steps["submitVacation"].then === "function"
+                  ) {
+                    $steps["submitVacation"] = await $steps["submitVacation"];
                   }
 
                   $steps["updateIsLoadingDelete2"] = true

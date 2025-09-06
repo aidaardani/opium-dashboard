@@ -22,6 +22,11 @@
 .root > * {
   grid-column: 4;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .root > * {
+    grid-column: 4;
+  }
+}
 .header {
   display: flex;
   flex-direction: row;
@@ -82,6 +87,8 @@
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__m5H3 {
+    row-gap: var(--token-_c276Gs_1FIE);
+    column-gap: 0px;
     margin: 0rem 0px 0px;
   }
 }
