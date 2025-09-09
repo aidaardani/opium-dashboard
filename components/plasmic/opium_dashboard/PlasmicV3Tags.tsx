@@ -278,11 +278,7 @@ function PlasmicV3Tags__RenderFunc(props: {
           className={classNames("__wab_instance", sty.sideEffect)}
           deps={(() => {
             try {
-              return (
-                $state?.multiSlect?.value.length > 0 && [
-                  JSON.parse(JSON.stringify($state?.multiSlect.value))
-                ]
-              );
+              return [$state?.multiSlect?.value];
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -296,41 +292,43 @@ function PlasmicV3Tags__RenderFunc(props: {
           onMount={async () => {
             const $steps = {};
 
-            $steps["apiAssigndoctortags"] = !$state.apiGetDrTags.loading
-              ? (() => {
-                  const actionArgs = {
-                    args: [
-                      "PUT",
-                      "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/assigndoctortag",
-                      undefined,
-                      (() => {
-                        try {
-                          return $state.multiSlect.value?.map(
-                            ({ label, value, ...rest }, index) => ({
-                              ...rest,
-                              Tag_title: label,
-                              _id: value,
-                              priority: index + 1,
-                              Resource_ID: $props.resourceId
-                            })
-                          );
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
+            $steps["apiAssigndoctortags"] =
+              !$state.apiGetDrTags.loading &&
+              $state?.multiSlect?.value.length > 0
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "PUT",
+                        "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/v2/assigndoctortag",
+                        undefined,
+                        (() => {
+                          try {
+                            return $state.multiSlect.value?.map(
+                              ({ label, value, ...rest }, index) => ({
+                                ...rest,
+                                Tag_title: label,
+                                _id: value,
+                                priority: index + 1,
+                                Resource_ID: $props.resourceId
+                              })
+                            );
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
                           }
-                          throw e;
-                        }
-                      })()
-                    ]
-                  };
-                  return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                    ...actionArgs.args
-                  ]);
-                })()
-              : undefined;
+                        })()
+                      ]
+                    };
+                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
             if (
               $steps["apiAssigndoctortags"] != null &&
               typeof $steps["apiAssigndoctortags"] === "object" &&
