@@ -1666,31 +1666,60 @@ function PlasmicAppointmentCard__RenderFunc(props: {
         })}
       >
         <div className={classNames(projectcss.all, sty.freeBox___7Os85)}>
-          <PlasmicImg__
-            alt={``}
-            className={classNames(sty.img__kOce)}
-            displayHeight={"22px"}
-            displayMaxHeight={"none"}
-            displayMaxWidth={"100%"}
-            displayMinHeight={"0"}
-            displayMinWidth={"0"}
-            displayWidth={"22px"}
-            loading={"lazy"}
-            src={(() => {
-              try {
-                return $props.platform.icon;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return undefined;
+          {(
+            hasVariant(globalVariants, "screen", "mobileOnly")
+              ? (() => {
+                  try {
+                    return $props.showPlatform;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return false;
+                    }
+                    throw e;
+                  }
+                })()
+              : (() => {
+                  try {
+                    return true;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return true;
+                    }
+                    throw e;
+                  }
+                })()
+          ) ? (
+            <PlasmicImg__
+              alt={``}
+              className={classNames(sty.img__kOce)}
+              displayHeight={"22px"}
+              displayMaxHeight={"none"}
+              displayMaxWidth={"100%"}
+              displayMinHeight={"0"}
+              displayMinWidth={"0"}
+              displayWidth={"22px"}
+              loading={"lazy"}
+              src={(() => {
+                try {
+                  return $props.platform.icon;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
                 }
-                throw e;
-              }
-            })()}
-          />
-
+              })()}
+            />
+          ) : null}
           {(
             hasVariant(globalVariants, "screen", "mobileOnly")
               ? (() => {

@@ -449,6 +449,11 @@
 .img__kOce > picture > img {
   object-fit: cover;
 }
+@media (min-width: 0px) and (max-width: 768px) {
+  .img__kOce {
+    display: block;
+  }
+}
 .svg__oEqht {
   object-fit: cover;
   max-width: 22px;
