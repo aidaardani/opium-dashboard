@@ -646,9 +646,7 @@ function PlasmicPatientList__RenderFunc(props: {
               })()}
               centerId={(() => {
                 try {
-                  return $props.centers.find(
-                    item => item.user_center_id === currentItem.user_center_id
-                  ).id;
+                  return currentItem.center.id;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -676,7 +674,8 @@ function PlasmicPatientList__RenderFunc(props: {
                 try {
                   return $props.centers.find(
                     center =>
-                      center.user_center_id === currentItem.user_center_id
+                      center.user_center_id ===
+                      currentItem.center.user_center_id
                   ).center_type;
                 } catch (e) {
                   if (
@@ -1071,7 +1070,7 @@ function PlasmicPatientList__RenderFunc(props: {
               })()}
               userCenterId={(() => {
                 try {
-                  return currentItem.user_center_id;
+                  return currentItem.center.user_center_id;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
