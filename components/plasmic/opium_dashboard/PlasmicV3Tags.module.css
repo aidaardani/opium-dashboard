@@ -74,7 +74,7 @@
   align-items: stretch;
   padding-right: 7px;
   padding-left: 7px;
-  row-gap: var(--token-vMUQwr5Jto1d);
+  row-gap: var(--token-W6cMLA0AZVBO);
   min-width: 0;
 }
 .freeBox__oZwG {
@@ -88,6 +88,7 @@
   align-items: center;
   row-gap: var(--token-_c276Gs_1FIE);
   min-width: 0;
+  padding: 8px;
 }
 .text__cTh0X {
   width: 100%;
@@ -122,6 +123,7 @@
   font-size: 14px;
   text-align: left;
   min-width: 0;
+  padding: 0px 5px 5px;
 }
 .freeBox__ekHn {
   display: flex;
