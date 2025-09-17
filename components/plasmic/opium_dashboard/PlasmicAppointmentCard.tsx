@@ -6764,7 +6764,6 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             }
 
             $steps["updateBookStatusState"] =
-              $props.type === "book" &&
               $steps.apiCame?.data?.status === "SUCCESS"
                 ? (() => {
                     const actionArgs = {
