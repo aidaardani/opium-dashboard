@@ -442,7 +442,7 @@ function PlasmicVacation__RenderFunc(props: {
         path: "selectTime.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       },
       {
         path: "timePicker.value",
@@ -734,49 +734,60 @@ function PlasmicVacation__RenderFunc(props: {
             }}
             url={"https://api.paziresh24.com/V1/doctor/centers"}
           >
-            <DrCenters
-              data-plasmic-name={"drCenters"}
-              data-plasmic-override={overrides.drCenters}
-              centers={(() => {
-                try {
-                  return (() => {
-                    return $state.centersApi.data.data.map(center => ({
-                      name: center.name,
-                      id: center.id,
-                      type_id: center.type_id,
-                      address: center.address,
-                      tells: center.tells,
-                      user_center_id: center.user_center_id,
-                      is_active_booking: center.is_active_booking
-                    }));
-                  })();
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return undefined;
+            <div className={classNames(projectcss.all, sty.freeBox__nyPcL)}>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__mKrkg
+                )}
+              >
+                {"\u0646\u0627\u0645 \u0645\u0631\u06a9\u0632 :"}
+              </div>
+              <DrCenters
+                data-plasmic-name={"drCenters"}
+                data-plasmic-override={overrides.drCenters}
+                centers={(() => {
+                  try {
+                    return (() => {
+                      return $state.centersApi.data.data.map(center => ({
+                        name: center.name,
+                        id: center.id,
+                        type_id: center.type_id,
+                        address: center.address,
+                        tells: center.tells,
+                        user_center_id: center.user_center_id,
+                        is_active_booking: center.is_active_booking
+                      }));
+                    })();
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
                   }
-                  throw e;
-                }
-              })()}
-              className={classNames("__wab_instance", sty.drCenters)}
-              hasAllOption={false}
-              onSelectedCenterChange={async (...eventArgs: any) => {
-                generateStateOnChangeProp($state, [
-                  "drCenters",
-                  "selectedCenter"
-                ]).apply(null, eventArgs);
+                })()}
+                className={classNames("__wab_instance", sty.drCenters)}
+                hasAllOption={false}
+                onSelectedCenterChange={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "drCenters",
+                    "selectedCenter"
+                  ]).apply(null, eventArgs);
 
-                if (
-                  eventArgs.length > 1 &&
-                  eventArgs[1] &&
-                  eventArgs[1]._plasmic_state_init_
-                ) {
-                  return;
-                }
-              }}
-            />
+                  if (
+                    eventArgs.length > 1 &&
+                    eventArgs[1] &&
+                    eventArgs[1]._plasmic_state_init_
+                  ) {
+                    return;
+                  }
+                }}
+              />
+            </div>
           </ApiRequest>
           <div
             className={classNames(
@@ -3076,6 +3087,45 @@ function PlasmicVacation__RenderFunc(props: {
             <Button
               children2={"\u062a\u0627\u06cc\u06cc\u062f"}
               className={classNames("__wab_instance", sty.button__gGfXg)}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["updateSelectTimeOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["selectTime", "open"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateSelectTimeOpen"] != null &&
+                  typeof $steps["updateSelectTimeOpen"] === "object" &&
+                  typeof $steps["updateSelectTimeOpen"].then === "function"
+                ) {
+                  $steps["updateSelectTimeOpen"] = await $steps[
+                    "updateSelectTimeOpen"
+                  ];
+                }
+              }}
             />
           </div>
         }
@@ -3198,14 +3248,15 @@ function PlasmicVacation__RenderFunc(props: {
                   $steps["updateToTime"] = await $steps["updateToTime"];
                 }
 
-                $steps["updateSelectTimeOpen"] = true
+                $steps["updateSelectTimeOpen2"] = true
                   ? (() => {
                       const actionArgs = {
                         variable: {
                           objRoot: $state,
                           variablePath: ["selectTime", "open"]
                         },
-                        operation: 4
+                        operation: 0,
+                        value: false
                       };
                       return (({
                         variable,
@@ -3218,9 +3269,157 @@ function PlasmicVacation__RenderFunc(props: {
                         }
                         const { objRoot, variablePath } = variable;
 
-                        const oldValue = $stateGet(objRoot, variablePath);
-                        $stateSet(objRoot, variablePath, !oldValue);
-                        return !oldValue;
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateSelectTimeOpen2"] != null &&
+                  typeof $steps["updateSelectTimeOpen2"] === "object" &&
+                  typeof $steps["updateSelectTimeOpen2"].then === "function"
+                ) {
+                  $steps["updateSelectTimeOpen2"] = await $steps[
+                    "updateSelectTimeOpen2"
+                  ];
+                }
+
+                $steps["move"] =
+                  $state.errorDialog.open === true
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            "POST",
+                            (() => {
+                              try {
+                                return (() => {
+                                  const centerId =
+                                    $state.centersApi.data.data.find(
+                                      center =>
+                                        center.user_center_id ==
+                                        $state.drCenters.selectedCenter
+                                    )?.id || "";
+                                  return `https://api.paziresh24.com/V1/doctor/books/${centerId}/move`;
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            undefined,
+                            (() => {
+                              try {
+                                return (() => {
+                                  const dateObjectToFormattedDate =
+                                    dateObject => {
+                                      return `${dateObject?.year}/${dateObject?.month}/${dateObject?.day}`;
+                                    };
+                                  const convertDateAndTimeToTimeStamp = (
+                                    date,
+                                    time
+                                  ) => {
+                                    return $$.moment
+                                      .from(
+                                        `${dateObjectToFormattedDate(
+                                          date
+                                        )} ${time}`,
+                                        "fa",
+                                        "JYYYY/JMM/JDD HH:mm"
+                                      )
+                                      .unix();
+                                  };
+                                  const fromTime = $state.checkbox.isChecked
+                                    ? "00:00"
+                                    : $state.fromTime;
+                                  const fromDate =
+                                    convertDateAndTimeToTimeStamp(
+                                      $state.dateRangePicker.selectedDays.from,
+                                      fromTime
+                                    );
+                                  const toTime = $state.checkbox.isChecked
+                                    ? "23:59"
+                                    : $state.toTime;
+                                  const toDateObject =
+                                    $state.dateRangePicker.selectedDays.to ||
+                                    $state.dateRangePicker.selectedDays.from;
+                                  const toDate = convertDateAndTimeToTimeStamp(
+                                    toDateObject,
+                                    toTime
+                                  );
+                                  return {
+                                    book_from: fromDate,
+                                    book_to: toDate,
+                                    confirmed: true,
+                                    target_from: Math.floor(
+                                      new Date(
+                                        $state.datePicker.value * 1000
+                                      ).setHours(
+                                        parseInt(
+                                          $state.timePicker.value.split(":")[0]
+                                        ),
+                                        parseInt(
+                                          $state.timePicker.value.split(":")[1]
+                                        ),
+                                        0,
+                                        0
+                                      ) / 1000
+                                    )
+                                  };
+                                })();
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.apiRequest"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                if (
+                  $steps["move"] != null &&
+                  typeof $steps["move"] === "object" &&
+                  typeof $steps["move"].then === "function"
+                ) {
+                  $steps["move"] = await $steps["move"];
+                }
+
+                $steps["updateSelectTimeOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["selectTime", "open"]
+                        },
+                        operation: 0,
+                        value: false
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
                       })?.apply(null, [actionArgs]);
                     })()
                   : undefined;
@@ -3231,6 +3430,136 @@ function PlasmicVacation__RenderFunc(props: {
                 ) {
                   $steps["updateSelectTimeOpen"] = await $steps[
                     "updateSelectTimeOpen"
+                  ];
+                }
+
+                $steps["updateChangeDateDialogOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["changeDateDialog", "open"]
+                        },
+                        operation: 0,
+                        value: false
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateChangeDateDialogOpen"] != null &&
+                  typeof $steps["updateChangeDateDialogOpen"] === "object" &&
+                  typeof $steps["updateChangeDateDialogOpen"].then ===
+                    "function"
+                ) {
+                  $steps["updateChangeDateDialogOpen"] = await $steps[
+                    "updateChangeDateDialogOpen"
+                  ];
+                }
+
+                $steps["updateErrorDialogOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["errorDialog", "open"]
+                        },
+                        operation: 0,
+                        value: false
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateErrorDialogOpen"] != null &&
+                  typeof $steps["updateErrorDialogOpen"] === "object" &&
+                  typeof $steps["updateErrorDialogOpen"].then === "function"
+                ) {
+                  $steps["updateErrorDialogOpen"] = await $steps[
+                    "updateErrorDialogOpen"
+                  ];
+                }
+
+                $steps["updateSelectDateOpen"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["selectDate", "open"]
+                        },
+                        operation: 0,
+                        value: false
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateSelectDateOpen"] != null &&
+                  typeof $steps["updateSelectDateOpen"] === "object" &&
+                  typeof $steps["updateSelectDateOpen"].then === "function"
+                ) {
+                  $steps["updateSelectDateOpen"] = await $steps[
+                    "updateSelectDateOpen"
+                  ];
+                }
+
+                $steps["runActionOnVacationApi"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        tplRef: "vacationApi",
+                        action: "refresh"
+                      };
+                      return (({ tplRef, action, args }) => {
+                        return $refs?.[tplRef]?.[action]?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runActionOnVacationApi"] != null &&
+                  typeof $steps["runActionOnVacationApi"] === "object" &&
+                  typeof $steps["runActionOnVacationApi"].then === "function"
+                ) {
+                  $steps["runActionOnVacationApi"] = await $steps[
+                    "runActionOnVacationApi"
                   ];
                 }
               }}

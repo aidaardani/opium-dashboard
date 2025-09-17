@@ -166,16 +166,51 @@
     display: none;
   }
 }
+.freeBox__nu3X {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 106px;
+  height: auto;
+  max-width: 106px;
+  justify-content: center;
+  align-items: center;
+  min-width: 106px;
+  column-gap: var(--token-fhaz6q6bl-fW);
+  flex-shrink: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__nu3X {
+    display: none;
+  }
+}
+.img__lxik0 {
+  object-fit: cover;
+  max-width: 100%;
+  width: 25px;
+  height: 25px;
+  min-width: 25px;
+  flex-shrink: 0;
+}
+.img__lxik0 > picture > img {
+  object-fit: cover;
+}
+.text__ibsx {
+  font-size: var(--token-6NbVMeD6zQwn);
+  font-weight: 400;
+  width: auto;
+  text-align: center;
+}
 .freeBox__zo2Zh {
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 200px;
+  width: 160px;
   height: auto;
-  max-width: 200px;
+  max-width: 160px;
   justify-content: center;
   align-items: center;
-  min-width: 200px;
+  min-width: 160px;
   flex-shrink: 0;
   padding: 8px;
 }
@@ -193,8 +228,10 @@
   width: 100%;
   height: auto;
   max-width: 100%;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 8px;
   min-width: 0;
-  padding: 8px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
   .freeBox__z6Rot {
@@ -400,6 +437,17 @@
     align-items: center;
     margin-bottom: 0px;
   }
+}
+.img__kOce {
+  object-fit: cover;
+  max-width: 100%;
+  width: 22px;
+  height: 22px;
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+.img__kOce > picture > img {
+  object-fit: cover;
 }
 .svg__oEqht {
   object-fit: cover;
@@ -1058,6 +1106,14 @@
   max-width: 100%;
   position: relative;
 }
+.patientPrivateData__kMQa:global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+}
+.patientPrivateData__k1TZp:global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+}
 .description {
   display: flex;
   flex-direction: row;
@@ -1657,6 +1713,32 @@
     flex-shrink: 1;
     min-width: 0;
   }
+}
+.disablePlatofrmFeatureDialog:global(.__wab_instance):global(.__wab_instance) {
+  max-width: 100%;
+}
+.text__yRl4 {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: right;
+  min-width: 0;
+}
+.button__nKhSp:global(.__wab_instance) {
+  max-width: 100%;
+  margin-top: 10px;
+}
+.svg__kSWtt {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.svg__y6Ne8 {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
 }
 .apiselcetedonlinevisitchannels:global(.__wab_instance) {
   max-width: 100%;

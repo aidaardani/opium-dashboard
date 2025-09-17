@@ -88,6 +88,7 @@ export type PlasmicPatientList__ArgsType = {
   centers?: any;
   userCenterId?: string;
   children?: React.ReactNode;
+  multiPlatform?: boolean;
 };
 type ArgPropType = keyof PlasmicPatientList__ArgsType;
 export const PlasmicPatientList__ArgProps = new Array<ArgPropType>(
@@ -96,7 +97,8 @@ export const PlasmicPatientList__ArgProps = new Array<ArgPropType>(
   "selectedCenter",
   "centers",
   "userCenterId",
-  "children"
+  "children",
+  "multiPlatform"
 );
 
 export type PlasmicPatientList__OverridesType = {
@@ -115,6 +117,7 @@ export interface DefaultPatientListProps {
   centers?: any;
   userCenterId?: string;
   children?: React.ReactNode;
+  multiPlatform?: boolean;
   className?: string;
 }
 
@@ -138,7 +141,9 @@ function PlasmicPatientList__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
+        {
+          multiPlatform: false
+        },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -385,7 +390,9 @@ function PlasmicPatientList__RenderFunc(props: {
                         user_center_id: $props.userCenterId
                       }
                     ],
-              date: $props.date
+              date: $props.date,
+              show_other_platform:
+                $props.multiPlatform && $props.selectedCenter == "all"
             };
           } catch (e) {
             if (
@@ -438,7 +445,7 @@ function PlasmicPatientList__RenderFunc(props: {
         url={(() => {
           try {
             return $props.centers.length > 0
-              ? "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/v4/allbooks"
+              ? "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/v5/allbooks"
               : "";
           } catch (e) {
             if (
@@ -498,6 +505,17 @@ function PlasmicPatientList__RenderFunc(props: {
             )}
           >
             {"\u0646\u0648\u0639 \u0646\u0648\u0628\u062a"}
+          </div>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__a2Xm
+            )}
+          >
+            {
+              "\u0633\u0627\u06cc\u062a \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc"
+            }
           </div>
           <div
             className={classNames(
@@ -602,13 +620,7 @@ function PlasmicPatientList__RenderFunc(props: {
               })()}
               bookType={(() => {
                 try {
-                  return $props.centers.some(
-                    item =>
-                      item.user_center_id == currentItem.user_center_id &&
-                      item.id == "5532"
-                  )
-                    ? "آنلاین"
-                    : "حضوری";
+                  return currentItem.type;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -649,9 +661,7 @@ function PlasmicPatientList__RenderFunc(props: {
               })()}
               centerName={(() => {
                 try {
-                  return $props.centers.find(
-                    item => item.user_center_id === currentItem.user_center_id
-                  ).name;
+                  return currentItem.center?.name;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -939,6 +949,19 @@ function PlasmicPatientList__RenderFunc(props: {
                   throw e;
                 }
               })()}
+              platform={(() => {
+                try {
+                  return currentItem.platform;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
               prescriptionDate={(() => {
                 try {
                   return $props.date;
@@ -970,8 +993,23 @@ function PlasmicPatientList__RenderFunc(props: {
                   return (
                     $state.apiOnlineVisitChannel.data[0].data.some(
                       item => item.type === "secure_call"
-                    ) && $props.centers.some(center => center.id === "5532")
+                    ) &&
+                    currentItem.type == "online" &&
+                    currentItem.platform.settings.can_secure_call
                   );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })()}
+              showPlatform={(() => {
+                try {
+                  return $props.multiPlatform;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||

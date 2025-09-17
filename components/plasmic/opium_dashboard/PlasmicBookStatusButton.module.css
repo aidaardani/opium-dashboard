@@ -56,6 +56,9 @@
 .buttondeleted:global(.__wab_instance) {
   min-width: auto;
 }
+.buttonisDisable:global(.__wab_instance) {
+  opacity: 0.6;
+}
 .svg__cGuhN {
   position: relative;
   object-fit: cover;
@@ -72,6 +75,9 @@
 }
 .textvisited {
   color: var(--token-u3OudfMChOo3);
+}
+.textisDisable {
+  color: var(--token-qtgMaW0djcWt);
 }
 .svg__yAuH {
   position: relative;

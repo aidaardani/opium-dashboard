@@ -124,9 +124,18 @@
   text-align: center;
   flex-shrink: 0;
 }
+.text__a2Xm {
+  position: relative;
+  width: 106px;
+  height: auto;
+  max-width: 100%;
+  font-weight: 600;
+  text-align: center;
+  flex-shrink: 0;
+}
 .text__zsxrS {
   position: relative;
-  width: 200px;
+  width: 160px;
   height: auto;
   max-width: 100%;
   font-weight: 600;

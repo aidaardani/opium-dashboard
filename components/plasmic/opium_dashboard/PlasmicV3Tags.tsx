@@ -504,7 +504,7 @@ function PlasmicV3Tags__RenderFunc(props: {
             options={(() => {
               try {
                 return (() => {
-                  if ($state.multiSlect.value?.length == 5) return [];
+                  if ($state.multiSlect.value?.length == 3) return [];
                   return [
                     ...$state.apiGetTags.data.hits.hits.map(hit => ({
                       label: hit._source.Tag_title,
@@ -543,7 +543,7 @@ function PlasmicV3Tags__RenderFunc(props: {
             <React.Fragment>
               {(() => {
                 try {
-                  return $state.multiSlect.value.length + "/" + 5;
+                  return $state.multiSlect.value.length + "/" + 3;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||

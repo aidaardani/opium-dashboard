@@ -130,6 +130,7 @@ export type PlasmicBookList__OverridesType = {
   gtm?: Flex__<typeof Embed>;
   apiHoliday?: Flex__<typeof ApiRequest>;
   apiRequest?: Flex__<typeof ApiRequest>;
+  hamdastApps?: Flex__<typeof ApiRequest>;
 };
 
 export interface DefaultBookListProps {}
@@ -413,6 +414,30 @@ function PlasmicBookList__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "apiRequest"
+      },
+      {
+        path: "hamdastApps.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "hamdastApps"
+      },
+      {
+        path: "hamdastApps.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "hamdastApps"
+      },
+      {
+        path: "hamdastApps.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "hamdastApps"
       }
     ],
     [$props, $ctx, $refs]
@@ -2992,6 +3017,21 @@ function PlasmicBookList__RenderFunc(props: {
                     throw e;
                   }
                 })()}
+                multiPlatform={(() => {
+                  try {
+                    return !!$state.hamdastApps?.data?.some?.(item =>
+                      item?.placement?.includes("appointments::multi_platform")
+                    );
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return false;
+                    }
+                    throw e;
+                  }
+                })()}
                 selectedCenter={(() => {
                   try {
                     return (
@@ -3554,6 +3594,52 @@ function PlasmicBookList__RenderFunc(props: {
                 "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/check-booking"
               }
             />
+
+            <ApiRequest
+              data-plasmic-name={"hamdastApps"}
+              data-plasmic-override={overrides.hamdastApps}
+              className={classNames("__wab_instance", sty.hamdastApps)}
+              errorDisplay={null}
+              loadingDisplay={null}
+              method={"GET"}
+              onError={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "hamdastApps",
+                  "error"
+                ]).apply(null, eventArgs);
+              }}
+              onLoading={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "hamdastApps",
+                  "loading"
+                ]).apply(null, eventArgs);
+              }}
+              onSuccess={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "hamdastApps",
+                  "data"
+                ]).apply(null, eventArgs);
+              }}
+              params={(() => {
+                try {
+                  return {
+                    user_id: $ctx.query.user_id
+                  };
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              ref={ref => {
+                $refs["hamdastApps"] = ref;
+              }}
+              url={"https://hamdast.paziresh24.com/api/v1/widgets/"}
+            />
           </div>
         ) : null}
       </div>
@@ -3585,7 +3671,8 @@ const PlasmicDescendants = {
     "runCodeGtmMetrica",
     "gtm",
     "apiHoliday",
-    "apiRequest"
+    "apiRequest",
+    "hamdastApps"
   ],
   transactions2: ["transactions2"],
   date: [
@@ -3652,7 +3739,8 @@ const PlasmicDescendants = {
   runCodeGtmMetrica: ["runCodeGtmMetrica"],
   gtm: ["gtm"],
   apiHoliday: ["apiHoliday"],
-  apiRequest: ["apiRequest"]
+  apiRequest: ["apiRequest"],
+  hamdastApps: ["hamdastApps"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -3681,6 +3769,7 @@ type NodeDefaultElementType = {
   gtm: typeof Embed;
   apiHoliday: typeof ApiRequest;
   apiRequest: typeof ApiRequest;
+  hamdastApps: typeof ApiRequest;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -3769,6 +3858,7 @@ export const PlasmicBookList = Object.assign(
     gtm: makeNodeComponent("gtm"),
     apiHoliday: makeNodeComponent("apiHoliday"),
     apiRequest: makeNodeComponent("apiRequest"),
+    hamdastApps: makeNodeComponent("hamdastApps"),
 
     // Metadata about props expected for PlasmicBookList
     internalVariantProps: PlasmicBookList__VariantProps,

@@ -80,23 +80,30 @@ export type PlasmicBookStatusButton__VariantMembers = {
   came: "came";
   visited: "visited";
   deleted: "deleted";
+  isDisable: "isDisable";
 };
 export type PlasmicBookStatusButton__VariantsArgs = {
   came?: SingleBooleanChoiceArg<"came">;
   visited?: SingleBooleanChoiceArg<"visited">;
   deleted?: SingleBooleanChoiceArg<"deleted">;
+  isDisable?: SingleBooleanChoiceArg<"isDisable">;
 };
 type VariantPropType = keyof PlasmicBookStatusButton__VariantsArgs;
 export const PlasmicBookStatusButton__VariantProps = new Array<VariantPropType>(
   "came",
   "visited",
-  "deleted"
+  "deleted",
+  "isDisable"
 );
 
-export type PlasmicBookStatusButton__ArgsType = { onclick?: () => void };
+export type PlasmicBookStatusButton__ArgsType = {
+  onclick?: () => void;
+  onDisableButtonClick?: () => void;
+};
 type ArgPropType = keyof PlasmicBookStatusButton__ArgsType;
 export const PlasmicBookStatusButton__ArgProps = new Array<ArgPropType>(
-  "onclick"
+  "onclick",
+  "onDisableButtonClick"
 );
 
 export type PlasmicBookStatusButton__OverridesType = {
@@ -107,9 +114,11 @@ export type PlasmicBookStatusButton__OverridesType = {
 
 export interface DefaultBookStatusButtonProps {
   onclick?: () => void;
+  onDisableButtonClick?: () => void;
   came?: SingleBooleanChoiceArg<"came">;
   visited?: SingleBooleanChoiceArg<"visited">;
   deleted?: SingleBooleanChoiceArg<"deleted">;
+  isDisable?: SingleBooleanChoiceArg<"isDisable">;
   className?: string;
 }
 
@@ -177,6 +186,12 @@ function PlasmicBookStatusButton__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "isDisable",
+        type: "private",
+        variableType: "variant",
+        initFunc: ({ $props, $state, $queries, $ctx }) => $props.isDisable
       }
     ],
     [$props, $ctx, $refs]
@@ -240,7 +255,15 @@ function PlasmicBookStatusButton__RenderFunc(props: {
               {
                 [sty.textcame]: hasVariant($state, "came", "came"),
                 [sty.textdeleted]: hasVariant($state, "deleted", "deleted"),
-                [sty.textvisited]: hasVariant($state, "visited", "visited")
+                [sty.textisDisable]: hasVariant(
+                  $state,
+                  "isDisable",
+                  "isDisable"
+                ),
+                [sty.textvisited]: hasVariant($state, "visited", "visited"),
+                [sty.textvisited_isDisable]:
+                  hasVariant($state, "visited", "visited") &&
+                  hasVariant($state, "isDisable", "isDisable")
               }
             )}
           >
@@ -256,6 +279,7 @@ function PlasmicBookStatusButton__RenderFunc(props: {
         className={classNames("__wab_instance", sty.button, {
           [sty.buttoncame]: hasVariant($state, "came", "came"),
           [sty.buttondeleted]: hasVariant($state, "deleted", "deleted"),
+          [sty.buttonisDisable]: hasVariant($state, "isDisable", "isDisable"),
           [sty.buttonvisited]: hasVariant($state, "visited", "visited"),
           [sty.buttonvisited_came]:
             hasVariant($state, "came", "came") &&
@@ -294,27 +318,47 @@ function PlasmicBookStatusButton__RenderFunc(props: {
         onClick={async event => {
           const $steps = {};
 
-          $steps["updateLoading"] = true
-            ? (() => {
-                const actionArgs = {
-                  variable: {
-                    objRoot: $state,
-                    variablePath: ["loading"]
-                  },
-                  operation: 0,
-                  value: true
-                };
-                return (({ variable, value, startIndex, deleteCount }) => {
-                  if (!variable) {
-                    return;
-                  }
-                  const { objRoot, variablePath } = variable;
+          $steps["updateLoading3"] =
+            $state.isDisable == "isDisable"
+              ? (() => {
+                  const actionArgs = {
+                    eventRef: $props["onDisableButtonClick"]
+                  };
+                  return (({ eventRef, args }) => {
+                    return eventRef?.(...(args ?? []));
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
+          if (
+            $steps["updateLoading3"] != null &&
+            typeof $steps["updateLoading3"] === "object" &&
+            typeof $steps["updateLoading3"].then === "function"
+          ) {
+            $steps["updateLoading3"] = await $steps["updateLoading3"];
+          }
 
-                  $stateSet(objRoot, variablePath, value);
-                  return value;
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
+          $steps["updateLoading"] =
+            $state.isDisable !== "isDisable"
+              ? (() => {
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["loading"]
+                    },
+                    operation: 0,
+                    value: true
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
+                    }
+                    const { objRoot, variablePath } = variable;
+
+                    $stateSet(objRoot, variablePath, value);
+                    return value;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
           if (
             $steps["updateLoading"] != null &&
             typeof $steps["updateLoading"] === "object" &&
@@ -323,14 +367,15 @@ function PlasmicBookStatusButton__RenderFunc(props: {
             $steps["updateLoading"] = await $steps["updateLoading"];
           }
 
-          $steps["runOnclick"] = true
-            ? (() => {
-                const actionArgs = { eventRef: $props["onclick"] };
-                return (({ eventRef, args }) => {
-                  return eventRef?.(...(args ?? []));
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
+          $steps["runOnclick"] =
+            $state.isDisable !== "isDisable"
+              ? (() => {
+                  const actionArgs = { eventRef: $props["onclick"] };
+                  return (({ eventRef, args }) => {
+                    return eventRef?.(...(args ?? []));
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
           if (
             $steps["runOnclick"] != null &&
             typeof $steps["runOnclick"] === "object" &&
@@ -339,27 +384,28 @@ function PlasmicBookStatusButton__RenderFunc(props: {
             $steps["runOnclick"] = await $steps["runOnclick"];
           }
 
-          $steps["updateLoading2"] = true
-            ? (() => {
-                const actionArgs = {
-                  variable: {
-                    objRoot: $state,
-                    variablePath: ["loading"]
-                  },
-                  operation: 0,
-                  value: false
-                };
-                return (({ variable, value, startIndex, deleteCount }) => {
-                  if (!variable) {
-                    return;
-                  }
-                  const { objRoot, variablePath } = variable;
+          $steps["updateLoading2"] =
+            $state.isDisable !== "isDisable"
+              ? (() => {
+                  const actionArgs = {
+                    variable: {
+                      objRoot: $state,
+                      variablePath: ["loading"]
+                    },
+                    operation: 0,
+                    value: false
+                  };
+                  return (({ variable, value, startIndex, deleteCount }) => {
+                    if (!variable) {
+                      return;
+                    }
+                    const { objRoot, variablePath } = variable;
 
-                  $stateSet(objRoot, variablePath, value);
-                  return value;
-                })?.apply(null, [actionArgs]);
-              })()
-            : undefined;
+                    $stateSet(objRoot, variablePath, value);
+                    return value;
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
           if (
             $steps["updateLoading2"] != null &&
             typeof $steps["updateLoading2"] === "object" &&
