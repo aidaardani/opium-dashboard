@@ -348,6 +348,40 @@ function PlasmicV3Tags__RenderFunc(props: {
             ) {
               $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
             }
+
+            $steps["showErrorToast"] =
+              $steps.apiAssigndoctortags.data.status === "failed"
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        "error",
+                        (() => {
+                          try {
+                            return $steps.apiAssigndoctortags.data.message;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["Fragment.showToast"]?.apply(null, [
+                      ...actionArgs.args
+                    ]);
+                  })()
+                : undefined;
+            if (
+              $steps["showErrorToast"] != null &&
+              typeof $steps["showErrorToast"] === "object" &&
+              typeof $steps["showErrorToast"].then === "function"
+            ) {
+              $steps["showErrorToast"] = await $steps["showErrorToast"];
+            }
           }}
         />
 
