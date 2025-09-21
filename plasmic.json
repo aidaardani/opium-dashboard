@@ -2677,7 +2677,7 @@
           "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
           "renderModuleFilePath": "plasmic/opium_dashboard/PlasmicVacationPage.tsx",
           "importSpec": {
-            "modulePath": "../src/pages/activation-page/consult/messengers-2.tsx"
+            "modulePath": "../src/pages/vacation.tsx"
           },
           "cssFilePath": "plasmic/opium_dashboard/PlasmicVacationPage.module.css",
           "scheme": "blackbox",

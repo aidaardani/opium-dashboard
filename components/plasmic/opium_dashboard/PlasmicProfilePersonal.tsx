@@ -842,7 +842,10 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   )}
                   nationalCode={(() => {
                     try {
-                      return $state.profile.data.data.national_code;
+                      return (
+                        $state.profile.data.data.national_code ||
+                        $state.auth.data.data.national_code
+                      );
                     } catch (e) {
                       if (
                         e instanceof TypeError ||

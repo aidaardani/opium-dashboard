@@ -213,7 +213,6 @@ function PlasmicTags2__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
-
     [$props, $ctx, $refs]
   );
   const $state = useDollarState(stateSpecs, {
@@ -272,6 +271,10 @@ function PlasmicTags2__RenderFunc(props: {
             eventArgs
           );
         }}
+        options={[
+          { label: "Option 1", value: "option1", disabled: false },
+          { label: "Option 2", value: "option2", disabled: false }
+        ]}
         placeholder={
           "\u0639\u0641\u0648\u0646\u062a\u060c \u062f\u0644 \u062f\u0631\u062f \u0648 ..."
         }
@@ -582,7 +585,6 @@ type NodeOverridesType<T extends NodeNameType> = Pick<
   PlasmicTags2__OverridesType,
   DescendantsType<T>
 >;
-
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {

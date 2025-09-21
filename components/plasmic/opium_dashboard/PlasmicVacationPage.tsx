@@ -347,7 +347,7 @@ export const PlasmicVacationPage = Object.assign(
 
     // Page metadata
     pageMetadata: {
-      title: "پیام رسان",
+      title: "اعلام مرخصی",
       description: "",
       ogImageSrc: "",
       canonical: ""
