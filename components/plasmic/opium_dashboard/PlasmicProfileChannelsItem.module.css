@@ -1,0 +1,111 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: auto;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: var(--token-_c276Gs_1FIE);
+  min-width: 0;
+}
+.freeBox__u6DHm {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  height: 2.5rem;
+  max-width: 100%;
+  column-gap: var(--token-fhaz6q6bl-fW);
+  border-radius: var(--token-_c276Gs_1FIE);
+  padding: 0px;
+  border: 1px solid var(--token-Y3HOiwZmAcAF);
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__u6DHm {
+    width: 30%;
+  }
+}
+.svg__gIdMc {
+  object-fit: cover;
+  max-width: 100%;
+  color: #ef7c01;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.svg__o6Pq9 {
+  object-fit: cover;
+  max-width: 100%;
+  color: #5bd266;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.text__sNwbV {
+  position: relative;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  text-align: center;
+  font-weight: 400;
+  font-size: var(--token-6NbVMeD6zQwn);
+}
+.freeBox__aaHpl {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  row-gap: var(--token-_c276Gs_1FIE);
+  min-width: 0;
+  padding: 0px;
+}
+.number:global(.__wab_instance) {
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  min-width: 0;
+}
+.freeBox__v832N {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  column-gap: var(--token-_c276Gs_1FIE);
+  min-width: 0;
+  padding: 0px;
+}
+.username:global(.__wab_instance) {
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  min-width: 0;
+}
+.button:global(.__wab_instance) {
+  max-width: 100%;
+}
+.svg___0Lgp {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.text__hzwft {
+  font-weight: 500;
+}
+.svg___4KyzB {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}

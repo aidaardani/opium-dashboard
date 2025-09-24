@@ -1,0 +1,28 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: var(--token-vMUQwr5Jto1d);
+  min-width: 0;
+}
+.text {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: var(--token-sMH6_tUwTYlv);
+  font-weight: 400;
+  font-size: var(--token-6NbVMeD6zQwn);
+  min-width: 0;
+}
+.richTextEditor:global(.__wab_instance) {
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  text-align: right;
+  min-width: 0;
+}

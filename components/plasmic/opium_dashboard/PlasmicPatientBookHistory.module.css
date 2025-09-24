@@ -1,0 +1,115 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: center;
+  align-items: flex-end;
+  background: #ffffff;
+  position: relative;
+  min-width: 0;
+  padding: 5px;
+  border-bottom: 1px solid var(--token-Y3HOiwZmAcAF);
+}
+.freeBox__fRnft {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+  cursor: pointer;
+  column-gap: var(--token-_c276Gs_1FIE);
+  min-width: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .freeBox__fRnft {
+    justify-content: center;
+  }
+}
+.text___7T5Bl {
+  position: relative;
+  width: 120px;
+  height: auto;
+  max-width: 100%;
+  text-align: center;
+  font-size: var(--token-6NbVMeD6zQwn);
+  flex-shrink: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .text___7T5Bl {
+    width: 120px;
+    flex-shrink: 0;
+  }
+}
+.text__o0XkE {
+  position: relative;
+  width: 120px;
+  height: auto;
+  max-width: 100%;
+  text-align: center;
+  font-size: var(--token-6NbVMeD6zQwn);
+  flex-shrink: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__o0XkE {
+    width: 100px;
+    flex-shrink: 0;
+  }
+}
+.text__kwpGe {
+  position: relative;
+  width: 100px;
+  height: auto;
+  max-width: 100%;
+  text-align: center;
+  font-size: var(--token-6NbVMeD6zQwn);
+  flex-shrink: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__kwpGe {
+    width: 100px;
+    flex-shrink: 0;
+  }
+}
+.svg___31RtK {
+  object-fit: cover;
+  max-width: 100%;
+  min-width: 20px;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.svg__xLisO {
+  object-fit: cover;
+  max-width: 100%;
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.freeBox__cMr5E {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  border-top: 1px solid var(--token-Y3HOiwZmAcAF);
+}
+.text__y18Zh {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-size: 14px;
+  font-weight: 300;
+  min-width: 0;
+  padding: 8px;
+}
