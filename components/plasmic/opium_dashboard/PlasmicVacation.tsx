@@ -738,7 +738,7 @@ function PlasmicVacation__RenderFunc(props: {
                 centers={(() => {
                   try {
                     return (() => {
-                      return $state.centersApi.data.data.map(center => ({
+                      return $state.centersApi?.data?.data?.map?.(center => ({
                         name: center.name,
                         id: center.id,
                         type_id: center.type_id,
@@ -2098,16 +2098,21 @@ function PlasmicVacation__RenderFunc(props: {
                   return (() => {
                     const centerId = $state.centersApi.data?.data?.find(
                       item =>
-                        item.user_center_id == $state.drCenters?.selectedCenter
+                        item.user_center_id === $state.drCenters?.selectedCenter
                     )?.id;
                     const getFirstAndLastMonthDay = (year, month) => {
+                      if (!year || !month)
+                        return {
+                          firstDayOfMonth: "",
+                          lastDayOfMonth: ""
+                        };
                       const firstDayOfMonth = $$.moment(
-                        [year, month],
-                        "jYYYY,jM,jD"
+                        `${year}/${month}/1`,
+                        "jYYYY/jM/jD"
                       ).startOf("jMonth");
                       const lastDayOfMonth = $$.moment(
-                        [year, month],
-                        "jYYYY,jM,jD"
+                        `${year}/${month}/1`,
+                        "jYYYY/jM/jD"
                       ).endOf("jMonth");
                       return {
                         firstDayOfMonth: firstDayOfMonth.unix(),
