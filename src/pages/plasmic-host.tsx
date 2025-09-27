@@ -54,4 +54,5 @@ registerComponent(MultiSlect, multiSelectMeta);
 registerFunction(moment, {
   name: "moment",
   importPath: "jalali-moment",
+  isDefaultExport: true,
 });
