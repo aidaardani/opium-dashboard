@@ -83,7 +83,7 @@ import Icon10Icon from "./icons/PlasmicIcon__Icon10"; // plasmic-import: BN2FHez
 import Icon26Icon from "./icons/PlasmicIcon__Icon26"; // plasmic-import: frSwMvWOgAN1/icon
 import Icon4Icon from "./icons/PlasmicIcon__Icon4"; // plasmic-import: z62U0rB8gsLE/icon
 
-import { moment as __fn_moment } from "jalali-moment"; // plasmic-import: moment/customFunction
+import __fn_moment from "jalali-moment"; // plasmic-import: moment/customFunction
 import __lib_dayjs from "dayjs";
 
 createPlasmicElementProxy;

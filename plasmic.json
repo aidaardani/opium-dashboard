@@ -3797,7 +3797,7 @@
       ],
       "customFunctions": [
         {
-          "defaultExport": false,
+          "defaultExport": true,
           "id": "moment",
           "importPath": "jalali-moment",
           "name": "moment",
