@@ -577,28 +577,67 @@ function PlasmicV3Tags__RenderFunc(props: {
             value={generateStateValueProp($state, ["multiSlect", "value"])}
           />
 
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__h4Pfn
-            )}
-          >
-            <React.Fragment>
-              {(() => {
-                try {
-                  return $state.multiSlect.value.length + "/" + 3;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "";
+          <div className={classNames(projectcss.all, sty.freeBox__rcMti)}>
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__h4Pfn
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return $state.multiSlect.value.length + "/" + 3;
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "";
+                    }
+                    throw e;
                   }
-                  throw e;
-                }
-              })()}
-            </React.Fragment>
+                })()}
+              </React.Fragment>
+            </div>
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__s9Dt
+              )}
+            >
+              {"\u06cc\u0627"}
+            </div>
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__voIrB
+              )}
+            >
+              <React.Fragment>
+                {(() => {
+                  try {
+                    return (() => {
+                      const output = $state.multiSlect.value
+                        .map(obj => obj.label.length)
+                        .reduce((acc, curr) => acc + curr, 0);
+                      return output + "/" + 50;
+                    })();
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return "";
+                    }
+                    throw e;
+                  }
+                })()}
+              </React.Fragment>
+            </div>
           </div>
         </div>
         {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(

@@ -179,6 +179,7 @@ export type PlasmicAppointmentCard__OverridesType = {
   dialog6?: Flex__<typeof Dialog>;
   dialog?: Flex__<typeof Dialog>;
   bime?: Flex__<typeof PatientPrivateData>;
+  bime2?: Flex__<typeof PatientPrivateData>;
   dialog4?: Flex__<typeof Dialog>;
   cost2?: Flex__<typeof PatientPrivateData>;
   description?: Flex__<"div">;
@@ -188,6 +189,7 @@ export type PlasmicAppointmentCard__OverridesType = {
   descriptionInput2?: Flex__<typeof MultilineTextInput>;
   apiPres?: Flex__<typeof ApiRequest>;
   deletebookdialog?: Flex__<typeof Dialog>;
+  apiGetInsuranceType?: Flex__<typeof ApiRequest>;
   dialog2?: Flex__<typeof Dialog>;
   descriptionInput?: Flex__<typeof TextInput>;
   dialog3?: Flex__<typeof Dialog>;
@@ -540,6 +542,30 @@ function PlasmicAppointmentCard__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "apiGetInsuranceType.data",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiGetInsuranceType"
+      },
+      {
+        path: "apiGetInsuranceType.error",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiGetInsuranceType"
+      },
+      {
+        path: "apiGetInsuranceType.loading",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "apiGetInsuranceType"
       }
     ],
     [$props, $ctx, $refs]
@@ -2820,26 +2846,80 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   })()}
                 />
               ) : null}
-              <PatientPrivateData
-                data-plasmic-name={"bime"}
-                data-plasmic-override={overrides.bime}
-                className={classNames("__wab_instance", sty.bime)}
-                label={"\u0628\u06cc\u0645\u0647"}
-                value={(() => {
-                  try {
-                    return $props.insurance;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return undefined;
-                    }
-                    throw e;
+              {(() => {
+                try {
+                  return (
+                    $state.apiGetInsuranceType.data.Insurance !== undefined &&
+                    $state.apiGetInsuranceType.data.Insurance !== ""
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
                   }
-                })()}
-              />
-
+                  throw e;
+                }
+              })() ? (
+                <PatientPrivateData
+                  data-plasmic-name={"bime"}
+                  data-plasmic-override={overrides.bime}
+                  className={classNames("__wab_instance", sty.bime)}
+                  label={"\u0628\u06cc\u0645\u0647"}
+                  value={(() => {
+                    try {
+                      return $state.apiGetInsuranceType.data.Insurance;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                />
+              ) : null}
+              {(() => {
+                try {
+                  return (
+                    $state.apiGetInsuranceType.data.insurername !== undefined &&
+                    $state.apiGetInsuranceType.data.insurername !== ""
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <PatientPrivateData
+                  data-plasmic-name={"bime2"}
+                  data-plasmic-override={overrides.bime2}
+                  className={classNames("__wab_instance", sty.bime2)}
+                  label={
+                    "\u0628\u06cc\u0645\u0647 \u062a\u06a9\u0645\u06cc\u0644\u06cc"
+                  }
+                  value={(() => {
+                    try {
+                      return $state.apiGetInsuranceType.data.insurername;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
+                />
+              ) : null}
               <PatientPrivateData
                 className={classNames(
                   "__wab_instance",
@@ -5850,6 +5930,69 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               }
               trigger={null}
             />
+
+            <ApiRequest
+              data-plasmic-name={"apiGetInsuranceType"}
+              data-plasmic-override={overrides.apiGetInsuranceType}
+              className={classNames("__wab_instance", sty.apiGetInsuranceType)}
+              errorDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__p8OnZ
+                  )}
+                >
+                  {"Error fetching data"}
+                </div>
+              }
+              loadingDisplay={
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___08Osq
+                  )}
+                >
+                  {"Loading..."}
+                </div>
+              }
+              method={"GET"}
+              onError={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apiGetInsuranceType",
+                  "error"
+                ]).apply(null, eventArgs);
+              }}
+              onLoading={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apiGetInsuranceType",
+                  "loading"
+                ]).apply(null, eventArgs);
+              }}
+              onSuccess={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "apiGetInsuranceType",
+                  "data"
+                ]).apply(null, eventArgs);
+              }}
+              ref={ref => {
+                $refs["apiGetInsuranceType"] = ref;
+              }}
+              url={(() => {
+                try {
+                  return `https://apigw.paziresh24.com/v1/n8n-nelson/webhook/getInsuranceType?national_code=${$props.nationalcode}`;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+            />
           </div>
         }
         className={classNames("__wab_instance", sty.dialog, {
@@ -7221,6 +7364,7 @@ const PlasmicDescendants = {
     "dialog6",
     "dialog",
     "bime",
+    "bime2",
     "dialog4",
     "cost2",
     "description",
@@ -7230,6 +7374,7 @@ const PlasmicDescendants = {
     "descriptionInput2",
     "apiPres",
     "deletebookdialog",
+    "apiGetInsuranceType",
     "dialog2",
     "descriptionInput",
     "dialog3",
@@ -7247,6 +7392,7 @@ const PlasmicDescendants = {
   dialog: [
     "dialog",
     "bime",
+    "bime2",
     "dialog4",
     "cost2",
     "description",
@@ -7255,9 +7401,11 @@ const PlasmicDescendants = {
     "patientBookHistory",
     "descriptionInput2",
     "apiPres",
-    "deletebookdialog"
+    "deletebookdialog",
+    "apiGetInsuranceType"
   ],
   bime: ["bime"],
+  bime2: ["bime2"],
   dialog4: ["dialog4"],
   cost2: ["cost2"],
   description: ["description"],
@@ -7267,6 +7415,7 @@ const PlasmicDescendants = {
   descriptionInput2: ["descriptionInput2"],
   apiPres: ["apiPres"],
   deletebookdialog: ["deletebookdialog"],
+  apiGetInsuranceType: ["apiGetInsuranceType"],
   dialog2: ["dialog2", "descriptionInput"],
   descriptionInput: ["descriptionInput"],
   dialog3: ["dialog3"],
@@ -7294,6 +7443,7 @@ type NodeDefaultElementType = {
   dialog6: typeof Dialog;
   dialog: typeof Dialog;
   bime: typeof PatientPrivateData;
+  bime2: typeof PatientPrivateData;
   dialog4: typeof Dialog;
   cost2: typeof PatientPrivateData;
   description: "div";
@@ -7303,6 +7453,7 @@ type NodeDefaultElementType = {
   descriptionInput2: typeof MultilineTextInput;
   apiPres: typeof ApiRequest;
   deletebookdialog: typeof Dialog;
+  apiGetInsuranceType: typeof ApiRequest;
   dialog2: typeof Dialog;
   descriptionInput: typeof TextInput;
   dialog3: typeof Dialog;
@@ -7380,6 +7531,7 @@ export const PlasmicAppointmentCard = Object.assign(
     dialog6: makeNodeComponent("dialog6"),
     dialog: makeNodeComponent("dialog"),
     bime: makeNodeComponent("bime"),
+    bime2: makeNodeComponent("bime2"),
     dialog4: makeNodeComponent("dialog4"),
     cost2: makeNodeComponent("cost2"),
     description: makeNodeComponent("description"),
@@ -7389,6 +7541,7 @@ export const PlasmicAppointmentCard = Object.assign(
     descriptionInput2: makeNodeComponent("descriptionInput2"),
     apiPres: makeNodeComponent("apiPres"),
     deletebookdialog: makeNodeComponent("deletebookdialog"),
+    apiGetInsuranceType: makeNodeComponent("apiGetInsuranceType"),
     dialog2: makeNodeComponent("dialog2"),
     descriptionInput: makeNodeComponent("descriptionInput"),
     dialog3: makeNodeComponent("dialog3"),
