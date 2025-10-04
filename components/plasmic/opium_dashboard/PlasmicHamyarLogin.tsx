@@ -169,7 +169,7 @@ function PlasmicHamyarLogin__RenderFunc(props: {
                     const actionArgs = {
                       customFunction: async () => {
                         return globalThis.location.replace(
-                          `https://user.paziresh24.com/realms/paziresh24/protocol/openid-connect/auth?client_id=hamyar&response_type=code&scope=provider.profile.read+user.profile.read&redirect_uri=https://hamyar.fragm.site/hamyar/oauth/redirect&kc_idp_hint=gozar&skip_prompt=true`
+                          `https://user.paziresh24.com/realms/paziresh24/protocol/openid-connect/auth?client_id=hamyar&response_type=code&scope=provider.profile.read+user.profile.read&redirect_uri=https://opium-dashboard.darkube.app/hamyar/oauth/redirect&kc_idp_hint=gozar&skip_prompt=true`
                         );
                       }
                     };
@@ -249,7 +249,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicHamyarLogin__VariantsArgs;
     args?: PlasmicHamyarLogin__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicHamyarLogin__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicHamyarLogin__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicHamyarLogin__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
