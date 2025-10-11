@@ -260,6 +260,10 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
                 "selectDegree",
                 "value"
               ]).apply(null, eventArgs);
+
+              (async value => {
+                const $steps = {};
+              }).apply(null, eventArgs);
             }}
             onOpenChange={async (...eventArgs: any) => {
               generateStateOnChangeProp($state, ["selectDegree", "open"]).apply(
@@ -502,7 +506,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfileExpertiseItem__VariantsArgs;
     args?: PlasmicProfileExpertiseItem__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProfileExpertiseItem__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProfileExpertiseItem__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProfileExpertiseItem__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

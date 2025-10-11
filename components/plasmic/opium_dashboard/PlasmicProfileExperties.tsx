@@ -5401,10 +5401,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                                 return $state.changedExperies.map(item =>
                                   item.id == currentItem.id
                                     ? {
-                                        id: currentItem.id,
-                                        degree_id: val,
-                                        alias_title: currentItem.alias_title,
-                                        expertise_id: currentItem.expertise.id
+                                        ...item,
+                                        degree_id: val
                                       }
                                     : item
                                 );
@@ -5442,9 +5440,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                       typeof $steps["updateChangedExperies"] === "object" &&
                       typeof $steps["updateChangedExperies"].then === "function"
                     ) {
-                      $steps["updateChangedExperies"] = await $steps[
-                        "updateChangedExperies"
-                      ];
+                      $steps["updateChangedExperies"] =
+                        await $steps["updateChangedExperies"];
                     }
                   }).apply(null, eventArgs);
                 },
@@ -5482,9 +5479,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                     typeof $steps["updateDialogOpen"] === "object" &&
                     typeof $steps["updateDialogOpen"].then === "function"
                   ) {
-                    $steps["updateDialogOpen"] = await $steps[
-                      "updateDialogOpen"
-                    ];
+                    $steps["updateDialogOpen"] =
+                      await $steps["updateDialogOpen"];
                   }
 
                   $steps["updateSelectedId"] = true
@@ -5518,9 +5514,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                     typeof $steps["updateSelectedId"] === "object" &&
                     typeof $steps["updateSelectedId"].then === "function"
                   ) {
-                    $steps["updateSelectedId"] = await $steps[
-                      "updateSelectedId"
-                    ];
+                    $steps["updateSelectedId"] =
+                      await $steps["updateSelectedId"];
                   }
                 },
                 onExpertiseTitleChange: async (...eventArgs: any) => {
@@ -5557,10 +5552,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                                 return $state.changedExperies.map(item =>
                                   item.id == currentItem.id
                                     ? {
-                                        id: currentItem.id,
-                                        degree_id: currentItem.degree.id,
-                                        alias_title: val,
-                                        expertise_id: currentItem.expertise.id
+                                        ...item,
+                                        alias_title: val
                                       }
                                     : item
                                 );
@@ -5598,9 +5591,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                       typeof $steps["updateChangedExperies"] === "object" &&
                       typeof $steps["updateChangedExperies"].then === "function"
                     ) {
-                      $steps["updateChangedExperies"] = await $steps[
-                        "updateChangedExperies"
-                      ];
+                      $steps["updateChangedExperies"] =
+                        await $steps["updateChangedExperies"];
                     }
                   }).apply(null, eventArgs);
                 },
@@ -5638,9 +5630,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
                                 return $state.changedExperies.map(item =>
                                   item.id == currentItem.id
                                     ? {
-                                        id: currentItem.id,
-                                        degree_id: currentItem.degree.id,
-                                        alias_title: currentItem.alias_title,
+                                        ...item,
                                         expertise_id: val
                                       }
                                     : item
@@ -5679,9 +5669,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                       typeof $steps["updateChangedExperies"] === "object" &&
                       typeof $steps["updateChangedExperies"].then === "function"
                     ) {
-                      $steps["updateChangedExperies"] = await $steps[
-                        "updateChangedExperies"
-                      ];
+                      $steps["updateChangedExperies"] =
+                        await $steps["updateChangedExperies"];
                     }
                   }).apply(null, eventArgs);
                 }
@@ -6012,9 +6001,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                           typeof $steps["updateExpertiseArray"].then ===
                             "function"
                         ) {
-                          $steps["updateExpertiseArray"] = await $steps[
-                            "updateExpertiseArray"
-                          ];
+                          $steps["updateExpertiseArray"] =
+                            await $steps["updateExpertiseArray"];
                         }
                       }).apply(null, eventArgs);
                     },
@@ -6055,9 +6043,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                         typeof $steps["updateExpertiseArray"].then ===
                           "function"
                       ) {
-                        $steps["updateExpertiseArray"] = await $steps[
-                          "updateExpertiseArray"
-                        ];
+                        $steps["updateExpertiseArray"] =
+                          await $steps["updateExpertiseArray"];
                       }
                     },
                     onExpertiseTitleChange: async (...eventArgs: any) => {
@@ -6119,9 +6106,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                           typeof $steps["updateExpertiseArray"].then ===
                             "function"
                         ) {
-                          $steps["updateExpertiseArray"] = await $steps[
-                            "updateExpertiseArray"
-                          ];
+                          $steps["updateExpertiseArray"] =
+                            await $steps["updateExpertiseArray"];
                         }
                       }).apply(null, eventArgs);
                     },
@@ -6184,9 +6170,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                           typeof $steps["updateExpertiseArray"].then ===
                             "function"
                         ) {
-                          $steps["updateExpertiseArray"] = await $steps[
-                            "updateExpertiseArray"
-                          ];
+                          $steps["updateExpertiseArray"] =
+                            await $steps["updateExpertiseArray"];
                         }
                       }).apply(null, eventArgs);
                     }
@@ -6300,9 +6285,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                     typeof $steps["updateIsLoadingSave"] === "object" &&
                     typeof $steps["updateIsLoadingSave"].then === "function"
                   ) {
-                    $steps["updateIsLoadingSave"] = await $steps[
-                      "updateIsLoadingSave"
-                    ];
+                    $steps["updateIsLoadingSave"] =
+                      await $steps["updateIsLoadingSave"];
                   }
 
                   $steps["runCode"] = true
@@ -6400,9 +6384,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                     typeof $steps["updateIsLoadingSave2"] === "object" &&
                     typeof $steps["updateIsLoadingSave2"].then === "function"
                   ) {
-                    $steps["updateIsLoadingSave2"] = await $steps[
-                      "updateIsLoadingSave2"
-                    ];
+                    $steps["updateIsLoadingSave2"] =
+                      await $steps["updateIsLoadingSave2"];
                   }
 
                   $steps["showToast"] = (() => {
@@ -6550,9 +6533,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                     typeof $steps["runActionOnExpertisesApi"].then ===
                       "function"
                   ) {
-                    $steps["runActionOnExpertisesApi"] = await $steps[
-                      "runActionOnExpertisesApi"
-                    ];
+                    $steps["runActionOnExpertisesApi"] =
+                      await $steps["runActionOnExpertisesApi"];
                   }
                 }}
               />
@@ -6605,9 +6587,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                     typeof $steps["updateExpertiseArray"] === "object" &&
                     typeof $steps["updateExpertiseArray"].then === "function"
                   ) {
-                    $steps["updateExpertiseArray"] = await $steps[
-                      "updateExpertiseArray"
-                    ];
+                    $steps["updateExpertiseArray"] =
+                      await $steps["updateExpertiseArray"];
                   }
 
                   $steps["sendEvent"] = true
@@ -6723,9 +6704,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                   typeof $steps["updateIsLoadingDelete"] === "object" &&
                   typeof $steps["updateIsLoadingDelete"].then === "function"
                 ) {
-                  $steps["updateIsLoadingDelete"] = await $steps[
-                    "updateIsLoadingDelete"
-                  ];
+                  $steps["updateIsLoadingDelete"] =
+                    await $steps["updateIsLoadingDelete"];
                 }
 
                 $steps["deleteExpertisApi"] = true
@@ -6792,9 +6772,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                   typeof $steps["deleteExpertisApi"] === "object" &&
                   typeof $steps["deleteExpertisApi"].then === "function"
                 ) {
-                  $steps["deleteExpertisApi"] = await $steps[
-                    "deleteExpertisApi"
-                  ];
+                  $steps["deleteExpertisApi"] =
+                    await $steps["deleteExpertisApi"];
                 }
 
                 $steps["updateIsLoadingDelete2"] = true
@@ -6828,9 +6807,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                   typeof $steps["updateIsLoadingDelete2"] === "object" &&
                   typeof $steps["updateIsLoadingDelete2"].then === "function"
                 ) {
-                  $steps["updateIsLoadingDelete2"] = await $steps[
-                    "updateIsLoadingDelete2"
-                  ];
+                  $steps["updateIsLoadingDelete2"] =
+                    await $steps["updateIsLoadingDelete2"];
                 }
 
                 $steps["toast"] = !!$steps.deleteExpertisApi.data.message
@@ -6930,9 +6908,8 @@ function PlasmicProfileExperties__RenderFunc(props: {
                   typeof $steps["runActionOnProviderApi"] === "object" &&
                   typeof $steps["runActionOnProviderApi"].then === "function"
                 ) {
-                  $steps["runActionOnProviderApi"] = await $steps[
-                    "runActionOnProviderApi"
-                  ];
+                  $steps["runActionOnProviderApi"] =
+                    await $steps["runActionOnProviderApi"];
                 }
               }}
             />
@@ -7134,7 +7111,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfileExperties__VariantsArgs;
     args?: PlasmicProfileExperties__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProfileExperties__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProfileExperties__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProfileExperties__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

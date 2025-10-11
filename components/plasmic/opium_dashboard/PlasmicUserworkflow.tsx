@@ -235,10 +235,10 @@ function PlasmicUserworkflow__RenderFunc(props: {
                   return $props.currentItem.receivers === "doctor"
                     ? "پزشک"
                     : $props.currentItem.receivers === "assistant"
-                    ? "منشی"
-                    : $props.currentItem.receivers === "patient"
-                    ? "بیمار"
-                    : $props.currentItem.receivers;
+                      ? "منشی"
+                      : $props.currentItem.receivers === "patient"
+                        ? "بیمار"
+                        : $props.currentItem.receivers;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -488,9 +488,8 @@ function PlasmicUserworkflow__RenderFunc(props: {
                     typeof $steps["updateDialogeditnotificationOpen"].then ===
                       "function"
                   ) {
-                    $steps["updateDialogeditnotificationOpen"] = await $steps[
-                      "updateDialogeditnotificationOpen"
-                    ];
+                    $steps["updateDialogeditnotificationOpen"] =
+                      await $steps["updateDialogeditnotificationOpen"];
                   }
 
                   $steps["updateDialogeditnotificationOpen2"] = true
@@ -508,9 +507,8 @@ function PlasmicUserworkflow__RenderFunc(props: {
                     typeof $steps["updateDialogeditnotificationOpen2"].then ===
                       "function"
                   ) {
-                    $steps["updateDialogeditnotificationOpen2"] = await $steps[
-                      "updateDialogeditnotificationOpen2"
-                    ];
+                    $steps["updateDialogeditnotificationOpen2"] =
+                      await $steps["updateDialogeditnotificationOpen2"];
                   }
                 }}
                 userId={(() => {
@@ -752,9 +750,8 @@ function PlasmicUserworkflow__RenderFunc(props: {
                           typeof $steps["apiDeleteWorkflow"] === "object" &&
                           typeof $steps["apiDeleteWorkflow"].then === "function"
                         ) {
-                          $steps["apiDeleteWorkflow"] = await $steps[
-                            "apiDeleteWorkflow"
-                          ];
+                          $steps["apiDeleteWorkflow"] =
+                            await $steps["apiDeleteWorkflow"];
                         }
 
                         $steps["updateDialogDeleteBookOpen"] = true
@@ -790,9 +787,8 @@ function PlasmicUserworkflow__RenderFunc(props: {
                           typeof $steps["updateDialogDeleteBookOpen"].then ===
                             "function"
                         ) {
-                          $steps["updateDialogDeleteBookOpen"] = await $steps[
-                            "updateDialogDeleteBookOpen"
-                          ];
+                          $steps["updateDialogDeleteBookOpen"] =
+                            await $steps["updateDialogDeleteBookOpen"];
                         }
 
                         $steps["sendLog"] = true
@@ -920,9 +916,8 @@ function PlasmicUserworkflow__RenderFunc(props: {
                           typeof $steps["updateDialogDeleteBook"].then ===
                             "function"
                         ) {
-                          $steps["updateDialogDeleteBook"] = await $steps[
-                            "updateDialogDeleteBook"
-                          ];
+                          $steps["updateDialogDeleteBook"] =
+                            await $steps["updateDialogDeleteBook"];
                         }
                       }}
                     />
@@ -1123,7 +1118,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicUserworkflow__VariantsArgs;
     args?: PlasmicUserworkflow__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicUserworkflow__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicUserworkflow__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicUserworkflow__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
