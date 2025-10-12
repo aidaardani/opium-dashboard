@@ -1113,8 +1113,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                               36
                               ? "این نوبت در سرویس پرداخت جدید\u060C پرداخت شده است. در قسمت مدیریت مالی می‌توانید تراکنش مربوط به این نوبت را مشاهده کنید."
                               : $state.apiGetPyamentInfo2.data[0].bank_id === 8
-                              ? "این نوبت در سرویس پرداخت قدیمی\u060C پرداخت شده است و طبق روال\u060C ساعاتی بعد از زمان نوبت\u060C به حسابِ کاربری قدیمی شما اضافه می‌گردد."
-                              : "";
+                                ? "این نوبت در سرویس پرداخت قدیمی\u060C پرداخت شده است و طبق روال\u060C ساعاتی بعد از زمان نوبت\u060C به حسابِ کاربری قدیمی شما اضافه می‌گردد."
+                                : "";
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1605,7 +1605,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   try {
                     return (
                       $props.paymentStatus ===
-                        "پرداخت برای نوبت غیرفعال است." && "غیرفعال"
+                        "پرداخت برای نوبت غیرفعال است." && "پرداخت نشده"
                     );
                   } catch (e) {
                     if (
@@ -2485,9 +2485,9 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                                   .bank_id === 36
                                   ? "این نوبت در سرویس پرداخت جدید\u060C پرداخت شده است. در قسمت مدیریت مالی می‌توانید تراکنش مربوط به این نوبت را مشاهده کنید."
                                   : $state.apiGetPyamentInfo2.data[0]
-                                      .bank_id === 8
-                                  ? "این نوبت در سرویس پرداخت قدیمی\u060C پرداخت شده است و طبق روال\u060C ساعاتی بعد از زمان نوبت\u060C به حسابِ کاربری قدیمی شما اضافه می‌گردد."
-                                  : "";
+                                        .bank_id === 8
+                                    ? "این نوبت در سرویس پرداخت قدیمی\u060C پرداخت شده است و طبق روال\u060C ساعاتی بعد از زمان نوبت\u060C به حسابِ کاربری قدیمی شما اضافه می‌گردد."
+                                    : "";
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -3012,9 +3012,9 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                                     .bank_id === 36
                                     ? "این نوبت در سرویس پرداخت جدید\u060C پرداخت شده است. در قسمت مدیریت مالی می‌توانید تراکنش مربوط به این نوبت را مشاهده کنید."
                                     : $state.apiGetPyamentInfo2.data[0]
-                                        .bank_id === 8
-                                    ? "این نوبت در سرویس پرداخت قدیمی\u060C پرداخت شده است و طبق روال\u060C ساعاتی بعد از زمان نوبت\u060C به حسابِ کاربری قدیمی شما اضافه می‌گردد."
-                                    : "";
+                                          .bank_id === 8
+                                      ? "این نوبت در سرویس پرداخت قدیمی\u060C پرداخت شده است و طبق روال\u060C ساعاتی بعد از زمان نوبت\u060C به حسابِ کاربری قدیمی شما اضافه می‌گردد."
+                                      : "";
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -3506,9 +3506,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                           typeof $steps["updateSetDesc"] === "object" &&
                           typeof $steps["updateSetDesc"].then === "function"
                         ) {
-                          $steps["updateSetDesc"] = await $steps[
-                            "updateSetDesc"
-                          ];
+                          $steps["updateSetDesc"] =
+                            await $steps["updateSetDesc"];
                         }
 
                         $steps["sendLog"] = true
@@ -3609,9 +3608,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                           typeof $steps["updateSetDesc"] === "object" &&
                           typeof $steps["updateSetDesc"].then === "function"
                         ) {
-                          $steps["updateSetDesc"] = await $steps[
-                            "updateSetDesc"
-                          ];
+                          $steps["updateSetDesc"] =
+                            await $steps["updateSetDesc"];
                         }
 
                         $steps["sendLog"] = true
@@ -3965,9 +3963,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                           typeof $steps["updateShowBookHistory"].then ===
                             "function"
                         ) {
-                          $steps["updateShowBookHistory"] = await $steps[
-                            "updateShowBookHistory"
-                          ];
+                          $steps["updateShowBookHistory"] =
+                            await $steps["updateShowBookHistory"];
                         }
 
                         $steps["invokeGlobalAction"] = true
@@ -4013,9 +4010,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                           typeof $steps["invokeGlobalAction"].then ===
                             "function"
                         ) {
-                          $steps["invokeGlobalAction"] = await $steps[
-                            "invokeGlobalAction"
-                          ];
+                          $steps["invokeGlobalAction"] =
+                            await $steps["invokeGlobalAction"];
                         }
                       }}
                       role={"img"}
@@ -4074,9 +4070,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                           typeof $steps["updateShowBookHistory"].then ===
                             "function"
                         ) {
-                          $steps["updateShowBookHistory"] = await $steps[
-                            "updateShowBookHistory"
-                          ];
+                          $steps["updateShowBookHistory"] =
+                            await $steps["updateShowBookHistory"];
                         }
 
                         $steps["sendLog"] = true
@@ -4639,9 +4634,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       typeof $steps["updateBookStatusState"] === "object" &&
                       typeof $steps["updateBookStatusState"].then === "function"
                     ) {
-                      $steps["updateBookStatusState"] = await $steps[
-                        "updateBookStatusState"
-                      ];
+                      $steps["updateBookStatusState"] =
+                        await $steps["updateBookStatusState"];
                     }
 
                     $steps["updateDialog2Open"] = true
@@ -4675,9 +4669,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       typeof $steps["updateDialog2Open"] === "object" &&
                       typeof $steps["updateDialog2Open"].then === "function"
                     ) {
-                      $steps["updateDialog2Open"] = await $steps[
-                        "updateDialog2Open"
-                      ];
+                      $steps["updateDialog2Open"] =
+                        await $steps["updateDialog2Open"];
                     }
 
                     $steps["submitDescription"] =
@@ -4721,9 +4714,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       typeof $steps["submitDescription"] === "object" &&
                       typeof $steps["submitDescription"].then === "function"
                     ) {
-                      $steps["submitDescription"] = await $steps[
-                        "submitDescription"
-                      ];
+                      $steps["submitDescription"] =
+                        await $steps["submitDescription"];
                     }
 
                     $steps["showToast"] =
@@ -4852,9 +4844,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       typeof $steps["updateDeletebookdialogOpen"].then ===
                         "function"
                     ) {
-                      $steps["updateDeletebookdialogOpen"] = await $steps[
-                        "updateDeletebookdialogOpen"
-                      ];
+                      $steps["updateDeletebookdialogOpen"] =
+                        await $steps["updateDeletebookdialogOpen"];
                     }
 
                     $steps["clickForDeleteBook"] = true
@@ -4895,9 +4886,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       typeof $steps["clickForDeleteBook"] === "object" &&
                       typeof $steps["clickForDeleteBook"].then === "function"
                     ) {
-                      $steps["clickForDeleteBook"] = await $steps[
-                        "clickForDeleteBook"
-                      ];
+                      $steps["clickForDeleteBook"] =
+                        await $steps["clickForDeleteBook"];
                     }
                   }}
                   outline={true}
@@ -5103,9 +5093,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       typeof $steps["apiBuildPrescription"] === "object" &&
                       typeof $steps["apiBuildPrescription"].then === "function"
                     ) {
-                      $steps["apiBuildPrescription"] = await $steps[
-                        "apiBuildPrescription"
-                      ];
+                      $steps["apiBuildPrescription"] =
+                        await $steps["apiBuildPrescription"];
                     }
 
                     $steps["showToast"] =
@@ -5228,9 +5217,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       typeof $steps["updateNewPrescriptionId"].then ===
                         "function"
                     ) {
-                      $steps["updateNewPrescriptionId"] = await $steps[
-                        "updateNewPrescriptionId"
-                      ];
+                      $steps["updateNewPrescriptionId"] =
+                        await $steps["updateNewPrescriptionId"];
                     }
 
                     $steps["pagePrescription"] = true
@@ -5269,9 +5257,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       typeof $steps["pagePrescription"] === "object" &&
                       typeof $steps["pagePrescription"].then === "function"
                     ) {
-                      $steps["pagePrescription"] = await $steps[
-                        "pagePrescription"
-                      ];
+                      $steps["pagePrescription"] =
+                        await $steps["pagePrescription"];
                     }
 
                     $steps["updateBookStatusState"] =
@@ -5306,9 +5293,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       typeof $steps["updateBookStatusState"] === "object" &&
                       typeof $steps["updateBookStatusState"].then === "function"
                     ) {
-                      $steps["updateBookStatusState"] = await $steps[
-                        "updateBookStatusState"
-                      ];
+                      $steps["updateBookStatusState"] =
+                        await $steps["updateBookStatusState"];
                     }
                   }}
                 />
@@ -5462,9 +5448,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         typeof $steps["updateDeleteBookLoadingButton"].then ===
                           "function"
                       ) {
-                        $steps["updateDeleteBookLoadingButton"] = await $steps[
-                          "updateDeleteBookLoadingButton"
-                        ];
+                        $steps["updateDeleteBookLoadingButton"] =
+                          await $steps["updateDeleteBookLoadingButton"];
                       }
 
                       $steps["apiDeleteBook"] = true
@@ -5555,9 +5540,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         typeof $steps["updateDeleteBookLoadingButton2"].then ===
                           "function"
                       ) {
-                        $steps["updateDeleteBookLoadingButton2"] = await $steps[
-                          "updateDeleteBookLoadingButton2"
-                        ];
+                        $steps["updateDeleteBookLoadingButton2"] =
+                          await $steps["updateDeleteBookLoadingButton2"];
                       }
 
                       $steps["updateStateحذفنوبتOpen"] = true
@@ -5592,9 +5576,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         typeof $steps["updateStateحذفنوبتOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateStateحذفنوبتOpen"] = await $steps[
-                          "updateStateحذفنوبتOpen"
-                        ];
+                        $steps["updateStateحذفنوبتOpen"] =
+                          await $steps["updateStateحذفنوبتOpen"];
                       }
 
                       $steps["updateDialogOpen"] = true
@@ -5628,9 +5611,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         typeof $steps["updateDialogOpen"] === "object" &&
                         typeof $steps["updateDialogOpen"].then === "function"
                       ) {
-                        $steps["updateDialogOpen"] = await $steps[
-                          "updateDialogOpen"
-                        ];
+                        $steps["updateDialogOpen"] =
+                          await $steps["updateDialogOpen"];
                       }
 
                       $steps["updateDialogOpen2"] = true
@@ -5664,9 +5646,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         typeof $steps["updateDialogOpen2"] === "object" &&
                         typeof $steps["updateDialogOpen2"].then === "function"
                       ) {
-                        $steps["updateDialogOpen2"] = await $steps[
-                          "updateDialogOpen2"
-                        ];
+                        $steps["updateDialogOpen2"] =
+                          await $steps["updateDialogOpen2"];
                       }
 
                       $steps["eventDeleteBook"] = true
@@ -5709,9 +5690,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         typeof $steps["eventDeleteBook"] === "object" &&
                         typeof $steps["eventDeleteBook"].then === "function"
                       ) {
-                        $steps["eventDeleteBook"] = await $steps[
-                          "eventDeleteBook"
-                        ];
+                        $steps["eventDeleteBook"] =
+                          await $steps["eventDeleteBook"];
                       }
 
                       $steps["updateDialogOpen3"] = true
@@ -5727,9 +5707,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         typeof $steps["updateDialogOpen3"] === "object" &&
                         typeof $steps["updateDialogOpen3"].then === "function"
                       ) {
-                        $steps["updateDialogOpen3"] = await $steps[
-                          "updateDialogOpen3"
-                        ];
+                        $steps["updateDialogOpen3"] =
+                          await $steps["updateDialogOpen3"];
                       }
 
                       $steps["showToast"] = $steps.apiDeleteBook.data
@@ -5836,9 +5815,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         typeof $steps["updateStateحذفنوبتOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateStateحذفنوبتOpen"] = await $steps[
-                          "updateStateحذفنوبتOpen"
-                        ];
+                        $steps["updateStateحذفنوبتOpen"] =
+                          await $steps["updateStateحذفنوبتOpen"];
                       }
 
                       $steps["eventCancelDeleteBook"] = true
@@ -5881,9 +5859,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         typeof $steps["eventCancelDeleteBook"].then ===
                           "function"
                       ) {
-                        $steps["eventCancelDeleteBook"] = await $steps[
-                          "eventCancelDeleteBook"
-                        ];
+                        $steps["eventCancelDeleteBook"] =
+                          await $steps["eventCancelDeleteBook"];
                       }
                     }}
                     outline={true}
@@ -6271,9 +6248,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   typeof $steps["updateBookStatusState"] === "object" &&
                   typeof $steps["updateBookStatusState"].then === "function"
                 ) {
-                  $steps["updateBookStatusState"] = await $steps[
-                    "updateBookStatusState"
-                  ];
+                  $steps["updateBookStatusState"] =
+                    await $steps["updateBookStatusState"];
                 }
 
                 $steps["updateDialog2Open"] = true
@@ -6307,9 +6283,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   typeof $steps["updateDialog2Open"] === "object" &&
                   typeof $steps["updateDialog2Open"].then === "function"
                 ) {
-                  $steps["updateDialog2Open"] = await $steps[
-                    "updateDialog2Open"
-                  ];
+                  $steps["updateDialog2Open"] =
+                    await $steps["updateDialog2Open"];
                 }
 
                 $steps["submitDescription"] =
@@ -6350,9 +6325,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   typeof $steps["submitDescription"] === "object" &&
                   typeof $steps["submitDescription"].then === "function"
                 ) {
-                  $steps["submitDescription"] = await $steps[
-                    "submitDescription"
-                  ];
+                  $steps["submitDescription"] =
+                    await $steps["submitDescription"];
                 }
               }}
               startIcon={
@@ -6518,9 +6492,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                 typeof $steps["showSuccessfulToast"] === "object" &&
                 typeof $steps["showSuccessfulToast"].then === "function"
               ) {
-                $steps["showSuccessfulToast"] = await $steps[
-                  "showSuccessfulToast"
-                ];
+                $steps["showSuccessfulToast"] =
+                  await $steps["showSuccessfulToast"];
               }
 
               $steps["showUnsuccessfulToast"] =
@@ -6542,9 +6515,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                 typeof $steps["showUnsuccessfulToast"] === "object" &&
                 typeof $steps["showUnsuccessfulToast"].then === "function"
               ) {
-                $steps["showUnsuccessfulToast"] = await $steps[
-                  "showUnsuccessfulToast"
-                ];
+                $steps["showUnsuccessfulToast"] =
+                  await $steps["showUnsuccessfulToast"];
               }
 
               $steps["callByDr"] =
@@ -6759,9 +6731,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               typeof $steps["updateDisablePlatofrmFeatureDialogOpen"].then ===
                 "function"
             ) {
-              $steps["updateDisablePlatofrmFeatureDialogOpen"] = await $steps[
-                "updateDisablePlatofrmFeatureDialogOpen"
-              ];
+              $steps["updateDisablePlatofrmFeatureDialogOpen"] =
+                await $steps["updateDisablePlatofrmFeatureDialogOpen"];
             }
           }}
           onclick={async () => {
@@ -6876,9 +6847,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               typeof $steps["updateDialogPatientInfo"] === "object" &&
               typeof $steps["updateDialogPatientInfo"].then === "function"
             ) {
-              $steps["updateDialogPatientInfo"] = await $steps[
-                "updateDialogPatientInfo"
-              ];
+              $steps["updateDialogPatientInfo"] =
+                await $steps["updateDialogPatientInfo"];
             }
 
             $steps["apiCame"] =
@@ -6950,9 +6920,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               typeof $steps["updateBookStatusState"] === "object" &&
               typeof $steps["updateBookStatusState"].then === "function"
             ) {
-              $steps["updateBookStatusState"] = await $steps[
-                "updateBookStatusState"
-              ];
+              $steps["updateBookStatusState"] =
+                await $steps["updateBookStatusState"];
             }
 
             $steps["updateBookStatusState2"] =
@@ -6983,9 +6952,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               typeof $steps["updateBookStatusState2"] === "object" &&
               typeof $steps["updateBookStatusState2"].then === "function"
             ) {
-              $steps["updateBookStatusState2"] = await $steps[
-                "updateBookStatusState2"
-              ];
+              $steps["updateBookStatusState2"] =
+                await $steps["updateBookStatusState2"];
             }
 
             $steps["redirectWhatsapp"] =
@@ -7476,7 +7444,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicAppointmentCard__VariantsArgs;
     args?: PlasmicAppointmentCard__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicAppointmentCard__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicAppointmentCard__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicAppointmentCard__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
