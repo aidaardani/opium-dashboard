@@ -888,9 +888,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                       typeof $steps["runActionOnAuth"] === "object" &&
                       typeof $steps["runActionOnAuth"].then === "function"
                     ) {
-                      $steps["runActionOnAuth"] = await $steps[
-                        "runActionOnAuth"
-                      ];
+                      $steps["runActionOnAuth"] =
+                        await $steps["runActionOnAuth"];
                     }
                   }}
                 />
@@ -1185,9 +1184,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   typeof $steps["showToastValidation"] === "object" &&
                   typeof $steps["showToastValidation"].then === "function"
                 ) {
-                  $steps["showToastValidation"] = await $steps[
-                    "showToastValidation"
-                  ];
+                  $steps["showToastValidation"] =
+                    await $steps["showToastValidation"];
                 }
 
                 $steps["showToastForNotifyCell"] =
@@ -1212,9 +1210,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   typeof $steps["showToastForNotifyCell"] === "object" &&
                   typeof $steps["showToastForNotifyCell"].then === "function"
                 ) {
-                  $steps["showToastForNotifyCell"] = await $steps[
-                    "showToastForNotifyCell"
-                  ];
+                  $steps["showToastForNotifyCell"] =
+                    await $steps["showToastForNotifyCell"];
                 }
 
                 $steps["showToastForBio"] = (
@@ -1268,9 +1265,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   typeof $steps["showToastForDoNothing"] === "object" &&
                   typeof $steps["showToastForDoNothing"].then === "function"
                 ) {
-                  $steps["showToastForDoNothing"] = await $steps[
-                    "showToastForDoNothing"
-                  ];
+                  $steps["showToastForDoNothing"] =
+                    await $steps["showToastForDoNothing"];
                 }
 
                 $steps["updateIsLoadingSave"] = true
@@ -1304,9 +1300,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   typeof $steps["updateIsLoadingSave"] === "object" &&
                   typeof $steps["updateIsLoadingSave"].then === "function"
                 ) {
-                  $steps["updateIsLoadingSave"] = await $steps[
-                    "updateIsLoadingSave"
-                  ];
+                  $steps["updateIsLoadingSave"] =
+                    await $steps["updateIsLoadingSave"];
                 }
 
                 $steps["apix"] =
@@ -1442,9 +1437,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   typeof $steps["apichangenationalcode"] === "object" &&
                   typeof $steps["apichangenationalcode"].then === "function"
                 ) {
-                  $steps["apichangenationalcode"] = await $steps[
-                    "apichangenationalcode"
-                  ];
+                  $steps["apichangenationalcode"] =
+                    await $steps["apichangenationalcode"];
                 }
 
                 $steps["showToastChangeNationalCode"] = !!$steps
@@ -1495,9 +1489,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   typeof $steps["showToastChangeNationalCode"].then ===
                     "function"
                 ) {
-                  $steps["showToastChangeNationalCode"] = await $steps[
-                    "showToastChangeNationalCode"
-                  ];
+                  $steps["showToastChangeNationalCode"] =
+                    await $steps["showToastChangeNationalCode"];
                 }
 
                 $steps["apiProviderUserId"] =
@@ -1551,9 +1544,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   typeof $steps["apiProviderUserId"] === "object" &&
                   typeof $steps["apiProviderUserId"].then === "function"
                 ) {
-                  $steps["apiProviderUserId"] = await $steps[
-                    "apiProviderUserId"
-                  ];
+                  $steps["apiProviderUserId"] =
+                    await $steps["apiProviderUserId"];
                 }
 
                 $steps["showToastProvider"] =
@@ -1607,9 +1599,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   typeof $steps["showToastProvider"] === "object" &&
                   typeof $steps["showToastProvider"].then === "function"
                 ) {
-                  $steps["showToastProvider"] = await $steps[
-                    "showToastProvider"
-                  ];
+                  $steps["showToastProvider"] =
+                    await $steps["showToastProvider"];
                 }
 
                 $steps["apiUpdateNotifyCell"] =
@@ -1625,10 +1616,13 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                             (() => {
                               try {
                                 return {
-                                  notifyCell: $state.notifyCell.value.replace(
-                                    /^0/,
-                                    ""
-                                  )
+                                  notifyCell: $state.notifyCell.value
+                                    .replace(/^0/, "")
+                                    .replace(/[۰-۹]/g, function (d) {
+                                      return String.fromCharCode(
+                                        d.charCodeAt(0) - 1728
+                                      );
+                                    })
                                 };
                               } catch (e) {
                                 if (
@@ -1653,9 +1647,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   typeof $steps["apiUpdateNotifyCell"] === "object" &&
                   typeof $steps["apiUpdateNotifyCell"].then === "function"
                 ) {
-                  $steps["apiUpdateNotifyCell"] = await $steps[
-                    "apiUpdateNotifyCell"
-                  ];
+                  $steps["apiUpdateNotifyCell"] =
+                    await $steps["apiUpdateNotifyCell"];
                 }
 
                 $steps["showToastForUpdateNotifyCell"] = $steps
@@ -1710,9 +1703,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   typeof $steps["showToastForUpdateNotifyCell"].then ===
                     "function"
                 ) {
-                  $steps["showToastForUpdateNotifyCell"] = await $steps[
-                    "showToastForUpdateNotifyCell"
-                  ];
+                  $steps["showToastForUpdateNotifyCell"] =
+                    await $steps["showToastForUpdateNotifyCell"];
                 }
 
                 $steps["updateIsLoadingSave2"] = true
@@ -1746,9 +1738,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   typeof $steps["updateIsLoadingSave2"] === "object" &&
                   typeof $steps["updateIsLoadingSave2"].then === "function"
                 ) {
-                  $steps["updateIsLoadingSave2"] = await $steps[
-                    "updateIsLoadingSave2"
-                  ];
+                  $steps["updateIsLoadingSave2"] =
+                    await $steps["updateIsLoadingSave2"];
                 }
 
                 $steps["runActionOnProfile"] =
@@ -1773,9 +1764,8 @@ function PlasmicProfilePersonal__RenderFunc(props: {
                   typeof $steps["runActionOnProfile"] === "object" &&
                   typeof $steps["runActionOnProfile"].then === "function"
                 ) {
-                  $steps["runActionOnProfile"] = await $steps[
-                    "runActionOnProfile"
-                  ];
+                  $steps["runActionOnProfile"] =
+                    await $steps["runActionOnProfile"];
                 }
 
                 $steps["runActionOnAuth"] =
@@ -1922,7 +1912,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfilePersonal__VariantsArgs;
     args?: PlasmicProfilePersonal__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProfilePersonal__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProfilePersonal__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProfilePersonal__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

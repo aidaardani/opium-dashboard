@@ -322,9 +322,8 @@ function PlasmicV3Tags__RenderFunc(props: {
               typeof $steps["apiAssigndoctortags"] === "object" &&
               typeof $steps["apiAssigndoctortags"].then === "function"
             ) {
-              $steps["apiAssigndoctortags"] = await $steps[
-                "apiAssigndoctortags"
-              ];
+              $steps["apiAssigndoctortags"] =
+                await $steps["apiAssigndoctortags"];
             }
 
             $steps["invokeGlobalAction"] =
@@ -846,9 +845,8 @@ function PlasmicV3Tags__RenderFunc(props: {
                             typeof $steps["updateMultiSlectValue"].then ===
                               "function"
                           ) {
-                            $steps["updateMultiSlectValue"] = await $steps[
-                              "updateMultiSlectValue"
-                            ];
+                            $steps["updateMultiSlectValue"] =
+                              await $steps["updateMultiSlectValue"];
                           }
                         }}
                       >
@@ -937,9 +935,8 @@ function PlasmicV3Tags__RenderFunc(props: {
                               typeof $steps["updateMultiSlectValue"].then ===
                                 "function"
                             ) {
-                              $steps["updateMultiSlectValue"] = await $steps[
-                                "updateMultiSlectValue"
-                              ];
+                              $steps["updateMultiSlectValue"] =
+                                await $steps["updateMultiSlectValue"];
                             }
                           }}
                         >
@@ -1006,9 +1003,8 @@ function PlasmicV3Tags__RenderFunc(props: {
                         typeof $steps["updateMultiSlectValue"].then ===
                           "function"
                       ) {
-                        $steps["updateMultiSlectValue"] = await $steps[
-                          "updateMultiSlectValue"
-                        ];
+                        $steps["updateMultiSlectValue"] =
+                          await $steps["updateMultiSlectValue"];
                       }
                     }}
                   >
@@ -1056,7 +1052,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicV3Tags__VariantsArgs;
     args?: PlasmicV3Tags__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicV3Tags__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicV3Tags__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicV3Tags__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

@@ -59,12 +59,14 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import ProfileHead from "../../ProfileHead"; // plasmic-import: PIAFRsJicCGh/component
 import { AntdAccordion } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import { accordionHelpers as AntdAccordion_Helpers } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import { AntdAccordionItem } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import ProfilePersonal from "../../ProfilePersonal"; // plasmic-import: _Rp6tLXxWeJV/component
 import ProfileExperties from "../../ProfileExperties"; // plasmic-import: E1ah_bVnKUPF/component
+import V3Tags from "../../V3Tags"; // plasmic-import: HmCnUxZ0LoGn/component
 import ProfileChannels from "../../ProfileChannels"; // plasmic-import: o4nq-6V2-plH/component
 import ProfileAddress from "../../ProfileAddress"; // plasmic-import: x5b7hK4cfrsH/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
@@ -80,6 +82,7 @@ import sty from "./PlasmicProfile.module.css"; // plasmic-import: kkDbj8e0HCl3/c
 
 import Icon29Icon from "./icons/PlasmicIcon__Icon29"; // plasmic-import: 4BN4Jr3XKtOg/icon
 import Icon30Icon from "./icons/PlasmicIcon__Icon30"; // plasmic-import: kLd3FZ1H9HBS/icon
+import Icon62Icon from "./icons/PlasmicIcon__Icon62"; // plasmic-import: dbS5P8EnsRJ8/icon
 import Icon31Icon from "./icons/PlasmicIcon__Icon31"; // plasmic-import: WipT2Hen4ot8/icon
 import Icon35Icon from "./icons/PlasmicIcon__Icon35"; // plasmic-import: JFE5vLu_22XX/icon
 import Icon47Icon from "./icons/PlasmicIcon__Icon47"; // plasmic-import: 2KgDNPohYEOx/icon
@@ -101,10 +104,12 @@ export const PlasmicProfile__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicProfile__OverridesType = {
   root?: Flex__<"div">;
+  sideEffect?: Flex__<typeof SideEffect>;
   profileHead?: Flex__<typeof ProfileHead>;
   accordion?: Flex__<typeof AntdAccordion>;
   profilePersonal?: Flex__<typeof ProfilePersonal>;
   experties?: Flex__<typeof ProfileExperties>;
+  v3Tags?: Flex__<typeof V3Tags>;
   profileChannels?: Flex__<typeof ProfileChannels>;
   profileAddress?: Flex__<typeof ProfileAddress>;
   img?: Flex__<typeof PlasmicImg__>;
@@ -200,6 +205,62 @@ function PlasmicProfile__RenderFunc(props: {
         sty.root
       )}
     >
+      <SideEffect
+        data-plasmic-name={"sideEffect"}
+        data-plasmic-override={overrides.sideEffect}
+        className={classNames("__wab_instance", sty.sideEffect)}
+        deps={(() => {
+          try {
+            return [$ctx.GrowthBook.isReady];
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+        onMount={async () => {
+          const $steps = {};
+
+          $steps["growthBook"] = true
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    (() => {
+                      try {
+                        return {
+                          user_id: $ctx.query.user_id
+                        };
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  ]
+                };
+                return $globalActions["GrowthBook.setAttributes"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["growthBook"] != null &&
+            typeof $steps["growthBook"] === "object" &&
+            typeof $steps["growthBook"].then === "function"
+          ) {
+            $steps["growthBook"] = await $steps["growthBook"];
+          }
+        }}
+      />
+
       <ProfileHead
         data-plasmic-name={"profileHead"}
         data-plasmic-override={overrides.profileHead}
@@ -288,12 +349,66 @@ function PlasmicProfile__RenderFunc(props: {
                   className={classNames("__wab_instance", sty.experties)}
                 />
               </AntdAccordionItem>
+              {(() => {
+                try {
+                  return $ctx.GrowthBook.features["tags"];
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <AntdAccordionItem
+                  className={classNames(
+                    "__wab_instance",
+                    sty.accordionItem__ewv64
+                  )}
+                  id={"3"}
+                  label2={
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        sty.freeBox___974Fj
+                      )}
+                    >
+                      <Icon62Icon
+                        className={classNames(projectcss.all, sty.svg__gDvgc)}
+                        role={"img"}
+                      />
+
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__eoH6E
+                        )}
+                      >
+                        {
+                          "\u062d\u0648\u0632\u0647\u200c\u0647\u0627\u06cc \u062a\u062e\u0635\u0635\u06cc"
+                        }
+                      </div>
+                    </div>
+                  }
+                  showArrow={false}
+                >
+                  <V3Tags
+                    data-plasmic-name={"v3Tags"}
+                    data-plasmic-override={overrides.v3Tags}
+                    className={classNames("__wab_instance", sty.v3Tags)}
+                    resourceId={"23"}
+                  />
+                </AntdAccordionItem>
+              ) : null}
               <AntdAccordionItem
                 className={classNames(
                   "__wab_instance",
                   sty.accordionItem__pxDfy
                 )}
-                id={"3"}
+                id={"4"}
                 label2={
                   <div
                     className={classNames(projectcss.all, sty.freeBox___5N3Yt)}
@@ -329,7 +444,7 @@ function PlasmicProfile__RenderFunc(props: {
                   "__wab_instance",
                   sty.accordionItem__binkx
                 )}
-                id={"88"}
+                id={"5"}
                 label2={
                   <div
                     className={classNames(projectcss.all, sty.freeBox__enKFw)}
@@ -365,7 +480,7 @@ function PlasmicProfile__RenderFunc(props: {
                   "__wab_instance",
                   sty.accordionItem__ajgb1
                 )}
-                id={"8"}
+                id={"6"}
                 label2={
                   <div
                     className={classNames(projectcss.all, sty.freeBox__eWEpn)}
@@ -470,9 +585,8 @@ function PlasmicProfile__RenderFunc(props: {
                           typeof $steps["invokeGlobalAction"].then ===
                             "function"
                         ) {
-                          $steps["invokeGlobalAction"] = await $steps[
-                            "invokeGlobalAction"
-                          ];
+                          $steps["invokeGlobalAction"] =
+                            await $steps["invokeGlobalAction"];
                         }
                       }}
                     />
@@ -484,7 +598,7 @@ function PlasmicProfile__RenderFunc(props: {
                   "__wab_instance",
                   sty.accordionItem__sZrC0
                 )}
-                id={"4"}
+                id={"7"}
                 label2={
                   <div
                     className={classNames(projectcss.all, sty.freeBox__tQxif)}
@@ -520,7 +634,7 @@ function PlasmicProfile__RenderFunc(props: {
                   "__wab_instance",
                   sty.accordionItem___2DoIc
                 )}
-                id={"5"}
+                id={"8"}
                 label2={
                   <div
                     className={classNames(projectcss.all, sty.freeBox__rs5Nj)}
@@ -560,7 +674,7 @@ function PlasmicProfile__RenderFunc(props: {
                   "__wab_instance",
                   sty.accordionItem__tXtiq
                 )}
-                id={"52"}
+                id={"9"}
                 label2={null}
                 showArrow={false}
               />
@@ -667,10 +781,12 @@ function PlasmicProfile__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "sideEffect",
     "profileHead",
     "accordion",
     "profilePersonal",
     "experties",
+    "v3Tags",
     "profileChannels",
     "profileAddress",
     "img",
@@ -678,11 +794,13 @@ const PlasmicDescendants = {
     "profilePassword",
     "profilePrescriptionSettings"
   ],
+  sideEffect: ["sideEffect"],
   profileHead: ["profileHead"],
   accordion: [
     "accordion",
     "profilePersonal",
     "experties",
+    "v3Tags",
     "profileChannels",
     "profileAddress",
     "img",
@@ -692,6 +810,7 @@ const PlasmicDescendants = {
   ],
   profilePersonal: ["profilePersonal"],
   experties: ["experties"],
+  v3Tags: ["v3Tags"],
   profileChannels: ["profileChannels"],
   profileAddress: ["profileAddress"],
   img: ["img"],
@@ -704,10 +823,12 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  sideEffect: typeof SideEffect;
   profileHead: typeof ProfileHead;
   accordion: typeof AntdAccordion;
   profilePersonal: typeof ProfilePersonal;
   experties: typeof ProfileExperties;
+  v3Tags: typeof V3Tags;
   profileChannels: typeof ProfileChannels;
   profileAddress: typeof ProfileAddress;
   img: typeof PlasmicImg__;
@@ -727,7 +848,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfile__VariantsArgs;
     args?: PlasmicProfile__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProfile__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProfile__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProfile__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -776,10 +899,12 @@ export const PlasmicProfile = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    sideEffect: makeNodeComponent("sideEffect"),
     profileHead: makeNodeComponent("profileHead"),
     accordion: makeNodeComponent("accordion"),
     profilePersonal: makeNodeComponent("profilePersonal"),
     experties: makeNodeComponent("experties"),
+    v3Tags: makeNodeComponent("v3Tags"),
     profileChannels: makeNodeComponent("profileChannels"),
     profileAddress: makeNodeComponent("profileAddress"),
     img: makeNodeComponent("img"),

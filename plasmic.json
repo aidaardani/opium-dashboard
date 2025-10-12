@@ -3594,6 +3594,11 @@
           "id": "cJeBOhz6nZhs",
           "name": "Icon61Icon",
           "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon61.tsx"
+        },
+        {
+          "id": "dbS5P8EnsRJ8",
+          "name": "Icon62Icon",
+          "moduleFilePath": "plasmic/opium_dashboard/icons/PlasmicIcon__Icon62.tsx"
         }
       ],
       "images": [
