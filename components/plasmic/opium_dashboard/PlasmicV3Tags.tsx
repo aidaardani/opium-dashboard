@@ -327,7 +327,8 @@ function PlasmicV3Tags__RenderFunc(props: {
             }
 
             $steps["invokeGlobalAction"] =
-              $steps.apiAssigndoctortags.data.message === "success"
+              $steps.apiAssigndoctortags.data.message ===
+              "تغییرات شما با موفقیت انجام شد."
                 ? (() => {
                     const actionArgs = {
                       args: [
