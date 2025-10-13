@@ -233,7 +233,7 @@ function PlasmicProfile__RenderFunc(props: {
                     (() => {
                       try {
                         return {
-                          user_id: $props.user_id
+                          user_id: $props.userId
                         };
                       } catch (e) {
                         if (
@@ -350,60 +350,82 @@ function PlasmicProfile__RenderFunc(props: {
                   className={classNames("__wab_instance", sty.experties)}
                 />
               </AntdAccordionItem>
-              {(() => {
-                try {
-                  return $ctx.GrowthBook.features["tags"];
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <AntdAccordionItem
-                  className={classNames(
-                    "__wab_instance",
-                    sty.accordionItem__ewv64
-                  )}
-                  id={"3"}
-                  label2={
+              <AntdAccordionItem
+                className={classNames(
+                  "__wab_instance",
+                  sty.accordionItem__ewv64
+                )}
+                id={"3"}
+                label2={
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox___974Fj)}
+                  >
+                    <Icon62Icon
+                      className={classNames(projectcss.all, sty.svg__gDvgc)}
+                      role={"img"}
+                    />
+
                     <div
                       className={classNames(
                         projectcss.all,
-                        sty.freeBox___974Fj
+                        projectcss.__wab_text,
+                        sty.text__eoH6E
                       )}
                     >
-                      <Icon62Icon
-                        className={classNames(projectcss.all, sty.svg__gDvgc)}
-                        role={"img"}
-                      />
-
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__eoH6E
-                        )}
-                      >
-                        {
-                          "\u062d\u0648\u0632\u0647\u200c\u0647\u0627\u06cc \u062a\u062e\u0635\u0635\u06cc"
-                        }
-                      </div>
+                      {
+                        "\u062d\u0648\u0632\u0647\u200c\u0647\u0627\u06cc \u062a\u062e\u0635\u0635\u06cc"
+                      }
                     </div>
+                  </div>
+                }
+                showArrow={false}
+              >
+                {(() => {
+                  try {
+                    return $ctx.GrowthBook.features["tags"];
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return false;
+                    }
+                    throw e;
                   }
-                  showArrow={false}
-                >
+                })() ? (
                   <V3Tags
                     data-plasmic-name={"v3Tags"}
                     data-plasmic-override={overrides.v3Tags}
                     className={classNames("__wab_instance", sty.v3Tags)}
                     resourceId={"23"}
                   />
-                </AntdAccordionItem>
-              ) : null}
+                ) : null}
+                {(() => {
+                  try {
+                    return !$ctx.GrowthBook.features["tags"];
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return false;
+                    }
+                    throw e;
+                  }
+                })() ? (
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___5Osq
+                    )}
+                  >
+                    {
+                      "\u0627\u06cc\u0646 \u0628\u062e\u0634 \u0628\u0647 \u0632\u0648\u062f\u06cc \u0628\u0631\u0627\u06cc \u0634\u0645\u0627 \u0646\u0645\u0627\u06cc\u0634 \u062f\u0627\u062f\u0647 \u062e\u0648\u0627\u0647\u062f \u0634\u062f..."
+                    }
+                  </div>
+                ) : null}
+              </AntdAccordionItem>
               <AntdAccordionItem
                 className={classNames(
                   "__wab_instance",

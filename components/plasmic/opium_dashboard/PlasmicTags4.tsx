@@ -60,6 +60,8 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import V3Tags from "../../V3Tags"; // plasmic-import: HmCnUxZ0LoGn/component
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
+import { Embed } from "@plasmicpkgs/plasmic-basic-components";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/styleTokensProvider
 
@@ -82,6 +84,8 @@ export const PlasmicTags4__ArgProps = new Array<ArgPropType>();
 export type PlasmicTags4__OverridesType = {
   tags?: Flex__<"div">;
   v3Tags?: Flex__<typeof V3Tags>;
+  sideEffect?: Flex__<typeof SideEffect>;
+  embedHtml?: Flex__<typeof Embed>;
 };
 
 export interface DefaultTags4Props {}
@@ -170,6 +174,110 @@ function PlasmicTags4__RenderFunc(props: {
             data-plasmic-override={overrides.v3Tags}
             className={classNames("__wab_instance", sty.v3Tags)}
           />
+
+          <SideEffect
+            data-plasmic-name={"sideEffect"}
+            data-plasmic-override={overrides.sideEffect}
+            className={classNames("__wab_instance", sty.sideEffect)}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["runCode"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          function loadGTM() {
+                            var gtmScript =
+                              globalThis.document.createElement("script");
+                            gtmScript.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P5RPLDP');`;
+                            globalThis.document.head.appendChild(gtmScript);
+                            var gtmNoScript =
+                              globalThis.document.createElement("noscript");
+                            gtmNoScript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
+                            globalThis.document.body.insertBefore(
+                              gtmNoScript,
+                              globalThis.document.body.firstChild
+                            );
+                          }
+                          return loadGTM();
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode"] != null &&
+                typeof $steps["runCode"] === "object" &&
+                typeof $steps["runCode"].then === "function"
+              ) {
+                $steps["runCode"] = await $steps["runCode"];
+              }
+
+              $steps["runCode2"] = true
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return (() => {
+                          function loadMetrika() {
+                            var metrikaScript =
+                              globalThis.document.createElement("script");
+                            metrikaScript.innerHTML = `(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(98277236, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+    });`;
+                            globalThis.document.head.appendChild(metrikaScript);
+                            var metrikaNoScript =
+                              globalThis.document.createElement("noscript");
+                            metrikaNoScript.innerHTML = `<div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div>`;
+                            globalThis.document.body.insertBefore(
+                              metrikaNoScript,
+                              globalThis.document.body.firstChild
+                            );
+                          }
+                          return loadMetrika();
+                        })();
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["runCode2"] != null &&
+                typeof $steps["runCode2"] === "object" &&
+                typeof $steps["runCode2"].then === "function"
+              ) {
+                $steps["runCode2"] = await $steps["runCode2"];
+              }
+            }}
+          />
+
+          <Embed
+            data-plasmic-name={"embedHtml"}
+            data-plasmic-override={overrides.embedHtml}
+            className={classNames("__wab_instance", sty.embedHtml)}
+            code={
+              '\n<!-- Google Tag Manager (noscript) -->\n<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RPLDP"\nheight="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n<!-- End Google Tag Manager (noscript) -->\n\n<!-- Yandex.Metrika counter -->\n<script type="text/javascript" >\n   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n   m[i].l=1*new Date();\n   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}\n   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})\n   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");\n\n   ym(98277236, "init", {\n        clickmap:true,\n        trackLinks:true,\n        accurateTrackBounce:true,\n        webvisor:true\n   });\n</script>\n<noscript><div><img src="https://mc.yandex.ru/watch/98277236" style="position:absolute; left:-9999px;" alt="" /></div></noscript>\n<!-- /Yandex.Metrika counter -->'
+            }
+          />
         </div>
       </div>
     </React.Fragment>
@@ -177,8 +285,10 @@ function PlasmicTags4__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  tags: ["tags", "v3Tags"],
-  v3Tags: ["v3Tags"]
+  tags: ["tags", "v3Tags", "sideEffect", "embedHtml"],
+  v3Tags: ["v3Tags"],
+  sideEffect: ["sideEffect"],
+  embedHtml: ["embedHtml"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -186,6 +296,8 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   tags: "div";
   v3Tags: typeof V3Tags;
+  sideEffect: typeof SideEffect;
+  embedHtml: typeof Embed;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -199,7 +311,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicTags4__VariantsArgs;
     args?: PlasmicTags4__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicTags4__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicTags4__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicTags4__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -249,6 +363,8 @@ export const PlasmicTags4 = Object.assign(
   {
     // Helper components rendering sub-elements
     v3Tags: makeNodeComponent("v3Tags"),
+    sideEffect: makeNodeComponent("sideEffect"),
+    embedHtml: makeNodeComponent("embedHtml"),
 
     // Metadata about props expected for PlasmicTags4
     internalVariantProps: PlasmicTags4__VariantProps,
