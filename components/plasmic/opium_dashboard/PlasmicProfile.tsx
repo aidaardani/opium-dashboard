@@ -98,9 +98,9 @@ export type PlasmicProfile__VariantsArgs = {};
 type VariantPropType = keyof PlasmicProfile__VariantsArgs;
 export const PlasmicProfile__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicProfile__ArgsType = {};
+export type PlasmicProfile__ArgsType = { userId?: string };
 type ArgPropType = keyof PlasmicProfile__ArgsType;
-export const PlasmicProfile__ArgProps = new Array<ArgPropType>();
+export const PlasmicProfile__ArgProps = new Array<ArgPropType>("userId");
 
 export type PlasmicProfile__OverridesType = {
   root?: Flex__<"div">;
@@ -119,6 +119,7 @@ export type PlasmicProfile__OverridesType = {
 };
 
 export interface DefaultProfileProps {
+  userId?: string;
   className?: string;
 }
 
@@ -211,7 +212,7 @@ function PlasmicProfile__RenderFunc(props: {
         className={classNames("__wab_instance", sty.sideEffect)}
         deps={(() => {
           try {
-            return [$ctx.GrowthBook.isReady];
+            return [$ctx.GrowthBook.isReady, $props.userId];
           } catch (e) {
             if (
               e instanceof TypeError ||
@@ -232,7 +233,7 @@ function PlasmicProfile__RenderFunc(props: {
                     (() => {
                       try {
                         return {
-                          user_id: $ctx.query.user_id
+                          user_id: $props.user_id
                         };
                       } catch (e) {
                         if (

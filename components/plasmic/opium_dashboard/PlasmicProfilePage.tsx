@@ -199,6 +199,19 @@ function PlasmicProfilePage__RenderFunc(props: {
             data-plasmic-name={"profile"}
             data-plasmic-override={overrides.profile}
             className={classNames("__wab_instance", sty.profile)}
+            userId={(() => {
+              try {
+                return $ctx.query.user_id;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
           />
         </div>
       </div>
@@ -229,7 +242,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfilePage__VariantsArgs;
     args?: PlasmicProfilePage__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProfilePage__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProfilePage__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProfilePage__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
