@@ -59,10 +59,10 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import { MultiSlect } from "@/fragment/components/multi-select"; // plasmic-import: Q72onvXK1B9P/codeComponent
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/styleTokensProvider
 
@@ -89,10 +89,10 @@ export const PlasmicV3Tags__ArgProps = new Array<ArgPropType>("resourceId");
 
 export type PlasmicV3Tags__OverridesType = {
   root?: Flex__<"div">;
-  sideEffect?: Flex__<typeof SideEffect>;
   apiGetDrTags?: Flex__<typeof ApiRequest>;
   apiGetTags?: Flex__<typeof ApiRequest>;
   multiSlect?: Flex__<typeof MultiSlect>;
+  sideEffect?: Flex__<typeof SideEffect>;
 };
 
 export interface DefaultV3TagsProps {
@@ -260,131 +260,6 @@ function PlasmicV3Tags__RenderFunc(props: {
       )}
     >
       <div className={classNames(projectcss.all, sty.freeBox__wsDYs)}>
-        <SideEffect
-          data-plasmic-name={"sideEffect"}
-          data-plasmic-override={overrides.sideEffect}
-          className={classNames("__wab_instance", sty.sideEffect)}
-          deps={(() => {
-            try {
-              return [$state?.multiSlect?.value];
-            } catch (e) {
-              if (
-                e instanceof TypeError ||
-                e?.plasmicType === "PlasmicUndefinedDataError"
-              ) {
-                return undefined;
-              }
-              throw e;
-            }
-          })()}
-          onMount={async () => {
-            const $steps = {};
-
-            $steps["apiAssigndoctortags"] =
-              !$state.apiGetDrTags.loading &&
-              $state?.multiSlect?.value.length > 0
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "PUT",
-                        "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/v2/assigndoctortag",
-                        undefined,
-                        (() => {
-                          try {
-                            return $state.multiSlect.value?.map(
-                              ({ label, value, ...rest }, index) => ({
-                                ...rest,
-                                Tag_title: label,
-                                _id: value,
-                                priority: index + 1,
-                                Resource_ID: $props.resourceId
-                              })
-                            );
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.apiRequest"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-            if (
-              $steps["apiAssigndoctortags"] != null &&
-              typeof $steps["apiAssigndoctortags"] === "object" &&
-              typeof $steps["apiAssigndoctortags"].then === "function"
-            ) {
-              $steps["apiAssigndoctortags"] =
-                await $steps["apiAssigndoctortags"];
-            }
-
-            $steps["invokeGlobalAction"] =
-              $steps.apiAssigndoctortags.data.message ===
-              "تغییرات شما با موفقیت انجام شد."
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        undefined,
-                        "\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0646\u062c\u0627\u0645 \u0634\u062f."
-                      ]
-                    };
-                    return $globalActions["Fragment.showToast"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-            if (
-              $steps["invokeGlobalAction"] != null &&
-              typeof $steps["invokeGlobalAction"] === "object" &&
-              typeof $steps["invokeGlobalAction"].then === "function"
-            ) {
-              $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
-            }
-
-            $steps["showErrorToast"] =
-              $steps.apiAssigndoctortags.data.status === "failed"
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "error",
-                        (() => {
-                          try {
-                            return $steps.apiAssigndoctortags.data.message;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.showToast"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
-            if (
-              $steps["showErrorToast"] != null &&
-              typeof $steps["showErrorToast"] === "object" &&
-              typeof $steps["showErrorToast"].then === "function"
-            ) {
-              $steps["showErrorToast"] = await $steps["showErrorToast"];
-            }
-          }}
-        />
-
         <ApiRequest
           data-plasmic-name={"apiGetDrTags"}
           data-plasmic-override={overrides.apiGetDrTags}
@@ -1020,26 +895,176 @@ function PlasmicV3Tags__RenderFunc(props: {
           );
         })}
       </div>
+      <SideEffect
+        data-plasmic-name={"sideEffect"}
+        data-plasmic-override={overrides.sideEffect}
+        className={classNames("__wab_instance", sty.sideEffect)}
+        deps={(() => {
+          try {
+            return [JSON.stringify($state?.multiSlect?.value)];
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+        onMount={async () => {
+          const $steps = {};
+
+          $steps["apiAssigndoctortags"] =
+            !$state.apiGetDrTags.loading && $state?.multiSlect?.value.length > 0
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      "PUT",
+                      "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/v2/assigndoctortag",
+                      undefined,
+                      (() => {
+                        try {
+                          return $state.multiSlect.value?.map(
+                            ({ label, value, ...rest }, index) => ({
+                              ...rest,
+                              Tag_title: label,
+                              _id: value,
+                              priority: index + 1,
+                              Resource_ID: $props.resourceId
+                            })
+                          );
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+          if (
+            $steps["apiAssigndoctortags"] != null &&
+            typeof $steps["apiAssigndoctortags"] === "object" &&
+            typeof $steps["apiAssigndoctortags"].then === "function"
+          ) {
+            $steps["apiAssigndoctortags"] = await $steps["apiAssigndoctortags"];
+          }
+
+          $steps["invokeGlobalAction"] =
+            $steps.apiAssigndoctortags.data.message ===
+            "تغییرات شما با موفقیت انجام شد."
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      undefined,
+                      "\u062a\u063a\u06cc\u06cc\u0631\u0627\u062a \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0646\u062c\u0627\u0645 \u0634\u062f."
+                    ]
+                  };
+                  return $globalActions["Fragment.showToast"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+          if (
+            $steps["invokeGlobalAction"] != null &&
+            typeof $steps["invokeGlobalAction"] === "object" &&
+            typeof $steps["invokeGlobalAction"].then === "function"
+          ) {
+            $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
+          }
+
+          $steps["showErrorToast"] =
+            $steps.apiAssigndoctortags.data.status === "failed"
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      "error",
+                      (() => {
+                        try {
+                          return $steps.apiAssigndoctortags.data.message;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Fragment.showToast"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+          if (
+            $steps["showErrorToast"] != null &&
+            typeof $steps["showErrorToast"] === "object" &&
+            typeof $steps["showErrorToast"].then === "function"
+          ) {
+            $steps["showErrorToast"] = await $steps["showErrorToast"];
+          }
+
+          $steps["updateKeywordTags"] = true
+            ? (() => {
+                const actionArgs = {
+                  variable: {
+                    objRoot: $state,
+                    variablePath: ["keywordTags"]
+                  },
+                  operation: 0
+                };
+                return (({ variable, value, startIndex, deleteCount }) => {
+                  if (!variable) {
+                    return;
+                  }
+                  const { objRoot, variablePath } = variable;
+
+                  $stateSet(objRoot, variablePath, value);
+                  return value;
+                })?.apply(null, [actionArgs]);
+              })()
+            : undefined;
+          if (
+            $steps["updateKeywordTags"] != null &&
+            typeof $steps["updateKeywordTags"] === "object" &&
+            typeof $steps["updateKeywordTags"].then === "function"
+          ) {
+            $steps["updateKeywordTags"] = await $steps["updateKeywordTags"];
+          }
+        }}
+      />
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "sideEffect", "apiGetDrTags", "apiGetTags", "multiSlect"],
-  sideEffect: ["sideEffect"],
+  root: ["root", "apiGetDrTags", "apiGetTags", "multiSlect", "sideEffect"],
   apiGetDrTags: ["apiGetDrTags"],
   apiGetTags: ["apiGetTags"],
-  multiSlect: ["multiSlect"]
+  multiSlect: ["multiSlect"],
+  sideEffect: ["sideEffect"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  sideEffect: typeof SideEffect;
   apiGetDrTags: typeof ApiRequest;
   apiGetTags: typeof ApiRequest;
   multiSlect: typeof MultiSlect;
+  sideEffect: typeof SideEffect;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1104,10 +1129,10 @@ export const PlasmicV3Tags = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    sideEffect: makeNodeComponent("sideEffect"),
     apiGetDrTags: makeNodeComponent("apiGetDrTags"),
     apiGetTags: makeNodeComponent("apiGetTags"),
     multiSlect: makeNodeComponent("multiSlect"),
+    sideEffect: makeNodeComponent("sideEffect"),
 
     // Metadata about props expected for PlasmicV3Tags
     internalVariantProps: PlasmicV3Tags__VariantProps,

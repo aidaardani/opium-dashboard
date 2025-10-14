@@ -59,7 +59,6 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
-import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import ProfileHead from "../../ProfileHead"; // plasmic-import: PIAFRsJicCGh/component
 import { AntdAccordion } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import { accordionHelpers as AntdAccordion_Helpers } from "@plasmicpkgs/antd5/skinny/registerCollapse";
@@ -98,13 +97,18 @@ export type PlasmicProfile__VariantsArgs = {};
 type VariantPropType = keyof PlasmicProfile__VariantsArgs;
 export const PlasmicProfile__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicProfile__ArgsType = { userId?: string };
+export type PlasmicProfile__ArgsType = {
+  userId?: string;
+  growthbook?: boolean;
+};
 type ArgPropType = keyof PlasmicProfile__ArgsType;
-export const PlasmicProfile__ArgProps = new Array<ArgPropType>("userId");
+export const PlasmicProfile__ArgProps = new Array<ArgPropType>(
+  "userId",
+  "growthbook"
+);
 
 export type PlasmicProfile__OverridesType = {
   root?: Flex__<"div">;
-  sideEffect?: Flex__<typeof SideEffect>;
   profileHead?: Flex__<typeof ProfileHead>;
   accordion?: Flex__<typeof AntdAccordion>;
   profilePersonal?: Flex__<typeof ProfilePersonal>;
@@ -120,6 +124,7 @@ export type PlasmicProfile__OverridesType = {
 
 export interface DefaultProfileProps {
   userId?: string;
+  growthbook?: boolean;
   className?: string;
 }
 
@@ -143,7 +148,9 @@ function PlasmicProfile__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
+        {
+          growthbook: false
+        },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -206,62 +213,6 @@ function PlasmicProfile__RenderFunc(props: {
         sty.root
       )}
     >
-      <SideEffect
-        data-plasmic-name={"sideEffect"}
-        data-plasmic-override={overrides.sideEffect}
-        className={classNames("__wab_instance", sty.sideEffect)}
-        deps={(() => {
-          try {
-            return [$ctx.GrowthBook.isReady, $props.userId];
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-        onMount={async () => {
-          const $steps = {};
-
-          $steps["growthBook"] = true
-            ? (() => {
-                const actionArgs = {
-                  args: [
-                    (() => {
-                      try {
-                        return {
-                          user_id: $props.userId
-                        };
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
-                      }
-                    })()
-                  ]
-                };
-                return $globalActions["GrowthBook.setAttributes"]?.apply(null, [
-                  ...actionArgs.args
-                ]);
-              })()
-            : undefined;
-          if (
-            $steps["growthBook"] != null &&
-            typeof $steps["growthBook"] === "object" &&
-            typeof $steps["growthBook"].then === "function"
-          ) {
-            $steps["growthBook"] = await $steps["growthBook"];
-          }
-        }}
-      />
-
       <ProfileHead
         data-plasmic-name={"profileHead"}
         data-plasmic-override={overrides.profileHead}
@@ -804,7 +755,6 @@ function PlasmicProfile__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
-    "sideEffect",
     "profileHead",
     "accordion",
     "profilePersonal",
@@ -817,7 +767,6 @@ const PlasmicDescendants = {
     "profilePassword",
     "profilePrescriptionSettings"
   ],
-  sideEffect: ["sideEffect"],
   profileHead: ["profileHead"],
   accordion: [
     "accordion",
@@ -846,7 +795,6 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  sideEffect: typeof SideEffect;
   profileHead: typeof ProfileHead;
   accordion: typeof AntdAccordion;
   profilePersonal: typeof ProfilePersonal;
@@ -922,7 +870,6 @@ export const PlasmicProfile = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    sideEffect: makeNodeComponent("sideEffect"),
     profileHead: makeNodeComponent("profileHead"),
     accordion: makeNodeComponent("accordion"),
     profilePersonal: makeNodeComponent("profilePersonal"),

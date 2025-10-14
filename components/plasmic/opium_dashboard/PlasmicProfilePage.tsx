@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import Profile from "../../Profile"; // plasmic-import: kkDbj8e0HCl3/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/styleTokensProvider
@@ -81,6 +82,7 @@ export const PlasmicProfilePage__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicProfilePage__OverridesType = {
   root?: Flex__<"div">;
+  sideEffect?: Flex__<typeof SideEffect>;
   profile?: Flex__<typeof Profile>;
 };
 
@@ -195,10 +197,80 @@ function PlasmicProfilePage__RenderFunc(props: {
             }
           }}
         >
+          <SideEffect
+            data-plasmic-name={"sideEffect"}
+            data-plasmic-override={overrides.sideEffect}
+            className={classNames("__wab_instance", sty.sideEffect)}
+            deps={(() => {
+              try {
+                return [$ctx.GrowthBook.isReady, $ctx.query.user_id];
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return undefined;
+                }
+                throw e;
+              }
+            })()}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["growthBook"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        (() => {
+                          try {
+                            return {
+                              user_id: $ctx.query.user_id
+                            };
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return undefined;
+                            }
+                            throw e;
+                          }
+                        })()
+                      ]
+                    };
+                    return $globalActions["GrowthBook.setAttributes"]?.apply(
+                      null,
+                      [...actionArgs.args]
+                    );
+                  })()
+                : undefined;
+              if (
+                $steps["growthBook"] != null &&
+                typeof $steps["growthBook"] === "object" &&
+                typeof $steps["growthBook"].then === "function"
+              ) {
+                $steps["growthBook"] = await $steps["growthBook"];
+              }
+            }}
+          />
+
           <Profile
             data-plasmic-name={"profile"}
             data-plasmic-override={overrides.profile}
             className={classNames("__wab_instance", sty.profile)}
+            growthbook={(() => {
+              try {
+                return $ctx.GrowthBook.features.tags;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })()}
             userId={(() => {
               try {
                 return $ctx.query.user_id;
@@ -220,7 +292,8 @@ function PlasmicProfilePage__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "profile"],
+  root: ["root", "sideEffect", "profile"],
+  sideEffect: ["sideEffect"],
   profile: ["profile"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -228,6 +301,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  sideEffect: typeof SideEffect;
   profile: typeof Profile;
 };
 
@@ -293,6 +367,7 @@ export const PlasmicProfilePage = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    sideEffect: makeNodeComponent("sideEffect"),
     profile: makeNodeComponent("profile"),
 
     // Metadata about props expected for PlasmicProfilePage
