@@ -2351,7 +2351,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       try {
                         return (
                           $props.paymentStatus ===
-                            "پرداخت برای نوبت غیرفعال است." && "غیرفعال"
+                            "پرداخت برای نوبت غیرفعال است." && "پرداخت نشده"
                         );
                       } catch (e) {
                         if (
