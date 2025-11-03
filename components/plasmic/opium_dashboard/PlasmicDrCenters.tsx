@@ -341,9 +341,8 @@ function PlasmicDrCenters__RenderFunc(props: {
                     typeof $steps["updateSelectedCenter"] === "object" &&
                     typeof $steps["updateSelectedCenter"].then === "function"
                   ) {
-                    $steps["updateSelectedCenter"] = await $steps[
-                      "updateSelectedCenter"
-                    ];
+                    $steps["updateSelectedCenter"] =
+                      await $steps["updateSelectedCenter"];
                   }
 
                   $steps["updateSelectedCenter2"] = true
@@ -362,9 +361,8 @@ function PlasmicDrCenters__RenderFunc(props: {
                     typeof $steps["updateSelectedCenter2"] === "object" &&
                     typeof $steps["updateSelectedCenter2"].then === "function"
                   ) {
-                    $steps["updateSelectedCenter2"] = await $steps[
-                      "updateSelectedCenter2"
-                    ];
+                    $steps["updateSelectedCenter2"] =
+                      await $steps["updateSelectedCenter2"];
                   }
                 }}
                 selected={(() => {
@@ -538,9 +536,8 @@ function PlasmicDrCenters__RenderFunc(props: {
                           typeof $steps["updateSelectedCenter"].then ===
                             "function"
                         ) {
-                          $steps["updateSelectedCenter"] = await $steps[
-                            "updateSelectedCenter"
-                          ];
+                          $steps["updateSelectedCenter"] =
+                            await $steps["updateSelectedCenter"];
                         }
 
                         $steps["updateSelectedCenter2"] = true
@@ -562,9 +559,8 @@ function PlasmicDrCenters__RenderFunc(props: {
                           typeof $steps["updateSelectedCenter2"].then ===
                             "function"
                         ) {
-                          $steps["updateSelectedCenter2"] = await $steps[
-                            "updateSelectedCenter2"
-                          ];
+                          $steps["updateSelectedCenter2"] =
+                            await $steps["updateSelectedCenter2"];
                         }
 
                         $steps["updateSelectedCenter3"] = true
@@ -598,9 +594,8 @@ function PlasmicDrCenters__RenderFunc(props: {
                           typeof $steps["updateSelectedCenter3"].then ===
                             "function"
                         ) {
-                          $steps["updateSelectedCenter3"] = await $steps[
-                            "updateSelectedCenter3"
-                          ];
+                          $steps["updateSelectedCenter3"] =
+                            await $steps["updateSelectedCenter3"];
                         }
                       }}
                       selected={(() => {
@@ -1192,7 +1187,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicDrCenters__VariantsArgs;
     args?: PlasmicDrCenters__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicDrCenters__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicDrCenters__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicDrCenters__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
