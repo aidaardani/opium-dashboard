@@ -1212,6 +1212,14 @@ function PlasmicProfileAddress__RenderFunc(props: {
             lon: 50.9390906
           },
           {
+            id: "471",
+            name: "\u0641\u0631\u062f\u06cc\u0633",
+            province: "\u0627\u0644\u0628\u0631\u0632",
+            province_id: "5",
+            lat: 35.8400188,
+            lon: 50.9390906
+          },
+          {
             id: "285",
             name: "\u06af\u0648\u0647\u0631\u062f\u0634\u062a",
             province: "\u0627\u0644\u0628\u0631\u0632",
@@ -4432,9 +4440,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
               typeof $steps["updateProfileTellsOldTells"] === "object" &&
               typeof $steps["updateProfileTellsOldTells"].then === "function"
             ) {
-              $steps["updateProfileTellsOldTells"] = await $steps[
-                "updateProfileTellsOldTells"
-              ];
+              $steps["updateProfileTellsOldTells"] =
+                await $steps["updateProfileTellsOldTells"];
             }
 
             $steps["sendEvent"] =
@@ -4899,9 +4906,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                         typeof $steps["updateDialogOpen"] === "object" &&
                         typeof $steps["updateDialogOpen"].then === "function"
                       ) {
-                        $steps["updateDialogOpen"] = await $steps[
-                          "updateDialogOpen"
-                        ];
+                        $steps["updateDialogOpen"] =
+                          await $steps["updateDialogOpen"];
                       }
 
                       $steps["updateSelectdImage"] = true
@@ -4935,9 +4941,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                         typeof $steps["updateSelectdImage"] === "object" &&
                         typeof $steps["updateSelectdImage"].then === "function"
                       ) {
-                        $steps["updateSelectdImage"] = await $steps[
-                          "updateSelectdImage"
-                        ];
+                        $steps["updateSelectdImage"] =
+                          await $steps["updateSelectdImage"];
                       }
                     }}
                     src={(() => {
@@ -5000,9 +5005,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   typeof $steps["updateUploadedFile"] === "object" &&
                   typeof $steps["updateUploadedFile"].then === "function"
                 ) {
-                  $steps["updateUploadedFile"] = await $steps[
-                    "updateUploadedFile"
-                  ];
+                  $steps["updateUploadedFile"] =
+                    await $steps["updateUploadedFile"];
                 }
 
                 $steps["uploadImage"] = true
@@ -5103,9 +5107,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   typeof $steps["invokeGlobalAction"] === "object" &&
                   typeof $steps["invokeGlobalAction"].then === "function"
                 ) {
-                  $steps["invokeGlobalAction"] = await $steps[
-                    "invokeGlobalAction"
-                  ];
+                  $steps["invokeGlobalAction"] =
+                    await $steps["invokeGlobalAction"];
                 }
 
                 $steps["updateUploadedFile2"] = true
@@ -5138,9 +5141,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   typeof $steps["updateUploadedFile2"] === "object" &&
                   typeof $steps["updateUploadedFile2"].then === "function"
                 ) {
-                  $steps["updateUploadedFile2"] = await $steps[
-                    "updateUploadedFile2"
-                  ];
+                  $steps["updateUploadedFile2"] =
+                    await $steps["updateUploadedFile2"];
                 }
 
                 $steps["runActionOnGalleryApi"] = true
@@ -5159,9 +5161,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   typeof $steps["runActionOnGalleryApi"] === "object" &&
                   typeof $steps["runActionOnGalleryApi"].then === "function"
                 ) {
-                  $steps["runActionOnGalleryApi"] = await $steps[
-                    "runActionOnGalleryApi"
-                  ];
+                  $steps["runActionOnGalleryApi"] =
+                    await $steps["runActionOnGalleryApi"];
                 }
               }}
             >
@@ -5634,9 +5635,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 typeof $steps["updateIsLoadingSave"] === "object" &&
                 typeof $steps["updateIsLoadingSave"].then === "function"
               ) {
-                $steps["updateIsLoadingSave"] = await $steps[
-                  "updateIsLoadingSave"
-                ];
+                $steps["updateIsLoadingSave"] =
+                  await $steps["updateIsLoadingSave"];
               }
 
               $steps["saveChangesApi"] = true
@@ -5732,9 +5732,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 typeof $steps["updateIsLoadingSave2"] === "object" &&
                 typeof $steps["updateIsLoadingSave2"].then === "function"
               ) {
-                $steps["updateIsLoadingSave2"] = await $steps[
-                  "updateIsLoadingSave2"
-                ];
+                $steps["updateIsLoadingSave2"] =
+                  await $steps["updateIsLoadingSave2"];
               }
 
               $steps["successToast"] =
@@ -5921,9 +5920,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                 typeof $steps["updateOldPhoneNumbers"] === "object" &&
                 typeof $steps["updateOldPhoneNumbers"].then === "function"
               ) {
-                $steps["updateOldPhoneNumbers"] = await $steps[
-                  "updateOldPhoneNumbers"
-                ];
+                $steps["updateOldPhoneNumbers"] =
+                  await $steps["updateOldPhoneNumbers"];
               }
             }}
           />
@@ -5998,9 +5996,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   typeof $steps["updateDeleteImageDialog2Open"].then ===
                     "function"
                 ) {
-                  $steps["updateDeleteImageDialog2Open"] = await $steps[
-                    "updateDeleteImageDialog2Open"
-                  ];
+                  $steps["updateDeleteImageDialog2Open"] =
+                    await $steps["updateDeleteImageDialog2Open"];
                 }
               }}
               showStartIcon={true}
@@ -6146,9 +6143,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   typeof $steps["updateDeleteImageDialogOpen"].then ===
                     "function"
                 ) {
-                  $steps["updateDeleteImageDialogOpen"] = await $steps[
-                    "updateDeleteImageDialogOpen"
-                  ];
+                  $steps["updateDeleteImageDialogOpen"] =
+                    await $steps["updateDeleteImageDialogOpen"];
                 }
 
                 $steps["updateImageDialogOpen"] =
@@ -6183,9 +6179,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   typeof $steps["updateImageDialogOpen"] === "object" &&
                   typeof $steps["updateImageDialogOpen"].then === "function"
                 ) {
-                  $steps["updateImageDialogOpen"] = await $steps[
-                    "updateImageDialogOpen"
-                  ];
+                  $steps["updateImageDialogOpen"] =
+                    await $steps["updateImageDialogOpen"];
                 }
 
                 $steps["runActionOnGalleryApi"] = true
@@ -6204,9 +6199,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   typeof $steps["runActionOnGalleryApi"] === "object" &&
                   typeof $steps["runActionOnGalleryApi"].then === "function"
                 ) {
-                  $steps["runActionOnGalleryApi"] = await $steps[
-                    "runActionOnGalleryApi"
-                  ];
+                  $steps["runActionOnGalleryApi"] =
+                    await $steps["runActionOnGalleryApi"];
                 }
               }}
             />
@@ -6260,9 +6254,8 @@ function PlasmicProfileAddress__RenderFunc(props: {
                   typeof $steps["updateDeleteImageDialog2Open"].then ===
                     "function"
                 ) {
-                  $steps["updateDeleteImageDialog2Open"] = await $steps[
-                    "updateDeleteImageDialog2Open"
-                  ];
+                  $steps["updateDeleteImageDialog2Open"] =
+                    await $steps["updateDeleteImageDialog2Open"];
                 }
               }}
             />
@@ -6380,7 +6373,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfileAddress__VariantsArgs;
     args?: PlasmicProfileAddress__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProfileAddress__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProfileAddress__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProfileAddress__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
