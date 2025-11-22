@@ -69,6 +69,7 @@ import MultilineTextInput from "../../MultilineTextInput"; // plasmic-import: CZ
 import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
 import SafeCall from "../../SafeCall"; // plasmic-import: m0lwAXhykBZV/component
 import BookStatusButton from "../../BookStatusButton"; // plasmic-import: aW1julV8kikd/component
+import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/styleTokensProvider
 
@@ -136,6 +137,7 @@ export type PlasmicAppointmentCard__ArgsType = {
   bookFrom?: string;
   platform?: any;
   showPlatform?: boolean;
+  medicalCode?: string;
 };
 type ArgPropType = keyof PlasmicAppointmentCard__ArgsType;
 export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
@@ -168,7 +170,8 @@ export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
   "prescriptionDate",
   "bookFrom",
   "platform",
-  "showPlatform"
+  "showPlatform",
+  "medicalCode"
 );
 
 export type PlasmicAppointmentCard__OverridesType = {
@@ -199,6 +202,8 @@ export type PlasmicAppointmentCard__OverridesType = {
   disablePlatofrmFeatureDialog?: Flex__<typeof Dialog>;
   span?: Flex__<"span">;
   apiselcetedonlinevisitchannels?: Flex__<typeof ApiRequest>;
+  salamatOtpModal?: Flex__<typeof Dialog>;
+  inputTwoFactorAuth?: Flex__<typeof Input>;
 };
 
 export interface DefaultAppointmentCardProps {
@@ -232,6 +237,7 @@ export interface DefaultAppointmentCardProps {
   bookFrom?: string;
   platform?: any;
   showPlatform?: boolean;
+  medicalCode?: string;
   onlineBorder?: SingleBooleanChoiceArg<"onlineBorder">;
   className?: string;
 }
@@ -566,6 +572,18 @@ function PlasmicAppointmentCard__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "apiGetInsuranceType"
+      },
+      {
+        path: "salamatOtpModal.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "inputTwoFactorAuth.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -5097,6 +5115,123 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         await $steps["apiBuildPrescription"];
                     }
 
+                    $steps["api2FactorAuthSalamat"] =
+                      $steps.apiBuildPrescription?.data?.message ==
+                      "کد تایید دو مرحله‌ای را ارسال کنید"
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["salamatOtpModal", "open"]
+                              },
+                              operation: 0,
+                              value: true
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["api2FactorAuthSalamat"] != null &&
+                      typeof $steps["api2FactorAuthSalamat"] === "object" &&
+                      typeof $steps["api2FactorAuthSalamat"].then === "function"
+                    ) {
+                      $steps["api2FactorAuthSalamat"] =
+                        await $steps["api2FactorAuthSalamat"];
+                    }
+
+                    $steps["api2FactorOtpTamin"] =
+                      $steps.apiBuildPrescription?.data?.message?.includes(
+                        "توکن تامین اجتماعی"
+                      )
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "GET",
+                                "https://prescription-workflow.paziresh24.com/webhook/prod/presc/tamin/challenge",
+                                (() => {
+                                  try {
+                                    return {
+                                      doctor_medical_code: $props.medicalCode,
+                                      redirect_back: `https://www.paziresh24.com/dashboard/apps/drapp/appointments/`
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.apiRequest"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["api2FactorOtpTamin"] != null &&
+                      typeof $steps["api2FactorOtpTamin"] === "object" &&
+                      typeof $steps["api2FactorOtpTamin"].then === "function"
+                    ) {
+                      $steps["api2FactorOtpTamin"] =
+                        await $steps["api2FactorOtpTamin"];
+                    }
+
+                    $steps["redirectUrlTamin"] =
+                      $steps.api2FactorOtpTamin?.status == 200
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return $steps.api2FactorOtpTamin?.data
+                                      ?.redirect_url;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Hamdast.openLink"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["redirectUrlTamin"] != null &&
+                      typeof $steps["redirectUrlTamin"] === "object" &&
+                      typeof $steps["redirectUrlTamin"].then === "function"
+                    ) {
+                      $steps["redirectUrlTamin"] =
+                        await $steps["redirectUrlTamin"];
+                    }
+
                     $steps["showToast"] =
                       $steps.apiBuildPrescription?.data &&
                       $steps.apiBuildPrescription.data.statusCode !== 208
@@ -5106,7 +5241,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                                 (() => {
                                   try {
                                     return $steps.apiBuildPrescription.data
-                                      .statusCode === 200
+                                      .statusCode === 201
                                       ? "success"
                                       : "error";
                                   } catch (e) {
@@ -5185,32 +5320,34 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       $steps["loadingFinish"] = await $steps["loadingFinish"];
                     }
 
-                    $steps["updateNewPrescriptionId"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["newPrescriptionId"]
-                            },
-                            operation: 0,
-                            value: $steps.apiBuildPrescription.data.result.id
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
+                    $steps["updateNewPrescriptionId"] =
+                      $steps.apiBuildPrescription?.status == 201 ||
+                      $steps.apiBuildPrescription?.status == 208
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["newPrescriptionId"]
+                              },
+                              operation: 0,
+                              value: $steps.apiBuildPrescription.data.result.id
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
 
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
                     if (
                       $steps["updateNewPrescriptionId"] != null &&
                       typeof $steps["updateNewPrescriptionId"] === "object" &&
@@ -5221,37 +5358,40 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         await $steps["updateNewPrescriptionId"];
                     }
 
-                    $steps["pagePrescription"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            destination: (() => {
-                              try {
-                                return `https://dr.paziresh24.com/prescription/patient/${$state.newPrescriptionId}`;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return "";
+                    $steps["pagePrescription"] =
+                      $steps.apiBuildPrescription?.status == 201 ||
+                      $steps.apiBuildPrescription?.status == 208
+                        ? (() => {
+                            const actionArgs = {
+                              destination: (() => {
+                                try {
+                                  return `https://dr.paziresh24.com/prescription/patient/${$state.newPrescriptionId}`;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "";
+                                  }
+                                  throw e;
                                 }
-                                throw e;
+                              })()
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
                               }
-                            })()
-                          };
-                          return (({ destination }) => {
-                            if (
-                              typeof destination === "string" &&
-                              destination.startsWith("#")
-                            ) {
-                              document
-                                .getElementById(destination.substr(1))
-                                .scrollIntoView({ behavior: "smooth" });
-                            } else {
-                              __nextRouter?.push(destination);
-                            }
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
                     if (
                       $steps["pagePrescription"] != null &&
                       typeof $steps["pagePrescription"] === "object" &&
@@ -5262,7 +5402,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     }
 
                     $steps["updateBookStatusState"] =
-                      $steps.apiBuildPrescription.data.result.id.lenght > 0
+                      $steps.apiBuildPrescription.data.result.id.length > 0
                         ? (() => {
                             const actionArgs = {
                               variable: {
@@ -7319,6 +7459,185 @@ function PlasmicAppointmentCard__RenderFunc(props: {
           }
         })()}
       />
+
+      <Dialog
+        data-plasmic-name={"salamatOtpModal"}
+        data-plasmic-override={overrides.salamatOtpModal}
+        body={
+          <div className={classNames(projectcss.all, sty.freeBox__plF6N)}>
+            <Input
+              data-plasmic-name={"inputTwoFactorAuth"}
+              data-plasmic-override={overrides.inputTwoFactorAuth}
+              className={classNames("__wab_instance", sty.inputTwoFactorAuth)}
+              onChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "inputTwoFactorAuth",
+                  "value"
+                ]).apply(null, eventArgs);
+              }}
+              placeholder={"\u06a9\u062f \u062a\u0627\u06cc\u06cc\u062f"}
+              value={generateStateValueProp($state, [
+                "inputTwoFactorAuth",
+                "value"
+              ])}
+            />
+
+            <Button
+              children2={"\u062a\u0627\u06cc\u06cc\u062f"}
+              className={classNames("__wab_instance", sty.button__erZmQ)}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["apiTwoFactorAuthSalamat"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "POST",
+                          "https://apigw.paziresh24.com/prescription//users-permissions/auth/local/checkOtp",
+                          undefined,
+                          (() => {
+                            try {
+                              return {
+                                identifier: $props.centerId,
+                                code: $state.inputTwoFactorAuth.value
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.apiRequest"]?.apply(
+                        null,
+                        [...actionArgs.args]
+                      );
+                    })()
+                  : undefined;
+                if (
+                  $steps["apiTwoFactorAuthSalamat"] != null &&
+                  typeof $steps["apiTwoFactorAuthSalamat"] === "object" &&
+                  typeof $steps["apiTwoFactorAuthSalamat"].then === "function"
+                ) {
+                  $steps["apiTwoFactorAuthSalamat"] =
+                    await $steps["apiTwoFactorAuthSalamat"];
+                }
+
+                $steps["updatePresButtonOpen"] =
+                  $steps.apiTwoFactorAuthSalamat.status == 200
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["salamatOtpModal", "open"]
+                          },
+                          operation: 0,
+                          value: false
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                if (
+                  $steps["updatePresButtonOpen"] != null &&
+                  typeof $steps["updatePresButtonOpen"] === "object" &&
+                  typeof $steps["updatePresButtonOpen"].then === "function"
+                ) {
+                  $steps["updatePresButtonOpen"] =
+                    await $steps["updatePresButtonOpen"];
+                }
+
+                $steps["toast"] =
+                  $steps.apiTwoFactorAuthSalamat.status == 200
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return $steps.apiTwoFactorAuthSalamat.status ===
+                                  200
+                                  ? "success"
+                                  : "error";
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })(),
+                            (() => {
+                              try {
+                                return $steps.apiTwoFactorAuthSalamat.message;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Fragment.showToast"]?.apply(
+                          null,
+                          [...actionArgs.args]
+                        );
+                      })()
+                    : undefined;
+                if (
+                  $steps["toast"] != null &&
+                  typeof $steps["toast"] === "object" &&
+                  typeof $steps["toast"].then === "function"
+                ) {
+                  $steps["toast"] = await $steps["toast"];
+                }
+              }}
+            />
+          </div>
+        }
+        className={classNames("__wab_instance", sty.salamatOtpModal)}
+        onOpenChange={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, ["salamatOtpModal", "open"]).apply(
+            null,
+            eventArgs
+          );
+
+          if (
+            eventArgs.length > 1 &&
+            eventArgs[1] &&
+            eventArgs[1]._plasmic_state_init_
+          ) {
+            return;
+          }
+        }}
+        open={generateStateValueProp($state, ["salamatOtpModal", "open"])}
+        title={
+          "\u06a9\u062f \u062a\u0627\u06cc\u06cc\u062f \u0627\u0631\u0633\u0627\u0644 \u0634\u062f\u0647 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+        }
+        trigger={null}
+      />
     </div>
   ) as React.ReactElement | null;
 }
@@ -7351,7 +7670,9 @@ const PlasmicDescendants = {
     "bookStatusButton",
     "disablePlatofrmFeatureDialog",
     "span",
-    "apiselcetedonlinevisitchannels"
+    "apiselcetedonlinevisitchannels",
+    "salamatOtpModal",
+    "inputTwoFactorAuth"
   ],
   lineClamp: ["lineClamp"],
   apiGetPyamentInfo2: ["apiGetPyamentInfo2"],
@@ -7398,7 +7719,9 @@ const PlasmicDescendants = {
   bookStatusButton: ["bookStatusButton"],
   disablePlatofrmFeatureDialog: ["disablePlatofrmFeatureDialog", "span"],
   span: ["span"],
-  apiselcetedonlinevisitchannels: ["apiselcetedonlinevisitchannels"]
+  apiselcetedonlinevisitchannels: ["apiselcetedonlinevisitchannels"],
+  salamatOtpModal: ["salamatOtpModal", "inputTwoFactorAuth"],
+  inputTwoFactorAuth: ["inputTwoFactorAuth"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -7431,6 +7754,8 @@ type NodeDefaultElementType = {
   disablePlatofrmFeatureDialog: typeof Dialog;
   span: "span";
   apiselcetedonlinevisitchannels: typeof ApiRequest;
+  salamatOtpModal: typeof Dialog;
+  inputTwoFactorAuth: typeof Input;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -7525,6 +7850,8 @@ export const PlasmicAppointmentCard = Object.assign(
     apiselcetedonlinevisitchannels: makeNodeComponent(
       "apiselcetedonlinevisitchannels"
     ),
+    salamatOtpModal: makeNodeComponent("salamatOtpModal"),
+    inputTwoFactorAuth: makeNodeComponent("inputTwoFactorAuth"),
 
     // Metadata about props expected for PlasmicAppointmentCard
     internalVariantProps: PlasmicAppointmentCard__VariantProps,

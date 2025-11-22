@@ -745,6 +745,19 @@ function PlasmicPatientList__RenderFunc(props: {
                 }
               })()}
               key={currentIndex}
+              medicalCode={(() => {
+                try {
+                  return $state.apiInsurance?.data?.tamin?.docId;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
               name={
                 hasVariant(globalVariants, "screen", "mobileOnly")
                   ? (() => {
@@ -846,9 +859,8 @@ function PlasmicPatientList__RenderFunc(props: {
                   typeof $steps["runActionOnApiAllBooks"] === "object" &&
                   typeof $steps["runActionOnApiAllBooks"].then === "function"
                 ) {
-                  $steps["runActionOnApiAllBooks"] = await $steps[
-                    "runActionOnApiAllBooks"
-                  ];
+                  $steps["runActionOnApiAllBooks"] =
+                    await $steps["runActionOnApiAllBooks"];
                 }
 
                 $steps["updateLoading2"] = true
@@ -1321,7 +1333,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicPatientList__VariantsArgs;
     args?: PlasmicPatientList__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicPatientList__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicPatientList__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicPatientList__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

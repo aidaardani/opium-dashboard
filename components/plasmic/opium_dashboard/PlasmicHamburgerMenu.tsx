@@ -897,9 +897,8 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
                     typeof $steps["updateIsOpenSideBar"] === "object" &&
                     typeof $steps["updateIsOpenSideBar"].then === "function"
                   ) {
-                    $steps["updateIsOpenSideBar"] = await $steps[
-                      "updateIsOpenSideBar"
-                    ];
+                    $steps["updateIsOpenSideBar"] =
+                      await $steps["updateIsOpenSideBar"];
                   }
                 }}
                 style={(() => {
@@ -999,7 +998,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicHamburgerMenu__VariantsArgs;
     args?: PlasmicHamburgerMenu__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicHamburgerMenu__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicHamburgerMenu__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicHamburgerMenu__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
