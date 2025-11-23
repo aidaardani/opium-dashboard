@@ -2630,19 +2630,14 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                                 args: [
                                   (() => {
                                     try {
-                                      return (() => {
-                                        const userId =
-                                          $ctx.query.userId ||
-                                          localStorage.getItem("userId");
-                                        return {
-                                          event_group: "long-workhour",
-                                          data: {
-                                            userId: userId,
-                                            pagePath: window.location.href
-                                          },
-                                          event_type: "like-to-edit-workhour"
-                                        };
-                                      })();
+                                      return {
+                                        event_group: "long-workhour",
+                                        data: {
+                                          userId: $ctx.query.user_id,
+                                          pagePath: window.location.href
+                                        },
+                                        event_type: "like-to-edit-workhour"
+                                      };
                                     } catch (e) {
                                       if (
                                         e instanceof TypeError ||
@@ -3295,19 +3290,14 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                                     args: [
                                       (() => {
                                         try {
-                                          return (() => {
-                                            const userId =
-                                              $ctx.query.userId ||
-                                              localStorage.getItem("userId");
-                                            return {
-                                              event_group: "activation-page",
-                                              data: {
-                                                userId: userId,
-                                                pagePath: window.location.href
-                                              },
-                                              event_type: $props.eventType
-                                            };
-                                          })();
+                                          return {
+                                            event_group: "activation-page",
+                                            data: {
+                                              userId: $ctx.query.user_id,
+                                              pagePath: window.location.href
+                                            },
+                                            event_type: "workhour-step"
+                                          };
                                         } catch (e) {
                                           if (
                                             e instanceof TypeError ||
@@ -3340,20 +3330,15 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                                   args: [
                                     (() => {
                                       try {
-                                        return (() => {
-                                          const userId =
-                                            $ctx.query.userId ||
-                                            localStorage.getItem("userId");
-                                          return {
-                                            event_group: "long-workhour",
-                                            data: {
-                                              userId: userId,
-                                              pagePath: window.location.href
-                                            },
-                                            event_type:
-                                              "like-to-have-long-workhour"
-                                          };
-                                        })();
+                                        return {
+                                          event_group: "long-workhour",
+                                          data: {
+                                            userId: $ctx.query.user_id,
+                                            pagePath: window.location.href
+                                          },
+                                          event_type:
+                                            "like-to-have-long-workhour"
+                                        };
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
