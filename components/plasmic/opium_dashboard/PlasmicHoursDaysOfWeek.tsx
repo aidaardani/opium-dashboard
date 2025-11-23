@@ -115,6 +115,7 @@ export type PlasmicHoursDaysOfWeek__OverridesType = {
   durationOfWorkhour?: Flex__<typeof Duration>;
   workhours?: Flex__<typeof Workhours>;
   dialog?: Flex__<typeof Dialog>;
+  dialogWarningWorkhoure?: Flex__<typeof Dialog>;
 };
 
 export interface DefaultHoursDaysOfWeekProps {
@@ -289,6 +290,12 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
       },
       {
         path: "dialog.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "dialogWarningWorkhoure.open",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -551,8 +558,8 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                       return !!$state.durationOfWorkhour.newduration
                         ? Number($state.durationOfWorkhour.newduration)
                         : !!$state.workhoursApi.data.data.duration
-                        ? Number($state.workhoursApi.data.data.duration)
-                        : 30;
+                          ? Number($state.workhoursApi.data.data.duration)
+                          : 30;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -831,13 +838,934 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     typeof $steps["runCustomOnSubmit"] === "object" &&
                     typeof $steps["runCustomOnSubmit"].then === "function"
                   ) {
-                    $steps["runCustomOnSubmit"] = await $steps[
-                      "runCustomOnSubmit"
-                    ];
+                    $steps["runCustomOnSubmit"] =
+                      await $steps["runCustomOnSubmit"];
                   }
                 }}
               />
             ) : null}
+            <div className={classNames(projectcss.all, sty.freeBox__ybXi)}>
+              {(() => {
+                try {
+                  return !$props.customOnSubmit;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <Button
+                  children2={
+                    "\u0630\u062e\u06cc\u0631\u0647 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc"
+                  }
+                  className={classNames("__wab_instance", sty.button__lqOr)}
+                  isDisabled={(() => {
+                    try {
+                      return $state.loading;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()}
+                  loading={(() => {
+                    try {
+                      return $state.loading;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["clearCheckingTheNumberOfBookForChangeWorkhoure"] =
+                      true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: [
+                                  "checkingTheNumberOfBookForChangeWorkhoure"
+                                ]
+                              },
+                              operation: 0,
+                              value: {}
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps[
+                        "clearCheckingTheNumberOfBookForChangeWorkhoure"
+                      ] != null &&
+                      typeof $steps[
+                        "clearCheckingTheNumberOfBookForChangeWorkhoure"
+                      ] === "object" &&
+                      typeof $steps[
+                        "clearCheckingTheNumberOfBookForChangeWorkhoure"
+                      ].then === "function"
+                    ) {
+                      $steps["clearCheckingTheNumberOfBookForChangeWorkhoure"] =
+                        await $steps[
+                          "clearCheckingTheNumberOfBookForChangeWorkhoure"
+                        ];
+                    }
+
+                    $steps["runCode5"] = $state.workhours.some(
+                      wh => wh.checkboxIsChecked && wh.warning
+                    )
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "error",
+                              "\u0633\u0627\u0639\u0627\u062a \u0628\u0627 \u06cc\u06a9\u062f\u06cc\u06af\u0631 \u0647\u0645\u200c\u067e\u0648\u0634\u0627\u0646\u06cc \u062f\u0627\u0631\u0646\u062f."
+                            ]
+                          };
+                          return $globalActions["Fragment.showToast"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode5"] != null &&
+                      typeof $steps["runCode5"] === "object" &&
+                      typeof $steps["runCode5"].then === "function"
+                    ) {
+                      $steps["runCode5"] = await $steps["runCode5"];
+                    }
+
+                    $steps["updateDialogWarningWorkhoureOpen"] =
+                      $state.workhours
+                        .map((day, index) =>
+                          day.checkboxIsChecked === true
+                            ? day.listOfWorkhoureCopy.map(workhour => {
+                                const [fromHour, fromMinute] = workhour.from
+                                  .split(":")
+                                  .map(Number);
+                                const [toHour, toMinute] = workhour.to
+                                  .split(":")
+                                  .map(Number);
+                                let fromMinutesTotal =
+                                  fromHour * 60 + fromMinute;
+                                let toMinutesTotal = toHour * 60 + toMinute;
+                                if (toMinutesTotal < fromMinutesTotal) {
+                                  toMinutesTotal += 1440;
+                                }
+                                const timeDifferenceMinutes =
+                                  toMinutesTotal - fromMinutesTotal;
+                                const eightHoursInMinutes = 480;
+                                return {
+                                  isMoreThanEightHours:
+                                    timeDifferenceMinutes > eightHoursInMinutes
+                                };
+                              })
+                            : false
+                        )
+                        .flat()
+                        .filter(item => item != false)
+                        .some(item => item.isMoreThanEightHours === true)
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["dialogWarningWorkhoure", "open"]
+                              },
+                              operation: 0,
+                              value: true
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["updateDialogWarningWorkhoureOpen"] != null &&
+                      typeof $steps["updateDialogWarningWorkhoureOpen"] ===
+                        "object" &&
+                      typeof $steps["updateDialogWarningWorkhoureOpen"].then ===
+                        "function"
+                    ) {
+                      $steps["updateDialogWarningWorkhoureOpen"] =
+                        await $steps["updateDialogWarningWorkhoureOpen"];
+                    }
+
+                    $steps["startLoading"] =
+                      $state.workhours.every(wh =>
+                        wh.checkboxIsChecked ? !wh.warning : true
+                      ) &&
+                      !$state.workhours
+                        .map((day, index) =>
+                          day.checkboxIsChecked === true
+                            ? day.listOfWorkhoureCopy.map(workhour => {
+                                const [fromHour, fromMinute] = workhour.from
+                                  .split(":")
+                                  .map(Number);
+                                const [toHour, toMinute] = workhour.to
+                                  .split(":")
+                                  .map(Number);
+                                let fromMinutesTotal =
+                                  fromHour * 60 + fromMinute;
+                                let toMinutesTotal = toHour * 60 + toMinute;
+                                if (toMinutesTotal < fromMinutesTotal) {
+                                  toMinutesTotal += 1440;
+                                }
+                                const timeDifferenceMinutes =
+                                  toMinutesTotal - fromMinutesTotal;
+                                const eightHoursInMinutes = 480;
+                                return {
+                                  isMoreThanEightHours:
+                                    timeDifferenceMinutes > eightHoursInMinutes
+                                };
+                              })
+                            : false
+                        )
+                        .flat()
+                        .filter(item => item != false)
+                        .some(item => item.isMoreThanEightHours === true)
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["loading"]
+                              },
+                              operation: 0,
+                              value: true
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["startLoading"] != null &&
+                      typeof $steps["startLoading"] === "object" &&
+                      typeof $steps["startLoading"].then === "function"
+                    ) {
+                      $steps["startLoading"] = await $steps["startLoading"];
+                    }
+
+                    $steps["saveWorkhours"] =
+                      $state.workhours.every(wh =>
+                        wh.checkboxIsChecked ? !wh.warning : true
+                      ) &&
+                      !$state.workhours
+                        .map((day, index) =>
+                          day.checkboxIsChecked === true
+                            ? day.listOfWorkhoureCopy.map(workhour => {
+                                const [fromHour, fromMinute] = workhour.from
+                                  .split(":")
+                                  .map(Number);
+                                const [toHour, toMinute] = workhour.to
+                                  .split(":")
+                                  .map(Number);
+                                let fromMinutesTotal =
+                                  fromHour * 60 + fromMinute;
+                                let toMinutesTotal = toHour * 60 + toMinute;
+                                if (toMinutesTotal < fromMinutesTotal) {
+                                  toMinutesTotal += 1440;
+                                }
+                                const timeDifferenceMinutes =
+                                  toMinutesTotal - fromMinutesTotal;
+                                const eightHoursInMinutes = 480;
+                                return {
+                                  isMoreThanEightHours:
+                                    timeDifferenceMinutes > eightHoursInMinutes
+                                };
+                              })
+                            : false
+                        )
+                        .flat()
+                        .filter(item => item != false)
+                        .some(item => item.isMoreThanEightHours === true)
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "POST",
+                                "https://api.paziresh24.com/V1/doctor/center/workhours",
+                                undefined,
+                                (() => {
+                                  try {
+                                    return {
+                                      center_id: $props.centerId,
+                                      cost: 0,
+                                      duration:
+                                        $state.durationOfWorkhour.newduration ||
+                                        $state.workhoursApi.data.data.duration,
+                                      workHours: $state.workhours
+                                        .map((day, index) =>
+                                          day.checkboxIsChecked === true
+                                            ? day.listOfWorkhoureCopy.map(
+                                                workhour => {
+                                                  return {
+                                                    day: $state.days[index].id,
+                                                    from: workhour.from,
+                                                    to: workhour.to
+                                                  };
+                                                }
+                                              )
+                                            : false
+                                        )
+                                        .flat()
+                                        .filter(item => item != false)
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.apiRequest"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["saveWorkhours"] != null &&
+                      typeof $steps["saveWorkhours"] === "object" &&
+                      typeof $steps["saveWorkhours"].then === "function"
+                    ) {
+                      $steps["saveWorkhours"] = await $steps["saveWorkhours"];
+                    }
+
+                    $steps["showToastSuccessful"] =
+                      $steps.saveWorkhours.data.status === "SUCCESS" &&
+                      $state.workhours.every(wh =>
+                        wh.checkboxIsChecked ? !wh.warning : true
+                      ) &&
+                      !$state.workhours
+                        .map((day, index) =>
+                          day.checkboxIsChecked === true
+                            ? day.listOfWorkhoureCopy.map(workhour => {
+                                const [fromHour, fromMinute] = workhour.from
+                                  .split(":")
+                                  .map(Number);
+                                const [toHour, toMinute] = workhour.to
+                                  .split(":")
+                                  .map(Number);
+                                let fromMinutesTotal =
+                                  fromHour * 60 + fromMinute;
+                                let toMinutesTotal = toHour * 60 + toMinute;
+                                if (toMinutesTotal < fromMinutesTotal) {
+                                  toMinutesTotal += 1440;
+                                }
+                                const timeDifferenceMinutes =
+                                  toMinutesTotal - fromMinutesTotal;
+                                const eightHoursInMinutes = 480;
+                                return {
+                                  isMoreThanEightHours:
+                                    timeDifferenceMinutes > eightHoursInMinutes
+                                };
+                              })
+                            : false
+                        )
+                        .flat()
+                        .filter(item => item != false)
+                        .some(item => item.isMoreThanEightHours === true)
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                undefined,
+                                "\u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062b\u0628\u062a \u0634\u062f."
+                              ]
+                            };
+                            return $globalActions["Fragment.showToast"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["showToastSuccessful"] != null &&
+                      typeof $steps["showToastSuccessful"] === "object" &&
+                      typeof $steps["showToastSuccessful"].then === "function"
+                    ) {
+                      $steps["showToastSuccessful"] =
+                        await $steps["showToastSuccessful"];
+                    }
+
+                    $steps["compareWorkhoure"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "POST",
+                              "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/CompareWorkhoure",
+                              undefined,
+                              (() => {
+                                try {
+                                  return {
+                                    CenterId: $props.centerId,
+                                    OldWorkHoure:
+                                      $state.workhoursApi.data.data.workhours,
+                                    NewWorkHours: $state.workhours
+                                      .map((day, index) =>
+                                        day.checkboxIsChecked === true
+                                          ? day.listOfWorkhoureCopy.map(
+                                              workhour => {
+                                                return {
+                                                  day: $state.days[index].id,
+                                                  from: workhour.from,
+                                                  to: workhour.to
+                                                };
+                                              }
+                                            )
+                                          : false
+                                      )
+                                      .flat()
+                                      .filter(item => item != false)
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["compareWorkhoure"] != null &&
+                      typeof $steps["compareWorkhoure"] === "object" &&
+                      typeof $steps["compareWorkhoure"].then === "function"
+                    ) {
+                      $steps["compareWorkhoure"] =
+                        await $steps["compareWorkhoure"];
+                    }
+
+                    $steps["updateCheckingTheNumberOfBookForChangeWorkhoure2"] =
+                      true
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: [
+                                  "checkingTheNumberOfBookForChangeWorkhoure"
+                                ]
+                              },
+                              operation: 0,
+                              value: $steps.compareWorkhoure.data
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps[
+                        "updateCheckingTheNumberOfBookForChangeWorkhoure2"
+                      ] != null &&
+                      typeof $steps[
+                        "updateCheckingTheNumberOfBookForChangeWorkhoure2"
+                      ] === "object" &&
+                      typeof $steps[
+                        "updateCheckingTheNumberOfBookForChangeWorkhoure2"
+                      ].then === "function"
+                    ) {
+                      $steps[
+                        "updateCheckingTheNumberOfBookForChangeWorkhoure2"
+                      ] =
+                        await $steps[
+                          "updateCheckingTheNumberOfBookForChangeWorkhoure2"
+                        ];
+                    }
+
+                    $steps["endLoading"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["loading"]
+                            },
+                            operation: 0,
+                            value: false
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["endLoading"] != null &&
+                      typeof $steps["endLoading"] === "object" &&
+                      typeof $steps["endLoading"].then === "function"
+                    ) {
+                      $steps["endLoading"] = await $steps["endLoading"];
+                    }
+
+                    $steps["updateDialogOpen"] =
+                      $state.checkingTheNumberOfBookForChangeWorkhoure?.some?.(
+                        item => item?.date !== undefined
+                      )
+                        ? (() => {
+                            const actionArgs = {
+                              variable: {
+                                objRoot: $state,
+                                variablePath: ["dialog", "open"]
+                              },
+                              operation: 0,
+                              value: true
+                            };
+                            return (({
+                              variable,
+                              value,
+                              startIndex,
+                              deleteCount
+                            }) => {
+                              if (!variable) {
+                                return;
+                              }
+                              const { objRoot, variablePath } = variable;
+
+                              $stateSet(objRoot, variablePath, value);
+                              return value;
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["updateDialogOpen"] != null &&
+                      typeof $steps["updateDialogOpen"] === "object" &&
+                      typeof $steps["updateDialogOpen"].then === "function"
+                    ) {
+                      $steps["updateDialogOpen"] =
+                        await $steps["updateDialogOpen"];
+                    }
+
+                    $steps["cleanUp"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "POST",
+                              "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/Cleanup",
+                              undefined,
+                              (() => {
+                                try {
+                                  return {
+                                    doctor_id: $props?.userId,
+                                    server_id: 1
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["cleanUp"] != null &&
+                      typeof $steps["cleanUp"] === "object" &&
+                      typeof $steps["cleanUp"].then === "function"
+                    ) {
+                      $steps["cleanUp"] = await $steps["cleanUp"];
+                    }
+
+                    $steps["showToast"] =
+                      $steps.saveWorkhours.data.status != "SUCCESS"
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "error",
+                                (() => {
+                                  try {
+                                    return (
+                                      $steps.saveWorkhours?.data?.message ??
+                                      "در ثبت ساعت کاری با خطا مواجه هستید."
+                                    );
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.showToast"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["showToast"] != null &&
+                      typeof $steps["showToast"] === "object" &&
+                      typeof $steps["showToast"].then === "function"
+                    ) {
+                      $steps["showToast"] = await $steps["showToast"];
+                    }
+
+                    $steps["sendSuccessEvent"] =
+                      $steps.saveWorkhours.data.status === "SUCCESS" &&
+                      $state.workhours.every(wh =>
+                        wh.checkboxIsChecked ? !wh.warning : true
+                      )
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return {
+                                      group: "workhour",
+                                      data: {
+                                        center_id: $props.centerId,
+                                        user_center_id: $props.userCenterId,
+                                        Workhour: $state.workhours,
+                                        Day: $state.days
+                                      },
+                                      type: "click-button-save-new-workhour-successful"
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["sendSuccessEvent"] != null &&
+                      typeof $steps["sendSuccessEvent"] === "object" &&
+                      typeof $steps["sendSuccessEvent"].then === "function"
+                    ) {
+                      $steps["sendSuccessEvent"] =
+                        await $steps["sendSuccessEvent"];
+                    }
+
+                    $steps["sendUnsuccessEvent"] =
+                      $steps.saveWorkhours.data.status != "SUCCESS"
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return {
+                                      group: "workhour",
+                                      data: {
+                                        center_id: $props.centerId,
+                                        user_center_id: $props.userCenterId,
+                                        Workhour: $state.workhours,
+                                        Day: $state.days
+                                      },
+                                      type: "click-button-save-new-workhour-unsuccessful"
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["sendUnsuccessEvent"] != null &&
+                      typeof $steps["sendUnsuccessEvent"] === "object" &&
+                      typeof $steps["sendUnsuccessEvent"].then === "function"
+                    ) {
+                      $steps["sendUnsuccessEvent"] =
+                        await $steps["sendUnsuccessEvent"];
+                    }
+
+                    $steps["sendEvent"] =
+                      !!$props.forwardPage && $steps.saveWorkhours.status == 200
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return (() => {
+                                      const userId =
+                                        $ctx.query.userId ||
+                                        localStorage.getItem("userId");
+                                      return {
+                                        event_group: "activation-page",
+                                        data: {
+                                          userId: userId,
+                                          pagePath: window.location.href
+                                        },
+                                        event_type: $props.eventType
+                                      };
+                                    })();
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["sendEvent"] != null &&
+                      typeof $steps["sendEvent"] === "object" &&
+                      typeof $steps["sendEvent"].then === "function"
+                    ) {
+                      $steps["sendEvent"] = await $steps["sendEvent"];
+                    }
+
+                    $steps["sendEvent"] = $state.workhours
+                      // 1. تولید آرایه موقت (similar to previous steps)
+                      .map((day, index) =>
+                        day.checkboxIsChecked === true
+                          ? day.listOfWorkhoureCopy.map(workhour => {
+                              // 1.1. تجزیه زمان و محاسبه اختلاف دقیقه
+                              const [fromHour, fromMinute] = workhour.from
+                                .split(":")
+                                .map(Number);
+                              const [toHour, toMinute] = workhour.to
+                                .split(":")
+                                .map(Number);
+
+                              let fromMinutesTotal = fromHour * 60 + fromMinute;
+                              let toMinutesTotal = toHour * 60 + toMinute;
+
+                              // بررسی عبور از نیمه شب
+                              if (toMinutesTotal < fromMinutesTotal) {
+                                toMinutesTotal += 1440; // اضافه کردن 24 ساعت
+                              }
+
+                              const timeDifferenceMinutes =
+                                toMinutesTotal - fromMinutesTotal;
+                              const eightHoursInMinutes = 480; // 8 * 60
+
+                              return {
+                                // فیلدهای اصلی حذف شده‌اند چون فقط به بولین نهایی نیاز داریم، اما
+                                // isMoreThanEightHours حفظ شده است.
+                                isMoreThanEightHours:
+                                  timeDifferenceMinutes > eightHoursInMinutes
+                              };
+                            })
+                          : false
+                      )
+                      // 2. هموارسازی و حذف false ها
+                      .flat()
+                      .filter(item => item != false)
+
+                      // 3. استفاده از متد some() برای خروجی نهایی بولین
+                      .some(item => item.isMoreThanEightHours === true)
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return (() => {
+                                    const userId =
+                                      $ctx.query.userId ||
+                                      localStorage.getItem("userId");
+                                    return {
+                                      event_group: "long-workhoure",
+                                      data: {
+                                        userId: userId,
+                                        pagePath: window.location.href
+                                      },
+                                      event_type: "edit-workhoure"
+                                    };
+                                  })();
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendEvent"] != null &&
+                      typeof $steps["sendEvent"] === "object" &&
+                      typeof $steps["sendEvent"].then === "function"
+                    ) {
+                      $steps["sendEvent"] = await $steps["sendEvent"];
+                    }
+
+                    $steps["redirect"] =
+                      !!$props.forwardPage && $steps.saveWorkhours.status == 200
+                        ? (() => {
+                            const actionArgs = {
+                              destination: (() => {
+                                try {
+                                  return $props.forwardPage;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["redirect"] != null &&
+                      typeof $steps["redirect"] === "object" &&
+                      typeof $steps["redirect"].then === "function"
+                    ) {
+                      $steps["redirect"] = await $steps["redirect"];
+                    }
+                  }}
+                />
+              ) : null}
+            </div>
             <Dialog
               data-plasmic-name={"dialog"}
               data-plasmic-override={overrides.dialog}
@@ -988,9 +1916,8 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                           typeof $steps["updateLoading"] === "object" &&
                           typeof $steps["updateLoading"].then === "function"
                         ) {
-                          $steps["updateLoading"] = await $steps[
-                            "updateLoading"
-                          ];
+                          $steps["updateLoading"] =
+                            await $steps["updateLoading"];
                         }
 
                         $steps["changeTimeOfBookOutOfWorkHoure"] = true
@@ -1108,9 +2035,8 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                           typeof $steps["updateLoading2"] === "object" &&
                           typeof $steps["updateLoading2"].then === "function"
                         ) {
-                          $steps["updateLoading2"] = await $steps[
-                            "updateLoading2"
-                          ];
+                          $steps["updateLoading2"] =
+                            await $steps["updateLoading2"];
                         }
 
                         $steps["showToast"] = $steps
@@ -1166,9 +2092,8 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                           typeof $steps["updateDialogOpen"] === "object" &&
                           typeof $steps["updateDialogOpen"].then === "function"
                         ) {
-                          $steps["updateDialogOpen"] = await $steps[
-                            "updateDialogOpen"
-                          ];
+                          $steps["updateDialogOpen"] =
+                            await $steps["updateDialogOpen"];
                         }
                       }}
                     />
@@ -1245,9 +2170,8 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                           typeof $steps["updateLoading"] === "object" &&
                           typeof $steps["updateLoading"].then === "function"
                         ) {
-                          $steps["updateLoading"] = await $steps[
-                            "updateLoading"
-                          ];
+                          $steps["updateLoading"] =
+                            await $steps["updateLoading"];
                         }
 
                         $steps["deleteBookOutOfWorkHoure"] = true
@@ -1331,9 +2255,8 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                           typeof $steps["deleteBookOutOfWorkHoure"].then ===
                             "function"
                         ) {
-                          $steps["deleteBookOutOfWorkHoure"] = await $steps[
-                            "deleteBookOutOfWorkHoure"
-                          ];
+                          $steps["deleteBookOutOfWorkHoure"] =
+                            await $steps["deleteBookOutOfWorkHoure"];
                         }
 
                         $steps["updateLoading2"] = true
@@ -1367,9 +2290,8 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                           typeof $steps["updateLoading2"] === "object" &&
                           typeof $steps["updateLoading2"].then === "function"
                         ) {
-                          $steps["updateLoading2"] = await $steps[
-                            "updateLoading2"
-                          ];
+                          $steps["updateLoading2"] =
+                            await $steps["updateLoading2"];
                         }
 
                         $steps["showToast"] = $steps.deleteBookOutOfWorkHoure
@@ -1468,9 +2390,8 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                           typeof $steps["updateDialogOpen"] === "object" &&
                           typeof $steps["updateDialogOpen"].then === "function"
                         ) {
-                          $steps["updateDialogOpen"] = await $steps[
-                            "updateDialogOpen"
-                          ];
+                          $steps["updateDialogOpen"] =
+                            await $steps["updateDialogOpen"];
                         }
                       }}
                       outline={true}
@@ -1528,9 +2449,8 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                           typeof $steps["updateDialogOpen"] === "object" &&
                           typeof $steps["updateDialogOpen"].then === "function"
                         ) {
-                          $steps["updateDialogOpen"] = await $steps[
-                            "updateDialogOpen"
-                          ];
+                          $steps["updateDialogOpen"] =
+                            await $steps["updateDialogOpen"];
                         }
 
                         $steps["invokeGlobalAction"] = true
@@ -1574,9 +2494,8 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                           typeof $steps["invokeGlobalAction"].then ===
                             "function"
                         ) {
-                          $steps["invokeGlobalAction"] = await $steps[
-                            "invokeGlobalAction"
-                          ];
+                          $steps["invokeGlobalAction"] =
+                            await $steps["invokeGlobalAction"];
                         }
                       }}
                       outline={true}
@@ -1618,680 +2537,969 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
               trigger={null}
             />
 
-            {(() => {
-              try {
-                return !$props.customOnSubmit;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return true;
-                }
-                throw e;
-              }
-            })() ? (
-              <Button
-                children2={
-                  "\u0630\u062e\u06cc\u0631\u0647 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc"
-                }
-                className={classNames("__wab_instance", sty.button___8MTpg)}
-                isDisabled={(() => {
-                  try {
-                    return $state.loading;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return [];
-                    }
-                    throw e;
-                  }
-                })()}
-                loading={(() => {
-                  try {
-                    return $state.loading;
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return [];
-                    }
-                    throw e;
-                  }
-                })()}
-                onClick={async event => {
-                  const $steps = {};
+            <Dialog
+              data-plasmic-name={"dialogWarningWorkhoure"}
+              data-plasmic-override={overrides.dialogWarningWorkhoure}
+              body={
+                <div className={classNames(projectcss.all, sty.freeBox__zhsRp)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___9XbmB
+                    )}
+                  >
+                    <React.Fragment>
+                      <React.Fragment>
+                        {
+                          "\u0628\u0627\u0632\u0647\u200c\u200c\u06cc \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u0634\u0645\u0627 "
+                        }
+                      </React.Fragment>
+                      <span
+                        className={"plasmic_default__all plasmic_default__span"}
+                        style={{ fontWeight: 700 }}
+                      >
+                        {
+                          "\u0637\u0648\u0644\u0627\u0646\u06cc\u200c\u062a\u0631"
+                        }
+                      </span>
+                      <React.Fragment>
+                        {
+                          " \u0627\u0632 \u062d\u062f \u0645\u0639\u0645\u0648\u0644 \u0627\u0633\u062a.\n \u0628\u0631\u0627\u06cc \u062c\u0644\u0648\u06af\u06cc\u0631\u06cc \u0627\u0632 \u0634\u06a9\u0627\u06cc\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0628\u0647 \u062f\u0644\u06cc\u0644 \u0639\u062f\u0645 \u062d\u0636\u0648\u0631 \u0648 \u062a\u0636\u0645\u06cc\u0646 \u0648\u06cc\u0632\u06cc\u062a \u0645\u0648\u0641\u0642 \u062f\u0631 \u0645\u0637\u0628\u060c \u0644\u0637\u0641\u0627\u064b \u062f\u0642\u062a \u06a9\u0646\u06cc\u062f \u06a9\u0647 \u0633\u0627\u0639\u0627\u062a \u0648\u0627\u0631\u062f \u0634\u062f\u0647 \u06a9\u0627\u0645\u0644\u0627\u064b \u0635\u062d\u06cc\u062d \u0648 \u0628\u0647\u200c\u0631\u0648\u0632 \u0628\u0627\u0634\u0646\u062f."
+                        }
+                      </React.Fragment>
+                    </React.Fragment>
+                  </div>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__wt3IU)}
+                  >
+                    <Button
+                      children2={
+                        "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc"
+                      }
+                      className={classNames(
+                        "__wab_instance",
+                        sty.button__sgmUq
+                      )}
+                      onClick={async event => {
+                        const $steps = {};
 
-                  $steps["clearCheckingTheNumberOfBookForChangeWorkhoure"] =
-                    true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: [
-                                "checkingTheNumberOfBookForChangeWorkhoure"
-                              ]
-                            },
-                            operation: 0,
-                            value: {}
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
+                        $steps["updateDialogWarningWorkhoureOpen"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: [
+                                    "dialogWarningWorkhoure",
+                                    "open"
+                                  ]
+                                },
+                                operation: 0,
+                                value: false
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateDialogWarningWorkhoureOpen"] != null &&
+                          typeof $steps["updateDialogWarningWorkhoureOpen"] ===
+                            "object" &&
+                          typeof $steps["updateDialogWarningWorkhoureOpen"]
+                            .then === "function"
+                        ) {
+                          $steps["updateDialogWarningWorkhoureOpen"] =
+                            await $steps["updateDialogWarningWorkhoureOpen"];
+                        }
+
+                        $steps["invokeGlobalAction"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  (() => {
+                                    try {
+                                      return (() => {
+                                        const userId =
+                                          $ctx.query.userId ||
+                                          localStorage.getItem("userId");
+                                        return {
+                                          event_group: "long-workhour",
+                                          data: {
+                                            userId: userId,
+                                            pagePath: window.location.href
+                                          },
+                                          event_type: "like-to-edit-workhour"
+                                        };
+                                      })();
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions["Splunk.sendLog"]?.apply(
+                                null,
+                                [...actionArgs.args]
+                              );
+                            })()
+                          : undefined;
+                        if (
+                          $steps["invokeGlobalAction"] != null &&
+                          typeof $steps["invokeGlobalAction"] === "object" &&
+                          typeof $steps["invokeGlobalAction"].then ===
+                            "function"
+                        ) {
+                          $steps["invokeGlobalAction"] =
+                            await $steps["invokeGlobalAction"];
+                        }
+                      }}
+                    />
+
+                    {(() => {
+                      try {
+                        return !$props.customOnSubmit;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return false;
+                        }
+                        throw e;
+                      }
+                    })() ? (
+                      <Button
+                        children2={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__tc5Y9
+                            )}
+                          >
+                            {
+                              "\u0633\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u06cc \u0635\u062d\u06cc\u062d \u0627\u0633\u062a\u060c \u0630\u062e\u06cc\u0631\u0647 \u0634\u0648\u062f."
                             }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                  if (
-                    $steps["clearCheckingTheNumberOfBookForChangeWorkhoure"] !=
-                      null &&
-                    typeof $steps[
-                      "clearCheckingTheNumberOfBookForChangeWorkhoure"
-                    ] === "object" &&
-                    typeof $steps[
-                      "clearCheckingTheNumberOfBookForChangeWorkhoure"
-                    ].then === "function"
-                  ) {
-                    $steps["clearCheckingTheNumberOfBookForChangeWorkhoure"] =
-                      await $steps[
-                        "clearCheckingTheNumberOfBookForChangeWorkhoure"
-                      ];
-                  }
-
-                  $steps["runCode5"] = $state.workhours.some(
-                    wh => wh.checkboxIsChecked && wh.warning
-                  )
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "error",
-                            "\u0633\u0627\u0639\u0627\u062a \u0628\u0627 \u06cc\u06a9\u062f\u06cc\u06af\u0631 \u0647\u0645\u200c\u067e\u0648\u0634\u0627\u0646\u06cc \u062f\u0627\u0631\u0646\u062f."
-                          ]
-                        };
-                        return $globalActions["Fragment.showToast"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                  if (
-                    $steps["runCode5"] != null &&
-                    typeof $steps["runCode5"] === "object" &&
-                    typeof $steps["runCode5"].then === "function"
-                  ) {
-                    $steps["runCode5"] = await $steps["runCode5"];
-                  }
-
-                  $steps["startLoading"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["loading"]
-                          },
-                          operation: 0,
-                          value: true
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["startLoading"] != null &&
-                    typeof $steps["startLoading"] === "object" &&
-                    typeof $steps["startLoading"].then === "function"
-                  ) {
-                    $steps["startLoading"] = await $steps["startLoading"];
-                  }
-
-                  $steps["saveWorkhours"] = $state.workhours.every(wh =>
-                    wh.checkboxIsChecked ? !wh.warning : true
-                  )
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "POST",
-                            "https://api.paziresh24.com/V1/doctor/center/workhours",
-                            undefined,
-                            (() => {
-                              try {
-                                return {
-                                  center_id: $props.centerId,
-                                  cost: 0,
-                                  duration:
-                                    $state.durationOfWorkhour.newduration ||
-                                    $state.workhoursApi.data.data.duration,
-                                  workHours: $state.workhours
-                                    .map((day, index) =>
-                                      day.checkboxIsChecked === true
-                                        ? day.listOfWorkhoureCopy.map(
-                                            workhour => {
-                                              return {
-                                                day: $state.days[index].id,
-                                                from: workhour.from,
-                                                to: workhour.to
-                                              };
-                                            }
-                                          )
-                                        : false
-                                    )
-                                    .flat()
-                                    .filter(item => item != false)
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Fragment.apiRequest"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                  if (
-                    $steps["saveWorkhours"] != null &&
-                    typeof $steps["saveWorkhours"] === "object" &&
-                    typeof $steps["saveWorkhours"].then === "function"
-                  ) {
-                    $steps["saveWorkhours"] = await $steps["saveWorkhours"];
-                  }
-
-                  $steps["showToastSuccessful"] =
-                    $steps.saveWorkhours.data.status === "SUCCESS" &&
-                    $state.workhours.every(wh =>
-                      wh.checkboxIsChecked ? !wh.warning : true
-                    )
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              undefined,
-                              "\u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062b\u0628\u062a \u0634\u062f."
-                            ]
-                          };
-                          return $globalActions["Fragment.showToast"]?.apply(
-                            null,
-                            [...actionArgs.args]
-                          );
-                        })()
-                      : undefined;
-                  if (
-                    $steps["showToastSuccessful"] != null &&
-                    typeof $steps["showToastSuccessful"] === "object" &&
-                    typeof $steps["showToastSuccessful"].then === "function"
-                  ) {
-                    $steps["showToastSuccessful"] = await $steps[
-                      "showToastSuccessful"
-                    ];
-                  }
-
-                  $steps["compareWorkhoure"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "POST",
-                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/CompareWorkhoure",
-                            undefined,
-                            (() => {
-                              try {
-                                return {
-                                  CenterId: $props.centerId,
-                                  OldWorkHoure:
-                                    $state.workhoursApi.data.data.workhours,
-                                  NewWorkHours: $state.workhours
-                                    .map((day, index) =>
-                                      day.checkboxIsChecked === true
-                                        ? day.listOfWorkhoureCopy.map(
-                                            workhour => {
-                                              return {
-                                                day: $state.days[index].id,
-                                                from: workhour.from,
-                                                to: workhour.to
-                                              };
-                                            }
-                                          )
-                                        : false
-                                    )
-                                    .flat()
-                                    .filter(item => item != false)
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Fragment.apiRequest"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                  if (
-                    $steps["compareWorkhoure"] != null &&
-                    typeof $steps["compareWorkhoure"] === "object" &&
-                    typeof $steps["compareWorkhoure"].then === "function"
-                  ) {
-                    $steps["compareWorkhoure"] = await $steps[
-                      "compareWorkhoure"
-                    ];
-                  }
-
-                  $steps["updateCheckingTheNumberOfBookForChangeWorkhoure2"] =
-                    true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: [
-                                "checkingTheNumberOfBookForChangeWorkhoure"
-                              ]
-                            },
-                            operation: 0,
-                            value: $steps.compareWorkhoure.data
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                  if (
-                    $steps[
-                      "updateCheckingTheNumberOfBookForChangeWorkhoure2"
-                    ] != null &&
-                    typeof $steps[
-                      "updateCheckingTheNumberOfBookForChangeWorkhoure2"
-                    ] === "object" &&
-                    typeof $steps[
-                      "updateCheckingTheNumberOfBookForChangeWorkhoure2"
-                    ].then === "function"
-                  ) {
-                    $steps["updateCheckingTheNumberOfBookForChangeWorkhoure2"] =
-                      await $steps[
-                        "updateCheckingTheNumberOfBookForChangeWorkhoure2"
-                      ];
-                  }
-
-                  $steps["endLoading"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          variable: {
-                            objRoot: $state,
-                            variablePath: ["loading"]
-                          },
-                          operation: 0,
-                          value: false
-                        };
-                        return (({
-                          variable,
-                          value,
-                          startIndex,
-                          deleteCount
-                        }) => {
-                          if (!variable) {
-                            return;
-                          }
-                          const { objRoot, variablePath } = variable;
-
-                          $stateSet(objRoot, variablePath, value);
-                          return value;
-                        })?.apply(null, [actionArgs]);
-                      })()
-                    : undefined;
-                  if (
-                    $steps["endLoading"] != null &&
-                    typeof $steps["endLoading"] === "object" &&
-                    typeof $steps["endLoading"].then === "function"
-                  ) {
-                    $steps["endLoading"] = await $steps["endLoading"];
-                  }
-
-                  $steps["updateDialogOpen"] =
-                    $state.checkingTheNumberOfBookForChangeWorkhoure?.some?.(
-                      item => item?.date !== undefined
-                    )
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["dialog", "open"]
-                            },
-                            operation: 0,
-                            value: true
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                  if (
-                    $steps["updateDialogOpen"] != null &&
-                    typeof $steps["updateDialogOpen"] === "object" &&
-                    typeof $steps["updateDialogOpen"].then === "function"
-                  ) {
-                    $steps["updateDialogOpen"] = await $steps[
-                      "updateDialogOpen"
-                    ];
-                  }
-
-                  $steps["cleanUp"] = true
-                    ? (() => {
-                        const actionArgs = {
-                          args: [
-                            "POST",
-                            "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/Cleanup",
-                            undefined,
-                            (() => {
-                              try {
-                                return {
-                                  doctor_id: $props?.userId,
-                                  server_id: 1
-                                };
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          ]
-                        };
-                        return $globalActions["Fragment.apiRequest"]?.apply(
-                          null,
-                          [...actionArgs.args]
-                        );
-                      })()
-                    : undefined;
-                  if (
-                    $steps["cleanUp"] != null &&
-                    typeof $steps["cleanUp"] === "object" &&
-                    typeof $steps["cleanUp"].then === "function"
-                  ) {
-                    $steps["cleanUp"] = await $steps["cleanUp"];
-                  }
-
-                  $steps["showToast"] =
-                    $steps.saveWorkhours.data.status != "SUCCESS"
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              "error",
-                              (() => {
-                                try {
-                                  return (
-                                    $steps.saveWorkhours?.data?.message ??
-                                    "در ثبت ساعت کاری با خطا مواجه هستید."
-                                  );
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Fragment.showToast"]?.apply(
-                            null,
-                            [...actionArgs.args]
-                          );
-                        })()
-                      : undefined;
-                  if (
-                    $steps["showToast"] != null &&
-                    typeof $steps["showToast"] === "object" &&
-                    typeof $steps["showToast"].then === "function"
-                  ) {
-                    $steps["showToast"] = await $steps["showToast"];
-                  }
-
-                  $steps["sendSuccessEvent"] =
-                    $steps.saveWorkhours.data.status === "SUCCESS" &&
-                    $state.workhours.every(wh =>
-                      wh.checkboxIsChecked ? !wh.warning : true
-                    )
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              (() => {
-                                try {
-                                  return {
-                                    group: "workhour",
-                                    data: {
-                                      center_id: $props.centerId,
-                                      user_center_id: $props.userCenterId,
-                                      Workhour: $state.workhours,
-                                      Day: $state.days
-                                    },
-                                    type: "click-button-save-new-workhour-successful"
-                                  };
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Splunk.sendLog"]?.apply(null, [
-                            ...actionArgs.args
-                          ]);
-                        })()
-                      : undefined;
-                  if (
-                    $steps["sendSuccessEvent"] != null &&
-                    typeof $steps["sendSuccessEvent"] === "object" &&
-                    typeof $steps["sendSuccessEvent"].then === "function"
-                  ) {
-                    $steps["sendSuccessEvent"] = await $steps[
-                      "sendSuccessEvent"
-                    ];
-                  }
-
-                  $steps["sendUnsuccessEvent"] =
-                    $steps.saveWorkhours.data.status != "SUCCESS"
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              (() => {
-                                try {
-                                  return {
-                                    group: "workhour",
-                                    data: {
-                                      center_id: $props.centerId,
-                                      user_center_id: $props.userCenterId,
-                                      Workhour: $state.workhours,
-                                      Day: $state.days
-                                    },
-                                    type: "click-button-save-new-workhour-unsuccessful"
-                                  };
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Splunk.sendLog"]?.apply(null, [
-                            ...actionArgs.args
-                          ]);
-                        })()
-                      : undefined;
-                  if (
-                    $steps["sendUnsuccessEvent"] != null &&
-                    typeof $steps["sendUnsuccessEvent"] === "object" &&
-                    typeof $steps["sendUnsuccessEvent"].then === "function"
-                  ) {
-                    $steps["sendUnsuccessEvent"] = await $steps[
-                      "sendUnsuccessEvent"
-                    ];
-                  }
-
-                  $steps["sendEvent"] =
-                    !!$props.forwardPage && $steps.saveWorkhours.status == 200
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              (() => {
-                                try {
-                                  return (() => {
-                                    const userId =
-                                      $ctx.query.userId ||
-                                      localStorage.getItem("userId");
-                                    return {
-                                      event_group: "activation-page",
-                                      data: {
-                                        userId: userId,
-                                        pagePath: window.location.href
-                                      },
-                                      event_type: $props.eventType
-                                    };
-                                  })();
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Splunk.sendLog"]?.apply(null, [
-                            ...actionArgs.args
-                          ]);
-                        })()
-                      : undefined;
-                  if (
-                    $steps["sendEvent"] != null &&
-                    typeof $steps["sendEvent"] === "object" &&
-                    typeof $steps["sendEvent"].then === "function"
-                  ) {
-                    $steps["sendEvent"] = await $steps["sendEvent"];
-                  }
-
-                  $steps["redirect"] =
-                    !!$props.forwardPage && $steps.saveWorkhours.status == 200
-                      ? (() => {
-                          const actionArgs = {
-                            destination: (() => {
-                              try {
-                                return $props.forwardPage;
-                              } catch (e) {
-                                if (
-                                  e instanceof TypeError ||
-                                  e?.plasmicType === "PlasmicUndefinedDataError"
-                                ) {
-                                  return undefined;
-                                }
-                                throw e;
-                              }
-                            })()
-                          };
-                          return (({ destination }) => {
+                          </div>
+                        }
+                        className={classNames(
+                          "__wab_instance",
+                          sty.button___8MTpg
+                        )}
+                        isDisabled={(() => {
+                          try {
+                            return $state.loading;
+                          } catch (e) {
                             if (
-                              typeof destination === "string" &&
-                              destination.startsWith("#")
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
                             ) {
-                              document
-                                .getElementById(destination.substr(1))
-                                .scrollIntoView({ behavior: "smooth" });
-                            } else {
-                              __nextRouter?.push(destination);
+                              return [];
                             }
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                  if (
-                    $steps["redirect"] != null &&
-                    typeof $steps["redirect"] === "object" &&
-                    typeof $steps["redirect"].then === "function"
-                  ) {
-                    $steps["redirect"] = await $steps["redirect"];
-                  }
-                }}
-              />
-            ) : null}
+                            throw e;
+                          }
+                        })()}
+                        loading={(() => {
+                          try {
+                            return $state.loading;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps[
+                            "clearCheckingTheNumberOfBookForChangeWorkhoure"
+                          ] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: [
+                                      "checkingTheNumberOfBookForChangeWorkhoure"
+                                    ]
+                                  },
+                                  operation: 0,
+                                  value: {}
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps[
+                              "clearCheckingTheNumberOfBookForChangeWorkhoure"
+                            ] != null &&
+                            typeof $steps[
+                              "clearCheckingTheNumberOfBookForChangeWorkhoure"
+                            ] === "object" &&
+                            typeof $steps[
+                              "clearCheckingTheNumberOfBookForChangeWorkhoure"
+                            ].then === "function"
+                          ) {
+                            $steps[
+                              "clearCheckingTheNumberOfBookForChangeWorkhoure"
+                            ] =
+                              await $steps[
+                                "clearCheckingTheNumberOfBookForChangeWorkhoure"
+                              ];
+                          }
+
+                          $steps["runCode5"] = $state.workhours.some(
+                            wh => wh.checkboxIsChecked && wh.warning
+                          )
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    "error",
+                                    "\u0633\u0627\u0639\u0627\u062a \u0628\u0627 \u06cc\u06a9\u062f\u06cc\u06af\u0631 \u0647\u0645\u200c\u067e\u0648\u0634\u0627\u0646\u06cc \u062f\u0627\u0631\u0646\u062f."
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Fragment.showToast"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["runCode5"] != null &&
+                            typeof $steps["runCode5"] === "object" &&
+                            typeof $steps["runCode5"].then === "function"
+                          ) {
+                            $steps["runCode5"] = await $steps["runCode5"];
+                          }
+
+                          $steps["startLoading"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["loading"]
+                                  },
+                                  operation: 0,
+                                  value: true
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["startLoading"] != null &&
+                            typeof $steps["startLoading"] === "object" &&
+                            typeof $steps["startLoading"].then === "function"
+                          ) {
+                            $steps["startLoading"] =
+                              await $steps["startLoading"];
+                          }
+
+                          $steps["saveWorkhours"] = $state.workhours.every(
+                            wh => (wh.checkboxIsChecked ? !wh.warning : true)
+                          )
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    "POST",
+                                    "https://api.paziresh24.com/V1/doctor/center/workhours",
+                                    undefined,
+                                    (() => {
+                                      try {
+                                        return {
+                                          center_id: $props.centerId,
+                                          cost: 0,
+                                          duration:
+                                            $state.durationOfWorkhour
+                                              .newduration ||
+                                            $state.workhoursApi.data.data
+                                              .duration,
+                                          workHours: $state.workhours
+                                            .map((day, index) =>
+                                              day.checkboxIsChecked === true
+                                                ? day.listOfWorkhoureCopy.map(
+                                                    workhour => {
+                                                      return {
+                                                        day: $state.days[index]
+                                                          .id,
+                                                        from: workhour.from,
+                                                        to: workhour.to
+                                                      };
+                                                    }
+                                                  )
+                                                : false
+                                            )
+                                            .flat()
+                                            .filter(item => item != false)
+                                        };
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Fragment.apiRequest"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["saveWorkhours"] != null &&
+                            typeof $steps["saveWorkhours"] === "object" &&
+                            typeof $steps["saveWorkhours"].then === "function"
+                          ) {
+                            $steps["saveWorkhours"] =
+                              await $steps["saveWorkhours"];
+                          }
+
+                          $steps["showToastSuccessful"] =
+                            $steps.saveWorkhours.data.status === "SUCCESS" &&
+                            $state.workhours.every(wh =>
+                              wh.checkboxIsChecked ? !wh.warning : true
+                            )
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      undefined,
+                                      "\u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u0634\u0645\u0627 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062b\u0628\u062a \u0634\u062f."
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.showToast"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["showToastSuccessful"] != null &&
+                            typeof $steps["showToastSuccessful"] === "object" &&
+                            typeof $steps["showToastSuccessful"].then ===
+                              "function"
+                          ) {
+                            $steps["showToastSuccessful"] =
+                              await $steps["showToastSuccessful"];
+                          }
+
+                          $steps["compareWorkhoure"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    "POST",
+                                    "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/CompareWorkhoure",
+                                    undefined,
+                                    (() => {
+                                      try {
+                                        return {
+                                          CenterId: $props.centerId,
+                                          OldWorkHoure:
+                                            $state.workhoursApi.data.data
+                                              .workhours,
+                                          NewWorkHours: $state.workhours
+                                            .map((day, index) =>
+                                              day.checkboxIsChecked === true
+                                                ? day.listOfWorkhoureCopy.map(
+                                                    workhour => {
+                                                      return {
+                                                        day: $state.days[index]
+                                                          .id,
+                                                        from: workhour.from,
+                                                        to: workhour.to
+                                                      };
+                                                    }
+                                                  )
+                                                : false
+                                            )
+                                            .flat()
+                                            .filter(item => item != false)
+                                        };
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Fragment.apiRequest"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["compareWorkhoure"] != null &&
+                            typeof $steps["compareWorkhoure"] === "object" &&
+                            typeof $steps["compareWorkhoure"].then ===
+                              "function"
+                          ) {
+                            $steps["compareWorkhoure"] =
+                              await $steps["compareWorkhoure"];
+                          }
+
+                          $steps[
+                            "updateCheckingTheNumberOfBookForChangeWorkhoure2"
+                          ] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: [
+                                      "checkingTheNumberOfBookForChangeWorkhoure"
+                                    ]
+                                  },
+                                  operation: 0,
+                                  value: $steps.compareWorkhoure.data
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps[
+                              "updateCheckingTheNumberOfBookForChangeWorkhoure2"
+                            ] != null &&
+                            typeof $steps[
+                              "updateCheckingTheNumberOfBookForChangeWorkhoure2"
+                            ] === "object" &&
+                            typeof $steps[
+                              "updateCheckingTheNumberOfBookForChangeWorkhoure2"
+                            ].then === "function"
+                          ) {
+                            $steps[
+                              "updateCheckingTheNumberOfBookForChangeWorkhoure2"
+                            ] =
+                              await $steps[
+                                "updateCheckingTheNumberOfBookForChangeWorkhoure2"
+                              ];
+                          }
+
+                          $steps["endLoading"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["loading"]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["endLoading"] != null &&
+                            typeof $steps["endLoading"] === "object" &&
+                            typeof $steps["endLoading"].then === "function"
+                          ) {
+                            $steps["endLoading"] = await $steps["endLoading"];
+                          }
+
+                          $steps["updateDialogOpen"] =
+                            $state.checkingTheNumberOfBookForChangeWorkhoure?.some?.(
+                              item => item?.date !== undefined
+                            )
+                              ? (() => {
+                                  const actionArgs = {
+                                    variable: {
+                                      objRoot: $state,
+                                      variablePath: ["dialog", "open"]
+                                    },
+                                    operation: 0,
+                                    value: true
+                                  };
+                                  return (({
+                                    variable,
+                                    value,
+                                    startIndex,
+                                    deleteCount
+                                  }) => {
+                                    if (!variable) {
+                                      return;
+                                    }
+                                    const { objRoot, variablePath } = variable;
+
+                                    $stateSet(objRoot, variablePath, value);
+                                    return value;
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["updateDialogOpen"] != null &&
+                            typeof $steps["updateDialogOpen"] === "object" &&
+                            typeof $steps["updateDialogOpen"].then ===
+                              "function"
+                          ) {
+                            $steps["updateDialogOpen"] =
+                              await $steps["updateDialogOpen"];
+                          }
+
+                          $steps["cleanUp"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    "POST",
+                                    "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/Cleanup",
+                                    undefined,
+                                    (() => {
+                                      try {
+                                        return {
+                                          doctor_id: $props?.userId,
+                                          server_id: 1
+                                        };
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Fragment.apiRequest"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["cleanUp"] != null &&
+                            typeof $steps["cleanUp"] === "object" &&
+                            typeof $steps["cleanUp"].then === "function"
+                          ) {
+                            $steps["cleanUp"] = await $steps["cleanUp"];
+                          }
+
+                          $steps["showToast"] =
+                            $steps.saveWorkhours.data.status != "SUCCESS"
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "error",
+                                      (() => {
+                                        try {
+                                          return (
+                                            $steps.saveWorkhours?.data
+                                              ?.message ??
+                                            "در ثبت ساعت کاری با خطا مواجه هستید."
+                                          );
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.showToast"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["showToast"] != null &&
+                            typeof $steps["showToast"] === "object" &&
+                            typeof $steps["showToast"].then === "function"
+                          ) {
+                            $steps["showToast"] = await $steps["showToast"];
+                          }
+
+                          $steps["sendSuccessEvent"] =
+                            $steps.saveWorkhours.data.status === "SUCCESS" &&
+                            $state.workhours.every(wh =>
+                              wh.checkboxIsChecked ? !wh.warning : true
+                            )
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      (() => {
+                                        try {
+                                          return {
+                                            group: "workhour",
+                                            data: {
+                                              center_id: $props.centerId,
+                                              user_center_id:
+                                                $props.userCenterId,
+                                              Workhour: $state.workhours,
+                                              Day: $state.days
+                                            },
+                                            type: "click-button-save-new-workhour-successful"
+                                          };
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Splunk.sendLog"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["sendSuccessEvent"] != null &&
+                            typeof $steps["sendSuccessEvent"] === "object" &&
+                            typeof $steps["sendSuccessEvent"].then ===
+                              "function"
+                          ) {
+                            $steps["sendSuccessEvent"] =
+                              await $steps["sendSuccessEvent"];
+                          }
+
+                          $steps["sendUnsuccessEvent"] =
+                            $steps.saveWorkhours.data.status != "SUCCESS"
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      (() => {
+                                        try {
+                                          return {
+                                            group: "workhour",
+                                            data: {
+                                              center_id: $props.centerId,
+                                              user_center_id:
+                                                $props.userCenterId,
+                                              Workhour: $state.workhours,
+                                              Day: $state.days
+                                            },
+                                            type: "click-button-save-new-workhour-unsuccessful"
+                                          };
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Splunk.sendLog"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["sendUnsuccessEvent"] != null &&
+                            typeof $steps["sendUnsuccessEvent"] === "object" &&
+                            typeof $steps["sendUnsuccessEvent"].then ===
+                              "function"
+                          ) {
+                            $steps["sendUnsuccessEvent"] =
+                              await $steps["sendUnsuccessEvent"];
+                          }
+
+                          $steps["sendEvent"] =
+                            !!$props.forwardPage &&
+                            $steps.saveWorkhours.status == 200
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      (() => {
+                                        try {
+                                          return (() => {
+                                            const userId =
+                                              $ctx.query.userId ||
+                                              localStorage.getItem("userId");
+                                            return {
+                                              event_group: "activation-page",
+                                              data: {
+                                                userId: userId,
+                                                pagePath: window.location.href
+                                              },
+                                              event_type: $props.eventType
+                                            };
+                                          })();
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Splunk.sendLog"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["sendEvent"] != null &&
+                            typeof $steps["sendEvent"] === "object" &&
+                            typeof $steps["sendEvent"].then === "function"
+                          ) {
+                            $steps["sendEvent"] = await $steps["sendEvent"];
+                          }
+
+                          $steps["invokeGlobalAction"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    (() => {
+                                      try {
+                                        return (() => {
+                                          const userId =
+                                            $ctx.query.userId ||
+                                            localStorage.getItem("userId");
+                                          return {
+                                            event_group: "long-workhour",
+                                            data: {
+                                              userId: userId,
+                                              pagePath: window.location.href
+                                            },
+                                            event_type:
+                                              "like-to-have-long-workhour"
+                                          };
+                                        })();
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
+                                };
+                                return $globalActions["Splunk.sendLog"]?.apply(
+                                  null,
+                                  [...actionArgs.args]
+                                );
+                              })()
+                            : undefined;
+                          if (
+                            $steps["invokeGlobalAction"] != null &&
+                            typeof $steps["invokeGlobalAction"] === "object" &&
+                            typeof $steps["invokeGlobalAction"].then ===
+                              "function"
+                          ) {
+                            $steps["invokeGlobalAction"] =
+                              await $steps["invokeGlobalAction"];
+                          }
+
+                          $steps["updateDialogWarningWorkhoureOpen"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: [
+                                      "dialogWarningWorkhoure",
+                                      "open"
+                                    ]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateDialogWarningWorkhoureOpen"] !=
+                              null &&
+                            typeof $steps[
+                              "updateDialogWarningWorkhoureOpen"
+                            ] === "object" &&
+                            typeof $steps["updateDialogWarningWorkhoureOpen"]
+                              .then === "function"
+                          ) {
+                            $steps["updateDialogWarningWorkhoureOpen"] =
+                              await $steps["updateDialogWarningWorkhoureOpen"];
+                          }
+
+                          $steps["redirect"] =
+                            !!$props.forwardPage &&
+                            $steps.saveWorkhours.status == 200
+                              ? (() => {
+                                  const actionArgs = {
+                                    destination: (() => {
+                                      try {
+                                        return $props.forwardPage;
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  };
+                                  return (({ destination }) => {
+                                    if (
+                                      typeof destination === "string" &&
+                                      destination.startsWith("#")
+                                    ) {
+                                      document
+                                        .getElementById(destination.substr(1))
+                                        .scrollIntoView({ behavior: "smooth" });
+                                    } else {
+                                      __nextRouter?.push(destination);
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["redirect"] != null &&
+                            typeof $steps["redirect"] === "object" &&
+                            typeof $steps["redirect"].then === "function"
+                          ) {
+                            $steps["redirect"] = await $steps["redirect"];
+                          }
+                        }}
+                        outline={true}
+                      />
+                    ) : null}
+                  </div>
+                </div>
+              }
+              className={classNames(
+                "__wab_instance",
+                sty.dialogWarningWorkhoure
+              )}
+              onOpenChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, [
+                  "dialogWarningWorkhoure",
+                  "open"
+                ]).apply(null, eventArgs);
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+              }}
+              open={generateStateValueProp($state, [
+                "dialogWarningWorkhoure",
+                "open"
+              ])}
+              title={
+                "\ud83d\udea8 \u062e\u0637\u0627\u06cc \u0627\u062d\u062a\u0645\u0627\u0644\u06cc \u062f\u0631 \u062b\u0628\u062a \u0633\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u06cc!"
+              }
+              trigger={null}
+            />
           </div>
         </div>
       </ApiRequest>
@@ -2300,11 +3508,25 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "workhoursApi", "durationOfWorkhour", "workhours", "dialog"],
-  workhoursApi: ["workhoursApi", "durationOfWorkhour", "workhours", "dialog"],
+  root: [
+    "root",
+    "workhoursApi",
+    "durationOfWorkhour",
+    "workhours",
+    "dialog",
+    "dialogWarningWorkhoure"
+  ],
+  workhoursApi: [
+    "workhoursApi",
+    "durationOfWorkhour",
+    "workhours",
+    "dialog",
+    "dialogWarningWorkhoure"
+  ],
   durationOfWorkhour: ["durationOfWorkhour"],
   workhours: ["workhours"],
-  dialog: ["dialog"]
+  dialog: ["dialog"],
+  dialogWarningWorkhoure: ["dialogWarningWorkhoure"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -2315,6 +3537,7 @@ type NodeDefaultElementType = {
   durationOfWorkhour: typeof Duration;
   workhours: typeof Workhours;
   dialog: typeof Dialog;
+  dialogWarningWorkhoure: typeof Dialog;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -2328,7 +3551,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicHoursDaysOfWeek__VariantsArgs;
     args?: PlasmicHoursDaysOfWeek__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicHoursDaysOfWeek__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicHoursDaysOfWeek__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicHoursDaysOfWeek__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -2381,6 +3606,7 @@ export const PlasmicHoursDaysOfWeek = Object.assign(
     durationOfWorkhour: makeNodeComponent("durationOfWorkhour"),
     workhours: makeNodeComponent("workhours"),
     dialog: makeNodeComponent("dialog"),
+    dialogWarningWorkhoure: makeNodeComponent("dialogWarningWorkhoure"),
 
     // Metadata about props expected for PlasmicHoursDaysOfWeek
     internalVariantProps: PlasmicHoursDaysOfWeek__VariantProps,
