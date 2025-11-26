@@ -2546,28 +2546,40 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     className={classNames(
                       projectcss.all,
                       projectcss.__wab_text,
+                      sty.text__lS0Cc
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        {
+                          {
+                            return $props.centerId == 5532
+                              ? "آیا از این ساعت کاری برای ویزیت آنلاین خود اطمینان دارید\u061F"
+                              : "آیا از این ساعت کاری برای مطب خود اطمینان دارید\u061F";
+                          }
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
                       sty.text___9XbmB
                     )}
                   >
                     <React.Fragment>
-                      <React.Fragment>
+                      {(() => {
                         {
-                          "\u0628\u0627\u0632\u0647\u200c\u200c\u06cc \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc \u0634\u0645\u0627 "
+                          {
+                            return $props.centerId == 5532
+                              ? `بازه‌‌ی ساعت کاری شما طولانی‌تر از حد معمول است.
+ تاخیر یا عدم پاسخگویی شما در این ساعات نارضایتی و شکایت بیماران را به همراه خواهد داشت.`
+                              : `بازه‌‌ی ساعت کاری شما طولانی‌تر از حد معمول است.
+عدم حضور شما در مطب نارضایتی و شکایت بیماران را به همراه خواهد داشت.`;
+                          }
                         }
-                      </React.Fragment>
-                      <span
-                        className={"plasmic_default__all plasmic_default__span"}
-                        style={{ fontWeight: 700 }}
-                      >
-                        {
-                          "\u0637\u0648\u0644\u0627\u0646\u06cc\u200c\u062a\u0631"
-                        }
-                      </span>
-                      <React.Fragment>
-                        {
-                          " \u0627\u0632 \u062d\u062f \u0645\u0639\u0645\u0648\u0644 \u0627\u0633\u062a.\n \u0628\u0631\u0627\u06cc \u062c\u0644\u0648\u06af\u06cc\u0631\u06cc \u0627\u0632 \u0634\u06a9\u0627\u06cc\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0628\u0647 \u062f\u0644\u06cc\u0644 \u0639\u062f\u0645 \u062d\u0636\u0648\u0631 \u0648 \u062a\u0636\u0645\u06cc\u0646 \u0648\u06cc\u0632\u06cc\u062a \u0645\u0648\u0641\u0642 \u062f\u0631 \u0645\u0637\u0628\u060c \u0644\u0637\u0641\u0627\u064b \u062f\u0642\u062a \u06a9\u0646\u06cc\u062f \u06a9\u0647 \u0633\u0627\u0639\u0627\u062a \u0648\u0627\u0631\u062f \u0634\u062f\u0647 \u06a9\u0627\u0645\u0644\u0627\u064b \u0635\u062d\u06cc\u062d \u0648 \u0628\u0647\u200c\u0631\u0648\u0632 \u0628\u0627\u0634\u0646\u062f."
-                        }
-                      </React.Fragment>
+                      })()}
                     </React.Fragment>
                   </div>
                   <div
@@ -2575,7 +2587,23 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                   >
                     <Button
                       children2={
-                        "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc"
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return $props.centerId === "5532"
+                                ? "ویرایش ساعت کاری ویزیت آنلاین"
+                                : "ویرایش ساعت کاری مطب";
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "\u0648\u06cc\u0631\u0627\u06cc\u0634 \u0633\u0627\u0639\u062a \u06a9\u0627\u0631\u06cc";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
                       }
                       className={classNames(
                         "__wab_instance",
@@ -3485,7 +3513,23 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                 "open"
               ])}
               title={
-                "\ud83d\udea8 \u062e\u0637\u0627\u06cc \u0627\u062d\u062a\u0645\u0627\u0644\u06cc \u062f\u0631 \u062b\u0628\u062a \u0633\u0627\u0639\u0627\u062a \u06a9\u0627\u0631\u06cc!"
+                <React.Fragment>
+                  {(() => {
+                    try {
+                      return $props.centerId === "5532"
+                        ? "🚨 خطای احتمالی در ثبت ساعات کاری ویزیت آنلاین!"
+                        : "🚨 خطای احتمالی در ثبت ساعات کاری مطب!";
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return "\u00a7";
+                      }
+                      throw e;
+                    }
+                  })()}
+                </React.Fragment>
               }
               trigger={null}
             />
