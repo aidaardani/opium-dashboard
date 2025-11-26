@@ -2633,7 +2633,9 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                                       return {
                                         event_group: "long-workhour",
                                         data: {
-                                          userId: $ctx.query.user_id,
+                                          UserId: $ctx.query.user_id,
+                                          CenterId: $props.centerId,
+                                          UserCenterId: $props.userCenterId,
                                           pagePath: window.location.href
                                         },
                                         event_type: "like-to-edit-workhour"
@@ -3334,6 +3336,8 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                                           event_group: "long-workhour",
                                           data: {
                                             userId: $ctx.query.user_id,
+                                            CenterId: $props.centerId,
+                                            UserCenterId: $props.userCenterId,
                                             pagePath: window.location.href
                                           },
                                           event_type:
