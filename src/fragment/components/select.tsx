@@ -60,6 +60,7 @@ export const selectMeta: CodeComponentMeta<SelectType> = {
   displayName: "Fragment/Select",
   importPath: "@/fragment/components/select",
   figmaMappings: [{ figmaComponentName: "Select" }],
+  section: "Fragment",
   props: {
     placeholder: "string",
     onChange: {
@@ -119,7 +120,7 @@ export const selectMeta: CodeComponentMeta<SelectType> = {
         },
       ],
       exprHint:
-        'An array of items, like `["Option1", "Option2"]`, or an array of objects with `value`, `label`, or `disabled`, like `[{value: "usa", label: "United States"}, {value: "bra", label: "Brazil"}]`',
+          'An array of items, like `["Option1", "Option2"]`, or an array of objects with `value`, `label`, or `disabled`, like `[{value: "usa", label: "United States"}, {value: "bra", label: "Brazil"}]`',
     },
     disabled: "boolean",
     name: {
