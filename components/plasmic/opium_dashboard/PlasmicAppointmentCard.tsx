@@ -914,7 +914,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     e instanceof TypeError ||
                     e?.plasmicType === "PlasmicUndefinedDataError"
                   ) {
-                    return "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646";
+                    return "-";
                   }
                   throw e;
                 }
@@ -7096,37 +7096,22 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                 await $steps["updateBookStatusState2"];
             }
 
-            $steps["redirectWhatsapp"] = true
-              ? (() => {
-                  const actionArgs = {
-                    destination: (() => {
-                      try {
-                        return `https://wa.me/${$props.cell}`;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return undefined;
-                        }
-                        throw e;
+            $steps["redirectWhatsapp"] =
+              $props.centerId === "5532" &&
+              $state.apiselcetedonlinevisitchannels.data.online_channel ===
+                "whatsapp" &&
+              $state.bookStatusState === "not_came"
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return globalThis.open(`https://wa.me/${$props.cell}`);
                       }
-                    })()
-                  };
-                  return (({ destination }) => {
-                    if (
-                      typeof destination === "string" &&
-                      destination.startsWith("#")
-                    ) {
-                      document
-                        .getElementById(destination.substr(1))
-                        .scrollIntoView({ behavior: "smooth" });
-                    } else {
-                      __nextRouter?.push(destination);
-                    }
-                  })?.apply(null, [actionArgs]);
-                })()
-              : undefined;
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
             if (
               $steps["redirectWhatsapp"] != null &&
               typeof $steps["redirectWhatsapp"] === "object" &&
