@@ -7096,41 +7096,37 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                 await $steps["updateBookStatusState2"];
             }
 
-            $steps["redirectWhatsapp"] =
-              $props.centerId === "5532" &&
-              $state.apiselcetedonlinevisitchannels.data.online_channel ===
-                "whatsapp" &&
-              $state.bookStatusState === "not_came"
-                ? (() => {
-                    const actionArgs = {
-                      destination: (() => {
-                        try {
-                          return `https://wa.me/${$props.cell}`;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return undefined;
-                          }
-                          throw e;
+            $steps["redirectWhatsapp"] = true
+              ? (() => {
+                  const actionArgs = {
+                    destination: (() => {
+                      try {
+                        return `https://wa.me/${$props.cell}`;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
                         }
-                      })()
-                    };
-                    return (({ destination }) => {
-                      if (
-                        typeof destination === "string" &&
-                        destination.startsWith("#")
-                      ) {
-                        document
-                          .getElementById(destination.substr(1))
-                          .scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        __nextRouter?.push(destination);
+                        throw e;
                       }
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
+                    })()
+                  };
+                  return (({ destination }) => {
+                    if (
+                      typeof destination === "string" &&
+                      destination.startsWith("#")
+                    ) {
+                      document
+                        .getElementById(destination.substr(1))
+                        .scrollIntoView({ behavior: "smooth" });
+                    } else {
+                      __nextRouter?.push(destination);
+                    }
+                  })?.apply(null, [actionArgs]);
+                })()
+              : undefined;
             if (
               $steps["redirectWhatsapp"] != null &&
               typeof $steps["redirectWhatsapp"] === "object" &&
