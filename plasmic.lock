@@ -55,15 +55,10 @@
     },
     {
       "projectId": "caTPwKxj5ZrD9LQ7DMdK4Z",
-      "version": "3.47.0",
+      "version": "3.48.0",
       "dependencies": {},
       "lang": "ts",
       "fileLocks": [
-        {
-          "assetId": "caTPwKxj5ZrD9LQ7DMdK4Z",
-          "type": "projectCss",
-          "checksum": "56a5d447501c0753e4cf451641894e78"
-        },
         {
           "assetId": "caTPwKxj5ZrD9LQ7DMdK4Z",
           "checksum": "efdcd613ac98718578f9c563cd75fd38",
@@ -71,8 +66,13 @@
         },
         {
           "assetId": "caTPwKxj5ZrD9LQ7DMdK4Z",
-          "checksum": "40d46a8d45618547e9423b72a466b693",
+          "checksum": "da63876a1ab2ffe408f66af115d28c46",
           "type": "styleTokensProvider"
+        },
+        {
+          "assetId": "caTPwKxj5ZrD9LQ7DMdK4Z",
+          "type": "projectCss",
+          "checksum": "56a5d447501c0753e4cf451641894e78"
         }
       ],
       "codegenVersion": "0.0.2"
@@ -633,7 +633,7 @@
         "h9Dbk9ygddw7UVEq1NNhKi": "8.2.0",
         "oBJtsp5RgVpcN6KCrDTuQT": "1.4.1",
         "YUiM7yqBWAqsh8KSnrdj7": "0.39.0",
-        "caTPwKxj5ZrD9LQ7DMdK4Z": "3.47.0",
+        "caTPwKxj5ZrD9LQ7DMdK4Z": "3.48.0",
         "sqPBLwEBBKHA2WDuGb17eV": "2.10.0",
         "a3pmZtcpA5asHkNtN3SGoF": "0.7.0",
         "ohDidvG9XsCeFumugENU3J": "6.35.0",
@@ -701,22 +701,22 @@
         {
           "type": "renderModule",
           "assetId": "uw2UKvNlq2Yr",
-          "checksum": "e5730e15767db2381562aaf50a47bd05"
+          "checksum": "0301dcdd4980109b46f8f8be1dab6b62"
         },
         {
           "type": "cssRules",
           "assetId": "uw2UKvNlq2Yr",
-          "checksum": "e5730e15767db2381562aaf50a47bd05"
+          "checksum": "0301dcdd4980109b46f8f8be1dab6b62"
         },
         {
           "type": "renderModule",
           "assetId": "43GvxJ8wCSXI",
-          "checksum": "92b3f48d8bec8e9298585ff05e696f58"
+          "checksum": "7168a963d16d27b7ab8a14a9a6c5bd3e"
         },
         {
           "type": "cssRules",
           "assetId": "43GvxJ8wCSXI",
-          "checksum": "92b3f48d8bec8e9298585ff05e696f58"
+          "checksum": "7168a963d16d27b7ab8a14a9a6c5bd3e"
         },
         {
           "type": "renderModule",

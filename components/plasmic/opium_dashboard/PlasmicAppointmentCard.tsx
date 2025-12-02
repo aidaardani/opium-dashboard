@@ -7098,7 +7098,8 @@ function PlasmicAppointmentCard__RenderFunc(props: {
 
             $steps["redirectWhatsapp"] =
               $props.centerId === "5532" &&
-              $props.onlineChannel === "whatsapp" &&
+              $state.apiselcetedonlinevisitchannels.data.online_channel ===
+                "whatsapp" &&
               $state.bookStatusState === "not_came"
                 ? (() => {
                     const actionArgs = {
