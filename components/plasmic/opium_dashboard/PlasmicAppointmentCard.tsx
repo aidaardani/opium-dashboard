@@ -7103,25 +7103,32 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               $state.bookStatusState === "not_came"
                 ? (() => {
                     const actionArgs = {
-                      args: [
-                        (() => {
-                          try {
-                            return `https://wa.me/${$props.cell}`;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
-                            }
-                            throw e;
+                      destination: (() => {
+                        try {
+                          return `https://wa.me/${$props.cell}`;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
                           }
-                        })()
-                      ]
+                          throw e;
+                        }
+                      })()
                     };
-                    return $globalActions["Hamdast.openLink"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
                   })()
                 : undefined;
             if (
