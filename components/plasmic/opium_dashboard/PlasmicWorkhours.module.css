@@ -59,6 +59,7 @@
   max-width: 100%;
   object-fit: cover;
   width: auto;
+  align-self: stretch;
 }
 .text__nnfB {
   position: relative;
