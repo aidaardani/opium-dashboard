@@ -6878,6 +6878,30 @@ function PlasmicAppointmentCard__RenderFunc(props: {
           onclick={async () => {
             const $steps = {};
 
+            $steps["redirectWhatsapp"] =
+              $props.centerId === "5532" &&
+              $state.apiselcetedonlinevisitchannels.data.online_channel ===
+                "whatsapp" &&
+              $state.bookStatusState === "not_came"
+                ? (() => {
+                    const actionArgs = {
+                      customFunction: async () => {
+                        return globalThis.open(`https://wa.me/${$props.cell}`);
+                      }
+                    };
+                    return (({ customFunction }) => {
+                      return customFunction();
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+            if (
+              $steps["redirectWhatsapp"] != null &&
+              typeof $steps["redirectWhatsapp"] === "object" &&
+              typeof $steps["redirectWhatsapp"].then === "function"
+            ) {
+              $steps["redirectWhatsapp"] = await $steps["redirectWhatsapp"];
+            }
+
             $steps["updateDialog2Open"] = false
               ? (() => {
                   const actionArgs = {
@@ -7094,30 +7118,6 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             ) {
               $steps["updateBookStatusState2"] =
                 await $steps["updateBookStatusState2"];
-            }
-
-            $steps["redirectWhatsapp"] =
-              $props.centerId === "5532" &&
-              $state.apiselcetedonlinevisitchannels.data.online_channel ===
-                "whatsapp" &&
-              $state.bookStatusState === "not_came"
-                ? (() => {
-                    const actionArgs = {
-                      customFunction: async () => {
-                        return globalThis.open(`https://wa.me/${$props.cell}`);
-                      }
-                    };
-                    return (({ customFunction }) => {
-                      return customFunction();
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-            if (
-              $steps["redirectWhatsapp"] != null &&
-              typeof $steps["redirectWhatsapp"] === "object" &&
-              typeof $steps["redirectWhatsapp"].then === "function"
-            ) {
-              $steps["redirectWhatsapp"] = await $steps["redirectWhatsapp"];
             }
 
             $steps["startVisit"] =

@@ -1071,7 +1071,7 @@ function PlasmicDrCenters__RenderFunc(props: {
                           if ($state.selectedCenter == "all")
                             return "کل نوبت‌ها";
                           if (selectedCenter.id == "5532")
-                            return "نوبت‌های آنلاین";
+                            return "ویزیت آنلاین";
                           if (selectedCenter.id !== "5532") {
                             if (
                               $state.selectedCenter &&
@@ -1080,7 +1080,7 @@ function PlasmicDrCenters__RenderFunc(props: {
                               return selectedCenter.name;
                             }
                           }
-                          return "نوبت‌های مطب";
+                          return selectedCenter.name;
                         })();
                       } catch (e) {
                         if (

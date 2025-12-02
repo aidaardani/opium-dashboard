@@ -525,7 +525,7 @@ function PlasmicDuration__RenderFunc(props: {
                         minuteExclude={(() => {
                           try {
                             return [...Array(61).keys()].filter(
-                              num => num % 5 !== 0 || num === 0
+                              num => num % 5 !== 0
                             );
                           } catch (e) {
                             if (
@@ -625,19 +625,7 @@ function PlasmicDuration__RenderFunc(props: {
                                     variablePath: ["newduration"]
                                   },
                                   operation: 0,
-                                  value: `${
-                                    parseInt(
-                                      $state.fragmentTimePicker.value.split(
-                                        ":"
-                                      )[0]
-                                    ) *
-                                      60 +
-                                    parseInt(
-                                      $state.fragmentTimePicker.value.split(
-                                        ":"
-                                      )[1]
-                                    )
-                                  }`
+                                  value: `${parseInt($state.fragmentTimePicker.value.split(":")[0]) * 60 + parseInt($state.fragmentTimePicker.value.split(":")[1])}`
                                 };
                                 return (({
                                   variable,
@@ -661,9 +649,8 @@ function PlasmicDuration__RenderFunc(props: {
                             typeof $steps["updateNewduration"].then ===
                               "function"
                           ) {
-                            $steps["updateNewduration"] = await $steps[
-                              "updateNewduration"
-                            ];
+                            $steps["updateNewduration"] =
+                              await $steps["updateNewduration"];
                           }
 
                           $steps["updateDialogOpen"] = true
@@ -698,9 +685,8 @@ function PlasmicDuration__RenderFunc(props: {
                             typeof $steps["updateDialogOpen"].then ===
                               "function"
                           ) {
-                            $steps["updateDialogOpen"] = await $steps[
-                              "updateDialogOpen"
-                            ];
+                            $steps["updateDialogOpen"] =
+                              await $steps["updateDialogOpen"];
                           }
 
                           $steps["updateDurationDataDuration"] = true
@@ -715,19 +701,7 @@ function PlasmicDuration__RenderFunc(props: {
                                     ]
                                   },
                                   operation: 0,
-                                  value: `${
-                                    parseInt(
-                                      $state.fragmentTimePicker.value.split(
-                                        ":"
-                                      )[0]
-                                    ) *
-                                      60 +
-                                    parseInt(
-                                      $state.fragmentTimePicker.value.split(
-                                        ":"
-                                      )[1]
-                                    )
-                                  }`
+                                  value: `${parseInt($state.fragmentTimePicker.value.split(":")[0]) * 60 + parseInt($state.fragmentTimePicker.value.split(":")[1])}`
                                 };
                                 return (({
                                   variable,
@@ -752,9 +726,8 @@ function PlasmicDuration__RenderFunc(props: {
                             typeof $steps["updateDurationDataDuration"].then ===
                               "function"
                           ) {
-                            $steps["updateDurationDataDuration"] = await $steps[
-                              "updateDurationDataDuration"
-                            ];
+                            $steps["updateDurationDataDuration"] =
+                              await $steps["updateDurationDataDuration"];
                           }
 
                           $steps["sendEvent"] = true
@@ -914,9 +887,7 @@ function PlasmicDuration__RenderFunc(props: {
                     <React.Fragment>
                       {(() => {
                         try {
-                          return `${
-                            $state.newduration || $props.oldDuration
-                          } دقیقه`;
+                          return `${$state.newduration || $props.oldDuration} دقیقه`;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -993,9 +964,8 @@ function PlasmicDuration__RenderFunc(props: {
                         typeof $steps["updateNewduration"] === "object" &&
                         typeof $steps["updateNewduration"].then === "function"
                       ) {
-                        $steps["updateNewduration"] = await $steps[
-                          "updateNewduration"
-                        ];
+                        $steps["updateNewduration"] =
+                          await $steps["updateNewduration"];
                       }
 
                       $steps["sendEvent"] = true
@@ -1052,9 +1022,7 @@ function PlasmicDuration__RenderFunc(props: {
                       <React.Fragment>
                         {(() => {
                           try {
-                            return `${parseInt(currentItem.name).toLocaleString(
-                              "fa"
-                            )} دقیقه`;
+                            return `${parseInt(currentItem.name).toLocaleString("fa")} دقیقه`;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1137,9 +1105,8 @@ function PlasmicDuration__RenderFunc(props: {
                             typeof $steps["updateDuration"] === "object" &&
                             typeof $steps["updateDuration"].then === "function"
                           ) {
-                            $steps["updateDuration"] = await $steps[
-                              "updateDuration"
-                            ];
+                            $steps["updateDuration"] =
+                              await $steps["updateDuration"];
                           }
                         }}
                         role={"img"}
@@ -1204,7 +1171,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicDuration__VariantsArgs;
     args?: PlasmicDuration__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicDuration__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicDuration__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicDuration__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

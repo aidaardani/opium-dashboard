@@ -388,9 +388,8 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                       typeof $steps["updateSelectedCenter"] === "object" &&
                       typeof $steps["updateSelectedCenter"].then === "function"
                     ) {
-                      $steps["updateSelectedCenter"] = await $steps[
-                        "updateSelectedCenter"
-                      ];
+                      $steps["updateSelectedCenter"] =
+                        await $steps["updateSelectedCenter"];
                     }
                   }).apply(null, eventArgs);
                 }}
@@ -566,9 +565,8 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
                     typeof $steps["invokeGlobalAction"] === "object" &&
                     typeof $steps["invokeGlobalAction"].then === "function"
                   ) {
-                    $steps["invokeGlobalAction"] = await $steps[
-                      "invokeGlobalAction"
-                    ];
+                    $steps["invokeGlobalAction"] =
+                      await $steps["invokeGlobalAction"];
                   }
                 }}
               />
@@ -726,7 +724,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicWorkhoursPage__VariantsArgs;
     args?: PlasmicWorkhoursPage__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicWorkhoursPage__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicWorkhoursPage__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicWorkhoursPage__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

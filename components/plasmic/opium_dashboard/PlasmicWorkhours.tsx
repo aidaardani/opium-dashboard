@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { Switch } from "@/fragment/components/switch"; // plasmic-import: dH6_VlwkAh4P/codeComponent
 import Checkbox from "../../Checkbox"; // plasmic-import: IDR0sAqN5tth/component
 import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZzFQxrO/codeComponent
 import { Popover } from "@/fragment/components/popover"; // plasmic-import: umJXC-fyxDQn/codeComponent
@@ -112,6 +113,7 @@ export const PlasmicWorkhours__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicWorkhours__OverridesType = {
   root?: Flex__<"div">;
+  _switch?: Flex__<typeof Switch>;
   checkbox?: Flex__<typeof Checkbox>;
   from?: Flex__<typeof Select>;
   to?: Flex__<typeof Select>;
@@ -272,6 +274,25 @@ function PlasmicWorkhours__RenderFunc(props: {
         path: "to[].open",
         type: "private",
         variableType: "boolean"
+      },
+      {
+        path: "_switch.checked",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $props.checkboxIsChecked;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -301,9 +322,81 @@ function PlasmicWorkhours__RenderFunc(props: {
       )}
     >
       <div className={classNames(projectcss.all, sty.freeBox__sZtgG)}>
+        <Switch
+          data-plasmic-name={"_switch"}
+          data-plasmic-override={overrides._switch}
+          checked={generateStateValueProp($state, ["_switch", "checked"])}
+          className={classNames("__wab_instance", sty._switch)}
+          onCheckedChange={async (...eventArgs: any) => {
+            generateStateOnChangeProp($state, ["_switch", "checked"]).apply(
+              null,
+              eventArgs
+            );
+
+            (async checked => {
+              const $steps = {};
+
+              $steps["updateCheckboxIsChecked"] = true
+                ? (() => {
+                    const actionArgs = {
+                      variable: {
+                        objRoot: $state,
+                        variablePath: ["checkbox", "isChecked"]
+                      },
+                      operation: 0,
+                      value: checked
+                    };
+                    return (({ variable, value, startIndex, deleteCount }) => {
+                      if (!variable) {
+                        return;
+                      }
+                      const { objRoot, variablePath } = variable;
+
+                      $stateSet(objRoot, variablePath, value);
+                      return value;
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["updateCheckboxIsChecked"] != null &&
+                typeof $steps["updateCheckboxIsChecked"] === "object" &&
+                typeof $steps["updateCheckboxIsChecked"].then === "function"
+              ) {
+                $steps["updateCheckboxIsChecked"] =
+                  await $steps["updateCheckboxIsChecked"];
+              }
+            }).apply(null, eventArgs);
+          }}
+        />
+
+        <div
+          className={classNames(
+            projectcss.all,
+            projectcss.__wab_text,
+            sty.text__dsY2A
+          )}
+        >
+          <React.Fragment>
+            {(() => {
+              try {
+                return $state.days.find(day => day.id === $props.dayOfWeek)
+                  .name;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return "\u0634\u0646\u0628\u0647";
+                }
+                throw e;
+              }
+            })()}
+          </React.Fragment>
+        </div>
         <Checkbox
           data-plasmic-name={"checkbox"}
           data-plasmic-override={overrides.checkbox}
+          children={null}
           className={classNames("__wab_instance", sty.checkbox)}
           isChecked={
             generateStateValueProp($state, ["checkbox", "isChecked"]) ?? false
@@ -323,24 +416,8 @@ function PlasmicWorkhours__RenderFunc(props: {
               return;
             }
           }}
-        >
-          <React.Fragment>
-            {(() => {
-              try {
-                return $state.days.find(day => day.id === $props.dayOfWeek)
-                  .name;
-              } catch (e) {
-                if (
-                  e instanceof TypeError ||
-                  e?.plasmicType === "PlasmicUndefinedDataError"
-                ) {
-                  return "\u0634\u0646\u0628\u0647";
-                }
-                throw e;
-              }
-            })()}
-          </React.Fragment>
-        </Checkbox>
+        />
+
         <div className={classNames(projectcss.all, sty.freeBox__tNj6D)} />
       </div>
       {(() => {
@@ -521,9 +598,8 @@ function PlasmicWorkhours__RenderFunc(props: {
                           typeof $steps["updateWarning"] === "object" &&
                           typeof $steps["updateWarning"].then === "function"
                         ) {
-                          $steps["updateWarning"] = await $steps[
-                            "updateWarning"
-                          ];
+                          $steps["updateWarning"] =
+                            await $steps["updateWarning"];
                         }
                       }).apply(null, eventArgs);
                     },
@@ -739,9 +815,8 @@ function PlasmicWorkhours__RenderFunc(props: {
                           typeof $steps["updateWarning"] === "object" &&
                           typeof $steps["updateWarning"].then === "function"
                         ) {
-                          $steps["updateWarning"] = await $steps[
-                            "updateWarning"
-                          ];
+                          $steps["updateWarning"] =
+                            await $steps["updateWarning"];
                         }
                       }).apply(null, eventArgs);
                     },
@@ -973,9 +1048,8 @@ function PlasmicWorkhours__RenderFunc(props: {
                         typeof $steps["updateListOfWorkhoureCopy"].then ===
                           "function"
                       ) {
-                        $steps["updateListOfWorkhoureCopy"] = await $steps[
-                          "updateListOfWorkhoureCopy"
-                        ];
+                        $steps["updateListOfWorkhoureCopy"] =
+                          await $steps["updateListOfWorkhoureCopy"];
                       }
                     }}
                     role={"img"}
@@ -1081,9 +1155,8 @@ function PlasmicWorkhours__RenderFunc(props: {
                         typeof $steps["updateListOfWorkhoureCopy"].then ===
                           "function"
                       ) {
-                        $steps["updateListOfWorkhoureCopy"] = await $steps[
-                          "updateListOfWorkhoureCopy"
-                        ];
+                        $steps["updateListOfWorkhoureCopy"] =
+                          await $steps["updateListOfWorkhoureCopy"];
                       }
                     }}
                     role={"img"}
@@ -1316,9 +1389,8 @@ function PlasmicWorkhours__RenderFunc(props: {
                               typeof $steps["runEndedSelectedDay"].then ===
                                 "function"
                             ) {
-                              $steps["runEndedSelectedDay"] = await $steps[
-                                "runEndedSelectedDay"
-                              ];
+                              $steps["runEndedSelectedDay"] =
+                                await $steps["runEndedSelectedDay"];
                             }
 
                             $steps["updateFragmentPopover0Open"] = true
@@ -1495,6 +1567,7 @@ function PlasmicWorkhours__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     "root",
+    "_switch",
     "checkbox",
     "from",
     "to",
@@ -1503,6 +1576,7 @@ const PlasmicDescendants = {
     "tooltip",
     "daysOfWeek"
   ],
+  _switch: ["_switch"],
   checkbox: ["checkbox"],
   from: ["from"],
   to: ["to"],
@@ -1516,6 +1590,7 @@ type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  _switch: typeof Switch;
   checkbox: typeof Checkbox;
   from: typeof Select;
   to: typeof Select;
@@ -1536,7 +1611,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicWorkhours__VariantsArgs;
     args?: PlasmicWorkhours__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicWorkhours__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicWorkhours__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicWorkhours__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -1585,6 +1662,7 @@ export const PlasmicWorkhours = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
+    _switch: makeNodeComponent("_switch"),
     checkbox: makeNodeComponent("checkbox"),
     from: makeNodeComponent("from"),
     to: makeNodeComponent("to"),

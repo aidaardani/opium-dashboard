@@ -232,7 +232,7 @@ function PlasmicDrCenter__RenderFunc(props: {
           <React.Fragment>
             {(() => {
               try {
-                return "نوبت‌های آنلاین";
+                return "ویزیت آنلاین";
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -248,7 +248,7 @@ function PlasmicDrCenter__RenderFunc(props: {
           <React.Fragment>
             {(() => {
               try {
-                return " نوبت‌های مطب ";
+                return $props.name;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -305,7 +305,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicDrCenter__VariantsArgs;
     args?: PlasmicDrCenter__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicDrCenter__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicDrCenter__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicDrCenter__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
