@@ -138,6 +138,7 @@ export type PlasmicAppointmentCard__ArgsType = {
   platform?: any;
   showPlatform?: boolean;
   medicalCode?: string;
+  externalPrescriptions?: any;
 };
 type ArgPropType = keyof PlasmicAppointmentCard__ArgsType;
 export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
@@ -171,7 +172,8 @@ export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
   "bookFrom",
   "platform",
   "showPlatform",
-  "medicalCode"
+  "medicalCode",
+  "externalPrescriptions"
 );
 
 export type PlasmicAppointmentCard__OverridesType = {
@@ -238,6 +240,7 @@ export interface DefaultAppointmentCardProps {
   platform?: any;
   showPlatform?: boolean;
   medicalCode?: string;
+  externalPrescriptions?: any;
   onlineBorder?: SingleBooleanChoiceArg<"onlineBorder">;
   className?: string;
 }
@@ -4805,121 +4808,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             <div className={classNames(projectcss.all, sty.freeBox__fEuSf)}>
               {(() => {
                 try {
-                  return $props.platform.settings.can_delete;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return true;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <Button
-                  children2={"\u0644\u063a\u0648 \u0646\u0648\u0628\u062a"}
-                  className={classNames("__wab_instance", sty.button__iLuiz)}
-                  color={"red"}
-                  endIcon={
-                    <ChevronLeftIcon
-                      className={classNames(projectcss.all, sty.svg__cqwx7)}
-                      role={"img"}
-                    />
-                  }
-                  onClick={async event => {
-                    const $steps = {};
-
-                    $steps["updateDeletebookdialogOpen"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["deletebookdialog", "open"]
-                            },
-                            operation: 0,
-                            value: true
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            $stateSet(objRoot, variablePath, value);
-                            return value;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateDeletebookdialogOpen"] != null &&
-                      typeof $steps["updateDeletebookdialogOpen"] ===
-                        "object" &&
-                      typeof $steps["updateDeletebookdialogOpen"].then ===
-                        "function"
-                    ) {
-                      $steps["updateDeletebookdialogOpen"] =
-                        await $steps["updateDeletebookdialogOpen"];
-                    }
-
-                    $steps["clickForDeleteBook"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            args: [
-                              (() => {
-                                try {
-                                  return {
-                                    group: "book-list",
-                                    data: {
-                                      center_id: $props.centerId,
-                                      book_id: $props.bookId,
-                                      ref_id: $props.refId
-                                    },
-                                    type: "click-first-delete-button"
-                                  };
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
-                          };
-                          return $globalActions["Splunk.sendLog"]?.apply(null, [
-                            ...actionArgs.args
-                          ]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["clickForDeleteBook"] != null &&
-                      typeof $steps["clickForDeleteBook"] === "object" &&
-                      typeof $steps["clickForDeleteBook"].then === "function"
-                    ) {
-                      $steps["clickForDeleteBook"] =
-                        await $steps["clickForDeleteBook"];
-                    }
-                  }}
-                  outline={true}
-                  startIcon={
-                    <ChevronRightIcon
-                      className={classNames(projectcss.all, sty.svg__bzhTf)}
-                      role={"img"}
-                    />
-                  }
-                />
-              ) : null}
-              {(() => {
-                try {
-                  return $state.apiPres.data[0].finalized === true;
+                  return $props.externalPrescriptions?.length > 0;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -4929,70 +4818,151 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   }
                   throw e;
                 }
-              })() ? (
-                <Button
-                  children2={
-                    "\u0645\u0634\u0627\u0647\u062f\u0647 \u0646\u0633\u062e\u0647"
-                  }
-                  className={classNames("__wab_instance", sty.button__ltYs2)}
-                  color={"softBlue"}
-                  endIcon={
-                    <ChevronLeftIcon
-                      className={classNames(projectcss.all, sty.svg__e2Bq9)}
-                      role={"img"}
-                    />
-                  }
-                  onClick={async event => {
-                    const $steps = {};
-
-                    $steps["goToPage"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            destination: (() => {
+              })()
+                ? (_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+                    (() => {
+                      try {
+                        return $props?.externalPrescriptions;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return [];
+                        }
+                        throw e;
+                      }
+                    })()
+                  ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                    const currentItem = __plasmic_item_0;
+                    const currentIndex = __plasmic_idx_0;
+                    return (
+                      <Button
+                        children2={
+                          <React.Fragment>
+                            {(() => {
                               try {
-                                return `https://dr.paziresh24.com/prescription/patient/${$state.apiPres.data[0].id}`;
+                                return currentItem.title;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
                                   e?.plasmicType === "PlasmicUndefinedDataError"
                                 ) {
-                                  return undefined;
+                                  return "\u062a\u062c\u0648\u06cc\u0632 \u0646\u0633\u062e\u0647";
                                 }
                                 throw e;
                               }
-                            })()
-                          };
-                          return (({ destination }) => {
+                            })()}
+                          </React.Fragment>
+                        }
+                        className={classNames(
+                          "__wab_instance",
+                          sty.button__rAoiK
+                        )}
+                        key={currentIndex}
+                        loading={(() => {
+                          try {
+                            return $state.loading;
+                          } catch (e) {
                             if (
-                              typeof destination === "string" &&
-                              destination.startsWith("#")
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
                             ) {
-                              document
-                                .getElementById(destination.substr(1))
-                                .scrollIntoView({ behavior: "smooth" });
-                            } else {
-                              __nextRouter?.push(destination);
+                              return [];
                             }
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["goToPage"] != null &&
-                      typeof $steps["goToPage"] === "object" &&
-                      typeof $steps["goToPage"].then === "function"
-                    ) {
-                      $steps["goToPage"] = await $steps["goToPage"];
-                    }
-                  }}
-                  outline={true}
-                  startIcon={
-                    <ChevronRightIcon
-                      className={classNames(projectcss.all, sty.svg__y0Ea2)}
-                      role={"img"}
-                    />
-                  }
-                />
-              ) : null}
+                            throw e;
+                          }
+                        })()}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["invokeGlobalAction"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    (() => {
+                                      try {
+                                        return (
+                                          "https://www.paziresh24.com" +
+                                          currentItem.link +
+                                          `?appointment_id=${$props.bookId}`
+                                        );
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Hamdast.openLink"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["invokeGlobalAction"] != null &&
+                            typeof $steps["invokeGlobalAction"] === "object" &&
+                            typeof $steps["invokeGlobalAction"].then ===
+                              "function"
+                          ) {
+                            $steps["invokeGlobalAction"] =
+                              await $steps["invokeGlobalAction"];
+                          }
+
+                          $steps["invokeGlobalAction2"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    (() => {
+                                      try {
+                                        return {
+                                          event_group: "prescription",
+                                          event_type: "prescribe",
+                                          data: {
+                                            user_center_id: $props.userCenterId,
+                                            book_id: $props.bookId,
+                                            app: currentItem.app
+                                          }
+                                        };
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
+                                };
+                                return $globalActions["Splunk.sendLog"]?.apply(
+                                  null,
+                                  [...actionArgs.args]
+                                );
+                              })()
+                            : undefined;
+                          if (
+                            $steps["invokeGlobalAction2"] != null &&
+                            typeof $steps["invokeGlobalAction2"] === "object" &&
+                            typeof $steps["invokeGlobalAction2"].then ===
+                              "function"
+                          ) {
+                            $steps["invokeGlobalAction2"] =
+                              await $steps["invokeGlobalAction2"];
+                          }
+                        }}
+                      />
+                    );
+                  })
+                : null}
               {(() => {
                 try {
                   return (
@@ -5013,7 +4983,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               })() ? (
                 <Button
                   children2={
-                    "\u062a\u062c\u0648\u06cc\u0632 \u0646\u0633\u062e\u0647"
+                    "\u062a\u062c\u0648\u06cc\u0632 \u0646\u0633\u062e\u0647 \u0628\u0627 \u067e\u0630\u06cc\u0631\u0634\u06f2\u06f4"
                   }
                   className={classNames("__wab_instance", sty.button__czTw6)}
                   loading={(() => {
@@ -5436,7 +5406,239 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                       $steps["updateBookStatusState"] =
                         await $steps["updateBookStatusState"];
                     }
+
+                    $steps["invokeGlobalAction"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    event_group: "prescription",
+                                    event_type: "prescribe",
+                                    data: {
+                                      user_center_id: $props.userCenterId,
+                                      book_id: $props.bookId,
+                                      app: "paziresh24"
+                                    }
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["invokeGlobalAction"] != null &&
+                      typeof $steps["invokeGlobalAction"] === "object" &&
+                      typeof $steps["invokeGlobalAction"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction"] =
+                        await $steps["invokeGlobalAction"];
+                    }
                   }}
+                />
+              ) : null}
+              {(() => {
+                try {
+                  return $props.platform.settings.can_delete;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return true;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <Button
+                  children2={"\u0644\u063a\u0648 \u0646\u0648\u0628\u062a"}
+                  className={classNames("__wab_instance", sty.button__iLuiz)}
+                  color={"red"}
+                  endIcon={
+                    <ChevronLeftIcon
+                      className={classNames(projectcss.all, sty.svg__cqwx7)}
+                      role={"img"}
+                    />
+                  }
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateDeletebookdialogOpen"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["deletebookdialog", "open"]
+                            },
+                            operation: 0,
+                            value: true
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateDeletebookdialogOpen"] != null &&
+                      typeof $steps["updateDeletebookdialogOpen"] ===
+                        "object" &&
+                      typeof $steps["updateDeletebookdialogOpen"].then ===
+                        "function"
+                    ) {
+                      $steps["updateDeletebookdialogOpen"] =
+                        await $steps["updateDeletebookdialogOpen"];
+                    }
+
+                    $steps["clickForDeleteBook"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    group: "book-list",
+                                    data: {
+                                      center_id: $props.centerId,
+                                      book_id: $props.bookId,
+                                      ref_id: $props.refId
+                                    },
+                                    type: "click-first-delete-button"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["clickForDeleteBook"] != null &&
+                      typeof $steps["clickForDeleteBook"] === "object" &&
+                      typeof $steps["clickForDeleteBook"].then === "function"
+                    ) {
+                      $steps["clickForDeleteBook"] =
+                        await $steps["clickForDeleteBook"];
+                    }
+                  }}
+                  outline={true}
+                  startIcon={
+                    <ChevronRightIcon
+                      className={classNames(projectcss.all, sty.svg__bzhTf)}
+                      role={"img"}
+                    />
+                  }
+                />
+              ) : null}
+              {(() => {
+                try {
+                  return $state.apiPres.data[0].finalized === true;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <Button
+                  children2={
+                    "\u0645\u0634\u0627\u0647\u062f\u0647 \u0646\u0633\u062e\u0647"
+                  }
+                  className={classNames("__wab_instance", sty.button__ltYs2)}
+                  color={"softBlue"}
+                  endIcon={
+                    <ChevronLeftIcon
+                      className={classNames(projectcss.all, sty.svg__e2Bq9)}
+                      role={"img"}
+                    />
+                  }
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["goToPage"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: (() => {
+                              try {
+                                return `https://dr.paziresh24.com/prescription/patient/${$state.apiPres.data[0].id}`;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToPage"] != null &&
+                      typeof $steps["goToPage"] === "object" &&
+                      typeof $steps["goToPage"].then === "function"
+                    ) {
+                      $steps["goToPage"] = await $steps["goToPage"];
+                    }
+                  }}
+                  outline={true}
+                  startIcon={
+                    <ChevronRightIcon
+                      className={classNames(projectcss.all, sty.svg__y0Ea2)}
+                      role={"img"}
+                    />
+                  }
                 />
               ) : null}
               <ApiRequest

@@ -86,6 +86,7 @@ export type PlasmicPatientList__ArgsType = {
   userCenterId?: string;
   children?: React.ReactNode;
   multiPlatform?: boolean;
+  externalPrescriptions?: any;
 };
 type ArgPropType = keyof PlasmicPatientList__ArgsType;
 export const PlasmicPatientList__ArgProps = new Array<ArgPropType>(
@@ -95,7 +96,8 @@ export const PlasmicPatientList__ArgProps = new Array<ArgPropType>(
   "centers",
   "userCenterId",
   "children",
-  "multiPlatform"
+  "multiPlatform",
+  "externalPrescriptions"
 );
 
 export type PlasmicPatientList__OverridesType = {
@@ -115,6 +117,7 @@ export interface DefaultPatientListProps {
   userCenterId?: string;
   children?: React.ReactNode;
   multiPlatform?: boolean;
+  externalPrescriptions?: any;
   className?: string;
 }
 
@@ -702,6 +705,19 @@ function PlasmicPatientList__RenderFunc(props: {
                     })
                     .replace(/،/g, "")
                     .replace(/سال/g, "");
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return undefined;
+                  }
+                  throw e;
+                }
+              })()}
+              externalPrescriptions={(() => {
+                try {
+                  return $props.externalPrescriptions;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||

@@ -268,10 +268,8 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  background: linear-gradient(
-      var(--token-41VRhDKfihhY),
-      var(--token-41VRhDKfihhY)
-    ),
+  background:
+    linear-gradient(var(--token-41VRhDKfihhY), var(--token-41VRhDKfihhY)),
     #e2e8f0;
   flex-direction: column;
   left: auto;
