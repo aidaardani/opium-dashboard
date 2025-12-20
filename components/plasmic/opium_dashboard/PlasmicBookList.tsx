@@ -188,7 +188,7 @@ function PlasmicBookList__RenderFunc(props: {
         path: "dialog.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       },
       {
         path: "centers",
@@ -441,7 +441,7 @@ function PlasmicBookList__RenderFunc(props: {
         path: "dialog2.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $ctx }) => true
       }
     ],
     [$props, $ctx, $refs]
@@ -3697,7 +3697,7 @@ function PlasmicBookList__RenderFunc(props: {
               data-plasmic-name={"dialog2"}
               data-plasmic-override={overrides.dialog2}
               body={
-                <React.Fragment>
+                <div className={classNames(projectcss.all, sty.freeBox__rnzBx)}>
                   <div
                     className={classNames(
                       projectcss.all,
@@ -3726,88 +3726,80 @@ function PlasmicBookList__RenderFunc(props: {
                   </div>
                   <Button
                     children2={
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text___8Wo
-                        )}
-                        onClick={async event => {
-                          const $steps = {};
-
-                          $steps["openLink"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    "https://www.paziresh24.com/dashboard/apps/drapp/vacation/?utm_source=30azar&utm_medium=notification-in-nelson&utm_campaign=flood_vacation/"
-                                  ]
-                                };
-                                return $globalActions[
-                                  "Hamdast.openLink"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["openLink"] != null &&
-                            typeof $steps["openLink"] === "object" &&
-                            typeof $steps["openLink"].then === "function"
-                          ) {
-                            $steps["openLink"] = await $steps["openLink"];
-                          }
-
-                          $steps["sendLog"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    (() => {
-                                      try {
-                                        return {
-                                          event_group: "notification-popup",
-                                          data: {
-                                            user_id: $ctx.query.user_id,
-                                            user_info_id:
-                                              $state.apiRequest.data.find(
-                                                item => item.type_id === "1"
-                                              ).user_info_id
-                                          },
-                                          event_type: "click"
-                                        };
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                                  ]
-                                };
-                                return $globalActions["Splunk.sendLog"]?.apply(
-                                  null,
-                                  [...actionArgs.args]
-                                );
-                              })()
-                            : undefined;
-                          if (
-                            $steps["sendLog"] != null &&
-                            typeof $steps["sendLog"] === "object" &&
-                            typeof $steps["sendLog"].then === "function"
-                          ) {
-                            $steps["sendLog"] = await $steps["sendLog"];
-                          }
-                        }}
-                      >
-                        {
-                          "\u0645\u06cc\u200c\u062e\u0648\u0627\u0647\u0645 \u0645\u0631\u062e\u0635\u06cc \u0627\u0639\u0645\u0627\u0644 \u06a9\u0646\u0645."
-                        }
-                      </div>
+                      "\u0645\u06cc\u200c\u062e\u0648\u0627\u0647\u0645 \u0645\u0631\u062e\u0635\u06cc \u0627\u0639\u0645\u0627\u0644 \u06a9\u0646\u0645."
                     }
                     className={classNames("__wab_instance", sty.button__jbiDf)}
+                    onClick={async event => {
+                      const $steps = {};
+
+                      $steps["sendLog"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return {
+                                      event_group: "notification-popup",
+                                      data: {
+                                        user_id: $ctx.query.user_id,
+                                        user_info_id:
+                                          $state.apiRequest.data.find(
+                                            item => item.type_id === "1"
+                                          ).user_info_id
+                                      },
+                                      event_type: "click"
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["sendLog"] != null &&
+                        typeof $steps["sendLog"] === "object" &&
+                        typeof $steps["sendLog"].then === "function"
+                      ) {
+                        $steps["sendLog"] = await $steps["sendLog"];
+                      }
+
+                      $steps["invokeGlobalAction"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "https://www.paziresh24.com/dashboard/apps/drapp/vacation/?utm_source=30azar&utm_medium=notification-in-nelson&utm_campaign=flood_vacation/"
+                              ]
+                            };
+                            return $globalActions["Hamdast.openLink"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["invokeGlobalAction"] != null &&
+                        typeof $steps["invokeGlobalAction"] === "object" &&
+                        typeof $steps["invokeGlobalAction"].then === "function"
+                      ) {
+                        $steps["invokeGlobalAction"] =
+                          await $steps["invokeGlobalAction"];
+                      }
+                    }}
                   />
-                </React.Fragment>
+                </div>
               }
               className={classNames("__wab_instance", sty.dialog2)}
               onOpenChange={async (...eventArgs: any) => {
