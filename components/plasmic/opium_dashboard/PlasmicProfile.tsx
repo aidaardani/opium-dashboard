@@ -65,7 +65,7 @@ import { accordionHelpers as AntdAccordion_Helpers } from "@plasmicpkgs/antd5/sk
 import { AntdAccordionItem } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import ProfilePersonal from "../../ProfilePersonal"; // plasmic-import: _Rp6tLXxWeJV/component
 import ProfileExperties from "../../ProfileExperties"; // plasmic-import: E1ah_bVnKUPF/component
-import V3Tags from "../../V3Tags"; // plasmic-import: HmCnUxZ0LoGn/component
+import { Iframe } from "@plasmicpkgs/plasmic-basic-components";
 import ProfileChannels from "../../ProfileChannels"; // plasmic-import: o4nq-6V2-plH/component
 import ProfileAddress from "../../ProfileAddress"; // plasmic-import: x5b7hK4cfrsH/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
@@ -113,7 +113,7 @@ export type PlasmicProfile__OverridesType = {
   accordion?: Flex__<typeof AntdAccordion>;
   profilePersonal?: Flex__<typeof ProfilePersonal>;
   experties?: Flex__<typeof ProfileExperties>;
-  v3Tags?: Flex__<typeof V3Tags>;
+  iframe?: Flex__<typeof Iframe>;
   profileChannels?: Flex__<typeof ProfileChannels>;
   profileAddress?: Flex__<typeof ProfileAddress>;
   img?: Flex__<typeof PlasmicImg__>;
@@ -331,51 +331,19 @@ function PlasmicProfile__RenderFunc(props: {
                 }
                 showArrow={false}
               >
-                {(() => {
-                  try {
-                    return $ctx.GrowthBook.features["tags"];
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return false;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <V3Tags
-                    data-plasmic-name={"v3Tags"}
-                    data-plasmic-override={overrides.v3Tags}
-                    className={classNames("__wab_instance", sty.v3Tags)}
-                    resourceId={"23"}
+                <div
+                  className={classNames(projectcss.all, sty.freeBox___55AuV)}
+                >
+                  <Iframe
+                    data-plasmic-name={"iframe"}
+                    data-plasmic-override={overrides.iframe}
+                    className={classNames("__wab_instance", sty.iframe)}
+                    preview={true}
+                    src={"https://my-tags.paziresh24.com/"}
+                    srcDoc={"<div><h3>Heading</h3><p>Example text...</p></div>"}
+                    useHtml={false}
                   />
-                ) : null}
-                {(() => {
-                  try {
-                    return !$ctx.GrowthBook.features["tags"];
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return false;
-                    }
-                    throw e;
-                  }
-                })() ? (
-                  <div
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text___5Osq
-                    )}
-                  >
-                    {
-                      "\u0627\u06cc\u0646 \u0628\u062e\u0634 \u0628\u0647 \u0632\u0648\u062f\u06cc \u0628\u0631\u0627\u06cc \u0634\u0645\u0627 \u0646\u0645\u0627\u06cc\u0634 \u062f\u0627\u062f\u0647 \u062e\u0648\u0627\u0647\u062f \u0634\u062f..."
-                    }
-                  </div>
-                ) : null}
+                </div>
               </AntdAccordionItem>
               <AntdAccordionItem
                 className={classNames(
@@ -759,7 +727,7 @@ const PlasmicDescendants = {
     "accordion",
     "profilePersonal",
     "experties",
-    "v3Tags",
+    "iframe",
     "profileChannels",
     "profileAddress",
     "img",
@@ -772,7 +740,7 @@ const PlasmicDescendants = {
     "accordion",
     "profilePersonal",
     "experties",
-    "v3Tags",
+    "iframe",
     "profileChannels",
     "profileAddress",
     "img",
@@ -782,7 +750,7 @@ const PlasmicDescendants = {
   ],
   profilePersonal: ["profilePersonal"],
   experties: ["experties"],
-  v3Tags: ["v3Tags"],
+  iframe: ["iframe"],
   profileChannels: ["profileChannels"],
   profileAddress: ["profileAddress"],
   img: ["img"],
@@ -799,7 +767,7 @@ type NodeDefaultElementType = {
   accordion: typeof AntdAccordion;
   profilePersonal: typeof ProfilePersonal;
   experties: typeof ProfileExperties;
-  v3Tags: typeof V3Tags;
+  iframe: typeof Iframe;
   profileChannels: typeof ProfileChannels;
   profileAddress: typeof ProfileAddress;
   img: typeof PlasmicImg__;
@@ -874,7 +842,7 @@ export const PlasmicProfile = Object.assign(
     accordion: makeNodeComponent("accordion"),
     profilePersonal: makeNodeComponent("profilePersonal"),
     experties: makeNodeComponent("experties"),
-    v3Tags: makeNodeComponent("v3Tags"),
+    iframe: makeNodeComponent("iframe"),
     profileChannels: makeNodeComponent("profileChannels"),
     profileAddress: makeNodeComponent("profileAddress"),
     img: makeNodeComponent("img"),

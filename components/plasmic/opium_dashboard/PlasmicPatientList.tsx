@@ -87,6 +87,7 @@ export type PlasmicPatientList__ArgsType = {
   children?: React.ReactNode;
   multiPlatform?: boolean;
   externalPrescriptions?: any;
+  selectedExternalCenter?: string;
 };
 type ArgPropType = keyof PlasmicPatientList__ArgsType;
 export const PlasmicPatientList__ArgProps = new Array<ArgPropType>(
@@ -97,7 +98,8 @@ export const PlasmicPatientList__ArgProps = new Array<ArgPropType>(
   "userCenterId",
   "children",
   "multiPlatform",
-  "externalPrescriptions"
+  "externalPrescriptions",
+  "selectedExternalCenter"
 );
 
 export type PlasmicPatientList__OverridesType = {
@@ -118,6 +120,7 @@ export interface DefaultPatientListProps {
   children?: React.ReactNode;
   multiPlatform?: boolean;
   externalPrescriptions?: any;
+  selectedExternalCenter?: string;
   className?: string;
 }
 
@@ -372,18 +375,16 @@ function PlasmicPatientList__RenderFunc(props: {
               centers:
                 $props.selectedCenter == "all"
                   ? $props.centers.map(center => ({
-                      id: center.id,
-                      user_center_id: center.user_center_id
+                      id: center.id
                     }))
                   : [
                       {
                         id: $props.selectedCenter,
-                        user_center_id: $props.userCenterId
+                        external_id: $props?.selectedExternalCenter
                       }
                     ],
               date: $props.date,
-              show_other_platform:
-                $props.multiPlatform && $props.selectedCenter == "all"
+              show_other_platform: $props.multiPlatform
             };
           } catch (e) {
             if (
@@ -436,7 +437,7 @@ function PlasmicPatientList__RenderFunc(props: {
         url={(() => {
           try {
             return $props.centers.length > 0
-              ? "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/v5/allbooks"
+              ? "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/v6/allbooks"
               : "";
           } catch (e) {
             if (
@@ -1055,7 +1056,8 @@ function PlasmicPatientList__RenderFunc(props: {
                 try {
                   return $props.centers.find(
                     center =>
-                      center.user_center_id === currentItem.user_center_id &&
+                      center.user_center_id ===
+                        currentItem.center.user_center_id &&
                       center.center_type !== 1 &&
                       center.id !== "5532"
                   )

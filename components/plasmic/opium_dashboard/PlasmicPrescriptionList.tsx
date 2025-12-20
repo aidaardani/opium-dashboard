@@ -661,9 +661,10 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                       ) {
                         $steps[
                           "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
-                        ] = await $steps[
-                          "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
-                        ];
+                        ] =
+                          await $steps[
+                            "goToHttpsDrPaziresh24ComSettingPaymentUtmNelson"
+                          ];
                       }
 
                       $steps["sendLog"] = true
@@ -768,9 +769,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                       typeof $steps["updateFragmentDatePickerValue"].then ===
                         "function"
                     ) {
-                      $steps["updateFragmentDatePickerValue"] = await $steps[
-                        "updateFragmentDatePickerValue"
-                      ];
+                      $steps["updateFragmentDatePickerValue"] =
+                        await $steps["updateFragmentDatePickerValue"];
                     }
                   }}
                   role={"img"}
@@ -817,9 +817,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                         typeof $steps["updateCalendarOpen"] === "object" &&
                         typeof $steps["updateCalendarOpen"].then === "function"
                       ) {
-                        $steps["updateCalendarOpen"] = await $steps[
-                          "updateCalendarOpen"
-                        ];
+                        $steps["updateCalendarOpen"] =
+                          await $steps["updateCalendarOpen"];
                       }
                     }}
                   >
@@ -928,9 +927,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                                 typeof $steps["updateStateتقومOpen"].then ===
                                   "function"
                               ) {
-                                $steps["updateStateتقومOpen"] = await $steps[
-                                  "updateStateتقومOpen"
-                                ];
+                                $steps["updateStateتقومOpen"] =
+                                  await $steps["updateStateتقومOpen"];
                               }
                             }).apply(null, eventArgs);
                           }}
@@ -1027,9 +1025,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                       typeof $steps["updateFragmentDatePickerValue"].then ===
                         "function"
                     ) {
-                      $steps["updateFragmentDatePickerValue"] = await $steps[
-                        "updateFragmentDatePickerValue"
-                      ];
+                      $steps["updateFragmentDatePickerValue"] =
+                        await $steps["updateFragmentDatePickerValue"];
                     }
                   }}
                   role={"img"}
@@ -1252,9 +1249,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                           typeof $steps["updateSelectedCenter"].then ===
                             "function"
                         ) {
-                          $steps["updateSelectedCenter"] = await $steps[
-                            "updateSelectedCenter"
-                          ];
+                          $steps["updateSelectedCenter"] =
+                            await $steps["updateSelectedCenter"];
                         }
                       }).apply(null, eventArgs);
                     }}
@@ -1466,9 +1462,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                           typeof $steps["updateLoadingonOff"].then ===
                             "function"
                         ) {
-                          $steps["updateLoadingonOff"] = await $steps[
-                            "updateLoadingonOff"
-                          ];
+                          $steps["updateLoadingonOff"] =
+                            await $steps["updateLoadingonOff"];
                         }
 
                         $steps["apiCountOfBook"] = true
@@ -1508,9 +1503,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                           typeof $steps["apiCountOfBook"] === "object" &&
                           typeof $steps["apiCountOfBook"].then === "function"
                         ) {
-                          $steps["apiCountOfBook"] = await $steps[
-                            "apiCountOfBook"
-                          ];
+                          $steps["apiCountOfBook"] =
+                            await $steps["apiCountOfBook"];
                         }
 
                         $steps["count"] = true
@@ -1639,9 +1633,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                           typeof $steps["apiActiveDeactiveVisitOnline"].then ===
                             "function"
                         ) {
-                          $steps["apiActiveDeactiveVisitOnline"] = await $steps[
-                            "apiActiveDeactiveVisitOnline"
-                          ];
+                          $steps["apiActiveDeactiveVisitOnline"] =
+                            await $steps["apiActiveDeactiveVisitOnline"];
                         }
 
                         $steps["updateUserCenterService"] = false
@@ -1677,9 +1670,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                           typeof $steps["updateUserCenterService"].then ===
                             "function"
                         ) {
-                          $steps["updateUserCenterService"] = await $steps[
-                            "updateUserCenterService"
-                          ];
+                          $steps["updateUserCenterService"] =
+                            await $steps["updateUserCenterService"];
                         }
 
                         $steps["updateActive"] = true
@@ -1751,9 +1743,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                           typeof $steps["loadingFinish"] === "object" &&
                           typeof $steps["loadingFinish"].then === "function"
                         ) {
-                          $steps["loadingFinish"] = await $steps[
-                            "loadingFinish"
-                          ];
+                          $steps["loadingFinish"] =
+                            await $steps["loadingFinish"];
                         }
 
                         $steps["showToast"] = true
@@ -2001,9 +1992,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                                   typeof $steps["updateLoading"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateLoading"] = await $steps[
-                                    "updateLoading"
-                                  ];
+                                  $steps["updateLoading"] =
+                                    await $steps["updateLoading"];
                                 }
 
                                 $steps["apiDeleteBooks"] = true
@@ -2048,9 +2038,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                                   typeof $steps["apiDeleteBooks"].then ===
                                     "function"
                                 ) {
-                                  $steps["apiDeleteBooks"] = await $steps[
-                                    "apiDeleteBooks"
-                                  ];
+                                  $steps["apiDeleteBooks"] =
+                                    await $steps["apiDeleteBooks"];
                                 }
 
                                 $steps["updateDialog2Open"] = true
@@ -2090,9 +2079,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                                   typeof $steps["updateDialog2Open"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateDialog2Open"] = await $steps[
-                                    "updateDialog2Open"
-                                  ];
+                                  $steps["updateDialog2Open"] =
+                                    await $steps["updateDialog2Open"];
                                 }
 
                                 $steps["toast"] =
@@ -2159,9 +2147,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                                   typeof $steps["eventCancelBook"].then ===
                                     "function"
                                 ) {
-                                  $steps["eventCancelBook"] = await $steps[
-                                    "eventCancelBook"
-                                  ];
+                                  $steps["eventCancelBook"] =
+                                    await $steps["eventCancelBook"];
                                 }
 
                                 $steps["updateLoadingOnoff"] = true
@@ -2198,9 +2185,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                                   typeof $steps["updateLoadingOnoff"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateLoadingOnoff"] = await $steps[
-                                    "updateLoadingOnoff"
-                                  ];
+                                  $steps["updateLoadingOnoff"] =
+                                    await $steps["updateLoadingOnoff"];
                                 }
                               }}
                               outline={true}
@@ -2318,9 +2304,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                                   typeof $steps["eventReturnBack"].then ===
                                     "function"
                                 ) {
-                                  $steps["eventReturnBack"] = await $steps[
-                                    "eventReturnBack"
-                                  ];
+                                  $steps["eventReturnBack"] =
+                                    await $steps["eventReturnBack"];
                                 }
 
                                 $steps["updateLoadingOnoff"] = true
@@ -2357,9 +2342,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                                   typeof $steps["updateLoadingOnoff"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateLoadingOnoff"] = await $steps[
-                                    "updateLoadingOnoff"
-                                  ];
+                                  $steps["updateLoadingOnoff"] =
+                                    await $steps["updateLoadingOnoff"];
                                 }
                               }}
                             />
@@ -2589,9 +2573,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                               typeof $steps["apiCountOfBook"].then ===
                                 "function"
                             ) {
-                              $steps["apiCountOfBook"] = await $steps[
-                                "apiCountOfBook"
-                              ];
+                              $steps["apiCountOfBook"] =
+                                await $steps["apiCountOfBook"];
                             }
 
                             $steps["count"] = true
@@ -2675,9 +2658,10 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                             ) {
                               $steps[
                                 "updateDeterminingTheSituationDialogOpen"
-                              ] = await $steps[
-                                "updateDeterminingTheSituationDialogOpen"
-                              ];
+                              ] =
+                                await $steps[
+                                  "updateDeterminingTheSituationDialogOpen"
+                                ];
                             }
 
                             $steps["apiActiveDeactiveVisitOnline"] = true
@@ -2760,9 +2744,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                               typeof $steps["updateUserCenterService"].then ===
                                 "function"
                             ) {
-                              $steps["updateUserCenterService"] = await $steps[
-                                "updateUserCenterService"
-                              ];
+                              $steps["updateUserCenterService"] =
+                                await $steps["updateUserCenterService"];
                             }
 
                             $steps["updateActive"] = true
@@ -2798,9 +2781,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                               typeof $steps["updateActive"] === "object" &&
                               typeof $steps["updateActive"].then === "function"
                             ) {
-                              $steps["updateActive"] = await $steps[
-                                "updateActive"
-                              ];
+                              $steps["updateActive"] =
+                                await $steps["updateActive"];
                             }
 
                             $steps["showToast"] = true
@@ -3056,9 +3038,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                       typeof $steps["apiUserCenterService"] === "object" &&
                       typeof $steps["apiUserCenterService"].then === "function"
                     ) {
-                      $steps["apiUserCenterService"] = await $steps[
-                        "apiUserCenterService"
-                      ];
+                      $steps["apiUserCenterService"] =
+                        await $steps["apiUserCenterService"];
                     }
 
                     $steps["updateUserCenterService"] = false
@@ -3093,9 +3074,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                       typeof $steps["updateUserCenterService"].then ===
                         "function"
                     ) {
-                      $steps["updateUserCenterService"] = await $steps[
-                        "updateUserCenterService"
-                      ];
+                      $steps["updateUserCenterService"] =
+                        await $steps["updateUserCenterService"];
                     }
 
                     $steps["updateActive"] = false
@@ -3262,9 +3242,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                         typeof $steps["updateDialogOpen"] === "object" &&
                         typeof $steps["updateDialogOpen"].then === "function"
                       ) {
-                        $steps["updateDialogOpen"] = await $steps[
-                          "updateDialogOpen"
-                        ];
+                        $steps["updateDialogOpen"] =
+                          await $steps["updateDialogOpen"];
                       }
                     }}
                     outline={true}
@@ -3321,9 +3300,8 @@ function PlasmicPrescriptionList__RenderFunc(props: {
                         typeof $steps["updateDialogOpen"] === "object" &&
                         typeof $steps["updateDialogOpen"].then === "function"
                       ) {
-                        $steps["updateDialogOpen"] = await $steps[
-                          "updateDialogOpen"
-                        ];
+                        $steps["updateDialogOpen"] =
+                          await $steps["updateDialogOpen"];
                       }
                     }}
                     centerId={(() => {
@@ -3887,7 +3865,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicPrescriptionList__VariantsArgs;
     args?: PlasmicPrescriptionList__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicPrescriptionList__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicPrescriptionList__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicPrescriptionList__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

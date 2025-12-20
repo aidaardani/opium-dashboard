@@ -104,6 +104,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
+  text-align: center;
   border-top-color: var(--token-Y3HOiwZmAcAF);
   border-right-color: #e5e9f0;
   border-bottom-color: var(--token-Y3HOiwZmAcAF);
@@ -334,10 +335,8 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  background: linear-gradient(
-      var(--token-41VRhDKfihhY),
-      var(--token-41VRhDKfihhY)
-    ),
+  background:
+    linear-gradient(var(--token-41VRhDKfihhY), var(--token-41VRhDKfihhY)),
     #e2e8f0;
   flex-direction: column;
   left: auto;

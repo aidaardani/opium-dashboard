@@ -128,6 +128,7 @@ export type PlasmicBookList__OverridesType = {
   apiHoliday?: Flex__<typeof ApiRequest>;
   apiRequest?: Flex__<typeof ApiRequest>;
   hamdastApps?: Flex__<typeof ApiRequest>;
+  dialog2?: Flex__<typeof Dialog>;
 };
 
 export interface DefaultBookListProps {}
@@ -435,6 +436,12 @@ function PlasmicBookList__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
 
         refName: "hamdastApps"
+      },
+      {
+        path: "dialog2.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -958,14 +965,33 @@ function PlasmicBookList__RenderFunc(props: {
                       }
                     }).apply(null, eventArgs);
                   }}
-                  params={undefined}
+                  params={(() => {
+                    try {
+                      return {
+                        show_other_platform: !!$state.hamdastApps?.data?.some?.(
+                          item =>
+                            item?.placement?.includes(
+                              "appointments::multi_platform"
+                            )
+                        )
+                      };
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
                   ref={ref => {
                     $refs["apiAllCenters"] = ref;
                   }}
                   url={(() => {
                     try {
                       return $ctx.query.user_id !== "18459299"
-                        ? `https://apigw.paziresh24.com/v1/doctor/${$ctx.query.user_id}/centers`
+                        ? `https://apigw.paziresh24.com/v1/n8n-nelson/webhook/v1/centers`
                         : `https://apigw.paziresh24.com/v1/n8n-nelson/webhook/godarz`;
                     } catch (e) {
                       if (
@@ -3009,8 +3035,18 @@ function PlasmicBookList__RenderFunc(props: {
                 })()}
                 multiPlatform={(() => {
                   try {
-                    return !!$state.hamdastApps?.data?.some?.(item =>
-                      item?.placement?.includes("appointments::multi_platform")
+                    return (
+                      ($state.apiAllCenters.data.items.find(
+                        center =>
+                          center.user_center_id == $state.selectedCenter ||
+                          center.external_id == $state.selectedCenter
+                      )?.meta_data?.platforms?.length > 0 ||
+                        $state.selectedCenter == "all") &&
+                      !!$state.hamdastApps?.data?.some?.(item =>
+                        item?.placement?.includes(
+                          "appointments::multi_platform"
+                        )
+                      )
                     );
                   } catch (e) {
                     if (
@@ -3024,10 +3060,38 @@ function PlasmicBookList__RenderFunc(props: {
                 })()}
                 selectedCenter={(() => {
                   try {
+                    return $state.apiAllCenters.data.items.find(
+                      center => center.user_center_id == $state.selectedCenter
+                    )?.id
+                      ? $state.apiAllCenters.data.items.find(
+                          center =>
+                            center.user_center_id == $state.selectedCenter
+                        )?.id
+                      : $state.apiAllCenters.data.items.some(
+                            center =>
+                              center.external_id == $state.selectedCenter
+                          )
+                        ? null
+                        : "all";
+                  } catch (e) {
+                    if (
+                      e instanceof TypeError ||
+                      e?.plasmicType === "PlasmicUndefinedDataError"
+                    ) {
+                      return undefined;
+                    }
+                    throw e;
+                  }
+                })()}
+                selectedExternalCenter={(() => {
+                  try {
                     return (
                       $state.apiAllCenters.data.items.find(
+                        center => center.external_id == $state.selectedCenter
+                      )?.external_id ||
+                      $state.apiAllCenters.data.items.find(
                         center => center.user_center_id == $state.selectedCenter
-                      )?.id || "all"
+                      )?.meta_data?.id
                     );
                   } catch (e) {
                     if (
@@ -3628,6 +3692,256 @@ function PlasmicBookList__RenderFunc(props: {
               }}
               url={"https://hamdast.paziresh24.com/api/v1/widgets/"}
             />
+
+            <Dialog
+              data-plasmic-name={"dialog2"}
+              data-plasmic-override={overrides.dialog2}
+              body={
+                <React.Fragment>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__fEcDj
+                    )}
+                  >
+                    <React.Fragment>
+                      <React.Fragment>
+                        {
+                          "\u067e\u0632\u0634\u06a9 \u06af\u0631\u0627\u0645\u06cc\u060c \u062f\u0631 \u0635\u0648\u0631\u062a\u06cc \u06a9\u0647 \u062f\u0631 \u0634\u0631\u0627\u06cc\u0637 \u0627\u0628 \u0648 \u0647\u0648\u0627\u06cc\u06cc \u0641\u0639\u0644\u06cc \u062f\u0631 \u0645\u0637\u0628 \u062d\u0636\u0648\u0631 "
+                        }
+                      </React.Fragment>
+                      <span
+                        className={"plasmic_default__all plasmic_default__span"}
+                        style={{ fontWeight: 700 }}
+                      >
+                        {"\u0646\u062f\u0627\u0631\u06cc\u062f"}
+                      </span>
+                      <React.Fragment>
+                        {
+                          "\u060c \u0645\u0631\u062e\u0635\u06cc \u0627\u0639\u0645\u0627\u0644 \u06a9\u0646\u06cc\u062f."
+                        }
+                      </React.Fragment>
+                    </React.Fragment>
+                  </div>
+                  <Button
+                    children2={
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text___8Wo
+                        )}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["openLink"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    "https://www.paziresh24.com/dashboard/apps/drapp/vacation/?utm_source=30azar&utm_medium=notification-in-nelson&utm_campaign=flood_vacation/"
+                                  ]
+                                };
+                                return $globalActions[
+                                  "Hamdast.openLink"
+                                ]?.apply(null, [...actionArgs.args]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["openLink"] != null &&
+                            typeof $steps["openLink"] === "object" &&
+                            typeof $steps["openLink"].then === "function"
+                          ) {
+                            $steps["openLink"] = await $steps["openLink"];
+                          }
+
+                          $steps["sendLog"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  args: [
+                                    (() => {
+                                      try {
+                                        return {
+                                          event_group: "notification-popup",
+                                          data: {
+                                            user_id: $ctx.query.user_id,
+                                            user_info_id:
+                                              $state.apiRequest.data.find(
+                                                item => item.type_id === "1"
+                                              ).user_info_id
+                                          },
+                                          event_type: "click"
+                                        };
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  ]
+                                };
+                                return $globalActions["Splunk.sendLog"]?.apply(
+                                  null,
+                                  [...actionArgs.args]
+                                );
+                              })()
+                            : undefined;
+                          if (
+                            $steps["sendLog"] != null &&
+                            typeof $steps["sendLog"] === "object" &&
+                            typeof $steps["sendLog"].then === "function"
+                          ) {
+                            $steps["sendLog"] = await $steps["sendLog"];
+                          }
+                        }}
+                      >
+                        {
+                          "\u0645\u06cc\u200c\u062e\u0648\u0627\u0647\u0645 \u0645\u0631\u062e\u0635\u06cc \u0627\u0639\u0645\u0627\u0644 \u06a9\u0646\u0645."
+                        }
+                      </div>
+                    }
+                    className={classNames("__wab_instance", sty.button__jbiDf)}
+                  />
+                </React.Fragment>
+              }
+              className={classNames("__wab_instance", sty.dialog2)}
+              onOpenChange={async (...eventArgs: any) => {
+                generateStateOnChangeProp($state, ["dialog2", "open"]).apply(
+                  null,
+                  eventArgs
+                );
+
+                if (
+                  eventArgs.length > 1 &&
+                  eventArgs[1] &&
+                  eventArgs[1]._plasmic_state_init_
+                ) {
+                  return;
+                }
+
+                (async val => {
+                  const $steps = {};
+                }).apply(null, eventArgs);
+              }}
+              open={generateStateValueProp($state, ["dialog2", "open"])}
+              title={"\u06cc\u0627\u062f\u0627\u0648\u0631\u06cc!"}
+              trigger={null}
+            />
+
+            <SideEffect
+              className={classNames("__wab_instance", sty.sideEffect__kptpl)}
+              onMount={async () => {
+                const $steps = {};
+
+                $steps["updateDialog2Open"] = !globalThis.localStorage.getItem(
+                  "vacation-notice-modal"
+                )
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["dialog2", "open"]
+                        },
+                        operation: 0,
+                        value: true
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["updateDialog2Open"] != null &&
+                  typeof $steps["updateDialog2Open"] === "object" &&
+                  typeof $steps["updateDialog2Open"].then === "function"
+                ) {
+                  $steps["updateDialog2Open"] =
+                    await $steps["updateDialog2Open"];
+                }
+
+                $steps["runCode"] = !globalThis.localStorage.getItem(
+                  "vacation-notice-modal"
+                )
+                  ? (() => {
+                      const actionArgs = {
+                        customFunction: async () => {
+                          return globalThis.localStorage.setItem(
+                            "vacation-notice-modal",
+                            true
+                          );
+                        }
+                      };
+                      return (({ customFunction }) => {
+                        return customFunction();
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runCode"] != null &&
+                  typeof $steps["runCode"] === "object" &&
+                  typeof $steps["runCode"].then === "function"
+                ) {
+                  $steps["runCode"] = await $steps["runCode"];
+                }
+
+                $steps["sendLog"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                event_group: "notification-popup",
+                                data: {
+                                  user_id: $ctx.query.user_id,
+                                  user_info_id: $state.apiRequest.data.find(
+                                    item => item.type_id === "1"
+                                  ).user_info_id
+                                },
+                                event_type: "seen"
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
+                      };
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["sendLog"] != null &&
+                  typeof $steps["sendLog"] === "object" &&
+                  typeof $steps["sendLog"].then === "function"
+                ) {
+                  $steps["sendLog"] = await $steps["sendLog"];
+                }
+              }}
+            />
           </div>
         ) : null}
       </div>
@@ -3660,7 +3974,8 @@ const PlasmicDescendants = {
     "gtm",
     "apiHoliday",
     "apiRequest",
-    "hamdastApps"
+    "hamdastApps",
+    "dialog2"
   ],
   transactions2: ["transactions2"],
   date: [
@@ -3728,7 +4043,8 @@ const PlasmicDescendants = {
   gtm: ["gtm"],
   apiHoliday: ["apiHoliday"],
   apiRequest: ["apiRequest"],
-  hamdastApps: ["hamdastApps"]
+  hamdastApps: ["hamdastApps"],
+  dialog2: ["dialog2"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -3758,6 +4074,7 @@ type NodeDefaultElementType = {
   apiHoliday: typeof ApiRequest;
   apiRequest: typeof ApiRequest;
   hamdastApps: typeof ApiRequest;
+  dialog2: typeof Dialog;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -3849,6 +4166,7 @@ export const PlasmicBookList = Object.assign(
     apiHoliday: makeNodeComponent("apiHoliday"),
     apiRequest: makeNodeComponent("apiRequest"),
     hamdastApps: makeNodeComponent("hamdastApps"),
+    dialog2: makeNodeComponent("dialog2"),
 
     // Metadata about props expected for PlasmicBookList
     internalVariantProps: PlasmicBookList__VariantProps,

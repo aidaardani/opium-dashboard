@@ -512,7 +512,9 @@ function PlasmicDrCenters__RenderFunc(props: {
                                   variablePath: ["selectedCenter"]
                                 },
                                 operation: 0,
-                                value: currentItem.user_center_id
+                                value:
+                                  currentItem?.user_center_id ??
+                                  currentItem?.external_id
                               };
                               return (({
                                 variable,

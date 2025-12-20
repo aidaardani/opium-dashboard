@@ -64,6 +64,7 @@ import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZ
 import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
 import { Popover } from "@/fragment/components/popover"; // plasmic-import: umJXC-fyxDQn/codeComponent
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
+import Checkbox from "../../Checkbox"; // plasmic-import: IDR0sAqN5tth/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/styleTokensProvider
@@ -119,6 +120,9 @@ export type PlasmicActivationOfficeEditCostV2__OverridesType = {
   input2?: Flex__<typeof Input>;
   shabaApi?: Flex__<typeof ApiRequest>;
   درحالدریافتاطلاعات?: Flex__<"div">;
+  ruls?: Flex__<"div">;
+  checkbox?: Flex__<typeof Checkbox>;
+  link?: Flex__<"a"> & Partial<LinkProps>;
   dialog?: Flex__<typeof Dialog>;
   cancel?: Flex__<typeof Button>;
   apiGetPaymentStatus?: Flex__<typeof ApiRequest>;
@@ -156,7 +160,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
     () =>
       Object.assign(
         {
-          hasOnlineVisit: false
+          hasOnlineVisit: true
         },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
@@ -228,12 +232,8 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                 { label: "385,000 تومان", value: "385000" },
                 { label: "441,000 تومان", value: "441000" },
                 {
-                  label: `${
-                    ($state.getAvgCost?.data?.avg_cost || 1890000) / 10
-                  } تومان`,
-                  value: `${
-                    ($state.getAvgCost?.data?.avg_cost || 1890000) / 10
-                  }`
+                  label: `${($state.getAvgCost?.data?.avg_cost || 1890000) / 10} تومان`,
+                  value: `${($state.getAvgCost?.data?.avg_cost || 1890000) / 10}`
                 },
                 { label: "قیمت دلخواه", value: "custom" }
               ];
@@ -471,6 +471,12 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
       },
       {
         path: "dialog.open",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "checkbox.isChecked",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
@@ -862,9 +868,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
             <React.Fragment>
               {(() => {
                 try {
-                  return `برای تخصص شما مبلغ پیشنهادی ${
-                    $state.apiGetVezaratCost.data[0]?.price / 10 || 150000
-                  } تومان است. با کلیک روی کادر زیر می‌توانید مبلغ را تغییر دهید.`;
+                  return `برای تخصص شما مبلغ پیشنهادی ${$state.apiGetVezaratCost.data[0]?.price / 10 || 150000} تومان است. با کلیک روی کادر زیر می‌توانید مبلغ را تغییر دهید.`;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -1079,9 +1083,7 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                       );
                     };
                     const englishValue = persianToEnglish($state.input.value);
-                    return `${(+englishValue).toLocaleString()} ${
-                      englishValue ? "تومان" : ""
-                    }`;
+                    return `${(+englishValue).toLocaleString()} ${englishValue ? "تومان" : ""}`;
                   }
                 })();
               } catch (e) {
@@ -1451,9 +1453,8 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                     typeof $steps["updateShabaValue"] === "object" &&
                     typeof $steps["updateShabaValue"].then === "function"
                   ) {
-                    $steps["updateShabaValue"] = await $steps[
-                      "updateShabaValue"
-                    ];
+                    $steps["updateShabaValue"] =
+                      await $steps["updateShabaValue"];
                   }
                 }).apply(null, eventArgs);
               }}
@@ -1506,6 +1507,73 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
             </ApiRequest>
           </div>
         ) : null}
+      </div>
+      <div
+        data-plasmic-name={"ruls"}
+        data-plasmic-override={overrides.ruls}
+        className={classNames(projectcss.all, sty.ruls)}
+      >
+        <Checkbox
+          data-plasmic-name={"checkbox"}
+          data-plasmic-override={overrides.checkbox}
+          className={classNames("__wab_instance", sty.checkbox)}
+          isChecked={
+            generateStateValueProp($state, ["checkbox", "isChecked"]) ?? false
+          }
+          onChange={async (...eventArgs: any) => {
+            ((...eventArgs) => {
+              generateStateOnChangeProp($state, ["checkbox", "isChecked"])(
+                eventArgs[0]
+              );
+            }).apply(null, eventArgs);
+
+            if (
+              eventArgs.length > 1 &&
+              eventArgs[1] &&
+              eventArgs[1]._plasmic_state_init_
+            ) {
+              return;
+            }
+          }}
+        >
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__iZvNh
+            )}
+          >
+            <React.Fragment>
+              <React.Fragment>{""}</React.Fragment>
+              {
+                <PlasmicLink__
+                  data-plasmic-name={"link"}
+                  data-plasmic-override={overrides.link}
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.a,
+                    projectcss.__wab_text,
+                    projectcss.plasmic_default__inline,
+                    sty.link
+                  )}
+                  component={Link}
+                  href={"/rules"}
+                  platform={"nextjs"}
+                >
+                  {
+                    "\u0642\u0648\u0627\u0646\u06cc\u0646 \u0648 \u0645\u0642\u0631\u0631\u0627\u062a"
+                  }
+                </PlasmicLink__>
+              }
+              <React.Fragment>
+                {
+                  " \u0631\u0627 \u0645\u0637\u0627\u0644\u0639\u0647 \u06a9\u0631\u062f\u0647 \u0627\u0645 \u0648 \u0645\u06cc\u200c\u067e\u0630\u06cc\u0631\u0645."
+                }
+              </React.Fragment>
+            </React.Fragment>
+          </div>
+          <div className={classNames(projectcss.all, sty.freeBox__m8DPd)} />
+        </Checkbox>
       </div>
       <div className={classNames(projectcss.all, sty.freeBox__i99Hq)}>
         <Button
@@ -1629,9 +1697,8 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               typeof $steps["updateIsLoadingSave"] === "object" &&
               typeof $steps["updateIsLoadingSave"].then === "function"
             ) {
-              $steps["updateIsLoadingSave"] = await $steps[
-                "updateIsLoadingSave"
-              ];
+              $steps["updateIsLoadingSave"] =
+                await $steps["updateIsLoadingSave"];
             }
 
             $steps["showToastForLowCost"] =
@@ -1653,9 +1720,8 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               typeof $steps["showToastForLowCost"] === "object" &&
               typeof $steps["showToastForLowCost"].then === "function"
             ) {
-              $steps["showToastForLowCost"] = await $steps[
-                "showToastForLowCost"
-              ];
+              $steps["showToastForLowCost"] =
+                await $steps["showToastForLowCost"];
             }
 
             $steps["apiActivePayment"] = (() => {
@@ -1908,9 +1974,8 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               typeof $steps["updateIsLoadingSave2"] === "object" &&
               typeof $steps["updateIsLoadingSave2"].then === "function"
             ) {
-              $steps["updateIsLoadingSave2"] = await $steps[
-                "updateIsLoadingSave2"
-              ];
+              $steps["updateIsLoadingSave2"] =
+                await $steps["updateIsLoadingSave2"];
             }
 
             $steps["runOnchange"] = true
@@ -1988,6 +2053,44 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
               typeof $steps["sendEvent"].then === "function"
             ) {
               $steps["sendEvent"] = await $steps["sendEvent"];
+            }
+
+            $steps["rulles"] = true
+              ? (() => {
+                  const actionArgs = {
+                    args: [
+                      "POST",
+                      "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/accept-payment-rules",
+                      undefined,
+                      (() => {
+                        try {
+                          return {
+                            source: "change-cost-service",
+                            checkbox: $state.checkbox.isChecked ? "1" : "0"
+                          };
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()
+                    ]
+                  };
+                  return $globalActions["Fragment.apiRequest"]?.apply(null, [
+                    ...actionArgs.args
+                  ]);
+                })()
+              : undefined;
+            if (
+              $steps["rulles"] != null &&
+              typeof $steps["rulles"] === "object" &&
+              typeof $steps["rulles"].then === "function"
+            ) {
+              $steps["rulles"] = await $steps["rulles"];
             }
           }}
         />
@@ -2077,9 +2180,8 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                 typeof $steps["updateIsCancelLoading"] === "object" &&
                 typeof $steps["updateIsCancelLoading"].then === "function"
               ) {
-                $steps["updateIsCancelLoading"] = await $steps[
-                  "updateIsCancelLoading"
-                ];
+                $steps["updateIsCancelLoading"] =
+                  await $steps["updateIsCancelLoading"];
               }
 
               $steps["sendEvent"] = true
@@ -2188,9 +2290,8 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                 typeof $steps["updateIsCancelLoading2"] === "object" &&
                 typeof $steps["updateIsCancelLoading2"].then === "function"
               ) {
-                $steps["updateIsCancelLoading2"] = await $steps[
-                  "updateIsCancelLoading2"
-                ];
+                $steps["updateIsCancelLoading2"] =
+                  await $steps["updateIsCancelLoading2"];
               }
 
               $steps["runOnchange"] =
@@ -2313,9 +2414,8 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                       typeof $steps["updateDialogOpen"] === "object" &&
                       typeof $steps["updateDialogOpen"].then === "function"
                     ) {
-                      $steps["updateDialogOpen"] = await $steps[
-                        "updateDialogOpen"
-                      ];
+                      $steps["updateDialogOpen"] =
+                        await $steps["updateDialogOpen"];
                     }
                   }}
                 />
@@ -2412,9 +2512,8 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                         typeof $steps["updateIsCancelLoading"].then ===
                           "function"
                       ) {
-                        $steps["updateIsCancelLoading"] = await $steps[
-                          "updateIsCancelLoading"
-                        ];
+                        $steps["updateIsCancelLoading"] =
+                          await $steps["updateIsCancelLoading"];
                       }
 
                       $steps["sendEvent"] = true
@@ -2499,9 +2598,8 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                         typeof $steps["apiCancelOnlinePayment"].then ===
                           "function"
                       ) {
-                        $steps["apiCancelOnlinePayment"] = await $steps[
-                          "apiCancelOnlinePayment"
-                        ];
+                        $steps["apiCancelOnlinePayment"] =
+                          await $steps["apiCancelOnlinePayment"];
                       }
 
                       $steps["updateIsCancelLoading2"] = true
@@ -2536,9 +2634,8 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                         typeof $steps["updateIsCancelLoading2"].then ===
                           "function"
                       ) {
-                        $steps["updateIsCancelLoading2"] = await $steps[
-                          "updateIsCancelLoading2"
-                        ];
+                        $steps["updateIsCancelLoading2"] =
+                          await $steps["updateIsCancelLoading2"];
                       }
 
                       $steps["showToast"] = true
@@ -2594,9 +2691,8 @@ function PlasmicActivationOfficeEditCostV2__RenderFunc(props: {
                         typeof $steps["updateDialogOpen"] === "object" &&
                         typeof $steps["updateDialogOpen"].then === "function"
                       ) {
-                        $steps["updateDialogOpen"] = await $steps[
-                          "updateDialogOpen"
-                        ];
+                        $steps["updateDialogOpen"] =
+                          await $steps["updateDialogOpen"];
                       }
 
                       $steps["runOnchange"] = true
@@ -2733,6 +2829,9 @@ const PlasmicDescendants = {
     "input2",
     "shabaApi",
     "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a",
+    "ruls",
+    "checkbox",
+    "link",
     "dialog",
     "cancel",
     "apiGetPaymentStatus"
@@ -2752,6 +2851,9 @@ const PlasmicDescendants = {
   درحالدریافتاطلاعات: [
     "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
   ],
+  ruls: ["ruls", "checkbox", "link"],
+  checkbox: ["checkbox", "link"],
+  link: ["link"],
   dialog: ["dialog", "cancel"],
   cancel: ["cancel"],
   apiGetPaymentStatus: ["apiGetPaymentStatus"]
@@ -2771,6 +2873,9 @@ type NodeDefaultElementType = {
   input2: typeof Input;
   shabaApi: typeof ApiRequest;
   درحالدریافتاطلاعات: "div";
+  ruls: "div";
+  checkbox: typeof Checkbox;
+  link: "a";
   dialog: typeof Dialog;
   cancel: typeof Button;
   apiGetPaymentStatus: typeof ApiRequest;
@@ -2787,7 +2892,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicActivationOfficeEditCostV2__VariantsArgs;
     args?: PlasmicActivationOfficeEditCostV2__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicActivationOfficeEditCostV2__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicActivationOfficeEditCostV2__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicActivationOfficeEditCostV2__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
@@ -2849,6 +2956,9 @@ export const PlasmicActivationOfficeEditCostV2 = Object.assign(
     درحالدریافتاطلاعات: makeNodeComponent(
       "\u062f\u0631\u062d\u0627\u0644\u062f\u0631\u06cc\u0627\u0641\u062a\u0627\u0637\u0644\u0627\u0639\u0627\u062a"
     ),
+    ruls: makeNodeComponent("ruls"),
+    checkbox: makeNodeComponent("checkbox"),
+    link: makeNodeComponent("link"),
     dialog: makeNodeComponent("dialog"),
     cancel: makeNodeComponent("cancel"),
     apiGetPaymentStatus: makeNodeComponent("apiGetPaymentStatus"),
