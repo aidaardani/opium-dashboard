@@ -3355,6 +3355,19 @@ function PlasmicBookList__RenderFunc(props: {
                           "__wab_instance",
                           sty.button__jbiDf
                         )}
+                        isDisabled={(() => {
+                          try {
+                            return !$state.checkbox.isChecked;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()}
                         loading={(() => {
                           try {
                             return $state.loadingModal;
