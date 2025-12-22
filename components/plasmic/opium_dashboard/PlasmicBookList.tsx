@@ -3550,6 +3550,42 @@ function PlasmicBookList__RenderFunc(props: {
                             $steps["updateLoadingModal2"] =
                               await $steps["updateLoadingModal2"];
                           }
+
+                          $steps["updateDialog2Open"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["dialog2", "open"]
+                                  },
+                                  operation: 0,
+                                  value: false
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateDialog2Open"] != null &&
+                            typeof $steps["updateDialog2Open"] === "object" &&
+                            typeof $steps["updateDialog2Open"].then ===
+                              "function"
+                          ) {
+                            $steps["updateDialog2Open"] =
+                              await $steps["updateDialog2Open"];
+                          }
                         }}
                       />
 
