@@ -1049,7 +1049,6 @@ function PlasmicRules__RenderFunc(props: {
                         $steps["sendEvent"] = await $steps["sendEvent"];
                       }
                     }}
-                    outline={true}
                   />
                 </div>
               </ApiRequest>
