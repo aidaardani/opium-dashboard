@@ -2559,14 +2559,14 @@
           "checksum": "467c2870e0d372bbb75b51a270090940"
         },
         {
-          "assetId": "9g1e5LLLDS4TGJiaFCSEyH",
-          "type": "projectCss",
-          "checksum": "8beef7532a4b033c19d8a0fc7bc443b1"
-        },
-        {
           "type": "icon",
           "assetId": "y93MmujMsRlk",
           "checksum": "bc0522d391bafaec8ec1d4bafe0c7c1a"
+        },
+        {
+          "assetId": "9g1e5LLLDS4TGJiaFCSEyH",
+          "type": "projectCss",
+          "checksum": "8beef7532a4b033c19d8a0fc7bc443b1"
         }
       ],
       "codegenVersion": "0.0.2"
