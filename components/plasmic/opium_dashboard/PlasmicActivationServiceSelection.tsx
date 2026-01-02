@@ -530,9 +530,8 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
                       typeof $steps["updateSelectedServices"].then ===
                         "function"
                     ) {
-                      $steps["updateSelectedServices"] = await $steps[
-                        "updateSelectedServices"
-                      ];
+                      $steps["updateSelectedServices"] =
+                        await $steps["updateSelectedServices"];
                     }
 
                     $steps["sendEvent"] = true
@@ -667,9 +666,7 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
                             const hasOnline =
                               $state.selectedServices.includes("consult");
                             return service
-                              ? `/activation-page/office/center?userId=${
-                                  $state.profileApi.data.data.id
-                                }&${hasOnline ? "onlineVisit=true" : ""}`
+                              ? `/activation-page/office/center?userId=${$state.profileApi.data.data.id}&${hasOnline ? "onlineVisit=true" : ""}`
                               : `/activation-page/consult/rules?userId=${$state.profileApi.data.data.id}`;
                           })();
                         } catch (e) {
@@ -802,7 +799,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicActivationServiceSelection__VariantsArgs;
     args?: PlasmicActivationServiceSelection__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicActivationServiceSelection__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicActivationServiceSelection__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicActivationServiceSelection__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

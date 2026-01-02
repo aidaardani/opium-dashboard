@@ -491,9 +491,8 @@ function PlasmicDaysOfWeek__RenderFunc(props: {
               typeof $steps["updateSelectAllIsChecked"] === "object" &&
               typeof $steps["updateSelectAllIsChecked"].then === "function"
             ) {
-              $steps["updateSelectAllIsChecked"] = await $steps[
-                "updateSelectAllIsChecked"
-              ];
+              $steps["updateSelectAllIsChecked"] =
+                await $steps["updateSelectAllIsChecked"];
             }
 
             $steps["updateSelectAllIsChecked2"] = true
@@ -509,9 +508,8 @@ function PlasmicDaysOfWeek__RenderFunc(props: {
               typeof $steps["updateSelectAllIsChecked2"] === "object" &&
               typeof $steps["updateSelectAllIsChecked2"].then === "function"
             ) {
-              $steps["updateSelectAllIsChecked2"] = await $steps[
-                "updateSelectAllIsChecked2"
-              ];
+              $steps["updateSelectAllIsChecked2"] =
+                await $steps["updateSelectAllIsChecked2"];
             }
           }}
         />
@@ -564,7 +562,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicDaysOfWeek__VariantsArgs;
     args?: PlasmicDaysOfWeek__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicDaysOfWeek__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicDaysOfWeek__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicDaysOfWeek__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

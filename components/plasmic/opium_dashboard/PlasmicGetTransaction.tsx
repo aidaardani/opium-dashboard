@@ -265,7 +265,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicGetTransaction__VariantsArgs;
     args?: PlasmicGetTransaction__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicGetTransaction__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicGetTransaction__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicGetTransaction__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

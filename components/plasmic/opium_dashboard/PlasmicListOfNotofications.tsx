@@ -343,24 +343,24 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                 $state.selectedrecieverinnewworkflow === "پزشک"
                 ? "یک نوبت جدید ثبت شد"
                 : $state.selectedeventinworkflow === "ثبت نوبت" &&
-                  $state.selectedrecieverinnewworkflow === "منشی"
-                ? "یک نوبت جدید ثبت شد"
-                : $state.selectedeventinworkflow === "ثبت نوبت" &&
-                  $state.selectedrecieverinnewworkflow === "بیمار"
-                ? "نوبت شما با موفقیت ثبت شد"
-                : $state.selectedeventinworkflow === "لغو نوبت" &&
-                  $state.selectedrecieverinnewworkflow === "پزشک"
-                ? "یک نوبت لغو شد"
-                : $state.selectedeventinworkflow === "لغو نوبت" &&
-                  $state.selectedrecieverinnewworkflow === "منشی"
-                ? "یک نوبت لغو شد"
-                : $state.selectedeventinworkflow === "لغو نوبت" &&
-                  $state.selectedrecieverinnewworkflow === "بیمار"
-                ? "نوبت شما لغو شد"
-                : $state.selectedeventinworkflow === "یادآور نوبت" &&
-                  $state.selectedrecieverinnewworkflow === "بیمار"
-                ? "یادآوری نوبت"
-                : "";
+                    $state.selectedrecieverinnewworkflow === "منشی"
+                  ? "یک نوبت جدید ثبت شد"
+                  : $state.selectedeventinworkflow === "ثبت نوبت" &&
+                      $state.selectedrecieverinnewworkflow === "بیمار"
+                    ? "نوبت شما با موفقیت ثبت شد"
+                    : $state.selectedeventinworkflow === "لغو نوبت" &&
+                        $state.selectedrecieverinnewworkflow === "پزشک"
+                      ? "یک نوبت لغو شد"
+                      : $state.selectedeventinworkflow === "لغو نوبت" &&
+                          $state.selectedrecieverinnewworkflow === "منشی"
+                        ? "یک نوبت لغو شد"
+                        : $state.selectedeventinworkflow === "لغو نوبت" &&
+                            $state.selectedrecieverinnewworkflow === "بیمار"
+                          ? "نوبت شما لغو شد"
+                          : $state.selectedeventinworkflow === "یادآور نوبت" &&
+                              $state.selectedrecieverinnewworkflow === "بیمار"
+                            ? "یادآوری نوبت"
+                            : "";
             } catch (e) {
               if (
                 e instanceof TypeError ||
@@ -512,9 +512,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                   typeof $steps["apiGetNoticationSettingForThisUser"].then ===
                     "function"
                 ) {
-                  $steps["apiGetNoticationSettingForThisUser"] = await $steps[
-                    "apiGetNoticationSettingForThisUser"
-                  ];
+                  $steps["apiGetNoticationSettingForThisUser"] =
+                    await $steps["apiGetNoticationSettingForThisUser"];
                 }
 
                 $steps["updateNotificationSettingForThisUser"] = true
@@ -550,9 +549,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                   typeof $steps["updateNotificationSettingForThisUser"].then ===
                     "function"
                 ) {
-                  $steps["updateNotificationSettingForThisUser"] = await $steps[
-                    "updateNotificationSettingForThisUser"
-                  ];
+                  $steps["updateNotificationSettingForThisUser"] =
+                    await $steps["updateNotificationSettingForThisUser"];
                 }
 
                 $steps["apiGetNotificationsRecievers"] = true
@@ -575,9 +573,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                   typeof $steps["apiGetNotificationsRecievers"].then ===
                     "function"
                 ) {
-                  $steps["apiGetNotificationsRecievers"] = await $steps[
-                    "apiGetNotificationsRecievers"
-                  ];
+                  $steps["apiGetNotificationsRecievers"] =
+                    await $steps["apiGetNotificationsRecievers"];
                 }
 
                 $steps["updateStateNotoficationsRecivers"] = true
@@ -613,9 +610,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                   typeof $steps["updateStateNotoficationsRecivers"].then ===
                     "function"
                 ) {
-                  $steps["updateStateNotoficationsRecivers"] = await $steps[
-                    "updateStateNotoficationsRecivers"
-                  ];
+                  $steps["updateStateNotoficationsRecivers"] =
+                    await $steps["updateStateNotoficationsRecivers"];
                 }
 
                 $steps["apiGetNotificationEvents"] = true
@@ -637,9 +633,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                   typeof $steps["apiGetNotificationEvents"] === "object" &&
                   typeof $steps["apiGetNotificationEvents"].then === "function"
                 ) {
-                  $steps["apiGetNotificationEvents"] = await $steps[
-                    "apiGetNotificationEvents"
-                  ];
+                  $steps["apiGetNotificationEvents"] =
+                    await $steps["apiGetNotificationEvents"];
                 }
 
                 $steps["updateNotificationSettingForThisUser2"] = true
@@ -855,9 +850,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                     ) {
                                       $steps[
                                         "updateSelectedeevntinnewworkflow"
-                                      ] = await $steps[
-                                        "updateSelectedeevntinnewworkflow"
-                                      ];
+                                      ] =
+                                        await $steps[
+                                          "updateSelectedeevntinnewworkflow"
+                                        ];
                                     }
 
                                     $steps[
@@ -909,9 +905,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                     ) {
                                       $steps[
                                         "updateFragmentPopoverSendWhomOpen"
-                                      ] = await $steps[
-                                        "updateFragmentPopoverSendWhomOpen"
-                                      ];
+                                      ] =
+                                        await $steps[
+                                          "updateFragmentPopoverSendWhomOpen"
+                                        ];
                                     }
                                   }}
                                 >
@@ -1204,9 +1201,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                     ) {
                                       $steps[
                                         "updateSelectedrecieverinnewworkflow"
-                                      ] = await $steps[
-                                        "updateSelectedrecieverinnewworkflow"
-                                      ];
+                                      ] =
+                                        await $steps[
+                                          "updateSelectedrecieverinnewworkflow"
+                                        ];
                                     }
 
                                     $steps[
@@ -1258,9 +1256,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                     ) {
                                       $steps[
                                         "updateFragmentPopoverSendWhomOpen"
-                                      ] = await $steps[
-                                        "updateFragmentPopoverSendWhomOpen"
-                                      ];
+                                      ] =
+                                        await $steps[
+                                          "updateFragmentPopoverSendWhomOpen"
+                                        ];
                                     }
                                   }}
                                 >
@@ -1549,9 +1548,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                     ) {
                                       $steps[
                                         "updateSelecteddrnameinnewworkflowscontent"
-                                      ] = await $steps[
-                                        "updateSelecteddrnameinnewworkflowscontent"
-                                      ];
+                                      ] =
+                                        await $steps[
+                                          "updateSelecteddrnameinnewworkflowscontent"
+                                        ];
                                     }
                                   }}
                                 >
@@ -1663,9 +1663,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                   ) {
                                     $steps[
                                       "updateSelecteddrpatientinnewworkflowscontent"
-                                    ] = await $steps[
-                                      "updateSelecteddrpatientinnewworkflowscontent"
-                                    ];
+                                    ] =
+                                      await $steps[
+                                        "updateSelecteddrpatientinnewworkflowscontent"
+                                      ];
                                   }
                                 }}
                               >
@@ -1776,9 +1777,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                   ) {
                                     $steps[
                                       "updateSelectedrefidinnewworkflowscontent"
-                                    ] = await $steps[
-                                      "updateSelectedrefidinnewworkflowscontent"
-                                    ];
+                                    ] =
+                                      await $steps[
+                                        "updateSelectedrefidinnewworkflowscontent"
+                                      ];
                                   }
                                 }}
                               >
@@ -1889,9 +1891,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                   ) {
                                     $steps[
                                       "updateSelectedbooktimeinnewworkflowscontent"
-                                    ] = await $steps[
-                                      "updateSelectedbooktimeinnewworkflowscontent"
-                                    ];
+                                    ] =
+                                      await $steps[
+                                        "updateSelectedbooktimeinnewworkflowscontent"
+                                      ];
                                   }
                                 }}
                               >
@@ -2629,9 +2632,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                             typeof $steps["startLoading"] === "object" &&
                             typeof $steps["startLoading"].then === "function"
                           ) {
-                            $steps["startLoading"] = await $steps[
-                              "startLoading"
-                            ];
+                            $steps["startLoading"] =
+                              await $steps["startLoading"];
                           }
 
                           $steps["updateDialogOpen"] = true
@@ -2666,9 +2668,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                             typeof $steps["updateDialogOpen"].then ===
                               "function"
                           ) {
-                            $steps["updateDialogOpen"] = await $steps[
-                              "updateDialogOpen"
-                            ];
+                            $steps["updateDialogOpen"] =
+                              await $steps["updateDialogOpen"];
                           }
 
                           $steps["finishLoading"] = true
@@ -2702,9 +2703,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                             typeof $steps["finishLoading"] === "object" &&
                             typeof $steps["finishLoading"].then === "function"
                           ) {
-                            $steps["finishLoading"] = await $steps[
-                              "finishLoading"
-                            ];
+                            $steps["finishLoading"] =
+                              await $steps["finishLoading"];
                           }
 
                           $steps["sendLog"] = true
@@ -2906,9 +2906,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                         typeof $steps["startLoading"].then ===
                                           "function"
                                       ) {
-                                        $steps["startLoading"] = await $steps[
-                                          "startLoading"
-                                        ];
+                                        $steps["startLoading"] =
+                                          await $steps["startLoading"];
                                       }
 
                                       $steps["apiCheckKavenegarApiKey"] = true
@@ -3036,9 +3035,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                         typeof $steps["finishLoading"].then ===
                                           "function"
                                       ) {
-                                        $steps["finishLoading"] = await $steps[
-                                          "finishLoading"
-                                        ];
+                                        $steps["finishLoading"] =
+                                          await $steps["finishLoading"];
                                       }
 
                                       $steps["showToast"] =
@@ -3065,9 +3063,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                         typeof $steps["showToast"].then ===
                                           "function"
                                       ) {
-                                        $steps["showToast"] = await $steps[
-                                          "showToast"
-                                        ];
+                                        $steps["showToast"] =
+                                          await $steps["showToast"];
                                       }
 
                                       $steps[
@@ -3116,9 +3113,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                       ) {
                                         $steps[
                                           "updateNotificationSettingForThisUser2"
-                                        ] = await $steps[
-                                          "updateNotificationSettingForThisUser2"
-                                        ];
+                                        ] =
+                                          await $steps[
+                                            "updateNotificationSettingForThisUser2"
+                                          ];
                                       }
 
                                       $steps["updateDialogaddnewworkflowOpen"] =
@@ -3171,9 +3169,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                       ) {
                                         $steps[
                                           "updateDialogaddnewworkflowOpen"
-                                        ] = await $steps[
-                                          "updateDialogaddnewworkflowOpen"
-                                        ];
+                                        ] =
+                                          await $steps[
+                                            "updateDialogaddnewworkflowOpen"
+                                          ];
                                       }
 
                                       $steps[
@@ -3223,9 +3222,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                       ) {
                                         $steps[
                                           "apiGetNoticationSettingForThisUser"
-                                        ] = await $steps[
-                                          "apiGetNoticationSettingForThisUser"
-                                        ];
+                                        ] =
+                                          await $steps[
+                                            "apiGetNoticationSettingForThisUser"
+                                          ];
                                       }
 
                                       $steps[
@@ -3279,9 +3279,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                       ) {
                                         $steps[
                                           "updateNotificationSettingForThisUser"
-                                        ] = await $steps[
-                                          "updateNotificationSettingForThisUser"
-                                        ];
+                                        ] =
+                                          await $steps[
+                                            "updateNotificationSettingForThisUser"
+                                          ];
                                       }
 
                                       $steps["sendLog"] = true
@@ -3359,9 +3360,8 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                         typeof $steps["sendLog"].then ===
                                           "function"
                                       ) {
-                                        $steps["sendLog"] = await $steps[
-                                          "sendLog"
-                                        ];
+                                        $steps["sendLog"] =
+                                          await $steps["sendLog"];
                                       }
                                     }}
                                   />
@@ -3472,9 +3472,10 @@ function PlasmicListOfNotofications__RenderFunc(props: {
                                       ) {
                                         $steps[
                                           "updateDialogaddnewworkflowOpen"
-                                        ] = await $steps[
-                                          "updateDialogaddnewworkflowOpen"
-                                        ];
+                                        ] =
+                                          await $steps[
+                                            "updateDialogaddnewworkflowOpen"
+                                          ];
                                       }
                                     }}
                                   />
@@ -4144,7 +4145,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicListOfNotofications__VariantsArgs;
     args?: PlasmicListOfNotofications__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicListOfNotofications__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicListOfNotofications__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicListOfNotofications__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

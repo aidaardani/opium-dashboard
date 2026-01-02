@@ -319,7 +319,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicHelpEitaa__VariantsArgs;
     args?: PlasmicHelpEitaa__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicHelpEitaa__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicHelpEitaa__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicHelpEitaa__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

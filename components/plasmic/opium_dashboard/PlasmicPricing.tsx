@@ -662,9 +662,8 @@ function PlasmicPricing__RenderFunc(props: {
                                       typeof $steps["updateTotalprice"].then ===
                                         "function"
                                     ) {
-                                      $steps["updateTotalprice"] = await $steps[
-                                        "updateTotalprice"
-                                      ];
+                                      $steps["updateTotalprice"] =
+                                        await $steps["updateTotalprice"];
                                     }
                                   }).apply(null, eventArgs);
                                 }
@@ -684,13 +683,13 @@ function PlasmicPricing__RenderFunc(props: {
                                             ).length === 0
                                             ? currentItem.price === 0
                                             : $state.customerfeatures.data.find(
-                                                item =>
-                                                  item.features ===
-                                                    currentItem.features &&
-                                                  item.active
-                                              )
-                                            ? true
-                                            : false;
+                                                  item =>
+                                                    item.features ===
+                                                      currentItem.features &&
+                                                    item.active
+                                                )
+                                              ? true
+                                              : false;
                                         } catch (e) {
                                           if (
                                             e instanceof TypeError ||
@@ -983,9 +982,10 @@ function PlasmicPricing__RenderFunc(props: {
                         ) {
                           $steps[
                             "goToHttpsOpiumDashboardPaziresh24ComListOfNotofications"
-                          ] = await $steps[
-                            "goToHttpsOpiumDashboardPaziresh24ComListOfNotofications"
-                          ];
+                          ] =
+                            await $steps[
+                              "goToHttpsOpiumDashboardPaziresh24ComListOfNotofications"
+                            ];
                         }
 
                         $steps["loadingFalse"] = true
@@ -1083,9 +1083,8 @@ function PlasmicPricing__RenderFunc(props: {
                           typeof $steps["changefeature"] === "object" &&
                           typeof $steps["changefeature"].then === "function"
                         ) {
-                          $steps["changefeature"] = await $steps[
-                            "changefeature"
-                          ];
+                          $steps["changefeature"] =
+                            await $steps["changefeature"];
                         }
 
                         $steps["sendLog"] = true
@@ -3225,7 +3224,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicPricing__VariantsArgs;
     args?: PlasmicPricing__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicPricing__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicPricing__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicPricing__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

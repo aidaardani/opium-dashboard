@@ -195,7 +195,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicPatientList2__VariantsArgs;
     args?: PlasmicPatientList2__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicPatientList2__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicPatientList2__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicPatientList2__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

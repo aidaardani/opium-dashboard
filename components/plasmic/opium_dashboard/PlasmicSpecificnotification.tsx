@@ -402,9 +402,8 @@ function PlasmicSpecificnotification__RenderFunc(props: {
             typeof $steps["apiNotificationSetting"] === "object" &&
             typeof $steps["apiNotificationSetting"].then === "function"
           ) {
-            $steps["apiNotificationSetting"] = await $steps[
-              "apiNotificationSetting"
-            ];
+            $steps["apiNotificationSetting"] =
+              await $steps["apiNotificationSetting"];
           }
 
           $steps["updateNotificationsetting"] = true
@@ -433,9 +432,8 @@ function PlasmicSpecificnotification__RenderFunc(props: {
             typeof $steps["updateNotificationsetting"] === "object" &&
             typeof $steps["updateNotificationsetting"].then === "function"
           ) {
-            $steps["updateNotificationsetting"] = await $steps[
-              "updateNotificationsetting"
-            ];
+            $steps["updateNotificationsetting"] =
+              await $steps["updateNotificationsetting"];
           }
         }}
       />
@@ -471,8 +469,8 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                     return $props.receivers === "doctor"
                       ? "پزشک"
                       : $props.receivers === "patient"
-                      ? "بیمار"
-                      : "منشی";
+                        ? "بیمار"
+                        : "منشی";
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -564,9 +562,8 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                       typeof $steps["updateChangetodrname"] === "object" &&
                       typeof $steps["updateChangetodrname"].then === "function"
                     ) {
-                      $steps["updateChangetodrname"] = await $steps[
-                        "updateChangetodrname"
-                      ];
+                      $steps["updateChangetodrname"] =
+                        await $steps["updateChangetodrname"];
                     }
                   }}
                 >
@@ -654,9 +651,8 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                       typeof $steps["updateChangetopatientname"].then ===
                         "function"
                     ) {
-                      $steps["updateChangetopatientname"] = await $steps[
-                        "updateChangetopatientname"
-                      ];
+                      $steps["updateChangetopatientname"] =
+                        await $steps["updateChangetopatientname"];
                     }
                   }}
                 >
@@ -743,9 +739,8 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                       typeof $steps["updateChangetorefid"] === "object" &&
                       typeof $steps["updateChangetorefid"].then === "function"
                     ) {
-                      $steps["updateChangetorefid"] = await $steps[
-                        "updateChangetorefid"
-                      ];
+                      $steps["updateChangetorefid"] =
+                        await $steps["updateChangetorefid"];
                     }
                   }}
                 >
@@ -833,9 +828,8 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                       typeof $steps["updateChangetobooktime"].then ===
                         "function"
                     ) {
-                      $steps["updateChangetobooktime"] = await $steps[
-                        "updateChangetobooktime"
-                      ];
+                      $steps["updateChangetobooktime"] =
+                        await $steps["updateChangetobooktime"];
                     }
                   }}
                 >
@@ -2047,9 +2041,8 @@ function PlasmicSpecificnotification__RenderFunc(props: {
                       typeof $steps["updateDialogOpen"] === "object" &&
                       typeof $steps["updateDialogOpen"].then === "function"
                     ) {
-                      $steps["updateDialogOpen"] = await $steps[
-                        "updateDialogOpen"
-                      ];
+                      $steps["updateDialogOpen"] =
+                        await $steps["updateDialogOpen"];
                     }
 
                     $steps["updateFragmentPopoverEditNotification2Open"] = true
@@ -2210,7 +2203,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicSpecificnotification__VariantsArgs;
     args?: PlasmicSpecificnotification__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicSpecificnotification__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicSpecificnotification__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicSpecificnotification__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

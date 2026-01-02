@@ -4547,9 +4547,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
               typeof $steps["updateChangeadreesDialogOpen"] === "object" &&
               typeof $steps["updateChangeadreesDialogOpen"].then === "function"
             ) {
-              $steps["updateChangeadreesDialogOpen"] = await $steps[
-                "updateChangeadreesDialogOpen"
-              ];
+              $steps["updateChangeadreesDialogOpen"] =
+                await $steps["updateChangeadreesDialogOpen"];
             }
 
             $steps["sendEvent"] = true
@@ -4659,9 +4658,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
             typeof $steps["updateTellsDialogOpen"] === "object" &&
             typeof $steps["updateTellsDialogOpen"].then === "function"
           ) {
-            $steps["updateTellsDialogOpen"] = await $steps[
-              "updateTellsDialogOpen"
-            ];
+            $steps["updateTellsDialogOpen"] =
+              await $steps["updateTellsDialogOpen"];
           }
 
           $steps["sendEvent"] = true
@@ -4782,9 +4780,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                   typeof $steps["updateTellsOldTells"] === "object" &&
                   typeof $steps["updateTellsOldTells"].then === "function"
                 ) {
-                  $steps["updateTellsOldTells"] = await $steps[
-                    "updateTellsOldTells"
-                  ];
+                  $steps["updateTellsOldTells"] =
+                    await $steps["updateTellsOldTells"];
                 }
               }).apply(null, eventArgs);
             }}
@@ -4947,9 +4944,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                       typeof $steps["updateIsLoadingSave"] === "object" &&
                       typeof $steps["updateIsLoadingSave"].then === "function"
                     ) {
-                      $steps["updateIsLoadingSave"] = await $steps[
-                        "updateIsLoadingSave"
-                      ];
+                      $steps["updateIsLoadingSave"] =
+                        await $steps["updateIsLoadingSave"];
                     }
 
                     $steps["centerMutation"] = true
@@ -5003,16 +4999,16 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                                               $state.selectProvince.value
                                           }
                                         : $state.selectProvince2.value
-                                        ? {
-                                            province:
-                                              $state.selectProvince2.value
-                                          }
-                                        : {}),
+                                          ? {
+                                              province:
+                                                $state.selectProvince2.value
+                                            }
+                                          : {}),
                                       ...($state.selectCity.value
                                         ? { city: $state.selectCity.value }
                                         : $state.selectCity2.value
-                                        ? { city: $state.selectCity2.value }
-                                        : {})
+                                          ? { city: $state.selectCity2.value }
+                                          : {})
                                     };
                                   })();
                                 } catch (e) {
@@ -5082,9 +5078,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                       typeof $steps["updateNotifyCell"] === "object" &&
                       typeof $steps["updateNotifyCell"].then === "function"
                     ) {
-                      $steps["updateNotifyCell"] = await $steps[
-                        "updateNotifyCell"
-                      ];
+                      $steps["updateNotifyCell"] =
+                        await $steps["updateNotifyCell"];
                     }
 
                     $steps["updateIsLoadingSave2"] = true
@@ -5118,9 +5113,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                       typeof $steps["updateIsLoadingSave2"] === "object" &&
                       typeof $steps["updateIsLoadingSave2"].then === "function"
                     ) {
-                      $steps["updateIsLoadingSave2"] = await $steps[
-                        "updateIsLoadingSave2"
-                      ];
+                      $steps["updateIsLoadingSave2"] =
+                        await $steps["updateIsLoadingSave2"];
                     }
 
                     $steps["showToast"] = $steps.centerMutation.data.message
@@ -5254,9 +5248,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                       typeof $steps["updateCityDialogOpen"] === "object" &&
                       typeof $steps["updateCityDialogOpen"].then === "function"
                     ) {
-                      $steps["updateCityDialogOpen"] = await $steps[
-                        "updateCityDialogOpen"
-                      ];
+                      $steps["updateCityDialogOpen"] =
+                        await $steps["updateCityDialogOpen"];
                     }
 
                     $steps["goToPage"] =
@@ -5265,9 +5258,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                             const actionArgs = {
                               destination: (() => {
                                 try {
-                                  return `/activation-page/office/cost?${
-                                    $props.hasOnline ? "onlineVisit=true&" : ""
-                                  }userId=${$state.profileApi.data.data.id}`;
+                                  return `/activation-page/office/cost?${$props.hasOnline ? "onlineVisit=true&" : ""}userId=${$state.profileApi.data.data.id}`;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -5467,9 +5458,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                     typeof $steps["updateCityDialogOpen"] === "object" &&
                     typeof $steps["updateCityDialogOpen"].then === "function"
                   ) {
-                    $steps["updateCityDialogOpen"] = await $steps[
-                      "updateCityDialogOpen"
-                    ];
+                    $steps["updateCityDialogOpen"] =
+                      await $steps["updateCityDialogOpen"];
                   }
                 }}
               />
@@ -5566,9 +5556,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                     typeof $steps["updateTellsDialogOpen"] === "object" &&
                     typeof $steps["updateTellsDialogOpen"].then === "function"
                   ) {
-                    $steps["updateTellsDialogOpen"] = await $steps[
-                      "updateTellsDialogOpen"
-                    ];
+                    $steps["updateTellsDialogOpen"] =
+                      await $steps["updateTellsDialogOpen"];
                   }
 
                   $steps["showToast"] = !$state.selectProvince2.value
@@ -5830,9 +5819,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                     typeof $steps["updateChangeadreesDialogOpen"].then ===
                       "function"
                   ) {
-                    $steps["updateChangeadreesDialogOpen"] = await $steps[
-                      "updateChangeadreesDialogOpen"
-                    ];
+                    $steps["updateChangeadreesDialogOpen"] =
+                      await $steps["updateChangeadreesDialogOpen"];
                   }
                 }}
               />
@@ -6048,9 +6036,8 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                   typeof $steps["updateCityDialogOpen"] === "object" &&
                   typeof $steps["updateCityDialogOpen"].then === "function"
                 ) {
-                  $steps["updateCityDialogOpen"] = await $steps[
-                    "updateCityDialogOpen"
-                  ];
+                  $steps["updateCityDialogOpen"] =
+                    await $steps["updateCityDialogOpen"];
                 }
 
                 $steps["showToast"] = !$state.selectProvince.value
@@ -6208,7 +6195,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicActivationOfficeCenter__VariantsArgs;
     args?: PlasmicActivationOfficeCenter__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicActivationOfficeCenter__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicActivationOfficeCenter__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicActivationOfficeCenter__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

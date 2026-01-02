@@ -290,9 +290,8 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
             typeof $steps["apiUncertainBookStatus"] === "object" &&
             typeof $steps["apiUncertainBookStatus"].then === "function"
           ) {
-            $steps["apiUncertainBookStatus"] = await $steps[
-              "apiUncertainBookStatus"
-            ];
+            $steps["apiUncertainBookStatus"] =
+              await $steps["apiUncertainBookStatus"];
           }
 
           $steps["updateUncertainBookStatus"] = true
@@ -324,9 +323,8 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
             typeof $steps["updateUncertainBookStatus"] === "object" &&
             typeof $steps["updateUncertainBookStatus"].then === "function"
           ) {
-            $steps["updateUncertainBookStatus"] = await $steps[
-              "updateUncertainBookStatus"
-            ];
+            $steps["updateUncertainBookStatus"] =
+              await $steps["updateUncertainBookStatus"];
           }
 
           $steps["updateLoading2"] =
@@ -448,9 +446,8 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
               typeof $steps["eventClickChangeAllBookStatus"] === "object" &&
               typeof $steps["eventClickChangeAllBookStatus"].then === "function"
             ) {
-              $steps["eventClickChangeAllBookStatus"] = await $steps[
-                "eventClickChangeAllBookStatus"
-              ];
+              $steps["eventClickChangeAllBookStatus"] =
+                await $steps["eventClickChangeAllBookStatus"];
             }
           }}
         >
@@ -499,9 +496,8 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
                 typeof $steps["allBookVisitedEvent"] === "object" &&
                 typeof $steps["allBookVisitedEvent"].then === "function"
               ) {
-                $steps["allBookVisitedEvent"] = await $steps[
-                  "allBookVisitedEvent"
-                ];
+                $steps["allBookVisitedEvent"] =
+                  await $steps["allBookVisitedEvent"];
               }
             }}
           >
@@ -617,9 +613,8 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
                     typeof $steps["apiVisitedAllUncertainBookStatus"].then ===
                       "function"
                   ) {
-                    $steps["apiVisitedAllUncertainBookStatus"] = await $steps[
-                      "apiVisitedAllUncertainBookStatus"
-                    ];
+                    $steps["apiVisitedAllUncertainBookStatus"] =
+                      await $steps["apiVisitedAllUncertainBookStatus"];
                   }
 
                   $steps["updateDialogClose"] =
@@ -655,9 +650,8 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
                     typeof $steps["updateDialogClose"] === "object" &&
                     typeof $steps["updateDialogClose"].then === "function"
                   ) {
-                    $steps["updateDialogClose"] = await $steps[
-                      "updateDialogClose"
-                    ];
+                    $steps["updateDialogClose"] =
+                      await $steps["updateDialogClose"];
                   }
 
                   $steps["updateSureVisited"] =
@@ -693,9 +687,8 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
                     typeof $steps["updateSureVisited"] === "object" &&
                     typeof $steps["updateSureVisited"].then === "function"
                   ) {
-                    $steps["updateSureVisited"] = await $steps[
-                      "updateSureVisited"
-                    ];
+                    $steps["updateSureVisited"] =
+                      await $steps["updateSureVisited"];
                   }
 
                   $steps["finishLoading"] = true
@@ -775,9 +768,8 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
                     typeof $steps["eventVisitedAllUncertainBookStatus"].then ===
                       "function"
                   ) {
-                    $steps["eventVisitedAllUncertainBookStatus"] = await $steps[
-                      "eventVisitedAllUncertainBookStatus"
-                    ];
+                    $steps["eventVisitedAllUncertainBookStatus"] =
+                      await $steps["eventVisitedAllUncertainBookStatus"];
                   }
 
                   $steps["apiBecomeOutOfRollout"] = true
@@ -799,9 +791,8 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
                     typeof $steps["apiBecomeOutOfRollout"] === "object" &&
                     typeof $steps["apiBecomeOutOfRollout"].then === "function"
                   ) {
-                    $steps["apiBecomeOutOfRollout"] = await $steps[
-                      "apiBecomeOutOfRollout"
-                    ];
+                    $steps["apiBecomeOutOfRollout"] =
+                      await $steps["apiBecomeOutOfRollout"];
                   }
                 }}
               />
@@ -856,9 +847,8 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
                     typeof $steps["eventClickNoButton"] === "object" &&
                     typeof $steps["eventClickNoButton"].then === "function"
                   ) {
-                    $steps["eventClickNoButton"] = await $steps[
-                      "eventClickNoButton"
-                    ];
+                    $steps["eventClickNoButton"] =
+                      await $steps["eventClickNoButton"];
                   }
 
                   $steps["updateDialogOpen"] = true
@@ -892,9 +882,8 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
                     typeof $steps["updateDialogOpen"] === "object" &&
                     typeof $steps["updateDialogOpen"].then === "function"
                   ) {
-                    $steps["updateDialogOpen"] = await $steps[
-                      "updateDialogOpen"
-                    ];
+                    $steps["updateDialogOpen"] =
+                      await $steps["updateDialogOpen"];
                   }
                 }}
               />
@@ -986,10 +975,10 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
                     return $state.sureVisited
                       ? "visited"
                       : currentItem.book_status === 1
-                      ? "not_came"
-                      : currentItem.book_status === 2
-                      ? "not_visited"
-                      : "";
+                        ? "not_came"
+                        : currentItem.book_status === 2
+                          ? "not_visited"
+                          : "";
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -1205,9 +1194,8 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
                     typeof $steps["updateUncertainBookStatus"].then ===
                       "function"
                   ) {
-                    $steps["updateUncertainBookStatus"] = await $steps[
-                      "updateUncertainBookStatus"
-                    ];
+                    $steps["updateUncertainBookStatus"] =
+                      await $steps["updateUncertainBookStatus"];
                   }
 
                   $steps["updateLoading2"] = true
@@ -1249,8 +1237,8 @@ function PlasmicUncertainBookStatusList__RenderFunc(props: {
                     return currentItem.params.includes("whatsapp")
                       ? "whatsapp"
                       : currentItem.params.includes("eitaa")
-                      ? "eitaa"
-                      : "";
+                        ? "eitaa"
+                        : "";
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -1428,7 +1416,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicUncertainBookStatusList__VariantsArgs;
     args?: PlasmicUncertainBookStatusList__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicUncertainBookStatusList__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicUncertainBookStatusList__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicUncertainBookStatusList__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

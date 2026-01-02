@@ -452,6 +452,19 @@ function PlasmicDrCenters__RenderFunc(props: {
                   const currentIndex = __plasmic_idx_0;
                   return (
                     <DrCenter
+                      adress={(() => {
+                        try {
+                          return currentItem.address.substring(0, 30) + "...";
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
                       className={classNames(
                         "__wab_instance",
                         sty.drCenter__j931
@@ -600,6 +613,19 @@ function PlasmicDrCenters__RenderFunc(props: {
                             await $steps["updateSelectedCenter3"];
                         }
                       }}
+                      platform={(() => {
+                        try {
+                          return currentItem.meta_data.platforms;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return undefined;
+                          }
+                          throw e;
+                        }
+                      })()}
                       selected={(() => {
                         try {
                           return (
@@ -611,6 +637,19 @@ function PlasmicDrCenters__RenderFunc(props: {
                             e?.plasmicType === "PlasmicUndefinedDataError"
                           ) {
                             return [];
+                          }
+                          throw e;
+                        }
+                      })()}
+                      showOtherPlatform={(() => {
+                        try {
+                          return currentItem.meta_data.platforms ? true : false;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return false;
                           }
                           throw e;
                         }

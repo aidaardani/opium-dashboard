@@ -328,7 +328,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicRahnamaOauthRedirect__VariantsArgs;
     args?: PlasmicRahnamaOauthRedirect__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicRahnamaOauthRedirect__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicRahnamaOauthRedirect__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicRahnamaOauthRedirect__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

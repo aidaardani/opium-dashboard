@@ -774,9 +774,8 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                                     typeof $steps["apiGetIncome"].then ===
                                       "function"
                                   ) {
-                                    $steps["apiGetIncome"] = await $steps[
-                                      "apiGetIncome"
-                                    ];
+                                    $steps["apiGetIncome"] =
+                                      await $steps["apiGetIncome"];
                                   }
 
                                   $steps["showToast"] = true
@@ -798,9 +797,8 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                                     typeof $steps["showToast"].then ===
                                       "function"
                                   ) {
-                                    $steps["showToast"] = await $steps[
-                                      "showToast"
-                                    ];
+                                    $steps["showToast"] =
+                                      await $steps["showToast"];
                                   }
 
                                   $steps["sendLog"] = true
@@ -876,9 +874,8 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                                     typeof $steps["openLink"].then ===
                                       "function"
                                   ) {
-                                    $steps["openLink"] = await $steps[
-                                      "openLink"
-                                    ];
+                                    $steps["openLink"] =
+                                      await $steps["openLink"];
                                   }
                                 }}
                               />
@@ -980,9 +977,8 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                                     typeof $steps["openLink"].then ===
                                       "function"
                                   ) {
-                                    $steps["openLink"] = await $steps[
-                                      "openLink"
-                                    ];
+                                    $steps["openLink"] =
+                                      await $steps["openLink"];
                                   }
                                 }}
                               />
@@ -1057,9 +1053,8 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                                       typeof $steps["openLink"].then ===
                                         "function"
                                     ) {
-                                      $steps["openLink"] = await $steps[
-                                        "openLink"
-                                      ];
+                                      $steps["openLink"] =
+                                        await $steps["openLink"];
                                     }
                                   }}
                                 />
@@ -1148,9 +1143,8 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                             typeof $steps["apiActiveKatibe"] === "object" &&
                             typeof $steps["apiActiveKatibe"].then === "function"
                           ) {
-                            $steps["apiActiveKatibe"] = await $steps[
-                              "apiActiveKatibe"
-                            ];
+                            $steps["apiActiveKatibe"] =
+                              await $steps["apiActiveKatibe"];
                           }
 
                           $steps["sendEvent"] = true
@@ -1401,9 +1395,8 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                               typeof $steps["updateDialog3Open"].then ===
                                 "function"
                             ) {
-                              $steps["updateDialog3Open"] = await $steps[
-                                "updateDialog3Open"
-                              ];
+                              $steps["updateDialog3Open"] =
+                                await $steps["updateDialog3Open"];
                             }
 
                             $steps["updateDialogOpen2"] = true
@@ -1431,9 +1424,8 @@ function PlasmicIntroducingANewPaymentServiceOnlineVisit__RenderFunc(props: {
                               typeof $steps["updateDialogOpen2"].then ===
                                 "function"
                             ) {
-                              $steps["updateDialogOpen2"] = await $steps[
-                                "updateDialogOpen2"
-                              ];
+                              $steps["updateDialogOpen2"] =
+                                await $steps["updateDialogOpen2"];
                             }
                           }}
                         />
@@ -1740,10 +1732,12 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicIntroducingANewPaymentServiceOnlineVisit__VariantsArgs;
     args?: PlasmicIntroducingANewPaymentServiceOnlineVisit__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit< // Specify variants directly as props
-    PlasmicIntroducingANewPaymentServiceOnlineVisit__VariantsArgs,
-    ReservedPropsType
-  > &
+  } &
+    // Specify variants directly as props
+    Omit<
+      PlasmicIntroducingANewPaymentServiceOnlineVisit__VariantsArgs,
+      ReservedPropsType
+    > &
     // Specify args directly as props
     Omit<
       PlasmicIntroducingANewPaymentServiceOnlineVisit__ArgsType,

@@ -258,10 +258,10 @@ function PlasmicBookStatusButton__RenderFunc(props: {
             {hasVariant($state, "deleted", "deleted")
               ? "\u0644\u063a\u0648 \u0634\u062f"
               : hasVariant($state, "visited", "visited")
-              ? "\u0648\u06cc\u0632\u06cc\u062a \u0634\u062f"
-              : hasVariant($state, "came", "came")
-              ? "\u067e\u0627\u06cc\u0627\u0646 \u0648\u06cc\u0632\u06cc\u062a"
-              : "\u0634\u0631\u0648\u0639 \u0648\u06cc\u0632\u06cc\u062a"}
+                ? "\u0648\u06cc\u0632\u06cc\u062a \u0634\u062f"
+                : hasVariant($state, "came", "came")
+                  ? "\u067e\u0627\u06cc\u0627\u0646 \u0648\u06cc\u0632\u06cc\u062a"
+                  : "\u0634\u0631\u0648\u0639 \u0648\u06cc\u0632\u06cc\u062a"}
           </div>
         }
         className={classNames("__wab_instance", sty.button, {
@@ -281,8 +281,8 @@ function PlasmicBookStatusButton__RenderFunc(props: {
           hasVariant($state, "deleted", "deleted")
             ? "softSand"
             : hasVariant($state, "visited", "visited")
-            ? "softGreen"
-            : undefined
+              ? "softGreen"
+              : undefined
         }
         endIcon={
           <ChevronLeftIcon
@@ -406,8 +406,8 @@ function PlasmicBookStatusButton__RenderFunc(props: {
           hasVariant($state, "deleted", "deleted")
             ? undefined
             : hasVariant($state, "visited", "visited")
-            ? undefined
-            : undefined
+              ? undefined
+              : undefined
         }
         size={"compact"}
         startIcon={
@@ -446,7 +446,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicBookStatusButton__VariantsArgs;
     args?: PlasmicBookStatusButton__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicBookStatusButton__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicBookStatusButton__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicBookStatusButton__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

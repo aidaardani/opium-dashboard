@@ -542,9 +542,8 @@ function PlasmicProfilePassword__RenderFunc(props: {
                 typeof $steps["enabelStaticPassword"] === "object" &&
                 typeof $steps["enabelStaticPassword"].then === "function"
               ) {
-                $steps["enabelStaticPassword"] = await $steps[
-                  "enabelStaticPassword"
-                ];
+                $steps["enabelStaticPassword"] =
+                  await $steps["enabelStaticPassword"];
               }
 
               $steps["changeStaticPassword"] = true
@@ -591,9 +590,8 @@ function PlasmicProfilePassword__RenderFunc(props: {
                 typeof $steps["changeStaticPassword"] === "object" &&
                 typeof $steps["changeStaticPassword"].then === "function"
               ) {
-                $steps["changeStaticPassword"] = await $steps[
-                  "changeStaticPassword"
-                ];
+                $steps["changeStaticPassword"] =
+                  await $steps["changeStaticPassword"];
               }
 
               $steps["showToast"] =
@@ -881,7 +879,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfilePassword__VariantsArgs;
     args?: PlasmicProfilePassword__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProfilePassword__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProfilePassword__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProfilePassword__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

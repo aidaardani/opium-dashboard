@@ -440,9 +440,8 @@ function PlasmicMoshirPaymentSetting__RenderFunc(props: {
                     typeof $steps["updateSelectedCenter"] === "object" &&
                     typeof $steps["updateSelectedCenter"].then === "function"
                   ) {
-                    $steps["updateSelectedCenter"] = await $steps[
-                      "updateSelectedCenter"
-                    ];
+                    $steps["updateSelectedCenter"] =
+                      await $steps["updateSelectedCenter"];
                   }
                 }).apply(null, eventArgs);
               }}
@@ -622,7 +621,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMoshirPaymentSetting__VariantsArgs;
     args?: PlasmicMoshirPaymentSetting__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicMoshirPaymentSetting__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicMoshirPaymentSetting__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicMoshirPaymentSetting__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

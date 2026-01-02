@@ -247,9 +247,8 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
               typeof $steps["telegramCallSupport"] === "object" &&
               typeof $steps["telegramCallSupport"].then === "function"
             ) {
-              $steps["telegramCallSupport"] = await $steps[
-                "telegramCallSupport"
-              ];
+              $steps["telegramCallSupport"] =
+                await $steps["telegramCallSupport"];
             }
 
             $steps["sendEvent"] = true
@@ -449,9 +448,8 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
                         typeof $steps["updateDialogOpen"] === "object" &&
                         typeof $steps["updateDialogOpen"].then === "function"
                       ) {
-                        $steps["updateDialogOpen"] = await $steps[
-                          "updateDialogOpen"
-                        ];
+                        $steps["updateDialogOpen"] =
+                          await $steps["updateDialogOpen"];
                       }
                     }}
                     outline={true}
@@ -571,9 +569,8 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
                   typeof $steps["invokeGlobalAction"] === "object" &&
                   typeof $steps["invokeGlobalAction"].then === "function"
                 ) {
-                  $steps["invokeGlobalAction"] = await $steps[
-                    "invokeGlobalAction"
-                  ];
+                  $steps["invokeGlobalAction"] =
+                    await $steps["invokeGlobalAction"];
                 }
 
                 $steps["invokeGlobalAction2"] = true
@@ -612,9 +609,8 @@ function PlasmicHolidaysPageTitle__RenderFunc(props: {
                   typeof $steps["invokeGlobalAction2"] === "object" &&
                   typeof $steps["invokeGlobalAction2"].then === "function"
                 ) {
-                  $steps["invokeGlobalAction2"] = await $steps[
-                    "invokeGlobalAction2"
-                  ];
+                  $steps["invokeGlobalAction2"] =
+                    await $steps["invokeGlobalAction2"];
                 }
               }}
             >
@@ -664,7 +660,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicHolidaysPageTitle__VariantsArgs;
     args?: PlasmicHolidaysPageTitle__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicHolidaysPageTitle__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicHolidaysPageTitle__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicHolidaysPageTitle__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

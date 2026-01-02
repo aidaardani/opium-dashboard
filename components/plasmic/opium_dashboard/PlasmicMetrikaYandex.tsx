@@ -275,7 +275,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMetrikaYandex__VariantsArgs;
     args?: PlasmicMetrikaYandex__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicMetrikaYandex__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicMetrikaYandex__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicMetrikaYandex__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

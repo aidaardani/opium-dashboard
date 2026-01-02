@@ -270,9 +270,8 @@ function PlasmicUncertainBookStatusListPage__RenderFunc(props: {
                     typeof $steps["apiCountUncertainBookStatus"].then ===
                       "function"
                   ) {
-                    $steps["apiCountUncertainBookStatus"] = await $steps[
-                      "apiCountUncertainBookStatus"
-                    ];
+                    $steps["apiCountUncertainBookStatus"] =
+                      await $steps["apiCountUncertainBookStatus"];
                   }
 
                   $steps["updateCountUncertainBookStatus"] = true
@@ -308,9 +307,8 @@ function PlasmicUncertainBookStatusListPage__RenderFunc(props: {
                     typeof $steps["updateCountUncertainBookStatus"].then ===
                       "function"
                   ) {
-                    $steps["updateCountUncertainBookStatus"] = await $steps[
-                      "updateCountUncertainBookStatus"
-                    ];
+                    $steps["updateCountUncertainBookStatus"] =
+                      await $steps["updateCountUncertainBookStatus"];
                   }
 
                   $steps["loadingFalse"] = true
@@ -555,9 +553,8 @@ function PlasmicUncertainBookStatusListPage__RenderFunc(props: {
                           typeof $steps["eventClickCheckNowButton"].then ===
                             "function"
                         ) {
-                          $steps["eventClickCheckNowButton"] = await $steps[
-                            "eventClickCheckNowButton"
-                          ];
+                          $steps["eventClickCheckNowButton"] =
+                            await $steps["eventClickCheckNowButton"];
                         }
                       }}
                     />
@@ -645,9 +642,8 @@ function PlasmicUncertainBookStatusListPage__RenderFunc(props: {
                       typeof $steps["eventClickCheckLater"] === "object" &&
                       typeof $steps["eventClickCheckLater"].then === "function"
                     ) {
-                      $steps["eventClickCheckLater"] = await $steps[
-                        "eventClickCheckLater"
-                      ];
+                      $steps["eventClickCheckLater"] =
+                        await $steps["eventClickCheckLater"];
                     }
                   }}
                 />
@@ -831,10 +827,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicUncertainBookStatusListPage__VariantsArgs;
     args?: PlasmicUncertainBookStatusListPage__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit< // Specify variants directly as props
-    PlasmicUncertainBookStatusListPage__VariantsArgs,
-    ReservedPropsType
-  > &
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicUncertainBookStatusListPage__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicUncertainBookStatusListPage__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

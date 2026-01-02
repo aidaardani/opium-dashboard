@@ -329,7 +329,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicQuickAccessWallet__VariantsArgs;
     args?: PlasmicQuickAccessWallet__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicQuickAccessWallet__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicQuickAccessWallet__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicQuickAccessWallet__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

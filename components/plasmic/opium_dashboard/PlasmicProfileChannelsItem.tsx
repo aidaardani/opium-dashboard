@@ -433,7 +433,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfileChannelsItem__VariantsArgs;
     args?: PlasmicProfileChannelsItem__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProfileChannelsItem__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProfileChannelsItem__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProfileChannelsItem__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

@@ -133,7 +133,7 @@
     {
       "name": "Basic/Text-Secondary",
       "type": "color",
-      "value": "#6B7280",
+      "value": "#6B728080",
       "category": "color",
       "meta": {
         "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
@@ -2688,6 +2688,16 @@
       "meta": {
         "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
         "id": "hJ7EShMSgH3R"
+      }
+    },
+    {
+      "name": "Unnamed Style Token 2",
+      "type": "spacing",
+      "value": "0px",
+      "category": "spacing",
+      "meta": {
+        "projectId": "9g1e5LLLDS4TGJiaFCSEyH",
+        "id": "GOYrM98EqfIg"
       }
     },
     {

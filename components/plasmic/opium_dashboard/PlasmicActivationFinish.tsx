@@ -640,9 +640,8 @@ function PlasmicActivationFinish__RenderFunc(props: {
                         typeof $steps["invokeGlobalAction"] === "object" &&
                         typeof $steps["invokeGlobalAction"].then === "function"
                       ) {
-                        $steps["invokeGlobalAction"] = await $steps[
-                          "invokeGlobalAction"
-                        ];
+                        $steps["invokeGlobalAction"] =
+                          await $steps["invokeGlobalAction"];
                       }
 
                       $steps["sendEvent"] = true
@@ -1040,7 +1039,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicActivationFinish__VariantsArgs;
     args?: PlasmicActivationFinish__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicActivationFinish__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicActivationFinish__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicActivationFinish__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

@@ -261,7 +261,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicConflictWorkhour__VariantsArgs;
     args?: PlasmicConflictWorkhour__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicConflictWorkhour__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicConflictWorkhour__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicConflictWorkhour__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

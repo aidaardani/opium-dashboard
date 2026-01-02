@@ -626,7 +626,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicActivationOfficeDuration__VariantsArgs;
     args?: PlasmicActivationOfficeDuration__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicActivationOfficeDuration__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicActivationOfficeDuration__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicActivationOfficeDuration__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

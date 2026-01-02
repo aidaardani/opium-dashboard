@@ -374,9 +374,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                             typeof $steps["updateIsValidNumber"].then ===
                               "function"
                           ) {
-                            $steps["updateIsValidNumber"] = await $steps[
-                              "updateIsValidNumber"
-                            ];
+                            $steps["updateIsValidNumber"] =
+                              await $steps["updateIsValidNumber"];
                           }
 
                           $steps["updateIsValidNumber2"] =
@@ -418,9 +417,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                             typeof $steps["updateIsValidNumber2"].then ===
                               "function"
                           ) {
-                            $steps["updateIsValidNumber2"] = await $steps[
-                              "updateIsValidNumber2"
-                            ];
+                            $steps["updateIsValidNumber2"] =
+                              await $steps["updateIsValidNumber2"];
                           }
                         }).apply(null, eventArgs);
                       }}
@@ -570,9 +568,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   typeof $steps["updateIsValidNumber"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateIsValidNumber"] = await $steps[
-                                    "updateIsValidNumber"
-                                  ];
+                                  $steps["updateIsValidNumber"] =
+                                    await $steps["updateIsValidNumber"];
                                 }
                               }).apply(null, eventArgs);
                             }}
@@ -668,9 +665,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   typeof $steps["validation"].then ===
                                     "function"
                                 ) {
-                                  $steps["validation"] = await $steps[
-                                    "validation"
-                                  ];
+                                  $steps["validation"] =
+                                    await $steps["validation"];
                                 }
 
                                 $steps["startLoading"] = $state.isValidNumber
@@ -706,9 +702,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   typeof $steps["startLoading"].then ===
                                     "function"
                                 ) {
-                                  $steps["startLoading"] = await $steps[
-                                    "startLoading"
-                                  ];
+                                  $steps["startLoading"] =
+                                    await $steps["startLoading"];
                                 }
 
                                 $steps["updateHamyarCell"] =
@@ -770,9 +765,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   typeof $steps["updateHamyarCell"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateHamyarCell"] = await $steps[
-                                    "updateHamyarCell"
-                                  ];
+                                  $steps["updateHamyarCell"] =
+                                    await $steps["updateHamyarCell"];
                                 }
 
                                 $steps["finishLoading"] = true
@@ -808,9 +802,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   typeof $steps["finishLoading"].then ===
                                     "function"
                                 ) {
-                                  $steps["finishLoading"] = await $steps[
-                                    "finishLoading"
-                                  ];
+                                  $steps["finishLoading"] =
+                                    await $steps["finishLoading"];
                                 }
 
                                 $steps["showToast"] =
@@ -832,9 +825,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   typeof $steps["showToast"] === "object" &&
                                   typeof $steps["showToast"].then === "function"
                                 ) {
-                                  $steps["showToast"] = await $steps[
-                                    "showToast"
-                                  ];
+                                  $steps["showToast"] =
+                                    await $steps["showToast"];
                                 }
                               }}
                             />
@@ -1128,9 +1120,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   typeof $steps["validation"].then ===
                                     "function"
                                 ) {
-                                  $steps["validation"] = await $steps[
-                                    "validation"
-                                  ];
+                                  $steps["validation"] =
+                                    await $steps["validation"];
                                 }
 
                                 $steps["startLoading"] = $state.isValidNumber
@@ -1166,9 +1157,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   typeof $steps["startLoading"].then ===
                                     "function"
                                 ) {
-                                  $steps["startLoading"] = await $steps[
-                                    "startLoading"
-                                  ];
+                                  $steps["startLoading"] =
+                                    await $steps["startLoading"];
                                 }
 
                                 $steps["updateHamyarCell"] =
@@ -1231,9 +1221,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   typeof $steps["updateHamyarCell"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateHamyarCell"] = await $steps[
-                                    "updateHamyarCell"
-                                  ];
+                                  $steps["updateHamyarCell"] =
+                                    await $steps["updateHamyarCell"];
                                 }
 
                                 $steps["finishLoading"] = true
@@ -1269,9 +1258,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   typeof $steps["finishLoading"].then ===
                                     "function"
                                 ) {
-                                  $steps["finishLoading"] = await $steps[
-                                    "finishLoading"
-                                  ];
+                                  $steps["finishLoading"] =
+                                    await $steps["finishLoading"];
                                 }
 
                                 $steps["showToast"] =
@@ -1293,9 +1281,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                                   typeof $steps["showToast"] === "object" &&
                                   typeof $steps["showToast"].then === "function"
                                 ) {
-                                  $steps["showToast"] = await $steps[
-                                    "showToast"
-                                  ];
+                                  $steps["showToast"] =
+                                    await $steps["showToast"];
                                 }
                               }}
                             />
@@ -1537,9 +1524,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                           typeof $steps["paymentSuccess"] === "object" &&
                           typeof $steps["paymentSuccess"].then === "function"
                         ) {
-                          $steps["paymentSuccess"] = await $steps[
-                            "paymentSuccess"
-                          ];
+                          $steps["paymentSuccess"] =
+                            await $steps["paymentSuccess"];
                         }
 
                         $steps["paymentCancel"] =
@@ -1561,9 +1547,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                           typeof $steps["paymentCancel"] === "object" &&
                           typeof $steps["paymentCancel"].then === "function"
                         ) {
-                          $steps["paymentCancel"] = await $steps[
-                            "paymentCancel"
-                          ];
+                          $steps["paymentCancel"] =
+                            await $steps["paymentCancel"];
                         }
 
                         $steps["paymentError"] =
@@ -1608,9 +1593,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                           typeof $steps["activeWidgetPopup"] === "object" &&
                           typeof $steps["activeWidgetPopup"].then === "function"
                         ) {
-                          $steps["activeWidgetPopup"] = await $steps[
-                            "activeWidgetPopup"
-                          ];
+                          $steps["activeWidgetPopup"] =
+                            await $steps["activeWidgetPopup"];
                         }
 
                         $steps["widgetAdded"] =
@@ -1676,9 +1660,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                           typeof $steps["widgetCanceled"] === "object" &&
                           typeof $steps["widgetCanceled"].then === "function"
                         ) {
-                          $steps["widgetCanceled"] = await $steps[
-                            "widgetCanceled"
-                          ];
+                          $steps["widgetCanceled"] =
+                            await $steps["widgetCanceled"];
                         }
 
                         $steps["finishLoading"] = true
@@ -1712,9 +1695,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                           typeof $steps["finishLoading"] === "object" &&
                           typeof $steps["finishLoading"].then === "function"
                         ) {
-                          $steps["finishLoading"] = await $steps[
-                            "finishLoading"
-                          ];
+                          $steps["finishLoading"] =
+                            await $steps["finishLoading"];
                         }
 
                         $steps["refreshData"] = $state.isValidNumber
@@ -1828,9 +1810,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                           typeof $steps["removeFromProfile"] === "object" &&
                           typeof $steps["removeFromProfile"].then === "function"
                         ) {
-                          $steps["removeFromProfile"] = await $steps[
-                            "removeFromProfile"
-                          ];
+                          $steps["removeFromProfile"] =
+                            await $steps["removeFromProfile"];
                         }
 
                         $steps["deactive"] = true
@@ -1927,9 +1908,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                           typeof $steps["finishLoading"] === "object" &&
                           typeof $steps["finishLoading"].then === "function"
                         ) {
-                          $steps["finishLoading"] = await $steps[
-                            "finishLoading"
-                          ];
+                          $steps["finishLoading"] =
+                            await $steps["finishLoading"];
                         }
 
                         $steps["refresh"] = true
@@ -2105,9 +2085,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                   typeof $steps["getNotifyCellFromP24"] === "object" &&
                   typeof $steps["getNotifyCellFromP24"].then === "function"
                 ) {
-                  $steps["getNotifyCellFromP24"] = await $steps[
-                    "getNotifyCellFromP24"
-                  ];
+                  $steps["getNotifyCellFromP24"] =
+                    await $steps["getNotifyCellFromP24"];
                 }
 
                 $steps["getHamyarCell"] = true
@@ -2162,8 +2141,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                         operation: 0,
                         value: $steps.getHamyarCell?.data?.hamyar_cell
                           ? $steps.getHamyarCell?.data?.hamyar_cell
-                          : $steps.getNotifyCellFromP24?.data?.[0]
-                              ?.notify_cell ?? ""
+                          : ($steps.getNotifyCellFromP24?.data?.[0]
+                              ?.notify_cell ?? "")
                       };
                       return (({
                         variable,
@@ -2186,9 +2165,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                   typeof $steps["updateHamyarState"] === "object" &&
                   typeof $steps["updateHamyarState"].then === "function"
                 ) {
-                  $steps["updateHamyarState"] = await $steps[
-                    "updateHamyarState"
-                  ];
+                  $steps["updateHamyarState"] =
+                    await $steps["updateHamyarState"];
                 }
 
                 $steps["finishLoading"] = true
@@ -2256,9 +2234,8 @@ function PlasmicHamyarSetting__RenderFunc(props: {
                   typeof $steps["updateIsValidNumber"] === "object" &&
                   typeof $steps["updateIsValidNumber"].then === "function"
                 ) {
-                  $steps["updateIsValidNumber"] = await $steps[
-                    "updateIsValidNumber"
-                  ];
+                  $steps["updateIsValidNumber"] =
+                    await $steps["updateIsValidNumber"];
                 }
               }}
             />
@@ -2386,7 +2363,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicHamyarSetting__VariantsArgs;
     args?: PlasmicHamyarSetting__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicHamyarSetting__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicHamyarSetting__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicHamyarSetting__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

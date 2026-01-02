@@ -196,9 +196,8 @@ function PlasmicAvailabilitySuggestionsSpecialities__RenderFunc(props: {
             typeof $steps["apiAvailabilitySuggestionsSpecialities"].then ===
               "function"
           ) {
-            $steps["apiAvailabilitySuggestionsSpecialities"] = await $steps[
-              "apiAvailabilitySuggestionsSpecialities"
-            ];
+            $steps["apiAvailabilitySuggestionsSpecialities"] =
+              await $steps["apiAvailabilitySuggestionsSpecialities"];
           }
 
           $steps["updateAvailabilitySuggestionsSpecialities"] = true
@@ -229,9 +228,8 @@ function PlasmicAvailabilitySuggestionsSpecialities__RenderFunc(props: {
             typeof $steps["updateAvailabilitySuggestionsSpecialities"].then ===
               "function"
           ) {
-            $steps["updateAvailabilitySuggestionsSpecialities"] = await $steps[
-              "updateAvailabilitySuggestionsSpecialities"
-            ];
+            $steps["updateAvailabilitySuggestionsSpecialities"] =
+              await $steps["updateAvailabilitySuggestionsSpecialities"];
           }
         }}
       />
@@ -351,10 +349,12 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicAvailabilitySuggestionsSpecialities__VariantsArgs;
     args?: PlasmicAvailabilitySuggestionsSpecialities__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit< // Specify variants directly as props
-    PlasmicAvailabilitySuggestionsSpecialities__VariantsArgs,
-    ReservedPropsType
-  > &
+  } &
+    // Specify variants directly as props
+    Omit<
+      PlasmicAvailabilitySuggestionsSpecialities__VariantsArgs,
+      ReservedPropsType
+    > &
     // Specify args directly as props
     Omit<
       PlasmicAvailabilitySuggestionsSpecialities__ArgsType,

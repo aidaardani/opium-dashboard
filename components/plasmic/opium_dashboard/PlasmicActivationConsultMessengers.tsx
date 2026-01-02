@@ -387,9 +387,8 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
                       typeof $steps["updateIsLoading"] === "object" &&
                       typeof $steps["updateIsLoading"].then === "function"
                     ) {
-                      $steps["updateIsLoading"] = await $steps[
-                        "updateIsLoading"
-                      ];
+                      $steps["updateIsLoading"] =
+                        await $steps["updateIsLoading"];
                     }
 
                     $steps["updateChannelsApi"] =
@@ -431,9 +430,8 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
                       typeof $steps["updateChannelsApi"] === "object" &&
                       typeof $steps["updateChannelsApi"].then === "function"
                     ) {
-                      $steps["updateChannelsApi"] = await $steps[
-                        "updateChannelsApi"
-                      ];
+                      $steps["updateChannelsApi"] =
+                        await $steps["updateChannelsApi"];
                     }
 
                     $steps["activeChannelsApi"] =
@@ -482,9 +480,8 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
                       typeof $steps["activeChannelsApi"] === "object" &&
                       typeof $steps["activeChannelsApi"].then === "function"
                     ) {
-                      $steps["activeChannelsApi"] = await $steps[
-                        "activeChannelsApi"
-                      ];
+                      $steps["activeChannelsApi"] =
+                        await $steps["activeChannelsApi"];
                     }
 
                     $steps["updateIsLoading2"] = true
@@ -518,9 +515,8 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
                       typeof $steps["updateIsLoading2"] === "object" &&
                       typeof $steps["updateIsLoading2"].then === "function"
                     ) {
-                      $steps["updateIsLoading2"] = await $steps[
-                        "updateIsLoading2"
-                      ];
+                      $steps["updateIsLoading2"] =
+                        await $steps["updateIsLoading2"];
                     }
 
                     $steps["toast"] = !!$steps.updateChannelsApi.data.message
@@ -656,9 +652,8 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
                       typeof $steps["updateIsLoading3"] === "object" &&
                       typeof $steps["updateIsLoading3"].then === "function"
                     ) {
-                      $steps["updateIsLoading3"] = await $steps[
-                        "updateIsLoading3"
-                      ];
+                      $steps["updateIsLoading3"] =
+                        await $steps["updateIsLoading3"];
                     }
                   }}
                   eventType={"click-save-consult-messenger-button"}
@@ -894,10 +889,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicActivationConsultMessengers__VariantsArgs;
     args?: PlasmicActivationConsultMessengers__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit< // Specify variants directly as props
-    PlasmicActivationConsultMessengers__VariantsArgs,
-    ReservedPropsType
-  > &
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicActivationConsultMessengers__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicActivationConsultMessengers__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

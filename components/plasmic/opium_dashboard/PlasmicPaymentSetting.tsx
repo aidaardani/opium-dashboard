@@ -719,9 +719,8 @@ function PlasmicPaymentSetting__RenderFunc(props: {
                     typeof $steps["setKindOfPayment"] === "object" &&
                     typeof $steps["setKindOfPayment"].then === "function"
                   ) {
-                    $steps["setKindOfPayment"] = await $steps[
-                      "setKindOfPayment"
-                    ];
+                    $steps["setKindOfPayment"] =
+                      await $steps["setKindOfPayment"];
                   }
 
                   $steps["stopLoading"] = true
@@ -873,7 +872,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicPaymentSetting__VariantsArgs;
     args?: PlasmicPaymentSetting__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicPaymentSetting__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicPaymentSetting__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicPaymentSetting__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

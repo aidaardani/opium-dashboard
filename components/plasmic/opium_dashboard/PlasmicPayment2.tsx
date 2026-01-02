@@ -722,9 +722,8 @@ function PlasmicPayment2__RenderFunc(props: {
                       typeof $steps["settlementRequest"] === "object" &&
                       typeof $steps["settlementRequest"].then === "function"
                     ) {
-                      $steps["settlementRequest"] = await $steps[
-                        "settlementRequest"
-                      ];
+                      $steps["settlementRequest"] =
+                        await $steps["settlementRequest"];
                     }
 
                     $steps["updateLoadingFinish"] = true
@@ -758,9 +757,8 @@ function PlasmicPayment2__RenderFunc(props: {
                       typeof $steps["updateLoadingFinish"] === "object" &&
                       typeof $steps["updateLoadingFinish"].then === "function"
                     ) {
-                      $steps["updateLoadingFinish"] = await $steps[
-                        "updateLoadingFinish"
-                      ];
+                      $steps["updateLoadingFinish"] =
+                        await $steps["updateLoadingFinish"];
                     }
 
                     $steps["toast"] = true
@@ -998,9 +996,8 @@ function PlasmicPayment2__RenderFunc(props: {
                     typeof $steps["setKindOfPayment"] === "object" &&
                     typeof $steps["setKindOfPayment"].then === "function"
                   ) {
-                    $steps["setKindOfPayment"] = await $steps[
-                      "setKindOfPayment"
-                    ];
+                    $steps["setKindOfPayment"] =
+                      await $steps["setKindOfPayment"];
                   }
 
                   $steps["stopLoading"] = true
@@ -1056,9 +1053,8 @@ function PlasmicPayment2__RenderFunc(props: {
                     typeof $steps["invokeGlobalAction"] === "object" &&
                     typeof $steps["invokeGlobalAction"].then === "function"
                   ) {
-                    $steps["invokeGlobalAction"] = await $steps[
-                      "invokeGlobalAction"
-                    ];
+                    $steps["invokeGlobalAction"] =
+                      await $steps["invokeGlobalAction"];
                   }
                 }}
               />
@@ -1138,7 +1134,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicPayment2__VariantsArgs;
     args?: PlasmicPayment2__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicPayment2__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicPayment2__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicPayment2__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

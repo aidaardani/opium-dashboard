@@ -468,9 +468,8 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                         typeof $steps["updateNewPhoneNumberValue"].then ===
                           "function"
                       ) {
-                        $steps["updateNewPhoneNumberValue"] = await $steps[
-                          "updateNewPhoneNumberValue"
-                        ];
+                        $steps["updateNewPhoneNumberValue"] =
+                          await $steps["updateNewPhoneNumberValue"];
                       }
                     }).apply(null, eventArgs);
                   }}
@@ -698,9 +697,8 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                     typeof $steps["showValidationToast"] === "object" &&
                     typeof $steps["showValidationToast"].then === "function"
                   ) {
-                    $steps["showValidationToast"] = await $steps[
-                      "showValidationToast"
-                    ];
+                    $steps["showValidationToast"] =
+                      await $steps["showValidationToast"];
                   }
 
                   $steps["updateIsLoading"] = true
@@ -944,9 +942,8 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                     typeof $steps["showApiResultToast"] === "object" &&
                     typeof $steps["showApiResultToast"].then === "function"
                   ) {
-                    $steps["showApiResultToast"] = await $steps[
-                      "showApiResultToast"
-                    ];
+                    $steps["showApiResultToast"] =
+                      await $steps["showApiResultToast"];
                   }
 
                   $steps["mobileApi"] = false
@@ -1018,9 +1015,8 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                     typeof $steps["updateIsLoading2"] === "object" &&
                     typeof $steps["updateIsLoading2"].then === "function"
                   ) {
-                    $steps["updateIsLoading2"] = await $steps[
-                      "updateIsLoading2"
-                    ];
+                    $steps["updateIsLoading2"] =
+                      await $steps["updateIsLoading2"];
                   }
 
                   $steps["updateIsSendOtp"] =
@@ -1303,9 +1299,8 @@ function PlasmicProfilePersonalPhoneNumber__RenderFunc(props: {
                     typeof $steps["showOtpResultToast"] === "object" &&
                     typeof $steps["showOtpResultToast"].then === "function"
                   ) {
-                    $steps["showOtpResultToast"] = await $steps[
-                      "showOtpResultToast"
-                    ];
+                    $steps["showOtpResultToast"] =
+                      await $steps["showOtpResultToast"];
                   }
 
                   $steps["closeDialog"] =
@@ -1456,7 +1451,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfilePersonalPhoneNumber__VariantsArgs;
     args?: PlasmicProfilePersonalPhoneNumber__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProfilePersonalPhoneNumber__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProfilePersonalPhoneNumber__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProfilePersonalPhoneNumber__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

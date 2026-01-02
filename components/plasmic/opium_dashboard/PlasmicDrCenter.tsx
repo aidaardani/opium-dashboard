@@ -67,6 +67,8 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicDrCenter.module.css"; // plasmic-import: Y5f_I7uzx8ZQ/css
 
+import Icon63Icon from "./icons/PlasmicIcon__Icon63"; // plasmic-import: y93MmujMsRlk/icon
+
 createPlasmicElementProxy;
 
 export type PlasmicDrCenter__VariantMembers = {
@@ -89,21 +91,31 @@ export const PlasmicDrCenter__VariantProps = new Array<VariantPropType>(
 export type PlasmicDrCenter__ArgsType = {
   name?: string;
   onselected?: () => void;
+  adress?: string;
+  platform?: string;
+  showOtherPlatform?: boolean;
 };
 type ArgPropType = keyof PlasmicDrCenter__ArgsType;
 export const PlasmicDrCenter__ArgProps = new Array<ArgPropType>(
   "name",
-  "onselected"
+  "onselected",
+  "adress",
+  "platform",
+  "showOtherPlatform"
 );
 
 export type PlasmicDrCenter__OverridesType = {
   root?: Flex__<"div">;
-  text?: Flex__<"div">;
+  freeBox?: Flex__<"div">;
+  svg?: Flex__<"svg">;
 };
 
 export interface DefaultDrCenterProps {
   name?: string;
   onselected?: () => void;
+  adress?: string;
+  platform?: string;
+  showOtherPlatform?: boolean;
   officeBook?: SingleBooleanChoiceArg<"officeBook">;
   onlineBook?: SingleBooleanChoiceArg<"onlineBook">;
   selected?: SingleBooleanChoiceArg<"selected">;
@@ -130,7 +142,9 @@ function PlasmicDrCenter__RenderFunc(props: {
   const args = React.useMemo(
     () =>
       Object.assign(
-        {},
+        {
+          showOtherPlatform: false
+        },
         Object.fromEntries(
           Object.entries(props.args).filter(([_, v]) => v !== undefined)
         )
@@ -221,12 +235,23 @@ function PlasmicDrCenter__RenderFunc(props: {
       }}
     >
       <div
-        data-plasmic-name={"text"}
-        data-plasmic-override={overrides.text}
-        className={classNames(projectcss.all, projectcss.__wab_text, sty.text, {
-          [sty.textofficeBook]: hasVariant($state, "officeBook", "officeBook"),
-          [sty.textonlineBook]: hasVariant($state, "onlineBook", "onlineBook")
-        })}
+        className={classNames(
+          projectcss.all,
+          projectcss.__wab_text,
+          sty.text__di5Xi,
+          {
+            [sty.textofficeBook__di5XiwNg8O]: hasVariant(
+              $state,
+              "officeBook",
+              "officeBook"
+            ),
+            [sty.textonlineBook__di5XiAb4Rt]: hasVariant(
+              $state,
+              "onlineBook",
+              "onlineBook"
+            )
+          }
+        )}
       >
         {hasVariant($state, "onlineBook", "onlineBook") ? (
           <React.Fragment>
@@ -278,20 +303,63 @@ function PlasmicDrCenter__RenderFunc(props: {
           </React.Fragment>
         )}
       </div>
+      {(() => {
+        try {
+          return (
+            $state.officeBook === "officeBook" &&
+            ($props.showOtherPlatform
+              ? !!$props.platform.find(p => p.name === "paziresh24")
+              : true)
+          );
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return false;
+          }
+          throw e;
+        }
+      })() ? (
+        <div
+          data-plasmic-name={"freeBox"}
+          data-plasmic-override={overrides.freeBox}
+          className={classNames(projectcss.all, sty.freeBox)}
+        >
+          <Icon63Icon
+            data-plasmic-name={"svg"}
+            data-plasmic-override={overrides.svg}
+            className={classNames(projectcss.all, sty.svg)}
+            role={"img"}
+          />
+
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__lmOyB
+            )}
+          >
+            <React.Fragment>{$props.adress}</React.Fragment>
+          </div>
+        </div>
+      ) : null}
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "text"],
-  text: ["text"]
+  root: ["root", "freeBox", "svg"],
+  freeBox: ["freeBox", "svg"],
+  svg: ["svg"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
-  text: "div";
+  freeBox: "div";
+  svg: "svg";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -356,7 +424,8 @@ export const PlasmicDrCenter = Object.assign(
   makeNodeComponent("root"),
   {
     // Helper components rendering sub-elements
-    text: makeNodeComponent("text"),
+    freeBox: makeNodeComponent("freeBox"),
+    svg: makeNodeComponent("svg"),
 
     // Metadata about props expected for PlasmicDrCenter
     internalVariantProps: PlasmicDrCenter__VariantProps,

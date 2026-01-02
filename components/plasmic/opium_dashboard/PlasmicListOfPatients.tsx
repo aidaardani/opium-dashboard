@@ -205,9 +205,8 @@ function PlasmicListOfPatients__RenderFunc(props: {
             typeof $steps["apiGetListOfPatients"] === "object" &&
             typeof $steps["apiGetListOfPatients"].then === "function"
           ) {
-            $steps["apiGetListOfPatients"] = await $steps[
-              "apiGetListOfPatients"
-            ];
+            $steps["apiGetListOfPatients"] =
+              await $steps["apiGetListOfPatients"];
           }
 
           $steps["updateListOfPatients"] = true
@@ -236,9 +235,8 @@ function PlasmicListOfPatients__RenderFunc(props: {
             typeof $steps["updateListOfPatients"] === "object" &&
             typeof $steps["updateListOfPatients"].then === "function"
           ) {
-            $steps["updateListOfPatients"] = await $steps[
-              "updateListOfPatients"
-            ];
+            $steps["updateListOfPatients"] =
+              await $steps["updateListOfPatients"];
           }
         }}
       />
@@ -470,13 +468,7 @@ function PlasmicListOfPatients__RenderFunc(props: {
                   <React.Fragment>
                     {(() => {
                       try {
-                        return `${
-                          currentItem.patient_temp_name || "بدون نام"
-                        } ${
-                          currentItem.patient_temp_family
-                            ? currentItem.patient_temp_family
-                            : ""
-                        }`;
+                        return `${currentItem.patient_temp_name || "بدون نام"} ${currentItem.patient_temp_family ? currentItem.patient_temp_family : ""}`;
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
@@ -746,7 +738,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicListOfPatients__VariantsArgs;
     args?: PlasmicListOfPatients__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicListOfPatients__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicListOfPatients__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicListOfPatients__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

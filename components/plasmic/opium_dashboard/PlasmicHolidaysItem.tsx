@@ -520,9 +520,8 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                       typeof $steps["updateDialogOpen"] === "object" &&
                       typeof $steps["updateDialogOpen"].then === "function"
                     ) {
-                      $steps["updateDialogOpen"] = await $steps[
-                        "updateDialogOpen"
-                      ];
+                      $steps["updateDialogOpen"] =
+                        await $steps["updateDialogOpen"];
                     }
                   }}
                   outline={true}
@@ -631,9 +630,8 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                         typeof $steps["updateDialogOpen3"] === "object" &&
                         typeof $steps["updateDialogOpen3"].then === "function"
                       ) {
-                        $steps["updateDialogOpen3"] = await $steps[
-                          "updateDialogOpen3"
-                        ];
+                        $steps["updateDialogOpen3"] =
+                          await $steps["updateDialogOpen3"];
                       }
 
                       $steps["holidayRemoveApi"] = true
@@ -674,9 +672,8 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                         typeof $steps["holidayRemoveApi"] === "object" &&
                         typeof $steps["holidayRemoveApi"].then === "function"
                       ) {
-                        $steps["holidayRemoveApi"] = await $steps[
-                          "holidayRemoveApi"
-                        ];
+                        $steps["holidayRemoveApi"] =
+                          await $steps["holidayRemoveApi"];
                       }
 
                       $steps["sendEvent"] = true
@@ -842,9 +839,8 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                         typeof $steps["updateDialogOpen2"] === "object" &&
                         typeof $steps["updateDialogOpen2"].then === "function"
                       ) {
-                        $steps["updateDialogOpen2"] = await $steps[
-                          "updateDialogOpen2"
-                        ];
+                        $steps["updateDialogOpen2"] =
+                          await $steps["updateDialogOpen2"];
                       }
 
                       $steps["updateDialogOpen"] = true
@@ -878,9 +874,8 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                         typeof $steps["updateDialogOpen"] === "object" &&
                         typeof $steps["updateDialogOpen"].then === "function"
                       ) {
-                        $steps["updateDialogOpen"] = await $steps[
-                          "updateDialogOpen"
-                        ];
+                        $steps["updateDialogOpen"] =
+                          await $steps["updateDialogOpen"];
                       }
                     }}
                   />
@@ -933,9 +928,8 @@ function PlasmicHolidaysItem__RenderFunc(props: {
                         typeof $steps["goToHttpsTMeAidaardani"].then ===
                           "function"
                       ) {
-                        $steps["goToHttpsTMeAidaardani"] = await $steps[
-                          "goToHttpsTMeAidaardani"
-                        ];
+                        $steps["goToHttpsTMeAidaardani"] =
+                          await $steps["goToHttpsTMeAidaardani"];
                       }
                     }}
                   />
@@ -1012,7 +1006,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicHolidaysItem__VariantsArgs;
     args?: PlasmicHolidaysItem__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicHolidaysItem__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicHolidaysItem__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicHolidaysItem__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

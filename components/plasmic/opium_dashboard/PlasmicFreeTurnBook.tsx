@@ -233,7 +233,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicFreeTurnBook__VariantsArgs;
     args?: PlasmicFreeTurnBook__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicFreeTurnBook__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicFreeTurnBook__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicFreeTurnBook__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

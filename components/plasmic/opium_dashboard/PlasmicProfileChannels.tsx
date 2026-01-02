@@ -914,9 +914,8 @@ function PlasmicProfileChannels__RenderFunc(props: {
                       typeof $steps["updateDialogOpen"] === "object" &&
                       typeof $steps["updateDialogOpen"].then === "function"
                     ) {
-                      $steps["updateDialogOpen"] = await $steps[
-                        "updateDialogOpen"
-                      ];
+                      $steps["updateDialogOpen"] =
+                        await $steps["updateDialogOpen"];
                     }
                   }}
                   role={"img"}
@@ -1046,9 +1045,8 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   typeof $steps["updateIsLoadingSave"] === "object" &&
                   typeof $steps["updateIsLoadingSave"].then === "function"
                 ) {
-                  $steps["updateIsLoadingSave"] = await $steps[
-                    "updateIsLoadingSave"
-                  ];
+                  $steps["updateIsLoadingSave"] =
+                    await $steps["updateIsLoadingSave"];
                 }
 
                 $steps["showToastForWhatsapp"] =
@@ -1074,9 +1072,8 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   typeof $steps["showToastForWhatsapp"] === "object" &&
                   typeof $steps["showToastForWhatsapp"].then === "function"
                 ) {
-                  $steps["showToastForWhatsapp"] = await $steps[
-                    "showToastForWhatsapp"
-                  ];
+                  $steps["showToastForWhatsapp"] =
+                    await $steps["showToastForWhatsapp"];
                 }
 
                 $steps["showToastForEita"] =
@@ -1212,9 +1209,8 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   typeof $steps["invokeGlobalAction"] === "object" &&
                   typeof $steps["invokeGlobalAction"].then === "function"
                 ) {
-                  $steps["invokeGlobalAction"] = await $steps[
-                    "invokeGlobalAction"
-                  ];
+                  $steps["invokeGlobalAction"] =
+                    await $steps["invokeGlobalAction"];
                 }
 
                 $steps["updateIsLoadingSave2"] = true
@@ -1248,9 +1244,8 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   typeof $steps["updateIsLoadingSave2"] === "object" &&
                   typeof $steps["updateIsLoadingSave2"].then === "function"
                 ) {
-                  $steps["updateIsLoadingSave2"] = await $steps[
-                    "updateIsLoadingSave2"
-                  ];
+                  $steps["updateIsLoadingSave2"] =
+                    await $steps["updateIsLoadingSave2"];
                 }
 
                 $steps["toast"] = !!$steps.invokeGlobalAction.data.message
@@ -1387,9 +1382,8 @@ function PlasmicProfileChannels__RenderFunc(props: {
                   typeof $steps["runCustomOnSubmit"] === "object" &&
                   typeof $steps["runCustomOnSubmit"].then === "function"
                 ) {
-                  $steps["runCustomOnSubmit"] = await $steps[
-                    "runCustomOnSubmit"
-                  ];
+                  $steps["runCustomOnSubmit"] =
+                    await $steps["runCustomOnSubmit"];
                 }
               }}
             />
@@ -1451,7 +1445,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfileChannels__VariantsArgs;
     args?: PlasmicProfileChannels__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProfileChannels__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProfileChannels__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProfileChannels__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

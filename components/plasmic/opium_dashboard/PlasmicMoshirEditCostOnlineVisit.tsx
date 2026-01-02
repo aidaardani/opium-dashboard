@@ -543,12 +543,8 @@ function PlasmicMoshirEditCostOnlineVisit__RenderFunc(props: {
             {(() => {
               try {
                 return $state.select.value === "custom"
-                  ? `${(+$state.input.value).toLocaleString()} ${
-                      $state.input.value ? "تومان" : ""
-                    }`
-                  : `${(+$state.select.value).toLocaleString()} ${
-                      $state.select.value ? "تومان" : ""
-                    }`;
+                  ? `${(+$state.input.value).toLocaleString()} ${$state.input.value ? "تومان" : ""}`
+                  : `${(+$state.select.value).toLocaleString()} ${$state.select.value ? "تومان" : ""}`;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -699,9 +695,8 @@ function PlasmicMoshirEditCostOnlineVisit__RenderFunc(props: {
                     typeof $steps["updateShabaValue"] === "object" &&
                     typeof $steps["updateShabaValue"].then === "function"
                   ) {
-                    $steps["updateShabaValue"] = await $steps[
-                      "updateShabaValue"
-                    ];
+                    $steps["updateShabaValue"] =
+                      await $steps["updateShabaValue"];
                   }
                 }).apply(null, eventArgs);
               }}
@@ -1132,7 +1127,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicMoshirEditCostOnlineVisit__VariantsArgs;
     args?: PlasmicMoshirEditCostOnlineVisit__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicMoshirEditCostOnlineVisit__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicMoshirEditCostOnlineVisit__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicMoshirEditCostOnlineVisit__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

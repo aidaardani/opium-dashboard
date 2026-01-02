@@ -810,9 +810,8 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               typeof $steps["overlapToast"] === "object" &&
                               typeof $steps["overlapToast"].then === "function"
                             ) {
-                              $steps["overlapToast"] = await $steps[
-                                "overlapToast"
-                              ];
+                              $steps["overlapToast"] =
+                                await $steps["overlapToast"];
                             }
 
                             $steps["updateIsLoadingSave"] = true
@@ -848,9 +847,8 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               typeof $steps["updateIsLoadingSave"].then ===
                                 "function"
                             ) {
-                              $steps["updateIsLoadingSave"] = await $steps[
-                                "updateIsLoadingSave"
-                              ];
+                              $steps["updateIsLoadingSave"] =
+                                await $steps["updateIsLoadingSave"];
                             }
 
                             $steps["activeConsultMutation"] = true
@@ -922,9 +920,8 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               typeof $steps["activeConsultMutation"].then ===
                                 "function"
                             ) {
-                              $steps["activeConsultMutation"] = await $steps[
-                                "activeConsultMutation"
-                              ];
+                              $steps["activeConsultMutation"] =
+                                await $steps["activeConsultMutation"];
                             }
 
                             $steps["costApi"] =
@@ -1047,9 +1044,8 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               typeof $steps["addToNewPayment"].then ===
                                 "function"
                             ) {
-                              $steps["addToNewPayment"] = await $steps[
-                                "addToNewPayment"
-                              ];
+                              $steps["addToNewPayment"] =
+                                await $steps["addToNewPayment"];
                             }
 
                             $steps["updateIsLoadingSave2"] = true
@@ -1085,9 +1081,8 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                               typeof $steps["updateIsLoadingSave2"].then ===
                                 "function"
                             ) {
-                              $steps["updateIsLoadingSave2"] = await $steps[
-                                "updateIsLoadingSave2"
-                              ];
+                              $steps["updateIsLoadingSave2"] =
+                                await $steps["updateIsLoadingSave2"];
                             }
 
                             $steps["apiCleanUp"] = true
@@ -1489,7 +1484,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicActivationConsultDuration__VariantsArgs;
     args?: PlasmicActivationConsultDuration__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicActivationConsultDuration__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicActivationConsultDuration__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicActivationConsultDuration__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

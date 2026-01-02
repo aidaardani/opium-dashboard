@@ -598,9 +598,8 @@ function PlasmicProfileHead__RenderFunc(props: {
                       typeof $steps["updateUploadFiles2"] === "object" &&
                       typeof $steps["updateUploadFiles2"].then === "function"
                     ) {
-                      $steps["updateUploadFiles2"] = await $steps[
-                        "updateUploadFiles2"
-                      ];
+                      $steps["updateUploadFiles2"] =
+                        await $steps["updateUploadFiles2"];
                     }
 
                     $steps["uploadImage"] = true
@@ -709,9 +708,8 @@ function PlasmicProfileHead__RenderFunc(props: {
                       typeof $steps["updateUploadFiles"] === "object" &&
                       typeof $steps["updateUploadFiles"].then === "function"
                     ) {
-                      $steps["updateUploadFiles"] = await $steps[
-                        "updateUploadFiles"
-                      ];
+                      $steps["updateUploadFiles"] =
+                        await $steps["updateUploadFiles"];
                     }
 
                     $steps["toast"] =
@@ -770,9 +768,8 @@ function PlasmicProfileHead__RenderFunc(props: {
                       typeof $steps["toastUnsuccessfull"] === "object" &&
                       typeof $steps["toastUnsuccessfull"].then === "function"
                     ) {
-                      $steps["toastUnsuccessfull"] = await $steps[
-                        "toastUnsuccessfull"
-                      ];
+                      $steps["toastUnsuccessfull"] =
+                        await $steps["toastUnsuccessfull"];
                     }
 
                     $steps["cleanUp"] = true
@@ -834,9 +831,8 @@ function PlasmicProfileHead__RenderFunc(props: {
                       typeof $steps["runActionOnProfile"] === "object" &&
                       typeof $steps["runActionOnProfile"].then === "function"
                     ) {
-                      $steps["runActionOnProfile"] = await $steps[
-                        "runActionOnProfile"
-                      ];
+                      $steps["runActionOnProfile"] =
+                        await $steps["runActionOnProfile"];
                     }
                   }}
                 >
@@ -894,9 +890,7 @@ function PlasmicProfileHead__RenderFunc(props: {
                 <React.Fragment>
                   {(() => {
                     try {
-                      return `${$state.profile.data.data.name || ""} ${
-                        $state.profile.data.data.family || ""
-                      }`;
+                      return `${$state.profile.data.data.name || ""} ${$state.profile.data.data.family || ""}`;
                     } catch (e) {
                       if (
                         e instanceof TypeError ||
@@ -947,9 +941,7 @@ function PlasmicProfileHead__RenderFunc(props: {
                           try {
                             return !!currentItem.alias_title
                               ? currentItem.alias_title
-                              : `${currentItem.degree.name || ""} ${
-                                  currentItem.expertise.name || ""
-                                }`;
+                              : `${currentItem.degree.name || ""} ${currentItem.expertise.name || ""}`;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1025,7 +1017,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfileHead__VariantsArgs;
     args?: PlasmicProfileHead__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProfileHead__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProfileHead__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProfileHead__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

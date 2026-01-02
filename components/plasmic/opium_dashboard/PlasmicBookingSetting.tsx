@@ -548,9 +548,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                   typeof $steps["apiGetSettingBooking"] === "object" &&
                   typeof $steps["apiGetSettingBooking"].then === "function"
                 ) {
-                  $steps["apiGetSettingBooking"] = await $steps[
-                    "apiGetSettingBooking"
-                  ];
+                  $steps["apiGetSettingBooking"] =
+                    await $steps["apiGetSettingBooking"];
                 }
 
                 $steps["updateSettings"] = true
@@ -630,9 +629,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                   typeof $steps["apiGetRefundSetting"] === "object" &&
                   typeof $steps["apiGetRefundSetting"].then === "function"
                 ) {
-                  $steps["apiGetRefundSetting"] = await $steps[
-                    "apiGetRefundSetting"
-                  ];
+                  $steps["apiGetRefundSetting"] =
+                    await $steps["apiGetRefundSetting"];
                 }
 
                 $steps["updateSettingRefund"] = true
@@ -666,9 +664,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                   typeof $steps["updateSettingRefund"] === "object" &&
                   typeof $steps["updateSettingRefund"].then === "function"
                 ) {
-                  $steps["updateSettingRefund"] = await $steps[
-                    "updateSettingRefund"
-                  ];
+                  $steps["updateSettingRefund"] =
+                    await $steps["updateSettingRefund"];
                 }
 
                 $steps["apiGetPaymentSetting"] = (
@@ -714,9 +711,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                   typeof $steps["apiGetPaymentSetting"] === "object" &&
                   typeof $steps["apiGetPaymentSetting"].then === "function"
                 ) {
-                  $steps["apiGetPaymentSetting"] = await $steps[
-                    "apiGetPaymentSetting"
-                  ];
+                  $steps["apiGetPaymentSetting"] =
+                    await $steps["apiGetPaymentSetting"];
                 }
 
                 $steps["updateSettingBookingPaymentStatus"] = true
@@ -752,9 +748,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                   typeof $steps["updateSettingBookingPaymentStatus"].then ===
                     "function"
                 ) {
-                  $steps["updateSettingBookingPaymentStatus"] = await $steps[
-                    "updateSettingBookingPaymentStatus"
-                  ];
+                  $steps["updateSettingBookingPaymentStatus"] =
+                    await $steps["updateSettingBookingPaymentStatus"];
                 }
 
                 $steps["sendEventLoad"] = true
@@ -973,16 +968,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                   <React.Fragment>
                                     {(() => {
                                       try {
-                                        return `بیماران برای ${
-                                          $state.from.value === 0 ||
-                                          $state.from.value === "0"
-                                            ? "امروز"
-                                            : $state.from.value === "1"
-                                            ? "فردا"
-                                            : $state.from.value
-                                        } تا ${
-                                          $state.to.value
-                                        } روز دیگر می توانند نوبت بگیرند.`;
+                                        return `بیماران برای ${$state.from.value === 0 || $state.from.value === "0" ? "امروز" : $state.from.value === "1" ? "فردا" : $state.from.value} تا ${$state.to.value} روز دیگر می توانند نوبت بگیرند.`;
                                       } catch (e) {
                                         if (
                                           e instanceof TypeError ||
@@ -1439,9 +1425,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     typeof $steps["startLoading"].then ===
                                       "function"
                                   ) {
-                                    $steps["startLoading"] = await $steps[
-                                      "startLoading"
-                                    ];
+                                    $steps["startLoading"] =
+                                      await $steps["startLoading"];
                                   }
 
                                   $steps["apiPatchSetting"] =
@@ -1486,9 +1471,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     typeof $steps["apiPatchSetting"].then ===
                                       "function"
                                   ) {
-                                    $steps["apiPatchSetting"] = await $steps[
-                                      "apiPatchSetting"
-                                    ];
+                                    $steps["apiPatchSetting"] =
+                                      await $steps["apiPatchSetting"];
                                   }
 
                                   $steps["loadingFinish"] = true
@@ -1531,9 +1515,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     typeof $steps["loadingFinish"].then ===
                                       "function"
                                   ) {
-                                    $steps["loadingFinish"] = await $steps[
-                                      "loadingFinish"
-                                    ];
+                                    $steps["loadingFinish"] =
+                                      await $steps["loadingFinish"];
                                   }
 
                                   $steps["showToast2"] =
@@ -1556,9 +1539,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     typeof $steps["showToast2"].then ===
                                       "function"
                                   ) {
-                                    $steps["showToast2"] = await $steps[
-                                      "showToast2"
-                                    ];
+                                    $steps["showToast2"] =
+                                      await $steps["showToast2"];
                                   }
 
                                   $steps["showToast3"] =
@@ -1582,9 +1564,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     typeof $steps["showToast3"].then ===
                                       "function"
                                   ) {
-                                    $steps["showToast3"] = await $steps[
-                                      "showToast3"
-                                    ];
+                                    $steps["showToast3"] =
+                                      await $steps["showToast3"];
                                   }
 
                                   $steps["showToast"] =
@@ -1607,9 +1588,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     typeof $steps["showToast"].then ===
                                       "function"
                                   ) {
-                                    $steps["showToast"] = await $steps[
-                                      "showToast"
-                                    ];
+                                    $steps["showToast"] =
+                                      await $steps["showToast"];
                                   }
 
                                   $steps["sendEvent"] = true
@@ -1652,9 +1632,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     typeof $steps["sendEvent"].then ===
                                       "function"
                                   ) {
-                                    $steps["sendEvent"] = await $steps[
-                                      "sendEvent"
-                                    ];
+                                    $steps["sendEvent"] =
+                                      await $steps["sendEvent"];
                                   }
                                 }}
                               />
@@ -1864,11 +1843,7 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     <React.Fragment>
                                       {(() => {
                                         try {
-                                          return `در صورت لغو نوبت تا «${
-                                            $state.refundrange.value ||
-                                            $state.settingBookingRefundValue
-                                              .value
-                                          }» ساعت قبل از زمان ویزیت، وجه بیمار مسترد خواهد شد.`.replace(
+                                          return `در صورت لغو نوبت تا «${$state.refundrange.value || $state.settingBookingRefundValue.value}» ساعت قبل از زمان ویزیت، وجه بیمار مسترد خواهد شد.`.replace(
                                             /\d/g,
                                             d =>
                                               [
@@ -2106,9 +2081,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     typeof $steps["startLoading"].then ===
                                       "function"
                                   ) {
-                                    $steps["startLoading"] = await $steps[
-                                      "startLoading"
-                                    ];
+                                    $steps["startLoading"] =
+                                      await $steps["startLoading"];
                                   }
 
                                   $steps["apiUpdateValueOfRefundPollicy"] = true
@@ -2202,9 +2176,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     typeof $steps["sendEvent"].then ===
                                       "function"
                                   ) {
-                                    $steps["sendEvent"] = await $steps[
-                                      "sendEvent"
-                                    ];
+                                    $steps["sendEvent"] =
+                                      await $steps["sendEvent"];
                                   }
 
                                   $steps["showToast"] =
@@ -2228,9 +2201,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     typeof $steps["showToast"].then ===
                                       "function"
                                   ) {
-                                    $steps["showToast"] = await $steps[
-                                      "showToast"
-                                    ];
+                                    $steps["showToast"] =
+                                      await $steps["showToast"];
                                   }
 
                                   $steps["finishLoading"] = true
@@ -2273,9 +2245,8 @@ function PlasmicBookingSetting__RenderFunc(props: {
                                     typeof $steps["finishLoading"].then ===
                                       "function"
                                   ) {
-                                    $steps["finishLoading"] = await $steps[
-                                      "finishLoading"
-                                    ];
+                                    $steps["finishLoading"] =
+                                      await $steps["finishLoading"];
                                   }
                                 }}
                               />
@@ -2737,7 +2708,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicBookingSetting__VariantsArgs;
     args?: PlasmicBookingSetting__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicBookingSetting__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicBookingSetting__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicBookingSetting__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

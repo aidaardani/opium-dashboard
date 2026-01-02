@@ -324,7 +324,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicRadioButtonNelson__VariantsArgs;
     args?: PlasmicRadioButtonNelson__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicRadioButtonNelson__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicRadioButtonNelson__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicRadioButtonNelson__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

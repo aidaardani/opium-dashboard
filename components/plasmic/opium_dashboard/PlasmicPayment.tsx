@@ -998,9 +998,8 @@ function PlasmicPayment__RenderFunc(props: {
                             typeof $steps["setKindOfPayment"].then ===
                               "function"
                           ) {
-                            $steps["setKindOfPayment"] = await $steps[
-                              "setKindOfPayment"
-                            ];
+                            $steps["setKindOfPayment"] =
+                              await $steps["setKindOfPayment"];
                           }
 
                           $steps["stopLoading"] = true
@@ -1069,9 +1068,8 @@ function PlasmicPayment__RenderFunc(props: {
                             typeof $steps["updateDialogOpen"].then ===
                               "function"
                           ) {
-                            $steps["updateDialogOpen"] = await $steps[
-                              "updateDialogOpen"
-                            ];
+                            $steps["updateDialogOpen"] =
+                              await $steps["updateDialogOpen"];
                           }
 
                           $steps["invokeGlobalAction"] = true
@@ -1093,9 +1091,8 @@ function PlasmicPayment__RenderFunc(props: {
                             typeof $steps["invokeGlobalAction"].then ===
                               "function"
                           ) {
-                            $steps["invokeGlobalAction"] = await $steps[
-                              "invokeGlobalAction"
-                            ];
+                            $steps["invokeGlobalAction"] =
+                              await $steps["invokeGlobalAction"];
                           }
                         }}
                       />
@@ -1142,9 +1139,8 @@ function PlasmicPayment__RenderFunc(props: {
                             typeof $steps["updateDialogOpen"].then ===
                               "function"
                           ) {
-                            $steps["updateDialogOpen"] = await $steps[
-                              "updateDialogOpen"
-                            ];
+                            $steps["updateDialogOpen"] =
+                              await $steps["updateDialogOpen"];
                           }
                         }}
                       />
@@ -1285,9 +1281,8 @@ function PlasmicPayment__RenderFunc(props: {
                   typeof $steps["settlementRequest"] === "object" &&
                   typeof $steps["settlementRequest"].then === "function"
                 ) {
-                  $steps["settlementRequest"] = await $steps[
-                    "settlementRequest"
-                  ];
+                  $steps["settlementRequest"] =
+                    await $steps["settlementRequest"];
                 }
 
                 $steps["updateLoadingFinish"] = true
@@ -1321,9 +1316,8 @@ function PlasmicPayment__RenderFunc(props: {
                   typeof $steps["updateLoadingFinish"] === "object" &&
                   typeof $steps["updateLoadingFinish"].then === "function"
                 ) {
-                  $steps["updateLoadingFinish"] = await $steps[
-                    "updateLoadingFinish"
-                  ];
+                  $steps["updateLoadingFinish"] =
+                    await $steps["updateLoadingFinish"];
                 }
 
                 $steps["toast"] = true
@@ -1427,7 +1421,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicPayment__VariantsArgs;
     args?: PlasmicPayment__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicPayment__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicPayment__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicPayment__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

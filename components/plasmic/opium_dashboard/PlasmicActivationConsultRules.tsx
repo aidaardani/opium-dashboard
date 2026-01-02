@@ -380,9 +380,8 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                     typeof $steps["updateCheckedRules"] === "object" &&
                     typeof $steps["updateCheckedRules"].then === "function"
                   ) {
-                    $steps["updateCheckedRules"] = await $steps[
-                      "updateCheckedRules"
-                    ];
+                    $steps["updateCheckedRules"] =
+                      await $steps["updateCheckedRules"];
                   }
                 }).apply(null, eventArgs);
               },
@@ -562,9 +561,7 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                 $steps["goToActivationMessengers"] = true
                   ? (() => {
                       const actionArgs = {
-                        destination: `/activation-page/consult/messengers?userId=${
-                          $state.profileApi?.data?.data?.id || ""
-                        }`
+                        destination: `/activation-page/consult/messengers?userId=${$state.profileApi?.data?.data?.id || ""}`
                       };
                       return (({ destination }) => {
                         if (
@@ -585,9 +582,8 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                   typeof $steps["goToActivationMessengers"] === "object" &&
                   typeof $steps["goToActivationMessengers"].then === "function"
                 ) {
-                  $steps["goToActivationMessengers"] = await $steps[
-                    "goToActivationMessengers"
-                  ];
+                  $steps["goToActivationMessengers"] =
+                    await $steps["goToActivationMessengers"];
                 }
               }}
             />
@@ -737,9 +733,8 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
                     typeof $steps["updateDialogOpen"] === "object" &&
                     typeof $steps["updateDialogOpen"].then === "function"
                   ) {
-                    $steps["updateDialogOpen"] = await $steps[
-                      "updateDialogOpen"
-                    ];
+                    $steps["updateDialogOpen"] =
+                      await $steps["updateDialogOpen"];
                   }
 
                   $steps["sendEvent"] = true
@@ -949,7 +944,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicActivationConsultRules__VariantsArgs;
     args?: PlasmicActivationConsultRules__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicActivationConsultRules__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicActivationConsultRules__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicActivationConsultRules__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

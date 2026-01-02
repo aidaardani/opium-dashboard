@@ -415,9 +415,8 @@ function PlasmicProfileTells__RenderFunc(props: {
                         typeof $steps["updateNewTells"] === "object" &&
                         typeof $steps["updateNewTells"].then === "function"
                       ) {
-                        $steps["updateNewTells"] = await $steps[
-                          "updateNewTells"
-                        ];
+                        $steps["updateNewTells"] =
+                          await $steps["updateNewTells"];
                       }
                     }).apply(null, eventArgs);
                   },
@@ -724,7 +723,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfileTells__VariantsArgs;
     args?: PlasmicProfileTells__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProfileTells__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProfileTells__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProfileTells__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

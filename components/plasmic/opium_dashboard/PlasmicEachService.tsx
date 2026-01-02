@@ -484,7 +484,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicEachService__VariantsArgs;
     args?: PlasmicEachService__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicEachService__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicEachService__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicEachService__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

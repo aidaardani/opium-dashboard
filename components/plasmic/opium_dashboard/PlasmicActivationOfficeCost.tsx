@@ -209,12 +209,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 { label: "385,000 تومان", value: "385000" },
                 { label: "441,000 تومان", value: "441000" },
                 {
-                  label: `${
-                    ($state.apiGetVezaratCost?.data?.[0]?.price || 1890000) / 10
-                  } تومان`,
-                  value: `${
-                    ($state.apiGetVezaratCost?.data?.[0]?.price || 1890000) / 10
-                  }`
+                  label: `${($state.apiGetVezaratCost?.data?.[0]?.price || 1890000) / 10} تومان`,
+                  value: `${($state.apiGetVezaratCost?.data?.[0]?.price || 1890000) / 10}`
                 },
                 { label: "قیمت دلخواه", value: "custom" }
               ];
@@ -623,9 +619,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           <React.Fragment>
             {(() => {
               try {
-                return `برای تخصص شما مبلغ پیشنهادی ${
-                  $state.apiGetVezaratCost.data[0]?.price / 10 || 150000
-                } تومان است. با کلیک روی کادر زیر می‌توانید مبلغ را تغییر دهید.`;
+                return `برای تخصص شما مبلغ پیشنهادی ${$state.apiGetVezaratCost.data[0]?.price / 10 || 150000} تومان است. با کلیک روی کادر زیر می‌توانید مبلغ را تغییر دهید.`;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -828,9 +822,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
           <React.Fragment>
             {(() => {
               try {
-                return `${(+$state.input.value).toLocaleString()} ${
-                  $state.input.value ? "تومان" : ""
-                }`;
+                return `${(+$state.input.value).toLocaleString()} ${$state.input.value ? "تومان" : ""}`;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -1067,9 +1059,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                     typeof $steps["updateShabaValue"] === "object" &&
                     typeof $steps["updateShabaValue"].then === "function"
                   ) {
-                    $steps["updateShabaValue"] = await $steps[
-                      "updateShabaValue"
-                    ];
+                    $steps["updateShabaValue"] =
+                      await $steps["updateShabaValue"];
                   }
                 }).apply(null, eventArgs);
               }}
@@ -1387,9 +1378,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 typeof $steps["updateDialogCardNumberOpen"] === "object" &&
                 typeof $steps["updateDialogCardNumberOpen"].then === "function"
               ) {
-                $steps["updateDialogCardNumberOpen"] = await $steps[
-                  "updateDialogCardNumberOpen"
-                ];
+                $steps["updateDialogCardNumberOpen"] =
+                  await $steps["updateDialogCardNumberOpen"];
               }
 
               $steps["updateIsLoadingSave"] =
@@ -1426,9 +1416,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 typeof $steps["updateIsLoadingSave"] === "object" &&
                 typeof $steps["updateIsLoadingSave"].then === "function"
               ) {
-                $steps["updateIsLoadingSave"] = await $steps[
-                  "updateIsLoadingSave"
-                ];
+                $steps["updateIsLoadingSave"] =
+                  await $steps["updateIsLoadingSave"];
               }
 
               $steps["costApi"] =
@@ -1595,9 +1584,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 typeof $steps["apiActiveAutoPayment"] === "object" &&
                 typeof $steps["apiActiveAutoPayment"].then === "function"
               ) {
-                $steps["apiActiveAutoPayment"] = await $steps[
-                  "apiActiveAutoPayment"
-                ];
+                $steps["apiActiveAutoPayment"] =
+                  await $steps["apiActiveAutoPayment"];
               }
 
               $steps["apiAcceptRules"] = true
@@ -1672,9 +1660,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 typeof $steps["updateIsLoadingSave2"] === "object" &&
                 typeof $steps["updateIsLoadingSave2"].then === "function"
               ) {
-                $steps["updateIsLoadingSave2"] = await $steps[
-                  "updateIsLoadingSave2"
-                ];
+                $steps["updateIsLoadingSave2"] =
+                  await $steps["updateIsLoadingSave2"];
               }
 
               $steps["showToast"] = false
@@ -1798,9 +1785,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                       const actionArgs = {
                         destination: (() => {
                           try {
-                            return `/activation-page/office/duration?${
-                              $props.hasOnlineVisit ? "onlineVisit=true&" : ""
-                            }userId=${$props.userId}`;
+                            return `/activation-page/office/duration?${$props.hasOnlineVisit ? "onlineVisit=true&" : ""}userId=${$props.userId}`;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -1995,9 +1980,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                         typeof $steps["updateDialogCardNumberOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateDialogCardNumberOpen"] = await $steps[
-                          "updateDialogCardNumberOpen"
-                        ];
+                        $steps["updateDialogCardNumberOpen"] =
+                          await $steps["updateDialogCardNumberOpen"];
                       }
                     }}
                   />
@@ -2220,11 +2204,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                             const actionArgs = {
                               destination: (() => {
                                 try {
-                                  return `/activation-page/office/duration?${
-                                    $props.hasOnlineVisit
-                                      ? "onlineVisit=true&"
-                                      : ""
-                                  }userId=${$props.userId}`;
+                                  return `/activation-page/office/duration?${$props.hasOnlineVisit ? "onlineVisit=true&" : ""}userId=${$props.userId}`;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -2355,9 +2335,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 typeof $steps["updateIsCancelLoading"] === "object" &&
                 typeof $steps["updateIsCancelLoading"].then === "function"
               ) {
-                $steps["updateIsCancelLoading"] = await $steps[
-                  "updateIsCancelLoading"
-                ];
+                $steps["updateIsCancelLoading"] =
+                  await $steps["updateIsCancelLoading"];
               }
 
               $steps["cancelApi"] = !!$state.centersApi.data.data
@@ -2430,9 +2409,8 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                 typeof $steps["updateIsCancelLoading2"] === "object" &&
                 typeof $steps["updateIsCancelLoading2"].then === "function"
               ) {
-                $steps["updateIsCancelLoading2"] = await $steps[
-                  "updateIsCancelLoading2"
-                ];
+                $steps["updateIsCancelLoading2"] =
+                  await $steps["updateIsCancelLoading2"];
               }
 
               $steps["toast"] = !!$steps.cancelApi.data.message
@@ -2533,11 +2511,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                       const actionArgs = {
                         destination: (() => {
                           try {
-                            return `/activation-page/office/duration?${
-                              $props.hasOnlineVisit ? "onlineVisit=true" : ""
-                            }${$props.hasOnlineVisit ? "&" : ""}userId=${
-                              $props.userId
-                            }`;
+                            return `/activation-page/office/duration?${$props.hasOnlineVisit ? "onlineVisit=true" : ""}${$props.hasOnlineVisit ? "&" : ""}userId=${$props.userId}`;
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -2643,7 +2617,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicActivationOfficeCost__VariantsArgs;
     args?: PlasmicActivationOfficeCost__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicActivationOfficeCost__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicActivationOfficeCost__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicActivationOfficeCost__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

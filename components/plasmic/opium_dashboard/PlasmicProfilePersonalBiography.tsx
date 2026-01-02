@@ -282,7 +282,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfilePersonalBiography__VariantsArgs;
     args?: PlasmicProfilePersonalBiography__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProfilePersonalBiography__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProfilePersonalBiography__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProfilePersonalBiography__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

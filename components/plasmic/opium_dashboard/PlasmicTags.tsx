@@ -451,9 +451,8 @@ function PlasmicTags__RenderFunc(props: {
                 typeof $steps["updateListOfDoctorTag"] === "object" &&
                 typeof $steps["updateListOfDoctorTag"].then === "function"
               ) {
-                $steps["updateListOfDoctorTag"] = await $steps[
-                  "updateListOfDoctorTag"
-                ];
+                $steps["updateListOfDoctorTag"] =
+                  await $steps["updateListOfDoctorTag"];
               }
             }).apply(null, eventArgs);
           }}
@@ -656,7 +655,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicTags__VariantsArgs;
     args?: PlasmicTags__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicTags__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicTags__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicTags__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

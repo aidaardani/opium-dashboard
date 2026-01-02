@@ -213,9 +213,8 @@ function PlasmicEventsList__RenderFunc(props: {
                 typeof $steps["apiGetNotificationSettings"] === "object" &&
                 typeof $steps["apiGetNotificationSettings"].then === "function"
               ) {
-                $steps["apiGetNotificationSettings"] = await $steps[
-                  "apiGetNotificationSettings"
-                ];
+                $steps["apiGetNotificationSettings"] =
+                  await $steps["apiGetNotificationSettings"];
               }
 
               $steps["notificationSetting"] = true
@@ -244,9 +243,8 @@ function PlasmicEventsList__RenderFunc(props: {
                 typeof $steps["notificationSetting"] === "object" &&
                 typeof $steps["notificationSetting"].then === "function"
               ) {
-                $steps["notificationSetting"] = await $steps[
-                  "notificationSetting"
-                ];
+                $steps["notificationSetting"] =
+                  await $steps["notificationSetting"];
               }
             }}
           />
@@ -310,10 +308,10 @@ function PlasmicEventsList__RenderFunc(props: {
                                 return currentItem.receivers === "doctor"
                                   ? "پزشک"
                                   : currentItem.receivers === "assistant"
-                                  ? "منشی"
-                                  : currentItem.receivers === "patient"
-                                  ? "بیمار"
-                                  : currentItem.receivers;
+                                    ? "منشی"
+                                    : currentItem.receivers === "patient"
+                                      ? "بیمار"
+                                      : currentItem.receivers;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -345,16 +343,16 @@ function PlasmicEventsList__RenderFunc(props: {
                                 return currentItem.events === "submit-book"
                                   ? "ثبت نوبت"
                                   : currentItem.events === "delete-book"
-                                  ? "لغو نوبت"
-                                  : currentItem.events === "edit-time-book"
-                                  ? "جابه‌جایی نوبت"
-                                  : currentItem.events === "submit-review"
-                                  ? "ثبت نظر جدید"
-                                  : currentItem.events === "start-book"
-                                  ? "شروع ویزیت"
-                                  : currentItem.events === "end-book"
-                                  ? "پایان ویزیت"
-                                  : currentItem.events;
+                                    ? "لغو نوبت"
+                                    : currentItem.events === "edit-time-book"
+                                      ? "جابه‌جایی نوبت"
+                                      : currentItem.events === "submit-review"
+                                        ? "ثبت نظر جدید"
+                                        : currentItem.events === "start-book"
+                                          ? "شروع ویزیت"
+                                          : currentItem.events === "end-book"
+                                            ? "پایان ویزیت"
+                                            : currentItem.events;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -380,12 +378,12 @@ function PlasmicEventsList__RenderFunc(props: {
                                 return currentItem.channels === "sms"
                                   ? "پیامک"
                                   : currentItem.channels === "telegram"
-                                  ? "تلگرام"
-                                  : currentItem.channels === "whatsapp"
-                                  ? "جابه‌جایی نوبت"
-                                  : currentItem.channels === "notification"
-                                  ? "نوتیفیکیشن"
-                                  : currentItem.channels;
+                                    ? "تلگرام"
+                                    : currentItem.channels === "whatsapp"
+                                      ? "جابه‌جایی نوبت"
+                                      : currentItem.channels === "notification"
+                                        ? "نوتیفیکیشن"
+                                        : currentItem.channels;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -444,9 +442,8 @@ function PlasmicEventsList__RenderFunc(props: {
                             typeof $steps["updateEachNotification"].then ===
                               "function"
                           ) {
-                            $steps["updateEachNotification"] = await $steps[
-                              "updateEachNotification"
-                            ];
+                            $steps["updateEachNotification"] =
+                              await $steps["updateEachNotification"];
                           }
 
                           $steps["goToBookGenerallNotification"] = true
@@ -531,7 +528,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicEventsList__VariantsArgs;
     args?: PlasmicEventsList__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicEventsList__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicEventsList__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicEventsList__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

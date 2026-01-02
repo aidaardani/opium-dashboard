@@ -863,9 +863,8 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
                         typeof $steps["paymentSuccess"] === "object" &&
                         typeof $steps["paymentSuccess"].then === "function"
                       ) {
-                        $steps["paymentSuccess"] = await $steps[
-                          "paymentSuccess"
-                        ];
+                        $steps["paymentSuccess"] =
+                          await $steps["paymentSuccess"];
                       }
 
                       $steps["paymentCancel"] =
@@ -931,9 +930,8 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
                         typeof $steps["activeWidgetPopup"] === "object" &&
                         typeof $steps["activeWidgetPopup"].then === "function"
                       ) {
-                        $steps["activeWidgetPopup"] = await $steps[
-                          "activeWidgetPopup"
-                        ];
+                        $steps["activeWidgetPopup"] =
+                          await $steps["activeWidgetPopup"];
                       }
 
                       $steps["widgetAdded"] =
@@ -998,9 +996,8 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
                         typeof $steps["widgetCanceled"] === "object" &&
                         typeof $steps["widgetCanceled"].then === "function"
                       ) {
-                        $steps["widgetCanceled"] = await $steps[
-                          "widgetCanceled"
-                        ];
+                        $steps["widgetCanceled"] =
+                          await $steps["widgetCanceled"];
                       }
 
                       $steps["finishLoading"] = true
@@ -1145,9 +1142,8 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
                         typeof $steps["removeFromProfile"] === "object" &&
                         typeof $steps["removeFromProfile"].then === "function"
                       ) {
-                        $steps["removeFromProfile"] = await $steps[
-                          "removeFromProfile"
-                        ];
+                        $steps["removeFromProfile"] =
+                          await $steps["removeFromProfile"];
                       }
 
                       $steps["deactive"] = true
@@ -1538,7 +1534,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicRahnamaSetting__VariantsArgs;
     args?: PlasmicRahnamaSetting__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicRahnamaSetting__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicRahnamaSetting__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicRahnamaSetting__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

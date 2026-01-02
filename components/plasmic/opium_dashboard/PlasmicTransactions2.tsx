@@ -352,10 +352,7 @@ function PlasmicTransactions2__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return ` پزشک گرامی، متوجه شدیم که شما با ${
-                                    $state.apiGetDrAcoounts.data.list.split(",")
-                                      .length
-                                  } شماره موبایل ${$state.apiGetDrAcoounts.data.list
+                                  return ` پزشک گرامی، متوجه شدیم که شما با ${$state.apiGetDrAcoounts.data.list.split(",").length} شماره موبایل ${$state.apiGetDrAcoounts.data.list
                                     .split(",")
                                     .map(num => `(${num})`)
                                     .join(
@@ -494,9 +491,8 @@ function PlasmicTransactions2__RenderFunc(props: {
                             typeof $steps["sendTelegram"] === "object" &&
                             typeof $steps["sendTelegram"].then === "function"
                           ) {
-                            $steps["sendTelegram"] = await $steps[
-                              "sendTelegram"
-                            ];
+                            $steps["sendTelegram"] =
+                              await $steps["sendTelegram"];
                           }
                         }}
                       />
@@ -595,7 +591,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicTransactions2__VariantsArgs;
     args?: PlasmicTransactions2__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicTransactions2__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicTransactions2__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicTransactions2__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

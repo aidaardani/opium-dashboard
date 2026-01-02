@@ -344,7 +344,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicActivationConsultRules2__VariantsArgs;
     args?: PlasmicActivationConsultRules2__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicActivationConsultRules2__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicActivationConsultRules2__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicActivationConsultRules2__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

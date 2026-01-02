@@ -453,9 +453,7 @@ function PlasmicVacation__RenderFunc(props: {
                   const date = new Date(time * 1000);
                   const hours = date.getHours();
                   const minutes = date.getMinutes();
-                  const timeString = `${hours}:${
-                    minutes.toString().length === 1 ? `0${minutes}` : minutes
-                  }`;
+                  const timeString = `${hours}:${minutes.toString().length === 1 ? `0${minutes}` : minutes}`;
                   return timeString;
                 };
                 switch ($state.timePickerType) {
@@ -620,9 +618,7 @@ function PlasmicVacation__RenderFunc(props: {
                   const date = new Date(time * 1000);
                   const hours = date.getHours();
                   const minutes = date.getMinutes();
-                  const timeString = `${hours}:${
-                    minutes.toString().length === 1 ? `0${minutes}` : minutes
-                  }`;
+                  const timeString = `${hours}:${minutes.toString().length === 1 ? `0${minutes}` : minutes}`;
                   return timeString;
                 };
                 const fromTime = convertTimeStampToFormattedTime(
@@ -897,9 +893,8 @@ function PlasmicVacation__RenderFunc(props: {
                         typeof $steps["updateSelectTimeOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateSelectTimeOpen"] = await $steps[
-                          "updateSelectTimeOpen"
-                        ];
+                        $steps["updateSelectTimeOpen"] =
+                          await $steps["updateSelectTimeOpen"];
                       }
 
                       $steps["updateTimePickerType"] = true
@@ -934,18 +929,15 @@ function PlasmicVacation__RenderFunc(props: {
                         typeof $steps["updateTimePickerType"].then ===
                           "function"
                       ) {
-                        $steps["updateTimePickerType"] = await $steps[
-                          "updateTimePickerType"
-                        ];
+                        $steps["updateTimePickerType"] =
+                          await $steps["updateTimePickerType"];
                       }
                     }}
                   >
                     <React.Fragment>
                       {(() => {
                         try {
-                          return `از ساعت ${
-                            !!$state.fromTime ? $state.fromTime : ""
-                          }`;
+                          return `از ساعت ${!!$state.fromTime ? $state.fromTime : ""}`;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -999,9 +991,8 @@ function PlasmicVacation__RenderFunc(props: {
                         typeof $steps["updateSelectTimeOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateSelectTimeOpen"] = await $steps[
-                          "updateSelectTimeOpen"
-                        ];
+                        $steps["updateSelectTimeOpen"] =
+                          await $steps["updateSelectTimeOpen"];
                       }
 
                       $steps["updateTimePickerType"] = true
@@ -1036,18 +1027,15 @@ function PlasmicVacation__RenderFunc(props: {
                         typeof $steps["updateTimePickerType"].then ===
                           "function"
                       ) {
-                        $steps["updateTimePickerType"] = await $steps[
-                          "updateTimePickerType"
-                        ];
+                        $steps["updateTimePickerType"] =
+                          await $steps["updateTimePickerType"];
                       }
                     }}
                   >
                     <React.Fragment>
                       {(() => {
                         try {
-                          return `تا ساعت ${
-                            !!$state.toTime ? $state.toTime : ""
-                          }`;
+                          return `تا ساعت ${!!$state.toTime ? $state.toTime : ""}`;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
@@ -1185,9 +1173,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateIsLoadingSubmitVacation"].then ===
                       "function"
                   ) {
-                    $steps["updateIsLoadingSubmitVacation"] = await $steps[
-                      "updateIsLoadingSubmitVacation"
-                    ];
+                    $steps["updateIsLoadingSubmitVacation"] =
+                      await $steps["updateIsLoadingSubmitVacation"];
                   }
 
                   $steps["submitVacation"] = true
@@ -1230,9 +1217,7 @@ function PlasmicVacation__RenderFunc(props: {
                                   ) => {
                                     return $$.moment
                                       .from(
-                                        `${dateObjectToFormattedDate(
-                                          date
-                                        )} ${time}`,
+                                        `${dateObjectToFormattedDate(date)} ${time}`,
                                         "fa",
                                         "JYYYY/JMM/JDD HH:mm"
                                       )
@@ -1320,9 +1305,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateIsLoadingSubmitVacation2"].then ===
                       "function"
                   ) {
-                    $steps["updateIsLoadingSubmitVacation2"] = await $steps[
-                      "updateIsLoadingSubmitVacation2"
-                    ];
+                    $steps["updateIsLoadingSubmitVacation2"] =
+                      await $steps["updateIsLoadingSubmitVacation2"];
                   }
 
                   $steps["updateAddVocationDialogOpen"] = true
@@ -1357,9 +1341,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateAddVocationDialogOpen"].then ===
                       "function"
                   ) {
-                    $steps["updateAddVocationDialogOpen"] = await $steps[
-                      "updateAddVocationDialogOpen"
-                    ];
+                    $steps["updateAddVocationDialogOpen"] =
+                      await $steps["updateAddVocationDialogOpen"];
                   }
 
                   $steps["toast"] = !!$steps.submitVacation.data?.message
@@ -1542,9 +1525,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateCheckboxIsChecked"] === "object" &&
                     typeof $steps["updateCheckboxIsChecked"].then === "function"
                   ) {
-                    $steps["updateCheckboxIsChecked"] = await $steps[
-                      "updateCheckboxIsChecked"
-                    ];
+                    $steps["updateCheckboxIsChecked"] =
+                      await $steps["updateCheckboxIsChecked"];
                   }
 
                   $steps["updateErrorDialogOpen"] =
@@ -1579,9 +1561,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateErrorDialogOpen"] === "object" &&
                     typeof $steps["updateErrorDialogOpen"].then === "function"
                   ) {
-                    $steps["updateErrorDialogOpen"] = await $steps[
-                      "updateErrorDialogOpen"
-                    ];
+                    $steps["updateErrorDialogOpen"] =
+                      await $steps["updateErrorDialogOpen"];
                   }
 
                   $steps["updateSelectedVacation"] =
@@ -1619,9 +1600,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateSelectedVacation"] === "object" &&
                     typeof $steps["updateSelectedVacation"].then === "function"
                   ) {
-                    $steps["updateSelectedVacation"] = await $steps[
-                      "updateSelectedVacation"
-                    ];
+                    $steps["updateSelectedVacation"] =
+                      await $steps["updateSelectedVacation"];
                   }
                 }}
               />
@@ -1705,9 +1685,8 @@ function PlasmicVacation__RenderFunc(props: {
                   typeof $steps["updateDateRangePickerSelectedDays"].then ===
                     "function"
                 ) {
-                  $steps["updateDateRangePickerSelectedDays"] = await $steps[
-                    "updateDateRangePickerSelectedDays"
-                  ];
+                  $steps["updateDateRangePickerSelectedDays"] =
+                    await $steps["updateDateRangePickerSelectedDays"];
                 }
 
                 $steps["updateCheckboxIsChecked"] = true
@@ -1741,9 +1720,8 @@ function PlasmicVacation__RenderFunc(props: {
                   typeof $steps["updateCheckboxIsChecked"] === "object" &&
                   typeof $steps["updateCheckboxIsChecked"].then === "function"
                 ) {
-                  $steps["updateCheckboxIsChecked"] = await $steps[
-                    "updateCheckboxIsChecked"
-                  ];
+                  $steps["updateCheckboxIsChecked"] =
+                    await $steps["updateCheckboxIsChecked"];
                 }
 
                 $steps["updateFromTime"] = true
@@ -1837,13 +1815,7 @@ function PlasmicVacation__RenderFunc(props: {
               <React.Fragment>
                 {(() => {
                   try {
-                    return `لیست مرخصی های ثبت ‌شده‌ی ${
-                      $state.centersApi.data.data.find(
-                        item =>
-                          item.user_center_id ===
-                          $state.drCenters.selectedCenter
-                      ).name
-                    }:`;
+                    return `لیست مرخصی های ثبت ‌شده‌ی ${$state.centersApi.data.data.find(item => item.user_center_id === $state.drCenters.selectedCenter).name}:`;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -1859,13 +1831,7 @@ function PlasmicVacation__RenderFunc(props: {
               <React.Fragment>
                 {(() => {
                   try {
-                    return `لیست مرخصی های ثبت ‌شده‌ی ${
-                      $state.centersApi.data.data.find(
-                        item =>
-                          item.user_center_id ===
-                          $state.drCenters.selectedCenter
-                      ).name
-                    }`;
+                    return `لیست مرخصی های ثبت ‌شده‌ی ${$state.centersApi.data.data.find(item => item.user_center_id === $state.drCenters.selectedCenter).name}`;
                   } catch (e) {
                     if (
                       e instanceof TypeError ||
@@ -2123,11 +2089,7 @@ function PlasmicVacation__RenderFunc(props: {
                       $state.year.value,
                       $state.month.value
                     );
-                    return `https://api.paziresh24.com/V1/doctor/vacation/${
-                      centerId || ""
-                    }?from=${date?.firstDayOfMonth || ""}&to=${
-                      date?.lastDayOfMonth || ""
-                    }`;
+                    return `https://api.paziresh24.com/V1/doctor/vacation/${centerId || ""}?from=${date?.firstDayOfMonth || ""}&to=${date?.lastDayOfMonth || ""}`;
                   })();
                 } catch (e) {
                   if (
@@ -2378,9 +2340,8 @@ function PlasmicVacation__RenderFunc(props: {
                                   typeof $steps["updateEditDialogOpen"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateEditDialogOpen"] = await $steps[
-                                    "updateEditDialogOpen"
-                                  ];
+                                  $steps["updateEditDialogOpen"] =
+                                    await $steps["updateEditDialogOpen"];
                                 }
                               }}
                               role={"img"}
@@ -2580,9 +2541,8 @@ function PlasmicVacation__RenderFunc(props: {
                       typeof $steps["updateIsLoadingDelete"] === "object" &&
                       typeof $steps["updateIsLoadingDelete"].then === "function"
                     ) {
-                      $steps["updateIsLoadingDelete"] = await $steps[
-                        "updateIsLoadingDelete"
-                      ];
+                      $steps["updateIsLoadingDelete"] =
+                        await $steps["updateIsLoadingDelete"];
                     }
 
                     $steps["deleteBooks"] = true
@@ -2599,9 +2559,7 @@ function PlasmicVacation__RenderFunc(props: {
                                           center.user_center_id ==
                                           $state.drCenters.selectedCenter
                                       )?.id;
-                                    return `https://api.paziresh24.com/V1/doctor/books/${
-                                      centerId || ""
-                                    }/delete`;
+                                    return `https://api.paziresh24.com/V1/doctor/books/${centerId || ""}/delete`;
                                   })();
                                 } catch (e) {
                                   if (
@@ -2628,9 +2586,7 @@ function PlasmicVacation__RenderFunc(props: {
                                     ) => {
                                       return $$.moment
                                         .from(
-                                          `${dateObjectToFormattedDate(
-                                            date
-                                          )} ${time}`,
+                                          `${dateObjectToFormattedDate(date)} ${time}`,
                                           "fa",
                                           "JYYYY/JMM/JDD HH:mm"
                                         )
@@ -2730,9 +2686,7 @@ function PlasmicVacation__RenderFunc(props: {
                                       ) => {
                                         return $$.moment
                                           .from(
-                                            `${dateObjectToFormattedDate(
-                                              date
-                                            )} ${time}`,
+                                            `${dateObjectToFormattedDate(date)} ${time}`,
                                             "fa",
                                             "JYYYY/JMM/JDD HH:mm"
                                           )
@@ -2824,9 +2778,8 @@ function PlasmicVacation__RenderFunc(props: {
                       typeof $steps["updateIsLoadingDelete2"].then ===
                         "function"
                     ) {
-                      $steps["updateIsLoadingDelete2"] = await $steps[
-                        "updateIsLoadingDelete2"
-                      ];
+                      $steps["updateIsLoadingDelete2"] =
+                        await $steps["updateIsLoadingDelete2"];
                     }
 
                     $steps["closeDialog"] = true
@@ -2962,9 +2915,8 @@ function PlasmicVacation__RenderFunc(props: {
                       typeof $steps["updateChangeDateDialogOpen"].then ===
                         "function"
                     ) {
-                      $steps["updateChangeDateDialogOpen"] = await $steps[
-                        "updateChangeDateDialogOpen"
-                      ];
+                      $steps["updateChangeDateDialogOpen"] =
+                        await $steps["updateChangeDateDialogOpen"];
                     }
                   }}
                   outline={true}
@@ -3048,9 +3000,8 @@ function PlasmicVacation__RenderFunc(props: {
                       typeof $steps["updateSelectDateOpen"] === "object" &&
                       typeof $steps["updateSelectDateOpen"].then === "function"
                     ) {
-                      $steps["updateSelectDateOpen"] = await $steps[
-                        "updateSelectDateOpen"
-                      ];
+                      $steps["updateSelectDateOpen"] =
+                        await $steps["updateSelectDateOpen"];
                     }
                   }}
                 >
@@ -3096,9 +3047,8 @@ function PlasmicVacation__RenderFunc(props: {
                       typeof $steps["updateSelectTimeOpen"] === "object" &&
                       typeof $steps["updateSelectTimeOpen"].then === "function"
                     ) {
-                      $steps["updateSelectTimeOpen"] = await $steps[
-                        "updateSelectTimeOpen"
-                      ];
+                      $steps["updateSelectTimeOpen"] =
+                        await $steps["updateSelectTimeOpen"];
                     }
                   }}
                 >
@@ -3208,9 +3158,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateSelectTimeOpen"] === "object" &&
                     typeof $steps["updateSelectTimeOpen"].then === "function"
                   ) {
-                    $steps["updateSelectTimeOpen"] = await $steps[
-                      "updateSelectTimeOpen"
-                    ];
+                    $steps["updateSelectTimeOpen"] =
+                      await $steps["updateSelectTimeOpen"];
                   }
                 }}
               />
@@ -3366,9 +3315,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateSelectTimeOpen2"] === "object" &&
                     typeof $steps["updateSelectTimeOpen2"].then === "function"
                   ) {
-                    $steps["updateSelectTimeOpen2"] = await $steps[
-                      "updateSelectTimeOpen2"
-                    ];
+                    $steps["updateSelectTimeOpen2"] =
+                      await $steps["updateSelectTimeOpen2"];
                   }
 
                   $steps["move"] =
@@ -3413,9 +3361,7 @@ function PlasmicVacation__RenderFunc(props: {
                                     ) => {
                                       return $$.moment
                                         .from(
-                                          `${dateObjectToFormattedDate(
-                                            date
-                                          )} ${time}`,
+                                          `${dateObjectToFormattedDate(date)} ${time}`,
                                           "fa",
                                           "JYYYY/JMM/JDD HH:mm"
                                         )
@@ -3523,9 +3469,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateSelectTimeOpen"] === "object" &&
                     typeof $steps["updateSelectTimeOpen"].then === "function"
                   ) {
-                    $steps["updateSelectTimeOpen"] = await $steps[
-                      "updateSelectTimeOpen"
-                    ];
+                    $steps["updateSelectTimeOpen"] =
+                      await $steps["updateSelectTimeOpen"];
                   }
 
                   $steps["updateChangeDateDialogOpen"] = true
@@ -3560,9 +3505,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateChangeDateDialogOpen"].then ===
                       "function"
                   ) {
-                    $steps["updateChangeDateDialogOpen"] = await $steps[
-                      "updateChangeDateDialogOpen"
-                    ];
+                    $steps["updateChangeDateDialogOpen"] =
+                      await $steps["updateChangeDateDialogOpen"];
                   }
 
                   $steps["updateErrorDialogOpen"] = true
@@ -3596,9 +3540,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateErrorDialogOpen"] === "object" &&
                     typeof $steps["updateErrorDialogOpen"].then === "function"
                   ) {
-                    $steps["updateErrorDialogOpen"] = await $steps[
-                      "updateErrorDialogOpen"
-                    ];
+                    $steps["updateErrorDialogOpen"] =
+                      await $steps["updateErrorDialogOpen"];
                   }
 
                   $steps["updateSelectDateOpen"] = true
@@ -3632,9 +3575,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateSelectDateOpen"] === "object" &&
                     typeof $steps["updateSelectDateOpen"].then === "function"
                   ) {
-                    $steps["updateSelectDateOpen"] = await $steps[
-                      "updateSelectDateOpen"
-                    ];
+                    $steps["updateSelectDateOpen"] =
+                      await $steps["updateSelectDateOpen"];
                   }
 
                   $steps["runActionOnVacationApi"] = true
@@ -3653,9 +3595,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["runActionOnVacationApi"] === "object" &&
                     typeof $steps["runActionOnVacationApi"].then === "function"
                   ) {
-                    $steps["runActionOnVacationApi"] = await $steps[
-                      "runActionOnVacationApi"
-                    ];
+                    $steps["runActionOnVacationApi"] =
+                      await $steps["runActionOnVacationApi"];
                   }
                 }}
               />
@@ -3756,9 +3697,8 @@ function PlasmicVacation__RenderFunc(props: {
                       typeof $steps["updateIsLoadingDeleteVacation"].then ===
                         "function"
                     ) {
-                      $steps["updateIsLoadingDeleteVacation"] = await $steps[
-                        "updateIsLoadingDeleteVacation"
-                      ];
+                      $steps["updateIsLoadingDeleteVacation"] =
+                        await $steps["updateIsLoadingDeleteVacation"];
                     }
 
                     $steps["deleteVacation"] = true
@@ -3855,9 +3795,8 @@ function PlasmicVacation__RenderFunc(props: {
                       typeof $steps["updateIsLoadingDeleteVacation2"].then ===
                         "function"
                     ) {
-                      $steps["updateIsLoadingDeleteVacation2"] = await $steps[
-                        "updateIsLoadingDeleteVacation2"
-                      ];
+                      $steps["updateIsLoadingDeleteVacation2"] =
+                        await $steps["updateIsLoadingDeleteVacation2"];
                     }
 
                     $steps["toast"] = !!$steps.deleteVacation.data.message
@@ -4009,9 +3948,8 @@ function PlasmicVacation__RenderFunc(props: {
                       typeof $steps["updateDeleteDialogOpen"].then ===
                         "function"
                     ) {
-                      $steps["updateDeleteDialogOpen"] = await $steps[
-                        "updateDeleteDialogOpen"
-                      ];
+                      $steps["updateDeleteDialogOpen"] =
+                        await $steps["updateDeleteDialogOpen"];
                     }
                   }}
                   outline={true}
@@ -4120,9 +4058,8 @@ function PlasmicVacation__RenderFunc(props: {
                         typeof $steps["updateSelectTimeOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateSelectTimeOpen"] = await $steps[
-                          "updateSelectTimeOpen"
-                        ];
+                        $steps["updateSelectTimeOpen"] =
+                          await $steps["updateSelectTimeOpen"];
                       }
 
                       $steps["updateTimePickerType"] = true
@@ -4157,9 +4094,8 @@ function PlasmicVacation__RenderFunc(props: {
                         typeof $steps["updateTimePickerType"].then ===
                           "function"
                       ) {
-                        $steps["updateTimePickerType"] = await $steps[
-                          "updateTimePickerType"
-                        ];
+                        $steps["updateTimePickerType"] =
+                          await $steps["updateTimePickerType"];
                       }
                     }}
                   >
@@ -4171,11 +4107,7 @@ function PlasmicVacation__RenderFunc(props: {
                               const date = new Date(time * 1000);
                               const hours = date.getHours();
                               const minutes = date.getMinutes();
-                              const timeString = `${hours}:${
-                                minutes.toString().length === 1
-                                  ? `0${minutes}`
-                                  : minutes
-                              }`;
+                              const timeString = `${hours}:${minutes.toString().length === 1 ? `0${minutes}` : minutes}`;
                               return timeString;
                             };
                             const time = $state.fromTime
@@ -4238,9 +4170,8 @@ function PlasmicVacation__RenderFunc(props: {
                         typeof $steps["updateSelectTimeOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateSelectTimeOpen"] = await $steps[
-                          "updateSelectTimeOpen"
-                        ];
+                        $steps["updateSelectTimeOpen"] =
+                          await $steps["updateSelectTimeOpen"];
                       }
 
                       $steps["updateTimePickerType"] = true
@@ -4275,9 +4206,8 @@ function PlasmicVacation__RenderFunc(props: {
                         typeof $steps["updateTimePickerType"].then ===
                           "function"
                       ) {
-                        $steps["updateTimePickerType"] = await $steps[
-                          "updateTimePickerType"
-                        ];
+                        $steps["updateTimePickerType"] =
+                          await $steps["updateTimePickerType"];
                       }
                     }}
                   >
@@ -4289,11 +4219,7 @@ function PlasmicVacation__RenderFunc(props: {
                               const date = new Date(time * 1000);
                               const hours = date.getHours();
                               const minutes = date.getMinutes();
-                              const timeString = `${hours}:${
-                                minutes.toString().length === 1
-                                  ? `0${minutes}`
-                                  : minutes
-                              }`;
+                              const timeString = `${hours}:${minutes.toString().length === 1 ? `0${minutes}` : minutes}`;
                               return timeString;
                             };
                             const time = !!$state.toTime
@@ -4435,9 +4361,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateIsLoadingSubmitVacation"].then ===
                       "function"
                   ) {
-                    $steps["updateIsLoadingSubmitVacation"] = await $steps[
-                      "updateIsLoadingSubmitVacation"
-                    ];
+                    $steps["updateIsLoadingSubmitVacation"] =
+                      await $steps["updateIsLoadingSubmitVacation"];
                   }
 
                   $steps["updateVacation"] = true
@@ -4480,9 +4405,7 @@ function PlasmicVacation__RenderFunc(props: {
                                   ) => {
                                     return $$.moment
                                       .from(
-                                        `${dateObjectToFormattedDate(
-                                          date
-                                        )} ${time}`,
+                                        `${dateObjectToFormattedDate(date)} ${time}`,
                                         "fa",
                                         "JYYYY/JMM/JDD HH:mm"
                                       )
@@ -4556,9 +4479,7 @@ function PlasmicVacation__RenderFunc(props: {
                               ) => {
                                 return $$.moment
                                   .from(
-                                    `${dateObjectToFormattedDate(
-                                      date
-                                    )} ${time}`,
+                                    `${dateObjectToFormattedDate(date)} ${time}`,
                                     "fa",
                                     "JYYYY/JMM/JDD HH:mm"
                                   )
@@ -4643,9 +4564,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateIsLoadingSubmitVacation2"].then ===
                       "function"
                   ) {
-                    $steps["updateIsLoadingSubmitVacation2"] = await $steps[
-                      "updateIsLoadingSubmitVacation2"
-                    ];
+                    $steps["updateIsLoadingSubmitVacation2"] =
+                      await $steps["updateIsLoadingSubmitVacation2"];
                   }
 
                   $steps["updateEditDialogOpen"] = true
@@ -4679,9 +4599,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateEditDialogOpen"] === "object" &&
                     typeof $steps["updateEditDialogOpen"].then === "function"
                   ) {
-                    $steps["updateEditDialogOpen"] = await $steps[
-                      "updateEditDialogOpen"
-                    ];
+                    $steps["updateEditDialogOpen"] =
+                      await $steps["updateEditDialogOpen"];
                   }
 
                   $steps["toast"] = !!$steps.updateVacation.data?.message
@@ -4861,9 +4780,8 @@ function PlasmicVacation__RenderFunc(props: {
                     typeof $steps["updateCheckboxIsChecked"] === "object" &&
                     typeof $steps["updateCheckboxIsChecked"].then === "function"
                   ) {
-                    $steps["updateCheckboxIsChecked"] = await $steps[
-                      "updateCheckboxIsChecked"
-                    ];
+                    $steps["updateCheckboxIsChecked"] =
+                      await $steps["updateCheckboxIsChecked"];
                   }
                 }}
               />
@@ -4992,7 +4910,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicVacation__VariantsArgs;
     args?: PlasmicVacation__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicVacation__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicVacation__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicVacation__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

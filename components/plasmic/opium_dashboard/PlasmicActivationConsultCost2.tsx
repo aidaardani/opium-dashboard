@@ -185,12 +185,8 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
                 { label: "385,000 تومان", value: "385000" },
                 { label: "441,000 تومان", value: "441000" },
                 {
-                  label: `${
-                    ($state.getAvgCost?.data?.avg_cost || 1890000) / 10
-                  } تومان`,
-                  value: `${
-                    ($state.getAvgCost?.data?.avg_cost || 1890000) / 10
-                  }`
+                  label: `${($state.getAvgCost?.data?.avg_cost || 1890000) / 10} تومان`,
+                  value: `${($state.getAvgCost?.data?.avg_cost || 1890000) / 10}`
                 },
                 { label: "قیمت دلخواه", value: "custom" }
               ];
@@ -693,9 +689,7 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
             <React.Fragment>
               {(() => {
                 try {
-                  return `${(+$state.input.value).toLocaleString()} ${
-                    $state.input.value ? "تومان" : ""
-                  }`;
+                  return `${(+$state.input.value).toLocaleString()} ${$state.input.value ? "تومان" : ""}`;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
@@ -947,9 +941,8 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
                     typeof $steps["updateShabaValue"] === "object" &&
                     typeof $steps["updateShabaValue"].then === "function"
                   ) {
-                    $steps["updateShabaValue"] = await $steps[
-                      "updateShabaValue"
-                    ];
+                    $steps["updateShabaValue"] =
+                      await $steps["updateShabaValue"];
                   }
                 }).apply(null, eventArgs);
               }}
@@ -1149,9 +1142,8 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
               typeof $steps["showValidationToast"] === "object" &&
               typeof $steps["showValidationToast"].then === "function"
             ) {
-              $steps["showValidationToast"] = await $steps[
-                "showValidationToast"
-              ];
+              $steps["showValidationToast"] =
+                await $steps["showValidationToast"];
             }
 
             $steps["acceptRules"] = true
@@ -1282,13 +1274,7 @@ function PlasmicActivationConsultCost2__RenderFunc(props: {
                           const queryParams = globalThis.encodeURIComponent(
                             JSON.stringify(cost)
                           );
-                          return `/activation-page/consult/duration-2?price=${queryParams}&channels=${
-                            $props.channels
-                          }&card_number=${$state.cardNumberInput?.value.trim()}&IBAN=IR${$state.shabaApi.data?.IBAN.slice(
-                            2
-                          ).toString()}&deposit_owners=${
-                            $state.shabaApi.data?.deposit_owners[0]
-                          }&bank_name=${$state.shabaApi.data?.bank_name}`;
+                          return `/activation-page/consult/duration-2?price=${queryParams}&channels=${$props.channels}&card_number=${$state.cardNumberInput?.value.trim()}&IBAN=IR${$state.shabaApi.data?.IBAN.slice(2).toString()}&deposit_owners=${$state.shabaApi.data?.deposit_owners[0]}&bank_name=${$state.shabaApi.data?.bank_name}`;
                         })();
                       } catch (e) {
                         if (
@@ -1391,7 +1377,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicActivationConsultCost2__VariantsArgs;
     args?: PlasmicActivationConsultCost2__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicActivationConsultCost2__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicActivationConsultCost2__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicActivationConsultCost2__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

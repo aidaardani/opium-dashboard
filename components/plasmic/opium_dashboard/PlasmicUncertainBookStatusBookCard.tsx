@@ -615,9 +615,8 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                         typeof $steps["updateDialogdeletebookOpen"].then ===
                           "function"
                       ) {
-                        $steps["updateDialogdeletebookOpen"] = await $steps[
-                          "updateDialogdeletebookOpen"
-                        ];
+                        $steps["updateDialogdeletebookOpen"] =
+                          await $steps["updateDialogdeletebookOpen"];
                       }
 
                       $steps["clickForDeleteBook"] = true
@@ -659,9 +658,8 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                         typeof $steps["clickForDeleteBook"] === "object" &&
                         typeof $steps["clickForDeleteBook"].then === "function"
                       ) {
-                        $steps["clickForDeleteBook"] = await $steps[
-                          "clickForDeleteBook"
-                        ];
+                        $steps["clickForDeleteBook"] =
+                          await $steps["clickForDeleteBook"];
                       }
                     }}
                     outline={true}
@@ -795,9 +793,8 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                           typeof $steps["apiDeleteBook"] === "object" &&
                           typeof $steps["apiDeleteBook"].then === "function"
                         ) {
-                          $steps["apiDeleteBook"] = await $steps[
-                            "apiDeleteBook"
-                          ];
+                          $steps["apiDeleteBook"] =
+                            await $steps["apiDeleteBook"];
                         }
 
                         $steps["updateDeleteBookLoadingButton2"] = true
@@ -870,9 +867,8 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                           typeof $steps["updateStateحذفنوبتOpen"].then ===
                             "function"
                         ) {
-                          $steps["updateStateحذفنوبتOpen"] = await $steps[
-                            "updateStateحذفنوبتOpen"
-                          ];
+                          $steps["updateStateحذفنوبتOpen"] =
+                            await $steps["updateStateحذفنوبتOpen"];
                         }
 
                         $steps["updateDialogOpen"] = true
@@ -906,9 +902,8 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                           typeof $steps["updateDialogOpen"] === "object" &&
                           typeof $steps["updateDialogOpen"].then === "function"
                         ) {
-                          $steps["updateDialogOpen"] = await $steps[
-                            "updateDialogOpen"
-                          ];
+                          $steps["updateDialogOpen"] =
+                            await $steps["updateDialogOpen"];
                         }
 
                         $steps["runOndelete"] = true
@@ -981,9 +976,8 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                           typeof $steps["updateDialogOpen2"] === "object" &&
                           typeof $steps["updateDialogOpen2"].then === "function"
                         ) {
-                          $steps["updateDialogOpen2"] = await $steps[
-                            "updateDialogOpen2"
-                          ];
+                          $steps["updateDialogOpen2"] =
+                            await $steps["updateDialogOpen2"];
                         }
 
                         $steps["eventDeleteBook"] = true
@@ -1025,9 +1019,8 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                           typeof $steps["eventDeleteBook"] === "object" &&
                           typeof $steps["eventDeleteBook"].then === "function"
                         ) {
-                          $steps["eventDeleteBook"] = await $steps[
-                            "eventDeleteBook"
-                          ];
+                          $steps["eventDeleteBook"] =
+                            await $steps["eventDeleteBook"];
                         }
                       }}
                       startIcon={
@@ -1087,9 +1080,8 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                           typeof $steps["updateStateحذفنوبتOpen"].then ===
                             "function"
                         ) {
-                          $steps["updateStateحذفنوبتOpen"] = await $steps[
-                            "updateStateحذفنوبتOpen"
-                          ];
+                          $steps["updateStateحذفنوبتOpen"] =
+                            await $steps["updateStateحذفنوبتOpen"];
                         }
 
                         $steps["updateDialog2Open"] = true
@@ -1123,9 +1115,8 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                           typeof $steps["updateDialog2Open"] === "object" &&
                           typeof $steps["updateDialog2Open"].then === "function"
                         ) {
-                          $steps["updateDialog2Open"] = await $steps[
-                            "updateDialog2Open"
-                          ];
+                          $steps["updateDialog2Open"] =
+                            await $steps["updateDialog2Open"];
                         }
 
                         $steps["eventCancelDeleteBook"] = true
@@ -1168,9 +1159,8 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                           typeof $steps["eventCancelDeleteBook"].then ===
                             "function"
                         ) {
-                          $steps["eventCancelDeleteBook"] = await $steps[
-                            "eventCancelDeleteBook"
-                          ];
+                          $steps["eventCancelDeleteBook"] =
+                            await $steps["eventCancelDeleteBook"];
                         }
                       }}
                       outline={true}
@@ -1279,9 +1269,8 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                 typeof $steps["invokeGlobalAction"] === "object" &&
                 typeof $steps["invokeGlobalAction"].then === "function"
               ) {
-                $steps["invokeGlobalAction"] = await $steps[
-                  "invokeGlobalAction"
-                ];
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
               }
             }).apply(null, eventArgs);
           }}
@@ -1665,9 +1654,8 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                     typeof $steps["updateBookStatusState"] === "object" &&
                     typeof $steps["updateBookStatusState"].then === "function"
                   ) {
-                    $steps["updateBookStatusState"] = await $steps[
-                      "updateBookStatusState"
-                    ];
+                    $steps["updateBookStatusState"] =
+                      await $steps["updateBookStatusState"];
                   }
 
                   $steps["updateDialog2Open"] = true
@@ -1701,9 +1689,8 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                     typeof $steps["updateDialog2Open"] === "object" &&
                     typeof $steps["updateDialog2Open"].then === "function"
                   ) {
-                    $steps["updateDialog2Open"] = await $steps[
-                      "updateDialog2Open"
-                    ];
+                    $steps["updateDialog2Open"] =
+                      await $steps["updateDialog2Open"];
                   }
 
                   $steps["submitDescription"] =
@@ -1745,9 +1732,8 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
                     typeof $steps["submitDescription"] === "object" &&
                     typeof $steps["submitDescription"].then === "function"
                   ) {
-                    $steps["submitDescription"] = await $steps[
-                      "submitDescription"
-                    ];
+                    $steps["submitDescription"] =
+                      await $steps["submitDescription"];
                   }
                 }}
                 startIcon={
@@ -2044,9 +2030,8 @@ function PlasmicUncertainBookStatusBookCard__RenderFunc(props: {
               typeof $steps["updateBookStatusState"] === "object" &&
               typeof $steps["updateBookStatusState"].then === "function"
             ) {
-              $steps["updateBookStatusState"] = await $steps[
-                "updateBookStatusState"
-              ];
+              $steps["updateBookStatusState"] =
+                await $steps["updateBookStatusState"];
             }
 
             $steps["eventVisited"] =
@@ -2165,10 +2150,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicUncertainBookStatusBookCard__VariantsArgs;
     args?: PlasmicUncertainBookStatusBookCard__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit< // Specify variants directly as props
-    PlasmicUncertainBookStatusBookCard__VariantsArgs,
-    ReservedPropsType
-  > &
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicUncertainBookStatusBookCard__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicUncertainBookStatusBookCard__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

@@ -179,7 +179,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicOpenReplay__VariantsArgs;
     args?: PlasmicOpenReplay__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicOpenReplay__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicOpenReplay__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicOpenReplay__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

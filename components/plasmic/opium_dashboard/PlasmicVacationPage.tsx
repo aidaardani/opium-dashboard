@@ -288,7 +288,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicVacationPage__VariantsArgs;
     args?: PlasmicVacationPage__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicVacationPage__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicVacationPage__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicVacationPage__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

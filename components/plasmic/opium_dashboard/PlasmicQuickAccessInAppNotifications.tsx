@@ -254,9 +254,8 @@ function PlasmicQuickAccessInAppNotifications__RenderFunc(props: {
             typeof $steps["apiCheckNotification"] === "object" &&
             typeof $steps["apiCheckNotification"].then === "function"
           ) {
-            $steps["apiCheckNotification"] = await $steps[
-              "apiCheckNotification"
-            ];
+            $steps["apiCheckNotification"] =
+              await $steps["apiCheckNotification"];
           }
 
           $steps["updateCheckWorkhours"] = true
@@ -285,9 +284,8 @@ function PlasmicQuickAccessInAppNotifications__RenderFunc(props: {
             typeof $steps["updateCheckWorkhours"] === "object" &&
             typeof $steps["updateCheckWorkhours"].then === "function"
           ) {
-            $steps["updateCheckWorkhours"] = await $steps[
-              "updateCheckWorkhours"
-            ];
+            $steps["updateCheckWorkhours"] =
+              await $steps["updateCheckWorkhours"];
           }
 
           $steps["apiAuth"] = true
@@ -692,10 +690,12 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicQuickAccessInAppNotifications__VariantsArgs;
     args?: PlasmicQuickAccessInAppNotifications__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit< // Specify variants directly as props
-    PlasmicQuickAccessInAppNotifications__VariantsArgs,
-    ReservedPropsType
-  > &
+  } &
+    // Specify variants directly as props
+    Omit<
+      PlasmicQuickAccessInAppNotifications__VariantsArgs,
+      ReservedPropsType
+    > &
     // Specify args directly as props
     Omit<PlasmicQuickAccessInAppNotifications__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

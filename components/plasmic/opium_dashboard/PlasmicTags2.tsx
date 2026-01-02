@@ -591,7 +591,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicTags2__VariantsArgs;
     args?: PlasmicTags2__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicTags2__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicTags2__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicTags2__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

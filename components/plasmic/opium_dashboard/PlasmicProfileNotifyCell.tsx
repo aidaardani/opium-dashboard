@@ -276,9 +276,8 @@ function PlasmicProfileNotifyCell__RenderFunc(props: {
               typeof $steps["updateNotifyCellValue"] === "object" &&
               typeof $steps["updateNotifyCellValue"].then === "function"
             ) {
-              $steps["updateNotifyCellValue"] = await $steps[
-                "updateNotifyCellValue"
-              ];
+              $steps["updateNotifyCellValue"] =
+                await $steps["updateNotifyCellValue"];
             }
           }).apply(null, eventArgs);
         }}
@@ -336,7 +335,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicProfileNotifyCell__VariantsArgs;
     args?: PlasmicProfileNotifyCell__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicProfileNotifyCell__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicProfileNotifyCell__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicProfileNotifyCell__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

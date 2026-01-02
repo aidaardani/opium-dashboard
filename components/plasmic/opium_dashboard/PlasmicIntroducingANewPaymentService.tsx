@@ -896,9 +896,8 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                                     typeof $steps["apiGetIncome"].then ===
                                       "function"
                                   ) {
-                                    $steps["apiGetIncome"] = await $steps[
-                                      "apiGetIncome"
-                                    ];
+                                    $steps["apiGetIncome"] =
+                                      await $steps["apiGetIncome"];
                                   }
 
                                   $steps["showToast"] = true
@@ -920,9 +919,8 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                                     typeof $steps["showToast"].then ===
                                       "function"
                                   ) {
-                                    $steps["showToast"] = await $steps[
-                                      "showToast"
-                                    ];
+                                    $steps["showToast"] =
+                                      await $steps["showToast"];
                                   }
 
                                   $steps["sendEvent"] = true
@@ -979,9 +977,8 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                                     typeof $steps["sendEvent"].then ===
                                       "function"
                                   ) {
-                                    $steps["sendEvent"] = await $steps[
-                                      "sendEvent"
-                                    ];
+                                    $steps["sendEvent"] =
+                                      await $steps["sendEvent"];
                                   }
 
                                   $steps["goToPage"] = true
@@ -1002,9 +999,8 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                                     typeof $steps["goToPage"].then ===
                                       "function"
                                   ) {
-                                    $steps["goToPage"] = await $steps[
-                                      "goToPage"
-                                    ];
+                                    $steps["goToPage"] =
+                                      await $steps["goToPage"];
                                   }
                                 }}
                               />
@@ -1097,9 +1093,8 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                                     typeof $steps["goToPage"].then ===
                                       "function"
                                   ) {
-                                    $steps["goToPage"] = await $steps[
-                                      "goToPage"
-                                    ];
+                                    $steps["goToPage"] =
+                                      await $steps["goToPage"];
                                   }
                                 }}
                               />
@@ -1173,9 +1168,8 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                                       typeof $steps["openLink"].then ===
                                         "function"
                                     ) {
-                                      $steps["openLink"] = await $steps[
-                                        "openLink"
-                                      ];
+                                      $steps["openLink"] =
+                                        await $steps["openLink"];
                                     }
                                   }}
                                 />
@@ -1264,9 +1258,8 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                             typeof $steps["apiActiveKatibe"] === "object" &&
                             typeof $steps["apiActiveKatibe"].then === "function"
                           ) {
-                            $steps["apiActiveKatibe"] = await $steps[
-                              "apiActiveKatibe"
-                            ];
+                            $steps["apiActiveKatibe"] =
+                              await $steps["apiActiveKatibe"];
                           }
 
                           $steps["sendEvent"] = true
@@ -1603,9 +1596,8 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                                     typeof $steps["apiGetIncome"].then ===
                                       "function"
                                   ) {
-                                    $steps["apiGetIncome"] = await $steps[
-                                      "apiGetIncome"
-                                    ];
+                                    $steps["apiGetIncome"] =
+                                      await $steps["apiGetIncome"];
                                   }
 
                                   $steps["showToast"] = true
@@ -1627,9 +1619,8 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                                     typeof $steps["showToast"].then ===
                                       "function"
                                   ) {
-                                    $steps["showToast"] = await $steps[
-                                      "showToast"
-                                    ];
+                                    $steps["showToast"] =
+                                      await $steps["showToast"];
                                   }
 
                                   $steps["sendLog"] = true
@@ -1708,9 +1699,8 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                                     typeof $steps["goToPage"].then ===
                                       "function"
                                   ) {
-                                    $steps["goToPage"] = await $steps[
-                                      "goToPage"
-                                    ];
+                                    $steps["goToPage"] =
+                                      await $steps["goToPage"];
                                   }
                                 }}
                               />
@@ -1805,9 +1795,8 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                                     typeof $steps["goToPage"].then ===
                                       "function"
                                   ) {
-                                    $steps["goToPage"] = await $steps[
-                                      "goToPage"
-                                    ];
+                                    $steps["goToPage"] =
+                                      await $steps["goToPage"];
                                   }
                                 }}
                               />
@@ -1881,9 +1870,8 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                                       typeof $steps["openLink"].then ===
                                         "function"
                                     ) {
-                                      $steps["openLink"] = await $steps[
-                                        "openLink"
-                                      ];
+                                      $steps["openLink"] =
+                                        await $steps["openLink"];
                                     }
                                   }}
                                 />
@@ -1976,9 +1964,8 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                             typeof $steps["activeKatibe"] === "object" &&
                             typeof $steps["activeKatibe"].then === "function"
                           ) {
-                            $steps["activeKatibe"] = await $steps[
-                              "activeKatibe"
-                            ];
+                            $steps["activeKatibe"] =
+                              await $steps["activeKatibe"];
                           }
 
                           $steps["sendLog"] = true
@@ -2202,9 +2189,8 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                               typeof $steps["updateDialog3Open"].then ===
                                 "function"
                             ) {
-                              $steps["updateDialog3Open"] = await $steps[
-                                "updateDialog3Open"
-                              ];
+                              $steps["updateDialog3Open"] =
+                                await $steps["updateDialog3Open"];
                             }
 
                             $steps["updateDialogOpen2"] = true
@@ -2232,9 +2218,8 @@ function PlasmicIntroducingANewPaymentService__RenderFunc(props: {
                               typeof $steps["updateDialogOpen2"].then ===
                                 "function"
                             ) {
-                              $steps["updateDialogOpen2"] = await $steps[
-                                "updateDialogOpen2"
-                              ];
+                              $steps["updateDialogOpen2"] =
+                                await $steps["updateDialogOpen2"];
                             }
                           }}
                         />
@@ -2607,10 +2592,12 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicIntroducingANewPaymentService__VariantsArgs;
     args?: PlasmicIntroducingANewPaymentService__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit< // Specify variants directly as props
-    PlasmicIntroducingANewPaymentService__VariantsArgs,
-    ReservedPropsType
-  > &
+  } &
+    // Specify variants directly as props
+    Omit<
+      PlasmicIntroducingANewPaymentService__VariantsArgs,
+      ReservedPropsType
+    > &
     // Specify args directly as props
     Omit<PlasmicIntroducingANewPaymentService__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

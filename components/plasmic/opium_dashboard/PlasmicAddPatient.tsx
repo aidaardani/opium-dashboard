@@ -900,9 +900,8 @@ function PlasmicAddPatient__RenderFunc(props: {
             typeof $steps["updateFirstFreeTimeApiInvalidate"].then ===
               "function"
           ) {
-            $steps["updateFirstFreeTimeApiInvalidate"] = await $steps[
-              "updateFirstFreeTimeApiInvalidate"
-            ];
+            $steps["updateFirstFreeTimeApiInvalidate"] =
+              await $steps["updateFirstFreeTimeApiInvalidate"];
           }
 
           $steps["finishLoading"] = true
@@ -1056,9 +1055,8 @@ function PlasmicAddPatient__RenderFunc(props: {
             typeof $steps["updateNationalCodeValue"] === "object" &&
             typeof $steps["updateNationalCodeValue"].then === "function"
           ) {
-            $steps["updateNationalCodeValue"] = await $steps[
-              "updateNationalCodeValue"
-            ];
+            $steps["updateNationalCodeValue"] =
+              await $steps["updateNationalCodeValue"];
           }
 
           $steps["updateNationalCodeValue2"] = false
@@ -1074,9 +1072,8 @@ function PlasmicAddPatient__RenderFunc(props: {
             typeof $steps["updateNationalCodeValue2"] === "object" &&
             typeof $steps["updateNationalCodeValue2"].then === "function"
           ) {
-            $steps["updateNationalCodeValue2"] = await $steps[
-              "updateNationalCodeValue2"
-            ];
+            $steps["updateNationalCodeValue2"] =
+              await $steps["updateNationalCodeValue2"];
           }
         }}
         startIcon={
@@ -1534,9 +1531,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                         typeof $steps["invokeGlobalAction"] === "object" &&
                         typeof $steps["invokeGlobalAction"].then === "function"
                       ) {
-                        $steps["invokeGlobalAction"] = await $steps[
-                          "invokeGlobalAction"
-                        ];
+                        $steps["invokeGlobalAction"] =
+                          await $steps["invokeGlobalAction"];
                       }
 
                       $steps["updateBooktimeOpen"] =
@@ -1572,9 +1568,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                         typeof $steps["updateBooktimeOpen"] === "object" &&
                         typeof $steps["updateBooktimeOpen"].then === "function"
                       ) {
-                        $steps["updateBooktimeOpen"] = await $steps[
-                          "updateBooktimeOpen"
-                        ];
+                        $steps["updateBooktimeOpen"] =
+                          await $steps["updateBooktimeOpen"];
                       }
 
                       $steps["finishLoading"] = true
@@ -1660,9 +1655,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                         typeof $steps["eventSubmitBook"] === "object" &&
                         typeof $steps["eventSubmitBook"].then === "function"
                       ) {
-                        $steps["eventSubmitBook"] = await $steps[
-                          "eventSubmitBook"
-                        ];
+                        $steps["eventSubmitBook"] =
+                          await $steps["eventSubmitBook"];
                       }
 
                       $steps["runBooked"] =
@@ -1732,9 +1726,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                         typeof $steps["invokeGlobalAction"] === "object" &&
                         typeof $steps["invokeGlobalAction"].then === "function"
                       ) {
-                        $steps["invokeGlobalAction"] = await $steps[
-                          "invokeGlobalAction"
-                        ];
+                        $steps["invokeGlobalAction"] =
+                          await $steps["invokeGlobalAction"];
                       }
 
                       $steps["updatePreferBooktimeOpen"] = Boolean(
@@ -1773,9 +1766,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                         typeof $steps["updatePreferBooktimeOpen"].then ===
                           "function"
                       ) {
-                        $steps["updatePreferBooktimeOpen"] = await $steps[
-                          "updatePreferBooktimeOpen"
-                        ];
+                        $steps["updatePreferBooktimeOpen"] =
+                          await $steps["updatePreferBooktimeOpen"];
                       }
 
                       $steps["clickOnPreferBook"] =
@@ -1826,9 +1818,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                         typeof $steps["clickOnPreferBook"] === "object" &&
                         typeof $steps["clickOnPreferBook"].then === "function"
                       ) {
-                        $steps["clickOnPreferBook"] = await $steps[
-                          "clickOnPreferBook"
-                        ];
+                        $steps["clickOnPreferBook"] =
+                          await $steps["clickOnPreferBook"];
                       }
                     }}
                     outline={true}
@@ -2084,11 +2075,7 @@ function PlasmicAddPatient__RenderFunc(props: {
                                     : $state.freeturnsApi.data.result[0].from;
                                   const to = new Date(from * 1000);
                                   to.setHours(23, 59, 59, 0);
-                                  return `https://apigw.paziresh24.com/v2/freeturns?center_id=${
-                                    $props.centerId
-                                  }&user_center_id=${
-                                    $props.userCenterId
-                                  }&from=${from}&to=${to.getTime() / 1000}`;
+                                  return `https://apigw.paziresh24.com/v2/freeturns?center_id=${$props.centerId}&user_center_id=${$props.userCenterId}&from=${from}&to=${to.getTime() / 1000}`;
                                 })();
                               } catch (e) {
                                 if (
@@ -2188,8 +2175,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                                   !_par
                                     ? []
                                     : Array.isArray(_par)
-                                    ? _par
-                                    : [_par])(
+                                      ? _par
+                                      : [_par])(
                                   (() => {
                                     try {
                                       return $state.freeturnByRangeDateApi.data
@@ -2264,9 +2251,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                                           typeof $steps["startLoading"].then ===
                                             "function"
                                         ) {
-                                          $steps["startLoading"] = await $steps[
-                                            "startLoading"
-                                          ];
+                                          $steps["startLoading"] =
+                                            await $steps["startLoading"];
                                         }
 
                                         $steps["suspend"] = Boolean(
@@ -2321,9 +2307,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                                           typeof $steps["suspend"].then ===
                                             "function"
                                         ) {
-                                          $steps["suspend"] = await $steps[
-                                            "suspend"
-                                          ];
+                                          $steps["suspend"] =
+                                            await $steps["suspend"];
                                         }
 
                                         $steps["preferBook"] = Boolean(
@@ -2388,9 +2373,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                                           typeof $steps["preferBook"].then ===
                                             "function"
                                         ) {
-                                          $steps["preferBook"] = await $steps[
-                                            "preferBook"
-                                          ];
+                                          $steps["preferBook"] =
+                                            await $steps["preferBook"];
                                         }
 
                                         $steps["invokeGlobalAction"] =
@@ -2722,9 +2706,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                                           typeof $steps["runBooked"].then ===
                                             "function"
                                         ) {
-                                          $steps["runBooked"] = await $steps[
-                                            "runBooked"
-                                          ];
+                                          $steps["runBooked"] =
+                                            await $steps["runBooked"];
                                         }
                                       }}
                                     >
@@ -2812,9 +2795,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                                       typeof $steps["startLoading"].then ===
                                         "function"
                                     ) {
-                                      $steps["startLoading"] = await $steps[
-                                        "startLoading"
-                                      ];
+                                      $steps["startLoading"] =
+                                        await $steps["startLoading"];
                                     }
 
                                     $steps["updateDialogNewTimePickerOpen"] =
@@ -2906,9 +2888,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                                       typeof $steps["finishLoading"].then ===
                                         "function"
                                     ) {
-                                      $steps["finishLoading"] = await $steps[
-                                        "finishLoading"
-                                      ];
+                                      $steps["finishLoading"] =
+                                        await $steps["finishLoading"];
                                     }
 
                                     $steps["eventClickForAddBookOutOfSlut"] =
@@ -3157,9 +3138,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                                             typeof $steps["checkForm"].then ===
                                               "function"
                                           ) {
-                                            $steps["checkForm"] = await $steps[
-                                              "checkForm"
-                                            ];
+                                            $steps["checkForm"] =
+                                              await $steps["checkForm"];
                                           }
 
                                           $steps["startLoading"] = Boolean(
@@ -3236,9 +3216,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                                             typeof $steps["checkTime"].then ===
                                               "function"
                                           ) {
-                                            $steps["checkTime"] = await $steps[
-                                              "checkTime"
-                                            ];
+                                            $steps["checkTime"] =
+                                              await $steps["checkTime"];
                                           }
 
                                           $steps["newTimeFromBook"] = true
@@ -3467,9 +3446,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                                             typeof $steps["suspend"].then ===
                                               "function"
                                           ) {
-                                            $steps["suspend"] = await $steps[
-                                              "suspend"
-                                            ];
+                                            $steps["suspend"] =
+                                              await $steps["suspend"];
                                           }
 
                                           $steps["bookApi"] = Boolean(
@@ -3536,9 +3514,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                                             typeof $steps["bookApi"].then ===
                                               "function"
                                           ) {
-                                            $steps["bookApi"] = await $steps[
-                                              "bookApi"
-                                            ];
+                                            $steps["bookApi"] =
+                                              await $steps["bookApi"];
                                           }
 
                                           $steps["successToast"] =
@@ -3760,9 +3737,8 @@ function PlasmicAddPatient__RenderFunc(props: {
                                             typeof $steps["runBooked"].then ===
                                               "function"
                                           ) {
-                                            $steps["runBooked"] = await $steps[
-                                              "runBooked"
-                                            ];
+                                            $steps["runBooked"] =
+                                              await $steps["runBooked"];
                                           }
                                         }}
                                         space={undefined}
@@ -4153,7 +4129,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicAddPatient__VariantsArgs;
     args?: PlasmicAddPatient__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicAddPatient__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicAddPatient__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicAddPatient__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

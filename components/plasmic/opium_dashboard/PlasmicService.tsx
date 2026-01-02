@@ -397,9 +397,8 @@ function PlasmicService__RenderFunc(props: {
                       typeof $steps["runActionOnApiGetService"].then ===
                         "function"
                     ) {
-                      $steps["runActionOnApiGetService"] = await $steps[
-                        "runActionOnApiGetService"
-                      ];
+                      $steps["runActionOnApiGetService"] =
+                        await $steps["runActionOnApiGetService"];
                     }
                   }).apply(null, eventArgs);
                 },
@@ -546,7 +545,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicService__VariantsArgs;
     args?: PlasmicService__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicService__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicService__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicService__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

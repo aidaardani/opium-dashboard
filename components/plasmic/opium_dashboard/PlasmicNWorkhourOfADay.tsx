@@ -310,17 +310,7 @@ function PlasmicNWorkhourOfADay__RenderFunc(props: {
                 return (() => {
                   const fromValue = $state.from.value;
                   const newTime = new Date(
-                    `2000-01-01T${fromValue
-                      .replace(/۰/g, "0")
-                      .replace(/۱/g, "1")
-                      .replace(/۲/g, "2")
-                      .replace(/۳/g, "3")
-                      .replace(/۴/g, "4")
-                      .replace(/۵/g, "5")
-                      .replace(/۶/g, "6")
-                      .replace(/۷/g, "7")
-                      .replace(/۸/g, "8")
-                      .replace(/۹/g, "9")}:00`
+                    `2000-01-01T${fromValue.replace(/۰/g, "0").replace(/۱/g, "1").replace(/۲/g, "2").replace(/۳/g, "3").replace(/۴/g, "4").replace(/۵/g, "5").replace(/۶/g, "6").replace(/۷/g, "7").replace(/۸/g, "8").replace(/۹/g, "9")}:00`
                   );
                   newTime.setHours(newTime.getHours() + 5);
                   newTime.setHours(
@@ -413,9 +403,7 @@ function PlasmicNWorkhourOfADay__RenderFunc(props: {
                     const hour = Math.floor(totalMinutes / 60) % 24;
                     const minute = totalMinutes % 60;
                     const formattedHour = `${hour < 10 ? "0" : ""}${hour}`;
-                    const formattedMinute = `${
-                      minute < 10 ? "0" : ""
-                    }${minute}`;
+                    const formattedMinute = `${minute < 10 ? "0" : ""}${minute}`;
                     options.push(`${formattedHour}:${formattedMinute}`);
                   }
                   return options;
@@ -501,9 +489,8 @@ function PlasmicNWorkhourOfADay__RenderFunc(props: {
                 typeof $steps["updateDeleteNewWorkhoure"] === "object" &&
                 typeof $steps["updateDeleteNewWorkhoure"].then === "function"
               ) {
-                $steps["updateDeleteNewWorkhoure"] = await $steps[
-                  "updateDeleteNewWorkhoure"
-                ];
+                $steps["updateDeleteNewWorkhoure"] =
+                  await $steps["updateDeleteNewWorkhoure"];
               }
             }}
             role={"img"}
@@ -543,7 +530,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicNWorkhourOfADay__VariantsArgs;
     args?: PlasmicNWorkhourOfADay__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicNWorkhourOfADay__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicNWorkhourOfADay__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicNWorkhourOfADay__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

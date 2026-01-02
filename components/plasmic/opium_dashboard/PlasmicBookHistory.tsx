@@ -283,9 +283,8 @@ function PlasmicBookHistory__RenderFunc(props: {
                   typeof $steps["updateOpenHistory"] === "object" &&
                   typeof $steps["updateOpenHistory"].then === "function"
                 ) {
-                  $steps["updateOpenHistory"] = await $steps[
-                    "updateOpenHistory"
-                  ];
+                  $steps["updateOpenHistory"] =
+                    await $steps["updateOpenHistory"];
                 }
               }}
               role={"img"}
@@ -340,9 +339,8 @@ function PlasmicBookHistory__RenderFunc(props: {
                   typeof $steps["updateOpenHistory"] === "object" &&
                   typeof $steps["updateOpenHistory"].then === "function"
                 ) {
-                  $steps["updateOpenHistory"] = await $steps[
-                    "updateOpenHistory"
-                  ];
+                  $steps["updateOpenHistory"] =
+                    await $steps["updateOpenHistory"];
                 }
               }}
               role={"img"}
@@ -375,7 +373,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicBookHistory__VariantsArgs;
     args?: PlasmicBookHistory__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicBookHistory__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicBookHistory__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicBookHistory__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

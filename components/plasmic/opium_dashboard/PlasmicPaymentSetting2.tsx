@@ -436,9 +436,8 @@ function PlasmicPaymentSetting2__RenderFunc(props: {
                     typeof $steps["updateSelectedCenter"] === "object" &&
                     typeof $steps["updateSelectedCenter"].then === "function"
                   ) {
-                    $steps["updateSelectedCenter"] = await $steps[
-                      "updateSelectedCenter"
-                    ];
+                    $steps["updateSelectedCenter"] =
+                      await $steps["updateSelectedCenter"];
                   }
                 }).apply(null, eventArgs);
               }}
@@ -642,7 +641,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicPaymentSetting2__VariantsArgs;
     args?: PlasmicPaymentSetting2__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicPaymentSetting2__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicPaymentSetting2__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicPaymentSetting2__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

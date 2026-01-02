@@ -242,7 +242,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicQuickAcccess__VariantsArgs;
     args?: PlasmicQuickAcccess__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicQuickAcccess__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicQuickAcccess__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicQuickAcccess__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

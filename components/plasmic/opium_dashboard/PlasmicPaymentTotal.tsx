@@ -434,9 +434,8 @@ function PlasmicPaymentTotal__RenderFunc(props: {
                     typeof $steps["updateSelectedCenter"] === "object" &&
                     typeof $steps["updateSelectedCenter"].then === "function"
                   ) {
-                    $steps["updateSelectedCenter"] = await $steps[
-                      "updateSelectedCenter"
-                    ];
+                    $steps["updateSelectedCenter"] =
+                      await $steps["updateSelectedCenter"];
                   }
                 }).apply(null, eventArgs);
               }}
@@ -640,7 +639,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicPaymentTotal__VariantsArgs;
     args?: PlasmicPaymentTotal__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicPaymentTotal__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicPaymentTotal__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicPaymentTotal__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

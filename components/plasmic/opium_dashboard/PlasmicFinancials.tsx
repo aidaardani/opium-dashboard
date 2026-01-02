@@ -209,7 +209,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicFinancials__VariantsArgs;
     args?: PlasmicFinancials__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicFinancials__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicFinancials__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicFinancials__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props

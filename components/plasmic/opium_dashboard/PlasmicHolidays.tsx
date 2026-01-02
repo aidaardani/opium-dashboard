@@ -325,9 +325,7 @@ function PlasmicHolidays__RenderFunc(props: {
             }}
             url={(() => {
               try {
-                return `https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-holidays${
-                  $ctx.query.date ? `?date=${$ctx.query.date}` : ""
-                }`;
+                return `https://apigw.paziresh24.com/v1/n8n-nelson/webhook/get-holidays${$ctx.query.date ? `?date=${$ctx.query.date}` : ""}`;
               } catch (e) {
                 if (
                   e instanceof TypeError ||
@@ -715,7 +713,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicHolidays__VariantsArgs;
     args?: PlasmicHolidays__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicHolidays__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicHolidays__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicHolidays__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
