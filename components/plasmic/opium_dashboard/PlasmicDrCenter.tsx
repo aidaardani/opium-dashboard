@@ -307,12 +307,7 @@ function PlasmicDrCenter__RenderFunc(props: {
       </div>
       {(() => {
         try {
-          return (
-            $state.officeBook === "officeBook" &&
-            ($props.showOtherPlatform
-              ? !!$props.platform.find(p => p.name === "paziresh24")
-              : true)
-          );
+          return !!$props.officeBook;
         } catch (e) {
           if (
             e instanceof TypeError ||

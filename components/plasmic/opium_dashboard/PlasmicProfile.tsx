@@ -513,7 +513,7 @@ function PlasmicProfile__RenderFunc(props: {
                               const actionArgs = {
                                 customFunction: async () => {
                                   return globalThis.open(
-                                    "https://www.paziresh24.com/_/bimehnama/setting/?origin=Nelson"
+                                    "https://www.paziresh24.com/_/bimehnama/launcher/?origin=Nelson"
                                   );
                                 }
                               };
