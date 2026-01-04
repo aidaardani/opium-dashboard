@@ -59,6 +59,7 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import LineClamp from "../../LineClamp"; // plasmic-import: fa_t7ELXcm5k/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/styleTokensProvider
 
@@ -108,6 +109,7 @@ export type PlasmicDrCenter__OverridesType = {
   root?: Flex__<"div">;
   freeBox?: Flex__<"div">;
   svg?: Flex__<"svg">;
+  lineClamp?: Flex__<typeof LineClamp>;
 };
 
 export interface DefaultDrCenterProps {
@@ -333,15 +335,21 @@ function PlasmicDrCenter__RenderFunc(props: {
             role={"img"}
           />
 
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__lmOyB
-            )}
+          <LineClamp
+            data-plasmic-name={"lineClamp"}
+            data-plasmic-override={overrides.lineClamp}
+            className={classNames("__wab_instance", sty.lineClamp)}
           >
-            <React.Fragment>{$props.adress}</React.Fragment>
-          </div>
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__lmOyB
+              )}
+            >
+              <React.Fragment>{$props.adress}</React.Fragment>
+            </div>
+          </LineClamp>
         </div>
       ) : null}
     </div>
@@ -349,9 +357,10 @@ function PlasmicDrCenter__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "freeBox", "svg"],
-  freeBox: ["freeBox", "svg"],
-  svg: ["svg"]
+  root: ["root", "freeBox", "svg", "lineClamp"],
+  freeBox: ["freeBox", "svg", "lineClamp"],
+  svg: ["svg"],
+  lineClamp: ["lineClamp"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -360,6 +369,7 @@ type NodeDefaultElementType = {
   root: "div";
   freeBox: "div";
   svg: "svg";
+  lineClamp: typeof LineClamp;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -426,6 +436,7 @@ export const PlasmicDrCenter = Object.assign(
     // Helper components rendering sub-elements
     freeBox: makeNodeComponent("freeBox"),
     svg: makeNodeComponent("svg"),
+    lineClamp: makeNodeComponent("lineClamp"),
 
     // Metadata about props expected for PlasmicDrCenter
     internalVariantProps: PlasmicDrCenter__VariantProps,

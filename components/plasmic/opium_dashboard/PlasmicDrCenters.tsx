@@ -454,7 +454,7 @@ function PlasmicDrCenters__RenderFunc(props: {
                     <DrCenter
                       adress={(() => {
                         try {
-                          return currentItem.address.substring(0, 30) + "...";
+                          return currentItem.address;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
