@@ -508,27 +508,26 @@ function PlasmicProfile__RenderFunc(props: {
                       onClick={async event => {
                         const $steps = {};
 
-                        $steps["invokeGlobalAction"] = true
+                        $steps["runCode"] = true
                           ? (() => {
                               const actionArgs = {
-                                args: [
-                                  "https://www.paziresh24.com/_/bimehnama/setting/?origin=Nelson"
-                                ]
+                                customFunction: async () => {
+                                  return globalThis.open(
+                                    "https://www.paziresh24.com/_/bimehnama/setting/?origin=Nelson"
+                                  );
+                                }
                               };
-                              return $globalActions["Hamdast.openLink"]?.apply(
-                                null,
-                                [...actionArgs.args]
-                              );
+                              return (({ customFunction }) => {
+                                return customFunction();
+                              })?.apply(null, [actionArgs]);
                             })()
                           : undefined;
                         if (
-                          $steps["invokeGlobalAction"] != null &&
-                          typeof $steps["invokeGlobalAction"] === "object" &&
-                          typeof $steps["invokeGlobalAction"].then ===
-                            "function"
+                          $steps["runCode"] != null &&
+                          typeof $steps["runCode"] === "object" &&
+                          typeof $steps["runCode"].then === "function"
                         ) {
-                          $steps["invokeGlobalAction"] =
-                            await $steps["invokeGlobalAction"];
+                          $steps["runCode"] = await $steps["runCode"];
                         }
                       }}
                     />
