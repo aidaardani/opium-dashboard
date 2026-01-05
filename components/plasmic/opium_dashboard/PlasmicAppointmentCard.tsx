@@ -588,6 +588,12 @@ function PlasmicAppointmentCard__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "loadingHami",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -5747,42 +5753,55 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     "\u0634\u0631\u0648\u0639 \u0648\u06cc\u0632\u06cc\u062a \u062f\u0631 \u067e\u06cc\u0627\u0645 \u0631\u0633\u0627\u0646 \u067e\u0630\u06cc\u0631\u0634\u06f2\u06f4"
                   }
                   className={classNames("__wab_instance", sty.hami)}
+                  loading={(() => {
+                    try {
+                      return $state.loadingHami;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()}
                   onClick={async event => {
                     const $steps = {};
 
-                    $steps["apiGetUrlChat"] = true
+                    $steps["updateLoadingHami"] = true
                       ? (() => {
                           const actionArgs = {
-                            args: [
-                              undefined,
-                              (() => {
-                                try {
-                                  return `https://messaging-back.paziresh24.com/api/external/conversations/${$props.bookId}`;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["loadingHami"]
+                            },
+                            operation: 4
                           };
-                          return $globalActions["Fragment.apiRequest"]?.apply(
-                            null,
-                            [...actionArgs.args]
-                          );
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            const oldValue = $stateGet(objRoot, variablePath);
+                            $stateSet(objRoot, variablePath, !oldValue);
+                            return !oldValue;
+                          })?.apply(null, [actionArgs]);
                         })()
                       : undefined;
                     if (
-                      $steps["apiGetUrlChat"] != null &&
-                      typeof $steps["apiGetUrlChat"] === "object" &&
-                      typeof $steps["apiGetUrlChat"].then === "function"
+                      $steps["updateLoadingHami"] != null &&
+                      typeof $steps["updateLoadingHami"] === "object" &&
+                      typeof $steps["updateLoadingHami"].then === "function"
                     ) {
-                      $steps["apiGetUrlChat"] = await $steps["apiGetUrlChat"];
+                      $steps["updateLoadingHami"] =
+                        await $steps["updateLoadingHami"];
                     }
 
                     $steps["invokeGlobalAction"] = true
@@ -5791,7 +5810,9 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                             args: [
                               (() => {
                                 try {
-                                  return $steps.apiGetUrlChat?.data?.url;
+                                  return globalThis.open(
+                                    `https://messaging-back.paziresh24.com/api/external/conversations/${$props.bookId}`
+                                  );
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -5818,6 +5839,41 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     ) {
                       $steps["invokeGlobalAction"] =
                         await $steps["invokeGlobalAction"];
+                    }
+
+                    $steps["updateLoadingHami2"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["loadingHami"]
+                            },
+                            operation: 4
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            const oldValue = $stateGet(objRoot, variablePath);
+                            $stateSet(objRoot, variablePath, !oldValue);
+                            return !oldValue;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateLoadingHami2"] != null &&
+                      typeof $steps["updateLoadingHami2"] === "object" &&
+                      typeof $steps["updateLoadingHami2"].then === "function"
+                    ) {
+                      $steps["updateLoadingHami2"] =
+                        await $steps["updateLoadingHami2"];
                     }
                   }}
                 />
