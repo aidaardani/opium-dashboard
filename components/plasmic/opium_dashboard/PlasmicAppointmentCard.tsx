@@ -193,6 +193,7 @@ export type PlasmicAppointmentCard__OverridesType = {
   patientBookHistory?: Flex__<typeof PatientBookHistory>;
   descriptionInput2?: Flex__<typeof MultilineTextInput>;
   apiPres?: Flex__<typeof ApiRequest>;
+  hami?: Flex__<typeof Button>;
   deletebookdialog?: Flex__<typeof Dialog>;
   apiGetInsuranceType?: Flex__<typeof ApiRequest>;
   dialog2?: Flex__<typeof Dialog>;
@@ -5725,6 +5726,102 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   }
                 })()}
               />
+
+              {(() => {
+                try {
+                  return $ctx.query.user_id === "14985374";
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <Button
+                  data-plasmic-name={"hami"}
+                  data-plasmic-override={overrides.hami}
+                  children2={
+                    "\u0634\u0631\u0648\u0639 \u0648\u06cc\u0632\u06cc\u062a \u062f\u0631 \u067e\u06cc\u0627\u0645 \u0631\u0633\u0627\u0646 \u067e\u0630\u06cc\u0631\u0634\u06f2\u06f4"
+                  }
+                  className={classNames("__wab_instance", sty.hami)}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["apiGetUrlChat"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              undefined,
+                              (() => {
+                                try {
+                                  return `https://messaging-back.paziresh24.com/api/external/conversations/${$props.bookId}`;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["apiGetUrlChat"] != null &&
+                      typeof $steps["apiGetUrlChat"] === "object" &&
+                      typeof $steps["apiGetUrlChat"].then === "function"
+                    ) {
+                      $steps["apiGetUrlChat"] = await $steps["apiGetUrlChat"];
+                    }
+
+                    $steps["invokeGlobalAction"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return $steps.apiGetUrlChat?.data?.url;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Hamdast.openLink"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["invokeGlobalAction"] != null &&
+                      typeof $steps["invokeGlobalAction"] === "object" &&
+                      typeof $steps["invokeGlobalAction"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction"] =
+                        await $steps["invokeGlobalAction"];
+                    }
+                  }}
+                />
+              ) : null}
             </div>
             <Dialog
               data-plasmic-name={"deletebookdialog"}
@@ -7851,6 +7948,7 @@ const PlasmicDescendants = {
     "patientBookHistory",
     "descriptionInput2",
     "apiPres",
+    "hami",
     "deletebookdialog",
     "apiGetInsuranceType",
     "dialog2",
@@ -7881,6 +7979,7 @@ const PlasmicDescendants = {
     "patientBookHistory",
     "descriptionInput2",
     "apiPres",
+    "hami",
     "deletebookdialog",
     "apiGetInsuranceType"
   ],
@@ -7894,6 +7993,7 @@ const PlasmicDescendants = {
   patientBookHistory: ["patientBookHistory"],
   descriptionInput2: ["descriptionInput2"],
   apiPres: ["apiPres"],
+  hami: ["hami"],
   deletebookdialog: ["deletebookdialog"],
   apiGetInsuranceType: ["apiGetInsuranceType"],
   dialog2: ["dialog2", "descriptionInput"],
@@ -7934,6 +8034,7 @@ type NodeDefaultElementType = {
   patientBookHistory: typeof PatientBookHistory;
   descriptionInput2: typeof MultilineTextInput;
   apiPres: typeof ApiRequest;
+  hami: typeof Button;
   deletebookdialog: typeof Dialog;
   apiGetInsuranceType: typeof ApiRequest;
   dialog2: typeof Dialog;
@@ -8026,6 +8127,7 @@ export const PlasmicAppointmentCard = Object.assign(
     patientBookHistory: makeNodeComponent("patientBookHistory"),
     descriptionInput2: makeNodeComponent("descriptionInput2"),
     apiPres: makeNodeComponent("apiPres"),
+    hami: makeNodeComponent("hami"),
     deletebookdialog: makeNodeComponent("deletebookdialog"),
     apiGetInsuranceType: makeNodeComponent("apiGetInsuranceType"),
     dialog2: makeNodeComponent("dialog2"),

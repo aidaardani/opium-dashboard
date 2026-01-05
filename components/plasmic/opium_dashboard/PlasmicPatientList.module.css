@@ -156,10 +156,6 @@
   font-weight: 600;
   text-align: center;
 }
-.appointmentCard:global(.__wab_instance) {
-  max-width: 100%;
-  position: relative;
-}
 .apiOnlineVisitChannel:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
@@ -179,6 +175,10 @@
   max-width: 100%;
   min-width: 0;
   display: none;
+}
+.appointmentCard:global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
 }
 .freeBox__nG3PE {
   display: flex;

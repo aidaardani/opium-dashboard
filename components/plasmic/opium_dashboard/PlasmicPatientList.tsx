@@ -107,8 +107,8 @@ export type PlasmicPatientList__OverridesType = {
   apiInsurance?: Flex__<typeof ApiRequest>;
   apiAllBooks?: Flex__<typeof ApiRequest>;
   svg?: Flex__<"svg">;
-  appointmentCard?: Flex__<typeof AppointmentCard>;
   apiOnlineVisitChannel?: Flex__<typeof ApiRequest>;
+  appointmentCard?: Flex__<typeof AppointmentCard>;
 };
 
 export interface DefaultPatientListProps {
@@ -528,6 +528,71 @@ function PlasmicPatientList__RenderFunc(props: {
             })}
           </div>
         </div>
+      </ApiRequest>
+      <ApiRequest
+        data-plasmic-name={"apiOnlineVisitChannel"}
+        data-plasmic-override={overrides.apiOnlineVisitChannel}
+        className={classNames("__wab_instance", sty.apiOnlineVisitChannel)}
+        errorDisplay={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text___3Jd5I
+            )}
+          >
+            {"Error fetching data"}
+          </div>
+        }
+        loadingDisplay={
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__iurM4
+            )}
+          >
+            {"Loading..."}
+          </div>
+        }
+        method={"GET"}
+        onError={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "apiOnlineVisitChannel",
+            "error"
+          ]).apply(null, eventArgs);
+        }}
+        onLoading={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "apiOnlineVisitChannel",
+            "loading"
+          ]).apply(null, eventArgs);
+        }}
+        onSuccess={async (...eventArgs: any) => {
+          generateStateOnChangeProp($state, [
+            "apiOnlineVisitChannel",
+            "data"
+          ]).apply(null, eventArgs);
+        }}
+        ref={ref => {
+          $refs["apiOnlineVisitChannel"] = ref;
+        }}
+        url={(() => {
+          try {
+            return $props.centers.some(center => center.id === "5532")
+              ? "https://apigw.paziresh24.com/v1/visit-channels"
+              : "";
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return undefined;
+            }
+            throw e;
+          }
+        })()}
+      >
         {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
           (() => {
             try {
@@ -1103,71 +1168,6 @@ function PlasmicPatientList__RenderFunc(props: {
           );
         })}
       </ApiRequest>
-      <ApiRequest
-        data-plasmic-name={"apiOnlineVisitChannel"}
-        data-plasmic-override={overrides.apiOnlineVisitChannel}
-        className={classNames("__wab_instance", sty.apiOnlineVisitChannel)}
-        errorDisplay={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text___3Jd5I
-            )}
-          >
-            {"Error fetching data"}
-          </div>
-        }
-        loadingDisplay={
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__iurM4
-            )}
-          >
-            {"Loading..."}
-          </div>
-        }
-        method={"GET"}
-        onError={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, [
-            "apiOnlineVisitChannel",
-            "error"
-          ]).apply(null, eventArgs);
-        }}
-        onLoading={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, [
-            "apiOnlineVisitChannel",
-            "loading"
-          ]).apply(null, eventArgs);
-        }}
-        onSuccess={async (...eventArgs: any) => {
-          generateStateOnChangeProp($state, [
-            "apiOnlineVisitChannel",
-            "data"
-          ]).apply(null, eventArgs);
-        }}
-        ref={ref => {
-          $refs["apiOnlineVisitChannel"] = ref;
-        }}
-        url={(() => {
-          try {
-            return $props.centers.some(center => center.id === "5532")
-              ? "https://apigw.paziresh24.com/v1/visit-channels"
-              : "";
-          } catch (e) {
-            if (
-              e instanceof TypeError ||
-              e?.plasmicType === "PlasmicUndefinedDataError"
-            ) {
-              return undefined;
-            }
-            throw e;
-          }
-        })()}
-      />
-
       {(() => {
         try {
           return (
@@ -1319,14 +1319,14 @@ const PlasmicDescendants = {
     "apiInsurance",
     "apiAllBooks",
     "svg",
-    "appointmentCard",
-    "apiOnlineVisitChannel"
+    "apiOnlineVisitChannel",
+    "appointmentCard"
   ],
   apiInsurance: ["apiInsurance"],
-  apiAllBooks: ["apiAllBooks", "svg", "appointmentCard"],
+  apiAllBooks: ["apiAllBooks", "svg"],
   svg: ["svg"],
-  appointmentCard: ["appointmentCard"],
-  apiOnlineVisitChannel: ["apiOnlineVisitChannel"]
+  apiOnlineVisitChannel: ["apiOnlineVisitChannel", "appointmentCard"],
+  appointmentCard: ["appointmentCard"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1336,8 +1336,8 @@ type NodeDefaultElementType = {
   apiInsurance: typeof ApiRequest;
   apiAllBooks: typeof ApiRequest;
   svg: "svg";
-  appointmentCard: typeof AppointmentCard;
   apiOnlineVisitChannel: typeof ApiRequest;
+  appointmentCard: typeof AppointmentCard;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1405,8 +1405,8 @@ export const PlasmicPatientList = Object.assign(
     apiInsurance: makeNodeComponent("apiInsurance"),
     apiAllBooks: makeNodeComponent("apiAllBooks"),
     svg: makeNodeComponent("svg"),
-    appointmentCard: makeNodeComponent("appointmentCard"),
     apiOnlineVisitChannel: makeNodeComponent("apiOnlineVisitChannel"),
+    appointmentCard: makeNodeComponent("appointmentCard"),
 
     // Metadata about props expected for PlasmicPatientList
     internalVariantProps: PlasmicPatientList__VariantProps,
