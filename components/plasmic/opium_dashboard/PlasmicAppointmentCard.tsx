@@ -195,8 +195,8 @@ export type PlasmicAppointmentCard__OverridesType = {
   apiGetComment?: Flex__<typeof ApiRequest>;
   patientBookHistory?: Flex__<typeof PatientBookHistory>;
   descriptionInput2?: Flex__<typeof MultilineTextInput>;
-  apiPres?: Flex__<typeof ApiRequest>;
   hami?: Flex__<typeof Button>;
+  apiPres?: Flex__<typeof ApiRequest>;
   deletebookdialog?: Flex__<typeof Dialog>;
   apiGetInsuranceType?: Flex__<typeof ApiRequest>;
   dialog2?: Flex__<typeof Dialog>;
@@ -4978,6 +4978,182 @@ function PlasmicAppointmentCard__RenderFunc(props: {
               {(() => {
                 try {
                   return (
+                    $ctx.GrowthBook.features["dr_onlinevisit_v3"] === true &&
+                    $props.centerId === "5532"
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <Button
+                  data-plasmic-name={"hami"}
+                  data-plasmic-override={overrides.hami}
+                  children2={
+                    "\u0634\u0631\u0648\u0639 \u0648\u06cc\u0632\u06cc\u062a \u062f\u0631 \u067e\u06cc\u0627\u0645 \u0631\u0633\u0627\u0646 \u067e\u0630\u06cc\u0631\u0634\u06f2\u06f4"
+                  }
+                  className={classNames("__wab_instance", sty.hami)}
+                  loading={(() => {
+                    try {
+                      return $state.loadingHami;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateLoadingHami"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["loadingHami"]
+                            },
+                            operation: 4
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            const oldValue = $stateGet(objRoot, variablePath);
+                            $stateSet(objRoot, variablePath, !oldValue);
+                            return !oldValue;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateLoadingHami"] != null &&
+                      typeof $steps["updateLoadingHami"] === "object" &&
+                      typeof $steps["updateLoadingHami"].then === "function"
+                    ) {
+                      $steps["updateLoadingHami"] =
+                        await $steps["updateLoadingHami"];
+                    }
+
+                    $steps["runCode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            customFunction: async () => {
+                              return globalThis.open(
+                                `https://messaging-back.paziresh24.com/api/external/conversations/${$props.bookId}`
+                              );
+                            }
+                          };
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
+                    ) {
+                      $steps["runCode"] = await $steps["runCode"];
+                    }
+
+                    $steps["sendEvent"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    event_group: "Online-Visit-Channel",
+                                    data: {
+                                      user_id: $ctx.query.user_id,
+                                      book_id: $props.bookId,
+                                      ref_id: $props.refId,
+                                      name: $props.name,
+                                      chat_url: `https://messaging-back.paziresh24.com/api/external/conversations/${$props.bookId}`
+                                    },
+                                    event_type: "hami"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendEvent"] != null &&
+                      typeof $steps["sendEvent"] === "object" &&
+                      typeof $steps["sendEvent"].then === "function"
+                    ) {
+                      $steps["sendEvent"] = await $steps["sendEvent"];
+                    }
+
+                    $steps["updateLoadingHami2"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["loadingHami"]
+                            },
+                            operation: 4
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            const oldValue = $stateGet(objRoot, variablePath);
+                            $stateSet(objRoot, variablePath, !oldValue);
+                            return !oldValue;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateLoadingHami2"] != null &&
+                      typeof $steps["updateLoadingHami2"] === "object" &&
+                      typeof $steps["updateLoadingHami2"].then === "function"
+                    ) {
+                      $steps["updateLoadingHami2"] =
+                        await $steps["updateLoadingHami2"];
+                    }
+                  }}
+                />
+              ) : null}
+              {(() => {
+                try {
+                  return (
                     $props.platform.settings.can_record_prescription &&
                     $props.insurances === true &&
                     ($state.apiPres?.data[0]?.finalized === false ||
@@ -5461,6 +5637,22 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         await $steps["invokeGlobalAction"];
                     }
                   }}
+                  outline={(() => {
+                    try {
+                      return (
+                        $ctx.GrowthBook.features["dr_onlinevisit_v3"] ===
+                          true && $props.centerId === "5532"
+                      );
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return [];
+                      }
+                      throw e;
+                    }
+                  })()}
                 />
               ) : null}
               {(() => {
@@ -5737,140 +5929,6 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                   }
                 })()}
               />
-
-              {(() => {
-                try {
-                  return (
-                    $ctx.GrowthBook.features["dr_onlinevisit_v3"] === true &&
-                    $props.centerId === "5532"
-                  );
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return false;
-                  }
-                  throw e;
-                }
-              })() ? (
-                <Button
-                  data-plasmic-name={"hami"}
-                  data-plasmic-override={overrides.hami}
-                  children2={
-                    "\u0634\u0631\u0648\u0639 \u0648\u06cc\u0632\u06cc\u062a \u062f\u0631 \u067e\u06cc\u0627\u0645 \u0631\u0633\u0627\u0646 \u067e\u0630\u06cc\u0631\u0634\u06f2\u06f4"
-                  }
-                  className={classNames("__wab_instance", sty.hami)}
-                  loading={(() => {
-                    try {
-                      return $state.loadingHami;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return [];
-                      }
-                      throw e;
-                    }
-                  })()}
-                  onClick={async event => {
-                    const $steps = {};
-
-                    $steps["updateLoadingHami"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["loadingHami"]
-                            },
-                            operation: 4
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            const oldValue = $stateGet(objRoot, variablePath);
-                            $stateSet(objRoot, variablePath, !oldValue);
-                            return !oldValue;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateLoadingHami"] != null &&
-                      typeof $steps["updateLoadingHami"] === "object" &&
-                      typeof $steps["updateLoadingHami"].then === "function"
-                    ) {
-                      $steps["updateLoadingHami"] =
-                        await $steps["updateLoadingHami"];
-                    }
-
-                    $steps["runCode"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            customFunction: async () => {
-                              return globalThis.open(
-                                `https://messaging-back.paziresh24.com/api/external/conversations/${$props.bookId}`
-                              );
-                            }
-                          };
-                          return (({ customFunction }) => {
-                            return customFunction();
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["runCode"] != null &&
-                      typeof $steps["runCode"] === "object" &&
-                      typeof $steps["runCode"].then === "function"
-                    ) {
-                      $steps["runCode"] = await $steps["runCode"];
-                    }
-
-                    $steps["updateLoadingHami2"] = true
-                      ? (() => {
-                          const actionArgs = {
-                            variable: {
-                              objRoot: $state,
-                              variablePath: ["loadingHami"]
-                            },
-                            operation: 4
-                          };
-                          return (({
-                            variable,
-                            value,
-                            startIndex,
-                            deleteCount
-                          }) => {
-                            if (!variable) {
-                              return;
-                            }
-                            const { objRoot, variablePath } = variable;
-
-                            const oldValue = $stateGet(objRoot, variablePath);
-                            $stateSet(objRoot, variablePath, !oldValue);
-                            return !oldValue;
-                          })?.apply(null, [actionArgs]);
-                        })()
-                      : undefined;
-                    if (
-                      $steps["updateLoadingHami2"] != null &&
-                      typeof $steps["updateLoadingHami2"] === "object" &&
-                      typeof $steps["updateLoadingHami2"].then === "function"
-                    ) {
-                      $steps["updateLoadingHami2"] =
-                        await $steps["updateLoadingHami2"];
-                    }
-                  }}
-                />
-              ) : null}
             </div>
             <Dialog
               data-plasmic-name={"deletebookdialog"}
@@ -8039,8 +8097,8 @@ const PlasmicDescendants = {
     "apiGetComment",
     "patientBookHistory",
     "descriptionInput2",
-    "apiPres",
     "hami",
+    "apiPres",
     "deletebookdialog",
     "apiGetInsuranceType",
     "dialog2",
@@ -8071,8 +8129,8 @@ const PlasmicDescendants = {
     "apiGetComment",
     "patientBookHistory",
     "descriptionInput2",
-    "apiPres",
     "hami",
+    "apiPres",
     "deletebookdialog",
     "apiGetInsuranceType"
   ],
@@ -8085,8 +8143,8 @@ const PlasmicDescendants = {
   apiGetComment: ["apiGetComment"],
   patientBookHistory: ["patientBookHistory"],
   descriptionInput2: ["descriptionInput2"],
-  apiPres: ["apiPres"],
   hami: ["hami"],
+  apiPres: ["apiPres"],
   deletebookdialog: ["deletebookdialog"],
   apiGetInsuranceType: ["apiGetInsuranceType"],
   dialog2: ["dialog2", "descriptionInput"],
@@ -8127,8 +8185,8 @@ type NodeDefaultElementType = {
   apiGetComment: typeof ApiRequest;
   patientBookHistory: typeof PatientBookHistory;
   descriptionInput2: typeof MultilineTextInput;
-  apiPres: typeof ApiRequest;
   hami: typeof Button;
+  apiPres: typeof ApiRequest;
   deletebookdialog: typeof Dialog;
   apiGetInsuranceType: typeof ApiRequest;
   dialog2: typeof Dialog;
@@ -8221,8 +8279,8 @@ export const PlasmicAppointmentCard = Object.assign(
     apiGetComment: makeNodeComponent("apiGetComment"),
     patientBookHistory: makeNodeComponent("patientBookHistory"),
     descriptionInput2: makeNodeComponent("descriptionInput2"),
-    apiPres: makeNodeComponent("apiPres"),
     hami: makeNodeComponent("hami"),
+    apiPres: makeNodeComponent("apiPres"),
     deletebookdialog: makeNodeComponent("deletebookdialog"),
     apiGetInsuranceType: makeNodeComponent("apiGetInsuranceType"),
     dialog2: makeNodeComponent("dialog2"),
