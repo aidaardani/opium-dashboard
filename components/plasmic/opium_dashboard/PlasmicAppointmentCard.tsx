@@ -5740,7 +5740,10 @@ function PlasmicAppointmentCard__RenderFunc(props: {
 
               {(() => {
                 try {
-                  return $ctx.GrowthBook.features["dr_onlinevisit_v3"] === true;
+                  return (
+                    $ctx.GrowthBook.features["dr_onlinevisit_v3"] === true &&
+                    $props.centerId === "5532"
+                  );
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
