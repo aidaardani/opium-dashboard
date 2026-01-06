@@ -70,6 +70,7 @@ import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/compone
 import SafeCall from "../../SafeCall"; // plasmic-import: m0lwAXhykBZV/component
 import BookStatusButton from "../../BookStatusButton"; // plasmic-import: aW1julV8kikd/component
 import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/styleTokensProvider
 
@@ -139,6 +140,7 @@ export type PlasmicAppointmentCard__ArgsType = {
   showPlatform?: boolean;
   medicalCode?: string;
   externalPrescriptions?: any;
+  userId?: string;
 };
 type ArgPropType = keyof PlasmicAppointmentCard__ArgsType;
 export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
@@ -173,7 +175,8 @@ export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
   "platform",
   "showPlatform",
   "medicalCode",
-  "externalPrescriptions"
+  "externalPrescriptions",
+  "userId"
 );
 
 export type PlasmicAppointmentCard__OverridesType = {
@@ -207,6 +210,7 @@ export type PlasmicAppointmentCard__OverridesType = {
   apiselcetedonlinevisitchannels?: Flex__<typeof ApiRequest>;
   salamatOtpModal?: Flex__<typeof Dialog>;
   inputTwoFactorAuth?: Flex__<typeof Input>;
+  sideEffect?: Flex__<typeof SideEffect>;
 };
 
 export interface DefaultAppointmentCardProps {
@@ -242,6 +246,7 @@ export interface DefaultAppointmentCardProps {
   showPlatform?: boolean;
   medicalCode?: string;
   externalPrescriptions?: any;
+  userId?: string;
   onlineBorder?: SingleBooleanChoiceArg<"onlineBorder">;
   className?: string;
 }
@@ -7967,6 +7972,49 @@ function PlasmicAppointmentCard__RenderFunc(props: {
         }
         trigger={null}
       />
+
+      <SideEffect
+        data-plasmic-name={"sideEffect"}
+        data-plasmic-override={overrides.sideEffect}
+        className={classNames("__wab_instance", sty.sideEffect)}
+        onMount={async () => {
+          const $steps = {};
+
+          $steps["invokeGlobalAction"] = true
+            ? (() => {
+                const actionArgs = {
+                  args: [
+                    (() => {
+                      try {
+                        return {
+                          user_id: $props.userId
+                        };
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()
+                  ]
+                };
+                return $globalActions["GrowthBook.setAttributes"]?.apply(null, [
+                  ...actionArgs.args
+                ]);
+              })()
+            : undefined;
+          if (
+            $steps["invokeGlobalAction"] != null &&
+            typeof $steps["invokeGlobalAction"] === "object" &&
+            typeof $steps["invokeGlobalAction"].then === "function"
+          ) {
+            $steps["invokeGlobalAction"] = await $steps["invokeGlobalAction"];
+          }
+        }}
+      />
     </div>
   ) as React.ReactElement | null;
 }
@@ -8002,7 +8050,8 @@ const PlasmicDescendants = {
     "span",
     "apiselcetedonlinevisitchannels",
     "salamatOtpModal",
-    "inputTwoFactorAuth"
+    "inputTwoFactorAuth",
+    "sideEffect"
   ],
   lineClamp: ["lineClamp"],
   apiGetPyamentInfo2: ["apiGetPyamentInfo2"],
@@ -8053,7 +8102,8 @@ const PlasmicDescendants = {
   span: ["span"],
   apiselcetedonlinevisitchannels: ["apiselcetedonlinevisitchannels"],
   salamatOtpModal: ["salamatOtpModal", "inputTwoFactorAuth"],
-  inputTwoFactorAuth: ["inputTwoFactorAuth"]
+  inputTwoFactorAuth: ["inputTwoFactorAuth"],
+  sideEffect: ["sideEffect"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -8089,6 +8139,7 @@ type NodeDefaultElementType = {
   apiselcetedonlinevisitchannels: typeof ApiRequest;
   salamatOtpModal: typeof Dialog;
   inputTwoFactorAuth: typeof Input;
+  sideEffect: typeof SideEffect;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -8186,6 +8237,7 @@ export const PlasmicAppointmentCard = Object.assign(
     ),
     salamatOtpModal: makeNodeComponent("salamatOtpModal"),
     inputTwoFactorAuth: makeNodeComponent("inputTwoFactorAuth"),
+    sideEffect: makeNodeComponent("sideEffect"),
 
     // Metadata about props expected for PlasmicAppointmentCard
     internalVariantProps: PlasmicAppointmentCard__VariantProps,

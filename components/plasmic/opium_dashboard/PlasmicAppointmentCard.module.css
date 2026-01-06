@@ -1861,3 +1861,7 @@
   width: auto;
   height: 1em;
 }
+.sideEffect:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
