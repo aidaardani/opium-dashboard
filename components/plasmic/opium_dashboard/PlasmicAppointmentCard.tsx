@@ -5735,7 +5735,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
 
               {(() => {
                 try {
-                  return $ctx.query.user_id === "14985374";
+                  return $ctx.GrowthBook.features["dr_onlinevisit-v3"] === true;
                 } catch (e) {
                   if (
                     e instanceof TypeError ||
