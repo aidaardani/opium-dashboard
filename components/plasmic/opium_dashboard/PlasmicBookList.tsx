@@ -540,7 +540,9 @@ function PlasmicBookList__RenderFunc(props: {
                         args: [
                           (() => {
                             try {
-                              return { user_id: $ctx.query.user_id };
+                              return {
+                                user_id: parseInt($ctx.query.user_id)
+                              };
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
