@@ -921,7 +921,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     ) {
                       return "ایتا";
                     } else {
-                      return "";
+                      return "پیام‌رسان پذیرش۲۴";
                     }
                   })();
                 } catch (e) {
@@ -2115,7 +2115,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                           ) {
                             return "ایتا";
                           } else {
-                            return "";
+                            return "پیام‌رسان پذیرش۲۴";
                           }
                         })()
                       );
@@ -2170,7 +2170,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         ) {
                           return "ایتا";
                         } else {
-                          return "";
+                          return "پیام‌رسان پذیرش۲۳";
                         }
                       })();
                     } catch (e) {
@@ -7287,12 +7287,12 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             $steps["redirectWhatsapp"] =
               $props.centerId === "5532" &&
               $state.apiselcetedonlinevisitchannels.data.online_channel ===
-                "whatsapp" &&
+                "hami" &&
               $state.bookStatusState === "not_came"
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
-                        return globalThis.open(`https://wa.me/${$props.cell}`);
+                        return globalThis.open(`https://messaging-back.paziresh24.com/api/external/conversations/${$props.bookId}`);
                       }
                     };
                     return (({ customFunction }) => {
