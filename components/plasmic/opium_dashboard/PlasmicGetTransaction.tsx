@@ -143,7 +143,7 @@ function PlasmicGetTransaction__RenderFunc(props: {
         path: "me",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -152,6 +152,7 @@ function PlasmicGetTransaction__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

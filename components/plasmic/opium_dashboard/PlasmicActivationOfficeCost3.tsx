@@ -72,6 +72,35 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicActivationOfficeCost3.module.css"; // plasmic-import: POnAEYK1Z5mh/css
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "مبلغ بیعانه",
+
+    openGraph: {
+      title: "مبلغ بیعانه"
+    },
+    twitter: {
+      card: "summary",
+      title: "مبلغ بیعانه"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicActivationOfficeCost3__VariantMembers = {};
@@ -137,24 +166,23 @@ function PlasmicActivationOfficeCost3__RenderFunc(props: {
 
   const $globalActions = useGlobalActions?.();
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">
-          {PlasmicActivationOfficeCost3.pageMetadata.title}
-        </title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicActivationOfficeCost3.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicActivationOfficeCost3.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -585,13 +613,11 @@ export const PlasmicActivationOfficeCost3 = Object.assign(
     internalVariantProps: PlasmicActivationOfficeCost3__VariantProps,
     internalArgProps: PlasmicActivationOfficeCost3__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "مبلغ بیعانه",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/activation-page/office/cost",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

@@ -190,7 +190,7 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
         path: "selectDegree.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "selectExpertise.value",
@@ -204,7 +204,7 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
         path: "selectExpertise.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "input.value",
@@ -218,7 +218,7 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
         path: "isDisable",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.isDisable
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.isDisable
       }
     ],
     [$props, $ctx, $refs]
@@ -227,6 +227,7 @@ function PlasmicProfileExpertiseItem__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

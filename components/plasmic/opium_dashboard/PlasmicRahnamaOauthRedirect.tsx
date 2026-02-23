@@ -70,6 +70,30 @@ import sty from "./PlasmicRahnamaOauthRedirect.module.css"; // plasmic-import: 9
 
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    openGraph: {},
+    twitter: {
+      card: "summary"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicRahnamaOauthRedirect__VariantMembers = {};
@@ -132,6 +156,11 @@ function PlasmicRahnamaOauthRedirect__RenderFunc(props: {
   const $refs = refsRef.current;
 
   const $globalActions = useGlobalActions?.();
+
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -388,13 +417,11 @@ export const PlasmicRahnamaOauthRedirect = Object.assign(
     internalVariantProps: PlasmicRahnamaOauthRedirect__VariantProps,
     internalArgProps: PlasmicRahnamaOauthRedirect__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/rahnama/oauth/redirect",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

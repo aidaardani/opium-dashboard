@@ -159,7 +159,7 @@ function PlasmicPatientBookHistory__RenderFunc(props: {
         path: "isOpen",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -168,6 +168,7 @@ function PlasmicPatientBookHistory__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

@@ -72,6 +72,35 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicActivationOfficeCenter2.module.css"; // plasmic-import: YjxK-nPRmG0-/css
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "محل مطب من",
+
+    openGraph: {
+      title: "محل مطب من"
+    },
+    twitter: {
+      card: "summary",
+      title: "محل مطب من"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicActivationOfficeCenter2__VariantMembers = {};
@@ -139,24 +168,23 @@ function PlasmicActivationOfficeCenter2__RenderFunc(props: {
 
   const $globalActions = useGlobalActions?.();
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">
-          {PlasmicActivationOfficeCenter2.pageMetadata.title}
-        </title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicActivationOfficeCenter2.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicActivationOfficeCenter2.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -528,13 +556,11 @@ export const PlasmicActivationOfficeCenter2 = Object.assign(
     internalVariantProps: PlasmicActivationOfficeCenter2__VariantProps,
     internalArgProps: PlasmicActivationOfficeCenter2__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "محل مطب من",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/activation-page/office/center",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

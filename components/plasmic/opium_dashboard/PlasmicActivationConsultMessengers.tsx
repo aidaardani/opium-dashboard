@@ -74,6 +74,35 @@ import sty from "./PlasmicActivationConsultMessengers.module.css"; // plasmic-im
 
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "پیام رسان",
+
+    openGraph: {
+      title: "پیام رسان"
+    },
+    twitter: {
+      card: "summary",
+      title: "پیام رسان"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicActivationConsultMessengers__VariantMembers = {};
@@ -147,7 +176,7 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
         path: "centersApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "centersApi"
       },
@@ -155,7 +184,7 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
         path: "centersApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "centersApi"
       },
@@ -163,7 +192,7 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
         path: "centersApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "centersApi"
       },
@@ -171,7 +200,7 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
         path: "isLoading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -180,8 +209,14 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
+
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -189,18 +224,12 @@ function PlasmicActivationConsultMessengers__RenderFunc(props: {
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">
-          {PlasmicActivationConsultMessengers.pageMetadata.title}
-        </title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicActivationConsultMessengers.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicActivationConsultMessengers.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -953,13 +982,11 @@ export const PlasmicActivationConsultMessengers = Object.assign(
     internalVariantProps: PlasmicActivationConsultMessengers__VariantProps,
     internalArgProps: PlasmicActivationConsultMessengers__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "پیام رسان",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/activation-page/consult/messengers",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

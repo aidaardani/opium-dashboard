@@ -169,7 +169,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "select.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return (() => {
@@ -192,13 +192,13 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "select.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "costOffice",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return [
@@ -264,13 +264,13 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "input.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "descriptionList",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
           "\u0628\u06cc\u0645\u0627\u0631 \u062f\u0631 \u0635\u0648\u0631\u062a\u06cc \u0645\u0648\u0641\u0642 \u0628\u0647 \u0627\u062e\u0630 \u0646\u0648\u0628\u062a \u0645\u06cc \u0634\u0648\u062f \u06a9\u0647 \u0628\u06cc\u0639\u0627\u0646\u0647 \u0631\u0627 \u067e\u0631\u062f\u0627\u062e\u062a \u0646\u0645\u0627\u06cc\u062f.",
           "\u0627\u0633\u0627\u0645\u06cc \u0628\u06cc\u0645\u0627\u0631\u0627\u0646\u06cc \u06a9\u0647 \u062f\u0631 \u0644\u06cc\u0633\u062a \u0628\u06cc\u0645\u0627\u0631\u0627\u0646 \u0645\u0634\u0627\u0647\u062f\u0647 \u0645\u06cc \u06a9\u0646\u06cc\u062f \u062a\u0645\u0627\u0645\u0627 \u067e\u0631\u062f\u0627\u062e\u062a \u0628\u06cc\u0639\u0627\u0646\u0647 \u0631\u0627 \u0627\u0646\u062c\u0627\u0645 \u062f\u0627\u062f\u0647 \u0627\u0646\u062f.",
           "\u062f\u0631 \u0635\u0648\u0631\u062a\u06cc \u06a9\u0647 \u0628\u06cc\u0645\u0627\u0631 \u0646\u0648\u0628\u062a \u062e\u0648\u062f \u0631\u0627 \u062a\u0627 5 \u0633\u0627\u0639\u062a \u067e\u06cc\u0634 \u0627\u0632 \u0633\u0627\u0639\u062a \u0646\u0648\u0628\u062a \u0644\u063a\u0648 \u0646\u0645\u0627\u06cc\u062f\u060c \u0648\u062c\u0647 \u067e\u0631\u062f\u0627\u062e\u062a\u06cc \u0628\u06cc\u0645\u0627\u0631 \u0627\u0633\u062a\u0631\u062f\u0627\u062f \u0645\u06cc \u06af\u0631\u062f\u062f."
@@ -280,7 +280,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "centersApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "centersApi"
       },
@@ -288,7 +288,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "centersApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "centersApi"
       },
@@ -296,7 +296,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "centersApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "centersApi"
       },
@@ -304,37 +304,37 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "isCancelLoading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "isLoadingSave",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "input2.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "dialog2.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "shabaValue",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "shabaApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "shabaApi"
       },
@@ -342,7 +342,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "shabaApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "shabaApi"
       },
@@ -350,7 +350,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "shabaApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "shabaApi"
       },
@@ -358,7 +358,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "apiGetVezaratCost.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetVezaratCost"
       },
@@ -366,7 +366,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "apiGetVezaratCost.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetVezaratCost"
       },
@@ -374,7 +374,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "apiGetVezaratCost.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetVezaratCost"
       },
@@ -382,13 +382,13 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
         path: "dialogCardNumber.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "checkbox.isChecked",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -397,6 +397,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -1164,6 +1165,7 @@ function PlasmicActivationOfficeCost__RenderFunc(props: {
                   )}
                   component={Link}
                   href={"/rules"}
+                  legacyBehavior={false}
                   platform={"nextjs"}
                 >
                   {

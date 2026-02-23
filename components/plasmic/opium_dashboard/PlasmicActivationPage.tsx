@@ -71,6 +71,35 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicActivationPage.module.css"; // plasmic-import: 3ABVwkEsdVNM/css
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "راه اندازی",
+
+    openGraph: {
+      title: "راه اندازی"
+    },
+    twitter: {
+      card: "summary",
+      title: "راه اندازی"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicActivationPage__VariantMembers = {};
@@ -133,22 +162,23 @@ function PlasmicActivationPage__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">{PlasmicActivationPage.pageMetadata.title}</title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicActivationPage.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicActivationPage.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -421,13 +451,11 @@ export const PlasmicActivationPage = Object.assign(
     internalVariantProps: PlasmicActivationPage__VariantProps,
     internalArgProps: PlasmicActivationPage__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "راه اندازی",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/activation-page",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

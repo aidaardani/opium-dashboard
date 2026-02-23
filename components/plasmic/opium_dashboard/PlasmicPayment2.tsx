@@ -160,7 +160,7 @@ function PlasmicPayment2__RenderFunc(props: {
         path: "getDetailsPayment.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "getDetailsPayment"
       },
@@ -168,7 +168,7 @@ function PlasmicPayment2__RenderFunc(props: {
         path: "getDetailsPayment.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "getDetailsPayment"
       },
@@ -176,7 +176,7 @@ function PlasmicPayment2__RenderFunc(props: {
         path: "getDetailsPayment.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "getDetailsPayment"
       },
@@ -184,13 +184,13 @@ function PlasmicPayment2__RenderFunc(props: {
         path: "more",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "getUserPrefrence.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "getUserPrefrence"
       },
@@ -198,7 +198,7 @@ function PlasmicPayment2__RenderFunc(props: {
         path: "getUserPrefrence.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "getUserPrefrence"
       },
@@ -206,7 +206,7 @@ function PlasmicPayment2__RenderFunc(props: {
         path: "getUserPrefrence.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "getUserPrefrence"
       },
@@ -214,7 +214,7 @@ function PlasmicPayment2__RenderFunc(props: {
         path: "loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -223,6 +223,7 @@ function PlasmicPayment2__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

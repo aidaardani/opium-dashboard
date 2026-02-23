@@ -177,31 +177,31 @@ function PlasmicDuration__RenderFunc(props: {
         path: "duration",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "dialog.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "fragmentTimePicker.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "00:00"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "00:00"
       },
       {
         path: "sampleDuration",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "variable",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "newduration",
@@ -215,13 +215,13 @@ function PlasmicDuration__RenderFunc(props: {
         path: "check",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.check
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.check
       },
       {
         path: "fragmentPopover.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false,
 
         refName: "fragmentPopover"
       },
@@ -229,7 +229,7 @@ function PlasmicDuration__RenderFunc(props: {
         path: "sampleDurationApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "sampleDurationApi"
       },
@@ -237,7 +237,7 @@ function PlasmicDuration__RenderFunc(props: {
         path: "sampleDurationApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "sampleDurationApi"
       },
@@ -245,7 +245,7 @@ function PlasmicDuration__RenderFunc(props: {
         path: "sampleDurationApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "sampleDurationApi"
       }
@@ -256,6 +256,7 @@ function PlasmicDuration__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

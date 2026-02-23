@@ -151,7 +151,7 @@ function PlasmicTransactions2__RenderFunc(props: {
         path: "apiGetDrAcoounts.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetDrAcoounts"
       },
@@ -159,7 +159,7 @@ function PlasmicTransactions2__RenderFunc(props: {
         path: "apiGetDrAcoounts.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetDrAcoounts"
       },
@@ -167,7 +167,7 @@ function PlasmicTransactions2__RenderFunc(props: {
         path: "apiGetDrAcoounts.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetDrAcoounts"
       },
@@ -175,7 +175,7 @@ function PlasmicTransactions2__RenderFunc(props: {
         path: "accordion.activePanelId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onMutate: generateOnMutateForSpec(
           "activePanelId",
@@ -189,6 +189,7 @@ function PlasmicTransactions2__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -536,7 +537,8 @@ function PlasmicTransactions2__RenderFunc(props: {
                   ["accordion", "activePanelId"],
                   AntdAccordion_Helpers
                 ).apply(null, eventArgs);
-              }
+              },
+              rotationAngle: 90
             };
             initializeCodeComponentStates(
               $state,

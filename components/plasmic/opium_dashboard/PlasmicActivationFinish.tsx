@@ -76,6 +76,35 @@ import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; 
 import TelegramIcon from "../fragment_icons/icons/PlasmicIcon__Telegram"; // plasmic-import: vu4uxcIH4gVk/icon
 import EitaaIcon from "../fragment_icons/icons/PlasmicIcon__Eitaa"; // plasmic-import: qxWwW7vbw7na/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "شروع نوبت دهی",
+
+    openGraph: {
+      title: "شروع نوبت دهی"
+    },
+    twitter: {
+      card: "summary",
+      title: "شروع نوبت دهی"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicActivationFinish__VariantMembers = {};
@@ -138,22 +167,23 @@ function PlasmicActivationFinish__RenderFunc(props: {
 
   const $globalActions = useGlobalActions?.();
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">{PlasmicActivationFinish.pageMetadata.title}</title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicActivationFinish.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicActivationFinish.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -1098,13 +1128,11 @@ export const PlasmicActivationFinish = Object.assign(
     internalVariantProps: PlasmicActivationFinish__VariantProps,
     internalArgProps: PlasmicActivationFinish__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "شروع نوبت دهی",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/activation-page/finish",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

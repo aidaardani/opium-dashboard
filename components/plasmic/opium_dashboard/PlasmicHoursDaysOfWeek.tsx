@@ -193,7 +193,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
         path: "days",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
           { id: 6, name: "\u0634\u0646\u0628\u0647", nameEn: "Saturday" },
           {
             id: 7,
@@ -237,7 +237,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
         path: "durationOfWorkhour.newduration",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.workhoursApi.data.data.duration || 0;
@@ -256,13 +256,13 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
         path: "loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "workhoursApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "workhoursApi"
       },
@@ -270,7 +270,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
         path: "workhoursApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "workhoursApi"
       },
@@ -278,7 +278,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
         path: "workhoursApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "workhoursApi"
       },
@@ -286,19 +286,19 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
         path: "checkingTheNumberOfBookForChangeWorkhoure",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "dialog.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "dialogWarningWorkhoure.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       }
     ],
     [$props, $ctx, $refs]
@@ -307,6 +307,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -668,7 +669,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                   [
                     {
                       name: "workhours[].listOfWorkhoureCopy",
-                      initFunc: ({ $props, $state, $queries }) =>
+                      initFunc: ({ $props, $state, $queries, $q }) =>
                         (() => {
                           try {
                             return $state.workhoursApi.data.data.workhours.some(
@@ -699,7 +700,7 @@ function PlasmicHoursDaysOfWeek__RenderFunc(props: {
                     },
                     {
                       name: "workhours[].checkboxIsChecked",
-                      initFunc: ({ $props, $state, $queries }) =>
+                      initFunc: ({ $props, $state, $queries, $q }) =>
                         (() => {
                           try {
                             return $state.workhoursApi.data.data.workhours?.some?.(

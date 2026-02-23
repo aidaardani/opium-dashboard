@@ -77,6 +77,30 @@ import sty from "./PlasmicPricing.module.css"; // plasmic-import: jvrHBi1Vmdv8/c
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    openGraph: {},
+    twitter: {
+      card: "summary"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicPricing__VariantMembers = {};
@@ -166,13 +190,13 @@ function PlasmicPricing__RenderFunc(props: {
         path: "totalprice",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "accordion.activePanelId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onMutate: generateOnMutateForSpec(
           "activePanelId",
@@ -183,7 +207,7 @@ function PlasmicPricing__RenderFunc(props: {
         path: "accordion2.activePanelId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onMutate: generateOnMutateForSpec(
           "activePanelId",
@@ -194,7 +218,7 @@ function PlasmicPricing__RenderFunc(props: {
         path: "accordion3.activePanelId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onMutate: generateOnMutateForSpec(
           "activePanelId",
@@ -205,7 +229,7 @@ function PlasmicPricing__RenderFunc(props: {
         path: "accordion4.activePanelId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onMutate: generateOnMutateForSpec(
           "activePanelId",
@@ -216,13 +240,13 @@ function PlasmicPricing__RenderFunc(props: {
         path: "checkbox2.isChecked",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "isChecked"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "isChecked"
       },
       {
         path: "getNelsonFeatures.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "getNelsonFeatures"
       },
@@ -230,7 +254,7 @@ function PlasmicPricing__RenderFunc(props: {
         path: "getNelsonFeatures.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "getNelsonFeatures"
       },
@@ -238,7 +262,7 @@ function PlasmicPricing__RenderFunc(props: {
         path: "getNelsonFeatures.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "getNelsonFeatures"
       },
@@ -246,7 +270,7 @@ function PlasmicPricing__RenderFunc(props: {
         path: "apiRequestForNotificationSetting.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiRequestForNotificationSetting"
       },
@@ -254,7 +278,7 @@ function PlasmicPricing__RenderFunc(props: {
         path: "apiRequestForNotificationSetting.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiRequestForNotificationSetting"
       },
@@ -262,7 +286,7 @@ function PlasmicPricing__RenderFunc(props: {
         path: "apiRequestForNotificationSetting.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiRequestForNotificationSetting"
       },
@@ -270,7 +294,7 @@ function PlasmicPricing__RenderFunc(props: {
         path: "feedbacks.activePanelId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onMutate: generateOnMutateForSpec(
           "activePanelId",
@@ -281,13 +305,13 @@ function PlasmicPricing__RenderFunc(props: {
         path: "loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "customerfeatures.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "customerfeatures"
       },
@@ -295,7 +319,7 @@ function PlasmicPricing__RenderFunc(props: {
         path: "customerfeatures.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "customerfeatures"
       },
@@ -303,7 +327,7 @@ function PlasmicPricing__RenderFunc(props: {
         path: "customerfeatures.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "customerfeatures"
       },
@@ -311,7 +335,7 @@ function PlasmicPricing__RenderFunc(props: {
         path: "auth.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "auth"
       },
@@ -319,7 +343,7 @@ function PlasmicPricing__RenderFunc(props: {
         path: "auth.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "auth"
       },
@@ -327,7 +351,7 @@ function PlasmicPricing__RenderFunc(props: {
         path: "auth.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "auth"
       }
@@ -338,8 +362,14 @@ function PlasmicPricing__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
+
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -674,7 +704,12 @@ function PlasmicPricing__RenderFunc(props: {
                                 [
                                   {
                                     name: "checkboxSilver[].isChecked",
-                                    initFunc: ({ $props, $state, $queries }) =>
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) =>
                                       (() => {
                                         try {
                                           return $state.customerfeatures.data &&
@@ -1793,7 +1828,8 @@ function PlasmicPricing__RenderFunc(props: {
                           ["accordion", "activePanelId"],
                           AntdAccordion_Helpers
                         ).apply(null, eventArgs);
-                      }
+                      },
+                      rotationAngle: 90
                     };
                     initializeCodeComponentStates(
                       $state,
@@ -2160,7 +2196,8 @@ function PlasmicPricing__RenderFunc(props: {
                           ["accordion2", "activePanelId"],
                           AntdAccordion_Helpers
                         ).apply(null, eventArgs);
-                      }
+                      },
+                      rotationAngle: 90
                     };
                     initializeCodeComponentStates(
                       $state,
@@ -2277,7 +2314,8 @@ function PlasmicPricing__RenderFunc(props: {
                           ["feedbacks", "activePanelId"],
                           AntdAccordion_Helpers
                         ).apply(null, eventArgs);
-                      }
+                      },
+                      rotationAngle: 90
                     };
                     initializeCodeComponentStates(
                       $state,
@@ -2350,7 +2388,8 @@ function PlasmicPricing__RenderFunc(props: {
                           ["accordion3", "activePanelId"],
                           AntdAccordion_Helpers
                         ).apply(null, eventArgs);
-                      }
+                      },
+                      rotationAngle: 90
                     };
                     initializeCodeComponentStates(
                       $state,
@@ -2888,7 +2927,8 @@ function PlasmicPricing__RenderFunc(props: {
                           ["accordion4", "activePanelId"],
                           AntdAccordion_Helpers
                         ).apply(null, eventArgs);
-                      }
+                      },
+                      rotationAngle: 90
                     };
                     initializeCodeComponentStates(
                       $state,
@@ -3302,13 +3342,11 @@ export const PlasmicPricing = Object.assign(
     internalVariantProps: PlasmicPricing__VariantProps,
     internalArgProps: PlasmicPricing__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/pricing",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

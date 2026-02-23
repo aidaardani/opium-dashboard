@@ -170,7 +170,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
         path: "eitaa.numberValue2",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.apiRequest.data.data.find(
@@ -191,7 +191,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
         path: "eitaa.usernameValue",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.apiRequest.data.data.find(
@@ -212,7 +212,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
         path: "whatsapp.numberValue2",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.apiRequest.data.data.find(
@@ -233,13 +233,13 @@ function PlasmicProfileChannels__RenderFunc(props: {
         path: "whatsapp.usernameValue",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ``
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ``
       },
       {
         path: "_switch.checked",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return !!$state.apiRequest.data.data.find(
@@ -260,13 +260,13 @@ function PlasmicProfileChannels__RenderFunc(props: {
         path: "dialog.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "apiRequest.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiRequest"
       },
@@ -274,7 +274,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
         path: "apiRequest.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiRequest"
       },
@@ -282,7 +282,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
         path: "apiRequest.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiRequest"
       },
@@ -290,7 +290,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
         path: "secureCall",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
           "\u062f\u0631 \u067e\u0646\u0644 \u067e\u0632\u0634\u06a9\u060c \u062f\u0631 \u0645\u0642\u0627\u0628\u0644 \u0627\u0633\u0645 \u0647\u0631 \u0628\u06cc\u0645\u0627\u0631\u060c \u062f\u06a9\u0645\u0647 \u062a\u0645\u0627\u0633 \u0648\u062c\u0648\u062f \u062f\u0627\u0631\u062f.",
           "\u067e\u0632\u0634\u06a9 \u0642\u0627\u062f\u0631 \u0627\u0633\u062a \u062f\u0631 \u0647\u0631 \u0632\u0645\u0627\u0646 \u0628\u0627 \u0628\u06cc\u0645\u0627\u0631 \u062a\u0645\u0627\u0633 \u0628\u0631\u0642\u0631\u0627\u0631 \u06a9\u0646\u062f.",
           "\u0628\u06cc\u0645\u0627\u0631 \u062f\u0631 \u0642\u0628\u0636 \u0646\u0648\u0628\u062a \u0648 \u062f\u0631 \u0646\u0648\u0628\u062a\u200c\u0647\u0627\u06cc \u0645\u0646\u060c \u062f\u06a9\u0645\u0647 \u0628\u0631\u0642\u0631\u0627\u0631\u06cc \u062a\u0645\u0627\u0633 \u0631\u0627 \u062f\u0627\u0631\u062f.",
@@ -303,13 +303,13 @@ function PlasmicProfileChannels__RenderFunc(props: {
         path: "isLoadingSave",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "apiCheckEitaaUsername.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiCheckEitaaUsername"
       },
@@ -317,7 +317,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
         path: "apiCheckEitaaUsername.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiCheckEitaaUsername"
       },
@@ -325,7 +325,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
         path: "apiCheckEitaaUsername.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiCheckEitaaUsername"
       },
@@ -333,7 +333,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
         path: "popover.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false,
 
         refName: "popover"
       }
@@ -344,6 +344,7 @@ function PlasmicProfileChannels__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

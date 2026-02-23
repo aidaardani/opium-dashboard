@@ -74,6 +74,35 @@ import sty from "./PlasmicActivationOfficeDuration.module.css"; // plasmic-impor
 
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "ساعت کاری",
+
+    openGraph: {
+      title: "ساعت کاری"
+    },
+    twitter: {
+      card: "summary",
+      title: "ساعت کاری"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicActivationOfficeDuration__VariantMembers = {};
@@ -147,13 +176,13 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
         path: "hoursDaysOfWeek.duration",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "centersApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "centersApi"
       },
@@ -161,7 +190,7 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
         path: "centersApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "centersApi"
       },
@@ -169,7 +198,7 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
         path: "centersApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "centersApi"
       }
@@ -180,8 +209,14 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
+
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -189,18 +224,12 @@ function PlasmicActivationOfficeDuration__RenderFunc(props: {
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">
-          {PlasmicActivationOfficeDuration.pageMetadata.title}
-        </title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicActivationOfficeDuration.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicActivationOfficeDuration.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -690,13 +719,11 @@ export const PlasmicActivationOfficeDuration = Object.assign(
     internalVariantProps: PlasmicActivationOfficeDuration__VariantProps,
     internalArgProps: PlasmicActivationOfficeDuration__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "ساعت کاری",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/activation-page/office/duration",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

@@ -78,6 +78,30 @@ import Icon7Icon from "./icons/PlasmicIcon__Icon7"; // plasmic-import: -MDfk7M6F
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    openGraph: {},
+    twitter: {
+      card: "summary"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicTransactions__VariantMembers = {};
@@ -147,7 +171,7 @@ function PlasmicTransactions__RenderFunc(props: {
         path: "apiGetDrAcoounts.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetDrAcoounts"
       },
@@ -155,7 +179,7 @@ function PlasmicTransactions__RenderFunc(props: {
         path: "apiGetDrAcoounts.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetDrAcoounts"
       },
@@ -163,7 +187,7 @@ function PlasmicTransactions__RenderFunc(props: {
         path: "apiGetDrAcoounts.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetDrAcoounts"
       },
@@ -171,7 +195,7 @@ function PlasmicTransactions__RenderFunc(props: {
         path: "accordion.activePanelId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onMutate: generateOnMutateForSpec(
           "activePanelId",
@@ -185,8 +209,14 @@ function PlasmicTransactions__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
+
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -497,7 +527,8 @@ function PlasmicTransactions__RenderFunc(props: {
                   ["accordion", "activePanelId"],
                   AntdAccordion_Helpers
                 ).apply(null, eventArgs);
-              }
+              },
+              rotationAngle: 90
             };
             initializeCodeComponentStates(
               $state,
@@ -612,13 +643,11 @@ export const PlasmicTransactions = Object.assign(
     internalVariantProps: PlasmicTransactions__VariantProps,
     internalArgProps: PlasmicTransactions__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/transactions",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

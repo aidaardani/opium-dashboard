@@ -153,7 +153,7 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
         path: "rules",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
           {
             title:
               "\u0648\u06cc\u0632\u06cc\u062a \u0622\u0646\u0644\u0627\u06cc\u0646 \u062f\u0631 \u06cc\u06a9\u06cc \u0627\u0632 \u067e\u06cc\u0627\u0645 \u0631\u0633\u0627\u0646\u200c\u0647\u0627\u06cc (\u0648\u0627\u062a\u0633\u0627\u067e \u06cc\u0627 \u0627\u06cc\u062a\u0627) \u06a9\u0647 \u0634\u0645\u0627 \u0627\u0639\u0644\u0627\u0645 \u0645\u06cc\u06a9\u0646\u06cc\u062f \u0648  \u0628\u06cc\u0645\u0627\u0631 \u0627\u0646\u062a\u062e\u0627\u0628 \u0645\u06cc\u200c\u06a9\u0646\u062f\u060c \u0627\u0646\u062c\u0627\u0645 \u0645\u06cc \u0634\u0648\u062f.",
@@ -190,19 +190,19 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
         path: "checkedRules",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "dialog.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "profileApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "profileApi"
       },
@@ -210,7 +210,7 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
         path: "profileApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "profileApi"
       },
@@ -218,7 +218,7 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
         path: "profileApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "profileApi"
       }
@@ -229,6 +229,7 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -405,7 +406,7 @@ function PlasmicActivationConsultRules__RenderFunc(props: {
               [
                 {
                   name: "checkbox[].isChecked",
-                  initFunc: ({ $props, $state, $queries }) =>
+                  initFunc: ({ $props, $state, $queries, $q }) =>
                     (() => {
                       try {
                         return $state.checkedRules.includes(currentItem.value);

@@ -77,6 +77,30 @@ import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; 
 import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6kdBUA/icon
 import Icon45Icon from "./icons/PlasmicIcon__Icon45"; // plasmic-import: YyulLjs7e3e8/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    openGraph: {},
+    twitter: {
+      card: "summary"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicRahnamaSetting__VariantMembers = {};
@@ -151,13 +175,13 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
         path: "loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "user.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "user"
       },
@@ -165,7 +189,7 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
         path: "user.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "user"
       },
@@ -173,7 +197,7 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
         path: "user.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "user"
       },
@@ -181,19 +205,19 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
         path: "pageLoading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "isValidNumber",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "saveLoading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "handleInput[].value",
@@ -209,7 +233,7 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
         path: "apiGetSocialApp.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetSocialApp"
       },
@@ -217,7 +241,7 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
         path: "apiGetSocialApp.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetSocialApp"
       },
@@ -225,7 +249,7 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
         path: "apiGetSocialApp.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetSocialApp"
       },
@@ -233,7 +257,7 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
         path: "apps.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apps"
       },
@@ -241,7 +265,7 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
         path: "apps.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apps"
       },
@@ -249,7 +273,7 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
         path: "apps.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apps"
       }
@@ -260,8 +284,14 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
+
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -457,7 +487,12 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
                                 [
                                   {
                                     name: "appSwitch[].checked",
-                                    initFunc: ({ $props, $state, $queries }) =>
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) =>
                                       (() => {
                                         try {
                                           return $state.apiGetSocialApp.data[
@@ -525,7 +560,12 @@ function PlasmicRahnamaSetting__RenderFunc(props: {
                                 [
                                   {
                                     name: "handleInput[].value",
-                                    initFunc: ({ $props, $state, $queries }) =>
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) =>
                                       (() => {
                                         try {
                                           return $state.apiGetSocialApp.data[
@@ -1598,13 +1638,11 @@ export const PlasmicRahnamaSetting = Object.assign(
     internalVariantProps: PlasmicRahnamaSetting__VariantProps,
     internalArgProps: PlasmicRahnamaSetting__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/rahnama/setting",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

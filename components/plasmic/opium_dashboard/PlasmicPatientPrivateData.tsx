@@ -148,13 +148,13 @@ function PlasmicPatientPrivateData__RenderFunc(props: {
         path: "transparent",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.transparent
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.transparent
       },
       {
         path: "succses",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.succses
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.succses
       }
     ],
     [$props, $ctx, $refs]
@@ -163,6 +163,7 @@ function PlasmicPatientPrivateData__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

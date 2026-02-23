@@ -145,7 +145,7 @@ function PlasmicActivationProcess__RenderFunc(props: {
         path: "officeSteps",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
           { title: "\u0634\u0631\u0648\u0639", subTitle: "", step: 1 },
           {
             title:
@@ -173,7 +173,7 @@ function PlasmicActivationProcess__RenderFunc(props: {
         path: "consultSteps",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
           { title: "\u0634\u0631\u0648\u0639", subTitle: "", step: 1 },
           {
             title: "\u0642\u0648\u0627\u0646\u06cc\u0646",
@@ -211,6 +211,7 @@ function PlasmicActivationProcess__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

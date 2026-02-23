@@ -138,13 +138,13 @@ function PlasmicDrServices__RenderFunc(props: {
         path: "drCenters.selectedCenter",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "apiCenters.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiCenters"
       },
@@ -152,7 +152,7 @@ function PlasmicDrServices__RenderFunc(props: {
         path: "apiCenters.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiCenters"
       },
@@ -160,7 +160,7 @@ function PlasmicDrServices__RenderFunc(props: {
         path: "apiCenters.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiCenters"
       }
@@ -171,6 +171,7 @@ function PlasmicDrServices__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

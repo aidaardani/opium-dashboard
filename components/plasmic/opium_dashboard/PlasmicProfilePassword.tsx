@@ -150,7 +150,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
         path: "_switch.checked",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.authApi.data.data.is_static_password_enabled;
@@ -169,7 +169,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
         path: "passwordInput.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onMutate: generateOnMutateForSpec("value", AntdPassword_Helpers)
       },
@@ -177,7 +177,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
         path: "repeatPassword.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onMutate: generateOnMutateForSpec("value", AntdPassword_Helpers)
       },
@@ -185,7 +185,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
         path: "authApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "authApi"
       },
@@ -193,7 +193,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
         path: "authApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "authApi"
       },
@@ -201,7 +201,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
         path: "authApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "authApi"
       },
@@ -209,7 +209,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
         path: "oldPassword.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         onMutate: generateOnMutateForSpec("value", AntdPassword_Helpers)
       },
@@ -217,7 +217,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
         path: "isLoading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -226,6 +226,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

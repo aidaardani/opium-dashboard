@@ -171,19 +171,19 @@ function PlasmicDrCenter__RenderFunc(props: {
         path: "officeBook",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.officeBook
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.officeBook
       },
       {
         path: "onlineBook",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.onlineBook
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.onlineBook
       },
       {
         path: "selected",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.selected
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.selected
       }
     ],
     [$props, $ctx, $refs]
@@ -192,6 +192,7 @@ function PlasmicDrCenter__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

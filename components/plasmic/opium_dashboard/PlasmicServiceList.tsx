@@ -60,6 +60,7 @@ import {
 } from "@plasmicapp/react-web/lib/host";
 
 import DrServices from "../../DrServices"; // plasmic-import: 6umHSxCKrU6f/component
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/styleTokensProvider
 
@@ -67,6 +68,30 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicServiceList.module.css"; // plasmic-import: 9dDa9fZJkCNM/css
+
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    openGraph: {},
+    twitter: {
+      card: "summary"
+    }
+  };
+}
 
 createPlasmicElementProxy;
 
@@ -82,6 +107,7 @@ export const PlasmicServiceList__ArgProps = new Array<ArgPropType>();
 export type PlasmicServiceList__OverridesType = {
   root?: Flex__<"div">;
   drServices?: Flex__<typeof DrServices>;
+  sideEffect?: Flex__<typeof SideEffect>;
 };
 
 export interface DefaultServiceListProps {}
@@ -125,6 +151,13 @@ function PlasmicServiceList__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const $globalActions = useGlobalActions?.();
+
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
@@ -157,6 +190,40 @@ function PlasmicServiceList__RenderFunc(props: {
             data-plasmic-override={overrides.drServices}
             className={classNames("__wab_instance", sty.drServices)}
           />
+
+          <SideEffect
+            data-plasmic-name={"sideEffect"}
+            data-plasmic-override={overrides.sideEffect}
+            className={classNames("__wab_instance", sty.sideEffect)}
+            deps={[$ctx.query.user_id]}
+            onMount={async () => {
+              const $steps = {};
+
+              $steps["invokeGlobalAction"] = true
+                ? (() => {
+                    const actionArgs = {
+                      args: [
+                        {
+                          user_id: $ctx.query?.user_id
+                        }
+                      ]
+                    };
+                    return $globalActions["GrowthBook.setAttributes"]?.apply(
+                      null,
+                      [...actionArgs.args]
+                    );
+                  })()
+                : undefined;
+              if (
+                $steps["invokeGlobalAction"] != null &&
+                typeof $steps["invokeGlobalAction"] === "object" &&
+                typeof $steps["invokeGlobalAction"].then === "function"
+              ) {
+                $steps["invokeGlobalAction"] =
+                  await $steps["invokeGlobalAction"];
+              }
+            }}
+          />
         </div>
       </div>
     </React.Fragment>
@@ -164,8 +231,9 @@ function PlasmicServiceList__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "drServices"],
-  drServices: ["drServices"]
+  root: ["root", "drServices", "sideEffect"],
+  drServices: ["drServices"],
+  sideEffect: ["sideEffect"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -173,6 +241,7 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   drServices: typeof DrServices;
+  sideEffect: typeof SideEffect;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -238,18 +307,17 @@ export const PlasmicServiceList = Object.assign(
   {
     // Helper components rendering sub-elements
     drServices: makeNodeComponent("drServices"),
+    sideEffect: makeNodeComponent("sideEffect"),
 
     // Metadata about props expected for PlasmicServiceList
     internalVariantProps: PlasmicServiceList__VariantProps,
     internalArgProps: PlasmicServiceList__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/service-list",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

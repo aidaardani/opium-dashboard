@@ -81,6 +81,30 @@ import Icons8Power50SvgIcon from "./icons/PlasmicIcon__Icons8Power50Svg"; // pla
 import Icons8Support64SvgIcon from "./icons/PlasmicIcon__Icons8Support64Svg"; // plasmic-import: sZKHYviUIdem/icon
 import Icons8HamburgerMenuSvgIcon from "./icons/PlasmicIcon__Icons8HamburgerMenuSvg"; // plasmic-import: tjRzMyni2IMv/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    openGraph: {},
+    twitter: {
+      card: "summary"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicHamburgerMenu__VariantMembers = {};
@@ -146,13 +170,13 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
         path: "isOpenSideBar",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "apiRequest.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiRequest"
       },
@@ -160,7 +184,7 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
         path: "apiRequest.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiRequest"
       },
@@ -168,7 +192,7 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
         path: "apiRequest.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiRequest"
       }
@@ -179,8 +203,14 @@ function PlasmicHamburgerMenu__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
+
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -1055,13 +1085,11 @@ export const PlasmicHamburgerMenu = Object.assign(
     internalVariantProps: PlasmicHamburgerMenu__VariantProps,
     internalArgProps: PlasmicHamburgerMenu__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/new-page-3",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

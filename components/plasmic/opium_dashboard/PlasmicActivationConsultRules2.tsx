@@ -71,6 +71,35 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicActivationConsultRules2.module.css"; // plasmic-import: 2twljBA-hP0x/css
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "قوانین",
+
+    openGraph: {
+      title: "قوانین"
+    },
+    twitter: {
+      card: "summary",
+      title: "قوانین"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicActivationConsultRules2__VariantMembers = {};
@@ -137,24 +166,23 @@ function PlasmicActivationConsultRules2__RenderFunc(props: {
 
   const $globalActions = useGlobalActions?.();
 
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
+
   const styleTokensClassNames = _useStyleTokens();
 
   return (
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">
-          {PlasmicActivationConsultRules2.pageMetadata.title}
-        </title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicActivationConsultRules2.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicActivationConsultRules2.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -406,13 +434,11 @@ export const PlasmicActivationConsultRules2 = Object.assign(
     internalVariantProps: PlasmicActivationConsultRules2__VariantProps,
     internalArgProps: PlasmicActivationConsultRules2__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "قوانین",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/activation-page/consult/rules",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

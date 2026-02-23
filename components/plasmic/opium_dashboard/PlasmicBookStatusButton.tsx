@@ -164,31 +164,31 @@ function PlasmicBookStatusButton__RenderFunc(props: {
         path: "came",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.came
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.came
       },
       {
         path: "visited",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.visited
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.visited
       },
       {
         path: "deleted",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.deleted
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.deleted
       },
       {
         path: "loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "isDisable",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.isDisable
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.isDisable
       }
     ],
     [$props, $ctx, $refs]
@@ -197,6 +197,7 @@ function PlasmicBookStatusButton__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

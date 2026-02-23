@@ -151,7 +151,7 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
         path: "services",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
           {
             title:
               "\u0646\u0648\u0628\u062a \u062f\u0647\u06cc \u0645\u0637\u0628",
@@ -172,13 +172,13 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
         path: "selectedServices",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "profileApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "profileApi"
       },
@@ -186,7 +186,7 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
         path: "profileApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "profileApi"
       },
@@ -194,7 +194,7 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
         path: "profileApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "profileApi"
       }
@@ -205,6 +205,7 @@ function PlasmicActivationServiceSelection__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

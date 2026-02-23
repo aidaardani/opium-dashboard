@@ -5016,7 +5016,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
         path: "expertiseArray",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "profileExpertiseItem[].degreeValue",
@@ -5052,25 +5052,25 @@ function PlasmicProfileExperties__RenderFunc(props: {
         path: "dialog.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "selectedId",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "changedExperies",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "authApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "authApi"
       },
@@ -5078,7 +5078,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
         path: "authApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "authApi"
       },
@@ -5086,7 +5086,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
         path: "authApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "authApi"
       },
@@ -5094,7 +5094,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
         path: "expertisesApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "expertisesApi"
       },
@@ -5102,7 +5102,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
         path: "expertisesApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "expertisesApi"
       },
@@ -5110,7 +5110,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
         path: "expertisesApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "expertisesApi"
       },
@@ -5118,19 +5118,19 @@ function PlasmicProfileExperties__RenderFunc(props: {
         path: "isLoading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "isLoadingDelete",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "isLoadingSave",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -5139,6 +5139,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -5681,7 +5682,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
                 [
                   {
                     name: "profileExpertiseItem[].degreeValue",
-                    initFunc: ({ $props, $state, $queries }) =>
+                    initFunc: ({ $props, $state, $queries, $q }) =>
                       (() => {
                         try {
                           return currentItem.degree.id;
@@ -5698,7 +5699,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
                   },
                   {
                     name: "profileExpertiseItem[].expertiseValue",
-                    initFunc: ({ $props, $state, $queries }) =>
+                    initFunc: ({ $props, $state, $queries, $q }) =>
                       (() => {
                         try {
                           return currentItem.expertise.id;
@@ -5715,7 +5716,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
                   },
                   {
                     name: "profileExpertiseItem[].expertiseTitle",
-                    initFunc: ({ $props, $state, $queries }) =>
+                    initFunc: ({ $props, $state, $queries, $q }) =>
                       (() => {
                         try {
                           return currentItem.alias_title;
@@ -6182,12 +6183,12 @@ function PlasmicProfileExperties__RenderFunc(props: {
                     [
                       {
                         name: "profileExpertiseItem2[].degreeValue",
-                        initFunc: ({ $props, $state, $queries }) =>
+                        initFunc: ({ $props, $state, $queries, $q }) =>
                           currentItem.academic_degree_id
                       },
                       {
                         name: "profileExpertiseItem2[].expertiseValue",
-                        initFunc: ({ $props, $state, $queries }) =>
+                        initFunc: ({ $props, $state, $queries, $q }) =>
                           (() => {
                             try {
                               return currentItem.speciality_id;
@@ -6204,7 +6205,7 @@ function PlasmicProfileExperties__RenderFunc(props: {
                       },
                       {
                         name: "profileExpertiseItem2[].expertiseTitle",
-                        initFunc: ({ $props, $state, $queries }) =>
+                        initFunc: ({ $props, $state, $queries, $q }) =>
                           (() => {
                             try {
                               return currentItem.alias;

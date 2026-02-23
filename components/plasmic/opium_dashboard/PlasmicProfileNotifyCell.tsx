@@ -155,7 +155,7 @@ function PlasmicProfileNotifyCell__RenderFunc(props: {
         path: "apiRequest.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiRequest"
       },
@@ -163,7 +163,7 @@ function PlasmicProfileNotifyCell__RenderFunc(props: {
         path: "apiRequest.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiRequest"
       },
@@ -171,7 +171,7 @@ function PlasmicProfileNotifyCell__RenderFunc(props: {
         path: "apiRequest.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiRequest"
       }
@@ -182,6 +182,7 @@ function PlasmicProfileNotifyCell__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -298,7 +299,7 @@ function PlasmicProfileNotifyCell__RenderFunc(props: {
             );
           }}
           placeholder={
-            "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u0645\u0646\u0634\u06cc"
+            "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u0645\u0646\u0634\u06cc \u0645\u0637\u0628"
           }
           type={"text"}
           value={generateStateValueProp($state, ["notifyCell", "value"])}

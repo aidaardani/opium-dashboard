@@ -141,7 +141,7 @@ function PlasmicQuickAccessWallet__RenderFunc(props: {
         path: "detailsPayment",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -150,6 +150,7 @@ function PlasmicQuickAccessWallet__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

@@ -61,13 +61,16 @@
   width: 100%;
   left: auto;
   top: auto;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
   background: #ffffff00;
   outline-style: none;
   color: var(--token-qtgMaW0djcWt);
   font-size: 14px;
   font-weight: 300;
+  margin-bottom: 0px;
   min-width: 0;
-  padding: 0px;
   border-style: none;
   border-color: transparent;
 }

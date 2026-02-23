@@ -165,7 +165,7 @@ function PlasmicDrCenters__RenderFunc(props: {
         path: "selectedCenter",
         type: "readonly",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $props.hasAllOption
@@ -188,7 +188,7 @@ function PlasmicDrCenters__RenderFunc(props: {
         path: "fragmentPopover.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false,
 
         refName: "fragmentPopover"
       },
@@ -196,19 +196,19 @@ function PlasmicDrCenters__RenderFunc(props: {
         path: "textInput.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "apiprofile",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "apiRequest.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiRequest"
       },
@@ -216,7 +216,7 @@ function PlasmicDrCenters__RenderFunc(props: {
         path: "apiRequest.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiRequest"
       },
@@ -224,7 +224,7 @@ function PlasmicDrCenters__RenderFunc(props: {
         path: "apiRequest.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiRequest"
       },
@@ -232,7 +232,7 @@ function PlasmicDrCenters__RenderFunc(props: {
         path: "apiCheckActivation.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiCheckActivation"
       },
@@ -240,7 +240,7 @@ function PlasmicDrCenters__RenderFunc(props: {
         path: "apiCheckActivation.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiCheckActivation"
       },
@@ -248,7 +248,7 @@ function PlasmicDrCenters__RenderFunc(props: {
         path: "apiCheckActivation.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiCheckActivation"
       }
@@ -259,6 +259,7 @@ function PlasmicDrCenters__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -840,10 +841,10 @@ function PlasmicDrCenters__RenderFunc(props: {
                 onselected={async () => {
                   const $steps = {};
 
-                  $steps["goToHttpsDrPaziresh24ComCreateCenter"] = true
+                  $steps["goToHttpsDrRegisterPaziresh24Com"] = true
                     ? (() => {
                         const actionArgs = {
-                          destination: "https://dr.paziresh24.com/create-center"
+                          destination: "https://dr-register.paziresh24.com/"
                         };
                         return (({ destination }) => {
                           if (
@@ -860,14 +861,14 @@ function PlasmicDrCenters__RenderFunc(props: {
                       })()
                     : undefined;
                   if (
-                    $steps["goToHttpsDrPaziresh24ComCreateCenter"] != null &&
-                    typeof $steps["goToHttpsDrPaziresh24ComCreateCenter"] ===
+                    $steps["goToHttpsDrRegisterPaziresh24Com"] != null &&
+                    typeof $steps["goToHttpsDrRegisterPaziresh24Com"] ===
                       "object" &&
-                    typeof $steps["goToHttpsDrPaziresh24ComCreateCenter"]
-                      .then === "function"
+                    typeof $steps["goToHttpsDrRegisterPaziresh24Com"].then ===
+                      "function"
                   ) {
-                    $steps["goToHttpsDrPaziresh24ComCreateCenter"] =
-                      await $steps["goToHttpsDrPaziresh24ComCreateCenter"];
+                    $steps["goToHttpsDrRegisterPaziresh24Com"] =
+                      await $steps["goToHttpsDrRegisterPaziresh24Com"];
                   }
 
                   $steps["sendEvent"] = true

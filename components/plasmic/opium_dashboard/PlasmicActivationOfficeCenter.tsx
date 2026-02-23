@@ -65,6 +65,7 @@ import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import Dialog from "../../Dialog"; // plasmic-import: FJiI2-N1is_F/component
 import ProfileTells from "../../ProfileTells"; // plasmic-import: yzo0JdTgs2uD/component
 import ProfileNotifyCell from "../../ProfileNotifyCell"; // plasmic-import: ZGi1LAR5yxN_/component
+import { Input } from "@/fragment/components/input"; // plasmic-import: ByhbQ0nAxig8/codeComponent
 import { Select } from "@/fragment/components/select"; // plasmic-import: n8ioKZzFQxrO/codeComponent
 import TextInput from "../../TextInput"; // plasmic-import: 4D7TNkkkVIcw/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectModule
@@ -110,7 +111,10 @@ export type PlasmicActivationOfficeCenter__OverridesType = {
   tellsDialog?: Flex__<typeof Dialog>;
   centersApi?: Flex__<typeof ApiRequest>;
   tells?: Flex__<typeof ProfileTells>;
+  secretaryCell?: Flex__<"div">;
   notifyCell?: Flex__<typeof ProfileNotifyCell>;
+  destinationIsCenter?: Flex__<"div">;
+  input?: Flex__<typeof Input>;
   profileApi?: Flex__<typeof ApiRequest>;
   changeadreesDialog?: Flex__<typeof Dialog>;
   selectProvince2?: Flex__<typeof Select>;
@@ -178,19 +182,19 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "map.lat",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 35.70069003610754
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 35.70069003610754
       },
       {
         path: "map.lng",
         type: "private",
         variableType: "number",
-        initFunc: ({ $props, $state, $queries, $ctx }) => 51.35918498039246
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => 51.35918498039246
       },
       {
         path: "addressApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "addressApi"
       },
@@ -198,7 +202,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "addressApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "addressApi"
       },
@@ -206,7 +210,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "addressApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "addressApi"
       },
@@ -214,19 +218,19 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "tellsDialog.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "tells.oldTells",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ["021"]
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ["021"]
       },
       {
         path: "tells.newTells",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
           { id: "opi238647", tell: "021" }
         ]
       },
@@ -234,7 +238,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "notifyCell.notifyCellValue",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.apiRequest.data[0].notify_cell;
@@ -253,7 +257,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "centersApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "centersApi"
       },
@@ -261,7 +265,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "centersApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "centersApi"
       },
@@ -269,7 +273,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "centersApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "centersApi"
       },
@@ -277,31 +281,31 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "isLoadingSave",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "cityDialog.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "selectProvince.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "selectProvince.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "province",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
           {
             id: "1",
             name: "\u0622\u0630\u0631\u0628\u0627\u06cc\u062c\u0627\u0646 \u0634\u0631\u0642\u06cc",
@@ -489,19 +493,19 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "selectCity.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "selectCity.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "cities",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
           {
             id: "1",
             name: "\u062a\u0628\u0631\u06cc\u0632",
@@ -4200,7 +4204,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "profileApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "profileApi"
       },
@@ -4208,7 +4212,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "profileApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "profileApi"
       },
@@ -4216,7 +4220,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "profileApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "profileApi"
       },
@@ -4224,13 +4228,13 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "changeadreesDialog.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "adressTextInput.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.selectProvince2.value && $state.selectCity2.value
@@ -4263,31 +4267,31 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
         path: "selectProvince2.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "selectProvince2.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "selectCity2.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "selectCity2.open",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "adressTextInput2.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.selectProvince.value && $state.selectCity.value
@@ -4315,6 +4319,24 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "destination",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
+      },
+      {
+        path: "input.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
+      },
+      {
+        path: "noticeDestinationOfAddress",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -4323,6 +4345,7 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -4791,79 +4814,252 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
             url={"https://api.paziresh24.com/V1/doctor/centers"}
           >
             <div className={classNames(projectcss.all, sty.freeBox__snooH)}>
-              <ProfileTells
-                data-plasmic-name={"tells"}
-                data-plasmic-override={overrides.tells}
-                className={classNames("__wab_instance", sty.tells)}
-                newTells={generateStateValueProp($state, ["tells", "newTells"])}
-                oldTells={generateStateValueProp($state, ["tells", "oldTells"])}
-                onNewTellsChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "tells",
-                    "newTells"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-                onOldTellsChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "tells",
-                    "oldTells"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-              />
-
-              <ProfileNotifyCell
-                data-plasmic-name={"notifyCell"}
-                data-plasmic-override={overrides.notifyCell}
-                className={classNames("__wab_instance", sty.notifyCell)}
-                notifyCellValue={generateStateValueProp($state, [
-                  "notifyCell",
-                  "notifyCellValue"
-                ])}
-                onNotifyCellValueChange={async (...eventArgs: any) => {
-                  generateStateOnChangeProp($state, [
-                    "notifyCell",
-                    "notifyCellValue"
-                  ]).apply(null, eventArgs);
-
-                  if (
-                    eventArgs.length > 1 &&
-                    eventArgs[1] &&
-                    eventArgs[1]._plasmic_state_init_
-                  ) {
-                    return;
-                  }
-                }}
-              />
-
-              <div className={classNames(projectcss.all, sty.freeBox__v74R)}>
+              <div className={classNames(projectcss.all, sty.freeBox___2AHav)}>
                 <div
                   className={classNames(
                     projectcss.all,
                     projectcss.__wab_text,
-                    sty.text___4WYa
+                    sty.text__gOdTc
                   )}
                 >
-                  {
-                    "\u0644\u0637\u0641\u0627 \u0628\u0631\u0627\u06cc \u0627\u0637\u0644\u0627\u0639 \u0631\u0633\u0627\u0646\u06cc \u0646\u0648\u0628\u062a \u0647\u0627\u06cc \u0645\u0637\u0628 \u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u0645\u0646\u0634\u06cc \u062e\u0648\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u0646\u0645\u0627\u06cc\u06cc\u062f."
-                  }
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 700 }}
+                    >
+                      {
+                        "\u0634\u0645\u0627\u0631\u0647 \u062a\u0644\u0641\u0646 \u0645\u0637\u0628"
+                      }
+                    </span>
+                  </React.Fragment>
                 </div>
+                <ProfileTells
+                  data-plasmic-name={"tells"}
+                  data-plasmic-override={overrides.tells}
+                  className={classNames("__wab_instance", sty.tells)}
+                  newTells={generateStateValueProp($state, [
+                    "tells",
+                    "newTells"
+                  ])}
+                  oldTells={generateStateValueProp($state, [
+                    "tells",
+                    "oldTells"
+                  ])}
+                  onNewTellsChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "tells",
+                      "newTells"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                  onOldTellsChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "tells",
+                      "oldTells"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                />
               </div>
+              <div
+                data-plasmic-name={"secretaryCell"}
+                data-plasmic-override={overrides.secretaryCell}
+                className={classNames(projectcss.all, sty.secretaryCell)}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__pCxpM
+                  )}
+                >
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 700 }}
+                    >
+                      {
+                        "\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u0645\u0646\u0634\u06cc"
+                      }
+                    </span>
+                  </React.Fragment>
+                </div>
+                <ProfileNotifyCell
+                  data-plasmic-name={"notifyCell"}
+                  data-plasmic-override={overrides.notifyCell}
+                  className={classNames("__wab_instance", sty.notifyCell)}
+                  notifyCellValue={generateStateValueProp($state, [
+                    "notifyCell",
+                    "notifyCellValue"
+                  ])}
+                  onNotifyCellValueChange={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "notifyCell",
+                      "notifyCellValue"
+                    ]).apply(null, eventArgs);
+
+                    if (
+                      eventArgs.length > 1 &&
+                      eventArgs[1] &&
+                      eventArgs[1]._plasmic_state_init_
+                    ) {
+                      return;
+                    }
+                  }}
+                />
+              </div>
+              {(() => {
+                try {
+                  return (() => {
+                    const address = ($state.adressTextInput.value || "").trim();
+                    if (!address) return false;
+                    const keywords = ["کلینیک", "بیمارستان", "درمانگاه"];
+
+                    const exclusionWords = [
+                      "روبروی",
+                      "جنب",
+                      "نزدیک",
+                      "مقابل",
+                      "پشت",
+                      "بعد از"
+                    ];
+
+                    const matchedKeyword = keywords.find(k =>
+                      address.includes(k)
+                    );
+                    if (!matchedKeyword) return false;
+                    const keywordIndex = address.indexOf(matchedKeyword);
+                    let hasExclusion = exclusionWords.some(word => {
+                      const wordIndex = address.indexOf(word);
+                      return wordIndex !== -1 && wordIndex < keywordIndex;
+                    });
+                    const betweenIndex = address.indexOf("بین");
+                    if (betweenIndex !== -1 && betweenIndex < keywordIndex) {
+                      hasExclusion = false;
+                    }
+                    const percentage = !hasExclusion ? 100 : 0;
+                    return percentage >= 70;
+                  })();
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div
+                  data-plasmic-name={"destinationIsCenter"}
+                  data-plasmic-override={overrides.destinationIsCenter}
+                  className={classNames(
+                    projectcss.all,
+                    sty.destinationIsCenter
+                  )}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__zhq5Y
+                    )}
+                  >
+                    <React.Fragment>
+                      <span
+                        className={"plasmic_default__all plasmic_default__span"}
+                        style={{ fontWeight: 700 }}
+                      >
+                        {
+                          "\u0647\u0645\u0627\u0647\u0646\u06af\u06cc \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0628\u0627 \u0645\u0631\u06a9\u0632 \u062f\u0631\u0645\u0627\u0646\u06cc!"
+                        }
+                      </span>
+                    </React.Fragment>
+                  </div>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__aqe17)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text___0RU1Y
+                      )}
+                    >
+                      <React.Fragment>
+                        <React.Fragment>
+                          {
+                            "\u0628\u0647 \u0646\u0638\u0631 \u0645\u06cc\u200c\u0631\u0633\u062f \u0646\u0648\u0628\u062a\u200c\u062f\u0647\u06cc \u0645\u0637\u0628 \u0634\u0645\u0627 \u0628\u0631\u0627\u06cc \u06cc\u06a9 "
+                          }
+                        </React.Fragment>
+                        <span
+                          className={
+                            "plasmic_default__all plasmic_default__span"
+                          }
+                          style={{ fontWeight: 700 }}
+                        >
+                          {
+                            "\u0645\u0631\u06a9\u0632 \u062f\u0631\u0645\u0627\u0646\u06cc"
+                          }
+                        </span>
+                        <React.Fragment>
+                          {
+                            " \u0641\u0639\u0627\u0644 \u0627\u0633\u062a.\n\u0628\u0631\u0627\u06cc \u0647\u0645\u0627\u0647\u0646\u06af\u06cc \u0648 \u062c\u0644\u0648\u06af\u06cc\u0631\u06cc \u0627\u0632 \u0645\u0634\u06a9\u0644\u060c \u0644\u0637\u0641\u0627\u064b "
+                          }
+                        </React.Fragment>
+                        <span
+                          className={
+                            "plasmic_default__all plasmic_default__span"
+                          }
+                          style={{ fontWeight: 700 }}
+                        >
+                          {
+                            "\u0634\u0645\u0627\u0631\u0647 \u0645\u0646\u0634\u06cc \u06cc\u0627 \u0645\u0633\u0626\u0648\u0644 \u067e\u0630\u06cc\u0631\u0634 \u0645\u0631\u06a9\u0632\u062f\u0631\u0645\u0627\u0646\u06cc"
+                          }
+                        </span>
+                        <React.Fragment>
+                          {
+                            " \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f."
+                          }
+                        </React.Fragment>
+                      </React.Fragment>
+                    </div>
+                  </div>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox___1EaZi)}
+                  >
+                    <Input
+                      data-plasmic-name={"input"}
+                      data-plasmic-override={overrides.input}
+                      className={classNames("__wab_instance", sty.input)}
+                      onChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "input",
+                          "value"
+                        ]).apply(null, eventArgs);
+                      }}
+                      placeholder={
+                        "\u0634\u0645\u0627\u0631\u0647 \u0645\u0646\u0634\u06cc \u06cc\u0627 \u0645\u0633\u0626\u0648\u0644 \u0645\u0631\u06a9\u0632 \u062f\u0631\u0645\u0627\u0646\u06cc"
+                      }
+                      value={generateStateValueProp($state, ["input", "value"])}
+                    />
+                  </div>
+                </div>
+              ) : null}
               <ApiRequest
                 data-plasmic-name={"profileApi"}
                 data-plasmic-override={overrides.profileApi}
@@ -5250,6 +5446,122 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                     ) {
                       $steps["updateCityDialogOpen"] =
                         await $steps["updateCityDialogOpen"];
+                    }
+
+                    $steps["sendLog"] = (() => {
+                      const address = (
+                        $state.adressTextInput.value || ""
+                      ).trim();
+                      if (!address) return false;
+                      const keywords = ["کلینیک", "بیمارستان", "درمانگاه"];
+
+                      const exclusionWords = [
+                        "روبروی",
+                        "جنب",
+                        "نزدیک",
+                        "مقابل",
+                        "پشت",
+                        "بعد از"
+                      ];
+
+                      const matchedKeyword = keywords.find(k =>
+                        address.includes(k)
+                      );
+                      if (!matchedKeyword) return false;
+                      const keywordIndex = address.indexOf(matchedKeyword);
+                      let hasExclusion = exclusionWords.some(word => {
+                        const wordIndex = address.indexOf(word);
+                        return wordIndex !== -1 && wordIndex < keywordIndex;
+                      });
+                      const betweenIndex = address.indexOf("بین");
+                      if (betweenIndex !== -1 && betweenIndex < keywordIndex) {
+                        hasExclusion = false;
+                      }
+                      const percentage = !hasExclusion ? 100 : 0;
+                      return percentage >= 70;
+                    })()
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              (() => {
+                                try {
+                                  return {
+                                    event_group: "Destination",
+                                    data: {
+                                      user_id: $ctx.query.user_id,
+                                      address: $state.adressTextInput.value,
+                                      secretary_cell: $state.input.value
+                                    },
+                                    event_type:
+                                      "view-banner-centers-like-hospital"
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Splunk.sendLog"]?.apply(null, [
+                            ...actionArgs.args
+                          ]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["sendLog"] != null &&
+                      typeof $steps["sendLog"] === "object" &&
+                      typeof $steps["sendLog"].then === "function"
+                    ) {
+                      $steps["sendLog"] = await $steps["sendLog"];
+                    }
+
+                    $steps["apiNotifDestination"] =
+                      $state.adressTextInput.value !== "" &&
+                      $state.input.value !== "" &&
+                      parseInt($state.destination.percentage) >= 70
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                undefined,
+                                "https://apigw.paziresh24.com/v1/n8n-nelson/webhook/destination",
+                                (() => {
+                                  try {
+                                    return {
+                                      address: $state.adressTextInput.value,
+                                      secretary_cell: $state.input.value
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.apiRequest"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                    if (
+                      $steps["apiNotifDestination"] != null &&
+                      typeof $steps["apiNotifDestination"] === "object" &&
+                      typeof $steps["apiNotifDestination"].then === "function"
+                    ) {
+                      $steps["apiNotifDestination"] =
+                        await $steps["apiNotifDestination"];
                     }
 
                     $steps["goToPage"] =
@@ -5822,6 +6134,153 @@ function PlasmicActivationOfficeCenter__RenderFunc(props: {
                     $steps["updateChangeadreesDialogOpen"] =
                       await $steps["updateChangeadreesDialogOpen"];
                   }
+
+                  $steps["riskDestination"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["destination"]
+                          },
+                          operation: 0,
+                          value: (() => {
+                            const address = (
+                              $state.adressTextInput.value || ""
+                            ).trim();
+                            if (!address) {
+                              return {
+                                isValidDestination: false,
+                                percentage: "0%",
+                                hasKeyword: false,
+                                hasExclusion: false,
+                                matchedKeyword: null
+                              };
+                            }
+                            const keywords = [
+                              "کلینیک",
+                              "بیمارستان",
+                              "درمانگاه"
+                            ];
+
+                            const exclusionWords = [
+                              "روبروی",
+                              "جنب",
+                              "نزدیک",
+                              "مقابل",
+                              "پشت",
+                              "بعد از",
+                              "بین"
+                            ];
+
+                            const matchedKeyword =
+                              keywords.find(k => address.includes(k)) || null;
+                            const hasKeyword = Boolean(matchedKeyword);
+                            const hasExclusion = exclusionWords.some(w =>
+                              address.includes(w)
+                            );
+                            const isValidDestination =
+                              hasKeyword && !hasExclusion;
+                            return {
+                              isValidDestination,
+                              percentage: isValidDestination ? "100%" : "0%",
+                              hasKeyword,
+                              hasExclusion,
+                              matchedKeyword
+                            };
+                          })()
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["riskDestination"] != null &&
+                    typeof $steps["riskDestination"] === "object" &&
+                    typeof $steps["riskDestination"].then === "function"
+                  ) {
+                    $steps["riskDestination"] = await $steps["riskDestination"];
+                  }
+
+                  $steps["sendLog"] = (() => {
+                    const address = ($state.adressTextInput.value || "").trim();
+                    if (!address) return false;
+                    const keywords = ["کلینیک", "بیمارستان", "درمانگاه"];
+
+                    const exclusionWords = [
+                      "روبروی",
+                      "جنب",
+                      "نزدیک",
+                      "مقابل",
+                      "پشت",
+                      "بعد از"
+                    ];
+
+                    const matchedKeyword = keywords.find(k =>
+                      address.includes(k)
+                    );
+                    if (!matchedKeyword) return false;
+                    const keywordIndex = address.indexOf(matchedKeyword);
+                    let hasExclusion = exclusionWords.some(word => {
+                      const wordIndex = address.indexOf(word);
+                      return wordIndex !== -1 && wordIndex < keywordIndex;
+                    });
+                    const betweenIndex = address.indexOf("بین");
+                    if (betweenIndex !== -1 && betweenIndex < keywordIndex) {
+                      hasExclusion = false;
+                    }
+                    const percentage = !hasExclusion ? 100 : 0;
+                    return percentage >= 70;
+                  })()
+                    ? (() => {
+                        const actionArgs = {
+                          args: [
+                            (() => {
+                              try {
+                                return {
+                                  event_group: "Destination",
+                                  data: {
+                                    user_id: $ctx.query.user_id,
+                                    address: $state.adressTextInput.value
+                                  },
+                                  event_type:
+                                    "view-banner-centers-like-hospital"
+                                };
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()
+                          ]
+                        };
+                        return $globalActions["Splunk.sendLog"]?.apply(null, [
+                          ...actionArgs.args
+                        ]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["sendLog"] != null &&
+                    typeof $steps["sendLog"] === "object" &&
+                    typeof $steps["sendLog"].then === "function"
+                  ) {
+                    $steps["sendLog"] = await $steps["sendLog"];
+                  }
                 }}
               />
             </div>
@@ -6119,7 +6578,10 @@ const PlasmicDescendants = {
     "tellsDialog",
     "centersApi",
     "tells",
+    "secretaryCell",
     "notifyCell",
+    "destinationIsCenter",
+    "input",
     "profileApi",
     "changeadreesDialog",
     "selectProvince2",
@@ -6136,12 +6598,26 @@ const PlasmicDescendants = {
     "tellsDialog",
     "centersApi",
     "tells",
+    "secretaryCell",
     "notifyCell",
+    "destinationIsCenter",
+    "input",
     "profileApi"
   ],
-  centersApi: ["centersApi", "tells", "notifyCell", "profileApi"],
+  centersApi: [
+    "centersApi",
+    "tells",
+    "secretaryCell",
+    "notifyCell",
+    "destinationIsCenter",
+    "input",
+    "profileApi"
+  ],
   tells: ["tells"],
+  secretaryCell: ["secretaryCell", "notifyCell"],
   notifyCell: ["notifyCell"],
+  destinationIsCenter: ["destinationIsCenter", "input"],
+  input: ["input"],
   profileApi: ["profileApi"],
   changeadreesDialog: [
     "changeadreesDialog",
@@ -6172,7 +6648,10 @@ type NodeDefaultElementType = {
   tellsDialog: typeof Dialog;
   centersApi: typeof ApiRequest;
   tells: typeof ProfileTells;
+  secretaryCell: "div";
   notifyCell: typeof ProfileNotifyCell;
+  destinationIsCenter: "div";
+  input: typeof Input;
   profileApi: typeof ApiRequest;
   changeadreesDialog: typeof Dialog;
   selectProvince2: typeof Select;
@@ -6251,7 +6730,10 @@ export const PlasmicActivationOfficeCenter = Object.assign(
     tellsDialog: makeNodeComponent("tellsDialog"),
     centersApi: makeNodeComponent("centersApi"),
     tells: makeNodeComponent("tells"),
+    secretaryCell: makeNodeComponent("secretaryCell"),
     notifyCell: makeNodeComponent("notifyCell"),
+    destinationIsCenter: makeNodeComponent("destinationIsCenter"),
+    input: makeNodeComponent("input"),
     profileApi: makeNodeComponent("profileApi"),
     changeadreesDialog: makeNodeComponent("changeadreesDialog"),
     selectProvince2: makeNodeComponent("selectProvince2"),

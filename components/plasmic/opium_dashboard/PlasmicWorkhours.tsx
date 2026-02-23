@@ -189,7 +189,7 @@ function PlasmicWorkhours__RenderFunc(props: {
         path: "selectedhoure",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "listOfWorkhoureCopy",
@@ -203,7 +203,7 @@ function PlasmicWorkhours__RenderFunc(props: {
         path: "days",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
           { id: 6, name: "\u0634\u0646\u0628\u0647", nameEn: "Saturday" },
           {
             id: 7,
@@ -237,7 +237,7 @@ function PlasmicWorkhours__RenderFunc(props: {
         path: "warning",
         type: "readonly",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false,
 
         onChangeProp: "onWarningChange"
       },
@@ -279,7 +279,7 @@ function PlasmicWorkhours__RenderFunc(props: {
         path: "_switch.checked",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $props.checkboxIsChecked;
@@ -301,6 +301,7 @@ function PlasmicWorkhours__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -678,7 +679,7 @@ function PlasmicWorkhours__RenderFunc(props: {
                     [
                       {
                         name: "from[].value",
-                        initFunc: ({ $props, $state, $queries }) =>
+                        initFunc: ({ $props, $state, $queries, $q }) =>
                           (() => {
                             try {
                               return currentItem.from;
@@ -695,7 +696,8 @@ function PlasmicWorkhours__RenderFunc(props: {
                       },
                       {
                         name: "from[].open",
-                        initFunc: ({ $props, $state, $queries }) => undefined
+                        initFunc: ({ $props, $state, $queries, $q }) =>
+                          undefined
                       }
                     ],
                     [__plasmic_idx_0]
@@ -901,7 +903,7 @@ function PlasmicWorkhours__RenderFunc(props: {
                     [
                       {
                         name: "to[].value",
-                        initFunc: ({ $props, $state, $queries }) =>
+                        initFunc: ({ $props, $state, $queries, $q }) =>
                           (() => {
                             try {
                               return currentItem.to;
@@ -918,7 +920,8 @@ function PlasmicWorkhours__RenderFunc(props: {
                       },
                       {
                         name: "to[].open",
-                        initFunc: ({ $props, $state, $queries }) => undefined
+                        initFunc: ({ $props, $state, $queries, $q }) =>
+                          undefined
                       }
                     ],
                     [__plasmic_idx_0]
@@ -1276,7 +1279,7 @@ function PlasmicWorkhours__RenderFunc(props: {
                     [
                       {
                         name: "popoverConflictHour2[].open",
-                        initFunc: ({ $props, $state, $queries }) => false
+                        initFunc: ({ $props, $state, $queries, $q }) => false
                       }
                     ],
                     [__plasmic_idx_0]
@@ -1543,7 +1546,7 @@ function PlasmicWorkhours__RenderFunc(props: {
                     [
                       {
                         name: "fragmentPopover[].open",
-                        initFunc: ({ $props, $state, $queries }) => false
+                        initFunc: ({ $props, $state, $queries, $q }) => false
                       }
                     ],
                     [__plasmic_idx_0]

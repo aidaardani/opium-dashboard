@@ -76,6 +76,35 @@ import sty from "./PlasmicWorkhoursPage.module.css"; // plasmic-import: RPoKJwDI
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "ساعت کاری",
+
+    openGraph: {
+      title: "ساعت کاری"
+    },
+    twitter: {
+      card: "summary",
+      title: "ساعت کاری"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicWorkhoursPage__VariantMembers = {};
@@ -149,37 +178,37 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
         path: "drCenters.selectedCenter",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "centers",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       },
       {
         path: "selectedCenter",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "all"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "all"
       },
       {
         path: "hoursDaysOfWeek.duration",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "speciality",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "apIworkhours.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apIworkhours"
       },
@@ -187,7 +216,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
         path: "apIworkhours.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apIworkhours"
       },
@@ -195,7 +224,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
         path: "apIworkhours.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apIworkhours"
       },
@@ -203,7 +232,7 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
         path: "provider",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -212,8 +241,14 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
+
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -221,16 +256,12 @@ function PlasmicWorkhoursPage__RenderFunc(props: {
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">{PlasmicWorkhoursPage.pageMetadata.title}</title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicWorkhoursPage.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicWorkhoursPage.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -788,13 +819,11 @@ export const PlasmicWorkhoursPage = Object.assign(
     internalVariantProps: PlasmicWorkhoursPage__VariantProps,
     internalArgProps: PlasmicWorkhoursPage__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "ساعت کاری",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/workhours",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

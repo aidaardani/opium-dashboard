@@ -177,7 +177,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "nationalCode.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.auth.data.data.national_code;
@@ -196,7 +196,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "medicalCode.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.profile.data.data.medical_code;
@@ -215,37 +215,40 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "noName",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.noName
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.noName
       },
       {
         path: "noNationalCode",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.noNationalCode
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $props.noNationalCode
       },
       {
         path: "noMedicalCode",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.noMedicalCode
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $props.noMedicalCode
       },
       {
         path: "noPhoneNumber",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.noPhoneNumber
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
+          $props.noPhoneNumber
       },
       {
         path: "noBiography",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.noBiography
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.noBiography
       },
       {
         path: "profilePersonalName.firstNameValue",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.profile.data.data.name;
@@ -264,7 +267,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "profilePersonalName.lastNameValue",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.profile.data.data.family;
@@ -283,7 +286,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "auth.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "auth"
       },
@@ -291,7 +294,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "auth.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "auth"
       },
@@ -299,7 +302,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "auth.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "auth"
       },
@@ -307,7 +310,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "profile.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "profile"
       },
@@ -315,7 +318,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "profile.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "profile"
       },
@@ -323,7 +326,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "profile.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "profile"
       },
@@ -331,7 +334,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "notifyCell.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.apiNotifyCell.data[0].notify_cell;
@@ -350,7 +353,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "apiNotifyCell.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiNotifyCell"
       },
@@ -358,7 +361,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "apiNotifyCell.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiNotifyCell"
       },
@@ -366,7 +369,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "apiNotifyCell.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiNotifyCell"
       },
@@ -374,19 +377,19 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "biography",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       },
       {
         path: "isLoadingSave",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "drNotifyCell.value",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.profile.data.data.cell;
@@ -405,7 +408,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
         path: "defaultBio",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -414,6 +417,7 @@ function PlasmicProfilePersonal__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

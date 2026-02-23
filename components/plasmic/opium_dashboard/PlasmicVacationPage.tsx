@@ -68,6 +68,35 @@ import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectcss
 import sty from "./PlasmicVacationPage.module.css"; // plasmic-import: Fc4GMHIdVUfc/css
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "اعلام مرخصی",
+
+    openGraph: {
+      title: "اعلام مرخصی"
+    },
+    twitter: {
+      card: "summary",
+      title: "اعلام مرخصی"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicVacationPage__VariantMembers = {};
@@ -135,7 +164,7 @@ function PlasmicVacationPage__RenderFunc(props: {
         path: "isLoading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -144,8 +173,14 @@ function PlasmicVacationPage__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
+
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -153,16 +188,12 @@ function PlasmicVacationPage__RenderFunc(props: {
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">{PlasmicVacationPage.pageMetadata.title}</title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicVacationPage.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicVacationPage.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -229,6 +260,8 @@ function PlasmicVacationPage__RenderFunc(props: {
             }
           }}
         >
+          <div className={classNames(projectcss.all, sty.freeBox__riXl)} />
+
           <div
             data-plasmic-name={"header"}
             data-plasmic-override={overrides.header}
@@ -347,13 +380,11 @@ export const PlasmicVacationPage = Object.assign(
     internalVariantProps: PlasmicVacationPage__VariantProps,
     internalArgProps: PlasmicVacationPage__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "اعلام مرخصی",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/vacation",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

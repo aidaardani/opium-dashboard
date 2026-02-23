@@ -27,6 +27,23 @@
     grid-column: 4;
   }
 }
+.freeBox__riXl {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  background: #ffffff;
+  padding: 8px;
+}
 .header {
   display: flex;
   flex-direction: row;

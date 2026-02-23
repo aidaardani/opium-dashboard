@@ -149,13 +149,13 @@ function PlasmicV3Tags__RenderFunc(props: {
         path: "keywordTags",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "apiGetDrTags.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetDrTags"
       },
@@ -163,7 +163,7 @@ function PlasmicV3Tags__RenderFunc(props: {
         path: "apiGetDrTags.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetDrTags"
       },
@@ -171,7 +171,7 @@ function PlasmicV3Tags__RenderFunc(props: {
         path: "apiGetDrTags.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetDrTags"
       },
@@ -179,7 +179,7 @@ function PlasmicV3Tags__RenderFunc(props: {
         path: "apiGetTags.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetTags"
       },
@@ -187,7 +187,7 @@ function PlasmicV3Tags__RenderFunc(props: {
         path: "apiGetTags.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetTags"
       },
@@ -195,7 +195,7 @@ function PlasmicV3Tags__RenderFunc(props: {
         path: "apiGetTags.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetTags"
       },
@@ -203,7 +203,7 @@ function PlasmicV3Tags__RenderFunc(props: {
         path: "multiSlect.value",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $state.apiGetDrTags.data.sort(
@@ -224,13 +224,13 @@ function PlasmicV3Tags__RenderFunc(props: {
         path: "multiSlect.input",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "newdrdoc",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -239,6 +239,7 @@ function PlasmicV3Tags__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

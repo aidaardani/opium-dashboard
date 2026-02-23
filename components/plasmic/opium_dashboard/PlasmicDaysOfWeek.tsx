@@ -155,7 +155,7 @@ function PlasmicDaysOfWeek__RenderFunc(props: {
         path: "selectAll.isChecked",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined
       },
       {
         path: "daysofweek[].isChecked",
@@ -166,7 +166,7 @@ function PlasmicDaysOfWeek__RenderFunc(props: {
         path: "days",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
           { id: 6, name: "\u0634\u0646\u0628\u0647", nameEn: "Saturday" },
           {
             id: 7,
@@ -203,6 +203,7 @@ function PlasmicDaysOfWeek__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -321,7 +322,7 @@ function PlasmicDaysOfWeek__RenderFunc(props: {
             [
               {
                 name: "daysofweek[].isChecked",
-                initFunc: ({ $props, $state, $queries }) =>
+                initFunc: ({ $props, $state, $queries, $q }) =>
                   (() => {
                     try {
                       return (

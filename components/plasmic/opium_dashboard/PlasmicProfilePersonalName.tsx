@@ -157,7 +157,7 @@ function PlasmicProfilePersonalName__RenderFunc(props: {
         path: "succes",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "lastName.value",
@@ -174,6 +174,7 @@ function PlasmicProfilePersonalName__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

@@ -61,6 +61,7 @@ import {
 
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: Gl72hv5IMo-p/codeComponent
 import EachService from "../../EachService"; // plasmic-import: yG5R3lBI1HfD/component
+import HamdastCapabilities from "../../HamdastCapabilities"; // plasmic-import: jnZRAtkXnokB/component
 import { _useGlobalVariants } from "./plasmic"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/projectModule
 import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: 9g1e5LLLDS4TGJiaFCSEyH/styleTokensProvider
 
@@ -96,6 +97,7 @@ export type PlasmicService__OverridesType = {
   svg?: Flex__<"svg">;
   eachService?: Flex__<typeof EachService>;
   freeBox?: Flex__<"div">;
+  hamdastCapabilities?: Flex__<typeof HamdastCapabilities>;
 };
 
 export interface DefaultServiceProps {
@@ -152,7 +154,7 @@ function PlasmicService__RenderFunc(props: {
         path: "apiGetService.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetService"
       },
@@ -160,7 +162,7 @@ function PlasmicService__RenderFunc(props: {
         path: "apiGetService.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetService"
       },
@@ -168,7 +170,7 @@ function PlasmicService__RenderFunc(props: {
         path: "apiGetService.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "apiGetService"
       },
@@ -176,7 +178,7 @@ function PlasmicService__RenderFunc(props: {
         path: "costOffice",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return [
@@ -215,6 +217,7 @@ function PlasmicService__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -466,7 +469,7 @@ function PlasmicService__RenderFunc(props: {
                 [
                   {
                     name: "eachService[].price",
-                    initFunc: ({ $props, $state, $queries }) => ""
+                    initFunc: ({ $props, $state, $queries, $q }) => ""
                   }
                 ],
                 [__plasmic_idx_0]
@@ -512,16 +515,47 @@ function PlasmicService__RenderFunc(props: {
           </div>
         </div>
       ) : null}
+      {(() => {
+        try {
+          return (
+            !$state.apiGetService.loading &&
+            $props.centerId !== "5532" &&
+            !!$ctx.GrowthBook.features?.["hamdast-capabilities"]
+          );
+        } catch (e) {
+          if (
+            e instanceof TypeError ||
+            e?.plasmicType === "PlasmicUndefinedDataError"
+          ) {
+            return false;
+          }
+          throw e;
+        }
+      })() ? (
+        <HamdastCapabilities
+          data-plasmic-name={"hamdastCapabilities"}
+          data-plasmic-override={overrides.hamdastCapabilities}
+          className={classNames("__wab_instance", sty.hamdastCapabilities)}
+        />
+      ) : null}
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: ["root", "apiGetService", "svg", "eachService", "freeBox"],
+  root: [
+    "root",
+    "apiGetService",
+    "svg",
+    "eachService",
+    "freeBox",
+    "hamdastCapabilities"
+  ],
   apiGetService: ["apiGetService", "svg"],
   svg: ["svg"],
   eachService: ["eachService"],
-  freeBox: ["freeBox"]
+  freeBox: ["freeBox"],
+  hamdastCapabilities: ["hamdastCapabilities"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -532,6 +566,7 @@ type NodeDefaultElementType = {
   svg: "svg";
   eachService: typeof EachService;
   freeBox: "div";
+  hamdastCapabilities: typeof HamdastCapabilities;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -600,6 +635,7 @@ export const PlasmicService = Object.assign(
     svg: makeNodeComponent("svg"),
     eachService: makeNodeComponent("eachService"),
     freeBox: makeNodeComponent("freeBox"),
+    hamdastCapabilities: makeNodeComponent("hamdastCapabilities"),
 
     // Metadata about props expected for PlasmicService
     internalVariantProps: PlasmicService__VariantProps,

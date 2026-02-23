@@ -186,7 +186,7 @@ function PlasmicProfileChannelsItem__RenderFunc(props: {
         path: "noUserName",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.noUserName
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.noUserName
       }
     ],
     [$props, $ctx, $refs]
@@ -195,6 +195,7 @@ function PlasmicProfileChannelsItem__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

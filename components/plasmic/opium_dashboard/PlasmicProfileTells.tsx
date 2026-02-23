@@ -190,6 +190,7 @@ function PlasmicProfileTells__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -308,7 +309,7 @@ function PlasmicProfileTells__RenderFunc(props: {
                 [
                   {
                     name: "input2[].value",
-                    initFunc: ({ $props, $state, $queries }) =>
+                    initFunc: ({ $props, $state, $queries, $q }) =>
                       (() => {
                         try {
                           return currentItem;
@@ -446,7 +447,7 @@ function PlasmicProfileTells__RenderFunc(props: {
                   [
                     {
                       name: "input4[].value",
-                      initFunc: ({ $props, $state, $queries }) =>
+                      initFunc: ({ $props, $state, $queries, $q }) =>
                         (() => {
                           try {
                             return currentItem.tell;

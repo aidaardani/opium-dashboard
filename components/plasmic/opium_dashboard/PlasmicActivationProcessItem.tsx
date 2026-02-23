@@ -157,19 +157,19 @@ function PlasmicActivationProcessItem__RenderFunc(props: {
         path: "isCompleted",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.isCompleted
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.isCompleted
       },
       {
         path: "isCurrent",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.isCurrent
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.isCurrent
       },
       {
         path: "noBar",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.noBar
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.noBar
       }
     ],
     [$props, $ctx, $refs]
@@ -178,6 +178,7 @@ function PlasmicActivationProcessItem__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

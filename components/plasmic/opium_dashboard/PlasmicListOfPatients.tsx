@@ -151,7 +151,7 @@ function PlasmicListOfPatients__RenderFunc(props: {
         path: "listOfPatients",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -160,6 +160,7 @@ function PlasmicListOfPatients__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

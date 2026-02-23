@@ -49,3 +49,7 @@
   text-align: center;
   min-width: 0;
 }
+.hamdastCapabilities:global(.__wab_instance) {
+  margin-bottom: 0px;
+  margin-top: 20px;
+}

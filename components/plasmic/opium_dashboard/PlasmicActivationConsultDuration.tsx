@@ -79,6 +79,35 @@ import Icon34Icon from "./icons/PlasmicIcon__Icon34"; // plasmic-import: Pu6FdA6
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 
+const emptyProxy: any = new Proxy(() => "", {
+  get(_, prop) {
+    return prop === Symbol.toPrimitive ? () => "" : emptyProxy;
+  }
+});
+
+function wrapQueriesWithLoadingProxy($q: any): any {
+  return new Proxy($q, {
+    get(target, queryName) {
+      const query = target[queryName];
+      return !query || query.isLoading || !query.data ? emptyProxy : query;
+    }
+  });
+}
+
+export function generateDynamicMetadata($q: any, $ctx: any) {
+  return {
+    title: "ساعت کاری",
+
+    openGraph: {
+      title: "ساعت کاری"
+    },
+    twitter: {
+      card: "summary",
+      title: "ساعت کاری"
+    }
+  };
+}
+
 createPlasmicElementProxy;
 
 export type PlasmicActivationConsultDuration__VariantMembers = {};
@@ -156,13 +185,13 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
         path: "hoursDaysOfWeek.duration",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ({})
       },
       {
         path: "centersApi.data",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "centersApi"
       },
@@ -170,7 +199,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
         path: "centersApi.error",
         type: "private",
         variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "centersApi"
       },
@@ -178,7 +207,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
         path: "centersApi.loading",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "centersApi"
       },
@@ -186,19 +215,19 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
         path: "isLoadingSave",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) => false
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
       },
       {
         path: "duration.newduration",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => "30"
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => "30"
       },
       {
         path: "days",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => [
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => [
           { id: 6, name: "\u0634\u0646\u0628\u0647", nameEn: "Saturday" },
           {
             id: 7,
@@ -247,7 +276,7 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
         path: "newWorkHours",
         type: "private",
         variableType: "array",
-        initFunc: ({ $props, $state, $queries, $ctx }) => []
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => []
       }
     ],
     [$props, $ctx, $refs]
@@ -256,8 +285,14 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
+
+  const pageMetadata = generateDynamicMetadata(
+    wrapQueriesWithLoadingProxy({}),
+    $ctx
+  );
 
   const styleTokensClassNames = _useStyleTokens();
 
@@ -265,18 +300,12 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
     <React.Fragment>
       <Head>
         <meta name="twitter:card" content="summary" />
-        <title key="title">
-          {PlasmicActivationConsultDuration.pageMetadata.title}
-        </title>
-        <meta
-          key="og:title"
-          property="og:title"
-          content={PlasmicActivationConsultDuration.pageMetadata.title}
-        />
+        <title key="title">{pageMetadata.title}</title>
+        <meta key="og:title" property="og:title" content={pageMetadata.title} />
         <meta
           key="twitter:title"
-          name="twitter:title"
-          content={PlasmicActivationConsultDuration.pageMetadata.title}
+          property="twitter:title"
+          content={pageMetadata.title}
         />
       </Head>
 
@@ -699,7 +728,12 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                 [
                                   {
                                     name: "workhours[].checkboxIsChecked",
-                                    initFunc: ({ $props, $state, $queries }) =>
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) =>
                                       (() => {
                                         try {
                                           return $state.newWorkHours.some(
@@ -719,7 +753,12 @@ function PlasmicActivationConsultDuration__RenderFunc(props: {
                                   },
                                   {
                                     name: "workhours[].listOfWorkhoureCopy",
-                                    initFunc: ({ $props, $state, $queries }) =>
+                                    initFunc: ({
+                                      $props,
+                                      $state,
+                                      $queries,
+                                      $q
+                                    }) =>
                                       (() => {
                                         try {
                                           return $state.newWorkHours.some(
@@ -1552,13 +1591,11 @@ export const PlasmicActivationConsultDuration = Object.assign(
     internalVariantProps: PlasmicActivationConsultDuration__VariantProps,
     internalArgProps: PlasmicActivationConsultDuration__ArgProps,
 
-    // Page metadata
-    pageMetadata: {
-      title: "ساعت کاری",
-      description: "",
-      ogImageSrc: "",
-      canonical: ""
-    }
+    pageMetadata: generateDynamicMetadata(wrapQueriesWithLoadingProxy({}), {
+      pagePath: "/activation-page/consult/duration-2",
+      searchParams: {},
+      params: {}
+    })
   }
 );
 

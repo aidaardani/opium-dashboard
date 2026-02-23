@@ -152,7 +152,7 @@ function PlasmicRadioButtonNelson__RenderFunc(props: {
         path: "checkbox.isChecked",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $props.value1;
@@ -171,7 +171,7 @@ function PlasmicRadioButtonNelson__RenderFunc(props: {
         path: "checkbox2.isChecked",
         type: "private",
         variableType: "boolean",
-        initFunc: ({ $props, $state, $queries, $ctx }) =>
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) =>
           (() => {
             try {
               return $props.value2;
@@ -193,6 +193,7 @@ function PlasmicRadioButtonNelson__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 

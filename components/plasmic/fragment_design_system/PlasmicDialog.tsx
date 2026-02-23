@@ -183,13 +183,13 @@ function PlasmicDialog__RenderFunc(props: {
         path: "noTrigger",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.noTrigger
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.noTrigger
       },
       {
         path: "fullScreen",
         type: "private",
         variableType: "variant",
-        initFunc: ({ $props, $state, $queries, $ctx }) => $props.fullScreen
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => $props.fullScreen
       }
     ],
     [$props, $ctx, $refs]
@@ -198,6 +198,7 @@ function PlasmicDialog__RenderFunc(props: {
     $props,
     $ctx,
     $queries: {},
+    $q: {},
     $refs
   });
 
@@ -414,7 +415,9 @@ type NodeComponentProps<T extends NodeNameType> =
     variants?: PlasmicDialog__VariantsArgs;
     args?: PlasmicDialog__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicDialog__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } &
+    // Specify variants directly as props
+    Omit<PlasmicDialog__VariantsArgs, ReservedPropsType> &
     // Specify args directly as props
     Omit<PlasmicDialog__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
