@@ -605,34 +605,37 @@ function PlasmicProfilePassword__RenderFunc(props: {
                 $steps["showSuccessToast"] = await $steps["showSuccessToast"];
               }
 
-              $steps["showUnsuccessfull"] = false
-                ? (() => {
-                    const actionArgs = {
-                      args: [
-                        "error",
-                        (() => {
-                          try {
-                            return $steps.changeStaticPassword.data.message ===
-                              "old password is incorrect."
-                              ? "رمز عبور قبلی اشتباه است."
-                              : $steps.changeStaticPassword.data.message;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return undefined;
+              $steps["showUnsuccessfull"] =
+                $steps.changeStaticPassword.data.message ===
+                "مشکلی در تغییر رمز عبور وجود دارد لطفاً مجدد تلاش کنید"
+                  ? (() => {
+                      const actionArgs = {
+                        args: [
+                          "error",
+                          (() => {
+                            try {
+                              return $steps.changeStaticPassword.data
+                                .message ===
+                                "مشکلی در تغییر رمز عبور وجود دارد لطفاً مجدد تلاش کنید"
+                                ? "مشکلی در تغییر رمز عبور وجود دارد لطفاً مجدد تلاش کنید"
+                                : $steps.changeStaticPassword.data.message;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
                             }
-                            throw e;
-                          }
-                        })()
-                      ]
-                    };
-                    return $globalActions["Fragment.showToast"]?.apply(null, [
-                      ...actionArgs.args
-                    ]);
-                  })()
-                : undefined;
+                          })()
+                        ]
+                      };
+                      return $globalActions["Fragment.showToast"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
+                    })()
+                  : undefined;
               if (
                 $steps["showUnsuccessfull"] != null &&
                 typeof $steps["showUnsuccessfull"] === "object" &&
