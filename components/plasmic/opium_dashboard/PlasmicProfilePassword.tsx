@@ -93,7 +93,6 @@ export type PlasmicProfilePassword__OverridesType = {
   authApi?: Flex__<typeof ApiRequest>;
   svg?: Flex__<"svg">;
   _switch?: Flex__<typeof Switch>;
-  oldPassword?: Flex__<typeof AntdPassword>;
   passwordInput?: Flex__<typeof AntdPassword>;
   repeatPassword?: Flex__<typeof AntdPassword>;
   button?: Flex__<typeof Button>;
@@ -204,14 +203,6 @@ function PlasmicProfilePassword__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
 
         refName: "authApi"
-      },
-      {
-        path: "oldPassword.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $q, $ctx }) => undefined,
-
-        onMutate: generateOnMutateForSpec("value", AntdPassword_Helpers)
       },
       {
         path: "isLoading",
@@ -340,47 +331,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
               throw e;
             }
           })() ? (
-            <div className={classNames(projectcss.all, sty.freeBox__phLNe)}>
-              {(() => {
-                const child$Props = {
-                  className: classNames("__wab_instance", sty.oldPassword),
-                  onChange: async (...eventArgs: any) => {
-                    generateStateOnChangePropForCodeComponents(
-                      $state,
-                      "value",
-                      ["oldPassword", "value"],
-                      AntdPassword_Helpers
-                    ).apply(null, eventArgs);
-                  },
-                  placeholder:
-                    "\u0631\u0645\u0632 \u0639\u0628\u0648\u0631 \u0642\u0628\u0644\u06cc",
-                  value: generateStateValueProp($state, [
-                    "oldPassword",
-                    "value"
-                  ])
-                };
-                initializeCodeComponentStates(
-                  $state,
-                  [
-                    {
-                      name: "value",
-                      plasmicStateName: "oldPassword.value"
-                    }
-                  ],
-                  [],
-                  AntdPassword_Helpers ?? {},
-                  child$Props
-                );
-
-                return (
-                  <AntdPassword
-                    data-plasmic-name={"oldPassword"}
-                    data-plasmic-override={overrides.oldPassword}
-                    {...child$Props}
-                  />
-                );
-              })()}
-            </div>
+            <div className={classNames(projectcss.all, sty.freeBox__phLNe)} />
           ) : null}
           <div className={classNames(projectcss.all, sty.freeBox__foiIa)}>
             {(() => {
@@ -524,8 +475,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
                 $steps["updateIsLoading"] = await $steps["updateIsLoading"];
               }
 
-              $steps["enabelStaticPassword"] = !$state.authApi.data.data
-                .is_static_password_enabled
+              $steps["enabelStaticPassword"] = false
                 ? (() => {
                     const actionArgs = {
                       args: [
@@ -551,24 +501,12 @@ function PlasmicProfilePassword__RenderFunc(props: {
                 ? (() => {
                     const actionArgs = {
                       args: [
-                        "PATCH",
-                        "https://api.paziresh24.com/V1/user/change-static-password",
+                        "POST",
+                        "https://apigw.paziresh24.com/gozargah/setpassword",
                         undefined,
                         (() => {
                           try {
-                            return (() => {
-                              const data = $state.authApi.data.data;
-                              const oldPassword =
-                                data.is_static_password_enabled
-                                  ? $state.oldPassword.value
-                                  : data.cell.slice(-4);
-                              return {
-                                old_password: oldPassword,
-                                password: $state.passwordInput.value,
-                                password_confirmation:
-                                  $state.repeatPassword.value
-                              };
-                            })();
+                            return { password: $state.passwordInput.value };
                           } catch (e) {
                             if (
                               e instanceof TypeError ||
@@ -596,18 +534,14 @@ function PlasmicProfilePassword__RenderFunc(props: {
               }
 
               $steps["showToast"] =
-                $steps.changeStaticPassword.data.status === "FAILED"
+                $steps.changeStaticPassword.data.success !== "true"
                   ? (() => {
                       const actionArgs = {
                         args: [
                           "error",
                           (() => {
                             try {
-                              return $steps.changeStaticPassword.data
-                                .message ===
-                                "تکمیل گزینه old password الزامی است"
-                                ? "رمز عبور قبلی را وارد کنید"
-                                : $steps.changeStaticPassword.data.message;
+                              return $steps.changeStaticPassword.data.message;
                             } catch (e) {
                               if (
                                 e instanceof TypeError ||
@@ -635,7 +569,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
 
               $steps["showSuccessToast"] =
                 $steps.changeStaticPassword.data.message ===
-                "static password changed."
+                "رمز عبور با موفقیت تغییر کرد"
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -643,7 +577,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
                           (() => {
                             try {
                               return $steps.changeStaticPassword.data
-                                .message === "static password changed."
+                                .message === "رمز عبور با موفقیت تغییر کرد"
                                 ? "رمز عبور با موفقیت ویرایش شد."
                                 : $steps.changeStaticPassword.data.message;
                             } catch (e) {
@@ -673,7 +607,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
 
               $steps["showUnsuccessfull"] =
                 $steps.changeStaticPassword.data.message ===
-                "old password is incorrect."
+                "مشکلی در تغییر رمز عبور وجود دارد لطفاً مجدد تلاش کنید"
                   ? (() => {
                       const actionArgs = {
                         args: [
@@ -681,8 +615,9 @@ function PlasmicProfilePassword__RenderFunc(props: {
                           (() => {
                             try {
                               return $steps.changeStaticPassword.data
-                                .message === "old password is incorrect."
-                                ? "رمز عبور قبلی اشتباه است."
+                                .message ===
+                                "مشکلی در تغییر رمز عبور وجود دارد لطفاً مجدد تلاش کنید"
+                                ? "مشکلی در تغییر رمز عبور وجود دارد لطفاً مجدد تلاش کنید"
                                 : $steps.changeStaticPassword.data.message;
                             } catch (e) {
                               if (
@@ -738,7 +673,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
                 $steps["updateIsLoading2"] = await $steps["updateIsLoading2"];
               }
 
-              $steps["showToast2"] = !!$steps.enabelStaticPassword.data.message
+              $steps["showToast2"] = false
                 ? (() => {
                     const actionArgs = {
                       args: [
@@ -785,7 +720,7 @@ function PlasmicProfilePassword__RenderFunc(props: {
                 $steps["showToast2"] = await $steps["showToast2"];
               }
 
-              $steps["sendEvent"] = true
+              $steps["sendEvent"] = false
                 ? (() => {
                     const actionArgs = {
                       args: [
@@ -834,7 +769,6 @@ const PlasmicDescendants = {
     "authApi",
     "svg",
     "_switch",
-    "oldPassword",
     "passwordInput",
     "repeatPassword",
     "button"
@@ -843,14 +777,12 @@ const PlasmicDescendants = {
     "authApi",
     "svg",
     "_switch",
-    "oldPassword",
     "passwordInput",
     "repeatPassword",
     "button"
   ],
   svg: ["svg"],
   _switch: ["_switch"],
-  oldPassword: ["oldPassword"],
   passwordInput: ["passwordInput"],
   repeatPassword: ["repeatPassword"],
   button: ["button"]
@@ -863,7 +795,6 @@ type NodeDefaultElementType = {
   authApi: typeof ApiRequest;
   svg: "svg";
   _switch: typeof Switch;
-  oldPassword: typeof AntdPassword;
   passwordInput: typeof AntdPassword;
   repeatPassword: typeof AntdPassword;
   button: typeof Button;
@@ -934,7 +865,6 @@ export const PlasmicProfilePassword = Object.assign(
     authApi: makeNodeComponent("authApi"),
     svg: makeNodeComponent("svg"),
     _switch: makeNodeComponent("_switch"),
-    oldPassword: makeNodeComponent("oldPassword"),
     passwordInput: makeNodeComponent("passwordInput"),
     repeatPassword: makeNodeComponent("repeatPassword"),
     button: makeNodeComponent("button"),

@@ -141,6 +141,7 @@ export type PlasmicAppointmentCard__ArgsType = {
   medicalCode?: string;
   externalPrescriptions?: any;
   userId?: string;
+  selectedOnlineVisit?: any;
 };
 type ArgPropType = keyof PlasmicAppointmentCard__ArgsType;
 export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
@@ -176,7 +177,8 @@ export const PlasmicAppointmentCard__ArgProps = new Array<ArgPropType>(
   "showPlatform",
   "medicalCode",
   "externalPrescriptions",
-  "userId"
+  "userId",
+  "selectedOnlineVisit"
 );
 
 export type PlasmicAppointmentCard__OverridesType = {
@@ -247,6 +249,7 @@ export interface DefaultAppointmentCardProps {
   medicalCode?: string;
   externalPrescriptions?: any;
   userId?: string;
+  selectedOnlineVisit?: any;
   onlineBorder?: SingleBooleanChoiceArg<"onlineBorder">;
   className?: string;
 }
@@ -4981,7 +4984,9 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                 try {
                   return (
                     $ctx.GrowthBook.features["dr_onlinevisit_v3"] === true &&
-                    $props.centerId === "5532"
+                    $props.centerId === "5532" &&
+                    $state.apiselcetedonlinevisitchannels.data
+                      ?.online_channel !== "eitaa"
                   );
                 } catch (e) {
                   if (

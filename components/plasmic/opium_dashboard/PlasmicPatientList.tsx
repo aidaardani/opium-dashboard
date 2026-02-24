@@ -1089,6 +1089,7 @@ function PlasmicPatientList__RenderFunc(props: {
                   throw e;
                 }
               })()}
+              selectedOnlineVisit={undefined}
               showPlatform={(() => {
                 try {
                   return $props.multiPlatform;
