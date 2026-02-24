@@ -28,7 +28,7 @@
 .eachService:global(.__wab_instance) {
   position: relative;
 }
-.freeBox {
+.freeBox__s8Yh {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -49,7 +49,17 @@
   text-align: center;
   min-width: 0;
 }
-.hamdastCapabilities:global(.__wab_instance) {
-  margin-bottom: 0px;
+.freeBox___3IKy4 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
   margin-top: 20px;
+  margin-bottom: 0px;
+  min-width: 0;
+  padding: 8px;
 }

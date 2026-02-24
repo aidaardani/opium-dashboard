@@ -168,6 +168,7 @@ function PlasmicHamdastCapabilities__RenderFunc(props: {
         styleTokensClassNames,
         sty.root
       )}
+      id={"hamdast-capabilities"}
       style={{
         height: $state.height + "px",
         minHeight: $state.height + "px"
@@ -197,13 +198,34 @@ function PlasmicHamdastCapabilities__RenderFunc(props: {
                 const actionArgs = {
                   customFunction: async () => {
                     return window.addEventListener("message", event => {
-                      const { type, payload } = event.data || {};
-                      console.log(type, payload);
+                      const { type, payload, hamdast } = event.data || {};
                       if (
                         type === "HAMDAST_IFRAME_RESIZE" &&
                         typeof payload?.height === "number"
                       ) {
                         $state.height = payload.height;
+                      }
+                      if (type === "HAMDAST_CAPABILITY_TOGGLE") {
+                        globalThis.parent.postMessage(
+                          {
+                            hamdast: {
+                              event: "HAMDAST_CAPABILITY_TOGGLE",
+                              data: payload
+                            }
+                          },
+                          "*"
+                        );
+                      }
+                      if (hamdast?.event === "HAMDAST_CAPABILITY_SET") {
+                        globalThis.document
+                          .querySelector("#hamdast-capabilities > iframe")
+                          ?.contentWindow?.postMessage(
+                            {
+                              type: "HAMDAST_CAPABILITY_SET",
+                              payload: hamdast.data
+                            },
+                            "*"
+                          );
                       }
                     });
                   }

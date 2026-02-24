@@ -96,7 +96,6 @@ export type PlasmicService__OverridesType = {
   apiGetService?: Flex__<typeof ApiRequest>;
   svg?: Flex__<"svg">;
   eachService?: Flex__<typeof EachService>;
-  freeBox?: Flex__<"div">;
   hamdastCapabilities?: Flex__<typeof HamdastCapabilities>;
 };
 
@@ -497,11 +496,7 @@ function PlasmicService__RenderFunc(props: {
           throw e;
         }
       })() ? (
-        <div
-          data-plasmic-name={"freeBox"}
-          data-plasmic-override={overrides.freeBox}
-          className={classNames(projectcss.all, sty.freeBox)}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox__s8Yh)}>
           <div
             className={classNames(
               projectcss.all,
@@ -515,46 +510,40 @@ function PlasmicService__RenderFunc(props: {
           </div>
         </div>
       ) : null}
-      {(() => {
-        try {
-          return (
-            !$state.apiGetService.loading &&
-            $props.centerId !== "5532" &&
-            !!$ctx.GrowthBook.features?.["hamdast-capabilities"]
-          );
-        } catch (e) {
-          if (
-            e instanceof TypeError ||
-            e?.plasmicType === "PlasmicUndefinedDataError"
-          ) {
-            return false;
+      <div className={classNames(projectcss.all, sty.freeBox___3IKy4)}>
+        {(() => {
+          try {
+            return (
+              !$state.apiGetService.loading &&
+              $props.centerId !== "5532" &&
+              !!$ctx.GrowthBook.features?.["hamdast-capabilities"]
+            );
+          } catch (e) {
+            if (
+              e instanceof TypeError ||
+              e?.plasmicType === "PlasmicUndefinedDataError"
+            ) {
+              return false;
+            }
+            throw e;
           }
-          throw e;
-        }
-      })() ? (
-        <HamdastCapabilities
-          data-plasmic-name={"hamdastCapabilities"}
-          data-plasmic-override={overrides.hamdastCapabilities}
-          className={classNames("__wab_instance", sty.hamdastCapabilities)}
-        />
-      ) : null}
+        })() ? (
+          <HamdastCapabilities
+            data-plasmic-name={"hamdastCapabilities"}
+            data-plasmic-override={overrides.hamdastCapabilities}
+            className={classNames("__wab_instance", sty.hamdastCapabilities)}
+          />
+        ) : null}
+      </div>
     </div>
   ) as React.ReactElement | null;
 }
 
 const PlasmicDescendants = {
-  root: [
-    "root",
-    "apiGetService",
-    "svg",
-    "eachService",
-    "freeBox",
-    "hamdastCapabilities"
-  ],
+  root: ["root", "apiGetService", "svg", "eachService", "hamdastCapabilities"],
   apiGetService: ["apiGetService", "svg"],
   svg: ["svg"],
   eachService: ["eachService"],
-  freeBox: ["freeBox"],
   hamdastCapabilities: ["hamdastCapabilities"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -565,7 +554,6 @@ type NodeDefaultElementType = {
   apiGetService: typeof ApiRequest;
   svg: "svg";
   eachService: typeof EachService;
-  freeBox: "div";
   hamdastCapabilities: typeof HamdastCapabilities;
 };
 
@@ -634,7 +622,6 @@ export const PlasmicService = Object.assign(
     apiGetService: makeNodeComponent("apiGetService"),
     svg: makeNodeComponent("svg"),
     eachService: makeNodeComponent("eachService"),
-    freeBox: makeNodeComponent("freeBox"),
     hamdastCapabilities: makeNodeComponent("hamdastCapabilities"),
 
     // Metadata about props expected for PlasmicService
