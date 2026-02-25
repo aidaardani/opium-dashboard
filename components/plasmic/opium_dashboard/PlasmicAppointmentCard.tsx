@@ -5138,7 +5138,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                             args: [
                               (() => {
                                 try {
-                                  return $state.hamiChatLink;
+                                  return `https://${$state.hamiChatLink}`;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
