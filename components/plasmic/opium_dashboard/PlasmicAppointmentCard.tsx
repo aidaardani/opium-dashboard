@@ -603,6 +603,12 @@ function PlasmicAppointmentCard__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $q, $ctx }) => false
+      },
+      {
+        path: "hamiChatLink",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $q, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -926,7 +932,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                     ) {
                       return "ایتا";
                     } else {
-                      return "پیام‌رسان پذیرش۲۴";
+                      return "";
                     }
                   })();
                 } catch (e) {
@@ -2120,7 +2126,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                           ) {
                             return "ایتا";
                           } else {
-                            return "پیام‌رسان پذیرش۲۴";
+                            return "";
                           }
                         })()
                       );
@@ -2175,7 +2181,7 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         ) {
                           return "ایتا";
                         } else {
-                          return "پیام‌رسان پذیرش۲۳";
+                          return "";
                         }
                       })();
                     } catch (e) {
@@ -5056,26 +5062,101 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         await $steps["updateLoadingHami"];
                     }
 
-                    $steps["runCode"] = true
+                    $steps["hamiChat"] = true
                       ? (() => {
                           const actionArgs = {
-                            customFunction: async () => {
-                              return globalThis.open(
-                                `https://messaging-back.paziresh24.com/api/external/conversations/${$props.bookId}`
-                              );
-                            }
+                            args: [
+                              undefined,
+                              (() => {
+                                try {
+                                  return `https://apigw.paziresh24.com/v1/n8n-nelson/webhook/hami-chat?book_id=${$props.bookId}`;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
                           };
-                          return (({ customFunction }) => {
-                            return customFunction();
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["hamiChat"] != null &&
+                      typeof $steps["hamiChat"] === "object" &&
+                      typeof $steps["hamiChat"].then === "function"
+                    ) {
+                      $steps["hamiChat"] = await $steps["hamiChat"];
+                    }
+
+                    $steps["updateHamiChatLink"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["hamiChatLink"]
+                            },
+                            operation: 0,
+                            value: $steps.hamiChat.data.link
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
                           })?.apply(null, [actionArgs]);
                         })()
                       : undefined;
                     if (
-                      $steps["runCode"] != null &&
-                      typeof $steps["runCode"] === "object" &&
-                      typeof $steps["runCode"].then === "function"
+                      $steps["updateHamiChatLink"] != null &&
+                      typeof $steps["updateHamiChatLink"] === "object" &&
+                      typeof $steps["updateHamiChatLink"].then === "function"
                     ) {
-                      $steps["runCode"] = await $steps["runCode"];
+                      $steps["updateHamiChatLink"] =
+                        await $steps["updateHamiChatLink"];
+                    }
+
+                    $steps["goToPage"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            destination: $state.hamiChatLink
+                          };
+                          return (({ destination }) => {
+                            if (
+                              typeof destination === "string" &&
+                              destination.startsWith("#")
+                            ) {
+                              document
+                                .getElementById(destination.substr(1))
+                                .scrollIntoView({ behavior: "smooth" });
+                            } else {
+                              __nextRouter?.push(destination);
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["goToPage"] != null &&
+                      typeof $steps["goToPage"] === "object" &&
+                      typeof $steps["goToPage"].then === "function"
+                    ) {
+                      $steps["goToPage"] = await $steps["goToPage"];
                     }
 
                     $steps["sendEvent"] = true
@@ -7294,12 +7375,12 @@ function PlasmicAppointmentCard__RenderFunc(props: {
             $steps["redirectWhatsapp"] =
               $props.centerId === "5532" &&
               $state.apiselcetedonlinevisitchannels.data.online_channel ===
-                "hami" &&
+                "whatsapp" &&
               $state.bookStatusState === "not_came"
                 ? (() => {
                     const actionArgs = {
                       customFunction: async () => {
-                        return globalThis.open(`https://messaging-back.paziresh24.com/api/external/conversations/${$props.bookId}`);
+                        return globalThis.open(`https://wa.me/${$props.cell}`);
                       }
                     };
                     return (({ customFunction }) => {
