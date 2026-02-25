@@ -5132,31 +5132,39 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         await $steps["updateHamiChatLink"];
                     }
 
-                    $steps["goToPage"] = true
+                    $steps["invokeGlobalAction"] = true
                       ? (() => {
                           const actionArgs = {
-                            destination: $state.hamiChatLink
+                            args: [
+                              (() => {
+                                try {
+                                  return $state.hamiChatLink;
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
                           };
-                          return (({ destination }) => {
-                            if (
-                              typeof destination === "string" &&
-                              destination.startsWith("#")
-                            ) {
-                              document
-                                .getElementById(destination.substr(1))
-                                .scrollIntoView({ behavior: "smooth" });
-                            } else {
-                              __nextRouter?.push(destination);
-                            }
-                          })?.apply(null, [actionArgs]);
+                          return $globalActions["Hamdast.openLink"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
                         })()
                       : undefined;
                     if (
-                      $steps["goToPage"] != null &&
-                      typeof $steps["goToPage"] === "object" &&
-                      typeof $steps["goToPage"].then === "function"
+                      $steps["invokeGlobalAction"] != null &&
+                      typeof $steps["invokeGlobalAction"] === "object" &&
+                      typeof $steps["invokeGlobalAction"].then === "function"
                     ) {
-                      $steps["goToPage"] = await $steps["goToPage"];
+                      $steps["invokeGlobalAction"] =
+                        await $steps["invokeGlobalAction"];
                     }
 
                     $steps["sendEvent"] = true
