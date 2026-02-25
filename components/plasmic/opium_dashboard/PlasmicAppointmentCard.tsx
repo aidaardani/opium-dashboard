@@ -5132,39 +5132,26 @@ function PlasmicAppointmentCard__RenderFunc(props: {
                         await $steps["updateHamiChatLink"];
                     }
 
-                    $steps["invokeGlobalAction"] = true
+                    $steps["runCode"] = true
                       ? (() => {
                           const actionArgs = {
-                            args: [
-                              (() => {
-                                try {
-                                  return `https://${$state.hamiChatLink}`;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
-                                  }
-                                  throw e;
-                                }
-                              })()
-                            ]
+                            customFunction: async () => {
+                              return globalThis.open(
+                                `https://${$state.hamiChatLink}`
+                              );
+                            }
                           };
-                          return $globalActions["Hamdast.openLink"]?.apply(
-                            null,
-                            [...actionArgs.args]
-                          );
+                          return (({ customFunction }) => {
+                            return customFunction();
+                          })?.apply(null, [actionArgs]);
                         })()
                       : undefined;
                     if (
-                      $steps["invokeGlobalAction"] != null &&
-                      typeof $steps["invokeGlobalAction"] === "object" &&
-                      typeof $steps["invokeGlobalAction"].then === "function"
+                      $steps["runCode"] != null &&
+                      typeof $steps["runCode"] === "object" &&
+                      typeof $steps["runCode"].then === "function"
                     ) {
-                      $steps["invokeGlobalAction"] =
-                        await $steps["invokeGlobalAction"];
+                      $steps["runCode"] = await $steps["runCode"];
                     }
 
                     $steps["sendEvent"] = true
